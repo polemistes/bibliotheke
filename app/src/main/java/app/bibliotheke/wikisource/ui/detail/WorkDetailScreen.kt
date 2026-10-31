@@ -124,10 +124,12 @@ private fun DetailContent(ui: DetailUi, w: WorkDetail, domain: String, modifier:
             Column(Modifier.padding(horizontal = 16.dp)) {
                 HorizontalDivider(Modifier.padding(vertical = 8.dp))
                 Text(stringResource(R.string.detail_contents), style = MaterialTheme.typography.titleMedium)
-                val counts = if (w.missingPartCount > 0) {
-                    stringResource(R.string.detail_texts_transcribed, w.textCount, w.textCount + w.missingPartCount)
-                } else pluralStringResource(R.plurals.detail_texts, w.textCount, w.textCount)
-                Text(counts, style = MaterialTheme.typography.bodyMedium)
+                // A single-page work is found as a work, not as a text: its text_count is 0.
+                when {
+                    w.missingPartCount > 0 -> stringResource(R.string.detail_texts_transcribed, w.textCount, w.textCount + w.missingPartCount)
+                    w.textCount > 0 -> pluralStringResource(R.plurals.detail_texts, w.textCount, w.textCount)
+                    else -> null
+                }?.let { Text(it, style = MaterialTheme.typography.bodyMedium) }
                 w.bytesTotal?.let { Text(stringResource(R.string.detail_size, formatBytes(it)), style = MaterialTheme.typography.bodySmall) }
                 if (!w.partsInCatalog && w.partCount > 1) {
                     Text(stringResource(R.string.detail_parts_live), style = MaterialTheme.typography.bodySmall)

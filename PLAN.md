@@ -902,6 +902,12 @@ docs/                   this plan, STATUS.md, decisions
   separate SQLite files, opened read-only via Room `createFromFile` or
   `SupportSQLiteOpenHelper` and queried directly; do not import rows into the
   main DB (catalogs are tens of MB for `en`).
+  (WP2, 2026-11-01) Opened read-only with the `androidx.sqlite:sqlite-bundled`
+  driver instead: it bundles an SQLite with FTS5 for every API level (the
+  platform SQLite's FTS5 support varies, Room has FTS3/4 only), and the same
+  build runs on the host, so the catalog queries live in the plain Kotlin
+  module `:core-catalog` and are unit-tested against the real catalogs. The
+  app is `:app` + `:core-catalog`; D5's later split is unchanged.
 - Update check against `manifest.json` at most daily; download when sha differs.
 - (WS, 2026-10-31, WS§10.5–10.6) `manifest.json` carries per wiki
   `show_unknown_by_default` and the work counts per quality tier. The app
@@ -1196,6 +1202,8 @@ names every hard exclusion.
   parts tree and "9 of 125 texts transcribed" on the detail screen.
 Acceptance: fully offline browsing after catalog download; all facets combine;
 switching UI language to nb and nn shows translated strings on every screen.
+(WP2, 2026-11-01: met on the emulator, `app/acceptance/wp2.sh`, 18 of 18
+checks; see STATUS.md.)
 
 ### WP3 — Content fetching, normaliser, downloads (3 weeks)
 - Sections 7.1–7.4 with fixture tests; WorkManager queue; partial downloads;

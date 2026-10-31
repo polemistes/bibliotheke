@@ -7,8 +7,10 @@ Last updated: 2026-11-01
 
 ## Current package
 
-**WP2 — App skeleton: in progress** (started 2026-11-01). WP0 and WP1 are
-complete (WP1: acceptance 19 of 19, commit 161472a; details below).
+**WP2 — App skeleton: complete** (2026-11-01; acceptance 18 of 18 on the
+emulator, `app/acceptance/wp2.sh`). Next: **WP3 — Content fetching,
+normaliser, downloads**. WP0 and WP1 are complete (WP1: acceptance 19 of
+19, commit 161472a; details below).
 
 WP2 sub-steps:
 
@@ -18,15 +20,39 @@ WP2 sub-steps:
 - [x] 2. Network: `PoliteHttp` (User-Agent, one request in flight per host,
       backoff on 429/5xx/I/O honouring `Retry-After`), online search
       client, resumable catalog download verified by sha256, catalog store
-- [ ] 3. App module: Hilt, settings (DataStore), catalog download worker,
-      wiki picker (first run)
-- [ ] 4. Browse with facets and quality chips
-- [ ] 5. Search (offline works and texts, hidden-matches row, online),
-      open by URL
-- [ ] 6. Work detail (metadata, labels, attribution, parts tree, size)
-- [ ] 7. Settings, About, UI language override; nb, nn (and `no`) strings
-- [ ] 8. Acceptance on the emulator: offline browsing, facets combine, nb
-      and nn on every screen
+- [x] 3. App module: Hilt, settings (DataStore), catalog download worker
+      (WorkManager, progress, daily update check), wiki picker (first run
+      and "Manage catalogs")
+- [x] 4. Browse with facets (genre, period with year range, author, type,
+      language; counts per facet) and the four quality chips; sort by
+      title or year
+- [x] 5. Search: offline works and texts across the installed catalogs,
+      the "n more hidden by your quality filter" row (expands to show them,
+      dimmed and labelled), online search per wiki with hits resolved into
+      the catalog; open by URL (VIEW intent for `*.wikisource.org/wiki/`,
+      shared text, or a link pasted into search)
+- [x] 6. Work detail: authors (tap = browse by author), year, language,
+      type, genres, cover, quality and completeness labels of 5.4, "4 of
+      120 texts transcribed", size estimate, parts tree with each part's
+      own tier when it differs, the searched text highlighted, source,
+      licence note, contributors notice, page history, Wikidata
+- [x] 7. Settings (app language, the chips as switches, catalogs, update
+      check), About (long name, credits, non-affiliation notice, GPL,
+      source link); strings in en, nb, nn and `values-no` (copy of nb)
+- [x] 8. Acceptance on the emulator (below)
+
+**WP2 acceptance** (`app/acceptance/wp2.sh` on AVD `bibliotheke_wp0`,
+airplane mode on, en and no catalogs downloaded first): for nn and for nb,
+browse no offline (618 works = the manifest's `default_view_count`), genre
++ period + language (5 works) + author (1 work) combine, work detail,
+search with the hidden-matches row, settings, about, picker from the
+cached manifest, open by URL: 18 of 18 ok. Also checked by hand: the
+Documents chip (no 618 → 685, the 67 documents of WP1 decision 4), the type
+facet, online search on no.wikisource.org, the first-run download of en and
+no from the local catalog server. Screens were read from `uiautomator`
+dumps; no English string left on any screen in nb or nn (the AndroidX
+library strings for nn are overridden in `values-nn/library_strings.xml`,
+since the libraries ship nb but not nn and Android falls back to English).
 
 WP1 followed `docs/work-structure-plan.md` (decided by the owner on
 2026-10-31):
@@ -89,6 +115,22 @@ WP1 followed `docs/work-structure-plan.md` (decided by the owner on
   silently.
 - Host timings on en (desktop): count 22 ms, browse at offset 20,000 73 ms,
   facet counts 26–43 ms, search "the" 189 ms, "t" 253 ms.
+- **Catalog host for debug builds**: until the CI release `catalog-latest`
+  exists, debug builds read `http://10.0.2.2:8765/` (the emulator's host):
+  run `python3 -m http.server 8765 --bind 127.0.0.1` in `pipeline/out`.
+  Release builds use the GitHub release URL; `-PcatalogBaseUrl=…`
+  overrides either (D6).
+- **compileSdk 37** (platform 37.0 installed with sdkmanager; the Compose
+  BOM 2026.08.00, navigation 2.10 and Coil 3.6 need it), targetSdk 36.
+  Hilt 2.60.1 (2.59 cannot read Kotlin 2.4 metadata). OkHttp without
+  Retrofit (D5 allows either; one endpoint so far).
+- **Covers** load through Coil with the app's OkHttp client, User-Agent and
+  one request per host.
+- **Licence per work** is not in the catalog: the detail screen says the
+  text is public domain or freely licensed and that the source page names
+  the licence, plus the CC BY-SA contributors notice (R11). WP3 can take
+  the licence template from the fetched page, or the pipeline can add a
+  column.
 - Tests: `./gradlew :core-catalog:test` (with
   `JAVA_HOME=/opt/android-studio/jbr`; no JDK 17 is installed, so the
   module targets JVM 17 bytecode from JBR 25 instead of using a toolchain).
@@ -267,10 +309,8 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## In progress
 
-- Nothing running. WP1 is complete; next: WP2 (app skeleton). The app
-  joins `parts` on `id` for `parts_fts` hits, reads
-  `show_unknown_by_default` from the manifest, and hides `reference` and
-  `document` by default (PLAN.md 5.4, 6.1).
+- Nothing running. WP2 is complete; next: WP3 (content fetching,
+  normaliser, downloads).
 - **Owner's decision (2026-11-01): Wikidata for it, sv, da, fi, es and mul
   is fetched by the first CI run**, not locally (it would take about an
   hour; the bottleneck is Wikidata's server time and maxlag, not the
@@ -278,6 +318,16 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
   header and Index data only.
 
 ## How to resume / rerun
+
+- App (WP2): `JAVA_HOME=/opt/android-studio/jbr ./gradlew :core-catalog:test
+  :app:assembleDebug :app:lintDebug` from the repo root (`local.properties`
+  with `sdk.dir` is gitignored). Catalog server for debug builds:
+  `cd pipeline/out && python3 -m http.server 8765 --bind 127.0.0.1`.
+  Acceptance: start the emulator (below), install
+  `app/build/outputs/apk/debug/app-debug.apk`, download en and no in the
+  app, then `PATH=$PATH:$HOME/Android/Sdk/platform-tools
+  app/acceptance/wp2.sh` (screenshots in `$OUT`, default
+  `/tmp/wp2-acceptance`).
 
 - Pipeline (see `pipeline/README.md`): `make venv`, then
   `make catalog WIKI=no` (dumps → extract → catalog → manifest),
@@ -305,6 +355,18 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## Known problems and open questions
 
+- **For the owner (WP2)**: speeches stay behind the "Include documents"
+  chip with the other documents (wp1-decisions item 4 left "document and
+  genre not speech" to WP2; not done, so the default view still matches
+  the pipeline's count exactly). Say if speeches should be shown by
+  default.
+- **WP2 not done, by plan or for later**: UI strings in the other nine
+  languages (WP6); Compose previews, Compose UI tests and ktlint/detekt
+  (section 12; the acceptance runs through adb instead); the seed `no`
+  catalog in the APK (section 13 recommendation); a one-letter search on
+  en takes about 0.25 s on the host, so more on a phone (the search
+  debounces 250 ms).
+
 - **STATUS.md location**: PLAN.md section 0 says repo root; sections 6 and 12
   say `docs/STATUS.md`. Kept at the repo root, as section 0 (the working
   instructions) specifies.
@@ -319,11 +381,8 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 - **Tickets from the eyeball review: fixed in WP1** (duplicate parts,
   ordinal words in natural order, navigation link texts; PLAN.md 5.2
   step 6 note).
-- **FTS5 on Android** (for WP2): the schema uses FTS5 (5.3) and the
-  tokenizer `unicode61 remove_diacritics 2`; Room supports FTS3/FTS4 only
-  and the platform SQLite's FTS5 support differs by Android version, so WP2
-  should bundle an SQLite build with FTS5 (e.g. requery/sqlite-android,
-  Apache-2.0) or confirm it on API 26.
+- **FTS5 on Android**: solved in WP2 with `androidx.sqlite:sqlite-bundled`
+  (see "WP2 notes").
 - **Ordering defects left** (de re-sample): TOC order takes each link's
   first occurrence, so example pages linked in a root's editorial notes
   come first (Kommersbuch, Hertz); periodical articles without a chain or

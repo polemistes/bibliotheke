@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<!--
+  Nynorsk for the AndroidX Compose strings the app's screens use (mostly TalkBack
+  labels). The libraries ship Bokmål but no Nynorsk, and Android falls back to their
+  English, not to Bokmål. Names from compose-ui 1.12 and material3 1.4; check them
+  when those libraries are updated.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="ExtraTranslation,PrivateResource">
+    <string name="androidx_compose_ui_autofill">Autofyll</string>
+    <string name="close_drawer">Lukk navigasjonsmenyen</string>
+    <string name="close_sheet">Lukk arket</string>
+    <string name="default_error_message">Ugyldige inndata</string>
+    <string name="dropdown_menu">Nedtrekksmeny</string>
+    <string name="indeterminate">Delvis avkryssa</string>
+    <string name="in_progress">Pågår</string>
+    <string name="navigation_menu">Navigasjonsmeny</string>
+    <string name="not_selected">Ikkje vald</string>
+    <string name="range_end">Slutten av området</string>
+    <string name="range_start">Starten av området</string>
+    <string name="selected">Vald</string>
+    <string name="snackbar_pane_title">Varsel</string>
+    <string name="state_empty">Tom</string>
+    <string name="state_off">Av</string>
+    <string name="state_on">På</string>
+    <string name="switch_role">Brytar</string>
+    <string name="tab">Fane</string>
+    <string name="template_percent"><xliff:g xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" id="percentage">%1$d</xliff:g> prosent.</string>
+    <string name="m3c_bottom_sheet_collapse_description">Gøym feltet nedst</string>
+    <string name="m3c_bottom_sheet_dismiss_description">Lukk feltet nedst</string>
+    <string name="m3c_bottom_sheet_drag_handle_description">Handtak</string>
+    <string name="m3c_bottom_sheet_expand_description">Vis feltet nedst</string>
+    <string name="m3c_bottom_sheet_pane_title">Felt nedst</string>
+    <string name="m3c_dropdown_menu_expanded">Utvida</string>
+    <string name="m3c_dropdown_menu_collapsed">Samanfalda</string>
+    <string name="m3c_dropdown_menu_toggle">Opne eller lukk nedtrekksmenyen</string>
+    <string name="m3c_dialog">Dialogboks</string>
+</resources>
