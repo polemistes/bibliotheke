@@ -9,6 +9,16 @@ positional_headers: {}               # name -> {container: n, prev: n, next: n, 
 header_params:                       # metadata parameters (5.2 step 3)
   author: [author]
   year: [year]
+  translator: [translator]
+  description: []
+  image: []
+index_fields:                        # Index page fields used as metadata (5.2 step 3)
+  author: [author]
+  translator: [translator]
+  year: [year]
+  image: [image]                     # cover: a file name or a page number of the scan
+  language: [language]
+  qid: []                            # the scanned edition's Wikidata item (fr)
 structure:                           # WS§5.3; resolution rules in PLAN.md 5.2 steps 1a-1h
   container_params: [title]          # header template, <pages header=1> attribute or Index field
   prev_next_params: [[prev, next], [previous, next]]

@@ -50,7 +50,7 @@ UNSET = 255
 class PageRec:
     """Raw signals of one ns0 page (non-redirect)."""
     __slots__ = ("title", "page_id", "bytes", "hdr", "tags", "refs", "links", "texts",
-                 "cats", "tpls", "own_chars", "flags", "snippet")
+                 "cats", "tpls", "own_chars", "flags", "snippet", "rev", "ts")
 
     def __init__(self, title: str, page_id: int, nbytes: int):
         self.title = title
@@ -66,6 +66,8 @@ class PageRec:
         self.own_chars = 0
         self.flags = 0                        # bit 0: placeholder
         self.snippet = ""                     # start of the text, typed-in pages only
+        self.rev = 0                          # revision id
+        self.ts = ""                          # revision timestamp
 
 
 class Namespaces:
@@ -185,7 +187,8 @@ def parse_ns0(title: str, page_id: int, nbytes: int, text: str, cfg: configmod.C
         for role, plist in (("container", cfg.container_params), ("current", cfg.current_params),
                             ("index", cfg.index_params), ("status", cfg.status_params),
                             ("author", cfg.author_params), ("year", cfg.year_params),
-                            ("translator", cfg.own_translation_params)):
+                            ("translator", cfg.translator_params),
+                            ("description", cfg.description_params), ("image", cfg.image_params)):
             for p in plist:
                 v = params.get(p, "")
                 if v and role not in hdr:
@@ -325,9 +328,13 @@ def _work(args) -> dict:
     plinks: dict[tuple, tuple] = {}
     indexes: dict[str, dict] = {}
     ids: dict[int, str] = {}
+    authors: dict[str, int] = {}
+    author_redirects: dict[str, str] = {}
+    files: set[str] = set()
     index_fields = set(cfg.container_params + cfg.toc_fields + cfg.index_type_fields
-                       + cfg.index_progress_fields + ["malform", "title", "type"])
-    page_ns, index_ns = ns.page_ns, ns.index_ns
+                       + cfg.index_progress_fields + ["malform", "title", "type"]
+                       + [f for fs in cfg.index_meta.values() for f in fs])
+    page_ns, index_ns, author_ns = ns.page_ns, ns.index_ns, cfg.ns.get("author")
     proc = subprocess.Popen(["bzip2", "-dc", str(path)], stdout=subprocess.PIPE, bufsize=1 << 20)
     context = ET.iterparse(proc.stdout, events=("start", "end"))
     _, root = next(context)
@@ -338,7 +345,8 @@ def _work(args) -> dict:
         title = nsnum = pid = None
         redirect = None
         text = ""
-        nbytes = 0
+        nbytes = rev = 0
+        ts = ""
         for child in el:
             tag = child.tag.rsplit("}", 1)[-1]
             if tag == "title":
@@ -351,16 +359,30 @@ def _work(args) -> dict:
                 redirect = child.get("title")
             elif tag == "revision":
                 for c in child:
-                    if c.tag.endswith("}text"):
+                    ctag = c.tag.rsplit("}", 1)[-1]
+                    if ctag == "text":
                         text = c.text or ""
                         nbytes = int(c.get("bytes") or len(text.encode()))
+                    elif ctag == "id":
+                        rev = int(c.text)
+                    elif ctag == "timestamp":
+                        ts = c.text or ""
         if nsnum == 0:
             title = wt.norm_title(title)
             if redirect is not None:
                 redirects[title] = wt.norm_title(redirect.split("#", 1)[0])
             else:
-                pages[title] = parse_ns0(title, pid, nbytes, text, cfg, ns, interest, pos_names)
+                rec = pages[title] = parse_ns0(title, pid, nbytes, text, cfg, ns, interest, pos_names)
+                rec.rev, rec.ts = rev, ts
                 ids[pid] = title
+        elif nsnum == author_ns and author_ns is not None:
+            # author pages: page id for the QID in page_props (5.2 step 3)
+            if redirect is not None:
+                author_redirects[wt.norm_title(title)] = wt.norm_title(redirect.split("#", 1)[0])
+            else:
+                authors[wt.norm_title(title)] = pid
+        elif nsnum == 6 and redirect is None:
+            files.add(wt.norm_title(title.split(":", 1)[1]))
         elif nsnum == page_ns and page_ns is not None and redirect is None:
             f, num = page_key(title.split(":", 1)[1])
             m = wt.PAGEQUALITY.search(text)
@@ -394,22 +416,35 @@ def _work(args) -> dict:
         root.clear()
     proc.wait()
     return dict(pages=pages, redirects=redirects, levels=levels, sizes=sizes, single=single,
-                plinks=plinks, indexes=indexes, ids=ids, count=n)
+                plinks=plinks, indexes=indexes, ids=ids, authors=authors,
+                author_redirects=author_redirects, files=files, count=n)
 
 
-def _page_props(dbname: str) -> tuple[set[int], dict[int, str]]:
-    disamb, qids = set(), {}
+SQL_STR = r"'((?:[^'\\]|\\.)*)'"
+
+
+def _unescape(v: str) -> str:
+    return re.sub(r"\\(.)", lambda m: {"n": "\n", "t": "\t", "0": ""}.get(m.group(1), m.group(1)), v)
+
+
+def page_props(dbname: str) -> dict:
+    """disambiguation flags, Wikidata items, display titles and default sort
+    keys by page id, from the page_props dump."""
+    out = dict(disamb=set(), qids={}, displaytitle={}, defaultsort={})
     try:
         path = dumps.local(dbname, "page_props")[0]
     except FileNotFoundError:
-        return disamb, qids
+        return out
     pat_d = re.compile(r"\((\d+),'disambiguation',")
     pat_q = re.compile(r"\((\d+),'wikibase_item','(Q\d+)'")
+    pat_s = re.compile(r"\((\d+),'(displaytitle|defaultsort)'," + SQL_STR)
     with gzip.open(path, "rt", encoding="utf-8", errors="replace") as f:
         for line in f:
-            disamb.update(int(x) for x in pat_d.findall(line))
-            qids.update((int(a), b) for a, b in pat_q.findall(line))
-    return disamb, qids
+            out["disamb"].update(int(x) for x in pat_d.findall(line))
+            out["qids"].update((int(a), b) for a, b in pat_q.findall(line))
+            for pid, prop, val in pat_s.findall(line):
+                out[prop][int(pid)] = _unescape(val)
+    return out
 
 
 def run(wiki: str, workers: int = 6) -> dict:
@@ -424,7 +459,8 @@ def run(wiki: str, workers: int = 6) -> dict:
             results = pool.map(_work, [(p, wiki, site_ns) for p in parts])
     out = results[0]
     for r in results[1:]:
-        for k in ("pages", "redirects", "single", "plinks", "indexes", "ids"):
+        for k in ("pages", "redirects", "single", "plinks", "indexes", "ids", "authors",
+                  "author_redirects", "files"):
             out[k].update(r[k])
         for f, lv in r["levels"].items():
             if f not in out["levels"]:
@@ -440,7 +476,7 @@ def run(wiki: str, workers: int = 6) -> dict:
                     a[i] = v
                     sa[i] = r["sizes"][f][i]
         out["count"] += r["count"]
-    out["disamb"], out["qids"] = _page_props(cfg.dbname)
+    out.update(page_props(cfg.dbname))
     out["site_ns"] = site_ns
     out["dump"] = [p.name for p in parts]
     out["wiki"] = wiki

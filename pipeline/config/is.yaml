@@ -8,6 +8,7 @@ header_templates: [Verk, header]
 header_params:
   author: [höfundur, author]
   year: [ár, year]
+  translator: [þýðandi, translator]
 structure:
   container_params: [titill, title]
   prev_next_params: [[fyrri, næsti], [previous, next], [prev, next]]

@@ -1,13 +1,20 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-wiki: no
+wiki: "no"
 domain: no.wikisource.org
 dbname: nowikisource
-language: nb
+language: "no"                       # nb/nn/da per work from Malform or Wikidata P407 (PLAN.md 3.1)
 namespaces: {author: 102, index: 106, page: 104}   # verified in WP0, F§1
 header_templates: [topp, topp2, header]
 header_params:
   author: [forfatter, author]
   year: [år, year]
+  translator: [oversetter, translator]
+index_fields:
+  author: [forfatter]
+  translator: [oversetter]
+  year: [ar, år]
+  image: [bilde]
+  language: [malform]
 structure:
   container_params: [tittel, title]
   prev_next_params: [[forrige, neste], [prev, next], [previous, next]]

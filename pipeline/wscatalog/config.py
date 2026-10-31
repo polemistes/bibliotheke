@@ -11,7 +11,7 @@ from pathlib import Path
 
 import yaml
 
-from .wikitext import norm_template
+from .wikitext import norm_template, norm_title
 
 CONFIG_DIR = Path(__file__).resolve().parents[1] / "config"
 
@@ -87,6 +87,24 @@ class Config:
     own_translation_templates: frozenset[str] = frozenset()
     author_params: list[str] = field(default_factory=list)
     year_params: list[str] = field(default_factory=list)
+    translator_params: list[str] = field(default_factory=list)
+    description_params: list[str] = field(default_factory=list)
+    image_params: list[str] = field(default_factory=list)
+    index_meta: dict[str, list[str]] = field(default_factory=dict)   # role -> Index fields
+    # metadata merge (5.2 step 3)
+    sort_articles: tuple[str, ...] = ()
+    language_map: dict[str, str] = field(default_factory=dict)
+    genre_categories: dict[str, str] = field(default_factory=dict)
+    genre_category_patterns: list[tuple[re.Pattern, str]] = field(default_factory=list)
+    genre_templates: dict[str, str] = field(default_factory=dict)
+    document_templates: frozenset[str] = frozenset()
+    document_template_patterns: re.Pattern | None = None
+    document_category_patterns: re.Pattern | None = None
+    year_category_regex: re.Pattern | None = None
+    wikidata_genres: dict[str, str] = field(default_factory=dict)
+    wikidata_types: dict[str, str] = field(default_factory=dict)
+    wikidata_languages: dict[str, str] = field(default_factory=dict)
+    genre_types: dict[str, str] = field(default_factory=dict)
 
     def templates_of_interest(self) -> frozenset[str]:
         return (self.disambiguation_templates | self.versions_templates
@@ -102,7 +120,9 @@ def load(wiki: str) -> Config:
     path = CONFIG_DIR / f"{wiki}.yaml"
     over = yaml.safe_load(path.read_text("utf-8")) if path.exists() else {"wiki": wiki}
     raw = _merge(default, over)
-    s, q = raw["structure"], raw["quality"]
+    raw["wiki"] = wiki      # the file name; YAML would read a bare `no` as false
+    s, q, m, wd = raw["structure"], raw["quality"], raw.get("metadata") or {}, raw.get("wikidata") or {}
+    hp = raw.get("header_params") or {}
     labels = [raw["structure"]["chapter_label_regex_default"]]
     if s.get("chapter_label_regex"):
         labels.append(s["chapter_label_regex"])
@@ -156,6 +176,29 @@ def load(wiki: str) -> Config:
         own_translation_params=_lower((q.get("own_translation") or {}).get("params")),
         own_translation_values=frozenset((q.get("own_translation") or {}).get("values") or []),
         own_translation_templates=_tset(q.get("own_translation_templates")),
-        author_params=_lower((raw.get("header_params") or {}).get("author")),
-        year_params=_lower((raw.get("header_params") or {}).get("year")),
+        author_params=_lower(hp.get("author")),
+        year_params=_lower(hp.get("year")),
+        translator_params=list(dict.fromkeys(
+            _lower(hp.get("translator")) + _lower((q.get("own_translation") or {}).get("params")))),
+        description_params=_lower(hp.get("description")),
+        image_params=_lower(hp.get("image")),
+        index_meta={k: _lower(v) for k, v in (raw.get("index_fields") or {}).items()},
+        sort_articles=tuple(a.lower() for a in m.get("sort_articles") or []),
+        language_map={str(k).upper(): v for k, v in (m.get("language_map") or {}).items()},
+        genre_categories={norm_title(k): v for k, v in (m.get("genre_categories") or {}).items()},
+        genre_category_patterns=[(re.compile(p, re.I), g) for p, g in m.get("genre_category_patterns") or []],
+        genre_templates={norm_template(k): v for k, v in (m.get("genre_templates") or {}).items()},
+        document_templates=_tset(m.get("document_templates")),
+        document_template_patterns=_regex(m.get("document_template_patterns")),
+        document_category_patterns=_regex(m.get("document_category_patterns")),
+        year_category_regex=re.compile(m["year_category_regex"]) if m.get("year_category_regex") else None,
+        wikidata_genres=dict(wd.get("genres") or {}),
+        wikidata_types=dict(wd.get("types") or {}),
+        wikidata_languages=dict(wd.get("languages") or {}),
+        genre_types=dict(m.get("genre_types") or {}),
     )
+
+
+def _regex(patterns) -> re.Pattern | None:
+    return re.compile("|".join(f"(?:{p})" for p in patterns), re.I) if patterns else None
+

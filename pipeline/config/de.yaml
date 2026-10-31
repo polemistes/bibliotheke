@@ -10,6 +10,9 @@ positional_headers:
 header_params:
   author: [autor]
   year: [erscheinungsjahr, jahr]
+  translator: [übersetzer]
+  description: [kurzbeschreibung]
+  image: [bild]
 structure:
   container_params: [herkunft, artikel]    # first wikilink inside HERKUNFT (WS§3.3)
   prev_next_params: [[voriger, nächster]]

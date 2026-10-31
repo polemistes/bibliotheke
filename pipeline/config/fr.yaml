@@ -8,6 +8,14 @@ header_templates: [header]          # fr structure comes from <pages header=1> a
 header_params:
   author: [auteur, author]
   year: [annee, année, year]
+  translator: [traducteur, translator]
+index_fields:
+  author: [auteur]
+  translator: [traducteur]
+  year: [annee]
+  image: [image]
+  language: [langue]
+  qid: [wikidata_item]
 structure:
   container_params: [titre, title]
   prev_next_params: [[prev, next], [précédent, suivant]]

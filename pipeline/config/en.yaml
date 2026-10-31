@@ -6,8 +6,9 @@ language: en
 namespaces: {author: 102, index: 106, page: 104}   # verified in WP0, F§1
 header_templates: [header]
 header_params:
-  author: [author]
+  author: [author, override_author]
   year: [year]
+  translator: [translator, override_translator]
 structure:
   container_params: [title]
   prev_next_params: [[previous, next], [prev, next]]
