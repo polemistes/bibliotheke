@@ -1,0 +1,21 @@
+{
+ "wiki": "de",
+ "domain": "de.wikisource.org",
+ "title": "Der Sagenschatz des Königreichs Sachsen",
+ "url": "https://de.wikisource.org/wiki/Der_Sagenschatz_des_K%C3%B6nigreichs_Sachsen",
+ "rest_url": "https://de.wikisource.org/w/rest.php/v1/page/Der_Sagenschatz_des_K%C3%B6nigreichs_Sachsen/html",
+ "revision": 3765001,
+ "fetched": "2026-10-31",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 1,
+  "pagenum (.pagenum, .ws-pagenum)": 31,
+  "prp-pages-output": 1,
+  "poem (.poem)": 1,
+  "references list (ol.references, .mw-references)": 2,
+  "footnote ref (sup.reference)": 5,
+  "noprint": 1,
+  "images (img)": 2,
+  "tables (table)": 29
+ }
+}

@@ -16,7 +16,7 @@ Last updated: 2026-10-31
 - [x] 1. Polite HTTP helper for spike scripts (User-Agent, one request at a
       time per host, backoff on 429/5xx)
 - [x] 2. Siteinfo namespace numbers for the 11 configured wikis
-- [ ] 3. Parsoid REST endpoint and HTML shape (`.ws-pagenum`, `.ws-summary`,
+- [x] 3. Parsoid REST endpoint and HTML shape (`.ws-pagenum`, `.ws-summary`,
       `<poem>`, references) on no/en/fr/de; 3 raw fixtures per wiki
 - [ ] 4. Wikidata coverage for 50 Norwegian works (P577 / P136 / P50)
 - [ ] 5. Pagination prototype in a browser harness: CSS columns, locator
@@ -34,11 +34,12 @@ Last updated: 2026-10-31
 - Namespace numbers for the 11 wikis confirmed (`pipeline/wp0/namespaces.py`,
   findings section 1). de and fi have no Author namespace.
 - `docs/wp0-findings.md` started; each step appends its section.
+- Parsoid endpoint verified; 16 raw fixtures saved (no 4, en 4, fr 5, de 3)
+  in `app/src/test/fixtures/`; findings section 2 documents markup shapes.
 
 ## In progress
 
-- WP0 step 3: Parsoid fixtures saved for no (4), en (4), fr (5); de next,
-  then the findings section. Tools: `pipeline/wp0/parsoid.py`, `search.py`.
+- WP0 step 4.
 
 ## Known problems and open questions
 
