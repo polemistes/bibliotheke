@@ -1,0 +1,25 @@
+# Root pages vs subpages from all-titles-in-ns0 dumps (redirects included), 2026-10-31
+# python3 pipeline/wp0/structure_titles.py {no,de,fr,en}wikisource-latest-all-titles-in-ns0.gz
+
+=== nowikisource ===
+titles 12017; root pages 4042; subpages 7975 (depth 1: 6549, 2: 1415, 3: 9, 4: 2)
+roots with subpages 376 (9.3 %); orphan trees 63 holding 426 subpages (e.g. 05-130602TVI-OTIR, 08-073828PRI-OTIR)
+largest subpage trees: Norsk Haandlexikon for almennyttige Kundskaber 1140; Det norske Folks Historie 690; Den norske Proces 321; Den norske Kirkes Historie under Katholicismen 126; Kong Christian den Femtes Norske Lov 118
+colon prefixes among roots: WK: 13; Fru Bovary: 3; the rest single titles
+
+=== dewikisource ===
+titles 324362; root pages 307220 (203575 with the prefixes RE:, MKL1888:, ADB:, BLKÖ:); subpages 17142 (depth 1: 14857, 2: 2243, 3: 24, 4: 17, 5: 1)
+roots with subpages 707 (0.2 %); orphan trees 1190 holding 2234 subpages (e.g. 1 BvR 1190, 1 BvR 242)
+largest subpage trees: Paulys Realencyclopädie der classischen Altertumswissenschaft 1362; Christliche Symbolik 636; Geschichte von Kloster Heilsbronn 486; Thüringer Sagenbuch. Zweiter Band 284; Melpomene 224
+colon prefixes among roots: RE: 106708; MKL1888: 38532; ADB: 31108; BLKÖ: 27227; Zedler: 16568; Boetticher: 5261; Haan: 801; Rittergüter und Schlösser im Königreiche Sachsen: 636; Topographia Circuli Burgundici: 515; Topographia Austriacarum: 431; Schwere, Elektricität und Magnetismus: 412; Hantzsch: 392
+
+=== frwikisource ===
+titles 594094; root pages 86121; subpages 507973 (depth 1: 286723, 2: 210209, 3: 9760, 4: 1044, 5: 222, 6: 15)
+roots with subpages 12551 (14.6 %); orphan trees 1979 holding 21227 subpages; "Texte entier" subpages 4518
+largest subpage trees: L’Encyclopédie 45562; Dictionnaire de Trévoux 32414; Petit dictionnaire de la langue française (1836) 23874; Dictionnaire des patois romans de la Moselle 21247; Petit dictionnaire de la langue française (1860) 20406
+
+=== enwikisource ===
+titles 779939; root pages 172047; subpages 607892 (depth 1: 479238, 2: 69552, 3: 34565, 4: 16848, 5: 7242, 6: 431, 7–9: 16)
+roots with subpages 18405 (10.7 %); orphan trees 1236 holding 4349 subpages
+largest subpage trees: Alumni Oxonienses: the Members of the University of Oxford, 1715-1886 63277; 1911 Encyclopædia Britannica 39272; Dictionary of National Biography, 1885-1900 28299; Encyclopædia Britannica, Ninth Edition 14371; Catholic Encyclopedia (1913) 13184
+colon prefixes among roots: Aviation Accident Report: 109; Fact Sheet: 64; American Jobs Plan Fact Sheet: 54; American Rescue Plan Fact Sheet: 51; P: 50

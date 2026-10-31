@@ -1,0 +1,23 @@
+# CirrusSearch totalhits (approximate for large sets), ns0, 2026-10-31
+# python3 pipeline/wp0/search_counts.py
+de.wikisource.org    ns0    53893  hastemplate:Textdaten
+de.wikisource.org    ns0    44469  hastemplate:Textdaten insource:"BEARBEITUNGSSTAND fertig"
+de.wikisource.org    ns0     6889  hastemplate:Textdaten insource:"BEARBEITUNGSSTAND korrigiert"
+de.wikisource.org    ns0      318  hastemplate:Textdaten insource:"BEARBEITUNGSSTAND unkorrigiert"
+de.wikisource.org    ns0     2187  hastemplate:Textdaten insource:"BEARBEITUNGSSTAND unvollständig"
+de.wikisource.org    ns0      751  hastemplate:Textdaten insource:"pages index"
+en.wikisource.org    ns0   420059  hastemplate:header
+en.wikisource.org    ns0   379008  insource:"pages index"
+en.wikisource.org    ns0   153356  hastemplate:header -insource:"pages index"
+en.wikisource.org    ns0     2758  hastemplate:incomplete
+en.wikisource.org    ns0    15654  hastemplate:TextQuality
+en.wikisource.org    ns0       13  hastemplate:Textinfo
+en.wikisource.org    ns0     7506  hastemplate:versions
+fr.wikisource.org    ns0   178361  hastemplate:TextQuality
+fr.wikisource.org    ns0   514712  insource:"pages index"
+fr.wikisource.org    ns0   100181  hastemplate:TextQuality insource:"TextQuality 100"
+fr.wikisource.org    ns0    18247  hastemplate:TextQuality insource:"TextQuality 75"
+fr.wikisource.org    ns0     3331  hastemplate:TextQuality insource:"TextQuality 50"
+fr.wikisource.org    ns0     2810  hastemplate:TextQuality insource:"TextQuality 25"
+fr.wikisource.org    ns0    53433  hastemplate:TextQuality insource:"TextQuality Textes validés"
+no.wikisource.org    ns0    11163  insource:"pages index"

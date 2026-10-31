@@ -1,0 +1,95 @@
+ns0 non-redirect pages 11553, ns0 redirects 464, Side: pages 123665, indexes 1555
+
+works (root-title groups): 3845 (+54 Peker pages skipped; 52 groups with missing root)
+tier                 works   pages
+unproofread           2041    4870
+proofread             1202    4897
+validated              299     496
+unknown                252     311
+no-text-pages           29      37
+mostly-proofread        22     888
+works with missing scan pages in a transcluded range: 64
+
+=== 252 works without any scan page ===
+size bytes: median 2021, p10 492, p90 17214, max 215991
+works with subpages among them: 9
+top templates (works using): [('topp', 116), ('bunn', 59), ('topp2', 31), ('PD-old', 25), ('avsnitt', 10), ('side', 10), ('foreldreløs', 9), ('opprydning', 8), ('Norsk rettsavgjørelse', 8), ('Sang Infomation', 6), ('ufullstendig', 5), ('multi-listen end', 5), ('multi-listen item', 5), ('reflist', 5), ('Topp', 5), ('c', 5), ('multi-listen start', 4), ('forside', 3), ('CC-by-SA 4.0', 3), ('tittel/s', 3), ('tittel/e', 3), ('forfatterl', 3), ('Bunn', 2), ('utgave', 2), ('sider', 2), ('Opprydning', 2), ('Side', 2), ('Sletting', 2), ('slett', 1), ('Tilgjengelig digitalskanning', 1)]
+top categories: [('Henrik Wergeland', 29), ('1829', 28), ('Poesi', 21), ('Dikt', 20), ('Salmer', 12), ('Prosa', 10), ('Anton Tsjekhov', 10), ('Artikler', 8), ('Partiprogram', 8), ('Musikk', 7), ('Diktsamlinger', 7), ('Julesanger', 6), ('Barnesanger', 5), ('Norges historie', 4), ('Taler', 3), ('Offisielle dokumenter', 3), ('Morgenbladet', 3), ('Tekster fra 1918', 3), ('Ivar Aasen', 3), ('Noveller', 2), ('Biografier', 2), ('1945', 2), ('1848', 2), ('1907', 2), ('Samfundsbladet', 2)]
+
+--- Mesteren fra Møre  [3 page(s), 7742 B]
+{{topp2 | tittel = Mesteren fra Møre | forfatter = |overstyr_forfatter=ved Kristen Valkner | oversetter = | seksjon = Innholdsfortegnelse | forrige = | neste = [[/1|Om Guds Godhed og Barmhiertighed]] | noter = Hentet fra [http://www.dokpro.uio.no/litteratur/mesteren/ DokPro] og wikifisert. }} {|width=100% |- |width=50%| #[[/1|Om Guds Godhed og Barmhiertighed]] #[[/2|Jesu Navn]] #[[/3|Ju
+
+--- Til Stella2  [1 page(s), 0 B]
+
+
+--- Et barn er født i Betlehem  [1 page(s), 1461 B]
+{{topp | tittel=Et barn er født i Betlehen | forfatter=Nikolai Frederik Severin Grundtvig | forrige= | neste= | seksjon= | noter=''[[w:Et barn er født i Betlehem|Et barn er født i Betlehem]]'' på Wikipedia. }} <poem> 1. Et barn er født i Betlehem, i Betlehem; ti gleder seg Jerusalem. Halleluja, halleluja! 2. En fattig jomfru satt i lønn, hun satt i lønn og fødte himlens kongesønn. Halleluja
+
+--- Anne Knutsdotter  [1 page(s), 1700 B]
+Eg heiter Anne Knutsdotter, Kari er mi Mo’r, <br /> &emsp; og Jon han er min Bro’r; <br /> me bur uppaa ein Plass, som at ingen skulde tru <br /> &emsp; at nokon kunde bu. <br /> Han heiter Bergemuren, Luren, Himmelturen, <br /> &emsp; Steinrøys, Steinrøys, Sveltihel! <br /> Og Fa’r min han er Kramkar og strævar trottigt nok <br /> &emsp; og fer so vidt umkring; <br /> ho Mo’r maa stelle Huset, eg spinner paa min Ro
+
+--- God dag mann, Økseskaft  [1 page(s), 2300 B]
+ God dag mann, økseskaft. Norsk folkeeventyr :Det var en gang en ferjemann som var så tunghørt at han hverken kunne høre eller samle det noen sa :til ham. Han hadde en kjerring og to sønner og en datter, og de brydde seg ikke om mannen, men :levde lystig og vel, så lenge det var noe å leve av, og siden tok de på borg hos gjestgiveren og :holdt bedt lag og kastut hver dag. :Da ingen ville borge dem lenger, skulle len
+
+--- På fjellet  [1 page(s), 1108 B]
+{{topp | forrige= | neste= | tittel=På fjellet | seksjon= | forfatter=Kristofer Janson | noter= }} Hu hei! kor er det vel friskt og lett<br> :uppå fjellet!<br> her leikar vinden i kåte sprett<br> :uppå fjellet!<br> og foten dansar, og augat lær,<br> og hjartat kveikjande hugnad fær<br> :uppå fjellet!<br> <br> Kom upp! kom upp frå den tronge dal<br> :uppå fjellet!<br> her bles ein blåster so frisk og sval<br> :uppå
+
+--- Grevinde Platers Kampbøn  [1 page(s), 2434 B]
+{{topp | forrige= | neste= | tittel=Grevinde Platers Kampbøn | seksjon= | forfatter=Sylvester Sivertson | noter= }} <poem> &emsp;Gjennem Dæmringens Graa &emsp;blinke Kanonernes Lyn, &emsp;Blodstrømmene staa &emsp;profetiske malte i Sky'n. Herre! som raader for Liv of for Død, hvad gjemmer den stigende Dag i sit Skjød? &emsp;Retfærdige Gud! Se, Fyrstevold raser mod Ret og Retfærd og truende hæver det blodige Sværd. &
+
+--- Arbeiderpartiets valgprogram fra 1894  [1 page(s), 18279 B]
+{{c|DNA-program fra 1894}} {{c|DET NORSKE ARBEJDERPARTIS PROGRAM}} Grundaarsagen til den sociale elendighed, aandelig underkuelse og politiske afhængighed, er det forhold, at arbejdsmidlerne (grund, jord, bjergværker, gruber, samfærdselsmidler, maskiner og værktøj) er overgaaet til at bli et faatal samfundsmedlemmers enebesiddelse. Det norske arbejderparti, som har sat sig arbejderklassens befrielse som maal, tilst
+
+--- Det lyser i stille grender  [1 page(s), 13 B]
+Ennå ikke fri
+
+--- Retningslinjer for statsstipendiatordningen  [1 page(s), 5490 B]
+{{foreldreløs}} {{topp | forrige= | neste= | tittel=Retningslinjer for statsstipendiatordningen | seksjon= | forfatter=Kulturdepartementet | noter= }} ===Retningslinjer for statsstipendiatordningen=== ===Fastsatt av [[Forfatter:Kulturdepartementet|Kulturdepartementet]] 20. desember 1999, sist endret 13. desember 2005=== '''Generelt'''<br> Statsstipendiatordningen forvaltes av Kultur- og kirkedepartementet i samarbe
+
+--- Korpiken (Tsjekhov)  [1 page(s), 11461 B]
+{{topp2 | tittel = Korpiken | forfatter = Anton Tsjekhov | oversetter = Wikikilden | seksjon = | forrige = | neste = | noter = Novelle oversatt fra Marian Fells oversettelse [[:en:The Chorus Girl (Chekhov/Fell)|The Chorus Girl]] på engelsk wikisource. }} En gang, da hun var yngre, vakrere og mer høyrøstet, satt beundreren Nikolaj Kolpakov i andre etasje av datsjaen hennes. Ettermiddagen
+
+--- Aanders Herre du skal Raade  [1 page(s), 512 B]
+Aanders Herre, du skal raade av [[Forfatter:Johan Sebastian Welhaven]] :Aanders Herre, du skal raade :for de Skatte du mig gav. :O, men vis mig og din Naade, :naar min Sang er Stilnet af: :thi alt mer mit Hjerte banker :i usigelige Tanker :ved den store Livets Gaade. :Lad min Sangerkrands da slynges :hen i Støv paa Glemsels Kyst, :naar kun hist, hvor Alt forynges :Sjelens Dyb har lutret Røst; :naar kun der jeg gri
+
+--- Smeden og Bageren  [1 page(s), 2754 B]
+{{topp | forrige= | neste= | tittel=Smeden og Bageren | seksjon= | forfatter=Johan Herman Wessel | noter= }} Der var en liden By, i Byen var en smed,<br> Som farlig var, naar han blev vred.<br> Han sig en Fiende fik; (dem kan man altid faa,<br> Jeg ingen har, det gaa<br> Min Læser ligesaa!)<br> Til Uhæld for dem begge to<br> De træffes i en Kro. De drak (jeg selv i Kro vil drikke;<br> For andet kommer jeg der ikke
+
+--- Paa en Kirkegaard  [1 page(s), 4909 B]
+{{topp | tittel =Paa en Kirkegaard | forfatter =Henrik Wergeland | seksjon = | forrige =←[[Napoleon]] | neste =[[Til Hagbarth (II)]]→ | noter =<center>Fra ''[[Digte, 1ste Ring]]'' (1829).</center> }} <poem> Min Harpes Sprog bliver kun en Monolog: Ingen skatter, Ingen fatter det for Vaudeville-latter. Mange vil med Fing'-ikors vise mig en Kongevei til Parnassets bratte Hei, hvorfra Harpen flyve kan, som
+
+--- Martin Linge  [1 page(s), 1859 B]
+[[Forfatter:Nordahl Grieg]] :Det var gjerne mindre roller :han i fredens dager fikk. :Mange andre skulle roses :før han kunne få kritikk. :ingen følte under krigen :i sitt hjerte noe savn, :da de sløyfet på plakaten, :nederst, Martin Linges navn. :Mens de spilte gamle stykker :i vår blodige april, :flertes teppet for et annet, :vilt og ukjent skuespill, :aldri øvet, aldri prøvet, :jagende fra sted til sted - :det v
+
+--- Følg Kaldet!  [1 page(s), 4410 B]
+{{topp | tittel =Følg Kaldet! | forfatter =Henrik Wergeland | seksjon = | forrige =←[[Jeg er nu saadan jeg!]] | neste =[[Kaadt Ukrudt]]→ | noter =<center>Fra ''[[Jødinden]]'' (1844)</center> }} <poem> Kongeørn, med Lænke spændt &emsp;om sit Been og Vingen brudt, som i over tyve Aar, siden den blev halvdød skudt, har for simpel Gaardhund tjent paa en ensom Bondegaard, &emsp;lider dog ei den arme Digters
+
+--- Leachman's Norsk Engelsk Lomme-Ordbog  [1 page(s), 34239 B]
+{{Tilgjengelig digitalskanning|https://urn.nb.no/URN:NBN:no-nb_digibok_2011030710004}} {{ufullstendig}} {{foreldreløs}} <center> <table> <tr><td>LEACHMAN'S</td><td></td><td></td><td></td><td></td><td></td><td>LEACHMAN'S</td></tr> <tr><td>NORSK-ENGELSK</td><td></td><td></td><td></td><td></td><td></td><td>ENGELSK-NORSK</td></tr> <tr><td>LOMME-ORDBOG</td><td></td><td></td><td></td><td></td><td></td><td>LOMME-ORDBOG</t
+
+--- Takk  [1 page(s), 519 B]
+{{topp | forrige= | neste= | tittel=Takk | seksjon= | forfatter=Margrethe Munthe | noter=Melodi: ''Stevtone'' }} Jeg takker borte, jeg takker hjemme, <br> ja sier takk, vil jeg aldri glemme! <br> Om jeg er liten, om jeg er stor, <br> så må jeg takke, det sier mor, <br> så må jeg takke, det sier mor. <br> Og alle gutter når de skal takke, <br> de bøyer vakkert sin lille nakke, <br> og alle piker, ja bare se <br> hv
+
+--- Norges land og folk  [1 page(s), 2923 B]
+{{Opprydning}} <div class="tekst"> <center> <big>'''NORGES LAND OG FOLK'''</big> TOPOGRAFISK-STATISTISK BESKREVET </center> ---- <center>'''Fortegnelse over bindene'''</center> {{norges land og folk}} * ''[[Topografisk-historisk-statistisk_beskrivelse_over_Akershus_amt|Akershus amt]]'' {{indeks|Norges land og folk - Akershus amt.djvu}} * ''[[Topografisk-statistisk_beskrivelse_over_Bratsberg_amt/1|Bratsberg amt 
+
+--- Kjerringa med staven  [1 page(s), 1231 B]
+{{Sang Infomation | Navn = Kjerringa med staven | Noter = Kjerringa med staven-1.png | Forfatter = Tradisjonell | Komponist = Tradisjonell | Midi = [[Commons:Image:Kjerringa med staven.mid | Lytt her]] | Ogg = {{multi-listen start}} {{multi-listen item |filename = Kjerringa med staven.ogg |title = '''Kjerringa med staven''' – Tradisjonell |description = |format = Ogg
+
+--- Polonia  [1 page(s), 3158 B]
+{{topp | forrige= | neste= | tittel=Polonia | seksjon= | forfatter=Sylvester Sivertson | noter= }} <poem> Polonia, Polonia! falder Du? Er Røst i Ørken dit Nødhjælpsskrig? Snoer alt om dit Hjerte Dragen sig og sprudler Edder i din aabne Barm? Er det til din Ligfærd i Gyldenkarm man drager med stolten Hu? Segnende Olding med Sølverhaar seer gjennem Bloddamp mod Himlens Blaa. Forklarede Gamle! sig hvad du saa? O, skue
+
+--- Kulturhistorisk næringsutvikling i Sandviken "Rasmus Rolfsens minde"  [1 page(s), 6468 B]
+{{topp | forrige= | neste= | tittel=KULTURHISTORISK NÆRINGSUTVIKLING I SANDVIKEN ”RASMUS ROLFSENS MINDE” | seksjon= Debattinnlegg | forfatter=Kåre A. Johnsen | noter=Dette debattinnlegget stod på trykk i Bergens Tidende den 9. september 2007. Det er frigitt av forfatteren, og omtaler forsøket på å få i stand et museumsverft i Bergen, samt bygging av en kopi av et av fartøyene i roflotiljen, som beskyttet Norge i krig
+
+--- Geiterams  [1 page(s), 1634 B]
+{{topp | forrige= | neste= | tittel=Geiterams | seksjon= | forfatter=Margrethe Munthe | noter=Melodi: ''Du og jeg og vi to'' }} Å jeg vet en seter <br> med så mange gjeter! <br> Noen har en bjelle <br> når de går i fjelle'! <br> Geitene, de springer, <br> bjellene, de klinger: <br> Singe-linge-linge-linge, lang, lang, lang. <br> Horn i toppen, <br> ragget på kroppen, <br> blakke og svart og hvite og grå. <br> Lang i
+
+--- Gud signe Noregs land  [1 page(s), 1516 B]
+ Gud signe Noregs land av [[Forfatter:Arne Garborg|Arne Garborg]] ;;1. :Gud signe Noregs Land, :kvar Heim, kvar Dal og Strand, :kvar Lund og Lid. :Han lat' det aldri døy, :han verje Bygd og Øy, :han verje Mann og Møy, :til evig Tid. ;;2. :Me fekk det høgt og fritt, :me fekk det vænt og vidt :med Hav og Fjell. :Det stend so tryggt og godt, :det stend so reint og blaatt, :rett som eit Gudeslott :med Solski
+
+--- Om kjærleik (Tsjekhov)  [1 page(s), 20770 B]
+{{topp2 | tittel = Om kjærleik | forfatter = Anton Tsjekhov | oversetter = Wikikilden | seksjon = | forrige = [[Stikkelsbær (Tsjekhov)|Stikkelsbær]] | neste = | noter = Omarbeida frå automatomsetjing (av [http://translate.google.com Google]) frå den russiske originalen [[:ru:О любви (Чехов)|''О любви'']]. }} Til frukost dagen etter vart det servert delikate paiar, kreps og lammekotelett
+
+unproofread works: pure level-1 (or 0) = 1835, mixed = 206
+unknown works: 252; with a topp header: 152; Wikikilden's own translations: 10; junk flags: {'ufullstendig/opprydning/slett template': 18, 'under 300 bytes': 14, "'not yet free' placeholder": 1}

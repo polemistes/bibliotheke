@@ -8,7 +8,10 @@ Last updated: 2026-10-31
 ## Current package
 
 **WP0 — Spike and verification: complete.** Next: **WP1 — Catalog pipeline**
-(not started).
+(not started). WP1 follows `docs/work-structure-plan.md` (decided by the
+owner on 2026-10-31): first apply its section 9 edits to PLAN.md, then run
+WP1a (the structure and quality survey, section 6 and 10.8), then build the
+pipeline with schema version 2 (sections 5.1 and 10.5).
 
 ## WP0 checklist
 
@@ -32,7 +35,9 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 - `docs/wp0-findings.md`: all results, with raw evidence in `docs/wp0/`.
 - `pipeline/wp0/`: spike scripts (see its README) and the polite HTTP
-  helper; responses cached in `pipeline/cache/wp0/` (gitignored).
+  helper; responses cached in `pipeline/cache/wp0/` (gitignored). Added
+  2026-10-31: structure and quality spikes (`structure_*.py`,
+  `search_counts.py`, `quality_*.py`) behind `docs/work-structure-plan.md`.
 - `app/src/test/fixtures/{no,en,fr,de}/`: 17 raw Parsoid fixtures with
   `source.json` provenance (no 5, en 4, fr 5, de 3).
 - `prototypes/pagination/`: reader CSS/JS, locator tests, browser runner,
@@ -64,10 +69,12 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
   instructions) specifies.
 - **Frame timing was measured on the emulator** with a desktop-class host
   GPU; WP4 should repeat it on a real mid-range phone (N2).
-- **For the owner to decide** (findings section 6, WP1 item 6): some
-  collections are TOC pages linking separate root pages (de, and also no,
-  e.g. Vinje's `Diktsamling`). WP1 will list each linked text as its own
-  work; grouping them under the collection would be a later improvement.
+- **Decided 2026-10-31** (supersedes findings section 6, WP1 item 6):
+  collections that link separate root pages (de, no) are grouped under
+  their TOC page; members become searchable texts. Quality: unproofread
+  and incomplete works hidden by default, unknown shown on no after junk
+  rules. Everything in `docs/work-structure-plan.md` sections 8 and 10.8;
+  evidence in `docs/structure/`; spike scripts in `pipeline/wp0/` (README).
 - The prototype uses plain Views, not Compose (Compose was not in the Gradle
   cache); the production reader uses Compose `AndroidView` + `pointerInput`
   as planned.
