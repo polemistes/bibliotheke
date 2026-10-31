@@ -6,21 +6,21 @@ Input: 645,616 ns0 pages, 134,282 ns0 redirects, 3,810,670 scan pages, 42,655 In
 
 ## 1. Works
 
-56,742 works resolved from 630,739 non-excluded ns0 pages; 55,464 enter the catalog after the hard exclusions (section 9). Multi-part works hold 574,821 parts, of which 430,186 are searchable texts.
+56,817 works resolved from 630,739 non-excluded ns0 pages; 55,538 enter the catalog after the hard exclusions (section 9). Multi-part works hold 574,694 parts, of which 430,147 are searchable texts.
 
 | structure | works | parts | texts |
 |---|---|---|---|
-| single | 38,256 | 38,256 | 0 |
-| subpages | 17,521 | 521,534 | 387,305 |
-| virtual | 824 | 3,363 | 2,061 |
+| single | 38,381 | 38,381 | 0 |
+| subpages | 17,523 | 521,568 | 387,311 |
+| virtual | 772 | 3,202 | 2,016 |
 | mixed | 85 | 48,460 | 39,956 |
 | linked | 56 | 1,464 | 864 |
 
 | type (step 1e) | works |
 |---|---|
-| single | 29,653 |
-| book | 18,897 |
-| collection | 7,518 |
+| single | 29,768 |
+| book | 18,867 |
+| collection | 7,508 |
 | document | 382 |
 | periodical-issue | 257 |
 | reference | 35 |
@@ -59,29 +59,29 @@ Largest works by parts:
 | A | collection of root pages (`structure = linked`) | 56 works, 1,464 parts |
 | B | mixed subpages and root pages (`mixed`) | 85 works, 48,460 parts |
 | C | work with an oversized page (> oversized_bytes, transcluded scan pages included) | 399 works |
-| D | missing root, virtual root (`virtual`) | 824 works, 3,363 parts |
-| E | texts inside a subpage collection reached from a disambiguation or versions page | 25,458 parts (24,014 searchable); all searchable subpage texts: 428,897 |
+| D | missing root, virtual root (`virtual`) | 772 works, 3,202 parts |
+| E | texts inside a subpage collection reached from a disambiguation or versions page | 25,455 parts (24,011 searchable); all searchable subpage texts: 428,858 |
 | F | whole-text duplicate subpages (excluded) | 0 pages |
 | G | reference works (type `reference`) | 35 works, 212,280 parts; 0 pages excluded by title prefix |
-| H | deep nesting (parts at depth ≥ 2, i.e. three levels below the root) | 312 works |
+| H | deep nesting (parts at depth ≥ 2, i.e. three levels below the root) | 311 works |
 | I | several editions: works with an other-versions template | 3,557 works; 7,250 versions pages excluded |
 
-Tree depth of multi-part works (levels below the root): 1: 16,981, 2: 1,193, 3: 254, 4: 38, 5: 12, 6: 6, 8: 1, 9: 1.
+Tree depth of multi-part works (levels below the root): 1: 16,932, 2: 1,193, 3: 253, 4: 38, 5: 12, 6: 6, 8: 1, 9: 1.
 
 ## 4. Parent rules and order sources (steps 1b, 1c)
 
 | parent rule | pages |
 |---|---|
 | container | 315,060 |
-| hierarchy | 259,760 |
-| own | 55,918 |
+| hierarchy | 259,633 |
+| own | 56,045 |
 | toc | 1 |
 
 | order source (nodes with ≥ 2 children) | nodes |
 |---|---|
 | chain | 13,512 |
 | toc | 2,975 |
-| natural | 1,738 |
+| natural | 1,720 |
 | scan | 1,178 |
 | toc-partial | 411 |
 
@@ -108,7 +108,7 @@ Root-page works that sit on a prev/next chain but stay separate works (no contai
 
 ## 7. Orphan trees, oversized pages, red links
 
-**Orphan trees** (virtual roots): 824, holding 3,363 parts. Examples: `Council Regulation (EU) No 833` (1); `Der Freischütz (The Free-Shooter); A Lyric Folk-Drama` (1); `COUNCIL DECISION (CFSP) 2022` (17); `The Albatross Book of Living Verse` (1); `Jornal Brasileiro de Psiquiatria` (1); `The Bayonne Herald` (1); `Poems (Gage)` (1); `Scarsdale Inquirer` (2).
+**Orphan trees** (virtual roots): 772, holding 3,202 parts. Examples: `Letters to His Son` (1); `A Collection of Charters and Statutes relating to the East India Company` (1); `The Evening Telegraph` (1); `The Englishwoman in America (IA englishwomaninam00birdrich).pdf` (2); `A Study in Scarlet` (16); `Every Woman's Encyclopaedia` (1); `The American Angler` (1); `Upon our Lord's Sermon on the Mount` (2).
 
 **Oversized pages** (> 300,000 bytes of wikitext including transcluded scan pages): 839. Largest: `Septuagint (Brenton 1879)/Psalms` 1.9 MB; `Matthew Henry's Commentary on the Whole Bible/Volume 4/Jeremiah` 1.8 MB; `Dictionary of Spoken Russian/English-Russian` 1.8 MB; `The Grammar of English Grammars/Part III` 1.8 MB; `Matthew Henry's Commentary on the Whole Bible/Volume 3/Psalms` 1.8 MB; `Copyright Law Revision (House Report No. 94-1476)/Annotated` 1.7 MB; `Septuagint (Brenton 1879)/Jeremias` 1.7 MB; `Virginia Resolutions of 1798/Delaware` 1.7 MB; `Septuagint (Brenton 1879)/Genesis` 1.6 MB; `Septuagint (Brenton 1879)/Jezekiel` 1.6 MB.
 
@@ -122,18 +122,18 @@ Root-page works that sit on a prev/next chain but stay separate works (no contai
 
 ## 9. Quality and completeness (PLAN.md 5.4)
 
-**Hard exclusions**: 1,278 works — no-text 573, no-text-pages 272, under-300-bytes 187, index-faulty 140, junk-template 106.
+**Hard exclusions**: 1,279 works — no-text 574, no-text-pages 272, under-300-bytes 187, index-faulty 140, junk-template 106.
 
 | tier | works | share | texts in them | source |
 |---|---|---|---|---|
 | validated | 6,951 | 12.5 % | 40,699 | page-levels 6,827, textquality 76, index-progress 48 |
-| proofread | 12,428 | 22.4 % | 239,393 | page-levels 9,338, textquality 3,075, index-progress 15 |
-| unproofread | 2,711 | 4.9 % | 53,033 | page-levels 2,025, textquality 675, index-progress 11 |
-| unknown | 33,374 | 60.2 % | 94,926 | none 33,374 |
+| proofread | 12,428 | 22.4 % | 239,386 | page-levels 9,338, textquality 3,075, index-progress 15 |
+| unproofread | 2,715 | 4.9 % | 53,028 | page-levels 2,025, textquality 679, index-progress 11 |
+| unknown | 33,444 | 60.2 % | 94,899 | none 33,444 |
 
-889 works are proofread by the ≥ 90 % rule. 1,226 of the 2,711 unproofread works have no page above level 1 (raw OCR).
+889 works are proofread by the ≥ 90 % rule. 1,230 of the 2,715 unproofread works have no page above level 1 (raw OCR).
 
-**Incomplete**: 3,094 works — template 1,768, missing-parts 1,038, missing-pages 245, coverage 43.
+**Incomplete**: 3,095 works — template 1,769, missing-parts 1,038, missing-pages 245, coverage 43.
 Works with missing scan pages inside a transcluded range: 613 (37,409 pages).
 Coverage was computed for 417 works that are their Index's book; 87 cover under 95 % of the Index's text pages.
 24 works transclude scan pages of files the dump has no Page: pages for (counted as no signal, not as missing).
@@ -143,54 +143,54 @@ Text-quality template values: `75%` 13,048, `50%` 1,802, `25%` 343, `100%` 245.
 Index progress values: `C` 21,572, `V` 8,359, `T` 7,909, `L` 840, `OCR` 283, `MS` 37, `X` 1.
 Works excluded as index-faulty, by the tier their page levels would give: proofread 72, unproofread 53, validated 10, none 5.
 
-**Unknown works** (no signal): 33,374 in the catalog after the junk rules; the junk rules removed 293 (under-300-bytes 187, junk-template 106).
-Size: median 6,103 bytes, p10 1,356, p90 69,277; multi-part 7,630.
+**Unknown works** (no signal): 33,444 in the catalog after the junk rules; the junk rules removed 293 (under-300-bytes 187, junk-template 106).
+Size: median 6,119 bytes, p10 1,356, p90 69,270; multi-part 7,599.
 
 30 random unknown works:
 
-- `Thirty Charades` (subpages, 14,144 B): __noTOC__ block center\| ballad has rehearsed The placid waters of my first. The hero bold, his noble friend, The heroine's sad, untimely end, Who by a traitor w
+- `Honorably Discharged` (single, 24,873 B): T was hot, insufferably hot, there in San Fernando de la Union that afternoon. The palm fronds were as still as though they were marble; the flowers and the gra
 - `August (Smith)` (single, 607 B): In silence now the purpling summer passes, The swallows fly; The failing river scantly glasses, Where amber twilights wane, Our dreaming kiss above the flow'rs 
-- `Proclamation 7251` (single, 3,396 B): Tobacco use continues to be the leading preventable cause of death and disease in the United States, costing more than 400,000 lives and $50 billion in medical 
-- `Matters v. Ryan` (subpages, 7,411 B): Messrs. Horace Kent Tenney, Roger Sherman, and Harry A. Parkin, all of Chicago, Ill., for appellant. Mr. Chief Justice WHITE delivered the opinion of the Court.
-- `Address to the Knights of Columbus` (single, 36,482 B): Four centuries and a quarter have gone by since Columbus by discovering America opened the greatest era in world history. Four centuries have passed since the S
-- `The Pathfinder` (subpages, 995,721 B): Table of Contents== Preface Chapter 1 Chapter 2 Chapter 3 Chapter 4 Chapter 5 Chapter 6 Chapter 7 Chapter 8 Chapter 9 Chapter 10 Chapter 11 Chapter 12 Chapter 1
-- `Trist v. Child` (subpages, 26,935 B): APPEAL from the Supreme Court of the District of Columbia; the case being thus: N. P. Trist having a claim against the United States for his services, rendered 
+- `Proclamation 7247` (single, 4,189 B): Ours is a nation inextricably linked to the histories of the many peoples who first inhabited this great land. Everywhere around us are reminders of the legacy 
+- `Greene v. Louisville & Interurban Railroad Company` (subpages, 45,140 B): ROBERT L. GREENE, Auditor, Sherman Goodpaster, Treasurer, and James P. Lewis, Secretary of State, Constituting the Board of Valuation and Assessment for the Sta
+- `Modern English Biography` (subpages, 13,145 B): Volume 1 (A - H) (1892) Volume 2 (I - Q) (1897) /Volume 3 (R - Z)/ (1901) /Volume 4 (1908 supplement, A - C)/ Volume 5 (1912 supplement, D - K) Volume 6 (1921 s
+- `Challenges Concerning the Base Operations A-76 Study and Resulting Reduction In Force at Walter Reed Army Medical Center` (single, 8,492 B): DEPARTMENT OF THE ARMY UNITED STATES ARMY GARRISON WALTER REED ARMY MEDICAL CENTER 6900 GEORGIA AVENUE, NORTHWEST WASHINGTON, DC 20307-5001 REPLY TO ATTENTION O
+- `Basey v. Gallagher` (subpages, 34,393 B): APPEAL from the Supreme Court of the Territory of Montana. The case was thus: The organic act of the Territory just named recognizes the distinction between the
 - `Presidential Radio Address - 8 April 1995` (single, 5,849 B): Good morning. I ran for President because I believed the American dream was at risk for millions of our fellow citizens. I wanted to grow the middle class, shri
 - `Prince Bull` (single, 12,631 B): Once upon a time, and of course it was in the Golden Age, and I hope you may know when that was, for I am sure I don't, though I have tried hard to find out, th
-- `I am the Spirit of War! ...` (single, 597 B): I am the Spirit of War! My hands are red with gore. They know my heel Where the clash of steel Matches the cannon's roar! My hands are gory red Ranks crumple be
-- `The Four-Leafed Clover` (single, 15,441 B): the world knew that the Princess Cyrilla was the rightful heiress to the throne, but no one in all the wide world dared to say so. If any person had been so bol
-- `Sheffield Rules (October 1867)` (single, 5,474 B): Rules== I. The maximum length of ground shall be 200 yards; the maximum breadth shall be 100 yards; the length and breadth shall be marked off with rouge flags;
+- `The Song of the Sage` (single, 661 B): 
+- `Remarks by President Trump at South Dakota's 2020 Mount Rushmore Fireworks Celebration` (single, 23,935 B): Keystone, South Dakota 8:50 P.M. MDT THE PRESIDENT: Well, thank you very much. And Governor Noem, Secretary Bernhardt — very much appreciate it — members of Con
+- `Everyday` (single, 25,602 B): WILD wind banged the windows and wailed down the street. The East Broadway office was snug and cozy and warm. In its deep silence and intense white light, Dr. R
 - `Israel Potter` (subpages, 431,208 B): Dedication TO HIS HIGHNESS THE Bunker-Hill Monument Biography, in its purer form, confined to the ended lives of the true and brave, may be held the fairest mee
-- `United Nations Security Council Resolution 1573` (single, 4,908 B): Adopted unanimously by the Security Council at its 5079th meeting, on 16 November 2004 The Security Council, Reaffirming its previous resolutions on the situati
-- `Central Pacific Company v. Nevada` (subpages, 29,861 B): This (No. 170) was an action originally begun in the district court of Lander county by the state of Nevada against the Central Pacific Railroad Company and its
-- `2013 Human Rights Report: China (includes Tibet, Hong Kong, and Macau)` (subpages, 382,984 B): 2013 Human Rights Report: China (includes Tibet, Hong Kong, and Macau) China = Hong Kong \| Macau \| Tibet EXECUTIVE SUMMARY == The People’s Republic of China (PR
-- `Proclamation 5318` (single, 2,779 B): The countries of the Western Hemisphere are bound together by their humanitarian ideals, their respect for individual liberty, and their yearning for peace and 
-- `Lad, A Dog` (subpages, 463,845 B): Author’s Dedication== My book is dedicated To The Memory Of Lad Thoroughbred in body and soul Contents== Chapter I. His Mate Chapter II. “Quiet!” Chapter III. A
-- `The Benevolent Liar` (subpages, 286,402 B): Category:Western fiction Category:mystery novels Category:adventure novels Category:romance Category:novels in periodicals
-- `NSTC-4` (single, 16,993 B): This directive establishes national policy, guidelines, and implementing actions for the conduct of National space transportation programs that will sustain and
-- `Forcible Entry Act 1429` (single, 13,837 B): Revised version of the original text== Item come p le Roy Richard nadgairs Roi Dengletre puis le conquest scde, a son plement tenuz a Westm lendemain des Almes 
-- `United States v. Bass` (subpages, 46,525 B): Respondent was convicted of possessing firearms in violation of § 1202 of the Omnibus Crime Control and Safe Streets Act, which provides that a person convicted
-- `Proclamation 6768` (single, 3,825 B): Throughout history, the heart has been a symbol of health and well-being. Yet nothing now overshadows Americans' health as much as heart disease-the leading cau
-- `Remarks on President-elect Barack Obama's resignation letter` (single, 1,638 B): Mikulski: Mister President, I ask unaminous consent that the Senate recess today from 2:30 to 4:00 to allow the Senators to attend today's briefing with Secreta
-- `Acknowledging and Commending National Library Week` (single, 2,994 B): Mr. BLUMENAUER. Mr. Speaker, from April 12-18, 2009, our nation celebrated National Library Week and the vital role that these institutions and their dedicated 
-- `Acts of Paul and Thecla (Jeremiah Jones translation)` (single, 37,280 B): THE LIFE OF THE HOLY MARTYR THECLA OF ICONIUM, EQUAL TO THE APOSTLES== NOTE IN THE 1820 EDITION EDITED BY WILLIAM HONE== Tertullian says that this piece was for
-- `Proclamation 7299` (single, 3,782 B): Over the last two centuries, Asian Americans and Pacific Islanders have contributed immeasurably to the richness of our dynamic, multicultural society. Whether 
-- `United Nations Security Council Resolution 218` (single, 4,738 B): Adopted by the Security Council at its 1268th meeting, by 7 votes to none, with 4 abstentions (France, Netherlands, United Kingdom of Great Britain and Northern
-- `J. R. L.` (single, 3,478 B): fifty years, how many frosty polls We see, whose wintry solitude begins; How many faces hard as Chaldee scrolls, Crowfeet on parchment skins. At fifty, Time has
-- `Fact Sheet: President Biden Signs Executive Order Enabling All Qualified Americans to Serve Their Country in Uniform` (single, 4,942 B): President Biden signed today an Executive Order that sets the policy that all Americans who are qualified to serve in the Armed Forces of the United States shou
+- `United Nations Security Council Resolution 1568` (single, 3,200 B): Adopted unanimously by the Security Council at its 5061st meeting, on 22 October 2004 The Security Council, Welcoming the report of the Secretary-General of 24 
+- `Union Pacific Railway Company v. Callaghan` (subpages, 12,266 B): This was an action brought by James Callaghan against the Union Pacific Railway Company in the circuit court of the United States for the district of Colorado, 
+- `Harding v. United States` (subpages, 3,702 B): Certiorari granted, judgment vacated, and case remanded for further consideration in light of Miller v. California, 413 U.S. 15 (1973); Paris Adult Theatre I v.
+- `Proclamation 5314` (single, 2,935 B): The United States' weather satellites have tracked the Earth's weather since April 1, 1960, and have brought unique benefits to the American people and to the w
+- `Infantry, Part I: Regular Army /World War II to Korea` (single, 19,578 B): frameless\|right\|250px World War II to Korea With the end of World War II came the difficult task of demobilizing the huge wartime military establishment and of 
+- `Press Briefing by Press Secretary Ari Fleischer, September 7, 2001` (single, 40,760 B): Category:2001 US press briefings The James S. Brady Briefing Room 12:22 P.M. EDT MR. FLEISCHER: Good afternoon. I have an opening statement and then, if you wou
+- `Presidential Radio Address - 27 January 2007` (single, 5,088 B): THE PRESIDENT: Good morning. This week, I appeared before Congress to report on the state of our union. I asked members of the House and Senate from both sides 
+- `Byrne v. Karalexis (396 U.S. 976)` (subpages, 14,471 B): Application for Stay. ORDER. The motion for a stay of the temporary injunction issued by the United States District Court for the District of Massachusetts pres
+- `McGautha v. California (402 U.S. 183)` (subpages, 278,847 B): Petitioner in No. 203 was convicted of first-degree murder in California, and was sentenced to death. The penalty was left to the jury's absolute discretion, an
+- `Proclamation 6764` (single, 2,575 B): For many of the 24 million teenagers in the United States today, the future can seem uncertain and distant. Confronted with challenges the likes of which their 
+- `Concluding observations of the Human Rights Committee: Canada` (single, 18,603 B): HUMAN RIGHTS COMMITTEE Eighty-fifth session CONSIDERATION OF REPORTS SUBMITTED BY STATES PARTIES UNDER ARTICLE 40 OF THE COVENANT Concluding observations of the
+- `United Nations Security Council Resolution 1924` (single, 1,643 B): Adopted by the Security Council at its 6323rd meeting, on 27 May 2010 The Security Council, Recalling its previous resolutions, in particular resolutions 1911 (
+- `An Index Expurgatorius` (single, 1,153 B): The man who marks or leaves with pages bent The volume that some trusting friend has lent, Or keeps it over long, or scruples not To let its due returning be fo
+- `Proclamation 7295` (single, 15,718 B): The rich and varied landscape of the Giant Sequoia National Monument holds a diverse array of scientific and historic resources. Magnificent groves of towering 
+- `The Diary of a Japanese Convert` (single, 322,426 B): Preface. == In many a religious gathering to which I was in vited during my stay in America to give a talk for fifteen minutes and no more (as some great doctor
+- `Prevent Deceptive Census Look Alike Mailings Act` (single, 3,615 B): Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled, . ==== This Act may be cited as the “Prevent Dec
+- `President Joe Biden Announces Acting Federal Agency Leadership` (single, 3,955 B): WASHINGTON – Today, President Joe Biden announced the acting agency leadership across the administration to assist in the next phase of the transition of govern
 
-**Default view** (validated or proofread, complete, not reference): 17,819 works with 112,405 texts; with unknown works shown: 50,519 works (132,298 texts). Works in the default view whose pages are all level 1: 0. Current setting: `show_unknown_by_default = None`.
+**Default view** (validated or proofread, complete, not reference): 17,820 works with 112,404 texts; with unknown works shown: 50,588 works (132,270 texts). Works in the default view whose pages are all level 1: 0. Current setting: `show_unknown_by_default = None`.
 
 ## 10. Parts table size (WS§5.2)
 
 | parts_cap | works with catalog parts | parts rows | parts table, gzipped | parts_fts, gzipped |
 |---|---|---|---|---|
-| 500 | 18,234 | 291,200 | 16.81 MB | 2.59 MB |
-| 2,000 | 18,283 | 341,624 | 19.46 MB | 3.18 MB |
-| ∞ (all, reference works included) | 18,323 | 589,140 | 30.24 MB | 5.45 MB |
-| 2,000, compact encoding | 18,283 | 341,624 | 16.90 MB | 3.18 MB |
+| 500 | 18,184 | 291,075 | 16.80 MB | 2.59 MB |
+| 2,000 | 18,233 | 341,499 | 19.48 MB | 3.17 MB |
+| ∞ (all, reference works included) | 18,273 | 589,015 | 30.22 MB | 5.45 MB |
+| 2,000, compact encoding | 18,233 | 341,499 | 16.89 MB | 3.17 MB |
 
-Rows count multi-part works only, one row per part plus the root row. 37,141 single-page works would add one row each if stored. Sizes are a SQLite file holding only the table (with its index) at gzip level 9. The compact encoding (not in WS§5.1, measured for the cap decision) stores a part's page_title as the suffix after the work root's title where possible, display_title only when it differs from the last title segment, and no per-part quality_pages.
+Rows count multi-part works only, one row per part plus the root row. 37,265 single-page works would add one row each if stored. Sizes are a SQLite file holding only the table (with its index) at gzip level 9. The compact encoding (not in WS§5.1, measured for the cap decision) stores a part's page_title as the suffix after the work root's title where possible, display_title only when it differs from the last title segment, and no per-part quality_pages.
 
 ## 11. Named cases (PLAN.md WP1 acceptance, WS§9)
 
@@ -799,180 +799,183 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
             - chapter: Section III (`Nicene and Post-Nicene Fathers: Series II/Volume I/Church History of Eusebius/Prolegomena/The Life of Eusebius/Section III`) [container]
     - … 7,088 more
 
-### D: virtual roots (824)
+### D: virtual roots (772)
 
-1. `The German Manual for the Young and for Self-Tuition`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: 33: Der Alp / The night-mare (`The German Manual for the Young and for Self-Tuition/Volume 2/Part 2/Section 33`)
-1. `Some Chinese Ghosts`: virtual, book, 2 parts, 0 missing, order chain, proofread
-    - chapter: Notes (`Some Chinese Ghosts/Appendix 1`)
-    - text: Glossary (`Some Chinese Ghosts/Appendix 2`) [hierarchy]
-1. `Miscellaneous Essays Relating to Indian Subjects`: virtual, book, 1 parts, 0 missing, order single, unproofread, excluded no-text-pages
-    - chapter: Volume II (`Miscellaneous Essays Relating to Indian Subjects/Volume II`)
-1. `Evening Herald (Dublin)`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Death of Prof. R. Donovan at age of 72 (`Evening Herald (Dublin)/1934/Death of Prof. R. Donovan at age of 72`)
-1. `Success Magazine`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: King Cophetua of Klondyke (`Success Magazine/King Cophetua of Klondyke`)
-1. `Acts of the Parliament of India`: virtual, book, 1 parts, 0 missing, order single, unproofread
-    - text: Scheduled Castes and the Scheduled Tribes (Prevention of Atrocities) Act, 1989 (`Acts of the Parliament of India/1989/Scheduled Castes and the Scheduled Tribes (Prevention of Atrocities) Act, 1989`)
-1. `Reno Evening Gazette`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Hired Soldiers (`Reno Evening Gazette/1937/Hired Soldiers`)
-1. `Major Prophets of To-day`: virtual, book, 1 parts, 0 missing, order single, unproofread
-    - text: Ernst Haeckel (`Major Prophets of To-day/Ernst Haeckel`)
-1. `Pittsburgh Post`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Icy-Looking Mystery Of Ice Skating (`Pittsburgh Post/1914/Icy-Looking Mystery Of Ice Skating`)
-1. `Curtains (Hall)`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: The World's Voice (`Curtains (Hall)/The World's Voice`)
-1. `British and Foreign State Papers`: virtual, book, 1 parts, 0 missing, order single, unproofread, excluded no-text-pages
-    - text: Constitution of the Kingdom of Siam (1949) (`British and Foreign State Papers/Volume 155/Constitution of the Kingdom of Siam`)
-1. `The Criterion`: virtual, periodical-issue, 13 parts, 0 missing, order scan, proofread
-    - text: The Idea of a Literary Review (`The Criterion/Volume 4/Number 1/The Idea of a Literary Review`)
-    - text: Aristotle on Democracy and Socialism (`The Criterion/Volume 4/Number 1/Aristotle on Democracy and Socialism`) [hierarchy]
-    - text: On Being Ill (`The Criterion/Volume 4/Number 1/On Being Ill`) [hierarchy]
-    - text: The River Flows (`The Criterion/Volume 4/Number 1/The River Flows`) [hierarchy]
-    - text: The Monocle (`The Criterion/Volume 4/Number 1/The Monocle`) [hierarchy]
-    - text: The Fifteenth of November (`The Criterion/Volume 4/Number 1/The Fifteenth of November`) [hierarchy]
-    - chapter: II. (`The Criterion/Volume 4/Number 1/The Woman Who Rode Away (Part 2)`) [hierarchy]
-    - text: The Novels of Virginia Woolf (`The Criterion/Volume 4/Number 2/The Novels of Virginia Woolf`) [hierarchy]
-    - text: Our Need for Religious Sincerity (`The Criterion/Volume 4/Number 2/Our Need for Religious Sincerity`) [hierarchy]
-    - text: Poem (`The Criterion/Volume 4/Number 2/Poem`) [hierarchy]
-    - text: Spring Ode (`The Criterion/Volume 4/Number 3/Spring Ode`) [hierarchy]
-    - text: Mornings in Mexico (`The Criterion/Volume 4/Number 3/Mornings in Mexico`) [hierarchy]
-    - … 1 more
-1. `Old Savage`: virtual, book, 6 parts, 0 missing, order scan, proofread
-    - text: Friends of God’s Acre (`Old Savage/Friends of God's Acre`)
-    - text: The Woman (`Old Savage/The Woman`) [hierarchy]
-    - text: Mrs Salgast’s Baby (`Old Savage/Mrs Salgast's Baby`) [hierarchy]
-    - text: “Old Savage” (`Old Savage/"Old Savage"`) [hierarchy]
-    - text: That “Almost” (`Old Savage/That "Almost"`) [hierarchy]
-    - text: Her Big Idea (`Old Savage/Her Big Idea`) [hierarchy]
-1. `Monthly Notices of the Royal Astronomical Society`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Obituary: James Sweetman Eiffe (`Monthly Notices of the Royal Astronomical Society/1881/Obituary: James Sweetman Eiffe`)
-1. `Arquivos de Neuro-Psiquiatria`: virtual, document, 1 parts, 0 missing, order single, proofread
-    - text: Henrique Dumont: how a traumatic brain injury contributed to the development of the airplane (`Arquivos de Neuro-Psiquiatria/Volume 77/Issue 1/Henrique Dumont: how a traumatic brain injury contributed to the development of the airplane`)
-1. `Liberator`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: To Nicolai Lenin (`Liberator/Volume 1/Issue 9/To Nicolai Lenin`)
-1. `Al Qaeda Operative Convicted by Jury in One of the Most Serious Terrorist Plots Against America since 9`: virtual, book, 1 parts, 0 missing, order single, unknown
-    - chapter: 11 (`Al Qaeda Operative Convicted by Jury in One of the Most Serious Terrorist Plots Against America since 9/11`)
-1. `The Burlington Free Press`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Eddie Schneider Lowers 3 Marks (`The Burlington Free Press/1930/Eddie Schneider Lowers 3 Marks`)
-1. `Age of Innocence (Appleton 1920)`: virtual, book, 12 parts, 0 missing, order chain, validated
-    - chapter: Chapter I (`Age of Innocence (Appleton 1920)/Chapter 1`)
-    - chapter: Chapter II (`Age of Innocence (Appleton 1920)/Chapter 2`) [hierarchy]
-    - chapter: Chapter III (`Age of Innocence (Appleton 1920)/Chapter 3`) [hierarchy]
-    - chapter: Chapter IV (`Age of Innocence (Appleton 1920)/Chapter 4`) [hierarchy]
-    - chapter: Chapter V (`Age of Innocence (Appleton 1920)/Chapter 5`) [hierarchy]
-    - chapter: Chapter VI (`Age of Innocence (Appleton 1920)/Chapter 6`) [hierarchy]
-    - chapter: Chapter VII (`Age of Innocence (Appleton 1920)/Chapter 7`) [hierarchy]
-    - chapter: Chapter VIII (`Age of Innocence (Appleton 1920)/Chapter 8`) [hierarchy]
-    - chapter: Chapter IX (`Age of Innocence (Appleton 1920)/Chapter 9`) [hierarchy]
-    - chapter: Chapter X (`Age of Innocence (Appleton 1920)/Chapter 10`) [hierarchy]
-    - chapter: Chapter XI (`Age of Innocence (Appleton 1920)/Chapter 11`) [hierarchy]
-    - chapter: Chapter XII (`Age of Innocence (Appleton 1920)/Chapter 12`) [hierarchy]
-1. `Trewman's Exeter Flying Post`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Charles Worthy (`Trewman's Exeter Flying Post/1899/Charles Worthy`)
-1. `The True Republican`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Dashed To Death (`The True Republican/1891/Dashed To Death`)
-1. `Biographia Dramatica`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Granville, George, Lord Lansdown (`Biographia Dramatica/Granville, George, Lord Lansdown`)
-1. `Harpers`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: A Boy and a Girl (`Harpers/A Boy and a Girl`)
-1. `The Undivine Comedy, and Other Poems`: virtual, book, 6 parts, 0 missing, order scan, proofread
-    - chapter: Preface (`The Undivine Comedy, and Other Poems/Preface`)
-    - text: Biography of Krasinski (`The Undivine Comedy, and Other Poems/Biography of Krasinski`) [hierarchy]
-    - chapter: Preface to the French Edition (`The Undivine Comedy, and Other Poems/Preface to the French Edition`) [hierarchy]
-    - text: Analysis of the Undivine Comedy (`The Undivine Comedy, and Other Poems/Analysis of the Undivine Comedy`) [hierarchy]
-    - text: Resurrecturis (`The Undivine Comedy, and Other Poems/Resurrecturis`) [hierarchy]
-    - text: In Memoriam (`The Undivine Comedy, and Other Poems/In Memoriam`) [hierarchy]
-1. `The Indianapolis Star`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Carl Schneider Dies (`The Indianapolis Star/1976/Carl Schneider Dies`)
-1. `The London Standard`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Death of Mr. J. Bailey Denton (`The London Standard/1893/Death of Mr. J. Bailey Denton`)
-1. `Oakland Young Men`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Membership Secretary (`Oakland Young Men/1913/Membership Secretary`)
-1. `The Life of Lokamanya Tilak`: virtual, book, 13 parts, 0 missing, order scan, proofread
-    - chapter: Chapter 1 : Mr. Blunt. (`The Life of Lokamanya Tilak/Chapter 1`)
-    - chapter: Chapter 2 : The First Ordeal. (`The Life of Lokamanya Tilak/Chapter 2`) [hierarchy]
-    - chapter: Chapter 3 : The School and The College. (`The Life of Lokamanya Tilak/Chapter 3`) [hierarchy]
-    - chapter: Chapter 4 : Tilak and Social Reform. (`The Life of Lokamanya Tilak/Chapter 4`) [hierarchy]
-    - chapter: Chapter 5 : Tilak and the Congress—I. (`The Life of Lokamanya Tilak/Chapter 5`) [hierarchy]
-    - chapter: Chapter 6 : The Honourable and——!. (`The Life of Lokamanya Tilak/Chapter 6`) [hierarchy]
-    - chapter: Chapter 7 : The Lokamanya. (`The Life of Lokamanya Tilak/Chapter 7`) [hierarchy]
-    - chapter: Chapter 8 : The School of Moderation. (`The Life of Lokamanya Tilak/Chapter 8`) [hierarchy]
-    - chapter: Chapter 9 : The Fierry Cross. (`The Life of Lokamanya Tilak/Chapter 9`) [hierarchy]
-    - chapter: Chapter 10 : The New Party. (`The Life of Lokamanya Tilak/Chapter 10`) [hierarchy]
-    - chapter: Chapter 11 : Tilak and the Congress——II. (`The Life of Lokamanya Tilak/Chapter 11`) [hierarchy]
-    - chapter: Appendix A : The Orion. (`The Life of Lokamanya Tilak/Appendix A`) [hierarchy]
-    - … 1 more
-1. `Cocoa and Chocolate: A Short History of Their Production and Use`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: Prefatory Note (`Cocoa and Chocolate: A Short History of Their Production and Use/Prefatory Note`)
-1. `The Indian Journal of Medical Research`: virtual, book, 1 parts, 0 missing, order single, unproofread
-    - text: The Vaccine Institute, Belgaum (`The Indian Journal of Medical Research/Volume 8/The Vaccine Institute, Belgaum`)
+1. `Personality (Lectures delivered in America)`: virtual, book, 2 parts, 0 missing, order scan, proofread
+    - chapter: Front Matter (`Personality (Lectures delivered in America)/Front Matter`)
+    - text: My School (`Personality (Lectures delivered in America)/My School`) [hierarchy]
+1. `The Swedenborg Library Vol 2`: virtual, book, 12 parts, 0 missing, order chain, proofread
+    - chapter: Chapter 1 (`The Swedenborg Library Vol 2/Chapter 1`)
+    - chapter: Chapter 2 (`The Swedenborg Library Vol 2/Chapter 2`) [hierarchy]
+    - chapter: Chapter 3 (`The Swedenborg Library Vol 2/Chapter 3`) [hierarchy]
+    - chapter: Chapter 4 (`The Swedenborg Library Vol 2/Chapter 4`) [hierarchy]
+    - chapter: Chapter 5 (`The Swedenborg Library Vol 2/Chapter 5`) [hierarchy]
+    - chapter: Chapter 6 (`The Swedenborg Library Vol 2/Chapter 6`) [hierarchy]
+    - chapter: Chapter 7 (`The Swedenborg Library Vol 2/Chapter 7`) [hierarchy]
+    - chapter: Chapter 8 (`The Swedenborg Library Vol 2/Chapter 8`) [hierarchy]
+    - chapter: Chapter 9 (`The Swedenborg Library Vol 2/Chapter 9`) [hierarchy]
+    - chapter: Chapter 10 (`The Swedenborg Library Vol 2/Chapter 10`) [hierarchy]
+    - chapter: Chapter 11 (`The Swedenborg Library Vol 2/Chapter 11`) [hierarchy]
+    - chapter: Chapter 12 (`The Swedenborg Library Vol 2/Chapter 12`) [hierarchy]
+1. `Firdausi in Exile and Other Poems`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - text: Two Points of View (`Firdausi in Exile and Other Poems/Two Points of View`)
+1. `Rhymes for the Nursery`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: The Star (`Rhymes for the Nursery/The Star`)
+1. `Bengal Magazine`: virtual, book, 1 parts, 0 missing, order single, unknown
+    - chapter: A Scene from Contemporary History (`Bengal Magazine/1875/A Scene from Contemporary History`)
+1. `Nottingham Journal`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Art in a Garret (`Nottingham Journal/Art in a Garret`)
+1. `North American Review`: virtual, collection, 2 parts, 0 missing, order natural, unknown, excluded under-300-bytes
+    - text: Wealth (`North American Review/Volume 148/Issue 391/Wealth`)
+    - text: The Best Fields for Philanthropy (`North American Review/Volume 148/Issue 397/The Best Fields for Philanthropy`) [hierarchy]
+1. `The Poetical Works of Eliza Cook`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - text: "No!" (`The Poetical Works of Eliza Cook/"No!"`)
+1. `Hymns and Spiritual Songs`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: John Was The Prophet Of The Lord (`Hymns and Spiritual Songs/John Was The Prophet Of The Lord`)
+1. `The Poetical Works of Armstrong, Dyer, and Green`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: The Ruins of Rome (`The Poetical Works of Armstrong, Dyer, and Green/The Ruins of Rome`)
+1. `History of the Anglo-Saxons`: virtual, book, 1 parts, 0 missing, order single, unknown
+    - chapter: Chapter 4 (`History of the Anglo-Saxons/Book 2/Appendix/Chapter 4`)
+1. `Rules of Criminal Procedure (Supreme Court of Japan)`: virtual, collection, 2 parts, 0 missing, order single, unproofread
+    - volume: 2021-12-22 (`Rules of Criminal Procedure (Supreme Court of Japan)/2021-12-22`)
+      - text: Rules of the Supreme Court No. 32, 1948 (刑事訴訟規則 / Keiji soshō kisoku) (`Rules of Criminal Procedure (Supreme Court of Japan)/Revision history`) [container]
+1. `Journal of Lusophone Studies`: virtual, document, 2 parts, 0 missing, order natural, proofread
+    - text: Selected Writings by Luiz Gama, Brazilian Abolitionist (`Journal of Lusophone Studies/Volume 9/Issue 2/Selected Writings by Luiz Gama, Brazilian Abolitionist`)
+    - text: The Spitting Image of a Man (`Journal of Lusophone Studies/Volume 9/Issue 2/The Spitting Image of a Man`) [hierarchy]
+1. `Elmira Star-Gazette`: virtual, collection, 2 parts, 0 missing, order natural, unknown
+    - text: Printers Plan Their Meeting For Next Month (`Elmira Star-Gazette/1915/Printers Plan Their Meeting For Next Month`)
+    - text: Lattin Family Reunion (`Elmira Star-Gazette/1921/Lattin Family Reunion`) [hierarchy]
+1. `Administrative Instruction ST`: virtual, collection, 7 parts, 0 missing, order natural, proofread
+    - volume: 189 (`Administrative Instruction ST/AI/189`)
+      - text: Rev.1 (`Administrative Instruction ST/AI/189/Add.9/Rev.1`) [container]
+      - volume: Rev.2 (`Administrative Instruction ST/AI/189/Add.9/Rev.2`) [container]
+        - text: Add.2 (`Administrative Instruction ST/AI/189/Add.9/Rev.2/Add.2`) [container]
+        - text: Add.1 (`Administrative Instruction ST/AI/189/Add.9/Rev.2/Add.1`) [hierarchy]
+      - chapter: index of addenda and revisions (`Administrative Instruction ST/AI/189/Addenda`) [hierarchy]
+    - text: Administrative Instruction ST/AI/189/Add.9/Rev.2 (`Administrative Instruction ST/AI/2001/5`) [hierarchy]
+1. `Plays by Anton Tchekoff`: virtual, collection, 5 parts, 0 missing, order single, unknown
+    - volume: The Three Sisters (`Plays by Anton Tchekoff/The Three Sisters`)
+      - text: The Three Sisters, Act I (`Plays by Anton Tchekoff/The Three Sisters/Act I`) [hierarchy]
+      - text: The Three Sisters, Act II (`Plays by Anton Tchekoff/The Three Sisters/Act II`) [hierarchy]
+      - text: The Three Sisters, Act III (`Plays by Anton Tchekoff/The Three Sisters/Act III`) [hierarchy]
+      - text: The Three Sisters, Act IV (`Plays by Anton Tchekoff/The Three Sisters/Act IV`) [hierarchy]
+1. `Winona Daily News`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Former Minneapolis Girl May Fight in Spanish War (`Winona Daily News/1936/Former Minneapolis Girl May Fight in Spanish War`)
+1. `South Wales News`: virtual, book, 1 parts, 0 missing, order single, validated, excluded no-text-pages
+    - text: South Wales Artist's Career (`South Wales News/22 September 1919/South Wales Artist's Career`)
+1. `Red Bank Register`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Eddie Schneider Air Battler For Spanish Loyalists (`Red Bank Register/1937/Eddie Schneider Air Battler For Spanish Loyalists`)
+1. `The New Philadelphia Daily Times`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Bowerston Man Stroke Victim (`The New Philadelphia Daily Times/1943/Bowerston Man Stroke Victim`)
+1. `Reading Eagle`: virtual, periodical-issue, 1 parts, 0 missing, order single, validated, excluded no-text-pages
+    - text: Kentucky Historian Killed (`Reading Eagle/1901/08/03/Kentucky Historian Killed`)
+1. `Boswell's Life of Johnson(1904)`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: Appendix D (`Boswell's Life of Johnson(1904)/Volume 1/Appendix D`)
+1. `More Dolly Dialogues`: virtual, collection, 4 parts, 0 missing, order chain, unknown
+    - text: "Ancient History" (`More Dolly Dialogues/"Ancient History"`)
+    - text: The Curate's Bump (`More Dolly Dialogues/The Curate's Bump`) [hierarchy]
+    - text: A Life Subscription (`More Dolly Dialogues/A Life Subscription`) [hierarchy]
+    - text: A Fatal Obstacle (`More Dolly Dialogues/A Fatal Obstacle`) [hierarchy]
+1. `United States National Almanac`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Account of a Visit from St. Nicholas (`United States National Almanac/Account of a Visit from St. Nicholas`)
+1. `The strange story book`: virtual, book, 12 parts, 0 missing, order scan, proofread
+    - text: The Drowned Buccaneer (`The strange story book/The Drowned Buccaneer`)
+    - text: The Perplexity of Zadig (`The strange story book/The Perplexity of Zadig`) [hierarchy]
+    - text: The Return of the Dead Wife (`The strange story book/The Return of the Dead Wife`) [hierarchy]
+    - text: Young Amazon Snell (`The strange story book/Young Amazon Snell`) [hierarchy]
+    - text: The Good Sir James (`The strange story book/The Good Sir James`) [hierarchy]
+    - text: The Pets of Aurore Dupin (`The strange story book/The Pets of Aurore Dupin`) [hierarchy]
+    - text: The Trials of M. Deschartres (`The strange story book/The Trials of M. Deschartres`) [hierarchy]
+    - text: Aurore at Play (`The strange story book/Aurore at Play`) [hierarchy]
+    - text: How Aurore learned to Ride (`The strange story book/How Aurore learned to Ride`) [hierarchy]
+    - text: The Siege of Rhodes (`The strange story book/The Siege of Rhodes`) [hierarchy]
+    - text: The Princess of Babylon (`The strange story book/The Princess of Babylon`) [hierarchy]
+    - text: The Boyhood of a Painter (`The strange story book/The Boyhood of a Painter`) [hierarchy]
+1. `The true story book`: virtual, book, 9 parts, 0 missing, order scan, proofread
+    - text: A Boy among the Red Indians (`The true story book/A Boy among the Red Indians`)
+    - text: The Story of Grace Darling (`The true story book/The Story of Grace Darling`) [hierarchy]
+    - text: The 'Shannon' and the 'Chesapeake' (`The true story book/The 'Shannon' and the 'Chesapeake'`) [hierarchy]
+    - text: Captain Snelgrave and the Pirates (`The true story book/Captain Snelgrave and the Pirates`) [hierarchy]
+    - text: The Spartan Three Hundred (`The true story book/The Spartan Three Hundred`) [hierarchy]
+    - text: The Story of Kaspar Hauser (`The true story book/The Story of Kaspar Hauser`) [hierarchy]
+    - text: The Tale of Isandhlwana and Rorke's Drift (`The true story book/The Tale of Isandhlwana and Rorke's Drift`) [hierarchy]
+    - text: Adventures of Bartholomew Portugues, a Pirate (`The true story book/Adventures of Bartholomew Portugues, a Pirate`) [hierarchy]
+    - text: The Return of the French Freebooters (`The true story book/The Return of the French Freebooters`) [hierarchy]
+1. `Prophets of the Century`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Leo Tolstoy (`Prophets of the Century/Leo Tolstoy`)
+1. `Christianity in China, Tartary and Thibet`: virtual, book, 2 parts, 8 missing, order single, unproofread
+    - volume: Volume 1 (`Christianity in China, Tartary and Thibet/Volume 1`)
+      - chapter: CHAPTER I. (`Christianity in China, Tartary and Thibet/Volume 1/Chapter 1`) [container]
+1. `Stop and Think!`: virtual, book, 1 parts, 0 missing, order single, unknown
+    - chapter: Introduction (`Stop and Think!/Introduction`)
+1. `The Bayonne Herald`: virtual, book, 1 parts, 0 missing, order single, validated, excluded no-text-pages
+    - text: A Dangerous Whirlpool (`The Bayonne Herald/1872/09/21/A Dangerous Whirlpool`)
 
-### E: subpage texts reached from a disambiguation or versions page (25,458)
+### E: subpage texts reached from a disambiguation or versions page (25,455)
 
-1. text “Lay by your Pleading” (`A Collection, of One Hundred and Eighty Loyal Songs/Lay by your Pleading`), part 1 of `A Collection, of One Hundred and Eighty Loyal Songs` (book, 1 parts, 1 texts)
-1. text “Boat Song” (`The Poems of Charles Fenno Hoffman/Boat Song`), part 84 of `The Poems of Charles Fenno Hoffman` (book, 98 parts, 95 texts)
+1. text “The Radical” (`Caroling Dusk/The Radical`), part 236 of `Caroling Dusk` (book, 259 parts, 257 texts)
+1. chapter “Chapter 5” (`John Hus: the commencement of resistance to papal authority on the part of the inferior clergy/Chapter 5`), part 6 of `John Hus: the commencement of resistance to papal authority on the part of the inferior clergy` (book, 14 parts, 0 texts)
 1. chapter “192. The Master-Thief” (`Grimm's Household Tales, Volume 2/The Master-Thief`), part 107 of `Grimm's Household Tales, Volume 2` (book, 126 parts, 5 texts)
 1. text “Wealth” (`Poems (Emerson, Household Edition, 1904)/Wealth`), part 118 of `Poems (Emerson, Household Edition, 1904)` (book, 174 parts, 171 texts)
 1. text “THE CHARGE OF THE LIGHT BRIGADE” (`War, the Liberator, and Other Pieces/The Charge of the Light Brigade`), part 30 of `War, the Liberator, and Other Pieces` (book, 46 parts, 46 texts)
-1. text “Holy Willie's Prayer” (`The Beauties of Burn's Poems/Holy Willie's Prayer`), part 14 of `The Beauties of Burn's Poems` (book, 38 parts, 38 texts)
-1. text “An Election Address” (`Lapsus Calami (Aug 1891)/An Election Address`), part 26 of `Lapsus Calami (Aug 1891)` (book, 49 parts, 49 texts)
+1. text “Epitaph on Holy Willie” (`The Poetical Works of Robert Burns/Epitaph on Holy Willie`), part 111 of `The Poetical Works of Robert Burns` (book, 508 parts, 500 texts)
+1. text “Sincere Flattery of R. B.: Midsummer” (`Lapsus Calami (Apr 1891)/Midsummer`), part 18 of `Lapsus Calami (Apr 1891)` (book, 45 parts, 45 texts)
 1. text “Pastoral” (`Al Que Quiere!/Pastoral (2nd)`), part 11 of `Al Que Quiere!` (book, 52 parts, 51 texts)
-1. text “Poem V. The Passionate Shepherd to his Love” (`The Golden Treasury of English Songs and Lyrics/Book 1/Poem 5`), part 9 of `The Golden Treasury of English Songs and Lyrics` (book, 35 parts, 31 texts)
-1. text “Battle of Waterloo” (`Battle of Waterloo, The Bonnet so Blue, and Love has Eyes/Battle of Waterloo`), part 1 of `Battle of Waterloo, The Bonnet so Blue, and Love has Eyes` (book, 3 parts, 3 texts)
-1. text “Tèma Con Variazióni” (`Rhyme? and Reason?/Tèma Con Variazióni`), part 9 of `Rhyme? and Reason?` (book, 18 parts, 18 texts)
-1. text “The Ploughman” (`The Complete Poetical Works of Oliver Wendell Holmes/The Ploughman`), part 11 of `The Complete Poetical Works of Oliver Wendell Holmes` (book, 60 parts, 60 texts)
-1. text “Fame is a fickle food” (`The Single Hound/Fame is a fickle food`), part 6 of `The Single Hound` (book, 144 parts, 143 texts)
-1. chapter “Letter 81: To the Philosopher (Hypatia)” (`The Letters of Synesius of Cyrene/Letter 81`), part 13 of `The Letters of Synesius of Cyrene` (book, 16 parts, 1 texts)
+1. text “When that I Was a Little Tiny Boy” (`The Ballad Literature and Popular Music of the Olden Time/Volume 1/Reign of Elizabeth/When that I Was a Little Tiny Boy`), part 8 of `The Ballad Literature and Popular Music of the Olden Time` (book, 15 parts, 9 texts)
+1. text “Lash'd to the Helm” (`The Bonny Highland Lad (1815, Falkirk)/Lash'd to the Helm`), part 3 of `The Bonny Highland Lad (1815, Falkirk)` (book, 4 parts, 4 texts)
+1. text “Size and Tears” (`Phantasmagoria and Other Poems/Size and Tears`), part 20 of `Phantasmagoria and Other Poems` (book, 36 parts, 27 texts)
+1. text “The Torrent” (`The Children of the Night (1921)/The Torrent`), part 56 of `The Children of the Night (1921)` (book, 57 parts, 57 texts)
+1. text “The right to perish might be thought” (`The Complete Poems of Emily Dickinson/The right to perish might be thought`), part 466 of `The Complete Poems of Emily Dickinson` (book, 480 parts, 473 texts)
+1. text “Defeated” (`Poems (Blagden)/Defeated`), part 33 of `Poems (Blagden)` (book, 33 parts, 33 texts)
 1. text “O Captain! My Captain!” (`Poems That Every Child Should Know/O Captain! My Captain!`), part 52 of `Poems That Every Child Should Know` (book, 197 parts, 188 texts)
 1. text “Eros” (`Poems (Coates 1916)/Volume I/Eros`), part 116 of `Poems (Coates 1916)` (collection, 347 parts, 342 texts)
 1. text “The Falcon” (`The Golden Violet with its Tales of Romance and Chivalry and Other Poems/The Falcon`), part 4 of `The Golden Violet with its Tales of Romance and Chivalry and Other Poems` (book, 28 parts, 27 texts)
 1. text “To My Wife” (`McClure's Magazine/Volume 2/Number 1/To My Wife`), part 16 of `McClure's Magazine` (collection, 268 parts, 234 texts)
 1. text “The Titmouse” (`Poems (Emerson, Household Edition, 1904)/The Titmouse`), part 82 of `Poems (Emerson, Household Edition, 1904)` (book, 174 parts, 171 texts)
-1. text “Two Pictures” (`The Atlantic Monthly/Volume 17/Number 100/Two Pictures`), part 360 of `The Atlantic Monthly` (collection, 587 parts, 478 texts)
+1. text “He and She” (`Songs of a Savoyard/He and She`), part 54 of `Songs of a Savoyard` (book, 70 parts, 69 texts)
 1. text “The Wanderer” (`Poems (Vadlan)/The Wanderer`), part 25 of `Poems (Vadlan)` (book, 30 parts, 30 texts)
-1. text “April Days” (`Poems (Thaxter)/April Days`), part 29 of `Poems (Thaxter)` (book, 66 parts, 66 texts)
-1. text “Clarinda” (`Six Excellent Songs (Newton Stewart)/Clarinda`), part 3 of `Six Excellent Songs (Newton Stewart)` (book, 6 parts, 6 texts)
-1. text “The Puppet Player” (`Caroling Dusk/The Puppet Player`), part 44 of `Caroling Dusk` (book, 259 parts, 257 texts)
+1. text “At the Breakers' Edge” (`The Poems of Celia Thaxter (1906)/At the Breakers' Edge`), part 34 of `The Poems of Celia Thaxter (1906)` (book, 171 parts, 168 texts)
+1. text “A Mother's Lament for the Death of her Son” (`The Poetical Works of Robert Burns/A Mother's Lament for the Death of her Son`), part 380 of `The Poetical Works of Robert Burns` (book, 508 parts, 500 texts)
+1. text “A Winter Twilight” (`Caroling Dusk/A Winter Twilight`), part 45 of `Caroling Dusk` (book, 259 parts, 257 texts)
 1. text “Providence” (`Poems (Smith)/Providence`), part 37 of `Poems (Smith)` (book, 92 parts, 92 texts)
-1. text “Bonie Lesley” (`The Poetical Works of Robert Burns/Bonie Lesley`), part 382 of `The Poetical Works of Robert Burns` (book, 508 parts, 500 texts)
-1. text “The Suicide” (`Summer and Winter Hours/The Suicide`), part 31 of `Summer and Winter Hours` (book, 60 parts, 58 texts)
+1. text “Ance Crowdie, Twice Crowdie” (`The Proud Dutchess, or, Death and the Lady/Ance Crowdie, Twice Crowdie`), part 4 of `The Proud Dutchess, or, Death and the Lady` (book, 4 parts, 4 texts)
+1. text “The Suicide” (`Poems (Henderson)/The Suicide`), part 31 of `Poems (Henderson)` (book, 53 parts, 52 texts)
 1. text “A Sketch” (`Poems (Hale)/A Sketch`), part 99 of `Poems (Hale)` (book, 128 parts, 128 texts)
-1. text “The Brave Tin Soldier” (`Hans Andersen's Fairy Tales/The Brave Tin Soldier`), part 3 of `Hans Andersen's Fairy Tales` (book, 97 parts, 97 texts)
-1. text “Along the Potomac” (`Poems (Dickinson)/Along the Potomac`), part 109 of `Poems (Dickinson)` (book, 116 parts, 114 texts)
+1. text “../The Hardy Tin Soldier/” (`Fairy Tales and Other Stories (Andersen, Craigie)/The Hardy Tin Soldier`), part 10 of `Fairy Tales and Other Stories (Andersen, Craigie)` (book, 21 parts, 21 texts)
+1. text “No rack can torture me” (`The Complete Poems of Emily Dickinson/No rack can torture me`), part 352 of `The Complete Poems of Emily Dickinson` (book, 480 parts, 473 texts)
 
-### all searchable subpage texts (chapter titles that the label patterns miss show up here) (428,897)
+### all searchable subpage texts (chapter titles that the label patterns miss show up here) (428,858)
 
-1. text “Grey, (Sir) George (Bart.)” (`Alumni Oxonienses: the Members of the University of Oxford, 1715-1886/Grey, (Sir) George (Bart.)`), part 23162 of `Alumni Oxonienses: the Members of the University of Oxford, 1715-1886` (reference, 63,225 parts, 63,216 texts)
-1. text “Parker, John (1799-1881)” (`Dictionary of National Biography, 1885-1900/Parker, John (1799-1881)`), part 19751 of `Dictionary of National Biography, 1885-1900` (reference, 28,089 parts, 28,080 texts)
-1. text “kuah” (`Dictionary of the Swatow dialect/kuah`), part 349 of `Dictionary of the Swatow dialect` (reference, 837 parts, 829 texts)
-1. text “Knot-berries” (`Domestic Encyclopædia (1802)/Knot-berries`), part 790 of `Domestic Encyclopædia (1802)` (collection, 1,612 parts, 1,554 texts)
-1. text “The Rosy Morn” (`Five Songs ("Jockey to the Fair")/The Rosy Morn`), part 5 of `Five Songs ("Jockey to the Fair")` (book, 5 parts, 5 texts)
-1. text “Accent” (`Encyclopædia Britannica, Ninth Edition/Accent`), part 154 of `Encyclopædia Britannica, Ninth Edition` (reference, 3,435 parts, 3,370 texts)
-1. text “The unconscious body-guard” (`Once a Week (magazine)/Series 1/Volume 3/The unconscious body-guard`), part 448 of `Once a Week (magazine)` (collection, 1,851 parts, 1,832 texts)
-1. text “Bashtchelik (or, Real Steel)” (`Edmund Dulac's fairy book/Bashtchelik (or, Real Steel)`), part 10 of `Edmund Dulac's fairy book` (book, 15 parts, 15 texts)
-1. text “p.377” (`Transactions of the Geological Society/Series 1/Volume 2/On some new Varieties of Fossil Alcyonia`), part 43 of `Transactions of the Geological Society` (collection, 110 parts, 97 texts)
-1. text “Gaduge” (`Castes and Tribes of Southern India/Gaduge`), part 699 of `Castes and Tribes of Southern India` (book, 2,228 parts, 2,218 texts)
-1. text “Rives, William Cabell” (`1911 Encyclopædia Britannica/Rives, William Cabell`), part 29428 of `1911 Encyclopædia Britannica` (reference, 37,420 parts, 37,256 texts)
-1. text “Sail” (`The New Student's Reference Work/Sail`), part 3568 of `The New Student's Reference Work` (book, 4,695 parts, 4,644 texts)
-1. text “Coraës, Adamantios” (`1911 Encyclopædia Britannica/Coraës, Adamantios`), part 9271 of `1911 Encyclopædia Britannica` (reference, 37,420 parts, 37,256 texts)
-1. text “To Julia Homesley” (`Poems (Katz)/To Julia Homesley`), part 17 of `Poems (Katz)` (book, 26 parts, 26 texts)
-1. text “Stone, Lucy Blackwell” (`The Encyclopedia Americana (1920)/Stone, Lucy Blackwell`), part 2809 of `The Encyclopedia Americana (1920)` (reference, 3,166 parts, 3,158 texts)
-1. text “The Triumph of Death” (`Poems (Hooper)/The Triumph of Death`), part 48 of `Poems (Hooper)` (book, 79 parts, 78 texts)
-1. text “Shrew” (`The New Student's Reference Work/Shrew`), part 3722 of `The New Student's Reference Work` (book, 4,695 parts, 4,644 texts)
-1. text “Ephemerides of the Planets” (`Astrology (Shoemaker)/Ephemerides of the Planets`), part 12 of `Astrology (Shoemaker)` (book, 14 parts, 13 texts)
-1. text “Walford, Edward” (`Dictionary of National Biography, 1885-1900/Walford, Edward`), part 26346 of `Dictionary of National Biography, 1885-1900` (reference, 28,089 parts, 28,080 texts)
-1. text “Bonython, Charles” (`Dictionary of National Biography, 1885-1900/Bonython, Charles`), part 2627 of `Dictionary of National Biography, 1885-1900` (reference, 28,089 parts, 28,080 texts)
-1. text “Bisset, Sir William Sinclair Smith” (`Dictionary of Indian Biography/Bisset, Sir William Sinclair Smith`), part 243 of `Dictionary of Indian Biography` (reference, 663 parts, 656 texts)
-1. text “Grillparzer, Franz” (`The New International Encyclopædia/Grillparzer, Franz`), part 5255 of `The New International Encyclopædia` (book, 10,866 parts, 10,851 texts)
-1. text “Mackness, George Owen Carr” (`Alumni Oxonienses: the Members of the University of Oxford, 1715-1886/Mackness, George Owen Carr`), part 35942 of `Alumni Oxonienses: the Members of the University of Oxford, 1715-1886` (reference, 63,225 parts, 63,216 texts)
-1. text “Ker, David (1)” (`Alumni Oxonienses: the Members of the University of Oxford, 1715-1886/Ker, David (1)`), part 31994 of `Alumni Oxonienses: the Members of the University of Oxford, 1715-1886` (reference, 63,225 parts, 63,216 texts)
-1. text “She Keeps a Good Man Dangling, but—” (`O Genteel Lady!/Chapter 13`), part 13 of `O Genteel Lady!` (book, 15 parts, 15 texts)
-1. text “SPARHAM. Rev. Charles George” (`Who's Who in the Far East/SPARHAM. Rev. Charles George`), part 1695 of `Who's Who in the Far East` (reference, 2,182 parts, 2,181 texts)
-1. text “What is True Civilization?” (`Indian Home Rule (5th edition)/What is True Civilization`), part 25 of `Indian Home Rule (5th edition)` (collection, 26 parts, 22 texts)
-1. text “Dramatis Personae” (`The Adventures of David Simple (1904)/Dramatis Personae`), part 3 of `The Adventures of David Simple (1904)` (book, 42 parts, 1 texts)
-1. text “American Civil War” (`1911 Encyclopædia Britannica/American Civil War`), part 1469 of `1911 Encyclopædia Britannica` (reference, 37,420 parts, 37,256 texts)
-1. text “Treatment of Skin Disorders” (`Beauty Culture (Woodbury)/Chapter 18`), part 19 of `Beauty Culture (Woodbury)` (book, 29 parts, 26 texts)
+1. text “Grey, (Sir) Charles (Edward)” (`Alumni Oxonienses: the Members of the University of Oxford, 1715-1886/Grey, (Sir) Charles (Edward)`), part 23160 of `Alumni Oxonienses: the Members of the University of Oxford, 1715-1886` (reference, 63,225 parts, 63,216 texts)
+1. text “Parker, John (1772-1840)” (`Dictionary of National Biography, 1885-1900/Parker, John (1772-1840)`), part 19749 of `Dictionary of National Biography, 1885-1900` (reference, 28,089 parts, 28,080 texts)
+1. text “kua” (`Dictionary of the Swatow dialect/kua`), part 347 of `Dictionary of the Swatow dialect` (reference, 837 parts, 829 texts)
+1. text “Knee-holly” (`Domestic Encyclopædia (1802)/Knee-holly`), part 788 of `Domestic Encyclopædia (1802)` (collection, 1,612 parts, 1,554 texts)
+1. text “Bonnie Lady Ann” (`Five Songs ("Bessy Bell and Mary Gray")/Bonnie Lady Ann`), part 4 of `Five Songs ("Bessy Bell and Mary Gray")` (book, 5 parts, 5 texts)
+1. text “Acarus” (`Encyclopædia Britannica, Ninth Edition/Acarus`), part 152 of `Encyclopædia Britannica, Ninth Edition` (reference, 3,435 parts, 3,370 texts)
+1. text “The minstrel's curse” (`Once a Week (magazine)/Series 1/Volume 3/The minstrel's curse`), part 446 of `Once a Week (magazine)` (collection, 1,851 parts, 1,832 texts)
+1. text “The Queen of the Many-coloured Bedchamber” (`Edmund Dulac's fairy book/The Queen of the Many-coloured Bedchamber`), part 8 of `Edmund Dulac's fairy book` (book, 15 parts, 15 texts)
+1. text “p.328” (`Transactions of the Geological Society/Series 1/Volume 2/On the Origin of Organic Impressions`), part 41 of `Transactions of the Geological Society` (collection, 110 parts, 97 texts)
+1. text “Gādidhē Kandla” (`Castes and Tribes of Southern India/Gādidhē Kandla`), part 697 of `Castes and Tribes of Southern India` (book, 2,228 parts, 2,218 texts)
+1. text “Rivers, Richard Woodville, Earl” (`1911 Encyclopædia Britannica/Rivers, Richard Woodville, Earl`), part 29426 of `1911 Encyclopædia Britannica` (reference, 37,420 parts, 37,256 texts)
+1. text “Sago” (`The New Student's Reference Work/Sago`), part 3566 of `The New Student's Reference Work` (book, 4,695 parts, 4,644 texts)
+1. text “Coram, Thomas” (`1911 Encyclopædia Britannica/Coram, Thomas`), part 9269 of `1911 Encyclopædia Britannica` (reference, 37,420 parts, 37,256 texts)
+1. text “On violets brought me by my father” (`Poems (Katz)/On violets brought me by my father`), part 11 of `Poems (Katz)` (book, 26 parts, 26 texts)
+1. text “Stone Age” (`The Encyclopedia Americana (1920)/Stone Age`), part 2807 of `The Encyclopedia Americana (1920)` (reference, 3,166 parts, 3,158 texts)
+1. text “The Neglected Grave” (`Poems (Hooper)/The Neglected Grave`), part 42 of `Poems (Hooper)` (book, 79 parts, 78 texts)
+1. text “Shishak” (`The New Student's Reference Work/Shishak`), part 3720 of `The New Student's Reference Work` (book, 4,695 parts, 4,644 texts)
+1. text “Influence of the Planets” (`Astrology (Shoemaker)/Chapter 6`), part 6 of `Astrology (Shoemaker)` (book, 14 parts, 13 texts)
+1. text “Waleys, Henry le” (`Dictionary of National Biography, 1885-1900/Waleys, Henry le`), part 26344 of `Dictionary of National Biography, 1885-1900` (reference, 28,089 parts, 28,080 texts)
+1. text “Bonwicke, Ambrose (1652-1722)” (`Dictionary of National Biography, 1885-1900/Bonwicke, Ambrose (1652-1722)`), part 2625 of `Dictionary of National Biography, 1885-1900` (reference, 28,089 parts, 28,080 texts)
+1. text “Birdwood, Sir George Christopher Molesworth” (`Dictionary of Indian Biography/Birdwood, Sir George Christopher Molesworth`), part 241 of `Dictionary of Indian Biography` (reference, 663 parts, 656 texts)
+1. text “Grijalva, Juan de” (`The New International Encyclopædia/Grijalva, Juan de`), part 5253 of `The New International Encyclopædia` (book, 10,866 parts, 10,851 texts)
+1. text “Mackmurdo, Arthur Heygate” (`Alumni Oxonienses: the Members of the University of Oxford, 1715-1886/Mackmurdo, Arthur Heygate`), part 35940 of `Alumni Oxonienses: the Members of the University of Oxford, 1715-1886` (reference, 63,225 parts, 63,216 texts)
+1. text “Ker, Charles Frederick” (`Alumni Oxonienses: the Members of the University of Oxford, 1715-1886/Ker, Charles Frederick`), part 31992 of `Alumni Oxonienses: the Members of the University of Oxford, 1715-1886` (reference, 63,225 parts, 63,216 texts)
+1. text “And Hears More About Mamma” (`O Genteel Lady!/Chapter 7`), part 7 of `O Genteel Lady!` (book, 15 parts, 15 texts)
+1. text “SOWERBY, Rev. Arthur” (`Who's Who in the Far East/SOWERBY, Rev. Arthur`), part 1693 of `Who's Who in the Far East` (reference, 2,182 parts, 2,181 texts)
+1. text “The Partition of Bengal” (`Indian Home Rule (5th edition)/The Partition of Bengal`), part 23 of `Indian Home Rule (5th edition)` (collection, 26 parts, 22 texts)
+1. text “The Bush Aboon Traquire” (`Description of Pizzaro/The Bush Aboon Traquire`), part 4 of `Description of Pizzaro` (book, 4 parts, 4 texts)
+1. text “America” (`1911 Encyclopædia Britannica/America`), part 1467 of `1911 Encyclopædia Britannica` (reference, 37,420 parts, 37,256 texts)
+1. text “False Hair Adjuncts” (`Beauty Culture (Woodbury)/Chapter 12`), part 13 of `Beauty Culture (Woodbury)` (book, 29 parts, 26 texts)
 
 ### C: oversized (399)
 
@@ -1033,8 +1036,8 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - text: One Who Had Known a King (`Nobody's Boy/Chapter VIII`) [container]
     - text: Arrested (`Nobody's Boy/Chapter IX`) [container]
     - … 24 more
-1. `Impressions of Theophrastus Such, Essays and Leaves from a note-book`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: Theophrastus Such (`Impressions of Theophrastus Such, Essays and Leaves from a note-book/Theophrastus Such`)
+1. `Hansard (Commons)`: virtual, document, 1 parts, 0 missing, order single, unproofread
+    - chapter: 40 (`Hansard (Commons)/566/40`)
 1. `Constitution of Malaysia`: single, single, 1 parts, 0 missing, order –, unknown
     - text: Constitution of Malaysia
 1. `Secretary Root's Record:"Marked Severities" in Philippine Warfare`: single, single, 1 parts, 0 missing, order –, unknown
@@ -1361,12 +1364,20 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - text: Western and Central Asia (`Atlas of the World's Languages in Danger (Third Edition)/Western and Central Asia`) [container]
     - text: North-east Asia (`Atlas of the World's Languages in Danger (Third Edition)/North-east Asia`) [container]
     - text: India and the Himalayan chain (`Atlas of the World's Languages in Danger (Third Edition)/India and the Himalayan chain`) [container]
-1. `Foclóir Gaeḋilge agus Béarla`: virtual, reference, 5 parts, 0 missing, order chain, proofread
-    - text: Council's Preface (`Foclóir Gaeḋilge agus Béarla/Council's Preface`)
-    - text: Editor's Preface (`Foclóir Gaeḋilge agus Béarla/Editor's Preface`) [hierarchy]
-    - text: Abbreviations (`Foclóir Gaeḋilge agus Béarla/Abbreviations`) [hierarchy]
-    - text: A (`Foclóir Gaeḋilge agus Béarla/A`) [hierarchy]
-    - text: B (`Foclóir Gaeḋilge agus Béarla/B`) [hierarchy]
+1. `Catholic Encyclopedia (1922 supplement)`: virtual, reference, 21 parts, 0 missing, order scan, proofread
+    - text: Jaca, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaca, Diocese of`)
+    - text: Jaffna, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaffna, Diocese of`) [hierarchy]
+    - text: Jamaica, Vicariate Apostolic of (`Catholic Encyclopedia (1922 supplement)/Jamaica, Vicariate Apostolic of`) [hierarchy]
+    - text: Japan (`Catholic Encyclopedia (1922 supplement)/Japan`) [hierarchy]
+    - text: Jaén, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaén, Diocese of`) [hierarchy]
+    - text: Jaro, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaro, Diocese of`) [hierarchy]
+    - text: Oliver Plunket, Blessed (`Catholic Encyclopedia (1922 supplement)/Oliver Plunket, Blessed`) [hierarchy]
+    - text: Olivetans (`Catholic Encyclopedia (1922 supplement)/Olivetans`) [hierarchy]
+    - text: Olmutz, Archdiocese of (`Catholic Encyclopedia (1922 supplement)/Olmutz, Archdiocese of`) [hierarchy]
+    - text: Olomouc, Archdiocese of (`Catholic Encyclopedia (1922 supplement)/Olomouc, Archdiocese of`) [hierarchy]
+    - text: Omaha, Diocese of (`Catholic Encyclopedia (1922 supplement)/Omaha, Diocese of`) [hierarchy]
+    - text: Ontario, Northern, Vicariate Apostolic of (`Catholic Encyclopedia (1922 supplement)/Ontario, Northern, Vicariate Apostolic of`) [hierarchy]
+    - … 9 more
 1. `A Naval Biographical Dictionary`: subpages, reference, 4,955 parts, 1 missing, order toc-partial, validated
     - front: A Naval Biographical Dictionary
     - text: Frontispiece (`A Naval Biographical Dictionary/Frontispiece`) [container]
@@ -1471,20 +1482,12 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
       - text: Z (`A Critical Pronouncing Dictionary (4th edition)/Dictionary/Z`) [container]
     - chapter: Appendix (`A Critical Pronouncing Dictionary (4th edition)/Appendix`) [container]
     - … 1 more
-1. `Catholic Encyclopedia (1922 supplement)`: virtual, reference, 21 parts, 0 missing, order scan, proofread
-    - text: Jaca, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaca, Diocese of`)
-    - text: Jaffna, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaffna, Diocese of`) [hierarchy]
-    - text: Jamaica, Vicariate Apostolic of (`Catholic Encyclopedia (1922 supplement)/Jamaica, Vicariate Apostolic of`) [hierarchy]
-    - text: Japan (`Catholic Encyclopedia (1922 supplement)/Japan`) [hierarchy]
-    - text: Jaén, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaén, Diocese of`) [hierarchy]
-    - text: Jaro, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaro, Diocese of`) [hierarchy]
-    - text: Oliver Plunket, Blessed (`Catholic Encyclopedia (1922 supplement)/Oliver Plunket, Blessed`) [hierarchy]
-    - text: Olivetans (`Catholic Encyclopedia (1922 supplement)/Olivetans`) [hierarchy]
-    - text: Olmutz, Archdiocese of (`Catholic Encyclopedia (1922 supplement)/Olmutz, Archdiocese of`) [hierarchy]
-    - text: Olomouc, Archdiocese of (`Catholic Encyclopedia (1922 supplement)/Olomouc, Archdiocese of`) [hierarchy]
-    - text: Omaha, Diocese of (`Catholic Encyclopedia (1922 supplement)/Omaha, Diocese of`) [hierarchy]
-    - text: Ontario, Northern, Vicariate Apostolic of (`Catholic Encyclopedia (1922 supplement)/Ontario, Northern, Vicariate Apostolic of`) [hierarchy]
-    - … 9 more
+1. `Foclóir Gaeḋilge agus Béarla`: virtual, reference, 5 parts, 0 missing, order chain, proofread
+    - text: Council's Preface (`Foclóir Gaeḋilge agus Béarla/Council's Preface`)
+    - text: Editor's Preface (`Foclóir Gaeḋilge agus Béarla/Editor's Preface`) [hierarchy]
+    - text: Abbreviations (`Foclóir Gaeḋilge agus Béarla/Abbreviations`) [hierarchy]
+    - text: A (`Foclóir Gaeḋilge agus Béarla/A`) [hierarchy]
+    - text: B (`Foclóir Gaeḋilge agus Béarla/B`) [hierarchy]
 1. `Alumni Oxonienses: the Members of the University of Oxford, 1715-1886`: subpages, reference, 63,225 parts, 0 missing, order natural, unknown
     - toc: Alumni Oxonienses: the Members of the University of Oxford, 1715-1886
     - text: A (`Alumni Oxonienses: the Members of the University of Oxford, 1715-1886/A`) [container]
@@ -1561,7 +1564,7 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - text: AITKEN, Lieut.-Col. Arthur Edward (`Who's Who in the Far East/AITKEN, Lieut.-Col. Arthur Edward`) [hierarchy]
     - … 2,171 more
 
-### H: deep nesting (312)
+### H: deep nesting (311)
 
 1. `Folk-Lore Record`: subpages, collection, 21 parts, 4 missing, order single, proofread
     - toc: Folk-Lore Record
@@ -1647,19 +1650,20 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - text: A plea for total abstinence (`New Uncommercial Samples/A plea for total abstinence`) [container]
     - text: A small dinner in an hour (`New Uncommercial Samples/A small dinner in an hour`) [container]
     - … 4 more
-1. `Electronics Technician`: virtual, book, 12 parts, 0 missing, order single, proofread
-    - volume: Volume 7 (`Electronics Technician/Volume 7`)
-      - chapter: front matter (`Electronics Technician/Volume 7/front matter`) [container]
-      - chapter: Preface (`Electronics Technician/Volume 7/Preface`) [hierarchy]
-      - volume: Table of Contents (`Electronics Technician/Volume 7/Table of Contents`) [container]
-        - chapter: Chapter 1 (`Electronics Technician/Volume 7/Chapter 1`) [container]
-        - chapter: Chapter 2 (`Electronics Technician/Volume 7/Chapter 2`) [container]
-        - chapter: Chapter 3 (`Electronics Technician/Volume 7/Chapter 3`) [container]
-        - chapter: Appendix I (`Electronics Technician/Volume 7/Appendix I`) [container]
-        - chapter: Appendix II (`Electronics Technician/Volume 7/Appendix II`) [container]
-        - text: Assignment Questions (`Electronics Technician/Volume 7/Assignment Questions`) [container]
-      - text: Summary of the Electronics Technician Training Series (`Electronics Technician/Volume 7/Summary of the Electronics Technician Training Series`) [container]
-      - text: Instructions for taking the course (`Electronics Technician/Volume 7/Instructions for taking the course`) [container]
+1. `The German Classics of the Nineteenth and Twentieth Centuries`: virtual, book, 60 parts, 0 missing, order natural, proofread
+    - text: Rome (`The German Classics of the Nineteenth and Twentieth Centuries/Volume 4/Rome`)
+    - text: As Many as Sand-grains in the Sea (`The German Classics of the Nineteenth and Twentieth Centuries/Volume 5/As Many as Sand-grains in the Sea`) [hierarchy]
+    - text: Barbarossa (`The German Classics of the Nineteenth and Twentieth Centuries/Volume 5/Barbarossa`) [hierarchy]
+    - text: Cavalryman's Morning Song (`The German Classics of the Nineteenth and Twentieth Centuries/Volume 5/Cavalryman's Morning Song`) [hierarchy]
+    - text: Lützow's Wild Band (`The German Classics of the Nineteenth and Twentieth Centuries/Volume 5/Lützow's Wild Band`) [hierarchy]
+    - text: Men and Knaves (`The German Classics of the Nineteenth and Twentieth Centuries/Volume 5/Men and Knaves`) [hierarchy]
+    - text: Prayer During Battle (`The German Classics of the Nineteenth and Twentieth Centuries/Volume 5/Prayer During Battle`) [hierarchy]
+    - text: The Mountaineer (`The German Classics of the Nineteenth and Twentieth Centuries/Volume 5/The Mountaineer`) [hierarchy]
+    - text: The Reaper (`The German Classics of the Nineteenth and Twentieth Centuries/Volume 5/The Reaper`) [hierarchy]
+    - text: The Sentinel (`The German Classics of the Nineteenth and Twentieth Centuries/Volume 5/The Sentinel`) [hierarchy]
+    - text: The Swiss Deserter (`The German Classics of the Nineteenth and Twentieth Centuries/Volume 5/The Swiss Deserter`) [hierarchy]
+    - text: The Tailor in Hell (`The German Classics of the Nineteenth and Twentieth Centuries/Volume 5/The Tailor in Hell`) [hierarchy]
+    - … 48 more
 1. `H.R. 3962`: subpages, collection, 21 parts, 63 missing, order chain, unknown
     - front: H.R. 3962
     - volume: Division A − Affordable Health Care Choices (`H.R. 3962/Division A`) [container]
@@ -1944,12 +1948,14 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
       - chapter: 9. The Fair Flower of Northumberland (`The English and Scottish Popular Ballads/Part 1/Chapter 9`) [hierarchy]
       - chapter: 10. The Twa Sisters (`The English and Scottish Popular Ballads/Part 1/Chapter 10`) [hierarchy]
     - … 352 more
-1. `Victor Hugo's Works (Guernsey Edition)`: virtual, book, 5 parts, 2 missing, order single, proofread
-    - volume: Volume 14 (`Victor Hugo's Works (Guernsey Edition)/Volume 14`)
-      - volume: The Fool's Revenge (`Victor Hugo's Works (Guernsey Edition)/Volume 14/The Fool's Revenge`) [container]
-        - text: The Fool's Revenge, Act I. (`Victor Hugo's Works (Guernsey Edition)/Volume 14/The Fool's Revenge/Act 1`) [container]
-        - text: The Fool's Revenge, Act II. (`Victor Hugo's Works (Guernsey Edition)/Volume 14/The Fool's Revenge/Act 2`) [container]
-        - text: The Fool's Revenge, Act III. (`Victor Hugo's Works (Guernsey Edition)/Volume 14/The Fool's Revenge/Act 3`) [container]
+1. `Administrative Instruction ST`: virtual, collection, 7 parts, 0 missing, order natural, proofread
+    - volume: 189 (`Administrative Instruction ST/AI/189`)
+      - text: Rev.1 (`Administrative Instruction ST/AI/189/Add.9/Rev.1`) [container]
+      - volume: Rev.2 (`Administrative Instruction ST/AI/189/Add.9/Rev.2`) [container]
+        - text: Add.2 (`Administrative Instruction ST/AI/189/Add.9/Rev.2/Add.2`) [container]
+        - text: Add.1 (`Administrative Instruction ST/AI/189/Add.9/Rev.2/Add.1`) [hierarchy]
+      - chapter: index of addenda and revisions (`Administrative Instruction ST/AI/189/Addenda`) [hierarchy]
+    - text: Administrative Instruction ST/AI/189/Add.9/Rev.2 (`Administrative Instruction ST/AI/2001/5`) [hierarchy]
 
 ### I: works with other editions (3,557)
 

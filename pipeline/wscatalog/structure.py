@@ -19,11 +19,14 @@ FILE_EXT = re.compile(r"\.(djvu|pdf|tiff?|jpe?g|png|gif|webp)$", re.I)
 NATURAL = re.compile(r"(\d+)")
 
 
-def parent_titles(title: str) -> list[str]:
+def parent_titles(title: str, strict: bool = False) -> list[str]:
     """Proper title prefixes at subpage separators, longest first.
 
     Implementation choice: a slash inside unclosed parentheses or brackets is
     part of the name, not a subpage separator (de "X (Die Gartenlaube 1871/17)").
+    With strict=True (used when no ancestor page exists), a slash with a space
+    on either side or between digits is punctuation too (de "Etatsjahr
+    1885/86.", "vom 8./9. December", "Bartkram / Darinnen").
     """
     out, depth = [], 0
     for i, ch in enumerate(title):
@@ -32,12 +35,17 @@ def parent_titles(title: str) -> list[str]:
         elif ch in ")]":
             depth = max(0, depth - 1)
         elif ch == "/" and depth == 0 and 0 < i < len(title) - 1:
+            if strict:
+                a, b = title[i - 1], title[i + 1]
+                if a == " " or b == " " or ((a.isdigit() or a == ".") and b.isdigit()):
+                    continue
             out.append(title[:i])
     return out[::-1]
 
 
 def is_subpage(title: str) -> bool:
-    return bool(parent_titles(title))
+    """Has a strict subpage separator (see parent_titles)."""
+    return bool(parent_titles(title, strict=True))
 
 
 def natural_key(title: str):
@@ -427,7 +435,7 @@ class Resolver:
         listed: dict[str, list[str]] = defaultdict(list)
         self.toc_like = set()
         for n in nodes.values():
-            if is_subpage(n.title):
+            if self.existing_prefix(n.title) or is_subpage(n.title):
                 continue
             targets = [t for t in n.toc if t not in self.excluded]
             if len(targets) >= 3 and (n.rec.hdr.get("toc_marker")
@@ -468,11 +476,11 @@ class Resolver:
                     n.parent = self.existing_prefix(t) or c
                 else:
                     n.parent = c
-            elif is_subpage(t):
+            elif self.existing_prefix(t) or is_subpage(t):
                 n.rule = "hierarchy"
                 p = self.existing_prefix(t)
                 if p is None:
-                    p = parent_titles(t)[-1]
+                    p = parent_titles(t, strict=True)[-1]
                     self.virtual.add(p)
                 n.parent = p
             elif len(listed.get(t, ())) == 1:

@@ -106,7 +106,7 @@ Root-page works that sit on a prev/next chain but stay separate works (no contai
 
 ## 7. Orphan trees, oversized pages, red links
 
-**Orphan trees** (virtual roots): 37, holding 140 parts. Examples: `05-130602TVI-OTIR` (1); `Morgenbladet` (8); `Karl Marx` (3); `Afholdssagens historie` (5); `11-119207ENE-OTIR` (3); `Almuens Sanger` (1); `Ordbog over det gamle norske Sprog` (6); `Norske kongesagaer` (4).
+**Orphan trees** (virtual roots): 37, holding 140 parts. Examples: `Reisehaandbog over Norge` (2); `11-119207ENE-OTIR` (3); `Karl Marx` (3); `Almuens Sanger` (1); `Det nye Testamente (1856)` (3); `11-007057ENE-OTIR` (1); `Afholdssagens historie` (5); `Topografisk-statistisk beskrivelse over Nedenes amt` (3).
 
 **Oversized pages** (> 300,000 bytes of wikitext including transcluded scan pages): 12. Largest: `Gustav den III’s norske Politik` 0.6 MB; `Ordbog over det norske Folkesprog/S` 0.6 MB; `Norske Rigs-Registranter/Christian den 3die` 0.5 MB; `Det norske Folkesprogs Grammatik` 0.5 MB; `En Krønike om Erkebiskopperne i Nidaros` 0.4 MB; `Optegnelser om visitatsreisen i Baahuslen og Borgesyssel 1 Marts – 1 Mai 1594` 0.4 MB; `Jury-Institutionen i Storbritanien, Canada og de forenede Stater af Amerika` 0.4 MB; `Angaaende Forandringer i Lovgivningen om Husmænd` 0.4 MB; `Realitets-Procedure og Dom i Rigsretssagen imod Hs. Excellence Statsminister m. m. Løvenskiold` 0.4 MB; `Biskop Peder Herslebs Embedsskrivelser til Akershus Stifts Gejstlighed` 0.3 MB.
 
@@ -942,6 +942,21 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
 
 ### D: virtual roots (37)
 
+1. `11-098785MED-OTIR`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: 01 (`11-098785MED-OTIR/01`)
+1. `Reisehaandbog over Norge`: virtual, book, 2 parts, 0 missing, order scan, unproofread
+    - chapter: Forord (`Reisehaandbog over Norge/Forord`)
+    - chapter: 1 (`Reisehaandbog over Norge/1`) [hierarchy]
+1. `Topografisk-statistisk beskrivelse over Nedenes amt`: virtual, book, 3 parts, 0 missing, order single, proofread
+    - volume: 1 (`Topografisk-statistisk beskrivelse over Nedenes amt/1`)
+      - chapter: 81 (`Topografisk-statistisk beskrivelse over Nedenes amt/1/81`) [container]
+      - chapter: 82 (`Topografisk-statistisk beskrivelse over Nedenes amt/1/82`) [container]
+1. `Karl Marx`: virtual, book, 3 parts, 0 missing, order scan, proofread
+    - chapter: Forord (`Karl Marx/Forord`)
+    - chapter: 1 (`Karl Marx/1`) [hierarchy]
+    - text: Etterskrift (`Karl Marx/Etterskrift`) [hierarchy]
+1. `Sigurd Slembe`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: 1 (`Sigurd Slembe/1/1`)
 1. `Illustreret Norges Historie`: virtual, book, 7 parts, 0 missing, order scan, proofread
     - chapter: 17 (`Illustreret Norges Historie/4/17`)
     - chapter: 18 (`Illustreret Norges Historie/4/18`) [hierarchy]
@@ -950,38 +965,31 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
     - chapter: 21 (`Illustreret Norges Historie/4/21`) [hierarchy]
     - chapter: 22 (`Illustreret Norges Historie/4/22`) [hierarchy]
     - chapter: 23 (`Illustreret Norges Historie/4/23`) [hierarchy]
-1. `05-130602TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
-    - chapter: 06 (`05-130602TVI-OTIR/06`)
-1. `Norske kongesagaer`: virtual, book, 4 parts, 0 missing, order scan, proofread
-    - text: Oversætterens fortale (`Norske kongesagaer/Oversætterens fortale`)
-    - text: Snorre Sturlasøns fortale (`Norske kongesagaer/Snorre Sturlasøns fortale`) [hierarchy]
-    - text: Ynglinge-saga (`Norske kongesagaer/Ynglinge-saga`) [hierarchy]
-    - text: Halvdan Svartes saga (`Norske kongesagaer/Halvdan Svartes saga`) [hierarchy]
-1. `Karl Marx`: virtual, book, 3 parts, 0 missing, order scan, proofread
-    - chapter: Forord (`Karl Marx/Forord`)
-    - chapter: 1 (`Karl Marx/1`) [hierarchy]
-    - text: Etterskrift (`Karl Marx/Etterskrift`) [hierarchy]
-1. `Ezechiels Syner`: virtual, collection, 1 parts, 0 missing, order single, unknown, excluded under-300-bytes
-    - text: Résumé på fransk (`Ezechiels Syner/Résumé`)
+1. `Østers-Kulturen`: virtual, book, 5 parts, 0 missing, order scan, proofread
+    - chapter: 11 (`Østers-Kulturen/11`)
+    - chapter: 12 (`Østers-Kulturen/12`) [hierarchy]
+    - chapter: 13 (`Østers-Kulturen/13`) [hierarchy]
+    - chapter: 14 (`Østers-Kulturen/14`) [hierarchy]
+    - chapter: 15 (`Østers-Kulturen/15`) [hierarchy]
 1. `Den kristelige Troeslære i dens Grundtræk`: virtual, book, 4 parts, 0 missing, order scan, proofread
     - chapter: Forord (`Den kristelige Troeslære i dens Grundtræk/Forord`)
     - chapter: Indledning (`Den kristelige Troeslære i dens Grundtræk/Indledning`) [hierarchy]
     - chapter: 1 (`Den kristelige Troeslære i dens Grundtræk/1`) [hierarchy]
     - chapter: 2 (`Den kristelige Troeslære i dens Grundtræk/2`) [hierarchy]
+1. `Norge i 1814, fra russiske Arkiver`: virtual, book, 3 parts, 0 missing, order scan, proofread
+    - chapter: 1 (`Norge i 1814, fra russiske Arkiver/1`)
+    - chapter: 2 (`Norge i 1814, fra russiske Arkiver/2`) [hierarchy]
+    - chapter: 3 (`Norge i 1814, fra russiske Arkiver/3`) [hierarchy]
+1. `Afholdssagens historie`: virtual, book, 5 parts, 0 missing, order scan, proofread
+    - chapter: Forord (`Afholdssagens historie/Forord`)
+    - chapter: I (`Afholdssagens historie/I`) [hierarchy]
+    - chapter: II (`Afholdssagens historie/II`) [hierarchy]
+    - chapter: III (`Afholdssagens historie/III`) [hierarchy]
+    - chapter: XXII (`Afholdssagens historie/XXII`) [hierarchy]
 1. `08-073828PRI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
     - chapter: 06 (`08-073828PRI-OTIR/06`)
-1. `En Sommer i Finnmarken, Russisk Lapland og Nordkarelen`: virtual, book, 2 parts, 0 missing, order scan, proofread
-    - chapter: Forord (`En Sommer i Finnmarken, Russisk Lapland og Nordkarelen/Forord`)
-    - chapter: 1 (`En Sommer i Finnmarken, Russisk Lapland og Nordkarelen/1`) [hierarchy]
-1. `09-043651TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
-    - chapter: 05 (`09-043651TVI-OTIR/05`)
-1. `Ordbog over det gamle norske Sprog`: virtual, book, 6 parts, 0 missing, order scan, proofread
-    - text: A (`Ordbog over det gamle norske Sprog/A`)
-    - text: a (`Ordbog over det gamle norske Sprog/a`) [hierarchy]
-    - text: á 1 (`Ordbog over det gamle norske Sprog/á 1`) [hierarchy]
-    - text: á 2 (`Ordbog over det gamle norske Sprog/á 2`) [hierarchy]
-    - text: á 3 (`Ordbog over det gamle norske Sprog/á 3`) [hierarchy]
-    - text: at 1 (`Ordbog over det gamle norske Sprog/at 1`) [hierarchy]
+1. `Urd`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Pianist Sigvart Høgh-Nilsen (`Urd/1907/Pianist Sigvart Høgh-Nilsen`)
 1. `Hvorledes Dr Wrangel kom`: virtual, book, 38 parts, 0 missing, order scan, proofread
     - chapter: 1 (`Hvorledes Dr Wrangel kom/1`)
     - chapter: 2 (`Hvorledes Dr Wrangel kom/2`) [hierarchy]
@@ -996,15 +1004,37 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
     - chapter: 11 (`Hvorledes Dr Wrangel kom/11`) [hierarchy]
     - chapter: 12 (`Hvorledes Dr Wrangel kom/12`) [hierarchy]
     - … 26 more
-1. `Topografisk-statistisk beskrivelse over Nedenes amt`: virtual, book, 3 parts, 0 missing, order single, proofread
-    - volume: 1 (`Topografisk-statistisk beskrivelse over Nedenes amt/1`)
-      - chapter: 81 (`Topografisk-statistisk beskrivelse over Nedenes amt/1/81`) [container]
-      - chapter: 82 (`Topografisk-statistisk beskrivelse over Nedenes amt/1/82`) [container]
-1. `Gudekvæde`: virtual, book, 2 parts, 0 missing, order scan, validated
-    - text: Forerindring (`Gudekvæde/Forerindring`)
-    - text: Fyriord (`Gudekvæde/Fyriord`) [hierarchy]
+1. `Dølen`: virtual, periodical-issue, 1 parts, 0 missing, order single, unproofread
+    - chapter: 10 (`Dølen/1858/10/10`)
+1. `11-119207ENE-OTIR`: virtual, book, 3 parts, 0 missing, order natural, validated
+    - text: 03 (Lukkede dører) (`11-119207ENE-OTIR/03 (Lukkede dører)`)
+    - text: 03 (Uniform) (`11-119207ENE-OTIR/03 (Uniform)`) [hierarchy]
+    - text: 03 (Varetektsfengsling) (`11-119207ENE-OTIR/03 (Varetektsfengsling)`) [hierarchy]
+1. `Det nye Testamentet (1886)`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Juleevangeliet (`Det nye Testamentet (1886)/Juleevangeliet`)
+1. `Lappisk Mytologi`: virtual, book, 1 parts, 0 missing, order single, unknown, excluded no-text-pages
+    - chapter: Forord (`Lappisk Mytologi/Forord`)
+1. `10-099305-MED-OTIR`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: 04 (`10-099305-MED-OTIR/04`)
+1. `05-130602TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
+    - chapter: 06 (`05-130602TVI-OTIR/06`)
+1. `Norske kongesagaer`: virtual, book, 4 parts, 0 missing, order scan, proofread
+    - text: Oversætterens fortale (`Norske kongesagaer/Oversætterens fortale`)
+    - text: Snorre Sturlasøns fortale (`Norske kongesagaer/Snorre Sturlasøns fortale`) [hierarchy]
+    - text: Ynglinge-saga (`Norske kongesagaer/Ynglinge-saga`) [hierarchy]
+    - text: Halvdan Svartes saga (`Norske kongesagaer/Halvdan Svartes saga`) [hierarchy]
+1. `09-043651TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
+    - chapter: 05 (`09-043651TVI-OTIR/05`)
 1. `08-156741TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
     - chapter: 01 (`08-156741TVI-OTIR/01`)
+1. `Fedraheimen`: virtual, periodical-issue, 3 parts, 5 missing, order single, unproofread
+    - volume: 6 (`Fedraheimen/1877/10/6`)
+      - text: Fedraheimen (`Fedraheimen/1877/10/6/Fedraheimen`) [hierarchy]
+      - text: Thiers (`Fedraheimen/1877/10/6/Thiers`) [hierarchy]
+1. `Almuens Sanger`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - text: Forerindring (`Almuens Sanger/Forerindring`)
+1. `11-007057ENE-OTIR`: virtual, document, 1 parts, 0 missing, order single, validated
+    - chapter: 08 (`11-007057ENE-OTIR/08`)
 1. `Morgenbladet`: virtual, book, 8 parts, 0 missing, order natural, proofread
     - chapter: 1819 (`Morgenbladet/1819`)
     - chapter: 1820 (`Morgenbladet/1820`) [hierarchy]
@@ -1016,62 +1046,18 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
     - text: Ekstrablad 8. juli 1836 (`Morgenbladet/Ekstrablad 8. juli 1836`) [hierarchy]
 1. `Jødedommen`: virtual, book, 1 parts, 0 missing, order single, proofread
     - chapter: 1 (`Jødedommen/1`)
-1. `11-098785MED-OTIR`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: 01 (`11-098785MED-OTIR/01`)
-1. `Reisehaandbog over Norge`: virtual, book, 2 parts, 0 missing, order scan, unproofread
-    - chapter: Forord (`Reisehaandbog over Norge/Forord`)
-    - chapter: 1 (`Reisehaandbog over Norge/1`) [hierarchy]
-1. `Topografisk-statistisk beskrivelse over Bratsberg amt`: virtual, book, 6 parts, 7 missing, order natural, proofread
-    - volume: 1 (`Topografisk-statistisk beskrivelse over Bratsberg amt/1`)
-      - chapter: 1 (`Topografisk-statistisk beskrivelse over Bratsberg amt/1/1`) [container]
-      - text: Beliggenhed (`Topografisk-statistisk beskrivelse over Bratsberg amt/1/2`) [container]
-      - text: Gammel norsk tidsregning og primstaven (`Topografisk-statistisk beskrivelse over Bratsberg amt/1/95`) [container]
-    - volume: 2 (`Topografisk-statistisk beskrivelse over Bratsberg amt/2`) [hierarchy]
-      - text: Vinje herred (`Topografisk-statistisk beskrivelse over Bratsberg amt/30`) [container]
-1. `Brevet til de Ebræer`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: Fortale (`Brevet til de Ebræer/Fortale`)
-1. `Lappisk Mytologi`: virtual, book, 1 parts, 0 missing, order single, unknown, excluded no-text-pages
-    - chapter: Forord (`Lappisk Mytologi/Forord`)
-1. `Fedraheimen`: virtual, periodical-issue, 3 parts, 5 missing, order single, unproofread
-    - volume: 6 (`Fedraheimen/1877/10/6`)
-      - text: Fedraheimen (`Fedraheimen/1877/10/6/Fedraheimen`) [hierarchy]
-      - text: Thiers (`Fedraheimen/1877/10/6/Thiers`) [hierarchy]
+1. `Topografisk-statistisk beskrivelse over Finmarkens amt`: virtual, book, 5 parts, 3 missing, order natural, proofread
+    - volume: 1 (`Topografisk-statistisk beskrivelse over Finmarkens amt/1`)
+      - chapter: Innledning (`Topografisk-statistisk beskrivelse over Finmarkens amt/1/2`) [container]
+      - chapter: 3 (`Topografisk-statistisk beskrivelse over Finmarkens amt/1/3`) [container]
+    - volume: 2 (`Topografisk-statistisk beskrivelse over Finmarkens amt/2`) [hierarchy]
+      - text: Finnekonger (`Topografisk-statistisk beskrivelse over Finmarkens amt/2/67`) [container]
+1. `Ær dæt Fårnuftigt at have Religion`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: Fortale (`Ær dæt Fårnuftigt at have Religion/Fortale`)
 1. `Det nye Testamente (1856)`: virtual, collection, 3 parts, 0 missing, order natural, proofread
     - text: Evangelium paa Christi Fødselsdag (`Det nye Testamente (1856)/Evangelium paa Christi Fødselsdag`)
     - text: St Johannis 2det Brev (`Det nye Testamente (1856)/St Johannis 2det Brev`) [hierarchy]
     - text: St Johannis 3die Brev (`Det nye Testamente (1856)/St Johannis 3die Brev`) [hierarchy]
-1. `Afholdssagens historie`: virtual, book, 5 parts, 0 missing, order scan, proofread
-    - chapter: Forord (`Afholdssagens historie/Forord`)
-    - chapter: I (`Afholdssagens historie/I`) [hierarchy]
-    - chapter: II (`Afholdssagens historie/II`) [hierarchy]
-    - chapter: III (`Afholdssagens historie/III`) [hierarchy]
-    - chapter: XXII (`Afholdssagens historie/XXII`) [hierarchy]
-1. `Almuens Sanger`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: Forerindring (`Almuens Sanger/Forerindring`)
-1. `Urd`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Pianist Sigvart Høgh-Nilsen (`Urd/1907/Pianist Sigvart Høgh-Nilsen`)
-1. `Dølen`: virtual, periodical-issue, 1 parts, 0 missing, order single, unproofread
-    - chapter: 10 (`Dølen/1858/10/10`)
-1. `Norge i 1814, fra russiske Arkiver`: virtual, book, 3 parts, 0 missing, order scan, proofread
-    - chapter: 1 (`Norge i 1814, fra russiske Arkiver/1`)
-    - chapter: 2 (`Norge i 1814, fra russiske Arkiver/2`) [hierarchy]
-    - chapter: 3 (`Norge i 1814, fra russiske Arkiver/3`) [hierarchy]
-1. `Niels Klims underjordiske Reise`: virtual, book, 11 parts, 0 missing, order scan, proofread
-    - chapter: Fortale (`Niels Klims underjordiske Reise/Fortale`)
-    - chapter: Første Kapitel (`Niels Klims underjordiske Reise/Første Kapitel`) [hierarchy]
-    - chapter: Andet Kapitel (`Niels Klims underjordiske Reise/Andet Kapitel`) [hierarchy]
-    - chapter: Tredie Kapitel (`Niels Klims underjordiske Reise/Tredie Kapitel`) [hierarchy]
-    - chapter: Fierde Kapitel (`Niels Klims underjordiske Reise/Fierde Kapitel`) [hierarchy]
-    - chapter: Femte Kapitel (`Niels Klims underjordiske Reise/Femte Kapitel`) [hierarchy]
-    - chapter: Siette Kapitel (`Niels Klims underjordiske Reise/Siette Kapitel`) [hierarchy]
-    - chapter: Syvende Kapitel (`Niels Klims underjordiske Reise/Syvende Kapitel`) [hierarchy]
-    - chapter: Ottende Kapitel (`Niels Klims underjordiske Reise/Ottende Kapitel`) [hierarchy]
-    - text: Abelins Tillæg (`Niels Klims underjordiske Reise/Abelins Tillæg`) [hierarchy]
-    - chapter: Efterskrift (`Niels Klims underjordiske Reise/Efterskrift`) [hierarchy]
-1. `11-119207ENE-OTIR`: virtual, book, 3 parts, 0 missing, order natural, validated
-    - text: 03 (Lukkede dører) (`11-119207ENE-OTIR/03 (Lukkede dører)`)
-    - text: 03 (Uniform) (`11-119207ENE-OTIR/03 (Uniform)`) [hierarchy]
-    - text: 03 (Varetektsfengsling) (`11-119207ENE-OTIR/03 (Varetektsfengsling)`) [hierarchy]
 
 ### E: subpage texts reached from a disambiguation or versions page (42)
 
