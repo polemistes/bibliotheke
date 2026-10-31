@@ -574,6 +574,29 @@ always reach a text even if the catalog lags.
    P577 → header `year`), language (P407 → wiki language), genres (P136 and
    P31 on edition then work → category mapping), type (P31 mapping),
    description (Wikidata description in wiki language, else English).
+   (WP1, 2026-11-01, `pipeline/wscatalog/metadata.py`) Implementation:
+   authors and years also come from the Index fields (`index_fields`;
+   most no works take them from `<pages header=1>`), from an author-link
+   template (no `{{forfatterl}}`), from a category named like an author
+   page (no) and, for typed-in pages, from an author link in the first 600
+   characters of the text; values that name nobody (`anonymous_names`:
+   "Ukjent", "Anonymous") and header placeholders (de `off`, which then
+   falls through to `ENTSTEHUNGSJAHR`) are skipped. Year categories give a
+   year, decade or century (`year_categories`: no "Tekster fra 1896", de
+   "1940er Jahre", fr "XIXe siècle"). Language: P407, then the Index
+   language field (no `Malform` NB/NN), else the wiki's language (`no` on
+   no.wikisource, 3.1). Type, in order: `reference` from the resolution; an
+   Index type other than book, when the work is that Index's book or has
+   parts; government and legal documents marked by licence, case or law
+   templates and categories (`document_templates`, en `PD-USGov`,
+   `USSCcase`, de `Gesetzestext`; decision 1 of 2026-11-01); Wikidata P31;
+   Index type book; the resolution's book or collection; for a single page
+   its genre (poetry → poem, drama → play); else `other`. Description:
+   Wikidata in the wiki's language, the header's description (de
+   `KURZBESCHREIBUNG`), Wikidata in English. A work whose Wikidata item is
+   a human (P31 = Q5) is excluded as an author page (3.2). The Wikidata
+   mappings (P136/P31 → genre, P31 → type, P407 → language) are in
+   `pipeline/config/default.yaml`; categories and templates per wiki.
 4. **Quality and completeness** (WS, 2026-10-31, WS§10.3: replaces "from
    Index progress, text-quality template, incomplete template, Wikidata
    badges → one value plus an `incomplete` boolean"): a tier, `complete`
@@ -582,6 +605,14 @@ always reach a text even if the catalog lags.
    completeness filter). Excluded works are kept in a separate
    `excluded` table with a reason, for debugging coverage.
 6. **Write SQLite** per wiki (5.3), gzip, compute sha256.
+   (WP1, 2026-11-01) Also in step 1b, implementation choices found while
+   fixing the WP1a eyeball tickets: siblings whose only `<pages>` tag
+   transcludes the same range of two or more pages of one Index are one
+   text stored twice (no `Fru Bovary/1` and `Fru Bovary: Første del`); the
+   subpage stays, the other page is excluded as `duplicate` and becomes an
+   alias. Natural order reads ordinal words per language ("Andet Bind"
+   after "Første Bind"). Navigation link texts ("hier") and single letters
+   are never display titles.
 7. **Coverage report** per wiki: % of works with year, genre, author, quality.
    Written to `report/{wiki}.md` and printed in CI. This is the tool for deciding
    where to improve mappings. (WS, 2026-10-31) Also works per quality tier
@@ -590,6 +621,11 @@ always reach a text even if the catalog lags.
    (autonym), url, sha256, size, work_count, generated_at, schema_version.
    (WS, 2026-10-31, WS§10.5) Also `show_unknown_by_default` (from the
    wiki's config) and the work counts per tier.
+   (WP1, 2026-11-01) Each entry also has `dbname`, `domain`, `language`,
+   `size_uncompressed`, `dump_date`, `tiers` and `default_view_count` (the
+   wiki picker's number, 5.4); `url` is relative to the manifest's own URL
+   (`no.sqlite.gz`). A weekly run that fails for one wiki keeps that wiki's
+   previous entry and asset.
 
 ### 5.3 Catalog schema (per-wiki SQLite, schema_version 2)
 (WS, 2026-10-31, WS§5.1, §10.5: schema_version 2 replaces version 1. It adds
@@ -662,6 +698,23 @@ CREATE TABLE excluded(page_title TEXT PRIMARY KEY, reason TEXT);
   -- reason; pages absorbed as parts are not "excluded" and do not appear here
 -- indexes on works(year), works(type), works(quality), works(sort_title), work_genres(genre_id)
 ```
+(WP1, 2026-11-01, `pipeline/wscatalog/catalog.py`) Details settled when the
+writer was built: `works` also has `author_source`, `language_source`,
+`genre_source` and `type_source` (the `*_source` of 5.2 step 3);
+`entry_title` is NULL unless `is_virtual`; a virtual root, which has no
+page, gets a negative id. `parts` holds rows only for multi-part works with
+`parts_in_catalog = 1`; a work with a root page starts with the root's own
+row (`ord` 0, kind `front` or `toc`). `works_fts.rowid` = `works.id`;
+`parts_fts.rowid` = `work_id * 4096 + ord`, so `work_id = rowid >> 12` and
+`ord = rowid & 4095` (ord stays below 4,096 because `parts_cap` is 2,000);
+both FTS tables use `tokenize='unicode61 remove_diacritics 2'`. `aliases`
+holds redirects to a work's root page (`ord` NULL) or to a catalog part,
+and the titles of `duplicate` pages. `excluded` holds pages excluded by a
+title prefix as one row per prefix (`RE:*`, "reference-prefix (n pages)"),
+not 200,000 rows. `meta` keys: wiki, domain, dbname, language,
+schema_version, generated_at, dump_date, pipeline_version, namespaces
+(local names of author/index/page), show_unknown_by_default,
+parts_rowid_stride.
 Genre keys are a fixed canonical list (localised in the app):
 `novel, short-story, poetry, drama, essay, letters, memoir-biography, history,
 religious, legal-government, speech, periodical, children, reference, song-hymn,
