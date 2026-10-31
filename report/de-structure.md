@@ -82,11 +82,12 @@ Tree depth of multi-part works (levels below the root): 1: 1,036, 2: 82, 3: 7, 4
 | order source (nodes with ≥ 2 children) | nodes |
 |---|---|
 | chain | 564 |
-| natural | 213 |
 | toc | 192 |
+| toc-partial | 115 |
+| natural | 98 |
 | scan | 32 |
 
-150 of the `natural` nodes have a TOC that lists only some of their children (the TOC order did not cover all children).
+`toc-partial` (implementation choice, see section 13): the TOC lists at least half of the children, which keep its order; the rest follow in natural order. 35 `natural` nodes have a TOC that lists fewer than half.
 
 Root pages attached by their header's container link: 21,497; most frequent containers: `Der Sagenschatz des Königreichs Sachsen` 999; `Die zehnte Muse` 472; `Deutsche Sagen (Brüder Grimm, Band 1)` 360; `Journal von und für Franken` 354; `Badisches Sagen-Buch II` 352; `Die Volkssagen von Pommern und Rügen` 287; `Das Ausland (1828)` 268; `Badisches Sagen-Buch I` 246; `Buch der Lieder` 242; `Deutsche Sagen (Brüder Grimm, Band 2)` 223.
 
@@ -109,7 +110,7 @@ Root-page works that sit on a prev/next chain but stay separate works (no contai
 
 ## 7. Orphan trees, oversized pages, red links
 
-**Orphan trees** (virtual roots): 241, holding 483 parts. Examples: `Handelsvertrag zwischen dem Deutschen Reich und Egypten ` (4); `Gesetz, betreffend die Kontrole des Reichshaushalts und des Landeshaushalts von Elsaß-Lothringen für das Etatsjahr 1881` (1); `Zusatzvertrag zum Handels- und Schiffahrtsvertrage zwischen Deutschland und Rußland (1904) ` (4); `Zwanglose Blätter(1883/9)` (1); `II. Additional-Vertrag zu dem Postvertrage zwischen dem Norddeutschen Bunde und Schweden vom 23.` (1); `Gesetz, betreffend die Feststellung des Haushalts-Etats für die Schutzgebiete Kamerun, Togo und das südwestafrikanische Schutzgebiet für das Etatsjahr 1892` (1); `Menschen- und Völkerleben 1 (1916), Heft 6` (7); `Zusatzvertrag zum Handels-, Zoll- und Schiffahrtsvertrage zwischen dem Deutschen Reiche und Italien ` (3).
+**Orphan trees** (virtual roots): 241, holding 483 parts. Examples: `Ein sehr kurtzweilige vnd hochnutzliche Fabel ` (1); `Fürstliches Edict Und Ernster Befehl` (1); `Verordnung, betreffend die Militär-Transport-Ordnung für Eisenbahnen im Kriege (Kriegs-Transport-Ordnung) ` (1); `Gesetz, betreffend die Kontrole des Reichshaushalts und des Landeshaushalts von Elsaß-Lothringen für das Etatsjahr 1883` (1); `Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1895` (1); `Source-Provider` (1); `Zusatzvertrag zum Handels- und Zollvertrage zwischen dem Deutschen Reiche und der Schweiz ` (2); `Berliner Erinnerungen` (1).
 
 **Oversized pages** (> 300,000 bytes of wikitext including transcluded scan pages): 549. Largest: `Ahrenshoop vor und im Krieg` 4.0 MB; `Weg nach Berlin – Birkenwerder` 2.2 MB; `Kunst und Kultur in Ahrenshoop 1945 bis 1948` 2.1 MB; `Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Hans Gärtner` 2.0 MB; `Jugend (Zeitschrift)/Inhalt 1896–1910` 1.9 MB; `Jugend (Zeitschrift)/Inhalt 1911–1929` 1.8 MB; `Hans Brass und die Religion, 1934` 1.5 MB; `Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/R` 1.5 MB; `Der Merker/Inhalt` 1.5 MB; `Allgemeine Wiener Musik-Zeitung` 1.5 MB.
 
@@ -218,10 +219,10 @@ Size: median 2,967 bytes, p10 1,063, p90 12,425; multi-part 49.
 
 | parts_cap | works with catalog parts | parts rows | parts table, gzipped | parts_fts, gzipped |
 |---|---|---|---|---|
-| 500 | 1,114 | 46,837 | 2.85 MB | 0.78 MB |
-| 2,000 | 1,125 | 54,886 | 3.30 MB | 0.86 MB |
-| ∞ (all, reference works included) | 1,125 | 54,886 | 3.30 MB | 0.86 MB |
-| 2,000, compact encoding | 1,125 | 54,886 | 3.00 MB | 0.86 MB |
+| 500 | 1,114 | 46,837 | 2.85 MB | 0.79 MB |
+| 2,000 | 1,125 | 54,886 | 3.31 MB | 0.87 MB |
+| ∞ (all, reference works included) | 1,125 | 54,886 | 3.31 MB | 0.87 MB |
+| 2,000, compact encoding | 1,125 | 54,886 | 3.01 MB | 0.87 MB |
 
 Rows count multi-part works only, one row per part plus the root row. 24,855 single-page works would add one row each if stored. Sizes are a SQLite file holding only the table (with its index) at gzip level 9. The compact encoding (not in WS§5.1, measured for the cap decision) stores a part's page_title as the suffix after the work root's title where possible, display_title only when it differs from the last title segment, and no per-part quality_pages.
 
@@ -230,7 +231,7 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
 - `Der Sagenschatz des Königreichs Sachsen`: work, mixed, type collection, 1,001 parts (1,001 texts), 0 missing, order chain, oversized False, quality validated (page-levels), complete True.
 - `Kinder- und Haus-Märchen Band 1 (1857)`: work, linked, type collection, 86 parts (86 texts), 0 missing, order chain, oversized False, quality validated (page-levels), complete True.
 - `Der Froschkönig oder der eiserne Heinrich (1857)`: part 1 of `Kinder- und Haus-Märchen Band 1 (1857)` (text, display “Der Froschkönig oder der eiserne Heinrich”, rule container, searchable True).
-- `Kinder und Hausmärchen`: page exists but is not resolved (excluded root?).
+- `Kinder und Hausmärchen`: redirect to `Kinder- und Hausmärchen`, which is excluded (excluded-template).
 - `Kinder- und Hausmärchen`: excluded (excluded-template).
 - `Die Heimath in der neuen Welt`: work, virtual, type book, 50 parts (2 texts), 0 missing, order chain, oversized False, quality validated (page-levels), complete True.
 - `Käthe`: work, single, type single, 1 parts (0 texts), 0 missing, order –, oversized True, quality validated (page-levels), complete True.
@@ -243,16 +244,23 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
 - Display titles come from `current`/`section`/`TITEL`, else the link text in the parent's TOC, else the last title segment. A work's first part row is its root (`front` above 400 characters of own text, else `toc`); `part_count` excludes it.
 - Missing parts are red links in the TOCs of the work's root and volumes: subpages of the root always, other titles only in linked or mixed works and on TOC-like pages.
 - Junk rules (cleanup or deletion template, placeholder, under 300 bytes) apply to works without scan pages and without any quality signal.
+- Order (step 1c): when no source covers all children but the TOC lists at least half, the listed children keep the TOC order and the rest follow in natural order (`toc-partial`), so that collections are not shown alphabetically (WS§2 rule 3).
+- Rule 3: a TOC page is marked as one (de `HERKUNFT = off`) or is its Index's own book; "reached from it by the prev/next chain" is read as: the member's chain starts at the TOC page or its prev or next page is listed on the same TOC page.
+- A container with several links (de `HERKUNFT`) resolves to the first link that shares the page's Index, else the first link (the KHM tales link the editions overview first).
+- Volume placement: a part attached by its container is placed under the one TOC page (under 2,000 bytes of own text, listing at least three members) of the same work that lists it, unless the container's members already form one prev/next chain.
+- A slash inside unclosed parentheses is part of the name (de `X (Die Gartenlaube 1871/17)`), not a subpage separator.
+- Exclusions: a page with scan transclusion is never a disambiguation page (fr dictionary roots carry the prop); subpages inherit only portal and author-page exclusions; on de, portal pages are marked by `Themendaten`, `Ortsdaten`, `Listendaten` (and the categories Thema, Orte, Listen when the page has no header), and a root page without header template, scans or status is a portal (`no-header`) unless other pages name it as their container.
+- A bare `<pages index=X/>` renders the Index's TOC field, not the book.
 
 ## 12. Random samples for eyeballing (30 per pattern)
 
 ### A: collections of root pages (425)
 
-1. `Journal von und für Franken`: linked, collection, 398 parts, 0 missing, order natural, proofread
+1. `Journal von und für Franken`: linked, collection, 398 parts, 0 missing, order toc-partial, proofread
     - front: Journal von und für Franken
+    - chapter: Vorrede (`Vorrede (Journal von und für Franken)`) [container]
     - text: Abermahls ein medicinischer Charlatan in Franken [container]
     - text: Actenstücke die Aufnahme der Französischen Emigranten in Franken betreffend [container]
-    - text: Actenstücke in Sachen der Stadt Schlitz wider den Grafen zu Schlitz gen[annt] Görz und dessen Rath Bingel (`Actenstücke in Sachen der Stadt Schlitz wider den Grafen zu Schlitz gen. Görz und dessen Rath Bingel`) [container]
     - volume: An die Herausgeber des Journals von und für Franken [container]
       - text: Erklärung auf die Aufforderung des Herrn Professor Feders in Wirzburg [container]
       - text: Mein Nachtrag zu der vorläufigen Antwort der Herausgeber des Journals v. und für Franken auf die versuchte Apologie des Herrn P. Cajetan a S. Andrea. d. Z. Priorn [container]
@@ -357,19 +365,19 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
     - text: Springmännchen und Goldfasan [container]
     - text: Stiefmütterchen [container]
     - text: Das dankbare Heinzelmännchen [container]
-1. `Gedichte (Heine, 1822)`: linked, collection, 19 parts, 0 missing, order natural, validated
+1. `Gedichte (Heine, 1822)`: linked, collection, 19 parts, 0 missing, order toc-partial, validated
     - front: Gedichte (Heine, 1822)
-    - text: An Carl v. U. [container]
-    - text: An den Hofrath Georg S. in Göttingen [container]
-    - text: An Franz v. Z. [container]
-    - text: An Friz St. [container]
-    - text: An J. B. R. [container]
-    - text: An Sie [container]
-    - text: Das Lied von den Dukaten [container]
+    - text: Die Wundermaid [toc]
+    - text: Minnegruß [toc]
+    - text: Ständchen eines Mauren [toc]
     - text: Der schlimmste Wurm: des Zweifels Dolchgedanken [container]
-    - text: Die Lehre [container]
-    - text: Die Nacht auf dem Drachenfels [container]
+    - text: Zufrieden nicht mit deinem Eigenthume [container]
+    - text: An den Hofrath Georg S. in Göttingen [container]
+    - text: An J. B. R. [container]
     - text: Die Welt war mir nur eine Marterkammer [container]
+    - text: Die Nacht auf dem Drachenfels [container]
+    - text: An Str. (`Wenn der Frühling kommt mit dem Sonnenschein`) [container]
+    - text: An Alexander, Pr. von W. (`Eine große Landstraß’ ist unsre Erd’`) [container]
     - … 8 more
 1. `Kapitän Bergers Kinder`: linked, collection, 1 parts, 2 missing, order single, validated
     - front: Kapitän Bergers Kinder
@@ -515,19 +523,19 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
     - text: Blücherstraße (`Hantzsch:Blücherstraße`) [toc]
     - text: Bönischplatz (`Hantzsch:Bönischplatz`) [toc]
     - text: Bürgerwiese (`Hantzsch:An der Bürgerwiese`) [toc]
-1. `Illustrirte Zeitung`: linked, collection, 80 parts, 35 missing, order natural, proofread
+1. `Illustrirte Zeitung`: linked, collection, 80 parts, 35 missing, order toc-partial, proofread
     - front: Illustrirte Zeitung
-    - text: Algerien (`Algerien (Illustrirte Zeitung)/I. Land und Volk`) [container]
-    - text: Aufruf (`Aufruf (Illustrirte Zeitung, 1843, Heft 2)`) [container]
-    - text: Briefwechsel mit Allen für Alle (`Briefwechsel mit Allen für Alle (Illustrirte Zeitung, 1843, Heft 3)`) [container]
-    - text: Briefwechsel mit Allen für Alle (`Briefwechsel mit Allen für Alle (Illustrirte Zeitung, 1843, Heft 5)`) [container]
-    - text: Briefwechsel mit Allen für Alle (`Briefwechsel mit Allen für Alle (Illustrirte Zeitung, 1843, Heft 6)`) [container]
-    - text: Chinesische Zahlmittel [container]
-    - text: Daniel OConnell [container]
-    - text: Das Ehrengeschenk an Sir Moses Montefiore [container]
-    - text: Das Erdbeben auf Guadeloupe [container]
-    - text: Das grosse Norddampfboot [container]
-    - text: Das Jubelfest der königlichen Landesschule St. Afra zu Meissen [container]
+    - text: Was wir wollen (`Was wir wollen (Illustrirte Zeitung, 1843)`) [container]
+    - text: Helene, Prinzessin von Mecklenburg, verwittwete Herzogin von Orleans [container]
+    - text: Die Bergung des Télémaque [container]
+    - text: Die Eröffnung des Themsetunnels [container]
+    - text: Der Komet (`Der Komet (Illustrirte Zeitung, 1843)`) [container]
+    - text: Longchamp (`Longchamp (Illustrirte Zeitung, 1843)`) [container]
+    - text: Der Zwerg-Pisang [container]
+    - text: Das königliche Hoftheater zu Dresden [container]
+    - text: Ein Reisemärchen (`Ein Reisemärchen/Erzählt von Plinius dem Jüngsten`) [container]
+    - text: Introduction (`Ein Reisemärchen/Introduction`) [container]
+    - chapter: Erstes Capitel (`Ein Reisemärchen/Erstes Capitel`) [container]
     - … 69 more
 1. `Schwänke und Streiche aus Westpreussen II`: linked, collection, 3 parts, 0 missing, order chain, validated
     - toc: Schwänke und Streiche aus Westpreussen II
@@ -537,33 +545,33 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
 
 ### B: mixed (89)
 
-1. `Die Gartenlaube (1866)`: mixed, collection, 405 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1866)`: mixed, collection, 405 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1866)
-    - text: Abenteuer in Texas [toc]
-    - text: Am ewigen Feuerheerd [toc]
-    - text: Am Grabe eines braven Mannes [toc]
-    - text: Am Saume des Nachoder Wäldchens [toc]
-    - text: An alle deutschen Herzen [toc]
-    - text: Arnold Schloenbach (`Arnold Schloenbach (Die Gartenlaube 1866/43)`) [toc]
-    - text: Auber und ein musikalischer Fund [toc]
-    - text: Auch ein Künstler! [toc]
-    - text: Auf dem Capellenberg von Trautenau [toc]
-    - text: Auf dem Ring in Nachod [toc]
-    - text: Auf einem niedersächsischen Bauernhofe [toc]
+    - text: Goldelse [toc]
+    - text: Die Sängerrunde am Weinsberger Thurm [toc]
+    - text: Kleine Ursachen, große Wirkung [toc]
+    - text: Die Mutter Gottes [toc]
+    - text: Eine Alpenstraße [toc]
+    - text: Coburgische Erinnerungen an König Leopold von Belgien [toc]
+    - text: Onkel und Neffe (`Onkel und Neffe (Die Gartenlaube 1866/1)`) [toc]
+    - text: Neuestes Zeloten-Gesangbuch [toc]
+    - text: Der Elephant in der Gefangenschaft [toc]
+    - text: Eine vergessene Freundin Schiller’s [toc]
+    - text: Ein ungarisches Reiterleben [toc]
     - … 394 more
-1. `Die Gartenlaube (1897)`: mixed, collection, 413 parts, 1 missing, order natural, validated
+1. `Die Gartenlaube (1897)`: mixed, collection, 413 parts, 1 missing, order toc-partial, validated
     - front: Die Gartenlaube (1897)
-    - text: Abendgebet in der Wüste [toc]
-    - text: Abgeblitzt (`Abgeblitzt (Die Gartenlaube 1897/28)`) [toc]
-    - text: Aegyptische Frauen mit ihren Kindern [toc]
-    - text: Alle Neun! [toc]
-    - text: Altdeutsches Kinderleben [toc]
-    - text: Altoldenburgische Kartenlegerin [toc]
-    - text: Am frühen Morgen [toc]
-    - text: Am Himmelfahrtstage in der Erlöserkirche zu Moskau [toc]
-    - text: Am Schluß der Saison [toc]
-    - text: Am „kleinen Kiel“ [toc]
-    - text: An der Gruft des Kriegsherrn [toc]
+    - text: Die Hansebrüder [toc]
+    - text: Die Electricität im Hause [toc]
+    - text: New Yorks Riesenhäuser [toc]
+    - text: Zwischen Ligny und Belle-Alliance [toc]
+    - text: Auf ewig vereint [toc]
+    - text: Dürer malt seine Frau [toc]
+    - text: Ein festlicher Tag [toc]
+    - text: Ein Streit um die Stunde [toc]
+    - text: Die Sängerin der Heimatliebe [toc]
+    - text: Der Schuß auf den Wal [toc]
+    - text: ’s Ringl [toc]
     - … 402 more
 1. `Kleinrussische Novellen`: mixed, collection, 4 parts, 0 missing, order chain, validated
     - front: Kleinrussische Novellen
@@ -571,10 +579,10 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
     - text: Natur (`Kleinrussische Novellen/Natur`) [container]
     - text: Eine Unzivilisierte (`Kleinrussische Novellen/Eine Unzivilisierte`) [container]
     - text: Eine Schlacht (`Kleinrussische Novellen/Eine Schlacht`) [container]
-1. `Zeitschrift für Mathematik und Physik`: mixed, collection, 2 parts, 0 missing, order natural, validated
+1. `Zeitschrift für Mathematik und Physik`: mixed, collection, 2 parts, 0 missing, order toc-partial, validated
     - front: Zeitschrift für Mathematik und Physik
-    - text: Die räumliche und zeitliche Ausbreitung der Gravitation [container]
     - chapter: Inhalt (`Zeitschrift für Mathematik und Physik/Inhalt`) [hierarchy]
+    - text: Die räumliche und zeitliche Ausbreitung der Gravitation [container]
 1. `Zeitschrift der Gesellschaft für Erdkunde zu Berlin`: mixed, collection, 72 parts, 0 missing, order toc, validated
     - front: Zeitschrift der Gesellschaft für Erdkunde zu Berlin
     - volume: Zweiter Band (`Zeitschrift der Gesellschaft für Erdkunde zu Berlin/Zweiter Band`) [hierarchy]
@@ -589,19 +597,19 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
       - text: Eine Besteigung des Pik von Teneriffa [container]
       - text: Wahrnehmungen auf einer Fahrt von Chartūm nach dem Gazellen-Fluß, Januar–März 1869 (`Wahrnehmungen auf einer Fahrt von Chartūm nach dem Gazellen-Fluß`) [container]
     - … 61 more
-1. `Die Gartenlaube (1871)`: mixed, collection, 429 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1871)`: mixed, collection, 429 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1871)
-    - text: Abendwanderung nach einem Dichterschlößchen [toc]
-    - text: Alexander Dumas [toc]
-    - text: Allen Teichfischerei- und Aquarienbesitzern [toc]
-    - text: Altgriechische Poesie in deutscher Kunst [toc]
-    - text: Am 10. November 1870 in Frankreich [toc]
-    - text: Am schwäbischen Meere und im Schlosse des Exkaisers [toc]
-    - text: An das deutsche Volk! (`An das deutsche Volk! (Die Gartenlaube 1871/28)`) [toc]
-    - text: Armeelieferanten [toc]
-    - text: Auch der verlorene Sohn ist gefunden [toc]
-    - text: Auf dem Friedhofe zu Bar le Duc [toc]
-    - text: Auf dem schwimmenden Hôtel [toc]
+    - text: Pulver und Gold [toc]
+    - text: Ein bemoostes Haupt [toc]
+    - text: Im Hauptquartier des Prinzen Friedrich Karl (`Im Hauptquartier des Prinzen Friedrich Karl (Die Gartenlaube 1871)`) [toc]
+    - text: Eine französische Poststation im deutschen Walde [toc]
+    - text: In den Steppen von Afrika [toc]
+    - text: Auf unseren Vorposten vor Paris [toc]
+    - text: Die Kämpfe um Brie und Villiers [toc]
+    - text: Einiges über den Aberglauben des deutschen Soldaten im Kriege [toc]
+    - text: Aus den ersten Tagen des Krieges [toc]
+    - text: Die deutschen Kinder [toc]
+    - text: Ein Sohn sucht seine Eltern [toc]
     - … 418 more
 1. `Westfälische Zeitschrift`: mixed, collection, 7 parts, 0 missing, order natural, validated
     - front: Westfälische Zeitschrift
@@ -640,108 +648,108 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
       - text: An die Freude. (`An die Freude (Schiller)`) [container]
       - text: Ueber moderne Größe [container]
     - … 57 more
-1. `Die Gartenlaube (1890)`: mixed, collection, 352 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1890)`: mixed, collection, 352 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1890)
-    - text: Adolf Diesterweg [toc]
-    - text: Adolf Wilbrandts „Neue Gedichte“ [toc]
-    - text: Albert Bürklin † [toc]
-    - text: Allein am Weihnachtsabend [toc]
-    - text: Allerseelen (`Allerseelen (Ebersberger)`) [toc]
-    - text: Altes und Neues für die Reisezeit [toc]
     - text: Am Rheinfall bei Schaffhausen [toc]
+    - text: Ueber Gehörinstrumente für Schwerhörige [toc]
+    - text: Theodor Fontane (`Theodor Fontane (Gottschall)`) [toc]
     - text: Amor der Honigdieb [toc]
-    - text: An den Ahrensklinterklippen im Harz [toc]
-    - text: An der Jahreswende [toc]
-    - text: An südlichen Gestaden [toc]
+    - text: Neujahrsgruß für 1890 [toc]
+    - text: Die Entdeckung der Nilquellen und Stanleys jüngster Afrikazug [toc]
+    - text: Quitt [toc]
+    - text: Der Bazar [toc]
+    - text: Fürsorge für Genesende (`Fürsorge für Genesende (Die Gartenlaube 1890/1)`) [toc]
+    - text: Gewitter auf dem Sonnblick [toc]
+    - text: Des Todes Ernte unter unseren Dichtern [toc]
     - … 341 more
-1. `Die Gartenlaube (1894)`: mixed, collection, 417 parts, 0 missing, order natural, proofread
+1. `Die Gartenlaube (1894)`: mixed, collection, 417 parts, 0 missing, order toc-partial, proofread
     - front: Die Gartenlaube (1894)
-    - text: Abend am See [toc]
-    - text: Adolf Friedrich Graf von Schack (`Adolf Friedrich Graf von Schack (Die Gartenlaube 1894/19)`) [toc]
-    - text: Afrikanische Haartrachten [toc]
-    - text: Am Eisenhammer [toc]
-    - text: Am Parkgitter [toc]
-    - text: Ameise und Grille [toc]
-    - text: Amélie Linz-Godin [toc]
-    - text: An der Elbemündung [toc]
-    - text: An der Unteren Lände zu München [toc]
-    - text: An Deutschlands Volksvertreter [toc]
-    - text: Ankunft der Aebtissin Irmingard auf Frauenchiemsee im Jahre 894 [toc]
+    - text: Ein Invalidenheim [toc]
+    - text: Die Perle (`Die Perle (Bernhard)`) [toc]
+    - text: Deutsche Zecher am Missouri [toc]
+    - text: Im Fieber [toc]
+    - text: Die alte Gartenlaube [toc]
+    - text: Der Brautzug [toc]
+    - text: Sperbereule auf der Eichhornjagd [toc]
+    - text: Märchen (`Märchen (Die Gartenlaube 1894)`) [toc]
+    - text: Eine Schatzkammer deutschen Humors [toc]
+    - text: Die Sprengstoffe der Neuzeit [toc]
+    - text: Etwas von der Kolportage [toc]
     - … 406 more
-1. `Die Gartenlaube (1874)`: mixed, collection, 402 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1874)`: mixed, collection, 402 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1874)
-    - text: Abermals Fürst Pückler-Muskau [toc]
-    - text: Ablieferung des Beichtzettels [toc]
-    - text: Allerseelentag [toc]
-    - text: Am Beichtstuhl [toc]
-    - text: Am Klostergarten [toc]
-    - text: Amerikanische Freigebigkeit [toc]
-    - text: Amerikanische Gladiatoren [toc]
-    - text: Amerikanische Unsterblichkeits- policen (`Amerikanische Unsterblichkeitspolicen`) [toc]
-    - text: Amerikanischer Frauenkrieg gegen Trinkstuben [toc]
-    - text: An der Küste Hinterpommerns [toc]
-    - text: An die Gegner der „Feuerbestattung“ [toc]
+    - text: Es werde Licht! [toc]
+    - text: Die zweite Frau [toc]
+    - text: Eine Weihe [toc]
+    - text: Ein New-Yorker Millionär [toc]
+    - text: Aus meinem Gefängniß- und Fluchtleben [toc]
+    - text: Brautleute im Sachsenlande [toc]
+    - text: Noch einmal die „literarische Freibeuterei“ [toc]
+    - text: Lebensretter [toc]
+    - text: Für unsere New-Yorker Leser [toc]
+    - text: K. S. in R. [toc]
+    - text: Ehren-Dotation für Roderich Benedix (`Ehren-Dotation für Roderich Benedix (Die Gartenlaube 1874/1)`) [toc]
     - … 391 more
-1. `Die Gartenlaube (1857)`: mixed, collection, 336 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1857)`: mixed, collection, 336 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1857)
-    - text: A. Traeger [toc]
-    - text: Aesthetik auf einem grünen Zweige [toc]
-    - text: Alte Dresdner Geschichten. Nr. 2. Die Grenadiere (`Alte Dresdner Geschichten. Nr. 2. Die zwei Grenadiere`) [toc]
-    - text: Amtliche Indianerjagd [toc]
-    - text: Auch ein König von Gottes Gnaden [toc]
-    - text: Auf dem Angstplatze in Prießnitz [toc]
-    - text: Auf der Eisenbahn (`Auf der Eisenbahn (Temme)`) [toc]
-    - text: Auf der Elephantenjagd [toc]
-    - text: Auf der Louisenburg [toc]
-    - text: Aufruf zur Bildung von volkswirthschaftlichen Vereinen [toc]
-    - text: Aufruf zur Bildung von Vorschußvereinen [toc]
+    - text: Die Schmarotzer des Menschen. Der Bandwurm (`Der Bandwurm (Bock)`) [toc]
+    - text: Erinnerungen von der deutschen Flotte [toc]
+    - text: Die Gemsjagd [toc]
+    - text: Deutsche Gräber [toc]
+    - text: Pariser Industrie [toc]
+    - text: Goethe’s wilde Wochen [toc]
+    - text: Schweizer Angelegenheit [toc]
+    - text: Das rutschende Dorf Tschappina [toc]
+    - text: Naturbetrachtungen im Zimmer [toc]
+    - text: Der englische Perserkrieg um Herat [toc]
+    - text: Skizzen aus dem Hamburger Volksleben [toc]
     - … 325 more
-1. `Die Gartenlaube (1891)`: mixed, collection, 389 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1891)`: mixed, collection, 389 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1891)
-    - text: Abend (`Abend (Martin Greif)`) [toc]
-    - text: Alice Barbi [toc]
-    - text: Altdeutsche Spiele [toc]
-    - text: Altvenetianische Taufe [toc]
-    - text: Am 70. Geburtstag von Hermann Allmers [toc]
-    - text: Am Eingang in den Tuileriengarten [toc]
-    - text: Am Kinderspielplatz unserer Voreltern [toc]
-    - text: Am Nelkenfenster [toc]
-    - text: Am Plansee [toc]
-    - text: Am Sarge eines Helden [toc]
-    - text: Am Urner See [toc]
+    - text: Eine unbedeutende Frau [toc]
+    - text: Unschuldig verurtheilt! (`Unschuldig verurtheilt! (Die Gartenlaube 1891)`) [toc]
+    - text: Deutsche Träume [toc]
+    - text: Neunzig Jahre Frauenmode [toc]
+    - text: Bei Robert Koch [toc]
+    - text: Truggeister [toc]
+    - text: Badisches Lehrerinnenheim in Lichtenthal bei Baden-Baden [toc]
+    - text: Ein weltbewegender Fund [toc]
+    - text: Etwas vom guten Vater Haydn [toc]
+    - text: Der Streit zwischen Krimhild und Brunhild vor dem Münster zu Worms [toc]
+    - text: Eine neue Waschmaschine [toc]
     - … 378 more
-1. `Die Gartenlaube (1883)`: mixed, collection, 371 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1883)`: mixed, collection, 371 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1883)
-    - text: Albert Hendschel todt! [toc]
-    - text: Allegorien und Embleme [toc]
-    - text: Allen Brustleidenden zur Warnung! [toc]
-    - text: Als Weihnachtsgeschenke empfohlen! (`Als Weihnachtsgeschenke empfohlen`) [toc]
-    - text: Am Einsprung [toc]
-    - text: Am Sarge eines großen Volksmannes [toc]
-    - text: Ameisen als Leibwachen von Pflanzen [toc]
-    - text: An unsere Freunde und Leser! (`An unsere Freunde und Leser (Gartenlaube 1883)`) [toc]
-    - text: An unsere Leser (`An unsere Leser (Die Gartenlaube 1883)`) [toc]
-    - text: April in Californien [toc]
-    - text: Auch eine Erinnerung an unsern großen Krieg [toc]
+    - text: Gebannt und erlöst [toc]
+    - text: Franz Defregger [toc]
+    - text: Die Kautschuksammler am Amazonenstrom [toc]
+    - text: Schilf-Lottchen [toc]
+    - text: Sylvesternacht (`Sylvesternacht (Hans Hopfen)`) [toc]
+    - text: Unsere Jagdhunde [toc]
+    - text: Die „Ritter von der Straße“ (`Die Ritter von der Straße`) [toc]
+    - text: Zur Heilung des Schreibekrampfes [toc]
+    - text: Das türkische Derwischthum in seiner heutigen Gestalt und Bedeutung [toc]
+    - text: Die Rabenauer Möbelindustrie [toc]
+    - text: Friedrich König, der Erfinder der „Schnellpresse“ [toc]
     - … 360 more
 1. `Biographisches Jahrbuch und Deutscher Nekrolog`: mixed, collection, 3 parts, 0 missing, order toc, validated
     - front: Biographisches Jahrbuch und Deutscher Nekrolog
     - text: Autorenverzeichnis (`Biographisches Jahrbuch und Deutscher Nekrolog/Autoren`) [hierarchy]
     - text: Inhaltsverzeichnis nach Bänden (`Biographisches Jahrbuch und Deutscher Nekrolog/Inhalt`) [hierarchy]
     - text: [Ludwig Speidel, Schriftsteller] (`Ludwig Speidel, Schriftsteller`) [container]
-1. `Die Gartenlaube (1884)`: mixed, collection, 425 parts, 1 missing, order natural, proofread
+1. `Die Gartenlaube (1884)`: mixed, collection, 425 parts, 1 missing, order toc-partial, proofread
     - front: Die Gartenlaube (1884)
-    - text: Adolf Neumann (`Adolf Neumann (Gartenlaube 1884/49)`) [toc]
-    - text: Aerzte und Publicum [toc]
-    - text: Alarm im Dorfe [toc]
-    - text: Alexander Jung. † (`Alexander Jung †`) [toc]
-    - text: Alfred Brehm † [toc]
-    - text: Alfred Meißner’s Lebenswerk [toc]
-    - text: Allgemeiner deutscher Schulverein [toc]
-    - text: Als Jakob I [toc]
-    - text: Altdeutsches Tanzlied [toc]
-    - text: Am Abgrund (`Am Abgrund (W. Heimburg)`) [toc]
-    - text: Am Grabe Heinrich Laube’s [toc]
+    - text: Neujahres-Gruß [toc]
+    - text: Ein armes Mädchen [toc]
+    - text: Die Scrophulose, eine sociale Krankheit [toc]
+    - text: Ditta’s Zopf Eine Dorfgeschichte aus den Abruzzen (`Ditta’s Zopf`) [toc]
+    - text: Die irrende Justiz und ihre Sühne (`Die irrende Justiz und ihre Sühne (Die Gartenlaube 1884/1)`) [toc]
+    - text: Armin’s Triumphzug [toc]
+    - text: Die heiligen drei Könige mit ihrem Stern [toc]
+    - text: Die Sitze in den Eisenbahnwagen [toc]
+    - text: Einfache Ermittelung des Kohlensäuregehalts der Zimmerluft [toc]
+    - text: Wiederum eine neue Kaffeemaschine [toc]
+    - text: Luftdichter Fensterverschluß [toc]
     - … 414 more
 1. `Annalen der Physik`: mixed, collection, 126 parts, 0 missing, order natural, proofread
     - front: Annalen der Physik
@@ -771,33 +779,33 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
       - text: Herumstreichende Comödiantinnen, die sich in einer Scheune ankleiden [container]
       - text: Die Punschgesellschaft [container]
     - … 88 more
-1. `Die Gartenlaube (1875)`: mixed, collection, 395 parts, 1 missing, order natural, validated
+1. `Die Gartenlaube (1875)`: mixed, collection, 395 parts, 1 missing, order toc-partial, validated
     - front: Die Gartenlaube (1875)
-    - text: Abgelehnt [toc]
-    - text: Ackerknecht und Raphael [toc]
-    - text: Allen Freunden von Bock’s „Buch vom gesunden und kranken Menschen“ [toc]
-    - text: Alters-Asyle [toc]
+    - text: Zum neuen Jahr (`Zum neuen Jahr (Ernst Ziel)`) [toc]
+    - text: Das Capital [toc]
+    - text: Tristan und Isolde im alten und neuen Liede [toc]
+    - text: Zur Abstammungslehre [toc]
+    - text: Die Hauptacteurs im Drama „Arnim“ [toc]
+    - text: Ein Herz auf dem Thron [toc]
     - text: Am Grabe eines Märtyrers [toc]
-    - text: Am Kindersarge [toc]
-    - text: Amerika hinter dem Schleier [toc]
-    - text: Amerikanische Justiz [toc]
-    - text: Amerikanischer Humbug [toc]
-    - text: An der Berliner Börse [toc]
-    - text: An der Evangelistenbrücke der Drina [toc]
+    - text: Das Pariser Opernhaus [toc]
+    - text: Ein Grab im Unterland (`Ein Grab im Unterland (Die Gartenlaube 1875/1)`) [toc]
+    - text: Ein deutsches Polizeiblatt und dessen Ausbeute [toc]
+    - text: Aus dem nächtlichen Thierleben in der Oase [toc]
     - … 384 more
-1. `Die Gartenlaube (1886)`: mixed, collection, 475 parts, 5 missing, order natural, proofread
+1. `Die Gartenlaube (1886)`: mixed, collection, 475 parts, 5 missing, order toc-partial, proofread
     - front: Die Gartenlaube (1886)
-    - text: Abnutzung des Eisenbahnrads [toc]
-    - text: Adolf Menzel’s Illustrationen zu den Werken Friedrich’s des Großen [toc]
-    - text: Alexander von Humboldt und die bildende Kunst [toc]
-    - text: Allerlei Nahrung. I. [toc]
-    - text: Allerlei Nahrung. II. Die Auster [toc]
-    - text: Allerlei von den Königsbauten im bayrischen Hochlande [toc]
-    - text: Allotriophagie [toc]
-    - text: Am Pfingstmorgen [toc]
-    - text: Am Sedantage [toc]
-    - text: Amerikanische Dynamitkreuzer [toc]
-    - text: An der Heimathstätte des „Trompeters von Säckingen“ (`An der Heimathstätte des Trompeters von Säckingen`) [toc]
+    - text: Zum neuen Jahr (`Zum neuen Jahr (Hermann Lingg)`) [toc]
+    - text: Was will das werden? [toc]
+    - text: Die Andere [toc]
+    - text: Dem Kaiser und König Wilhelm I. [toc]
+    - text: Ueber unbewußtes Zählen [toc]
+    - text: Berliner Winter [toc]
+    - text: Murillo’s Betteljungen [toc]
+    - text: Plauderei [toc]
+    - text: Eine Papierstatistik der „Gartenlaube“ [toc]
+    - text: Auf dem Anschuß (`Auf dem Anschuß (Die Gartenlaube 1886/2)`) [toc]
+    - text: Die Nadeln [toc]
     - … 464 more
 1. `Märchen für die Jugend`: mixed, collection, 66 parts, 0 missing, order chain, validated
     - front: Märchen für die Jugend
@@ -855,9 +863,10 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
     - text: Unglückliches Vorzeichen der Schlacht bei Mühlberg [container]
     - text: Dem Churfürsten Johann Friedrich wird sein Tod verkündigt [container]
     - … 990 more
-1. `Fliegende Blätter`: mixed, collection, 241 parts, 1 missing, order natural, proofread
+1. `Fliegende Blätter`: mixed, collection, 241 parts, 1 missing, order toc-partial, proofread
     - front: Fliegende Blätter
-    - text: Die Leichenräuber [container]
+    - text: Liste der Verfasser (`Fliegende Blätter/Verfasser`) [hierarchy]
+    - text: Liste der Illustratoren (`Fliegende Blätter/Illustratoren`) [hierarchy]
     - volume: 1. 1845 (`Fliegende Blätter (Band 1)`) [container]
       - text: Das Heidelberger Fass [container]
       - text: Fliegende Blätter Heft 1 (Band 1) [container]
@@ -867,138 +876,147 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
       - text: Fliegende Blätter Heft 2 (Band 1) [container]
       - text: Die Viborger [container]
       - text: II 13 (`Sprüchwörter (Fliegende Blätter Nr. 2)`) [container]
-      - text: Wahre Geschichte von dem berühmten Räuber-Hauptmanne Rinaldo Rinaldini [container]
     - … 230 more
-1. `Die Gartenlaube (1864)`: mixed, collection, 398 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1864)`: mixed, collection, 398 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1864)
-    - text: Aerztliche Strafpredigt [toc]
-    - text: Aerztliche Winke für Badegäste [toc]
-    - text: Aerztliche Winke für die Wintersaison [toc]
-    - text: Alexander Dumas (`Alexander Dumas (Die Gartenlaube 1864)`) [toc]
-    - text: All-Macht der polnischen Nationalregierung [toc]
-    - text: Alles hat seine Wissenschaft [toc]
-    - text: Alpenglühen und Meeresleuchten [toc]
-    - text: Leute bei der Spritze. Alte und neue Feuerwehr (`Alte und neue Feuerwehr`) [toc]
-    - text: Alte Vorurtheile [toc]
-    - text: Alter Schwindel [toc]
-    - text: Am Christabend (`Am Christabend (Die Gartenlaube 1864)`) [toc]
+    - text: Neujahrsgebet (`Neujahrsgebet (Die Gartenlaube 1864)`) [toc]
+    - text: Der Kranz am Marterl [toc]
+    - text: Der polnische Schreiber [toc]
+    - text: Im Kerker der Hoffnungslosen [toc]
+    - text: Unsere Bären [toc]
+    - text: Ein Name für das erste deutsche Kriegsschiff [toc]
+    - text: Der Tod und das Begräbniß eines Freiheitskämpfers [toc]
+    - text: Berichtigung (`Berichtigung (Die Gartenlaube 1864/1)`) [toc]
+    - text: Für die braven Schleswig-Holsteiner (`Für die braven Schleswig-Holsteiner (Die Gartenlaube 1864/1)`) [toc]
+    - text: Das ewige Licht [toc]
+    - text: Die Kinderzeche in Dinkelsbühl [toc]
     - … 387 more
-1. `Die Gartenlaube (1879)`: mixed, collection, 390 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1879)`: mixed, collection, 390 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1879)
-    - text: Abhärtung [toc]
-    - text: Abnorme Kinder [toc]
-    - text: Adam Oehlenschläger (`Adam Oehlenschläger (Die Gartenlaube 1879/46)`) [toc]
-    - text: Adolf Strodtmann todt [toc]
-    - text: Allerheiligen im Schnee [toc]
-    - text: Allerlei Thiere [toc]
-    - text: Almosenschleuderei und verständige Armenpflege [toc]
-    - text: Alpenfreunden [toc]
-    - text: Altersasyle [toc]
-    - text: Am Sarge des Erstgeborenen [toc]
-    - text: Am See von Maracaibo [toc]
+    - text: Das Evangelium der Toleranz [toc]
+    - text: Vernünftige Gedanken einer Hausmutter. 1. Der Mutter Stufenjahre (`Vernünftige Gedanken einer Hausmutter (1)`) [toc]
+    - text: Madonna Violanta [toc]
+    - text: Ein Wort am Grabe Karl Gutzkow’s [toc]
+    - text: Die Kunst im Hause [toc]
+    - text: Neujahr in China [toc]
+    - text: Ein verfolgter Räuber [toc]
+    - text: Das Satyrspiel von 1878 [toc]
+    - text: Des Kaisers Lector [toc]
+    - text: Ein Augenblick [toc]
+    - text: Deutsches Frauenleben im Mittelalter. 7. Bei Spiel und Tanz. (`Deutsches Frauenleben im Mittelalter (Die Gartenlaube 1879/2)`) [toc]
     - … 379 more
-1. `Die Gartenlaube (1893)`: mixed, collection, 411 parts, 3 missing, order natural, proofread
+1. `Die Gartenlaube (1893)`: mixed, collection, 411 parts, 3 missing, order toc-partial, proofread
     - front: Die Gartenlaube (1893)
-    - text: Akademische Berufsarbeit im Ausland [toc]
-    - text: Alexander Graf von Hartenau † [toc]
-    - text: Alpenrosen [toc]
-    - text: Altersriesen [toc]
     - text: Am „Eisernen Thor“ [toc]
-    - text: Asthma (`Asthma (Die Gartenlaube 1893/46)`) [toc]
-    - text: Auf den Oelfeldern Galiziens [toc]
     - text: Auf Geben und Nehmen [toc]
-    - text: Aufforderung (`Aufforderung (Die Gartenlaube 1893)`) [toc]
-    - text: Auge und Zahn [toc]
-    - text: Aus Anzengrubers Nachlaß [toc]
+    - text: Vom Struwwelpeter [toc]
+    - text: Heimstätten für Genesende [toc]
+    - text: Der schüchterne Freier [toc]
+    - text: Warum schweben die Wolken [toc]
+    - text: Im Dschungl [toc]
+    - text: Frühlingsblüthen [toc]
+    - text: Eine Zauberwurzel [toc]
+    - text: Friedrich von Esmarch (`Friedrich von Esmarch (Die Gartenlaube 1893)`) [toc]
+    - text: Die letzten Büffel von Nordamerika [toc]
     - … 400 more
-1. `Die Gartenlaube (1877)`: mixed, collection, 424 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1877)`: mixed, collection, 424 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1877)
-    - text: Abermals entlarvter Spiritistenschwindel [toc]
-    - text: Adolf Glaßbrenner (`Adolf Glaßbrenner (Die Gartenlaube 1877/15)`) [toc]
-    - text: Alfred Meißner (`Alfred Meißner (Die Gartenlaube 1877/23)`) [toc]
-    - text: Allen liebenden Vätern zur Warnung [toc]
-    - text: Am Wachterl [toc]
-    - text: Am Waldesrand [toc]
-    - text: An den Karpfenteichen der Niederlausitz [toc]
-    - text: An der Gnadenstätte von Marpingen [toc]
-    - text: An die alten Thomaner in aller Welt [toc]
-    - text: Anfrage(Die Gartenlaube 1877/12) (`Anfrage (Die Gartenlaube 1877/12)`) [toc]
-    - text: Angstvolle Minuten [toc]
+    - text: Jubelgruß der „Gartenlaube“ [toc]
+    - text: Aus gährender Zeit [toc]
+    - text: Die Zeit der Rosen [toc]
+    - text: Aus dem Herzensleben unseres Lieblingsdichters [toc]
+    - text: Kanossa [toc]
+    - text: Der Spiritismus vor dem Gerichtshofe der Wissenschaft [toc]
+    - text: Parlamentarische Photographien aus Versailles [toc]
+    - text: Die Taufe des heiligen Aristophanes [toc]
+    - text: Nochmals die Eisenbahnen [toc]
+    - text: Gratulation bei der Gutsherrschaft [toc]
+    - text: Aus dem Nachlasse Herbert König’s [toc]
     - … 413 more
 
 ### D: virtual roots (241)
 
-1. `Gesetz, betreffend die Feststellung eines dritten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1890`: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - text: Gesetz, betreffend die Feststellung eines dritten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1890/91. (`Gesetz, betreffend die Feststellung eines dritten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1890/91`)
-1. `Bilderschau in meinem Zimmer`: virtual, book, 3 parts, 0 missing, order natural, validated
-    - chapter: 1 (`Bilderschau in meinem Zimmer/1`)
-    - text: Bilderschau in meinem Zimmer/2 [hierarchy]
-    - chapter: 3 (`Bilderschau in meinem Zimmer/3`) [hierarchy]
+1. `Gantz New eröffneter Bartkram `: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Gantz New eröffneter Bartkram / Darinnen 24. Sorten allerhand zierliche wolmundirte / teutsch-Frantzösische vnd dieser zeit gebräuchliche Bärte zu finden. (`Gantz New eröffneter Bartkram / Darinnen 24. Sorten allerhand zierliche wolmundirte Bärte zu finden`)
+1. `Leipzigs Industrien`: virtual, collection, 2 parts, 0 missing, order natural, validated
+    - text: Leipzigs Industrien/Nr. 1. Aetherische Oele und Essenzen
+    - text: Leipzigs Industrien/Nr. 2. Ein überwundenes Vorurtheil in einer Bagatellsache [hierarchy]
+1. `Gesetz, betreffend den Servistarif und die Klasseneintheilung der Orte. Vom 26. Juli 1897 `: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Gesetz, betreffend den Servistarif und die Klasseneintheilung der Orte. / Klasseneintheilung der Orte (`Gesetz, betreffend den Servistarif und die Klasseneintheilung der Orte. Vom 26. Juli 1897 / Klasseneintheilung der Orte`)
+1. `Gesetz, betreffend die Kontrole des Reichshaushalts und des Landeshaushalts von Elsaß-Lothringen für das Etatsjahr 1881`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Gesetz, betreffend die Kontrole des Reichshaushalts und des Landeshaushalts von Elsaß-Lothringen für das Etatsjahr 1881/82. (`Gesetz, betreffend die Kontrole des Reichshaushalts und des Landeshaushalts von Elsaß-Lothringen für das Etatsjahr 1881/82`)
+1. `Gesetz, betreffend die Feststellung eines Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1881`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Gesetz, betreffend die Feststellung eines Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1881/82. (`Gesetz, betreffend die Feststellung eines Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1881/82`)
+1. `Bekanntmachung, betreffend die Instruktion zur Ausführung der §§. 19 bis 29 des Gesetzes über die Abwehr und Unterdrückung von Viehseuchen `: virtual, collection, 2 parts, 0 missing, order natural, proofread
+    - text: Bekanntmachung, betreffend die Instruktion zur Ausführung der §§. 19 bis 29 des Gesetzes vom 23. Juni 1880/1. Mai 1894 über die Abwehr und Unterdrückung von Viehseuchen. Anlage A. Anweisung für das De (`Bekanntmachung, betreffend die Instruktion zur Ausführung der §§. 19 bis 29 des Gesetzes über die Abwehr und Unterdrückung von Viehseuchen / Anlage A. Desinfektionsverfahren`)
+    - text: Bekanntmachung, betreffend die Instruktion zur Ausführung der §§. 19 bis 29 des Gesetzes vom 23. Juni 1880/1. Mai 1894 über die Abwehr und Unterdrückung von Viehseuchen. Anlage B. Anweisung für das Ob (`Bekanntmachung, betreffend die Instruktion zur Ausführung der §§. 19 bis 29 des Gesetzes über die Abwehr und Unterdrückung von Viehseuchen / Anlage B. Obduktionsverfahren`) [hierarchy]
+1. `Handels- und Schiffahrtsvertrag zwischen dem Deutschen Reiche und Schweden `: virtual, collection, 2 parts, 0 missing, order natural, proofread
+    - text: Handels- und Schiffahrtsvertrag zwischen dem Deutschen Reiche und Schweden. – Schlußprotokoll. (`Handels- und Schiffahrtsvertrag zwischen dem Deutschen Reiche und Schweden / Schlußprotokoll`)
+    - text: Handels- und Schiffahrtsvertrag zwischen dem Deutschen Reiche und Schweden. – Tarif A und B. (`Handels- und Schiffahrtsvertrag zwischen dem Deutschen Reiche und Schweden / Tarif A und B`) [hierarchy]
+1. `Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1885`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1885/86. (`Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1885/86`)
+1. `Gesetz, betreffend die Kontrole des Reichshaushalts und des Landeshaushalts von Elsaß-Lothringen für das Etatsjahr 1890`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Gesetz, betreffend die Kontrole des Reichshaushalts und des Landeshaushalts von Elsaß-Lothringen für das Etatsjahr 1890/91. (`Gesetz, betreffend die Kontrole des Reichshaushalts und des Landeshaushalts von Elsaß-Lothringen für das Etatsjahr 1890/91`)
+1. `Kleine Bilder aus der Gegenwart`: virtual, collection, 15 parts, 0 missing, order natural, proofread
+    - text: Kleine Bilder aus der Gegenwart. Nr. 8. Aus der Welt der Reclame. (`Kleine Bilder aus der Gegenwart/Aus der Welt der Reclame`)
+    - text: Bei J. Wickersheimer (`Kleine Bilder aus der Gegenwart/Bei J. Wickersheimer`) [hierarchy]
+    - text: Das fescheste Zeugl (`Kleine Bilder aus der Gegenwart/Das fescheste Zeugl`) [hierarchy]
+    - text: Der Brand in Aachen am 29. Juni dieses Jahres (`Kleine Bilder aus der Gegenwart/Der Brand in Aachen am 29. Juni dieses Jahres`) [hierarchy]
+    - text: Der Fang der Eintagsfliege (`Kleine Bilder aus der Gegenwart/Der Fang der Eintagsfliege`) [hierarchy]
+    - text: Der Hafenbrand in Hamburg am 31. Mai (`Kleine Bilder aus der Gegenwart/Der Hafenbrand in Hamburg am 31. Mai`) [hierarchy]
+    - text: Der „Munk-Affe“ (`Kleine Bilder aus der Gegenwart/Der Munk-Affe`) [hierarchy]
+    - text: Der Schweizer Alpenclub auf der Ausstellung in Zürich (`Kleine Bilder aus der Gegenwart/Der Schweizer Alpenclub auf der Ausstellung in Zürich`) [hierarchy]
+    - text: Die chinesische Panzercorvette „Ting Yuen“ (`Kleine Bilder aus der Gegenwart/Die chinesische Panzercorvette Ting Yuen`) [hierarchy]
+    - text: Kleine Bilder aus der Gegenwart. Die letzte Personenpost in Breslau (`Kleine Bilder aus der Gegenwart/Die letzte Personenpost in Breslau`) [hierarchy]
+    - text: Kleine Bilder aus der Gegenwart. 3. Im Taucherpavillon der Hygiene-Ausstellung in Berlin. (`Kleine Bilder aus der Gegenwart/Im Taucherpavillon der Hygiene-Ausstellung in Berlin`) [hierarchy]
+    - text: Ischia (`Kleine Bilder aus der Gegenwart/Ischia`) [hierarchy]
+    - … 3 more
+1. `Wie Gott so wunnderbarlich den vnmenschlichen grossen Bauch `: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Newe zeitung: Wie Gott so wunnderbarlich den vnmenschlichen vnd vom Teuffel zugerichten grossen Bauch / an der Jungfrawen zu Eszlingen / offenbaret hat / […] (`Wie Gott so wunnderbarlich den vnmenschlichen grossen Bauch / an der Jungfrawen zu Eszlingen / offenbaret hat`)
 1. `Heinrich Heine`: virtual, collection, 2 parts, 0 missing, order natural, unknown
     - text: Gesamtverzeichnis der Prosanotizen (`Heinrich Heine/DHA/Gesamtverzeichnis der Prosanotizen`)
     - text: Werkverzeichnis (`Heinrich Heine/DHA/Werkverzeichnis`) [hierarchy]
-1. `Eigentlicher Bericht der Stadt Stade `: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Eigentlicher Bericht der Stadt Stade / Der Burg und Brömer-Vörde / Wie die Burg / Buxtehude / Ottersberg / Vehrden / Rodenburg / Bremer-Vörde / und andere Vestungen im Stifft an die Alliirte übergange (`Eigentlicher Bericht der Stadt Stade / Der Burg und Brömer-Vörde`)
-1. `Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1887`: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - text: Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1887/88. (`Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1887/88`)
-1. `Das Dresdner Landwehrbataillon 1813`: virtual, book, 1 parts, 0 missing, order single, validated
-    - chapter: 14 (`Das Dresdner Landwehrbataillon 1813/14`)
-1. `Thierstudien eines Laien`: virtual, collection, 2 parts, 0 missing, order natural, validated
-    - text: Ameisenwirthschaft (`Thierstudien eines Laien/Ameisenwirthschaft`)
-    - text: Hirschkäfer und Ohrwurm (`Thierstudien eines Laien/Hirschkäfer und Ohrwurm`) [hierarchy]
-1. `Lustiges Gespräch Eines alten Greißen `: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Lustiges Gespräch Eines alten Greißen / wie es jhme auff seiner jungen Bulschafft und Freyerey ergangen
-1. `Kataloge der Jahresausstellungen der Kurfürstl.`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Kataloge der Jahresausstellungen der Kurfürstl./Königl. Sächsischen Akademie der Künste
-1. `Veritable und Eigentlicher Abriß`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Veritable und Eigentlicher Abriß/ Des jenigen Kornhalms/ So zwischen der Löhe und Wißmar eine halbe Stunde von Giessen 1695. ist gewachsen/ (`Veritable und Eigentlicher Abriß/ Des jenigen Kornhalms`)
-1. `Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1889`: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - text: Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1889/90. (`Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1889/90`)
-1. `Aus dem Fuchsleben`: virtual, collection, 2 parts, 0 missing, order natural, validated
-    - text: Aus dem Fuchsleben/I
-    - text: Aus dem Fuchsleben/II [hierarchy]
-1. `Erklärung etlicher Wörter `: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: ORTHOGRAPHIA GERMANICA: Erklärung etlicher Wörter / welche zwar gleich lauten / aber vngleichen Verstand geben (`Erklärung etlicher Wörter / welche zwar gleich lauten / aber vngleichen Verstand geben`)
-1. `Gesetz, betreffend die Feststellung eines dritten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1893`: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - text: Gesetz, betreffend die Feststellung eines dritten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1893/94. (`Gesetz, betreffend die Feststellung eines dritten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1893/94`)
-1. `Zusatzvertrag zum Handels- und Zollvertrage zwischen dem Deutschen Reiche und Österreich-Ungarn `: virtual, collection, 2 parts, 0 missing, order natural, proofread
-    - text: Zusatzvertrag zum Handels- und Zollvertrage zwischen dem Deutschen Reiche und Österreich-Ungarn vom 6. Dezember 1891. − Anlage A. Zölle bei der Einfuhr in das deutsche Zollgebiet. (`Zusatzvertrag zum Handels- und Zollvertrage zwischen dem Deutschen Reiche und Österreich-Ungarn / Anlage A`)
-    - text: Zusatzvertrag zum Handels- und Zollvertrage zwischen dem Deutschen Reiche und Österreich-Ungarn vom 6. Dezember 1891. − Anlage B. Zölle bei der Einfuhr in das österreichisch-ungarische Zollgebiet. (`Zusatzvertrag zum Handels- und Zollvertrage zwischen dem Deutschen Reiche und Österreich-Ungarn / Anlage B`) [hierarchy]
-1. `Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1886`: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - text: Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1886/87. (`Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1886/87`)
-1. `Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1891`: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - text: Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1891/92. (`Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1891/92`)
-1. `Topographia Austriacarum: Absonderliche Beschreibung Der Herrschafften `: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text:  Horn (`Topographia Austriacarum: Absonderliche Beschreibung Der Herrschafften / Stätteund Schlösser /Windhaag / Reichenau / Horn`)
-1. `Flugblätter der Weissen Rose`: virtual, book, 6 parts, 0 missing, order chain, validated
-    - chapter: I (`Flugblätter der Weissen Rose/I`)
-    - chapter: II (`Flugblätter der Weissen Rose/II`) [hierarchy]
-    - chapter: III (`Flugblätter der Weissen Rose/III`) [hierarchy]
-    - chapter: IV (`Flugblätter der Weissen Rose/IV`) [hierarchy]
-    - chapter: V (`Flugblätter der Weissen Rose/V`) [hierarchy]
-    - chapter: VI (`Flugblätter der Weissen Rose/VI`) [hierarchy]
-1. `Zwo Warhafftige`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Zwo Warhafftige/ und doch Männiglich zuvor bekante Newe Zeitungen
-1. `Teuerungsdenkmünze von 1846`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Teuerungsdenkmünze von 1846/47
-1. `Wikisource`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Hilf mit! (`Wikisource/Hilf mit!`)
-1. `Die Jubiläums-Ausgabe der „Illustrierten Geschichte des Krieges 1870`: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - text: Die Jubiläums-Ausgabe der „Illustrierten Geschichte des Krieges 1870/71“
-1. `Militär `: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text:  Zusammenstellung der höheren Lehranstalten, welche zur Ausstellung gültiger Zeugnisse über die wissenschaftliche Qualifikation zum einjährig freiwilligen Militairdienst berechtigt sind (`Militär / Zusammenstellung der höheren Lehranstalten, welche zur Ausstellung gültiger Zeugnisse über die wissenschaftliche Qualifikation zum einjährig freiwilligen Militairdienst berechtigt sind`)
-1. `Programm des Königlichen Realgymnasiums in Gmünd am Schlusse des Schuljahres 1896`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Programm des Königlichen Realgymnasiums in Gmünd am Schlusse des Schuljahrs 1896/97 (`Programm des Königlichen Realgymnasiums in Gmünd am Schlusse des Schuljahres 1896/97`)
+1. `In und um Tirols Oberammergau`: virtual, collection, 2 parts, 0 missing, order natural, validated
+    - text: In und um Tirols Oberammergau/1.
+    - text: „Auf den Bergen die Burgen“ und Notburga’s Ruhm und Preis (`In und um Tirols Oberammergau/2.`) [hierarchy]
+1. `Erinnerungen aus meinem Leben (Friedrich Hecker)`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Der Hexenmeister der Prairie (`Erinnerungen aus meinem Leben (Friedrich Hecker)/2`)
 1. `Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1883`: virtual, collection, 1 parts, 0 missing, order single, proofread
     - text: Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1883/84. (`Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1883/84`)
+1. `Gesetz, betreffend die Feststellung des Haushalts-Etats des Deutschen Reichs für das Etatsjahr 1878`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Gesetz, betreffend die Feststellung des Haushalts-Etats des Deutschen Reichs für das Etatsjahr 1878/79. (`Gesetz, betreffend die Feststellung des Haushalts-Etats des Deutschen Reichs für das Etatsjahr 1878/79`)
+1. `Achtzehnter Jahresbericht des deutschen Mädchenheims zu Paris 1902`: virtual, book, 1 parts, 0 missing, order single, validated
+    - chapter: 1903 (`Achtzehnter Jahresbericht des deutschen Mädchenheims zu Paris 1902/1903`)
+1. `Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1889`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1889/90. (`Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1889/90`)
+1. `Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1896`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1896/97. (`Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1896/97`)
+1. `Gesetz, betreffend die Feststellung des Haushalts-Etats für die Schutzgebiete auf das Etatsjahr 1894`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Gesetz, betreffend die Feststellung des Haushalts-Etats für die Schutzgebiete auf das Etatsjahr 1894/95. (`Gesetz, betreffend die Feststellung des Haushalts-Etats für die Schutzgebiete auf das Etatsjahr 1894/95`)
+1. `Programm des Königlichen Realgymnasiums in Gmünd am Schlusse des Schuljahres 1896`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Programm des Königlichen Realgymnasiums in Gmünd am Schlusse des Schuljahrs 1896/97 (`Programm des Königlichen Realgymnasiums in Gmünd am Schlusse des Schuljahres 1896/97`)
+1. `Gesetz, betreffend die Reichs-Kriegshäfen und die Feststellung eines Nachtrages zum Reichshaushalts-Etat für das Etatsjahr 1883`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Gesetz, betreffend die Reichs-Kriegshäfen und die Feststellung eines Nachtrages zum Reichshaushalts-Etat für das Etatsjahr 1883/84. (`Gesetz, betreffend die Reichs-Kriegshäfen und die Feststellung eines Nachtrages zum Reichshaushalts-Etat für das Etatsjahr 1883/84`)
+1. `Bekanntmachung des Textes der Unfallversicherungsgesetze vom 30. Juni 1900 `: virtual, collection, 5 parts, 0 missing, order natural, proofread
+    - text: Bau-Unfallversicherungsgesetz. (`Bekanntmachung des Textes der Unfallversicherungsgesetze vom 30. Juni 1900 / Bau-Unfallversicherungsgesetz`)
+    - text: Gesetz, betreffend die Abänderung der Unfallversicherungsgesetze. (`Bekanntmachung des Textes der Unfallversicherungsgesetze vom 30. Juni 1900 / Gesetz, betreffend die Abänderung der Unfallversicherungsgesetze`) [hierarchy]
+    - text: Gewerbe-Unfallversicherungsgesetz. (`Bekanntmachung des Textes der Unfallversicherungsgesetze vom 30. Juni 1900 / Gewerbe-Unfallversicherungsgesetz`) [hierarchy]
+    - text: See-Unfallversicherungsgesetz. (`Bekanntmachung des Textes der Unfallversicherungsgesetze vom 30. Juni 1900 / See-Unfallversicherungsgesetz`) [hierarchy]
+    - text: Unfallversicherungsgesetz für Land- und Forstwirthschaft. (`Bekanntmachung des Textes der Unfallversicherungsgesetze vom 30. Juni 1900 / Unfallversicherungsgesetz für Land- und Forstwirthschaft`) [hierarchy]
+1. `Zwo Warhafftige`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Zwo Warhafftige/ und doch Männiglich zuvor bekante Newe Zeitungen
+1. `Gesetz, betreffend die Feststellung eines Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1895`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Gesetz, betreffend die Feststellung eines Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1895/96. (`Gesetz, betreffend die Feststellung eines Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1895/96`)
+1. `Gesetz, betreffend die Kontrole des Reichshaushalts, des Landeshaushalts von Elsaß-Lothringen und des Haushalts der Schutzgebiete für das Etatsjahr 1894`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Gesetz, betreffend die Kontrole des Reichshaushalts, des Landeshaushalts von Elsaß-Lothringen und des Haushalts der Schutzgebiete für das Etatsjahr 1894/95. (`Gesetz, betreffend die Kontrole des Reichshaushalts, des Landeshaushalts von Elsaß-Lothringen und des Haushalts der Schutzgebiete für das Etatsjahr 1894/95`)
+1. `Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1889`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1889/90. (`Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1889/90`)
+1. `Zeitschriften (Illustrierte)`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: The St. James' magazine (`Zeitschriften (Illustrierte)/fremdsprachige/The St. James' magazine`)
+1. `Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1897`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1897/98. (`Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1897/98`)
 1. `Ergänzung zum Aufsatze „Ueber den Venusdurchgang vom 8.`: virtual, collection, 1 parts, 0 missing, order single, validated
     - text: Ergänzung zum Aufsatze „Ueber den Venusdurchgang vom 8./9. December 1874“
-1. `Handels-, Zoll- und Schiffahrtsvertrag zwischen dem Deutschen Reich und Rumänien `: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - text: Handels-, Zoll- und Schiffahrtsvertrag zwischen dem Deutschen Reich und Rumänien. / Anlage C und Protokolle (`Handels-, Zoll- und Schiffahrtsvertrag zwischen dem Deutschen Reich und Rumänien / Anlage C und Protokolle`)
-1. `Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1880`: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - text: Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1880/81. (`Gesetz, betreffend die Feststellung des Reichshaushalts-Etats für das Etatsjahr 1880/81`)
-1. `Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1890`: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - text: Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1890/91. (`Gesetz, betreffend die Feststellung eines zweiten Nachtrags zum Reichshaushalts-Etat für das Etatsjahr 1890/91`)
 
 ### E: subpage texts reached from a disambiguation or versions page (50)
 
@@ -1037,28 +1055,28 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
 
 1. text “Am achten Sonntage nach Trinitatis” (`Epistel-Postille (Wilhelm Löhe)/Trinitatis 08`), part 50 of `Epistel-Postille (Wilhelm Löhe)` (collection, 71 parts, 67 texts)
 1. text “Bonlanden” (`Beschreibung des Oberamts Stuttgart, Amt/Kapitel B 3`), part 10 of `Beschreibung des Oberamts Stuttgart, Amt` (collection, 35 parts, 27 texts)
-1. text “Albin Lesky” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Albin Lesky`), part 34 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Albrecht Dieterich” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Albrecht Dieterich`), part 34 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
 1. text “Ueber die Herren von Vestenberg” (`Geschichte von Kloster Heilsbronn/Ueber die Herren von Vestenberg`), part 424 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
-1. text “Maximilian Mayer” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Maximilian Mayer`), part 866 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Maximilian Muttelsee” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Maximilian Muttelsee`), part 866 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
 1. text “Für den kranken Gatten” (`Stunden der Andacht/Für den kranken Gatten`), part 65 of `Stunden der Andacht` (collection, 102 parts, 100 texts)
-1. text “Georg Kauffmann” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Georg Kauffmann`), part 391 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
-1. text “Fritz Geyer (Historiker)” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Fritz Geyer (Historiker)`), part 373 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Georg Kleinfeller” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Georg Kleinfeller`), part 391 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Fritz Gschnitzer” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Fritz Gschnitzer`), part 373 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
 1. text “Riedeldorf” (`Geschichte von Kloster Heilsbronn/Riedeldorf`), part 372 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
 1. text “Leiden” (`Christliche Symbolik/Leiden`), part 315 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
-1. text “Lustiges Gespräch Eines alten Greißen / wie es jhme auff seiner jungen Bulschafft und Freyerey ergangen” (`Lustiges Gespräch Eines alten Greißen / wie es jhme auff seiner jungen Bulschafft und Freyerey ergangen`), part 0 of `Lustiges Gespräch Eines alten Greißen ` (collection, 1 parts, 1 texts)
-1. text “Richard Delbrück” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Richard Delbrück`), part 1012 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Galerie historischer Enthüllungen 4.&nbsp;Arnold von Winkelried” (`Galerie historischer Enthüllungen/4. Arnold von Winkelried`), part 3 of `Galerie historischer Enthüllungen` (collection, 5 parts, 5 texts)
+1. text “Richard Foerster” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Richard Foerster`), part 1012 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
 1. text “Romanze XIV: Apo und Meliore” (`Romanzen vom Rosenkranz/Romanze XIV: Apo und Meliore`), part 16 of `Romanzen vom Rosenkranz` (collection, 24 parts, 24 texts)
-1. text “Eduard Williger” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Eduard Williger`), part 208 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
-1. text “Otto Barkowski” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Otto Barkowski`), part 898 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Eduardo Luigi De Stefani” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Eduardo Luigi De Stefani`), part 208 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Otto Crusius” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Otto Crusius`), part 898 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
 1. text “Achstetten” (`Beschreibung des Oberamts Laupheim/Achstetten`), part 9 of `Beschreibung des Oberamts Laupheim` (collection, 50 parts, 43 texts)
 1. text “Malmersdorf” (`Geschichte von Kloster Heilsbronn/Malmersdorf`), part 295 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
 1. text “Gemeinde Berkheim” (`Beschreibung des Oberamts Leutkirch/Berkheim`), part 9 of `Beschreibung des Oberamts Leutkirch` (collection, 32 parts, 25 texts)
-1. text “Wie nach der letzsten schlacht, so die Cimbri verloren, etliche von inen wider in das Teutschland komen, die sich vor dem Schwarzwald an dem Negker nidergelassen, dieselbig art erbawen und bewonet hab” (`Zimmerische Chronik/Band 1/Kapitel 2`), part 2 of `Zimmerische Chronik` (collection, 159 parts, 139 texts)
+1. text “Wie nach der letzsten schlacht, so die Cimbri verloren, etliche von inen wider in das Teutschland komen, die sich vor dem Schwarzwald an dem Negker nidergelassen, dieselbig art erbawen und bewonet hab” (`Zimmerische Chronik/Band 1/Kapitel 2`), part 5 of `Zimmerische Chronik` (collection, 159 parts, 139 texts)
 1. text “Aglishardt” (`Beschreibung des Oberamts Urach/Kapitel B 4`), part 11 of `Beschreibung des Oberamts Urach` (collection, 36 parts, 29 texts)
-1. text “Carl Steuernagel” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Carl Steuernagel`), part 150 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Carl Watzinger” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Carl Watzinger`), part 150 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
 1. text “Monate” (`Christliche Symbolik/Monate`), part 349 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
 1. text “Alt-Steußlingen mit Briel” (`Beschreibung des Oberamts Ehingen/Kapitel B 6`), part 13 of `Beschreibung des Oberamts Ehingen` (collection, 55 parts, 48 texts)
-1. text “Mahlberg” (`Die Kunstdenkmäler des Grossherzogthums Baden. Band 6/Mahlberg`), part 17 of `Die Kunstdenkmäler des Grossherzogthums Baden. Band 6` (collection, 30 parts, 30 texts)
+1. text “Ringsheim” (`Die Kunstdenkmäler des Grossherzogthums Baden. Band 6/Ringsheim`), part 17 of `Die Kunstdenkmäler des Grossherzogthums Baden. Band 6` (collection, 30 parts, 30 texts)
 1. text “Dritter Brieff” (`Merckwürdige Nachricht aus Ost-Indien/Dritter Brieff`), part 3 of `Merckwürdige Nachricht aus Ost-Indien` (collection, 7 parts, 7 texts)
 1. text “71 Bei dem Grabe einer alten armen Frau” (`Melpomene/Band 1/071 Bei dem Grabe einer alten armen Frau`), part 92 of `Melpomene` (collection, 223 parts, 221 texts)
 1. text “Vom falsch vnd beschisß” (`Doctor Brants Narrenschiff/Von Falschheit und Betrug`), part 105 of `Doctor Brants Narrenschiff` (collection, 118 parts, 118 texts)
@@ -1092,19 +1110,19 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
       - text: Eine Besteigung des Pik von Teneriffa [container]
       - text: Wahrnehmungen auf einer Fahrt von Chartūm nach dem Gazellen-Fluß, Januar–März 1869 (`Wahrnehmungen auf einer Fahrt von Chartūm nach dem Gazellen-Fluß`) [container]
     - … 61 more
-1. `Die Gartenlaube (1890)`: mixed, collection, 352 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1890)`: mixed, collection, 352 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1890)
-    - text: Adolf Diesterweg [toc]
-    - text: Adolf Wilbrandts „Neue Gedichte“ [toc]
-    - text: Albert Bürklin † [toc]
-    - text: Allein am Weihnachtsabend [toc]
-    - text: Allerseelen (`Allerseelen (Ebersberger)`) [toc]
-    - text: Altes und Neues für die Reisezeit [toc]
     - text: Am Rheinfall bei Schaffhausen [toc]
+    - text: Ueber Gehörinstrumente für Schwerhörige [toc]
+    - text: Theodor Fontane (`Theodor Fontane (Gottschall)`) [toc]
     - text: Amor der Honigdieb [toc]
-    - text: An den Ahrensklinterklippen im Harz [toc]
-    - text: An der Jahreswende [toc]
-    - text: An südlichen Gestaden [toc]
+    - text: Neujahrsgruß für 1890 [toc]
+    - text: Die Entdeckung der Nilquellen und Stanleys jüngster Afrikazug [toc]
+    - text: Quitt [toc]
+    - text: Der Bazar [toc]
+    - text: Fürsorge für Genesende (`Fürsorge für Genesende (Die Gartenlaube 1890/1)`) [toc]
+    - text: Gewitter auf dem Sonnblick [toc]
+    - text: Des Todes Ernte unter unseren Dichtern [toc]
     - … 341 more
 1. `Hans Brass und die Religion, September 1934`: single, single, 1 parts, 0 missing, order –, proofread
     - text: Hans Brass und die Religion, September 1934
@@ -1134,7 +1152,7 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
     - toc: Aus eigener Kraft (Wilhelmine von Hillern)
     - chapter: Teil I (`Aus eigener Kraft (Wilhelmine von Hillern)/I`) [hierarchy]
     - chapter: Teil II (`Aus eigener Kraft (Wilhelmine von Hillern)/II`) [hierarchy]
-1. `Der Sturm`: linked, collection, 2 parts, 0 missing, order natural, validated
+1. `Der Sturm`: linked, collection, 2 parts, 0 missing, order toc-partial, validated
     - front: Der Sturm
     - text: Marie Böhm (`Marie Böhm (Lasker-Schüler)`) [container]
     - text: Sturmangriff [container]
@@ -1155,49 +1173,49 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
       - text: Privileg Karls IV. für Trier über das Recht der ersten Stimme (`Privileg Karls IV. für Trier über das Recht der ersten Stimme (Jan. 1354)`) [container]
       - text: Karls IV. Transsumpt einer Urkunde seines Vaters über die pfälzische Kur [container]
     - … 28 more
-1. `Die Gartenlaube (1872)`: mixed, collection, 438 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1872)`: mixed, collection, 438 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1872)
-    - text: Aba Kaissi, der abessinische Räuberfürst [toc]
-    - text: Aber was bewegt denn uns? [toc]
-    - text: Adele Spitzeder (`Adele Spitzeder (Die Gartenlaube 1872/49)`) [toc]
-    - text: Albert Traeger in neuer Ausgabe [toc]
-    - text: Alfred Keil (`Alfred Keil (Die Gartenlaube 1872/2)`) [toc]
-    - text: Als Singlehrer [toc]
+    - text: Zum neuen Jahr! [toc]
     - text: Am Altar [toc]
-    - text: Am Grabe eines Dichters [toc]
-    - text: Am „alten abgelegten“ Claviere [toc]
-    - text: An den Wassern der Haide [toc]
-    - text: Auch ein „Lied von braven Männern“ [toc]
+    - text: Ein Stillleben in der Havel [toc]
+    - text: Der Wundermann auf der G-Saite [toc]
+    - text: Der Landwehr blutigster Tag vor Metz [toc]
+    - text: Im Palmengarten eines Depossedirten [toc]
+    - text: Für einen deutschen Geisteskämpfer [toc]
+    - text: Die barmherzige Schwester [toc]
+    - text: Französische Wissenschaft [toc]
+    - text: Instinct oder Ueberlegung? (`Instinct oder Ueberlegung? (Die Gartenlaube 1872/1)`) [toc]
+    - text: Heinrich Kruse (`Heinrich Kruse (Die Gartenlaube 1872/1)`) [toc]
     - … 427 more
 1. `Über die Entstehungszeit des Sachsenspiegels und die Ableitung des Schwabenspiegels aus dem Deutschenspiegel`: single, single, 1 parts, 0 missing, order –, validated
     - text: Über die Entstehungszeit des Sachsenspiegels und die Ableitung des Schwabenspiegels aus dem Deutschenspiegel
-1. `Die Gartenlaube (1862)`: mixed, collection, 318 parts, 0 missing, order natural, validated
+1. `Die Gartenlaube (1862)`: mixed, collection, 318 parts, 0 missing, order toc-partial, validated
     - front: Die Gartenlaube (1862)
-    - chapter: 18. October 1861 [toc]
-    - text: Adam Lux’s Tochter [toc]
-    - text: Afrikaner über Eis und Schnee [toc]
-    - text: Amerikanische Zwangsmaßregel [toc]
-    - text: Auch ein Hausmittel, das man aber nicht im Hause haben kann [toc]
-    - text: Auf der Bleichenbrücke [toc]
-    - text: Auf der Schlittschuhbahn [toc]
-    - text: Auf einem Kaiserthron [toc]
-    - text: Aus dem Klosterleben [toc]
-    - text: Aus dem Leben eines trefflichen Fürsten [toc]
-    - text: Aus der Bücher- und Bilderbude des Weihnachtsmarkts [toc]
+    - text: Thränen der Rose [toc]
+    - text: Der Letzte seines Stammes [toc]
+    - text: Meister Philipp [toc]
+    - text: Kleine amerikanische Sittenbilder. 2. Ein amerikanischer Wahltag (`Ein amerikanischer Wahltag`) [toc]
+    - text: Aus der Fremde. Die letzten Menschenfresser (`Die letzten Menschenfresser`) [toc]
+    - text: Reisen und Reisende in der Schweiz [toc]
+    - text: Ludwig Köhler [toc]
+    - text: Ein buchhändlerisches Flottengeschäftchen [toc]
+    - text: Ein Nichtamnestirter [toc]
+    - text: Das danisirte Irrenhaus [toc]
+    - text: Persische Schauspiele [toc]
     - … 307 more
-1. `Die Gartenlaube (1884)`: mixed, collection, 425 parts, 1 missing, order natural, proofread
+1. `Die Gartenlaube (1884)`: mixed, collection, 425 parts, 1 missing, order toc-partial, proofread
     - front: Die Gartenlaube (1884)
-    - text: Adolf Neumann (`Adolf Neumann (Gartenlaube 1884/49)`) [toc]
-    - text: Aerzte und Publicum [toc]
-    - text: Alarm im Dorfe [toc]
-    - text: Alexander Jung. † (`Alexander Jung †`) [toc]
-    - text: Alfred Brehm † [toc]
-    - text: Alfred Meißner’s Lebenswerk [toc]
-    - text: Allgemeiner deutscher Schulverein [toc]
-    - text: Als Jakob I [toc]
-    - text: Altdeutsches Tanzlied [toc]
-    - text: Am Abgrund (`Am Abgrund (W. Heimburg)`) [toc]
-    - text: Am Grabe Heinrich Laube’s [toc]
+    - text: Neujahres-Gruß [toc]
+    - text: Ein armes Mädchen [toc]
+    - text: Die Scrophulose, eine sociale Krankheit [toc]
+    - text: Ditta’s Zopf Eine Dorfgeschichte aus den Abruzzen (`Ditta’s Zopf`) [toc]
+    - text: Die irrende Justiz und ihre Sühne (`Die irrende Justiz und ihre Sühne (Die Gartenlaube 1884/1)`) [toc]
+    - text: Armin’s Triumphzug [toc]
+    - text: Die heiligen drei Könige mit ihrem Stern [toc]
+    - text: Die Sitze in den Eisenbahnwagen [toc]
+    - text: Einfache Ermittelung des Kohlensäuregehalts der Zimmerluft [toc]
+    - text: Wiederum eine neue Kaffeemaschine [toc]
+    - text: Luftdichter Fensterverschluß [toc]
     - … 414 more
 1. `Das Lahntal von seinem Ursprung bis zur Ausmündung`: single, single, 1 parts, 0 missing, order –, validated
     - text: Das Lahntal von seinem Ursprung bis zur Ausmündung
@@ -1223,19 +1241,19 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
     - text: Das Markgräflerland
 1. `Künstler, Kunst, Kunstgeschichte`: single, single, 1 parts, 0 missing, order –, proofread
     - text: Künstler, Kunst, Kunstgeschichte
-1. `Die Gartenlaube (1886)`: mixed, collection, 475 parts, 5 missing, order natural, proofread
+1. `Die Gartenlaube (1886)`: mixed, collection, 475 parts, 5 missing, order toc-partial, proofread
     - front: Die Gartenlaube (1886)
-    - text: Abnutzung des Eisenbahnrads [toc]
-    - text: Adolf Menzel’s Illustrationen zu den Werken Friedrich’s des Großen [toc]
-    - text: Alexander von Humboldt und die bildende Kunst [toc]
-    - text: Allerlei Nahrung. I. [toc]
-    - text: Allerlei Nahrung. II. Die Auster [toc]
-    - text: Allerlei von den Königsbauten im bayrischen Hochlande [toc]
-    - text: Allotriophagie [toc]
-    - text: Am Pfingstmorgen [toc]
-    - text: Am Sedantage [toc]
-    - text: Amerikanische Dynamitkreuzer [toc]
-    - text: An der Heimathstätte des „Trompeters von Säckingen“ (`An der Heimathstätte des Trompeters von Säckingen`) [toc]
+    - text: Zum neuen Jahr (`Zum neuen Jahr (Hermann Lingg)`) [toc]
+    - text: Was will das werden? [toc]
+    - text: Die Andere [toc]
+    - text: Dem Kaiser und König Wilhelm I. [toc]
+    - text: Ueber unbewußtes Zählen [toc]
+    - text: Berliner Winter [toc]
+    - text: Murillo’s Betteljungen [toc]
+    - text: Plauderei [toc]
+    - text: Eine Papierstatistik der „Gartenlaube“ [toc]
+    - text: Auf dem Anschuß (`Auf dem Anschuß (Die Gartenlaube 1886/2)`) [toc]
+    - text: Die Nadeln [toc]
     - … 464 more
 1. `Nord und Süd`: linked, collection, 2 parts, 1 missing, order toc, validated
     - front: Nord und Süd
@@ -1257,19 +1275,19 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
     - … 26 more
 1. `Kleiner Briefkasten (Die Gartenlaube 1881)`: single, single, 1 parts, 0 missing, order –, validated
     - text: Kleiner Briefkasten (Die Gartenlaube 1881)
-1. `Die Gartenlaube (1885)`: mixed, collection, 467 parts, 5 missing, order natural, proofread
+1. `Die Gartenlaube (1885)`: mixed, collection, 467 parts, 5 missing, order toc-partial, proofread
     - front: Die Gartenlaube (1885)
-    - text: Abnutzung der Goldmünzen [toc]
-    - text: Adolf Menzel [toc]
-    - text: Aepfelwein [toc]
-    - text: Alfred Meißner † [toc]
-    - text: Allegorien und Embleme (`Allegorien und Embleme (Die Gartenlaube 1885)`) [toc]
-    - text: Allerlei Kurzweil (`Allerlei Kurzweil (Die Gartenlaube 1885/2)`) [toc]
-    - text: Am Kellersee bei Eutin [toc]
-    - text: Am Waldessaum [toc]
-    - text: An das deutsche Volk (`An das deutsche Volk (1885)`) [toc]
-    - text: An der Quelle (`An der Quelle (Die Gartenlaube 1885/37)`) [toc]
-    - text: An die Mildthätigkeit und Großmuth der Glücklichen [toc]
+    - text: Zum neuen Jahr 1885 [toc]
+    - text: Die Frau mit den Karfunkelsteinen [toc]
+    - text: Karsten Lehr [toc]
+    - text: Die Nihilisten. I. Alexander der Zweite und die Reform (`Die Nihilisten`) [toc]
+    - text: Elfenbein und Palmöl [toc]
+    - text: Zum 100jährigen Geburtstag Jakob Grimm’s [toc]
+    - text: Eine originelle Notenzeichnung [toc]
+    - text: Der Urlauber [toc]
+    - text: Das neue Leipziger Gewandhaus [toc]
+    - text: Desdemona (`Desdemona (Die Gartenlaube 1885/1)`) [toc]
+    - text: Das Zippelhaus in Hamburg [toc]
     - … 456 more
 
 ### G: reference works (0)
@@ -1277,11 +1295,11 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
 
 ### H: deep nesting (9)
 
-1. `Journal von und für Franken`: linked, collection, 398 parts, 0 missing, order natural, proofread
+1. `Journal von und für Franken`: linked, collection, 398 parts, 0 missing, order toc-partial, proofread
     - front: Journal von und für Franken
+    - chapter: Vorrede (`Vorrede (Journal von und für Franken)`) [container]
     - text: Abermahls ein medicinischer Charlatan in Franken [container]
     - text: Actenstücke die Aufnahme der Französischen Emigranten in Franken betreffend [container]
-    - text: Actenstücke in Sachen der Stadt Schlitz wider den Grafen zu Schlitz gen[annt] Görz und dessen Rath Bingel (`Actenstücke in Sachen der Stadt Schlitz wider den Grafen zu Schlitz gen. Görz und dessen Rath Bingel`) [container]
     - volume: An die Herausgeber des Journals von und für Franken [container]
       - text: Erklärung auf die Aufforderung des Herrn Professor Feders in Wirzburg [container]
       - text: Mein Nachtrag zu der vorläufigen Antwort der Herausgeber des Journals v. und für Franken auf die versuchte Apologie des Herrn P. Cajetan a S. Andrea. d. Z. Priorn [container]
@@ -1324,6 +1342,13 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
     - volume: II. Künstlerwiedergaben nach dem Meister (`Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes - Fortsetzung 1`) [toc]
       - volume: Fortsetzung siehe: Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes - Fortsetzung 2 (`Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes - Fortsetzung 2`) [toc]
         - text: Fortsetzung siehe: Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes - Fortsetzung 3 (`Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes - Fortsetzung 3`) [toc]
+1. `Suomalais-ugrilaisen Seuran Toimituksia `: virtual, collection, 6 parts, 0 missing, order single, validated
+    - volume:  Mémoires de la Société Finno-ougrienne (`Suomalais-ugrilaisen Seuran Toimituksia / Mémoires de la Société Finno-ougrienne`)
+      - volume: Vergleichende Märchenforschungen [container]
+        - text: Das märchen vom zauberring (`Vergleichende Märchenforschungen/Das Märchen vom Zauberring`) [container]
+        - text: Die drei zaubergegenstände und die wunderbaren früchte (`Vergleichende Märchenforschungen/Die drei Zaubergegenstände und die wunderbaren Früchte`) [container]
+        - text: Das märchen vom zaubervogel (`Vergleichende Märchenforschungen/Das Märchen vom Zaubervogel`) [container]
+      - text: Beiträge zur frage nach dem verhältnis zwischen den morgen- und abendländischen märchen (`Beiträge zur Frage nach dem Verhältnis zwischen den morgen- und abendländischen Märchen`) [container]
 1. `Suomalais-Ugrilaisen Seuran Aikakauskirja `: virtual, collection, 9 parts, 0 missing, order single, validated
     - volume: Suomalais-Ugrilaisen Seuran Aikakauskirja / Journal de la Société Finno-Ougrienne
       - volume: Bär (Wolf) und Fuchs [container]
@@ -1334,13 +1359,6 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
         - text: „ (`Bär (Wolf) und Fuchs/Nachtrag II`) [container]
         - text: Bücherverzeichnis (`Bär (Wolf) und Fuchs/Bücherverzeichnis`) [container]
         - text: Bedeutung der Buchstabenzeichen (`Bär (Wolf) und Fuchs/Bedeutung der Buchstabenzeichen`) [container]
-1. `Suomalais-ugrilaisen Seuran Toimituksia `: virtual, collection, 6 parts, 0 missing, order single, validated
-    - volume:  Mémoires de la Société Finno-ougrienne (`Suomalais-ugrilaisen Seuran Toimituksia / Mémoires de la Société Finno-ougrienne`)
-      - volume: Vergleichende Märchenforschungen [container]
-        - text: Das märchen vom zauberring (`Vergleichende Märchenforschungen/Das Märchen vom Zauberring`) [container]
-        - text: Die drei zaubergegenstände und die wunderbaren früchte (`Vergleichende Märchenforschungen/Die drei Zaubergegenstände und die wunderbaren Früchte`) [container]
-        - text: Das märchen vom zaubervogel (`Vergleichende Märchenforschungen/Das Märchen vom Zaubervogel`) [container]
-      - text: Beiträge zur frage nach dem verhältnis zwischen den morgen- und abendländischen märchen (`Beiträge zur Frage nach dem Verhältnis zwischen den morgen- und abendländischen Märchen`) [container]
 1. `Album der Rittergüter und Schlösser im Königreiche Sachsen`: linked, collection, 775 parts, 13 missing, order natural, proofread
     - front: Album der Rittergüter und Schlösser im Königreiche Sachsen
     - volume: Leipziger Kreis. (`Album der Rittergüter und Schlösser im Königreiche Sachsen I. Section`) [container]
@@ -1360,10 +1378,10 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
     - text: Inhaltsübersicht (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/Inhaltsübersicht`) [container]
     - volume: Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation`) [container]
       - text: Schule und Gelehrsamkeit (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/5. Schule und Gelehrsamkeit`) [container]
+      - text: Lebensformen und Gesinnung (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/7. Lebensformen und Gesinnung`) [container]
       - volume: 6. Die Kirche (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/6. Die Kirche`) [hierarchy]
         - chapter: Erster Teil (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/6. Die Kirche/1`) [container]
         - chapter: Zweiter Teil (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/6. Die Kirche/2`) [container]
-      - text: Lebensformen und Gesinnung (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/7. Lebensformen und Gesinnung`) [container]
     - text: Anmerkungen und Belege (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/Anmerkungen und Belege`) [container]
 1. `Der Todesgang des armenischen Volkes`: subpages, book, 38 parts, 0 missing, order scan, validated
     - front: Der Todesgang des armenischen Volkes
@@ -1469,33 +1487,33 @@ Rows count multi-part works only, one row per part plus the root row. 24,855 sin
     - text: Ode an die Freude
 1. `Der Fuchs und die Gänse (1812)`: single, single, 1 parts, 0 missing, order –, validated
     - text: Der Fuchs und die Gänse (1812)
-1. `103 Gedichte`: linked, collection, 89 parts, 0 missing, order natural, validated
+1. `103 Gedichte`: linked, collection, 89 parts, 0 missing, order toc-partial, validated
     - front: 103 Gedichte
-    - text: Abschied von Renée [container]
-    - text: Am Sachsenplatz: Die Nachtigall [container]
+    - text: Überall [container]
+    - text: Schiffer-Sentiment [container]
+    - text: Vorm Brunnen in Wimpfen (`Vorm Brunnen in Wimpfen (103 Gedichte)`) [container]
     - text: An der Alten Elster [container]
-    - text: An Land [container]
-    - text: An M. [container]
-    - text: An meinen Kaktus [container]
-    - text: An meinen Zigarettenrauch [container]
-    - text: Aneinander vorbei [container]
-    - text: Arm Kräutchen [container]
-    - text: Aus Breslau [container]
-    - text: Aus dem Tagebuch eines Bettlers [container]
+    - text: Wer hört ein Stäubchen lachen? [container]
+    - text: Morgenwonne [container]
+    - text: Humpelnde Welt [container]
+    - text: Fand meinen einen Handschuh wieder [container]
+    - text: Einer meiner Bürsten [container]
+    - text: Meine Schuhsohlen [container]
+    - text: Die Litfaßsäulen [container]
     - … 78 more
-1. `Wünschelruthe`: linked, collection, 186 parts, 0 missing, order natural, validated
+1. `Wünschelruthe`: linked, collection, 186 parts, 0 missing, order toc-partial, validated
     - front: Wünschelruthe
-    - text: Aberglaube (`Aberglaube (Wünschelruthe)`) [container]
-    - text: Als er fürchtete daß sie gestorben wäre [container]
-    - text: Altdeutsche Kunst [container]
-    - text: Alte Räthsel [container]
-    - text: An den Bergkönig [container]
-    - text: An J. D., bei Ueberschickung einer Flasche mit wohlriechendem Wasser [container]
-    - text: Anekdote (`Anekdote (Wünschelruthe)`) [container]
-    - text: Anfang des dramatischen Märchens Fortunatus und seine Söhne [container]
-    - text: Anzeige (`Anzeige (Wünschelruthe Nro. 19)`) [container]
-    - text: Arabische Erzählung [container]
-    - text: Arabische Erzählungen [container]
+    - text: Wünschelruthe (`Wünschelruthe (Gedicht)`) [container]
+    - text: Erzählung [container]
+    - text: Lindaraja’s Gefangenschaft und Befreiung [container]
+    - text: Tanzreim [container]
+    - text: Volkslieder (`Volkslieder (Wünschelruthe)`) [container]
+    - text: Geschichten und Schnurren [container]
+    - text: Spruch von der Bibel [container]
+    - text: Lied (`Lied (Wünschelruthe Nro. 3)`) [container]
+    - text: Aus Shakespears Much ado about nothing [container]
+    - text: Klagen und Tröstung [container]
+    - text: Triolett [container]
     - … 175 more
 1. `Morgenblatt (Cotta)`: linked, collection, 5 parts, 0 missing, order toc, validated
     - front: Morgenblatt (Cotta)

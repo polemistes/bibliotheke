@@ -602,6 +602,18 @@ class Resolver:
             n.children = sorted(kids, key=lambda k: (self.nodes[k].scan_from, natural_key(k)))
             n.order_source = "scan"
             return
+        # Implementation choice: when no source covers all children but the
+        # TOC lists at least half of them, the listed ones keep the TOC order
+        # and the rest follow in natural order (WS§2 rule 3: reading order,
+        # not alphabetical; de Gartenlaube volumes, Heine's Gedichte).
+        if n.toc:
+            pos = {t: i for i, t in enumerate(n.toc)}
+            listed = [k for k in kids if k in pos]
+            if len(listed) * 2 >= len(kids):
+                rest = sorted((k for k in kids if k not in pos), key=natural_key)
+                n.children = sorted(listed, key=pos.__getitem__) + rest
+                n.order_source = "toc-partial"
+                return
         n.children, n.order_source = sorted(kids, key=natural_key), "natural"
 
     # ---- step 1d-1h ----------------------------------------------------

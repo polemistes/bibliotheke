@@ -81,10 +81,11 @@ Tree depth of multi-part works (levels below the root): 1: 16,981, 2: 1,193, 3: 
 |---|---|
 | chain | 13,512 |
 | toc | 2,975 |
-| natural | 2,149 |
+| natural | 1,738 |
 | scan | 1,178 |
+| toc-partial | 411 |
 
-1,127 of the `natural` nodes have a TOC that lists only some of their children (the TOC order did not cover all children).
+`toc-partial` (implementation choice, see section 13): the TOC lists at least half of the children, which keep its order; the rest follow in natural order. 716 `natural` nodes have a TOC that lists fewer than half.
 
 Root pages attached by their header's container link: 279; most frequent containers: `Notebook` 175; `Constitution of the Republic of China (1947)` 7; `Brazilian tales` 6; `Hague Conventions of 1899 and 1907` 5; `Constitution of the People's Republic of China (1982)` 5; `Sonnets attempted in the manner of Contemporary Writers` 3; `Itar-Tass Russian News Agency v. Russian Kurier, Inc.` 3; `Labour: The Divine Command` 3; `Public Law 110-343` 3; `Judicial Improvements Act of 1990` 3.
 
@@ -107,7 +108,7 @@ Root-page works that sit on a prev/next chain but stay separate works (no contai
 
 ## 7. Orphan trees, oversized pages, red links
 
-**Orphan trees** (virtual roots): 824, holding 3,363 parts. Examples: `Our World` (1); `A New General Biographical Dictionary` (1); `Commonweal` (1); `India—what can it teach us?` (2); `Prairie Flowers` (1); `An Elementary Middle English Grammar` (1); `Ecclesiastical history (Socrates Scholasticus)` (6); `United Nations General Assembly Resolution 58` (1).
+**Orphan trees** (virtual roots): 824, holding 3,363 parts. Examples: `Council Regulation (EU) No 833` (1); `Der Freischütz (The Free-Shooter); A Lyric Folk-Drama` (1); `COUNCIL DECISION (CFSP) 2022` (17); `The Albatross Book of Living Verse` (1); `Jornal Brasileiro de Psiquiatria` (1); `The Bayonne Herald` (1); `Poems (Gage)` (1); `Scarsdale Inquirer` (2).
 
 **Oversized pages** (> 300,000 bytes of wikitext including transcluded scan pages): 839. Largest: `Septuagint (Brenton 1879)/Psalms` 1.9 MB; `Matthew Henry's Commentary on the Whole Bible/Volume 4/Jeremiah` 1.8 MB; `Dictionary of Spoken Russian/English-Russian` 1.8 MB; `The Grammar of English Grammars/Part III` 1.8 MB; `Matthew Henry's Commentary on the Whole Bible/Volume 3/Psalms` 1.8 MB; `Copyright Law Revision (House Report No. 94-1476)/Annotated` 1.7 MB; `Septuagint (Brenton 1879)/Jeremias` 1.7 MB; `Virginia Resolutions of 1798/Delaware` 1.7 MB; `Septuagint (Brenton 1879)/Genesis` 1.6 MB; `Septuagint (Brenton 1879)/Jezekiel` 1.6 MB.
 
@@ -185,15 +186,15 @@ Size: median 6,103 bytes, p10 1,356, p90 69,277; multi-part 7,630.
 | parts_cap | works with catalog parts | parts rows | parts table, gzipped | parts_fts, gzipped |
 |---|---|---|---|---|
 | 500 | 18,234 | 291,200 | 16.81 MB | 2.59 MB |
-| 2,000 | 18,283 | 341,624 | 19.47 MB | 3.17 MB |
-| ∞ (all, reference works included) | 18,323 | 589,140 | 30.23 MB | 5.45 MB |
-| 2,000, compact encoding | 18,283 | 341,624 | 16.89 MB | 3.17 MB |
+| 2,000 | 18,283 | 341,624 | 19.46 MB | 3.18 MB |
+| ∞ (all, reference works included) | 18,323 | 589,140 | 30.24 MB | 5.45 MB |
+| 2,000, compact encoding | 18,283 | 341,624 | 16.90 MB | 3.18 MB |
 
 Rows count multi-part works only, one row per part plus the root row. 37,141 single-page works would add one row each if stored. Sizes are a SQLite file holding only the table (with its index) at gzip level 9. The compact encoding (not in WS§5.1, measured for the cap decision) stores a part's page_title as the suffix after the work root's title where possible, display_title only when it differs from the last title segment, and no per-part quality_pages.
 
 ## 11. Named cases (PLAN.md WP1 acceptance, WS§9)
 
-- `The Complete Poetical Works of Percy Bysshe Shelley (ed. Hutchinson, 1914)`: work, subpages, type book, 253 parts (231 texts), 73 missing, order natural, oversized False, quality proofread (page-levels), complete False (template).
+- `The Complete Poetical Works of Percy Bysshe Shelley (ed. Hutchinson, 1914)`: work, subpages, type book, 253 parts (231 texts), 73 missing, order toc-partial, oversized False, quality proofread (page-levels), complete False (template).
 - `Ozymandias`: excluded (disambiguation); search finds 4 text(s) with this title: `Weird Tales/Volume 8/Issue 3/Ozymandias` in `Weird Tales`; `The Hundred Best Poems (lyrical) in the English language - second series/Ozymandias` in `The Hundred Best Poems (lyrical) in the English language - second series`; `The Complete Poetical Works of Percy Bysshe Shelley (ed. Hutchinson, 1914)/Ozymandias` in `The Complete Poetical Works of Percy Bysshe Shelley (ed. Hutchinson, 1914)`; `The Examiner (London)/Ozymandias` in `The Examiner (London)`.
 - `Ozymandias (Shelley)`: excluded (versions).
 - `Frankenstein, or the Modern Prometheus (Revised Edition, 1831)`: work, subpages, type book, 31 parts (1 texts), 0 missing, order toc, oversized False, quality validated (page-levels), complete True.
@@ -206,6 +207,13 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
 - Display titles come from `current`/`section`/`TITEL`, else the link text in the parent's TOC, else the last title segment. A work's first part row is its root (`front` above 400 characters of own text, else `toc`); `part_count` excludes it.
 - Missing parts are red links in the TOCs of the work's root and volumes: subpages of the root always, other titles only in linked or mixed works and on TOC-like pages.
 - Junk rules (cleanup or deletion template, placeholder, under 300 bytes) apply to works without scan pages and without any quality signal.
+- Order (step 1c): when no source covers all children but the TOC lists at least half, the listed children keep the TOC order and the rest follow in natural order (`toc-partial`), so that collections are not shown alphabetically (WS§2 rule 3).
+- Rule 3: a TOC page is marked as one (de `HERKUNFT = off`) or is its Index's own book; "reached from it by the prev/next chain" is read as: the member's chain starts at the TOC page or its prev or next page is listed on the same TOC page.
+- A container with several links (de `HERKUNFT`) resolves to the first link that shares the page's Index, else the first link (the KHM tales link the editions overview first).
+- Volume placement: a part attached by its container is placed under the one TOC page (under 2,000 bytes of own text, listing at least three members) of the same work that lists it, unless the container's members already form one prev/next chain.
+- A slash inside unclosed parentheses is part of the name (de `X (Die Gartenlaube 1871/17)`), not a subpage separator.
+- Exclusions: a page with scan transclusion is never a disambiguation page (fr dictionary roots carry the prop); subpages inherit only portal and author-page exclusions; on de, portal pages are marked by `Themendaten`, `Ortsdaten`, `Listendaten` (and the categories Thema, Orte, Listen when the page has no header), and a root page without header template, scans or status is a portal (`no-header`) unless other pages name it as their container.
+- A bare `<pages index=X/>` renders the Index's TOC field, not the book.
 
 ## 12. Random samples for eyeballing (30 per pattern)
 
@@ -452,19 +460,19 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - chapter: Part I, Chapter II. Further Principles in End-Game Play 9. A Cardinal Principle (`Chess Fundamentals/Part I/9`) [container]
     - chapter: Part I, Chapter II. 10. A Classical Ending (`Chess Fundamentals/Part I/10`) [container]
     - … 37 more
-1. `Shakespeare - First Folio facsimile (1910)`: mixed, book, 669 parts, 0 missing, order natural, proofread
+1. `Shakespeare - First Folio facsimile (1910)`: mixed, book, 669 parts, 0 missing, order toc-partial, proofread
     - front: Shakespeare - First Folio facsimile (1910)
-    - volume: First Folio Faithfully Reproduced [container]
-      - text: To the Reader (`Shakespeare - First Folio facsimile (1910)/To the Reader`) [container]
-      - text: To the Most Noble and Incomparable Paire of Brethren (`Shakespeare - First Folio facsimile (1910)/To the Most Noble and Incomparable Paire of Brethren`) [container]
-      - text: To the great Variety of Readers (`Shakespeare - First Folio facsimile (1910)/To the Great Variety of Readers`) [container]
-      - text: To the memory of my beloued, the Avthor Mr. William Shakespeare: And what he hath left vs (`Shakespeare - First Folio facsimile (1910)/To the Memory of My Beloved, the Author Mr. William Shakespeare: And What He Hath Left Us`) [container]
-      - text: Vpon the Lines and Life of the Famous Scenicke Poet, Master William Shakespeare (`Shakespeare - First Folio facsimile (1910)/Upon the Lines and Life of the Famous Scenicke Poet, Master William Shakespeare`) [container]
-      - text: To the Memorie of the deceased Authour Maister W. Shakespeare (`Shakespeare - First Folio facsimile (1910)/To the Memorie of the deceased Authour Maister W. Shakespeare`) [container]
-      - text: To the memorie of M. W. Shake-speare (`Shakespeare - First Folio facsimile (1910)/To the memorie of M. W. Shake-speare`) [container]
-      - text: The Names of the Principall Actors in all these Playes (`Shakespeare - First Folio facsimile (1910)/The Names of the Principall Actors in all these Playes`) [container]
-      - volume: The Tempest (`Shakespeare - First Folio facsimile (1910)/The Tempest`) [container]
-        - chapter: Act I: Scene I (`Shakespeare - First Folio facsimile (1910)/The Tempest/Act 1 Scene 1`) [container]
+    - volume: The Life and Death of King John (`Shakespeare - First Folio facsimile (1910)/The Life and Death of King John`) [hierarchy]
+      - chapter: Act 1 Scene 1 (`Shakespeare - First Folio facsimile (1910)/The Life and Death of King John/Act 1 Scene 1`) [container]
+      - chapter: Act I. Scene II. (`Shakespeare - First Folio facsimile (1910)/The Life and Death of King John/Act 1 Scene 2`) [container]
+      - chapter: Act II. (`Shakespeare - First Folio facsimile (1910)/The Life and Death of King John/Act 2 Scene 1`) [container]
+      - chapter: Act III. Scene I. (`Shakespeare - First Folio facsimile (1910)/The Life and Death of King John/Act 3 Scene 1`) [container]
+      - chapter: Act III. Scene II. (`Shakespeare - First Folio facsimile (1910)/The Life and Death of King John/Act 3 Scene 2`) [container]
+      - chapter: Act III. Scene III. (`Shakespeare - First Folio facsimile (1910)/The Life and Death of King John/Act 3 Scene 3`) [container]
+      - chapter: Act IV. Scene I. (`Shakespeare - First Folio facsimile (1910)/The Life and Death of King John/Act 4 Scene 1`) [container]
+      - chapter: Act IV. Scene II. (`Shakespeare - First Folio facsimile (1910)/The Life and Death of King John/Act 4 Scene 2`) [container]
+      - chapter: Act IV. Scene III. (`Shakespeare - First Folio facsimile (1910)/The Life and Death of King John/Act 4 Scene 3`) [container]
+      - chapter: Act V. Scene I. (`Shakespeare - First Folio facsimile (1910)/The Life and Death of King John/Act 5 Scene 1`) [container]
     - … 658 more
 1. `Statutes of Canada`: mixed, book, 28 parts, 243 missing, order single, proofread
     - front: Statutes of Canada
@@ -480,19 +488,19 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
         - chapter: Title Page (`Statutes of Canada/1867-68/Volume 2/Statutes`) [container]
         - text: Table of Contents (`Statutes of Canada/1867-68/Volume 2/Table of Contents`) [container]
     - … 17 more
-1. `The Overland Monthly`: mixed, collection, 78 parts, 22 missing, order natural, unproofread
+1. `The Overland Monthly`: mixed, collection, 78 parts, 22 missing, order toc-partial, unproofread
     - front: The Overland Monthly
-    - chapter: Volume 1 (`The Californian/Volume 1`) [container]
-    - text: In the Lava Beds (`The Californian/Volume 1/In the Lava Beds`) [container]
-    - chapter: Issue 1 (`The Californian/Volume 1/Issue 1`) [container]
-    - chapter: Issue 2 (`The Californian/Volume 1/Issue 2`) [container]
-    - text: The Dramatic in My Destiny (`The Californian/Volume 1/The Dramatic in My Destiny`) [container]
-    - text: Why They Lynched Him (`The Californian/Volume 1/Why They Lynched Him`) [container]
-    - chapter: Volume 2 (`The Californian/Volume 2`) [container]
-    - text: Did Dr. Whitman Save Oregon? (`The Californian/Volume 2/Did Dr. Whitman Save Oregon?`) [container]
-    - text: How Dr. Whitman Saved Oregon (`The Californian/Volume 2/How Dr. Whitman Saved Oregon`) [container]
-    - chapter: Volume 3 (`The Californian/Volume 3`) [container]
-    - chapter: Volume 4 (`The Californian/Volume 4`) [container]
+    - volume: Volume 1 (`The Overland Monthly/Volume 1`) [container]
+      - volume: Issue 1 (`The Overland Monthly/Volume 1/Issue 1`) [container]
+        - text: A Breeze from the Woods (`The Overland Monthly/Volume 1/A Breeze from the Woods`) [container]
+        - text: Longing (`The Overland Monthly/Volume 1/Longing`) [container]
+        - text: By Rail through France (`The Overland Monthly/Volume 1/By Rail through France`) [container]
+        - text: Art Beginnings on the Pacific (`The Overland Monthly/Volume 1/Art Beginnings on the Pacific`) [container]
+        - text: Portland-On-Wallamet (`The Overland Monthly/Volume 1/Issue 1/Portland-On-Wallamet`) [container]
+        - text: In the Sierras (`The Overland Monthly/Volume 1/In the Sierras`) [container]
+        - text: The Diamond Maker of Sacramento (`The Overland Monthly/Volume 1/The Diamond Maker of Sacramento`) [container]
+        - text: Family Resemblances and Differences (`The Overland Monthly/Volume 1/Family Resemblances and Differences`) [container]
+        - text: San Francisco (`The Overland Monthly/Volume 1/San Francisco`) [container]
     - … 67 more
 1. `Against Verres`: mixed, collection, 7 parts, 0 missing, order chain, unknown
     - front: Against Verres
@@ -531,9 +539,9 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
       - chapter: Part VIII (`The Saturday Evening Post/A Damsel in Distress/Part 8`) [container]
     - text: A Friend of Napoleon (`The Saturday Evening Post/A Friend of Napoleon`) [hierarchy]
     - … 88 more
-1. `Barnaby Rudge`: mixed, book, 84 parts, 0 missing, order natural, validated
+1. `Barnaby Rudge`: mixed, book, 84 parts, 0 missing, order toc-partial, validated
     - toc: Barnaby Rudge
-    - chapter: Preface (`Barnaby Rudge First Edition/Preface`) [container]
+    - chapter: Preface (`Barnaby Rudge/Preface`) [container]
     - chapter: Chapter 1 (`Barnaby Rudge/Chapter 1`) [container]
     - chapter: Chapter 2 (`Barnaby Rudge/Chapter 2`) [container]
     - chapter: Chapter 3 (`Barnaby Rudge/Chapter 3`) [container]
@@ -642,7 +650,7 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - text: A Nose for the King (`When God Laughs & Other Stories/A Nose for the King`) [container]
     - text: The "Francis Spaight" (`When God Laughs & Other Stories/The "Francis Spaight"`) [container]
     - … 2 more
-1. `Chicago Tribune`: mixed, collection, 69 parts, 11 missing, order natural, proofread
+1. `Chicago Tribune`: mixed, collection, 69 parts, 11 missing, order toc-partial, proofread
     - front: Chicago Tribune
     - volume: October 20, 1859 (`Chicago Tribune/1859/10/20`) [container]
       - text: Where the responsibility belongs (`Chicago Tribune/1859/10/20/Where the responsibility belongs`) [container]
@@ -735,13 +743,13 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - text: Edith Bellenden (`The Female Portrait Gallery/Edith Bellenden`) [container]
     - text: Jenny Dennison (`The Female Portrait Gallery/Jenny Dennison`) [container]
     - … 12 more
-1. `Who's Who`: mixed, collection, 5 parts, 0 missing, order natural, unknown
+1. `Who's Who`: mixed, collection, 5 parts, 0 missing, order toc-partial, unknown
     - front: Who's Who
-    - text: Who Was Who (1897 to 1916) [container]
     - text: Who's Who in 1858 (`Who's Who/1858`) [hierarchy]
     - text: Who's Who, 1909 (`Who's Who/1909`) [hierarchy]
     - text: Who's Who, 1912 (`Who's Who/1912`) [hierarchy]
     - text: Who's Who, 1916 (`Who's Who/1916`) [hierarchy]
+    - text: Who Was Who (1897 to 1916) [container]
 1. `Felicia Hemans in The Monthly Magazine Volume 1 1826`: mixed, book, 5 parts, 0 missing, order scan, validated
     - toc: Felicia Hemans in The Monthly Magazine Volume 1 1826
     - text: Tasso and his Sister (`Felicia Hemans in The Monthly Magazine Volume 1 1826/Tasso and his Sister`) [container]
@@ -749,17 +757,17 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - text: The Song of the Curfew (`Felicia Hemans in The Monthly Magazine Volume 1 1826/The Song of the Curfew`) [container]
     - text: The Songs of our Fathers (`Felicia Hemans in The Monthly Magazine Volume 1 1826/The Songs of our Fathers`) [container]
     - text: The Songs of our Fathers (`Poems of Felicia Hemans in The Monthly Magazine Volume 1 1826/The Songs of our Fathers`) [container]
-1. `Herodotus The Persian Wars (Godley)`: mixed, book, 11 parts, 0 missing, order natural, unknown
+1. `Herodotus The Persian Wars (Godley)`: mixed, book, 11 parts, 0 missing, order toc-partial, unknown
     - front: Herodotus The Persian Wars (Godley)
     - chapter: Book I (`Herodotus The Persian Wars (Godley)/Book I`) [hierarchy]
     - chapter: Book II (`Herodotus The Persian Wars (Godley)/Book II`) [hierarchy]
     - chapter: Book III (`Herodotus The Persian Wars (Godley)/Book III`) [hierarchy]
     - chapter: Book IV (`Herodotus The Persian Wars (Godley)/Book IV`) [hierarchy]
-    - chapter: Book IX (`Herodotus The Persian Wars (Godley)/Book IX`) [hierarchy]
     - chapter: Book V (`Herodotus The Persian Wars (Godley)/Book V`) [hierarchy]
     - chapter: Book VI (`Herodotus The Persian Wars (Godley)/Book VI`) [hierarchy]
     - chapter: Book VII (`Herodotus The Persian Wars (Godley)/Book VII`) [hierarchy]
     - chapter: Book VIII (`Herodotus The Persian Wars (Godley)/Book VIII`) [hierarchy]
+    - chapter: Book IX (`Herodotus The Persian Wars (Godley)/Book IX`) [hierarchy]
     - chapter: Book 2: Euterpe (`Histories (Godley translation)/Book 2`) [container]
     - chapter: Book 7: Polymnia (`Histories (Godley translation)/Book 7`) [container]
 1. `The Gift of Black Folk: The Negroes in the Making of America`: mixed, book, 18 parts, 0 missing, order scan, proofread
@@ -793,108 +801,112 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
 
 ### D: virtual roots (824)
 
-1. `The Calcutta Review, 3rd Series`: virtual, periodical-issue, 2 parts, 0 missing, order scan, unproofread, excluded no-text-pages
-    - text: Chittaranjan Political Ideal (`The Calcutta Review, 3rd Series/Volume 16/Chittaranjan Political Ideal`)
-    - text: Evolution of Sanskrit Drama (`The Calcutta Review, 3rd Series/Volume 16/Evolution of Sanskrit Drama`) [hierarchy]
-1. `A Comparative Grammar of the Modern Aryan Languages of India`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: Introduction (`A Comparative Grammar of the Modern Aryan Languages of India/Volume 1/Chapter 1`)
-1. `Over Five Seas and Oceans, From New York to Bangkok, Siam, and Return`: virtual, book, 5 parts, 0 missing, order scan, proofread
-    - chapter: Preface (`Over Five Seas and Oceans, From New York to Bangkok, Siam, and Return/Preface`)
-    - chapter: Chapter 1 (`Over Five Seas and Oceans, From New York to Bangkok, Siam, and Return/Chapter 1`) [hierarchy]
-    - chapter: Chapter 7 (`Over Five Seas and Oceans, From New York to Bangkok, Siam, and Return/Chapter 7`) [hierarchy]
-    - chapter: Chapter 8 (`Over Five Seas and Oceans, From New York to Bangkok, Siam, and Return/Chapter 8`) [hierarchy]
-    - chapter: Chapter 10 (`Over Five Seas and Oceans, From New York to Bangkok, Siam, and Return/Chapter 10`) [hierarchy]
-1. `Beeton's Christmas Annual`: virtual, book, 18 parts, 0 missing, order scan, proofread
-    - chapter: 1887 (`Beeton's Christmas Annual/1887`)
-    - volume: A Study in Scarlet (`Beeton's Christmas Annual/A Study in Scarlet`) [hierarchy]
-      - volume: Part I. (`Beeton's Christmas Annual/A Study in Scarlet/Part 1`) [container]
-        - chapter: Chapter 1 (`Beeton's Christmas Annual/A Study in Scarlet/Part 1/Chapter 1`) [container]
-        - chapter: Chapter 2 (`Beeton's Christmas Annual/A Study in Scarlet/Part 1/Chapter 2`) [container]
-        - chapter: Chapter 3 (`Beeton's Christmas Annual/A Study in Scarlet/Part 1/Chapter 3`) [container]
-        - chapter: Chapter 4 (`Beeton's Christmas Annual/A Study in Scarlet/Part 1/Chapter 4`) [container]
-        - chapter: Chapter 5 (`Beeton's Christmas Annual/A Study in Scarlet/Part 1/Chapter 5`) [container]
-        - chapter: Chapter 6 (`Beeton's Christmas Annual/A Study in Scarlet/Part 1/Chapter 6`) [container]
-        - chapter: Chapter 7 (`Beeton's Christmas Annual/A Study in Scarlet/Part 1/Chapter 7`) [container]
-      - volume: Part II. (`Beeton's Christmas Annual/A Study in Scarlet/Part 2`) [container]
-        - chapter: Chapter 1 (`Beeton's Christmas Annual/A Study in Scarlet/Part 2/Chapter 1`) [container]
-    - … 6 more
-1. `An investigation of the laws of thought`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: Errata (`An investigation of the laws of thought/Errata`)
-1. `Impressions of Theophrastus Such, Essays and Leaves from a note-book`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: Theophrastus Such (`Impressions of Theophrastus Such, Essays and Leaves from a note-book/Theophrastus Such`)
-1. `Popular Astronomy`: virtual, book, 1 parts, 0 missing, order single, unknown
-    - chapter: Volume 30 - General Notes (`Popular Astronomy/Volume 30/General Notes`)
-1. `United Nations General Assembly Resolution 55`: virtual, book, 1 parts, 0 missing, order single, unproofread
-    - chapter: 177 (`United Nations General Assembly Resolution 55/177`)
-1. `COUNCIL DECISION (CFSP) 2017`: virtual, book, 1 parts, 0 missing, order single, unknown
-    - chapter: 445 (`COUNCIL DECISION (CFSP) 2017/445`)
-1. `Note of a Meeting: Fourth Channel`: virtual, document, 1 parts, 0 missing, order single, validated
-    - text: Welsh Language - Broadcasting Bill (`Note of a Meeting: Fourth Channel/Welsh Language - Broadcasting Bill`)
-1. `Rambles and Researches in Thuringian Saxony`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: Letter IX (`Rambles and Researches in Thuringian Saxony/Letters from Thuringia/Letter IX`)
-1. `Indian Medicinal Plants`: virtual, book, 128 parts, 0 missing, order natural, unproofread
-    - text: Natural Order Acanthaceæ (`Indian Medicinal Plants/Natural Order Acanthaceæ`)
-    - text: Natural Order Amarantaceæ (`Indian Medicinal Plants/Natural Order Amarantaceæ`) [hierarchy]
-    - text: Natural Order Amaryllideæ (`Indian Medicinal Plants/Natural Order Amaryllideæ`) [hierarchy]
-    - text: Natural Order Ampelideæ (`Indian Medicinal Plants/Natural Order Ampelideæ`) [hierarchy]
-    - text: Natural Order Anacardiaceæ (`Indian Medicinal Plants/Natural Order Anacardiaceæ`) [hierarchy]
-    - text: Natural Order Anonaceæ (`Indian Medicinal Plants/Natural Order Anonaceæ`) [hierarchy]
-    - text: Natural Order Apocynaceæ (`Indian Medicinal Plants/Natural Order Apocynaceæ`) [hierarchy]
-    - text: Natural Order Araliaceæ (`Indian Medicinal Plants/Natural Order Araliaceæ`) [hierarchy]
-    - text: Natural Order Aritolochiaceæ (`Indian Medicinal Plants/Natural Order Aristolochiaceæ`) [hierarchy]
-    - text: Natural Order Ascelpideæ (`Indian Medicinal Plants/Natural Order Asclepiadeæ`) [hierarchy]
-    - text: Natural Order Berberideæ (`Indian Medicinal Plants/Natural Order Berberideæ`) [hierarchy]
-    - text: Natural Order Bignoniaceæ (`Indian Medicinal Plants/Natural Order Bignoniaceæ`) [hierarchy]
-    - … 116 more
-1. `The Poetical Works of Eliza Cook`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: "No!" (`The Poetical Works of Eliza Cook/"No!"`)
-1. `Hymns and Sacred Poems`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Hymn for Christmas Day (`Hymns and Sacred Poems/Hymn for Christmas Day`)
-1. `Mr. William Shakespeares Comedies, Histories, & Tragedies (West 192)`: virtual, book, 1 parts, 0 missing, order single, unproofread, excluded no-text
-    - text: The Tempest (`Mr. William Shakespeares Comedies, Histories, & Tragedies (West 192)/The Tempest`)
-1. `Hymns for Christian Devotion`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: John Was The Prophet Of The Lord (`Hymns for Christian Devotion/John Was The Prophet Of The Lord`)
-1. `Poetical Works of William Cullen Bryant`: virtual, book, 5 parts, 0 missing, order scan, proofread
-    - text: Thanatopsis (`Poetical Works of William Cullen Bryant/Thanatopsis`)
-    - text: A Walk at Sunset (`Poetical Works of William Cullen Bryant/A Walk at Sunset`) [hierarchy]
-    - text: No Man Knoweth his Sepulchre (`Poetical Works of William Cullen Bryant/No Man Knoweth his Sepulchre`) [hierarchy]
-    - text: The Arctic Lover (`Poetical Works of William Cullen Bryant/The Arctic Lover`) [hierarchy]
-    - text: The Journey of Life (`Poetical Works of William Cullen Bryant/The Journey of Life`) [hierarchy]
-1. `The History of Polk County, Iowa`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Hahnen, J. F. (`The History of Polk County, Iowa/Hahnen, J. F.`)
-1. `The English Illustrated`: virtual, collection, 3 parts, 0 missing, order natural, unknown
-    - text: "The Adventure of Lady Ursula" (`The English Illustrated/"The Adventure of Lady Ursula"`)
-    - text: A Castaway of the South (`The English Illustrated/A Castaway of the South`) [hierarchy]
-    - text: A Conflict of Interests (`The English Illustrated/A Conflict of Interests`) [hierarchy]
-1. `Castro Hlongwane, Caravans, Cats, Geese, Foot & Mouth and Statistics: HIV`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Aids and the Struggle for the Humanisation of the African (`Castro Hlongwane, Caravans, Cats, Geese, Foot & Mouth and Statistics: HIV/Aids and the Struggle for the Humanisation of the African`)
-1. `Kate Field's Washington`: virtual, book, 1 parts, 0 missing, order single, unknown
-    - chapter: Issue 9 (`Kate Field's Washington/Volume XI/Issue 9`)
-1. `Washington Citizen`: virtual, collection, 2 parts, 0 missing, order natural, unknown
-    - text: Max Lindauer (`Washington Citizen/1936/Max Lindauer`)
-    - text: Here on Furlough (`Washington Citizen/1945/Here on Furlough`) [hierarchy]
-1. `Past and Present of Calhoun County, Iowa`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: William Mahon (`Past and Present of Calhoun County, Iowa/William Mahon`)
-1. `The Poems of Ernest Dowson`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: To One in Bedlam (`The Poems of Ernest Dowson/To One in Bedlam`)
-1. `Who's Who in India Supplement 2 (1914)`: virtual, book, 1 parts, 0 missing, order single, unproofread
-    - text: Bam Bahadur Shah (`Who's Who in India Supplement 2 (1914)/Bam Bahadur Shah`)
-1. `Duffy's Irish Catholic Magazine`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Ecclesiastical Architecture (`Duffy's Irish Catholic Magazine/Volume 1/March 1847/Ecclesiastical Architecture`)
-1. `Bradshaw's Railway Timetables`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: Number 3 (`Bradshaw's Railway Timetables/Number 3`)
-1. `Oriental Religions - China`: virtual, book, 2 parts, 0 missing, order chain, unproofread
-    - chapter: III. Language (`Oriental Religions - China/2/3`)
-    - chapter: IV. Literature (`Oriental Religions - China/2/4`) [hierarchy]
-1. `Death of Queen Caroline`: virtual, book, 6 parts, 0 missing, order chain, validated
-    - text: The death of Queen Caroline (`Death of Queen Caroline/The death of Queen Caroline`)
-    - text: Sae merry as we hae been (`Death of Queen Caroline/Sae merry as we hae been`) [hierarchy]
-    - text: Twenty day's courtship (`Death of Queen Caroline/Twenty day's courtship`) [hierarchy]
-    - text: The busy bee (`Death of Queen Caroline/The busy bee`) [hierarchy]
-    - text: The spinning-wheel (`Death of Queen Caroline/The spinning-wheel`) [hierarchy]
-    - text: The joys of harvest (`Death of Queen Caroline/The joys of harvest`) [hierarchy]
-1. `Roscius Anglicanus, or an Historical Review of the Stage`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Heroick Love (`Roscius Anglicanus, or an Historical Review of the Stage/Heroick Love`)
+1. `The German Manual for the Young and for Self-Tuition`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - text: 33: Der Alp / The night-mare (`The German Manual for the Young and for Self-Tuition/Volume 2/Part 2/Section 33`)
+1. `Some Chinese Ghosts`: virtual, book, 2 parts, 0 missing, order chain, proofread
+    - chapter: Notes (`Some Chinese Ghosts/Appendix 1`)
+    - text: Glossary (`Some Chinese Ghosts/Appendix 2`) [hierarchy]
+1. `Miscellaneous Essays Relating to Indian Subjects`: virtual, book, 1 parts, 0 missing, order single, unproofread, excluded no-text-pages
+    - chapter: Volume II (`Miscellaneous Essays Relating to Indian Subjects/Volume II`)
+1. `Evening Herald (Dublin)`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Death of Prof. R. Donovan at age of 72 (`Evening Herald (Dublin)/1934/Death of Prof. R. Donovan at age of 72`)
+1. `Success Magazine`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: King Cophetua of Klondyke (`Success Magazine/King Cophetua of Klondyke`)
+1. `Acts of the Parliament of India`: virtual, book, 1 parts, 0 missing, order single, unproofread
+    - text: Scheduled Castes and the Scheduled Tribes (Prevention of Atrocities) Act, 1989 (`Acts of the Parliament of India/1989/Scheduled Castes and the Scheduled Tribes (Prevention of Atrocities) Act, 1989`)
+1. `Reno Evening Gazette`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Hired Soldiers (`Reno Evening Gazette/1937/Hired Soldiers`)
+1. `Major Prophets of To-day`: virtual, book, 1 parts, 0 missing, order single, unproofread
+    - text: Ernst Haeckel (`Major Prophets of To-day/Ernst Haeckel`)
+1. `Pittsburgh Post`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Icy-Looking Mystery Of Ice Skating (`Pittsburgh Post/1914/Icy-Looking Mystery Of Ice Skating`)
+1. `Curtains (Hall)`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - text: The World's Voice (`Curtains (Hall)/The World's Voice`)
+1. `British and Foreign State Papers`: virtual, book, 1 parts, 0 missing, order single, unproofread, excluded no-text-pages
+    - text: Constitution of the Kingdom of Siam (1949) (`British and Foreign State Papers/Volume 155/Constitution of the Kingdom of Siam`)
+1. `The Criterion`: virtual, periodical-issue, 13 parts, 0 missing, order scan, proofread
+    - text: The Idea of a Literary Review (`The Criterion/Volume 4/Number 1/The Idea of a Literary Review`)
+    - text: Aristotle on Democracy and Socialism (`The Criterion/Volume 4/Number 1/Aristotle on Democracy and Socialism`) [hierarchy]
+    - text: On Being Ill (`The Criterion/Volume 4/Number 1/On Being Ill`) [hierarchy]
+    - text: The River Flows (`The Criterion/Volume 4/Number 1/The River Flows`) [hierarchy]
+    - text: The Monocle (`The Criterion/Volume 4/Number 1/The Monocle`) [hierarchy]
+    - text: The Fifteenth of November (`The Criterion/Volume 4/Number 1/The Fifteenth of November`) [hierarchy]
+    - chapter: II. (`The Criterion/Volume 4/Number 1/The Woman Who Rode Away (Part 2)`) [hierarchy]
+    - text: The Novels of Virginia Woolf (`The Criterion/Volume 4/Number 2/The Novels of Virginia Woolf`) [hierarchy]
+    - text: Our Need for Religious Sincerity (`The Criterion/Volume 4/Number 2/Our Need for Religious Sincerity`) [hierarchy]
+    - text: Poem (`The Criterion/Volume 4/Number 2/Poem`) [hierarchy]
+    - text: Spring Ode (`The Criterion/Volume 4/Number 3/Spring Ode`) [hierarchy]
+    - text: Mornings in Mexico (`The Criterion/Volume 4/Number 3/Mornings in Mexico`) [hierarchy]
+    - … 1 more
+1. `Old Savage`: virtual, book, 6 parts, 0 missing, order scan, proofread
+    - text: Friends of God’s Acre (`Old Savage/Friends of God's Acre`)
+    - text: The Woman (`Old Savage/The Woman`) [hierarchy]
+    - text: Mrs Salgast’s Baby (`Old Savage/Mrs Salgast's Baby`) [hierarchy]
+    - text: “Old Savage” (`Old Savage/"Old Savage"`) [hierarchy]
+    - text: That “Almost” (`Old Savage/That "Almost"`) [hierarchy]
+    - text: Her Big Idea (`Old Savage/Her Big Idea`) [hierarchy]
+1. `Monthly Notices of the Royal Astronomical Society`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Obituary: James Sweetman Eiffe (`Monthly Notices of the Royal Astronomical Society/1881/Obituary: James Sweetman Eiffe`)
+1. `Arquivos de Neuro-Psiquiatria`: virtual, document, 1 parts, 0 missing, order single, proofread
+    - text: Henrique Dumont: how a traumatic brain injury contributed to the development of the airplane (`Arquivos de Neuro-Psiquiatria/Volume 77/Issue 1/Henrique Dumont: how a traumatic brain injury contributed to the development of the airplane`)
+1. `Liberator`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: To Nicolai Lenin (`Liberator/Volume 1/Issue 9/To Nicolai Lenin`)
+1. `Al Qaeda Operative Convicted by Jury in One of the Most Serious Terrorist Plots Against America since 9`: virtual, book, 1 parts, 0 missing, order single, unknown
+    - chapter: 11 (`Al Qaeda Operative Convicted by Jury in One of the Most Serious Terrorist Plots Against America since 9/11`)
+1. `The Burlington Free Press`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Eddie Schneider Lowers 3 Marks (`The Burlington Free Press/1930/Eddie Schneider Lowers 3 Marks`)
+1. `Age of Innocence (Appleton 1920)`: virtual, book, 12 parts, 0 missing, order chain, validated
+    - chapter: Chapter I (`Age of Innocence (Appleton 1920)/Chapter 1`)
+    - chapter: Chapter II (`Age of Innocence (Appleton 1920)/Chapter 2`) [hierarchy]
+    - chapter: Chapter III (`Age of Innocence (Appleton 1920)/Chapter 3`) [hierarchy]
+    - chapter: Chapter IV (`Age of Innocence (Appleton 1920)/Chapter 4`) [hierarchy]
+    - chapter: Chapter V (`Age of Innocence (Appleton 1920)/Chapter 5`) [hierarchy]
+    - chapter: Chapter VI (`Age of Innocence (Appleton 1920)/Chapter 6`) [hierarchy]
+    - chapter: Chapter VII (`Age of Innocence (Appleton 1920)/Chapter 7`) [hierarchy]
+    - chapter: Chapter VIII (`Age of Innocence (Appleton 1920)/Chapter 8`) [hierarchy]
+    - chapter: Chapter IX (`Age of Innocence (Appleton 1920)/Chapter 9`) [hierarchy]
+    - chapter: Chapter X (`Age of Innocence (Appleton 1920)/Chapter 10`) [hierarchy]
+    - chapter: Chapter XI (`Age of Innocence (Appleton 1920)/Chapter 11`) [hierarchy]
+    - chapter: Chapter XII (`Age of Innocence (Appleton 1920)/Chapter 12`) [hierarchy]
+1. `Trewman's Exeter Flying Post`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Charles Worthy (`Trewman's Exeter Flying Post/1899/Charles Worthy`)
+1. `The True Republican`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Dashed To Death (`The True Republican/1891/Dashed To Death`)
+1. `Biographia Dramatica`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Granville, George, Lord Lansdown (`Biographia Dramatica/Granville, George, Lord Lansdown`)
+1. `Harpers`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: A Boy and a Girl (`Harpers/A Boy and a Girl`)
+1. `The Undivine Comedy, and Other Poems`: virtual, book, 6 parts, 0 missing, order scan, proofread
+    - chapter: Preface (`The Undivine Comedy, and Other Poems/Preface`)
+    - text: Biography of Krasinski (`The Undivine Comedy, and Other Poems/Biography of Krasinski`) [hierarchy]
+    - chapter: Preface to the French Edition (`The Undivine Comedy, and Other Poems/Preface to the French Edition`) [hierarchy]
+    - text: Analysis of the Undivine Comedy (`The Undivine Comedy, and Other Poems/Analysis of the Undivine Comedy`) [hierarchy]
+    - text: Resurrecturis (`The Undivine Comedy, and Other Poems/Resurrecturis`) [hierarchy]
+    - text: In Memoriam (`The Undivine Comedy, and Other Poems/In Memoriam`) [hierarchy]
+1. `The Indianapolis Star`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Carl Schneider Dies (`The Indianapolis Star/1976/Carl Schneider Dies`)
+1. `The London Standard`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Death of Mr. J. Bailey Denton (`The London Standard/1893/Death of Mr. J. Bailey Denton`)
+1. `Oakland Young Men`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Membership Secretary (`Oakland Young Men/1913/Membership Secretary`)
+1. `The Life of Lokamanya Tilak`: virtual, book, 13 parts, 0 missing, order scan, proofread
+    - chapter: Chapter 1 : Mr. Blunt. (`The Life of Lokamanya Tilak/Chapter 1`)
+    - chapter: Chapter 2 : The First Ordeal. (`The Life of Lokamanya Tilak/Chapter 2`) [hierarchy]
+    - chapter: Chapter 3 : The School and The College. (`The Life of Lokamanya Tilak/Chapter 3`) [hierarchy]
+    - chapter: Chapter 4 : Tilak and Social Reform. (`The Life of Lokamanya Tilak/Chapter 4`) [hierarchy]
+    - chapter: Chapter 5 : Tilak and the Congress—I. (`The Life of Lokamanya Tilak/Chapter 5`) [hierarchy]
+    - chapter: Chapter 6 : The Honourable and——!. (`The Life of Lokamanya Tilak/Chapter 6`) [hierarchy]
+    - chapter: Chapter 7 : The Lokamanya. (`The Life of Lokamanya Tilak/Chapter 7`) [hierarchy]
+    - chapter: Chapter 8 : The School of Moderation. (`The Life of Lokamanya Tilak/Chapter 8`) [hierarchy]
+    - chapter: Chapter 9 : The Fierry Cross. (`The Life of Lokamanya Tilak/Chapter 9`) [hierarchy]
+    - chapter: Chapter 10 : The New Party. (`The Life of Lokamanya Tilak/Chapter 10`) [hierarchy]
+    - chapter: Chapter 11 : Tilak and the Congress——II. (`The Life of Lokamanya Tilak/Chapter 11`) [hierarchy]
+    - chapter: Appendix A : The Orion. (`The Life of Lokamanya Tilak/Appendix A`) [hierarchy]
+    - … 1 more
+1. `Cocoa and Chocolate: A Short History of Their Production and Use`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - text: Prefatory Note (`Cocoa and Chocolate: A Short History of Their Production and Use/Prefatory Note`)
+1. `The Indian Journal of Medical Research`: virtual, book, 1 parts, 0 missing, order single, unproofread
+    - text: The Vaccine Institute, Belgaum (`The Indian Journal of Medical Research/Volume 8/The Vaccine Institute, Belgaum`)
 
 ### E: subpage texts reached from a disambiguation or versions page (25,458)
 
@@ -915,9 +927,9 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
 1. text “O Captain! My Captain!” (`Poems That Every Child Should Know/O Captain! My Captain!`), part 52 of `Poems That Every Child Should Know` (book, 197 parts, 188 texts)
 1. text “Eros” (`Poems (Coates 1916)/Volume I/Eros`), part 116 of `Poems (Coates 1916)` (collection, 347 parts, 342 texts)
 1. text “The Falcon” (`The Golden Violet with its Tales of Romance and Chivalry and Other Poems/The Falcon`), part 4 of `The Golden Violet with its Tales of Romance and Chivalry and Other Poems` (book, 28 parts, 27 texts)
-1. text “To My Wife” (`McClure's Magazine/Volume 2/Number 1/To My Wife`), part 14 of `McClure's Magazine` (collection, 268 parts, 234 texts)
+1. text “To My Wife” (`McClure's Magazine/Volume 2/Number 1/To My Wife`), part 16 of `McClure's Magazine` (collection, 268 parts, 234 texts)
 1. text “The Titmouse” (`Poems (Emerson, Household Edition, 1904)/The Titmouse`), part 82 of `Poems (Emerson, Household Edition, 1904)` (book, 174 parts, 171 texts)
-1. text “Two Pictures” (`The Atlantic Monthly/Volume 17/Number 100/Two Pictures`), part 363 of `The Atlantic Monthly` (collection, 587 parts, 478 texts)
+1. text “Two Pictures” (`The Atlantic Monthly/Volume 17/Number 100/Two Pictures`), part 360 of `The Atlantic Monthly` (collection, 587 parts, 478 texts)
 1. text “The Wanderer” (`Poems (Vadlan)/The Wanderer`), part 25 of `Poems (Vadlan)` (book, 30 parts, 30 texts)
 1. text “April Days” (`Poems (Thaxter)/April Days`), part 29 of `Poems (Thaxter)` (book, 66 parts, 66 texts)
 1. text “Clarinda” (`Six Excellent Songs (Newton Stewart)/Clarinda`), part 3 of `Six Excellent Songs (Newton Stewart)` (book, 6 parts, 6 texts)
@@ -1226,19 +1238,19 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - text: Mary A. Greene (`Representative women of New England/Mary A. Greene`) [container]
     - text: Mary D. H. Prang (`Representative women of New England/Mary D. H. Prang`) [container]
     - … 272 more
-1. `A Chinese Biographical Dictionary`: subpages, reference, 430 parts, 558 missing, order natural, proofread
+1. `A Chinese Biographical Dictionary`: subpages, reference, 430 parts, 558 missing, order toc-partial, proofread
     - front: A Chinese Biographical Dictionary
+    - chapter: Front matter (`A Chinese Biographical Dictionary/Preface`) [container]
+    - chapter: Index to Proper Names and Other Terms for which no Characters are Given (`A Chinese Biographical Dictionary/Index to Proper Names`) [container]
     - text: A-chiao (`A Chinese Biographical Dictionary/A-chiao`) [container]
     - text: A-lao-wa-ting (`A Chinese Biographical Dictionary/A-lao-wa-ting`) [container]
     - text: A-lu-t'ai (`A Chinese Biographical Dictionary/A-lu-t'ai`) [container]
     - text: Achakpa (`A Chinese Biographical Dictionary/Achakpa`) [container]
+    - text: Ai-hsing-a (`A Chinese Biographical Dictionary/Ai-hsing-a`) [container]
     - text: Ai Ti (`A Chinese Biographical Dictionary/Ai Ti`) [container]
     - text: Ai Tsung (`A Chinese Biographical Dictionary/Ai Tsung`) [container]
-    - text: Ai-hsing-a (`A Chinese Biographical Dictionary/Ai-hsing-a`) [container]
     - text: Akuta (`A Chinese Biographical Dictionary/Akuta`) [container]
     - text: Amôgha (`A Chinese Biographical Dictionary/Amôgha`) [container]
-    - text: An Ch'ung-hui (`A Chinese Biographical Dictionary/An Ch'ung-hui`) [container]
-    - text: An Chin-ts'ang (`A Chinese Biographical Dictionary/An Chin-ts'ang`) [container]
     - … 419 more
 1. `Dictionary of Indian Biography`: subpages, reference, 663 parts, 0 missing, order natural, proofread
     - front: Dictionary of Indian Biography
@@ -1282,19 +1294,19 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - text: Adams, Samuel Allen (`Thom's Irish Who's Who/Adams, Samuel Allen`) [hierarchy]
     - text: Adams, William Henry (`Thom's Irish Who's Who/Adams, William Henry`) [hierarchy]
     - … 2,367 more
-1. `The Indian Biographical Dictionary (1915)`: subpages, reference, 2,494 parts, 0 missing, order natural, proofread
+1. `The Indian Biographical Dictionary (1915)`: subpages, reference, 2,494 parts, 0 missing, order toc-partial, proofread
     - front: The Indian Biographical Dictionary (1915)
+    - chapter: Advertisements 1 (`The Indian Biographical Dictionary (1915)/Advertisements 1`) [container]
+    - text: Frontispiece (`The Indian Biographical Dictionary (1915)/Frontispiece`) [hierarchy]
+    - chapter: Contents (`The Indian Biographical Dictionary (1915)/Contents`) [hierarchy]
+    - chapter: Advertisements 2 (`The Indian Biographical Dictionary (1915)/Advertisements 2`) [hierarchy]
+    - chapter: Index to Advertisements (`The Indian Biographical Dictionary (1915)/Index to Advertisements`) [hierarchy]
+    - chapter: Preface (`The Indian Biographical Dictionary (1915)/Preface`) [hierarchy]
+    - text: List of Abbreviations (`The Indian Biographical Dictionary (1915)/List of Abbreviations`) [hierarchy]
+    - chapter: Errata (`The Indian Biographical Dictionary (1915)/Errata`) [hierarchy]
+    - text: The Royal Family of Great Britain and Ireland (`The Indian Biographical Dictionary (1915)/The Royal Family of Great Britain and Ireland`) [hierarchy]
     - text: Abbas Ali Baig, Mirza (`The Indian Biographical Dictionary (1915)/Abbas Ali Baig, Mirza`) [hierarchy]
-    - text: Abbot, J. H. (`The Indian Biographical Dictionary (1915)/Abbot, J. H.`) [hierarchy]
     - text: Abbott, Col. Herbert Edward Stacey (`The Indian Biographical Dictionary (1915)/Abbott, Col. Herbert Edward Stacey`) [hierarchy]
-    - text: Abdul Aziz Lari Khan Saheb (`The Indian Biographical Dictionary (1915)/Abdul Aziz Lari Khan Saheb`) [hierarchy]
-    - text: Abdul Ghaffur Khan (`The Indian Biographical Dictionary (1915)/Abdul Ghaffur Khan`) [hierarchy]
-    - text: Abdul Ghain Khan Sahib (`The Indian Biographical Dictionary (1915)/Abdul Ghain Khan Sahib`) [hierarchy]
-    - text: Abdul Hakim Shams-ul-Ulema (`The Indian Biographical Dictionary (1915)/Abdul Hakim Shams-ul-Ulema`) [hierarchy]
-    - text: Abdul Karim Khan (`The Indian Biographical Dictionary (1915)/Abdul Karim Khan`) [hierarchy]
-    - text: Abdul Karim, T. (`The Indian Biographical Dictionary (1915)/Abdul Karim, T.`) [hierarchy]
-    - text: Abdul Khadir Maulvi, Khan Sahib (`The Indian Biographical Dictionary (1915)/Abdul Khadir Maulvi, Khan Sahib`) [hierarchy]
-    - text: Abdul Majid, Syed (`The Indian Biographical Dictionary (1915)/Abdul Majid, Syed`) [hierarchy]
     - … 2,483 more
 1. `Appletons' Cyclopædia of American Biography`: mixed, reference, 2,539 parts, 0 missing, order natural, unproofread
     - toc: Appletons' Cyclopædia of American Biography
@@ -1310,9 +1322,8 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - text: Abbe, Cleveland (`Appletons' Cyclopædia of American Biography/Abbe, Cleveland`) [hierarchy]
     - text: Abbeville, Claude d’ (`Appletons' Cyclopædia of American Biography/Abbeville, Claude d’`) [hierarchy]
     - … 2,528 more
-1. `United States Statutes at Large`: mixed, reference, 4,888 parts, 721 missing, order natural, proofread
+1. `United States Statutes at Large`: mixed, reference, 4,888 parts, 721 missing, order toc-partial, proofread
     - toc: United States Statutes at Large
-    - text: Proposed Amendment to the Constitution, 1919. (`Nineteenth Amendment:Women's Right to Vote`) [container]
     - volume: Volume 1 (`United States Statutes at Large/Volume 1`) [container]
       - volume: Cover and Front Matter (`United States Statutes at Large/Volume 1/Front Matter`) [container]
         - chapter: Front Matter (`United States Statutes at Large/Volume 1/Front Matter/all`) [container]
@@ -1323,6 +1334,7 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
         - chapter: Front Matter &gt; Preface (`United States Statutes at Large/Volume 1/Preface`) [container]
         - chapter: Front Matter > Extracts from Letters Addressed to the Editor (`United States Statutes at Large/Volume 1/Extracts from Letters Addressed to the Editor`) [container]
       - volume: Lists and Tables (`United States Statutes at Large/Volume 1/Lists and Tables`) [container]
+        - text: Acts of the First Congress of the United States (`United States Statutes at Large/Volume 1/Lists and Tables/1st Congress`) [container]
     - … 4,877 more
 1. `Nicene and Post-Nicene Fathers: Series II`: mixed, reference, 7,099 parts, 1 missing, order chain, unproofread
     - front: Nicene and Post-Nicene Fathers: Series II
@@ -1349,33 +1361,25 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - text: Western and Central Asia (`Atlas of the World's Languages in Danger (Third Edition)/Western and Central Asia`) [container]
     - text: North-east Asia (`Atlas of the World's Languages in Danger (Third Edition)/North-east Asia`) [container]
     - text: India and the Himalayan chain (`Atlas of the World's Languages in Danger (Third Edition)/India and the Himalayan chain`) [container]
-1. `Catholic Encyclopedia (1922 supplement)`: virtual, reference, 21 parts, 0 missing, order scan, proofread
-    - text: Jaca, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaca, Diocese of`)
-    - text: Jaffna, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaffna, Diocese of`) [hierarchy]
-    - text: Jamaica, Vicariate Apostolic of (`Catholic Encyclopedia (1922 supplement)/Jamaica, Vicariate Apostolic of`) [hierarchy]
-    - text: Japan (`Catholic Encyclopedia (1922 supplement)/Japan`) [hierarchy]
-    - text: Jaén, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaén, Diocese of`) [hierarchy]
-    - text: Jaro, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaro, Diocese of`) [hierarchy]
-    - text: Oliver Plunket, Blessed (`Catholic Encyclopedia (1922 supplement)/Oliver Plunket, Blessed`) [hierarchy]
-    - text: Olivetans (`Catholic Encyclopedia (1922 supplement)/Olivetans`) [hierarchy]
-    - text: Olmutz, Archdiocese of (`Catholic Encyclopedia (1922 supplement)/Olmutz, Archdiocese of`) [hierarchy]
-    - text: Olomouc, Archdiocese of (`Catholic Encyclopedia (1922 supplement)/Olomouc, Archdiocese of`) [hierarchy]
-    - text: Omaha, Diocese of (`Catholic Encyclopedia (1922 supplement)/Omaha, Diocese of`) [hierarchy]
-    - text: Ontario, Northern, Vicariate Apostolic of (`Catholic Encyclopedia (1922 supplement)/Ontario, Northern, Vicariate Apostolic of`) [hierarchy]
-    - … 9 more
-1. `A Naval Biographical Dictionary`: subpages, reference, 4,955 parts, 1 missing, order natural, validated
+1. `Foclóir Gaeḋilge agus Béarla`: virtual, reference, 5 parts, 0 missing, order chain, proofread
+    - text: Council's Preface (`Foclóir Gaeḋilge agus Béarla/Council's Preface`)
+    - text: Editor's Preface (`Foclóir Gaeḋilge agus Béarla/Editor's Preface`) [hierarchy]
+    - text: Abbreviations (`Foclóir Gaeḋilge agus Béarla/Abbreviations`) [hierarchy]
+    - text: A (`Foclóir Gaeḋilge agus Béarla/A`) [hierarchy]
+    - text: B (`Foclóir Gaeḋilge agus Béarla/B`) [hierarchy]
+1. `A Naval Biographical Dictionary`: subpages, reference, 4,955 parts, 1 missing, order toc-partial, validated
     - front: A Naval Biographical Dictionary
-    - text: Abbott, Jonas Archer (`A Naval Biographical Dictionary/Abbott, Jonas Archer`) [hierarchy]
+    - text: Frontispiece (`A Naval Biographical Dictionary/Frontispiece`) [container]
+    - text: Dedication (`A Naval Biographical Dictionary/Dedication`) [hierarchy]
+    - chapter: Preface (`A Naval Biographical Dictionary/Preface`) [container]
     - text: Abbreviations (`A Naval Biographical Dictionary/Abbreviations`) [hierarchy]
-    - text: Abbreviations in Appendix (`A Naval Biographical Dictionary/Abbreviations in Appendix`) [hierarchy]
+    - text: Abbott, Jonas Archer (`A Naval Biographical Dictionary/Abbott, Jonas Archer`) [hierarchy]
     - text: Absolon, William (`A Naval Biographical Dictionary/Absolon, William`) [hierarchy]
     - text: Achmuty, Robert Ross (`A Naval Biographical Dictionary/Achmuty, Robert Ross`) [hierarchy]
     - text: Ackerley, Charles Henry (`A Naval Biographical Dictionary/Ackerley, Charles Henry`) [hierarchy]
     - text: Ackland, Edward (`A Naval Biographical Dictionary/Ackland, Edward`) [hierarchy]
+    - text: A’Court, Edward Henry (`A Naval Biographical Dictionary/A’Court, Edward Henry`) [hierarchy]
     - text: Adam, Charles (`A Naval Biographical Dictionary/Adam, Charles`) [hierarchy]
-    - text: Adams, Charles James (`A Naval Biographical Dictionary/Adams, Charles James`) [hierarchy]
-    - text: Adams, George Curtis (`A Naval Biographical Dictionary/Adams, George Curtis`) [hierarchy]
-    - text: Adams, John (`A Naval Biographical Dictionary/Adams, John`) [hierarchy]
     - … 4,944 more
 1. `A Dictionary of Slang, Jargon & Cant`: subpages, reference, 4 parts, 11 missing, order single, proofread
     - front: A Dictionary of Slang, Jargon & Cant
@@ -1383,19 +1387,19 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
       - chapter: Preface (`A Dictionary of Slang, Jargon & Cant/Preface`) [container]
       - chapter: A Brief History of English Slang (`A Dictionary of Slang, Jargon & Cant/History`) [container]
       - text: Contributors (`A Dictionary of Slang, Jargon & Cant/Contributors`) [container]
-1. `Royal Naval Biography`: subpages, reference, 2,322 parts, 1 missing, order natural, proofread
+1. `Royal Naval Biography`: subpages, reference, 2,322 parts, 1 missing, order toc-partial, proofread
     - front: Royal Naval Biography
-    - text: a’Court, Edward Henry (`Royal Naval Biography/a'Court, Edward Henry`) [container]
-    - text: Abbot, Charles (`Royal Naval Biography/Abbot, Charles`) [container]
-    - text: Abdy, Anthony (`Royal Naval Biography/Abdy, Anthony`) [container]
-    - text: Acklom, George (`Royal Naval Biography/Acklom, George`) [container]
-    - text: Adam, Charles (`Royal Naval Biography/Adam, Charles`) [container]
-    - text: Addenda &c. vol. 1 (`Royal Naval Biography/Addenda &c. vol. 1`) [container]
-    - text: Adderley, Arden (`Royal Naval Biography/Adderley, Arden`) [container]
-    - text: Addington, William Silvester (`Royal Naval Biography/Addington, William Silvester`) [container]
+    - text: Frontispiece (`Royal Naval Biography/Frontispiece`) [container]
+    - chapter: Title page (`Royal Naval Biography/Title page`) [container]
+    - text: Dedication (`Royal Naval Biography/Dedication`) [container]
+    - chapter: Preface (`Royal Naval Biography/Preface`) [container]
     - chapter: Advertisement (`Royal Naval Biography/Advertisement`) [container]
-    - text: Agassiz, James John Charles (`Royal Naval Biography/Agassiz, James John Charles`) [container]
-    - text: Aitchison, Robert (`Royal Naval Biography/Aitchison, Robert`) [container]
+    - chapter: Contents (`Royal Naval Biography/Contents`) [container]
+    - chapter: Errata & Corrigenda (`Royal Naval Biography/Errata & Corrigenda`) [container]
+    - text: William Henry, Duke of Clarence (`Royal Naval Biography/William Henry, Duke of Clarence`) [container]
+    - text: John Jervis, Earl of St Vincent (`Royal Naval Biography/John Jervis, Earl of St Vincent`) [container]
+    - text: Williams Freeman, William Peere (`Royal Naval Biography/Williams Freeman, William Peere`) [container]
+    - text: Montagu, George (`Royal Naval Biography/Montagu, George`) [container]
     - … 2,311 more
 1. `Nicene and Post-Nicene Fathers: Series I`: subpages, reference, 5,287 parts, 1 missing, order chain, unproofread
     - front: Nicene and Post-Nicene Fathers: Series I
@@ -1467,12 +1471,20 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
       - text: Z (`A Critical Pronouncing Dictionary (4th edition)/Dictionary/Z`) [container]
     - chapter: Appendix (`A Critical Pronouncing Dictionary (4th edition)/Appendix`) [container]
     - … 1 more
-1. `Foclóir Gaeḋilge agus Béarla`: virtual, reference, 5 parts, 0 missing, order chain, proofread
-    - text: Council's Preface (`Foclóir Gaeḋilge agus Béarla/Council's Preface`)
-    - text: Editor's Preface (`Foclóir Gaeḋilge agus Béarla/Editor's Preface`) [hierarchy]
-    - text: Abbreviations (`Foclóir Gaeḋilge agus Béarla/Abbreviations`) [hierarchy]
-    - text: A (`Foclóir Gaeḋilge agus Béarla/A`) [hierarchy]
-    - text: B (`Foclóir Gaeḋilge agus Béarla/B`) [hierarchy]
+1. `Catholic Encyclopedia (1922 supplement)`: virtual, reference, 21 parts, 0 missing, order scan, proofread
+    - text: Jaca, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaca, Diocese of`)
+    - text: Jaffna, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaffna, Diocese of`) [hierarchy]
+    - text: Jamaica, Vicariate Apostolic of (`Catholic Encyclopedia (1922 supplement)/Jamaica, Vicariate Apostolic of`) [hierarchy]
+    - text: Japan (`Catholic Encyclopedia (1922 supplement)/Japan`) [hierarchy]
+    - text: Jaén, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaén, Diocese of`) [hierarchy]
+    - text: Jaro, Diocese of (`Catholic Encyclopedia (1922 supplement)/Jaro, Diocese of`) [hierarchy]
+    - text: Oliver Plunket, Blessed (`Catholic Encyclopedia (1922 supplement)/Oliver Plunket, Blessed`) [hierarchy]
+    - text: Olivetans (`Catholic Encyclopedia (1922 supplement)/Olivetans`) [hierarchy]
+    - text: Olmutz, Archdiocese of (`Catholic Encyclopedia (1922 supplement)/Olmutz, Archdiocese of`) [hierarchy]
+    - text: Olomouc, Archdiocese of (`Catholic Encyclopedia (1922 supplement)/Olomouc, Archdiocese of`) [hierarchy]
+    - text: Omaha, Diocese of (`Catholic Encyclopedia (1922 supplement)/Omaha, Diocese of`) [hierarchy]
+    - text: Ontario, Northern, Vicariate Apostolic of (`Catholic Encyclopedia (1922 supplement)/Ontario, Northern, Vicariate Apostolic of`) [hierarchy]
+    - … 9 more
 1. `Alumni Oxonienses: the Members of the University of Oxford, 1715-1886`: subpages, reference, 63,225 parts, 0 missing, order natural, unknown
     - toc: Alumni Oxonienses: the Members of the University of Oxford, 1715-1886
     - text: A (`Alumni Oxonienses: the Members of the University of Oxford, 1715-1886/A`) [container]
@@ -1593,7 +1605,7 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
         - chapter: Part I, Chapter VII (`Australia Felix/Part I/Chapter VII`) [container]
         - chapter: Part I, Chapter VIII (`Australia Felix/Part I/Chapter VIII`) [container]
     - … 35 more
-1. `New Edition of the Babylonian Talmud`: mixed, book, 37 parts, 15 missing, order natural, proofread
+1. `New Edition of the Babylonian Talmud`: mixed, book, 37 parts, 15 missing, order toc-partial, proofread
     - front: New Edition of the Babylonian Talmud
     - volume: Volume 1 (`New Edition of the Babylonian Talmud/Volume 1`) [container]
       - chapter: Preface to the Second Edition (`New Edition of the Babylonian Talmud/Volume 1/Preface to the Second Edition`) [container]
@@ -1635,20 +1647,19 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - text: A plea for total abstinence (`New Uncommercial Samples/A plea for total abstinence`) [container]
     - text: A small dinner in an hour (`New Uncommercial Samples/A small dinner in an hour`) [container]
     - … 4 more
-1. `Memoirs on the Coleoptera`: virtual, book, 23 parts, 0 missing, order single, proofread
-    - volume: Volume 1 (`Memoirs on the Coleoptera/Volume 1`)
-      - volume: New Species of the Staphylinid Tribe Myrmedoniini (`Memoirs on the Coleoptera/Volume 1/New Species of the Staphylinid Tribe Myrmedoniini`) [hierarchy]
-        - volume: Tribe Myrmidoniini (`Memoirs on the Coleoptera/Volume 1/New Species of the Staphylinid Tribe Myrmedoniini/Tribe Myrmidoniini`) [hierarchy]
-          - volume: Group Athetæ (`Memoirs on the Coleoptera/Volume 1/New Species of the Staphylinid Tribe Myrmedoniini/Tribe Myrmidoniini/Group Athetæ`) [hierarchy]
-            - volume: Atheta (`Memoirs on the Coleoptera/Volume 1/New Species of the Staphylinid Tribe Myrmedoniini/Tribe Myrmidoniini/Group Athetæ/Atheta`) [hierarchy]
-              - text: Stethusa (`Memoirs on the Coleoptera/Volume 1/New Species of the Staphylinid Tribe Myrmedoniini/Tribe Myrmidoniini/Group Athetæ/Atheta/Stethusa`) [hierarchy]
-              - text: Macroterma (`Memoirs on the Coleoptera/Volume 1/New Species of the Staphylinid Tribe Myrmedoniini/Tribe Myrmidoniini/Group Athetæ/Atheta/Macroterma`) [hierarchy]
-              - text: Homalotusa (`Memoirs on the Coleoptera/Volume 1/New Species of the Staphylinid Tribe Myrmedoniini/Tribe Myrmidoniini/Group Athetæ/Atheta/Homalotusa`) [hierarchy]
-              - text: Anepsiota (`Memoirs on the Coleoptera/Volume 1/New Species of the Staphylinid Tribe Myrmedoniini/Tribe Myrmidoniini/Group Athetæ/Atheta/Anepsiota`) [hierarchy]
-              - text: Athetalia (`Memoirs on the Coleoptera/Volume 1/New Species of the Staphylinid Tribe Myrmedoniini/Tribe Myrmidoniini/Group Athetæ/Atheta/Athetalia`) [hierarchy]
-              - text: Megista (`Memoirs on the Coleoptera/Volume 1/New Species of the Staphylinid Tribe Myrmedoniini/Tribe Myrmidoniini/Group Athetæ/Atheta/Megista`) [hierarchy]
-              - text: Liogluta (`Memoirs on the Coleoptera/Volume 1/New Species of the Staphylinid Tribe Myrmedoniini/Tribe Myrmidoniini/Group Athetæ/Atheta/Liogluta`) [hierarchy]
-    - … 11 more
+1. `Electronics Technician`: virtual, book, 12 parts, 0 missing, order single, proofread
+    - volume: Volume 7 (`Electronics Technician/Volume 7`)
+      - chapter: front matter (`Electronics Technician/Volume 7/front matter`) [container]
+      - chapter: Preface (`Electronics Technician/Volume 7/Preface`) [hierarchy]
+      - volume: Table of Contents (`Electronics Technician/Volume 7/Table of Contents`) [container]
+        - chapter: Chapter 1 (`Electronics Technician/Volume 7/Chapter 1`) [container]
+        - chapter: Chapter 2 (`Electronics Technician/Volume 7/Chapter 2`) [container]
+        - chapter: Chapter 3 (`Electronics Technician/Volume 7/Chapter 3`) [container]
+        - chapter: Appendix I (`Electronics Technician/Volume 7/Appendix I`) [container]
+        - chapter: Appendix II (`Electronics Technician/Volume 7/Appendix II`) [container]
+        - text: Assignment Questions (`Electronics Technician/Volume 7/Assignment Questions`) [container]
+      - text: Summary of the Electronics Technician Training Series (`Electronics Technician/Volume 7/Summary of the Electronics Technician Training Series`) [container]
+      - text: Instructions for taking the course (`Electronics Technician/Volume 7/Instructions for taking the course`) [container]
 1. `H.R. 3962`: subpages, collection, 21 parts, 63 missing, order chain, unknown
     - front: H.R. 3962
     - volume: Division A − Affordable Health Care Choices (`H.R. 3962/Division A`) [container]
@@ -1817,7 +1828,7 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
       - text: ../The Shield/ (`The Dial (First Series)/Volume 1/Issue 1/The Shield`) [container]
       - text: ../The Problem/ (`The Dial (First Series)/Volume 1/Issue 1/The Problem`) [container]
     - … 156 more
-1. `Notes and Queries`: subpages, collection, 225 parts, 237 missing, order natural, proofread
+1. `Notes and Queries`: subpages, collection, 225 parts, 237 missing, order toc-partial, proofread
     - front: Notes and Queries
     - volume: Volume 1: November, 1849–May, 1850 (`Notes and Queries/Series 1/Volume 1`) [hierarchy]
       - volume: Number 1: 3rd November 1849 (`Notes and Queries/Series 1/Volume 1/Number 1`) [hierarchy]
@@ -1856,19 +1867,19 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
       - chapter: Part I, Chapter VII (`Works of Gustave Flaubert/Madame Bovary/Part 1/Chapter 7`) [container]
       - chapter: Part I, Chapter VIII (`Works of Gustave Flaubert/Madame Bovary/Part 1/Chapter 8`) [container]
     - … 22 more
-1. `The American Journal of Sociology`: subpages, collection, 91 parts, 204 missing, order natural, unproofread
+1. `The American Journal of Sociology`: subpages, collection, 91 parts, 204 missing, order toc-partial, unproofread
     - front: The American Journal of Sociology
-    - text: Reviews (`The American Journal of Sociology/Reviews`) [container]
     - volume: Volume 1 (`The American Journal of Sociology/Volume 01`) [container]
-      - volume: Minor Editorials (`The American Journal of Sociology/Minor Editorials`) [container]
-        - text: Free Investigation (`The American Journal of Sociology/Volume 01/Number 2/Minor Editorials`) [container]
-        - text: Minor Editorials: Sociology and Theology (`The American Journal of Sociology/Volume 01/Number 3/Minor Editorials`) [container]
-        - text: The Epitaph of Sociology (`The American Journal of Sociology/Volume 01/Number 4/Minor Editorials`) [container]
-      - chapter: Notes and Abstracts (`The American Journal of Sociology/Notes and Abstracts`) [container]
-      - text: Seminar Notes (`The American Journal of Sociology/Seminar Notes`) [container]
-      - text: Christian Sociology (`The American Journal of Sociology/Volume 01/Number 1/Christian Sociology`) [container]
-      - text: English and American Christian Socialism (`The American Journal of Sociology/Volume 01/Number 1/English and American Christian Socialism`) [container]
-      - text: Is Our Republic a Failure? (`The American Journal of Sociology/Volume 01/Number 1/Is Our Republic a Failure?`) [container]
+      - text: A Belated Industry (`The American Journal of Sociology/Volume 01/Number 5/A Belated Industry`) [container]
+      - text: Recent Legislation in Restraint of Trade (`The American Journal of Sociology/Volume 01/Number 6/Recent Legislation in Restraint of Trade`) [container]
+      - text: The Relation of Anthropology to the Study of History (`The American Journal of Sociology/Volume 1/Number 1/The Relation of Anthropology to the Study of History`) [container]
+      - text: Sociology in Italy (`The American Journal of Sociology/Volume 01/Number 3/Sociology in Italy`) [container]
+      - text: Anti-Monopoly Legislation in the United States (`The American Journal of Sociology/Volume 01/Number 4/Anti-Monopoly Legislation in the United States`) [container]
+      - text: The Place and Functions of Voluntary Associations (`The American Journal of Sociology/Volume 01/Number 3/The Place and Functions of Voluntary Associations`) [container]
+      - text: Business Men and Social Theorists (`The American Journal of Sociology/Volume 01/Number 4/Business Men and Social Theorists`) [container]
+      - text: Rise of the German Inner Mission (`The American Journal of Sociology/Volume 01/Number 5/Rise of the German Inner Mission`) [container]
+      - text: The German Inner Mission (`The American Journal of Sociology/Volume 01/Number 6/The German Inner Mission`) [container]
+      - text: The American University (`The American Journal of Sociology/Volume 01/Number 2/The American University`) [container]
     - … 80 more
 1. `The Leisure Hour (periodical)`: subpages, collection, 5 parts, 0 missing, order toc, unknown
     - toc: The Leisure Hour (periodical)
@@ -1933,14 +1944,12 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
       - chapter: 9. The Fair Flower of Northumberland (`The English and Scottish Popular Ballads/Part 1/Chapter 9`) [hierarchy]
       - chapter: 10. The Twa Sisters (`The English and Scottish Popular Ballads/Part 1/Chapter 10`) [hierarchy]
     - … 352 more
-1. `Administrative Instruction ST`: virtual, collection, 7 parts, 0 missing, order natural, proofread
-    - volume: 189 (`Administrative Instruction ST/AI/189`)
-      - text: Rev.1 (`Administrative Instruction ST/AI/189/Add.9/Rev.1`) [container]
-      - volume: Rev.2 (`Administrative Instruction ST/AI/189/Add.9/Rev.2`) [container]
-        - text: Add.1 (`Administrative Instruction ST/AI/189/Add.9/Rev.2/Add.1`) [hierarchy]
-        - text: Add.2 (`Administrative Instruction ST/AI/189/Add.9/Rev.2/Add.2`) [container]
-      - chapter: index of addenda and revisions (`Administrative Instruction ST/AI/189/Addenda`) [hierarchy]
-    - text: Administrative Instruction ST/AI/189/Add.9/Rev.2 (`Administrative Instruction ST/AI/2001/5`) [hierarchy]
+1. `Victor Hugo's Works (Guernsey Edition)`: virtual, book, 5 parts, 2 missing, order single, proofread
+    - volume: Volume 14 (`Victor Hugo's Works (Guernsey Edition)/Volume 14`)
+      - volume: The Fool's Revenge (`Victor Hugo's Works (Guernsey Edition)/Volume 14/The Fool's Revenge`) [container]
+        - text: The Fool's Revenge, Act I. (`Victor Hugo's Works (Guernsey Edition)/Volume 14/The Fool's Revenge/Act 1`) [container]
+        - text: The Fool's Revenge, Act II. (`Victor Hugo's Works (Guernsey Edition)/Volume 14/The Fool's Revenge/Act 2`) [container]
+        - text: The Fool's Revenge, Act III. (`Victor Hugo's Works (Guernsey Edition)/Volume 14/The Fool's Revenge/Act 3`) [container]
 
 ### I: works with other editions (3,557)
 
@@ -2038,7 +2047,7 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
     - chapter: Appendix C (`Henry IV Part 1 (1917) Yale/Appendix C`) [container]
     - text: Bibliography (`Henry IV Part 1 (1917) Yale/Bibliography`) [container]
     - … 1 more
-1. `Littell's Living Age`: subpages, collection, 1,842 parts, 7333 missing, order natural, proofread
+1. `Littell's Living Age`: subpages, collection, 1,842 parts, 7333 missing, order toc-partial, proofread
     - front: Littell's Living Age
     - volume: Volume 1 (`Littell's Living Age/Volume 1`) [container]
       - chapter: Volume 1, Issue 1 : Simpson's Discoveries on the North Coast of America (`Littell's Living Age/Volume 1/Issue 1/Simpson's Discoveries on the North Coast of America`) [container]
@@ -2170,18 +2179,18 @@ Rows count multi-part works only, one row per part plus the root row. 37,141 sin
       - text: "Lady Barberina", Chapter 6 (`Tales of Three Cities (Boston: James R. Osgood & Co., 1884)/Lady Barberina/Chapter 6`) [container]
     - volume: "A New England Winter" (`Tales of Three Cities (Boston: James R. Osgood & Co., 1884)/A New England Winter`) [container]
     - … 7 more
-1. `The Complete Poems of Paul Laurence Dunbar`: subpages, book, 413 parts, 60 missing, order natural, proofread
+1. `The Complete Poems of Paul Laurence Dunbar`: subpages, book, 413 parts, 60 missing, order toc-partial, proofread
     - front: The Complete Poems of Paul Laurence Dunbar
-    - text: "Howdy, Honey, Howdy!" (`The Complete Poems of Paul Laurence Dunbar/"Howdy, Honey, Howdy!"`) [container]
-    - text: 'Long To'ds Night (`The Complete Poems of Paul Laurence Dunbar/'Long To'ds Night`) [container]
-    - text: A Back-Log Song (`The Complete Poems of Paul Laurence Dunbar/A Back-Log Song`) [container]
-    - text: A Banjo Song (`The Complete Poems of Paul Laurence Dunbar/A Banjo Song`) [container]
-    - text: A Border Ballad (`The Complete Poems of Paul Laurence Dunbar/A Border Ballad`) [container]
-    - text: A Boys' Summer Song (`The Complete Poems of Paul Laurence Dunbar/A Boy's Summer Song`) [container]
-    - text: A Bridal Measure (`The Complete Poems of Paul Laurence Dunbar/A Bridal Measure`) [container]
-    - text: A Cabin Tale (`The Complete Poems of Paul Laurence Dunbar/A Cabin Tale`) [container]
-    - text: A Career (`The Complete Poems of Paul Laurence Dunbar/A Career`) [container]
-    - text: A Choice (`The Complete Poems of Paul Laurence Dunbar/A Choice`) [container]
-    - text: A Christmas Folk Song (`The Complete Poems of Paul Laurence Dunbar/A Christmas Folksong`) [container]
+    - text: Li'l' Gal (`The Complete Poems of Paul Laurence Dunbar/Li'l' Gal`) [container]
+    - text: Joggin' Erlong (`The Complete Poems of Paul Laurence Dunbar/Joggin' Erlong`) [container]
+    - text: Absence (`The Complete Poems of Paul Laurence Dunbar/Absence`) [container]
+    - text: Accountability (`The Complete Poems of Paul Laurence Dunbar/Accountability`) [container]
+    - text: Advice (`The Complete Poems of Paul Laurence Dunbar/Advice`) [container]
+    - text: After a Visit (`The Complete Poems of Paul Laurence Dunbar/After a Visit`) [container]
+    - text: After The Quarrel (`The Complete Poems of Paul Laurence Dunbar/After The Quarrel`) [container]
+    - text: After While (`The Complete Poems of Paul Laurence Dunbar/After While`) [container]
+    - text: Alexander Crummell-Dead (`The Complete Poems of Paul Laurence Dunbar/Alexander Crummell-Dead`) [container]
+    - text: Alice (`The Complete Poems of Paul Laurence Dunbar/Alice`) [container]
+    - text: Anchored (`The Complete Poems of Paul Laurence Dunbar/Anchored`) [container]
     - … 402 more
 

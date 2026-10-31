@@ -57,7 +57,7 @@ Largest works by parts:
 |---|---|---|
 | A | collection of root pages (`structure = linked`) | 2 works, 5 parts |
 | B | mixed subpages and root pages (`mixed`) | 1 works, 3,058 parts |
-| C | work with an oversized page (> oversized_bytes, transcluded scan pages included) | 5 works |
+| C | work with an oversized page (> oversized_bytes, transcluded scan pages included) | 0 works |
 | D | missing root, virtual root (`virtual`) | 2 works, 2 parts |
 | E | texts inside a subpage collection reached from a disambiguation or versions page | 0 parts (0 searchable); all searchable subpage texts: 3,221 |
 | F | whole-text duplicate subpages (excluded) | 0 pages |
@@ -79,9 +79,10 @@ Tree depth of multi-part works (levels below the root): 1: 29, 2: 2, 6: 1.
 |---|---|
 | toc | 89 |
 | chain | 45 |
-| natural | 3 |
+| natural | 2 |
+| toc-partial | 1 |
 
-2 of the `natural` nodes have a TOC that lists only some of their children (the TOC order did not cover all children).
+`toc-partial` (implementation choice, see section 13): the TOC lists at least half of the children, which keep its order; the rest follow in natural order. 1 `natural` nodes have a TOC that lists fewer than half.
 
 Root pages attached by their header's container link: 6; most frequent containers: `Gísls þáttur Illugasonar` 3; `Gull-Ásu-Þórðar þáttur` 2; `Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur` 1.
 
@@ -105,7 +106,7 @@ Root-page works that sit on a prev/next chain but stay separate works (no contai
 
 **Orphan trees** (virtual roots): 2, holding 2 parts. Examples: `Rit þeß Konúngliga Islenzka Lærdóms-Lista Félags` (1); `Egill Skalla-Grímsson` (1).
 
-**Oversized pages** (> 300,000 bytes of wikitext including transcluded scan pages): 5. Largest: `Galdra-Loftur: leikrit í þremur þáttum` 0.7 MB; `Fölvar Rósir` 0.6 MB; `Rímur af Núma kóngi Pompilssyni (1835)` 0.5 MB; `Tómas frændi` 0.4 MB; `Dægradvöl` 0.3 MB.
+**Oversized pages** (> 300,000 bytes of wikitext including transcluded scan pages): 0. Largest: .
 
 **Red links in TOCs** (missing parts): 3 multi-part works have red links, 11 in total; median share of the TOC 9%. Most missing: `Dægradvöl` 7 of 9; `Íslenzkar þjóðsögur og æfintýri` 2 of 3060; `Rímur af Núma kóngi Pompilssyni (1835)` 2 of 22.
 
@@ -192,6 +193,13 @@ None for this wiki.
 - Display titles come from `current`/`section`/`TITEL`, else the link text in the parent's TOC, else the last title segment. A work's first part row is its root (`front` above 400 characters of own text, else `toc`); `part_count` excludes it.
 - Missing parts are red links in the TOCs of the work's root and volumes: subpages of the root always, other titles only in linked or mixed works and on TOC-like pages.
 - Junk rules (cleanup or deletion template, placeholder, under 300 bytes) apply to works without scan pages and without any quality signal.
+- Order (step 1c): when no source covers all children but the TOC lists at least half, the listed children keep the TOC order and the rest follow in natural order (`toc-partial`), so that collections are not shown alphabetically (WS§2 rule 3).
+- Rule 3: a TOC page is marked as one (de `HERKUNFT = off`) or is its Index's own book; "reached from it by the prev/next chain" is read as: the member's chain starts at the TOC page or its prev or next page is listed on the same TOC page.
+- A container with several links (de `HERKUNFT`) resolves to the first link that shares the page's Index, else the first link (the KHM tales link the editions overview first).
+- Volume placement: a part attached by its container is placed under the one TOC page (under 2,000 bytes of own text, listing at least three members) of the same work that lists it, unless the container's members already form one prev/next chain.
+- A slash inside unclosed parentheses is part of the name (de `X (Die Gartenlaube 1871/17)`), not a subpage separator.
+- Exclusions: a page with scan transclusion is never a disambiguation page (fr dictionary roots carry the prop); subpages inherit only portal and author-page exclusions; on de, portal pages are marked by `Themendaten`, `Ortsdaten`, `Listendaten` (and the categories Thema, Orte, Listen when the page has no header), and a root page without header template, scans or status is a portal (`no-header`) unless other pages name it as their container.
+- A bare `<pages index=X/>` renders the Index's TOC field, not the book.
 
 ## 12. Random samples for eyeballing (30 per pattern)
 
@@ -267,60 +275,8 @@ None for this wiki.
 1. text “Sels-Móri eða Þorgarður” (`Íslenzkar þjóðsögur og æfintýri/Draugasögur/Sels-Móri eða Þorgarður`), part 911 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
 1. text “Leiðið í Skriðuklausturskirkjugarði” (`Íslenzkar þjóðsögur og æfintýri/Draugasögur/Leiðið í Skriðuklausturskirkjugarði`), part 653 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
 
-### C: oversized (5)
+### C: oversized (0)
 
-1. `Galdra-Loftur: leikrit í þremur þáttum`: subpages, book, 4 parts, 0 missing, order chain, proofread
-    - front: Galdra-Loftur: leikrit í þremur þáttum
-    - text: Fyrsti þáttur (`Galdra-Loftur: leikrit í þremur þáttum/Fyrsti þáttur`) [container]
-    - text: Annar þáttur (`Galdra-Loftur: leikrit í þremur þáttum/Annar þáttur`) [container]
-    - text: Þriðji þáttur (`Galdra-Loftur: leikrit í þremur þáttum/Þriðji þáttur`) [container]
-    - text: Auglýsingar (`Galdra-Loftur: leikrit í þremur þáttum/Auglýsingar`) [container]
-1. `Tómas frændi`: subpages, book, 20 parts, 0 missing, order chain, validated
-    - front: Tómas frændi
-    - chapter: I. (`Tómas frændi/I`) [container]
-    - chapter: II. (`Tómas frændi/II`) [container]
-    - chapter: III. (`Tómas frændi/III`) [container]
-    - chapter: IV. (`Tómas frændi/IV`) [container]
-    - chapter: V. (`Tómas frændi/V`) [container]
-    - chapter: VI. (`Tómas frændi/VI`) [container]
-    - chapter: VII. (`Tómas frændi/VII`) [container]
-    - chapter: VIII. (`Tómas frændi/VIII`) [container]
-    - chapter: IX. (`Tómas frændi/IX`) [container]
-    - chapter: X. (`Tómas frændi/X`) [container]
-    - chapter: XI. (`Tómas frændi/XI`) [container]
-    - … 9 more
-1. `Rímur af Núma kóngi Pompilssyni (1835)`: subpages, book, 20 parts, 2 missing, order chain, proofread
-    - front: Rímur af Núma kóngi Pompilssyni (1835)
-    - text: Tileinkun (`Rímur af Núma kóngi Pompilssyni (1835)/Tileinkun`) [container]
-    - text: Lítill Formáli (`Rímur af Núma kóngi Pompilssyni (1835)/Lítill Formáli`) [container]
-    - text: Fyrsta Ríma (`Rímur af Núma kóngi Pompilssyni (1835)/Fyrsta Ríma`) [container]
-    - text: Ønnur Ríma (`Rímur af Núma kóngi Pompilssyni (1835)/Ønnur Ríma`) [container]
-    - text: Þriðja Ríma (`Rímur af Núma kóngi Pompilssyni (1835)/Þriðja Ríma`) [container]
-    - text: Fjórða Ríma (`Rímur af Núma kóngi Pompilssyni (1835)/Fjórða Ríma`) [container]
-    - text: Fimta Ríma (`Rímur af Núma kóngi Pompilssyni (1835)/Fimta Ríma`) [container]
-    - text: Sjøtta Ríma (`Rímur af Núma kóngi Pompilssyni (1835)/Sjøtta Ríma`) [container]
-    - text: Sjøunda Ríma (`Rímur af Núma kóngi Pompilssyni (1835)/Sjøunda Ríma`) [container]
-    - text: Attunda Ríma (`Rímur af Núma kóngi Pompilssyni (1835)/Attunda Ríma`) [container]
-    - text: Níunda Ríma (`Rímur af Núma kóngi Pompilssyni (1835)/Níunda Ríma`) [container]
-    - … 9 more
-1. `Dægradvöl`: subpages, book, 2 parts, 7 missing, order chain, proofread
-    - front: Dægradvöl
-    - text: Formáli (`Dægradvöl/Formáli`) [container]
-    - text: 1826—1835 (`Dægradvöl/1826—1835`) [container]
-1. `Fölvar Rósir`: subpages, book, 43 parts, 0 missing, order chain, proofread
-    - front: Fölvar Rósir
-    - text: Hekla (`Fölvar Rósir/Hekla`) [container]
-    - text: Heilabrot (`Fölvar Rósir/Heilabrot`) [container]
-    - text: Skilnaður (`Fölvar Rósir/Skilnaður`) [container]
-    - text: Brot (`Fölvar Rósir/Brot`) [container]
-    - text: Leiðsla (`Fölvar Rósir/Leiðsla`) [container]
-    - text: Afmæliskveðja (`Fölvar Rósir/Afmæliskveðja`) [container]
-    - text: Grafskrift (`Fölvar Rósir/Grafskrift`) [container]
-    - text: Ávarp til Stúkunnar „Einingin“ (`Fölvar Rósir/Ávarp til Stúkunnar „Einingin“`) [container]
-    - text: Píslarþankar (`Fölvar Rósir/Píslarþankar`) [container]
-    - text: Vornótt (`Fölvar Rósir/Vornótt`) [container]
-    - text: Magnús Finnson (`Fölvar Rósir/Magnús Finnson`) [container]
-    - … 32 more
 
 ### G: reference works (1)
 
@@ -358,6 +314,18 @@ None for this wiki.
 
 ### I: works with other editions (3)
 
+1. `Járnsíða og kristinréttur Árna Þorlákssonar`: subpages, collection, 10 parts, 0 missing, order chain, unknown
+    - toc: Járnsíða og kristinréttur Árna Þorlákssonar
+    - text: Þingfararbálkur (`Járnsíða og kristinréttur Árna Þorlákssonar/Þingfararbálkur`) [container]
+    - text: Kristindómsbálkur (`Járnsíða og kristinréttur Árna Þorlákssonar/Kristindómsbálkur`) [container]
+    - text: Mannhelgi (`Járnsíða og kristinréttur Árna Þorlákssonar/Mannhelgi`) [container]
+    - text: Kvennagiftingar (`Járnsíða og kristinréttur Árna Þorlákssonar/Kvennagiftingar`) [container]
+    - text: Erfðatal (`Járnsíða og kristinréttur Árna Þorlákssonar/Erfðatal`) [container]
+    - text: Landabrigðabálkur (`Járnsíða og kristinréttur Árna Þorlákssonar/Landabrigðabálkur`) [container]
+    - text: Rekabálkur (`Járnsíða og kristinréttur Árna Þorlákssonar/Rekabálkur`) [container]
+    - text: Kaupabálkur (`Járnsíða og kristinréttur Árna Þorlákssonar/Kaupabálkur`) [container]
+    - text: Þjófabálkur (`Járnsíða og kristinréttur Árna Þorlákssonar/Þjófabálkur`) [container]
+    - text: Kristinréttur Árna Þorlákssonar (`Járnsíða og kristinréttur Árna Þorlákssonar/Kristinréttur Árna Þorlákssonar`) [container]
 1. `Grágás: Lagasafn íslenska þjóðveldisins`: subpages, collection, 14 parts, 0 missing, order chain, unknown
     - toc: Grágás: Lagasafn íslenska þjóðveldisins
     - text: Kristinna laga þáttur (`Grágás: Lagasafn íslenska þjóðveldisins/Kristinna laga þáttur`) [container]
@@ -386,16 +354,4 @@ None for this wiki.
     - text: Rekaþáttur (`Jónsbók (2004)/Rekaþáttur`) [container]
     - text: Kaupabálkur (`Jónsbók (2004)/Kaupabálkur`) [container]
     - … 2 more
-1. `Járnsíða og kristinréttur Árna Þorlákssonar`: subpages, collection, 10 parts, 0 missing, order chain, unknown
-    - toc: Járnsíða og kristinréttur Árna Þorlákssonar
-    - text: Þingfararbálkur (`Járnsíða og kristinréttur Árna Þorlákssonar/Þingfararbálkur`) [container]
-    - text: Kristindómsbálkur (`Járnsíða og kristinréttur Árna Þorlákssonar/Kristindómsbálkur`) [container]
-    - text: Mannhelgi (`Járnsíða og kristinréttur Árna Þorlákssonar/Mannhelgi`) [container]
-    - text: Kvennagiftingar (`Járnsíða og kristinréttur Árna Þorlákssonar/Kvennagiftingar`) [container]
-    - text: Erfðatal (`Járnsíða og kristinréttur Árna Þorlákssonar/Erfðatal`) [container]
-    - text: Landabrigðabálkur (`Járnsíða og kristinréttur Árna Þorlákssonar/Landabrigðabálkur`) [container]
-    - text: Rekabálkur (`Járnsíða og kristinréttur Árna Þorlákssonar/Rekabálkur`) [container]
-    - text: Kaupabálkur (`Járnsíða og kristinréttur Árna Þorlákssonar/Kaupabálkur`) [container]
-    - text: Þjófabálkur (`Járnsíða og kristinréttur Árna Þorlákssonar/Þjófabálkur`) [container]
-    - text: Kristinréttur Árna Þorlákssonar (`Járnsíða og kristinréttur Árna Þorlákssonar/Kristinréttur Árna Þorlákssonar`) [container]
 

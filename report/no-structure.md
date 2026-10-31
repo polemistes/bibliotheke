@@ -79,10 +79,11 @@ Tree depth of multi-part works (levels below the root): 1: 403, 2: 27, 3: 5.
 |---|---|
 | toc | 398 |
 | scan | 57 |
-| natural | 23 |
 | chain | 14 |
+| natural | 14 |
+| toc-partial | 9 |
 
-16 of the `natural` nodes have a TOC that lists only some of their children (the TOC order did not cover all children).
+`toc-partial` (implementation choice, see section 13): the TOC lists at least half of the children, which keep its order; the rest follow in natural order. 7 `natural` nodes have a TOC that lists fewer than half.
 
 Root pages attached by their header's container link: 2,642; most frequent containers: `Norske Folke-Sagn` 160; `Norske Bygdesagn` 99; `Udvalgte lyriske Digte` 94; `Samlede dikt` 94; `I gamle Daagaa` 92; `Nye Digte` 56; `Nyere Digte` 51; `Blandkorn` 45; `Digte (Bull)` 44; `Segner fraa Bygdom IV` 44.
 
@@ -105,7 +106,7 @@ Root-page works that sit on a prev/next chain but stay separate works (no contai
 
 ## 7. Orphan trees, oversized pages, red links
 
-**Orphan trees** (virtual roots): 37, holding 140 parts. Examples: `Brevet til de Ebræer` (1); `11-119207ENE-OTIR` (3); `Morgenbladet` (8); `Østers-Kulturen` (5); `Afholdssagens historie` (5); `Fedraheimen` (3); `Norske kongesagaer` (4); `09-043651TVI-OTIR` (1).
+**Orphan trees** (virtual roots): 37, holding 140 parts. Examples: `05-130602TVI-OTIR` (1); `Morgenbladet` (8); `Karl Marx` (3); `Afholdssagens historie` (5); `11-119207ENE-OTIR` (3); `Almuens Sanger` (1); `Ordbog over det gamle norske Sprog` (6); `Norske kongesagaer` (4).
 
 **Oversized pages** (> 300,000 bytes of wikitext including transcluded scan pages): 12. Largest: `Gustav den III’s norske Politik` 0.6 MB; `Ordbog over det norske Folkesprog/S` 0.6 MB; `Norske Rigs-Registranter/Christian den 3die` 0.5 MB; `Det norske Folkesprogs Grammatik` 0.5 MB; `En Krønike om Erkebiskopperne i Nidaros` 0.4 MB; `Optegnelser om visitatsreisen i Baahuslen og Borgesyssel 1 Marts – 1 Mai 1594` 0.4 MB; `Jury-Institutionen i Storbritanien, Canada og de forenede Stater af Amerika` 0.4 MB; `Angaaende Forandringer i Lovgivningen om Husmænd` 0.4 MB; `Realitets-Procedure og Dom i Rigsretssagen imod Hs. Excellence Statsminister m. m. Løvenskiold` 0.4 MB; `Biskop Peder Herslebs Embedsskrivelser til Akershus Stifts Gejstlighed` 0.3 MB.
 
@@ -199,6 +200,13 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
 - Display titles come from `current`/`section`/`TITEL`, else the link text in the parent's TOC, else the last title segment. A work's first part row is its root (`front` above 400 characters of own text, else `toc`); `part_count` excludes it.
 - Missing parts are red links in the TOCs of the work's root and volumes: subpages of the root always, other titles only in linked or mixed works and on TOC-like pages.
 - Junk rules (cleanup or deletion template, placeholder, under 300 bytes) apply to works without scan pages and without any quality signal.
+- Order (step 1c): when no source covers all children but the TOC lists at least half, the listed children keep the TOC order and the rest follow in natural order (`toc-partial`), so that collections are not shown alphabetically (WS§2 rule 3).
+- Rule 3: a TOC page is marked as one (de `HERKUNFT = off`) or is its Index's own book; "reached from it by the prev/next chain" is read as: the member's chain starts at the TOC page or its prev or next page is listed on the same TOC page.
+- A container with several links (de `HERKUNFT`) resolves to the first link that shares the page's Index, else the first link (the KHM tales link the editions overview first).
+- Volume placement: a part attached by its container is placed under the one TOC page (under 2,000 bytes of own text, listing at least three members) of the same work that lists it, unless the container's members already form one prev/next chain.
+- A slash inside unclosed parentheses is part of the name (de `X (Die Gartenlaube 1871/17)`), not a subpage separator.
+- Exclusions: a page with scan transclusion is never a disambiguation page (fr dictionary roots carry the prop); subpages inherit only portal and author-page exclusions; on de, portal pages are marked by `Themendaten`, `Ortsdaten`, `Listendaten` (and the categories Thema, Orte, Listen when the page has no header), and a root page without header template, scans or status is a portal (`no-header`) unless other pages name it as their container.
+- A bare `<pages index=X/>` renders the Index's TOC field, not the book.
 
 ## 12. Random samples for eyeballing (30 per pattern)
 
@@ -580,19 +588,19 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
       - text: Brigde (`Myrkemagterne/Brigde`) [container]
       - text: Femte vending (`Myrkemagterne/Femte vending`) [container]
     - … 2 more
-1. `Folkevennen`: mixed, collection, 178 parts, 198 missing, order natural, unproofread
+1. `Folkevennen`: mixed, collection, 178 parts, 198 missing, order toc-partial, unproofread
     - toc: Folkevennen
-    - text: Arbeiderforeningen i Bergen (Del 2) (`Arbeiderforeningen i Bergen/2`) [container]
-    - text: Bygde-Skikke (del 2) (`Bygde-Skikke/4/2`) [container]
-    - text: Bygde-Skikke (del 3) (`Bygde-Skikke/4/3`) [container]
-    - text: Bygde-Skikke (del 4) (`Bygde-Skikke/4/4`) [container]
-    - text: Bygde-Skikke (del 5) (`Bygde-Skikke/4/5`) [container]
     - volume: Første Aargang (`Folkevennen/1852`) [hierarchy]
       - text: Til Tidsskriftets Læsere [container]
       - text: Et Par Smaatræk af Folkelivet [container]
       - text: Lidt om Bøger og Læsning [container]
       - text: Nogle Sprogbemærkninger [container]
       - text: Han Nils Prest [container]
+      - text: Om Aarsagerne til Arbejdslønnens Forskjellighed [container]
+      - text: Om Landalmuens Næringsdrift og Levemaade [container]
+      - text: Henrik Wergeland – Fædrelandskjærlighed [container]
+    - volume: Anden Aargang (`Folkevennen/1853`) [hierarchy]
+      - text: Gjætlugutin [container]
     - … 167 more
 1. `Blandt Nordpolens Naboer`: mixed, book, 13 parts, 0 missing, order toc, proofread
     - front: Blandt Nordpolens Naboer
@@ -722,19 +730,19 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
     - text: Uppvokstren hans [container]
     - text: Storegut verd bergteken [container]
     - … 23 more
-1. `Historisk Tidsskrift`: mixed, collection, 403 parts, 86 missing, order natural, unproofread
+1. `Historisk Tidsskrift`: mixed, collection, 403 parts, 86 missing, order toc-partial, unproofread
     - toc: Historisk Tidsskrift
-    - text: Aage Friis, Danmark ved Krigsudbruddet Juli–August 1870 [container]
-    - chapter: C. Klitgaard, Den vendsysselske Skudehandel [container]
-    - text: Forviklinger paa Oplandene i Midten af det 17. Aarhundrede [container]
-    - volume: Andet Bind (`Historisk Tidsskrift/Anden Række/Andet Bind`) [hierarchy]
-      - text: Om nogle middelalderske Slægter i det vestenfjeldske Norge [container]
-      - text: To utrykte Digte af Petter Dass [container]
-      - text: Stiftsprovst Dr. Theol. Otto Holmboes Dagbogs-Optegnelser 1751–1773 [container]
-      - text: Armfeldts Tog Nordenfjelds 1718 (`Armfeldts tog nordenfjelds 1718`) [container]
-      - text: Vikingetogenes tidligste Udgangspunkter [container]
-      - text: Erik af Pommerns, Danmarks, Sveriges og Norges Konges, Giftermaal med Philippa, Prindsesse af England [container]
-      - text: Den Bergenske Biskop Arnes Bibliothek [container]
+    - volume: Første Bind (`Historisk Tidsskrift/Første Række/Første Bind`) [hierarchy]
+      - text: Om de kongelige begravelser i Norge efter hedendommen [container]
+      - text: Frederik III.s hylding i Kristiania 1648 (`Frederik IIIs hylding i Kristiania 1648`) [container]
+      - text: Bemerkninger om stedsnavnene i den søndre del af Helgeland [container]
+      - text: Tillægsbemærkning om navnet Hálogaland, Helgeland [container]
+      - text: Et nordtydsk Sagn om Olaf den helliges Ligkiste [container]
+      - text: Noget om skaalebygningen [container]
+      - text: Bevise Navnene i de nordiske Vølsungasagn, at disse ere laante fra Tydskerne? [container]
+      - text: Om Lørdagshelg i Norge før og efter Reformationen [container]
+      - text: Retshistoriske brudstykker [container]
+      - chapter: V. C. W. Sibberns Dagbog paa Eidsvold [container]
     - … 392 more
 1. `Symra`: mixed, book, 26 parts, 0 missing, order toc, proofread
     - toc: Symra
@@ -934,33 +942,14 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
 
 ### D: virtual roots (37)
 
-1. `Karl Marx`: virtual, book, 3 parts, 0 missing, order scan, proofread
-    - chapter: Forord (`Karl Marx/Forord`)
-    - chapter: 1 (`Karl Marx/1`) [hierarchy]
-    - text: Etterskrift (`Karl Marx/Etterskrift`) [hierarchy]
-1. `Brevet til de Ebræer`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: Fortale (`Brevet til de Ebræer/Fortale`)
-1. `09-043651TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
-    - chapter: 05 (`09-043651TVI-OTIR/05`)
-1. `Morgenbladet`: virtual, book, 8 parts, 0 missing, order natural, proofread
-    - chapter: 1819 (`Morgenbladet/1819`)
-    - chapter: 1820 (`Morgenbladet/1820`) [hierarchy]
-    - chapter: 275 (`Morgenbladet/1833/275`) [hierarchy]
-    - chapter: 306 (`Morgenbladet/1840/306`) [hierarchy]
-    - chapter: 194 (`Morgenbladet/1845/194`) [hierarchy]
-    - chapter: 218 (`Morgenbladet/1851/218`) [hierarchy]
-    - chapter: 145 (`Morgenbladet/1863/145`) [hierarchy]
-    - text: Ekstrablad 8. juli 1836 (`Morgenbladet/Ekstrablad 8. juli 1836`) [hierarchy]
-1. `Gudekvæde`: virtual, book, 2 parts, 0 missing, order scan, validated
-    - text: Forerindring (`Gudekvæde/Forerindring`)
-    - text: Fyriord (`Gudekvæde/Fyriord`) [hierarchy]
-1. `En Sommer i Finnmarken, Russisk Lapland og Nordkarelen`: virtual, book, 2 parts, 0 missing, order scan, proofread
-    - chapter: Forord (`En Sommer i Finnmarken, Russisk Lapland og Nordkarelen/Forord`)
-    - chapter: 1 (`En Sommer i Finnmarken, Russisk Lapland og Nordkarelen/1`) [hierarchy]
-1. `08-073828PRI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
-    - chapter: 06 (`08-073828PRI-OTIR/06`)
-1. `10-099305-MED-OTIR`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: 04 (`10-099305-MED-OTIR/04`)
+1. `Illustreret Norges Historie`: virtual, book, 7 parts, 0 missing, order scan, proofread
+    - chapter: 17 (`Illustreret Norges Historie/4/17`)
+    - chapter: 18 (`Illustreret Norges Historie/4/18`) [hierarchy]
+    - chapter: 19 (`Illustreret Norges Historie/4/19`) [hierarchy]
+    - chapter: 20 (`Illustreret Norges Historie/4/20`) [hierarchy]
+    - chapter: 21 (`Illustreret Norges Historie/4/21`) [hierarchy]
+    - chapter: 22 (`Illustreret Norges Historie/4/22`) [hierarchy]
+    - chapter: 23 (`Illustreret Norges Historie/4/23`) [hierarchy]
 1. `05-130602TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
     - chapter: 06 (`05-130602TVI-OTIR/06`)
 1. `Norske kongesagaer`: virtual, book, 4 parts, 0 missing, order scan, proofread
@@ -968,24 +957,31 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
     - text: Snorre Sturlasøns fortale (`Norske kongesagaer/Snorre Sturlasøns fortale`) [hierarchy]
     - text: Ynglinge-saga (`Norske kongesagaer/Ynglinge-saga`) [hierarchy]
     - text: Halvdan Svartes saga (`Norske kongesagaer/Halvdan Svartes saga`) [hierarchy]
-1. `Almuens Sanger`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: Forerindring (`Almuens Sanger/Forerindring`)
-1. `Jødedommen`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: 1 (`Jødedommen/1`)
-1. `Sigurd Slembe`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: 1 (`Sigurd Slembe/1/1`)
+1. `Karl Marx`: virtual, book, 3 parts, 0 missing, order scan, proofread
+    - chapter: Forord (`Karl Marx/Forord`)
+    - chapter: 1 (`Karl Marx/1`) [hierarchy]
+    - text: Etterskrift (`Karl Marx/Etterskrift`) [hierarchy]
 1. `Ezechiels Syner`: virtual, collection, 1 parts, 0 missing, order single, unknown, excluded under-300-bytes
     - text: Résumé på fransk (`Ezechiels Syner/Résumé`)
-1. `11-119207ENE-OTIR`: virtual, book, 3 parts, 0 missing, order natural, validated
-    - text: 03 (Lukkede dører) (`11-119207ENE-OTIR/03 (Lukkede dører)`)
-    - text: 03 (Uniform) (`11-119207ENE-OTIR/03 (Uniform)`) [hierarchy]
-    - text: 03 (Varetektsfengsling) (`11-119207ENE-OTIR/03 (Varetektsfengsling)`) [hierarchy]
-1. `08-156741TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
-    - chapter: 01 (`08-156741TVI-OTIR/01`)
-1. `Topografisk-statistisk beskrivelse over Nedenes amt`: virtual, book, 3 parts, 0 missing, order single, proofread
-    - volume: 1 (`Topografisk-statistisk beskrivelse over Nedenes amt/1`)
-      - chapter: 81 (`Topografisk-statistisk beskrivelse over Nedenes amt/1/81`) [container]
-      - chapter: 82 (`Topografisk-statistisk beskrivelse over Nedenes amt/1/82`) [container]
+1. `Den kristelige Troeslære i dens Grundtræk`: virtual, book, 4 parts, 0 missing, order scan, proofread
+    - chapter: Forord (`Den kristelige Troeslære i dens Grundtræk/Forord`)
+    - chapter: Indledning (`Den kristelige Troeslære i dens Grundtræk/Indledning`) [hierarchy]
+    - chapter: 1 (`Den kristelige Troeslære i dens Grundtræk/1`) [hierarchy]
+    - chapter: 2 (`Den kristelige Troeslære i dens Grundtræk/2`) [hierarchy]
+1. `08-073828PRI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
+    - chapter: 06 (`08-073828PRI-OTIR/06`)
+1. `En Sommer i Finnmarken, Russisk Lapland og Nordkarelen`: virtual, book, 2 parts, 0 missing, order scan, proofread
+    - chapter: Forord (`En Sommer i Finnmarken, Russisk Lapland og Nordkarelen/Forord`)
+    - chapter: 1 (`En Sommer i Finnmarken, Russisk Lapland og Nordkarelen/1`) [hierarchy]
+1. `09-043651TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
+    - chapter: 05 (`09-043651TVI-OTIR/05`)
+1. `Ordbog over det gamle norske Sprog`: virtual, book, 6 parts, 0 missing, order scan, proofread
+    - text: A (`Ordbog over det gamle norske Sprog/A`)
+    - text: a (`Ordbog over det gamle norske Sprog/a`) [hierarchy]
+    - text: á 1 (`Ordbog over det gamle norske Sprog/á 1`) [hierarchy]
+    - text: á 2 (`Ordbog over det gamle norske Sprog/á 2`) [hierarchy]
+    - text: á 3 (`Ordbog over det gamle norske Sprog/á 3`) [hierarchy]
+    - text: at 1 (`Ordbog over det gamle norske Sprog/at 1`) [hierarchy]
 1. `Hvorledes Dr Wrangel kom`: virtual, book, 38 parts, 0 missing, order scan, proofread
     - chapter: 1 (`Hvorledes Dr Wrangel kom/1`)
     - chapter: 2 (`Hvorledes Dr Wrangel kom/2`) [hierarchy]
@@ -1000,6 +996,31 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
     - chapter: 11 (`Hvorledes Dr Wrangel kom/11`) [hierarchy]
     - chapter: 12 (`Hvorledes Dr Wrangel kom/12`) [hierarchy]
     - … 26 more
+1. `Topografisk-statistisk beskrivelse over Nedenes amt`: virtual, book, 3 parts, 0 missing, order single, proofread
+    - volume: 1 (`Topografisk-statistisk beskrivelse over Nedenes amt/1`)
+      - chapter: 81 (`Topografisk-statistisk beskrivelse over Nedenes amt/1/81`) [container]
+      - chapter: 82 (`Topografisk-statistisk beskrivelse over Nedenes amt/1/82`) [container]
+1. `Gudekvæde`: virtual, book, 2 parts, 0 missing, order scan, validated
+    - text: Forerindring (`Gudekvæde/Forerindring`)
+    - text: Fyriord (`Gudekvæde/Fyriord`) [hierarchy]
+1. `08-156741TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
+    - chapter: 01 (`08-156741TVI-OTIR/01`)
+1. `Morgenbladet`: virtual, book, 8 parts, 0 missing, order natural, proofread
+    - chapter: 1819 (`Morgenbladet/1819`)
+    - chapter: 1820 (`Morgenbladet/1820`) [hierarchy]
+    - chapter: 275 (`Morgenbladet/1833/275`) [hierarchy]
+    - chapter: 306 (`Morgenbladet/1840/306`) [hierarchy]
+    - chapter: 194 (`Morgenbladet/1845/194`) [hierarchy]
+    - chapter: 218 (`Morgenbladet/1851/218`) [hierarchy]
+    - chapter: 145 (`Morgenbladet/1863/145`) [hierarchy]
+    - text: Ekstrablad 8. juli 1836 (`Morgenbladet/Ekstrablad 8. juli 1836`) [hierarchy]
+1. `Jødedommen`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: 1 (`Jødedommen/1`)
+1. `11-098785MED-OTIR`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: 01 (`11-098785MED-OTIR/01`)
+1. `Reisehaandbog over Norge`: virtual, book, 2 parts, 0 missing, order scan, unproofread
+    - chapter: Forord (`Reisehaandbog over Norge/Forord`)
+    - chapter: 1 (`Reisehaandbog over Norge/1`) [hierarchy]
 1. `Topografisk-statistisk beskrivelse over Bratsberg amt`: virtual, book, 6 parts, 7 missing, order natural, proofread
     - volume: 1 (`Topografisk-statistisk beskrivelse over Bratsberg amt/1`)
       - chapter: 1 (`Topografisk-statistisk beskrivelse over Bratsberg amt/1/1`) [container]
@@ -1007,35 +1028,10 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
       - text: Gammel norsk tidsregning og primstaven (`Topografisk-statistisk beskrivelse over Bratsberg amt/1/95`) [container]
     - volume: 2 (`Topografisk-statistisk beskrivelse over Bratsberg amt/2`) [hierarchy]
       - text: Vinje herred (`Topografisk-statistisk beskrivelse over Bratsberg amt/30`) [container]
-1. `11-007057ENE-OTIR`: virtual, document, 1 parts, 0 missing, order single, validated
-    - chapter: 08 (`11-007057ENE-OTIR/08`)
-1. `Topografisk-statistisk beskrivelse over Finmarkens amt`: virtual, book, 5 parts, 3 missing, order natural, proofread
-    - volume: 1 (`Topografisk-statistisk beskrivelse over Finmarkens amt/1`)
-      - chapter: Innledning (`Topografisk-statistisk beskrivelse over Finmarkens amt/1/2`) [container]
-      - chapter: 3 (`Topografisk-statistisk beskrivelse over Finmarkens amt/1/3`) [container]
-    - volume: 2 (`Topografisk-statistisk beskrivelse over Finmarkens amt/2`) [hierarchy]
-      - text: Finnekonger (`Topografisk-statistisk beskrivelse over Finmarkens amt/2/67`) [container]
-1. `Ordbog over det gamle norske Sprog`: virtual, book, 6 parts, 0 missing, order scan, proofread
-    - text: A (`Ordbog over det gamle norske Sprog/A`)
-    - text: a (`Ordbog over det gamle norske Sprog/a`) [hierarchy]
-    - text: á 1 (`Ordbog over det gamle norske Sprog/á 1`) [hierarchy]
-    - text: á 2 (`Ordbog over det gamle norske Sprog/á 2`) [hierarchy]
-    - text: á 3 (`Ordbog over det gamle norske Sprog/á 3`) [hierarchy]
-    - text: at 1 (`Ordbog over det gamle norske Sprog/at 1`) [hierarchy]
-1. `Illustreret Norges Historie`: virtual, book, 7 parts, 0 missing, order scan, proofread
-    - chapter: 17 (`Illustreret Norges Historie/4/17`)
-    - chapter: 18 (`Illustreret Norges Historie/4/18`) [hierarchy]
-    - chapter: 19 (`Illustreret Norges Historie/4/19`) [hierarchy]
-    - chapter: 20 (`Illustreret Norges Historie/4/20`) [hierarchy]
-    - chapter: 21 (`Illustreret Norges Historie/4/21`) [hierarchy]
-    - chapter: 22 (`Illustreret Norges Historie/4/22`) [hierarchy]
-    - chapter: 23 (`Illustreret Norges Historie/4/23`) [hierarchy]
-1. `Østers-Kulturen`: virtual, book, 5 parts, 0 missing, order scan, proofread
-    - chapter: 11 (`Østers-Kulturen/11`)
-    - chapter: 12 (`Østers-Kulturen/12`) [hierarchy]
-    - chapter: 13 (`Østers-Kulturen/13`) [hierarchy]
-    - chapter: 14 (`Østers-Kulturen/14`) [hierarchy]
-    - chapter: 15 (`Østers-Kulturen/15`) [hierarchy]
+1. `Brevet til de Ebræer`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: Fortale (`Brevet til de Ebræer/Fortale`)
+1. `Lappisk Mytologi`: virtual, book, 1 parts, 0 missing, order single, unknown, excluded no-text-pages
+    - chapter: Forord (`Lappisk Mytologi/Forord`)
 1. `Fedraheimen`: virtual, periodical-issue, 3 parts, 5 missing, order single, unproofread
     - volume: 6 (`Fedraheimen/1877/10/6`)
       - text: Fedraheimen (`Fedraheimen/1877/10/6/Fedraheimen`) [hierarchy]
@@ -1044,6 +1040,22 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
     - text: Evangelium paa Christi Fødselsdag (`Det nye Testamente (1856)/Evangelium paa Christi Fødselsdag`)
     - text: St Johannis 2det Brev (`Det nye Testamente (1856)/St Johannis 2det Brev`) [hierarchy]
     - text: St Johannis 3die Brev (`Det nye Testamente (1856)/St Johannis 3die Brev`) [hierarchy]
+1. `Afholdssagens historie`: virtual, book, 5 parts, 0 missing, order scan, proofread
+    - chapter: Forord (`Afholdssagens historie/Forord`)
+    - chapter: I (`Afholdssagens historie/I`) [hierarchy]
+    - chapter: II (`Afholdssagens historie/II`) [hierarchy]
+    - chapter: III (`Afholdssagens historie/III`) [hierarchy]
+    - chapter: XXII (`Afholdssagens historie/XXII`) [hierarchy]
+1. `Almuens Sanger`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - text: Forerindring (`Almuens Sanger/Forerindring`)
+1. `Urd`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Pianist Sigvart Høgh-Nilsen (`Urd/1907/Pianist Sigvart Høgh-Nilsen`)
+1. `Dølen`: virtual, periodical-issue, 1 parts, 0 missing, order single, unproofread
+    - chapter: 10 (`Dølen/1858/10/10`)
+1. `Norge i 1814, fra russiske Arkiver`: virtual, book, 3 parts, 0 missing, order scan, proofread
+    - chapter: 1 (`Norge i 1814, fra russiske Arkiver/1`)
+    - chapter: 2 (`Norge i 1814, fra russiske Arkiver/2`) [hierarchy]
+    - chapter: 3 (`Norge i 1814, fra russiske Arkiver/3`) [hierarchy]
 1. `Niels Klims underjordiske Reise`: virtual, book, 11 parts, 0 missing, order scan, proofread
     - chapter: Fortale (`Niels Klims underjordiske Reise/Fortale`)
     - chapter: Første Kapitel (`Niels Klims underjordiske Reise/Første Kapitel`) [hierarchy]
@@ -1056,49 +1068,43 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
     - chapter: Ottende Kapitel (`Niels Klims underjordiske Reise/Ottende Kapitel`) [hierarchy]
     - text: Abelins Tillæg (`Niels Klims underjordiske Reise/Abelins Tillæg`) [hierarchy]
     - chapter: Efterskrift (`Niels Klims underjordiske Reise/Efterskrift`) [hierarchy]
-1. `Ær dæt Fårnuftigt at have Religion`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: Fortale (`Ær dæt Fårnuftigt at have Religion/Fortale`)
-1. `Lappisk Mytologi`: virtual, book, 1 parts, 0 missing, order single, unknown, excluded no-text-pages
-    - chapter: Forord (`Lappisk Mytologi/Forord`)
-1. `Afholdssagens historie`: virtual, book, 5 parts, 0 missing, order scan, proofread
-    - chapter: Forord (`Afholdssagens historie/Forord`)
-    - chapter: I (`Afholdssagens historie/I`) [hierarchy]
-    - chapter: II (`Afholdssagens historie/II`) [hierarchy]
-    - chapter: III (`Afholdssagens historie/III`) [hierarchy]
-    - chapter: XXII (`Afholdssagens historie/XXII`) [hierarchy]
+1. `11-119207ENE-OTIR`: virtual, book, 3 parts, 0 missing, order natural, validated
+    - text: 03 (Lukkede dører) (`11-119207ENE-OTIR/03 (Lukkede dører)`)
+    - text: 03 (Uniform) (`11-119207ENE-OTIR/03 (Uniform)`) [hierarchy]
+    - text: 03 (Varetektsfengsling) (`11-119207ENE-OTIR/03 (Varetektsfengsling)`) [hierarchy]
 
 ### E: subpage texts reached from a disambiguation or versions page (42)
 
 1. chapter “218” (`Morgenbladet/1851/218`), part 5 of `Morgenbladet` (book, 8 parts, 1 texts)
-1. text “Obadias” (`Bibelen (1891)/Profeten Obadias`), part 21 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Obadias” (`Bibelen (1891)/Profeten Obadias`), part 6 of `Bibelen (1891)` (book, 26 parts, 24 texts)
 1. text “Apostelen Pauli Brev til Romararne” (`Det nye Testamente (1883-1889)/Brev til Romararne`), part 11 of `Det nye Testamente (1883-1889)` (book, 20 parts, 5 texts)
 1. text “Ekstrablad 8. juli 1836” (`Morgenbladet/Ekstrablad 8. juli 1836`), part 7 of `Morgenbladet` (book, 8 parts, 1 texts)
-1. text “Peters andet almindelige Brev” (`Bibelen (1891)/Peters andet almindelige Brev`), part 11 of `Bibelen (1891)` (book, 26 parts, 24 texts)
-1. text “Johannes’s andet Brev” (`Bibelen (1891)/Johannes's andet almindelige Brev`), part 3 of `Bibelen (1891)` (book, 26 parts, 24 texts)
-1. text “Peters første almindelige Brev” (`Bibelen (1891)/Peters første almindelige Brev`), part 12 of `Bibelen (1891)` (book, 26 parts, 24 texts)
-1. text “Malakias” (`Bibelen (1891)/Profeten Malakias`), part 18 of `Bibelen (1891)` (book, 26 parts, 24 texts)
-1. chapter “Paulus’s Brev til Filemon” (`Bibelen (1891)/Paulus's Brev til Filemon`), part 9 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Peters andet almindelige Brev” (`Bibelen (1891)/Peters andet almindelige Brev`), part 20 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Johannes’s andet Brev” (`Bibelen (1891)/Johannes's andet almindelige Brev`), part 22 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Peters første almindelige Brev” (`Bibelen (1891)/Peters første almindelige Brev`), part 19 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Malakias” (`Bibelen (1891)/Profeten Malakias`), part 14 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. chapter “Paulus’s Brev til Filemon” (`Bibelen (1891)/Paulus's Brev til Filemon`), part 17 of `Bibelen (1891)` (book, 26 parts, 24 texts)
 1. text “Ruths Bog” (`Trende Bibelske Bøger/Ruths Bog`), part 2 of `Trende Bibelske Bøger` (book, 3 parts, 3 texts)
-1. text “Nahum” (`Bibelen (1891)/Profeten Nahum`), part 20 of `Bibelen (1891)` (book, 26 parts, 24 texts)
-1. text “Johannes’s tredje Brev” (`Bibelen (1891)/Johannes's tredje almindelige Brev`), part 5 of `Bibelen (1891)` (book, 26 parts, 24 texts)
-1. text “Amos” (`Bibelen (1891)/Profeten Amos`), part 13 of `Bibelen (1891)` (book, 26 parts, 24 texts)
-1. text “Jonas” (`Bibelen (1891)/Profeten Jonas`), part 17 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Nahum” (`Bibelen (1891)/Profeten Nahum`), part 9 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Johannes’s tredje Brev” (`Bibelen (1891)/Johannes's tredje almindelige Brev`), part 23 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Amos” (`Bibelen (1891)/Profeten Amos`), part 5 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Jonas” (`Bibelen (1891)/Profeten Jonas`), part 7 of `Bibelen (1891)` (book, 26 parts, 24 texts)
 1. chapter “10” (`Dølen/1858/10/10`), part 0 of `Dølen` (periodical-issue, 1 parts, 0 texts)
 1. chapter “275” (`Morgenbladet/1833/275`), part 2 of `Morgenbladet` (book, 8 parts, 1 texts)
 1. text “Juleevangeliet” (`Det nye Testamentet (1886)/Juleevangeliet`), part 0 of `Det nye Testamentet (1886)` (collection, 1 parts, 1 texts)
-1. text “Prædikerens Bog” (`Bibelen (1891)/Prædikerens Bog`), part 24 of `Bibelen (1891)` (book, 26 parts, 24 texts)
-1. text “Zefanias” (`Bibelen (1891)/Profeten Zefanias`), part 23 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Prædikerens Bog” (`Bibelen (1891)/Prædikerens Bog`), part 2 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Zefanias” (`Bibelen (1891)/Profeten Zefanias`), part 11 of `Bibelen (1891)` (book, 26 parts, 24 texts)
 1. volume “6” (`Fedraheimen/1877/10/6`), part 0 of `Fedraheimen` (periodical-issue, 3 parts, 2 texts)
-1. text “Paulus’s andet Brev til Tessalonikerne” (`Bibelen (1891)/Paulus's andet Brev til Tessalonikerne`), part 8 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Paulus’s andet Brev til Tessalonikerne” (`Bibelen (1891)/Paulus's andet Brev til Tessalonikerne`), part 15 of `Bibelen (1891)` (book, 26 parts, 24 texts)
 1. chapter “145” (`Morgenbladet/1863/145`), part 6 of `Morgenbladet` (book, 8 parts, 1 texts)
 1. text “03 (Varetektsfengsling)” (`11-119207ENE-OTIR/03 (Varetektsfengsling)`), part 2 of `11-119207ENE-OTIR` (book, 3 parts, 3 texts)
-1. text “Juleevangeliet” (`Bibelen (1891)/Juleevangeliet`), part 7 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Juleevangeliet” (`Bibelen (1891)/Juleevangeliet`), part 26 of `Bibelen (1891)` (book, 26 parts, 24 texts)
 1. chapter “1820” (`Morgenbladet/1820`), part 1 of `Morgenbladet` (book, 8 parts, 1 texts)
-1. text “Sakarias” (`Bibelen (1891)/Profeten Sakarias`), part 22 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Sakarias” (`Bibelen (1891)/Profeten Sakarias`), part 13 of `Bibelen (1891)` (book, 26 parts, 24 texts)
 1. text “Evangeliet etter Markus” (`Det nye Testamente (1883-1889)/Markus`), part 4 of `Det nye Testamente (1883-1889)` (book, 20 parts, 5 texts)
-1. text “Haggaj” (`Bibelen (1891)/Profeten Haggaj`), part 15 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Haggaj” (`Bibelen (1891)/Profeten Haggaj`), part 12 of `Bibelen (1891)` (book, 26 parts, 24 texts)
 1. chapter “Judas’ Brev” (`Det nye Testamente (1883-1889)/Judas' Brev`), part 19 of `Det nye Testamente (1883-1889)` (book, 20 parts, 5 texts)
-1. text “Habakuk” (`Bibelen (1891)/Profeten Habakuk`), part 14 of `Bibelen (1891)` (book, 26 parts, 24 texts)
+1. text “Habakuk” (`Bibelen (1891)/Profeten Habakuk`), part 10 of `Bibelen (1891)` (book, 26 parts, 24 texts)
 
 ### all searchable subpage texts (chapter titles that the label patterns miss show up here) (3,603)
 
@@ -1219,19 +1225,19 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
       - chapter: IX. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/9`) [container]
       - chapter: X. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/10`) [container]
     - … 10 more
-1. `Historisk Tidsskrift`: mixed, collection, 403 parts, 86 missing, order natural, unproofread
+1. `Historisk Tidsskrift`: mixed, collection, 403 parts, 86 missing, order toc-partial, unproofread
     - toc: Historisk Tidsskrift
-    - text: Aage Friis, Danmark ved Krigsudbruddet Juli–August 1870 [container]
-    - chapter: C. Klitgaard, Den vendsysselske Skudehandel [container]
-    - text: Forviklinger paa Oplandene i Midten af det 17. Aarhundrede [container]
-    - volume: Andet Bind (`Historisk Tidsskrift/Anden Række/Andet Bind`) [hierarchy]
-      - text: Om nogle middelalderske Slægter i det vestenfjeldske Norge [container]
-      - text: To utrykte Digte af Petter Dass [container]
-      - text: Stiftsprovst Dr. Theol. Otto Holmboes Dagbogs-Optegnelser 1751–1773 [container]
-      - text: Armfeldts Tog Nordenfjelds 1718 (`Armfeldts tog nordenfjelds 1718`) [container]
-      - text: Vikingetogenes tidligste Udgangspunkter [container]
-      - text: Erik af Pommerns, Danmarks, Sveriges og Norges Konges, Giftermaal med Philippa, Prindsesse af England [container]
-      - text: Den Bergenske Biskop Arnes Bibliothek [container]
+    - volume: Første Bind (`Historisk Tidsskrift/Første Række/Første Bind`) [hierarchy]
+      - text: Om de kongelige begravelser i Norge efter hedendommen [container]
+      - text: Frederik III.s hylding i Kristiania 1648 (`Frederik IIIs hylding i Kristiania 1648`) [container]
+      - text: Bemerkninger om stedsnavnene i den søndre del af Helgeland [container]
+      - text: Tillægsbemærkning om navnet Hálogaland, Helgeland [container]
+      - text: Et nordtydsk Sagn om Olaf den helliges Ligkiste [container]
+      - text: Noget om skaalebygningen [container]
+      - text: Bevise Navnene i de nordiske Vølsungasagn, at disse ere laante fra Tydskerne? [container]
+      - text: Om Lørdagshelg i Norge før og efter Reformationen [container]
+      - text: Retshistoriske brudstykker [container]
+      - chapter: V. C. W. Sibberns Dagbog paa Eidsvold [container]
     - … 392 more
 1. `Angaaende Forandringer i Lovgivningen om Husmænd`: single, book, 1 parts, 0 missing, order –, proofread
     - text: Angaaende Forandringer i Lovgivningen om Husmænd
@@ -1241,21 +1247,21 @@ Rows count multi-part works only, one row per part plus the root row. 636 single
 
 ### H: deep nesting (5)
 
-1. `Folkevennen`: mixed, collection, 178 parts, 198 missing, order natural, unproofread
+1. `Folkevennen`: mixed, collection, 178 parts, 198 missing, order toc-partial, unproofread
     - toc: Folkevennen
-    - text: Arbeiderforeningen i Bergen (Del 2) (`Arbeiderforeningen i Bergen/2`) [container]
-    - text: Bygde-Skikke (del 2) (`Bygde-Skikke/4/2`) [container]
-    - text: Bygde-Skikke (del 3) (`Bygde-Skikke/4/3`) [container]
-    - text: Bygde-Skikke (del 4) (`Bygde-Skikke/4/4`) [container]
-    - text: Bygde-Skikke (del 5) (`Bygde-Skikke/4/5`) [container]
     - volume: Første Aargang (`Folkevennen/1852`) [hierarchy]
       - text: Til Tidsskriftets Læsere [container]
       - text: Et Par Smaatræk af Folkelivet [container]
       - text: Lidt om Bøger og Læsning [container]
       - text: Nogle Sprogbemærkninger [container]
       - text: Han Nils Prest [container]
+      - text: Om Aarsagerne til Arbejdslønnens Forskjellighed [container]
+      - text: Om Landalmuens Næringsdrift og Levemaade [container]
+      - text: Henrik Wergeland – Fædrelandskjærlighed [container]
+    - volume: Anden Aargang (`Folkevennen/1853`) [hierarchy]
+      - text: Gjætlugutin [container]
     - … 167 more
-1. `Det norske Folks Historie`: mixed, book, 691 parts, 23 missing, order natural, proofread
+1. `Det norske Folks Historie`: mixed, book, 691 parts, 23 missing, order toc-partial, proofread
     - toc: Det norske Folks Historie
     - volume: I-1-1 (`Det norske Folks Historie/1`) [hierarchy]
       - chapter: 1. Norges geographiske og physiske Forhold. (`Det norske Folks Historie/1/1`) [container]

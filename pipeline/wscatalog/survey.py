@@ -211,12 +211,10 @@ class Survey:
         out += md_table(["order source (nodes with ≥ 2 children)", "nodes"],
                         [[k, f"{v:,}"] for k, v in orders.most_common()])
         out.append("")
-        partial = 0
-        for n in r.nodes.values():
-            if n.order_source == "natural" and n.toc:
-                partial += 1
-        out.append(f"{partial:,} of the `natural` nodes have a TOC that lists only some of their "
-                   f"children (the TOC order did not cover all children).")
+        partial = sum(1 for n in r.nodes.values() if n.order_source == "natural" and n.toc)
+        out.append(f"`toc-partial` (implementation choice, see section 13): the TOC lists at least "
+                   f"half of the children, which keep its order; the rest follow in natural order. "
+                   f"{partial:,} `natural` nodes have a TOC that lists fewer than half.")
         out.append("")
         top = Counter(n.parent for n in nodes if n.rule == "container" and "/" not in n.title)
         out.append(f"Root pages attached by their header's container link: "
@@ -491,7 +489,10 @@ class Survey:
             return out + ["None for this wiki.", ""]
         for t in names:
             t2 = self.res.resolve(t)
-            if t in self.res.excluded:
+            if t != t2 and t2 in self.res.excluded:
+                out.append(f"- `{esc(t)}`: redirect to `{esc(t2)}`, which is excluded "
+                           f"({self.res.excluded[t2]}).")
+            elif t in self.res.excluded:
                 hits = [(w, p) for w in self.res.works for p in w.parts
                         if p.searchable and p.node.display.strip(" .") == t]
                 out.append(f"- `{esc(t)}`: excluded ({self.res.excluded[t]})"
@@ -576,6 +577,27 @@ class Survey:
             "of the root always, other titles only in linked or mixed works and on TOC-like pages.",
             "- Junk rules (cleanup or deletion template, placeholder, under 300 bytes) apply to "
             "works without scan pages and without any quality signal.",
+            "- Order (step 1c): when no source covers all children but the TOC lists at least "
+            "half, the listed children keep the TOC order and the rest follow in natural order "
+            "(`toc-partial`), so that collections are not shown alphabetically (WS§2 rule 3).",
+            "- Rule 3: a TOC page is marked as one (de `HERKUNFT = off`) or is its Index's own "
+            "book; \"reached from it by the prev/next chain\" is read as: the member's chain "
+            "starts at the TOC page or its prev or next page is listed on the same TOC page.",
+            "- A container with several links (de `HERKUNFT`) resolves to the first link that "
+            "shares the page's Index, else the first link (the KHM tales link the editions "
+            "overview first).",
+            "- Volume placement: a part attached by its container is placed under the one TOC "
+            "page (under 2,000 bytes of own text, listing at least three members) of the same "
+            "work that lists it, unless the container's members already form one prev/next chain.",
+            "- A slash inside unclosed parentheses is part of the name (de `X (Die Gartenlaube "
+            "1871/17)`), not a subpage separator.",
+            "- Exclusions: a page with scan transclusion is never a disambiguation page (fr "
+            "dictionary roots carry the prop); subpages inherit only portal and author-page "
+            "exclusions; on de, portal pages are marked by `Themendaten`, `Ortsdaten`, "
+            "`Listendaten` (and the categories Thema, Orte, Listen when the page has no header), "
+            "and a root page without header template, scans or status is a portal "
+            "(`no-header`) unless other pages name it as their container.",
+            "- A bare `<pages index=X/>` renders the Index's TOC field, not the book.",
             "",
         ]
 
