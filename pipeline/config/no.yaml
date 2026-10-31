@@ -14,7 +14,7 @@ structure:
   current_params: [seksjon, current, section]
   toc_fields: [sammendrag]
   summary_templates: [Innholdsfortegnelse]
-  chapter_label_regex: '^(\S+\s+)?([kc]apit+el|akt|del|bind|brev|bok|sang|hefte)\b|^(forord|innledning|indledning|tillæg|tillegg|efterskrift|etterord|fortale)\b'
+  chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(første|forste|anden|andet|annen|annet|tredje|tredie|fjerde|fjærde|fierde|femte|sjette|siette|syvende|sjuende|ottende|åttende|niende|tiende|ellevte|tolvte|trettende|fjortende|femtende|sekstende|syttende|attende|nittende|tyvende|siste|sidste)\s+)?([kc]apit+el|akt|del|bind|brev|bok|bog|sang|hefte)\b|^(forord|innledning|indledning|tillæg|tillegg|efterskrift|etterord|fortale)\b'
 disambiguation_templates: [Peker, Flertydig, disambiguation]
 versions_templates: []
 quality:

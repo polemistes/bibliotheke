@@ -48,7 +48,25 @@ def is_subpage(title: str) -> bool:
     return bool(parent_titles(title, strict=True))
 
 
+ROMAN = re.compile(r"^(?=[MDCLXVI])M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})\.?$")
+ROMAN_VALUES = {"M": 1000, "D": 500, "C": 100, "L": 50, "X": 10, "V": 5, "I": 1}
+
+
+def roman_value(s: str) -> int:
+    s = s.rstrip(".")
+    total = 0
+    for a, b in zip(s, s[1:] + " "):
+        v = ROMAN_VALUES[a]
+        total += -v if b != " " and ROMAN_VALUES.get(b, 0) > v else v
+    return total
+
+
 def natural_key(title: str):
+    """Numbers compare as numbers; a last segment that is a roman numeral
+    compares by its value (I, II, … IX, X)."""
+    head, _, last = title.rpartition("/")
+    if ROMAN.match(last):
+        return [p.lower() if not p.isdigit() else int(p) for p in NATURAL.split(head)] + [roman_value(last)]
     return [int(p) if p.isdigit() else p.lower() for p in NATURAL.split(title)]
 
 
@@ -275,7 +293,7 @@ class Resolver:
             portal_ok = t not in named
             reason = None
             if (rec.page_id in disamb or rec.tpls & cfg.disambiguation_templates) \
-                    and not rec.tags and not rec.refs:
+                    and not rec.tags and not rec.refs and not rec.tpls & cfg.not_disambiguation_templates:
                 # A page that transcludes scans is not a disambiguation page
                 # (fr dictionary roots carry the prop through {{Dct}}).
                 reason = "disambiguation"
@@ -422,6 +440,15 @@ class Resolver:
         n.toc_source = "+".join(dict.fromkeys(sources))
 
     # ---- step 1b -------------------------------------------------------
+    def under_versions(self, title: str) -> bool:
+        """The page's nearest ancestor page is an excluded disambiguation or
+        versions page: its top-level subpages are editions, each a work of its
+        own (fr `Le Mariage forcé/Édition Ribou, 1668`); no virtual root."""
+        for p in parent_titles(title):
+            if p in self.pages:
+                return self.excluded.get(p) in ("disambiguation", "versions")
+        return False
+
     def existing_prefix(self, title: str) -> str | None:
         for p in parent_titles(title):
             if p in self.nodes:
@@ -476,7 +503,7 @@ class Resolver:
                     n.parent = self.existing_prefix(t) or c
                 else:
                     n.parent = c
-            elif self.existing_prefix(t) or is_subpage(t):
+            elif self.existing_prefix(t) or (is_subpage(t) and not self.under_versions(t)):
                 n.rule = "hierarchy"
                 p = self.existing_prefix(t)
                 if p is None:

@@ -20,7 +20,7 @@ structure:
   toc_fields: [inhaltsverzeichnis]
   # templates that transclude Seite:{{{2}}} (checked 2026-10-31; SeitePR1 and Seite only mark a page)
   page_templates: {SeitePR: 2, SeiteST: 2, "SeitePR Rand": 2, PoemPR: 2, SeiteLST: 2}
-  chapter_label_regex: '^(\S+\s+)?(kapitel|buch|heft|stück|teil|theil|abschnitt|aufzug|gesang|lieferung|jahrgang)\b|^(vorrede|vorwort|einleitung|anhang|nachwort|inhalt|register)\b'
+  chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(erste[rs]?|zweite[rs]?|dritte[rs]?|vierte[rs]?|fünfte[rs]?|sechste[rs]?|siebente[rs]?|siebte[rs]?|achte[rs]?|neunte[rs]?|zehnte[rs]?|elfte[rs]?|zwölfte[rs]?|letzte[rs]?)\s+)?(kapitel|buch|heft|stück|teil|theil|abschnitt|aufzug|gesang|lieferung|jahrgang|band|brief|akt)\b|^(vorrede|vorwort|einleitung|anhang|nachwort|inhalt|register)\b'
 # Lexicon pseudo-namespaces (F§1, WS§1); the survey lists every colon prefix with >= 100 root pages.
 exclude_title_prefixes: ["RE:", "MKL1888:", "ADB:", "BLKÖ:", "Zedler:", "Boetticher:", "Haan:"]
 disambiguation_templates: [Begriffsklärung, BKS]

@@ -149,7 +149,8 @@ class Survey:
                 tgt = r.resolve(tgt)
                 if tgt in self.part_of and tgt not in seen:
                     w, p = self.part_of[tgt]
-                    if p.node is not w.root and tgt.startswith(w.root.title + "/"):
+                    if p.node is not w.root and tgt.startswith(w.root.title + "/") \
+                            and w.type != "reference":     # reference parts are not in the catalog
                         seen.add(tgt)
                         e_texts.append((w, p))
         e_hidden = [(w, p) for w in works for p in w.parts
@@ -453,7 +454,7 @@ class Survey:
         con.execute("CREATE INDEX parts_title ON parts(page_title)")
         rows, fts_rows = [], []
         for w in works:
-            wid = w.root.rec.page_id if w.root.rec else -abs(hash(w.root.title)) % 10**9
+            wid = w.root.rec.page_id if w.root.rec else -(abs(hash(w.root.title)) % 10**9) - 1
             pq = self.q[w.root.title][1]
             for p, q in zip(w.parts, pq):
                 n = p.node

@@ -13,9 +13,11 @@ structure:
   prev_next_params: [[prev, next], [précédent, suivant]]
   current_params: [current]
   toc_fields: [sommaire]
-  chapter_label_regex: '^(\S+\s+)?(chapitre|livre|partie|acte|scène|chant|tome|volume|lettre|section|fable)\b|^(préface|avant-propos|introduction|conclusion|épilogue|prologue|appendice|notes?|table des matières|table)\b'
+  chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(premier|première|second|seconde|deuxième|troisième|quatrième|cinquième|sixième|septième|huitième|neuvième|dixième|dernier|dernière)\s+)?(chapitre|livre|partie|acte|scène|chant|tome|volume|lettre|section|fable)\b|^(préface|avant-propos|introduction|conclusion|épilogue|prologue|appendice|notes?|table des matières|table)\b'
   whole_text_subpages: [Texte entier]
 disambiguation_templates: [homonymie, disambiguation]
+# dictionary roots carry the disambiguation prop through {{Dct}}; they are works
+not_disambiguation_templates: [Dct, IndexAlpha]
 versions_templates: [éditions, traductions]
 other_versions_templates: [voir éditions, AutreVersion]
 quality:

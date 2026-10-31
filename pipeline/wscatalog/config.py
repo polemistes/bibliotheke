@@ -60,6 +60,7 @@ class Config:
     whole_text_subpages: frozenset[str] = frozenset()
     exclude_title_prefixes: tuple[str, ...] = ()
     disambiguation_templates: frozenset[str] = frozenset()
+    not_disambiguation_templates: frozenset[str] = frozenset()
     versions_templates: frozenset[str] = frozenset()
     author_page_templates: frozenset[str] = frozenset()
     exclude_templates: frozenset[str] = frozenset()
@@ -126,6 +127,7 @@ def load(wiki: str) -> Config:
         whole_text_subpages=frozenset(t.lower() for t in s.get("whole_text_subpages") or []),
         exclude_title_prefixes=tuple(raw.get("exclude_title_prefixes") or []),
         disambiguation_templates=_tset(raw.get("disambiguation_templates")),
+        not_disambiguation_templates=_tset(raw.get("not_disambiguation_templates")),
         versions_templates=_tset(raw.get("versions_templates")),
         author_page_templates=_tset(raw.get("author_page_templates")),
         exclude_templates=_tset(raw.get("exclude_templates")),

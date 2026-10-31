@@ -21,12 +21,12 @@ structure:                           # WS§5.3; resolution rules in PLAN.md 5.2 
   summary_templates: []              # templates wrapping the TOC (emit .ws-summary)
   page_templates: {}                 # templates transcluding a Page: page -> positional param
   # A display title matching this is a chapter label, not a searchable text
-  # (WS§4 step 4): a label word, optionally after one ordinal word or number
-  # ("Første kapitel", "Chapter 1", "Zweiter Band"), or a bare number or
-  # roman numeral.
-  # Tuned from the WP1a samples: leading numbering ("21. Begivenheder …",
-  # "LXV. Lonas Flugt.") also marks a chapter.
-  chapter_label_regex_default: '^(\S+\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\b|^[ivxlcdm]+\.?$|^\d+\.?$|^(\d+|[ivxlcdm]+)[.)]\s'
+  # (WS§4 step 4): a label word, optionally after a number or an ordinal
+  # ("Chapter 1", "First Book", "Første kapitel"), a bare number or roman
+  # numeral, or leading numbering ("21. Begivenheder …"); tuned from the
+  # WP1a samples (decision 8.9). Ordinals are listed, so that a name before
+  # the word ("Paulus's Brev til Titus") does not count.
+  chapter_label_regex_default: '^((\d+|[ivxlc]+)\.?\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\b|^[ivxlcdm]+\.?$|^\d+\.?$|^(\d+|[ivxlcdm]+)[.)]\s'
   chapter_label_regex: null          # per-wiki additions, tuned from the survey
   oversized_bytes: 300000
   parts_cap: 2000

@@ -6,21 +6,21 @@ Input: 310,980 ns0 pages, 13,381 ns0 redirects, 339,510 scan pages, 7,112 Index 
 
 ## 1. Works
 
-26,617 works resolved from 80,339 non-excluded ns0 pages; 26,015 enter the catalog after the hard exclusions (section 9). Multi-part works hold 53,774 parts, of which 47,732 are searchable texts.
+26,637 works resolved from 80,339 non-excluded ns0 pages; 26,035 enter the catalog after the hard exclusions (section 9). Multi-part works hold 53,748 parts, of which 48,160 are searchable texts.
 
 | structure | works | parts | texts |
 |---|---|---|---|
-| single | 25,673 | 25,673 | 0 |
-| linked | 431 | 20,734 | 20,149 |
-| subpages | 372 | 10,193 | 7,488 |
-| mixed | 89 | 22,629 | 19,947 |
-| virtual | 52 | 218 | 148 |
+| single | 25,697 | 25,697 | 0 |
+| linked | 433 | 20,783 | 20,250 |
+| subpages | 372 | 10,193 | 7,690 |
+| mixed | 89 | 22,629 | 20,110 |
+| virtual | 46 | 143 | 110 |
 
 | type (step 1e) | works |
 |---|---|
-| single | 25,673 |
-| collection | 800 |
-| book | 144 |
+| single | 25,697 |
+| collection | 811 |
+| book | 129 |
 
 Largest works by parts:
 
@@ -28,16 +28,16 @@ Largest works by parts:
 |---|---|---|---|---|---|---|
 | Paulys Realencyclopädie der classischen Altertumswissenschaft | subpages | collection | 1,325 | 1,297 | 0 | hierarchy 1325 |
 | Der Sagenschatz des Königreichs Sachsen | mixed | collection | 1,001 | 1,001 | 0 | container 1001 |
-| Zerstreute Blätter | linked | collection | 793 | 779 | 0 | container 787, toc 6 |
+| Zerstreute Blätter | linked | collection | 793 | 780 | 0 | container 787, toc 6 |
 | Album der Rittergüter und Schlösser im Königreiche Sachsen | linked | collection | 775 | 757 | 13 | container 775 |
 | Christliche Symbolik | subpages | collection | 636 | 633 | 0 | hierarchy 636 |
-| Die Gartenlaube (1898) | mixed | collection | 624 | 592 | 91 | toc 594, hierarchy 30 |
+| Die Gartenlaube (1898) | mixed | collection | 624 | 593 | 91 | toc 594, hierarchy 30 |
 | Die Gartenlaube (1899) | mixed | collection | 624 | 595 | 226 | toc 596, hierarchy 28 |
 | Die Gartenlaube (1896) | mixed | collection | 613 | 561 | 77 | toc 561, hierarchy 52 |
 | Badisches Sagen-Buch | linked | collection | 600 | 596 | 0 | container 600 |
-| Die Gartenlaube (1887) | mixed | collection | 525 | 468 | 0 | toc 472, hierarchy 53 |
+| Die Gartenlaube (1887) | mixed | collection | 525 | 471 | 0 | toc 472, hierarchy 53 |
 | Die Gartenlaube (1888) | mixed | collection | 522 | 470 | 37 | toc 470, hierarchy 52 |
-| Die Gartenlaube (1854) | mixed | collection | 491 | 434 | 1 | toc 439, hierarchy 52 |
+| Die Gartenlaube (1854) | mixed | collection | 491 | 438 | 1 | toc 439, hierarchy 52 |
 | Geschichte von Kloster Heilsbronn | subpages | collection | 484 | 482 | 0 | hierarchy 484 |
 | Die Gartenlaube (1878) | mixed | collection | 478 | 426 | 0 | toc 426, hierarchy 52 |
 | Die Gartenlaube (1886) | mixed | collection | 475 | 422 | 5 | toc 423, hierarchy 52 |
@@ -58,33 +58,33 @@ Largest works by parts:
 
 |  | pattern | count |
 |---|---|---|
-| A | collection of root pages (`structure = linked`) | 431 works, 20,734 parts |
+| A | collection of root pages (`structure = linked`) | 433 works, 20,783 parts |
 | B | mixed subpages and root pages (`mixed`) | 89 works, 22,629 parts |
 | C | work with an oversized page (> oversized_bytes, transcluded scan pages included) | 317 works |
-| D | missing root, virtual root (`virtual`) | 52 works, 218 parts |
-| E | texts inside a subpage collection reached from a disambiguation or versions page | 50 parts (42 searchable); all searchable subpage texts: 7,883 |
+| D | missing root, virtual root (`virtual`) | 46 works, 143 parts |
+| E | texts inside a subpage collection reached from a disambiguation or versions page | 26 parts (24 searchable); all searchable subpage texts: 8,097 |
 | F | whole-text duplicate subpages (excluded) | 0 pages |
 | G | reference works (type `reference`) | 0 works, 0 parts; 218,074 pages excluded by title prefix |
 | H | deep nesting (parts at depth ≥ 2, i.e. three levels below the root) | 7 works |
 | I | several editions: works with an other-versions template | 49 works; 0 versions pages excluded |
 
-Tree depth of multi-part works (levels below the root): 1: 857, 2: 80, 3: 5, 4: 2.
+Tree depth of multi-part works (levels below the root): 1: 854, 2: 79, 3: 5, 4: 2.
 
 ## 4. Parent rules and order sources (steps 1b, 1c)
 
 | parent rule | pages |
 |---|---|
 | container | 29,101 |
-| own | 26,565 |
+| own | 26,591 |
 | toc | 17,844 |
-| hierarchy | 6,829 |
+| hierarchy | 6,803 |
 
 | order source (nodes with ≥ 2 children) | nodes |
 |---|---|
-| chain | 563 |
+| chain | 562 |
 | toc | 192 |
 | toc-partial | 115 |
-| natural | 77 |
+| natural | 72 |
 | scan | 32 |
 
 `toc-partial` (implementation choice, see section 13): the TOC lists at least half of the children, which keep its order; the rest follow in natural order. 35 `natural` nodes have a TOC that lists fewer than half.
@@ -110,11 +110,11 @@ Root-page works that sit on a prev/next chain but stay separate works (no contai
 
 ## 7. Orphan trees, oversized pages, red links
 
-**Orphan trees** (virtual roots): 52, holding 218 parts. Examples: `Source-Provider` (1); `Heinrich Heine` (2); `Der Handlungsreisende wie er sein soll` (1); `In und um Tirols Oberammergau` (2); `Aus den Arbeitssälen des Kunsthandwerks` (2); `Ausgewählte Abhandlungen des Bischofs Aphraates` (8); `Zeitschriften (Veterinärmedizin)` (1); `Aus den politischen Salons des neuen Italiens` (1).
+**Orphan trees** (virtual roots): 46, holding 143 parts. Examples: `Etwas zum Nachdenken` (2); `In Friedrich Rückert’s Haus` (2); `Wikisource` (1); `Zwanglose Blätter(1883/9)` (1); `Flugblätter der Weissen Rose` (6); `Zedler` (1); `Zeitschriften (Illustrierte)` (1); `Erinnerungen aus meinem Leben (Friedrich Hecker)` (1).
 
 **Oversized pages** (> 300,000 bytes of wikitext including transcluded scan pages): 549. Largest: `Ahrenshoop vor und im Krieg` 4.0 MB; `Weg nach Berlin – Birkenwerder` 2.2 MB; `Kunst und Kultur in Ahrenshoop 1945 bis 1948` 2.1 MB; `Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Hans Gärtner` 2.0 MB; `Jugend (Zeitschrift)/Inhalt 1896–1910` 1.9 MB; `Jugend (Zeitschrift)/Inhalt 1911–1929` 1.8 MB; `Hans Brass und die Religion, 1934` 1.5 MB; `Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/R` 1.5 MB; `Der Merker/Inhalt` 1.5 MB; `Allgemeine Wiener Musik-Zeitung` 1.5 MB.
 
-**Red links in TOCs** (missing parts): 148 multi-part works have red links, 974 in total; median share of the TOC 6%. Most missing: `Die Gartenlaube (1899)` 226 of 850; `Gesammelte Schriften über Musik und Musiker` 114 of 237; `Die Gartenlaube (1898)` 91 of 715; `Die Gartenlaube (1896)` 77 of 690; `Die Gartenlaube (1888)` 37 of 559; `Illustrirte Zeitung` 35 of 115; `Die Grenzboten (1841/1842)` 27 of 52; `Schwäbische Chronik (Thomas Lirer)` 23 of 24.
+**Red links in TOCs** (missing parts): 149 multi-part works have red links, 980 in total; median share of the TOC 6%. Most missing: `Die Gartenlaube (1899)` 226 of 850; `Gesammelte Schriften über Musik und Musiker` 114 of 237; `Die Gartenlaube (1898)` 91 of 715; `Die Gartenlaube (1896)` 77 of 690; `Die Gartenlaube (1888)` 37 of 559; `Illustrirte Zeitung` 35 of 115; `Die Grenzboten (1841/1842)` 27 of 52; `Schwäbische Chronik (Thomas Lirer)` 23 of 24.
 
 ## 8. Colon prefixes with ≥ 100 root pages
 
@@ -163,14 +163,14 @@ Root-page works that sit on a prev/next chain but stay separate works (no contai
 
 | tier | works | share | texts in them | source |
 |---|---|---|---|---|
-| validated | 14,414 | 55.4 % | 37,936 | page-levels 9,691, status-template 4,723 |
-| proofread | 6,999 | 26.9 % | 8,306 | status-template 4,907, page-levels 2,092 |
+| validated | 14,434 | 55.4 % | 38,240 | page-levels 9,711, status-template 4,723 |
+| proofread | 6,999 | 26.9 % | 8,430 | status-template 4,907, page-levels 2,092 |
 | unproofread | 266 | 1.0 % | 156 | status-template 157, page-levels 109 |
 | unknown | 4,336 | 16.7 % | 1,334 | none 4,336 |
 
 14 works are proofread by the ≥ 90 % rule. 229 of the 266 unproofread works have no page above level 1 (raw OCR).
 
-**Incomplete**: 2,168 works — template 1,991, missing-parts 165, missing-pages 12.
+**Incomplete**: 2,169 works — template 1,991, missing-parts 166, missing-pages 12.
 Works with missing scan pages inside a transcluded range: 17 (77 pages).
 1 works transclude scan pages of files the dump has no Page: pages for (counted as no signal, not as missing).
 Wikisource's own translations (labelled, kept): 0.
@@ -182,7 +182,6 @@ Size: median 2,967 bytes, p10 1,061, p90 12,410; multi-part 42.
 
 30 random unknown works:
 
-- `Die Schedelsche Weltchronik (deutsch):166` (single, 9,813 B): CLXV verso: == Das sechst alter thumb\|right\|Linea der bebst // Constantinus der ander Jar der werlt .v m .ix c .lxiij.Jar christi .vij c .lxiiij. 5963. Jahr der
 - `Stammbuch berümpter Fürsten, Graffen vnnd Herren Geschlechter:Vorwort 10` (single, 2,903 B): Querfurt der halff jhm wider auff. Item da Heinrich der Lewe durch seinen stoltz dem Hertzogthumb Sachsen einen mechtigen abbruch gethan hatte / erweckte Gott a
 - `Berlinische Musikalische Zeitung` (single, 30,843 B): Digitalisat== Jg. 1793-1794 (mehr nicht erschienen) , Inhalt== [Spazier, Johann Gottlieb Carl]: Carneval zu Berlin, in: Berlinische Musikalische Zeitung, St. 1,
 - `Berichte der staatlichen Höhlenkommission` (single, 6,692 B): im Zeitraum 1 (1920) - 2,3 (1921): Berichte der Staatlichen Höhlenkommission im Zeitraum 2,4 (1921) - 3,1/2 (1922): Berichte der Bundeshöhlenkommission 1.1920 z
@@ -211,20 +210,21 @@ Size: median 2,967 bytes, p10 1,061, p90 12,410; multi-part 42.
 - `Elektrische Kraft Hertz:107` (single, 2,702 B): 6. Inductionserscheinungen in Isolatoren. schiebung des Leiters AA′ nach oben haben würde. Qualitativ die gleiche Wirkung würde ein oberhalb AA′ angebrachter zw
 - `Stammbuch berümpter Fürsten, Graffen vnnd Herren Geschlechter:Seite 4` (single, 2,815 B): von Dingenstat / der sie also zu o m Stifft bracht Anno 1260. Chro. Magd. in vita Ludolphi Metrop. lib. 8. cap. 11. Es seind auch etliche hernacher von den Bisc
 - `Beyträge zu der Naturgeschichte des Schweizerlandes` (single, 686 B): 1.1775: uni-goettingen.de 1.1775,2: digitale-sammlungen.de
-- `Zeitschriften (Kunst)` (virtual, 26,947 B): __TOC__ Bibliographic information == new title 1: The new monthly assemblée new title 2: The court magazine : containing original papers Nationallizenz 1806 - 1
+- `Zedler` (virtual, 3,808 B): Quellen im Zedler: Bangens: Thür. Chron. Becherer: Thür. Chron. Beyer: Handwercks-Lex. Binhard: Thür. Chron. "Der Wohlerfahrne und Curiöse Kellermeister": Kunst
+- `Die Schedelsche Weltchronik (deutsch):156` (single, 7,265 B): CLV verso: == Das sechst alter ERffurt die groß vnnd gedechtnußwirdig statt ein hawbt Thu e ringer lannds von den alten Erphesfurt genant hat einen hohen berg d
 
-**Default view** (validated or proofread, complete, not reference): 19,315 works with 35,199 texts; with unknown works shown: 23,619 works (36,532 texts). Works in the default view whose pages are all level 1: 0. Current setting: `show_unknown_by_default = None`.
+**Default view** (validated or proofread, complete, not reference): 19,334 works with 35,451 texts; with unknown works shown: 23,638 works (36,784 texts). Works in the default view whose pages are all level 1: 0. Current setting: `show_unknown_by_default = None`.
 
 ## 10. Parts table size (WS§5.2)
 
 | parts_cap | works with catalog parts | parts rows | parts table, gzipped | parts_fts, gzipped |
 |---|---|---|---|---|
-| 500 | 933 | 46,617 | 2.83 MB | 0.78 MB |
-| 2,000 | 944 | 54,666 | 3.28 MB | 0.86 MB |
-| ∞ (all, reference works included) | 944 | 54,666 | 3.28 MB | 0.86 MB |
-| 2,000, compact encoding | 944 | 54,666 | 2.99 MB | 0.86 MB |
+| 500 | 929 | 46,593 | 2.83 MB | 0.78 MB |
+| 2,000 | 940 | 54,642 | 3.28 MB | 0.86 MB |
+| ∞ (all, reference works included) | 940 | 54,642 | 3.28 MB | 0.86 MB |
+| 2,000, compact encoding | 940 | 54,642 | 2.99 MB | 0.86 MB |
 
-Rows count multi-part works only, one row per part plus the root row. 25,071 single-page works would add one row each if stored. Sizes are a SQLite file holding only the table (with its index) at gzip level 9. The compact encoding (not in WS§5.1, measured for the cap decision) stores a part's page_title as the suffix after the work root's title where possible, display_title only when it differs from the last title segment, and no per-part quality_pages.
+Rows count multi-part works only, one row per part plus the root row. 25,095 single-page works would add one row each if stored. Sizes are a SQLite file holding only the table (with its index) at gzip level 9. The compact encoding (not in WS§5.1, measured for the cap decision) stores a part's page_title as the suffix after the work root's title where possible, display_title only when it differs from the last title segment, and no per-part quality_pages.
 
 ## 11. Named cases (PLAN.md WP1 acceptance, WS§9)
 
@@ -233,7 +233,7 @@ Rows count multi-part works only, one row per part plus the root row. 25,071 sin
 - `Der Froschkönig oder der eiserne Heinrich (1857)`: part 1 of `Kinder- und Haus-Märchen Band 1 (1857)` (text, display “Der Froschkönig oder der eiserne Heinrich”, rule container, searchable True).
 - `Kinder und Hausmärchen`: redirect to `Kinder- und Hausmärchen`, which is excluded (excluded-template).
 - `Kinder- und Hausmärchen`: excluded (excluded-template).
-- `Die Heimath in der neuen Welt`: work, virtual, type book, 50 parts (2 texts), 0 missing, order chain, oversized False, quality validated (page-levels), complete True.
+- `Die Heimath in der neuen Welt`: work, virtual, type collection, 50 parts (33 texts), 0 missing, order chain, oversized False, quality validated (page-levels), complete True.
 - `Käthe`: work, single, type single, 1 parts (0 texts), 0 missing, order –, oversized True, quality validated (page-levels), complete True.
 - `Erlkönig`: work, single, type single, 1 parts (0 texts), 0 missing, order –, oversized False, quality validated (status-template), complete True.
 
@@ -254,225 +254,140 @@ Rows count multi-part works only, one row per part plus the root row. 25,071 sin
 
 ## 12. Random samples for eyeballing (30 per pattern)
 
-### A: collections of root pages (431)
+### A: collections of root pages (433)
 
-1. `Turngedichte`: linked, collection, 33 parts, 0 missing, order toc, validated
-    - front: Turngedichte
-    - text: Turnermarsch (`Turner-Marsch`) [container]
-    - text: Klimmzug [container]
-    - text: Freiübungen [container]
-    - text: Während der Riesenwelle [container]
-    - text: Am Barren [container]
-    - text: Ringkampf [container]
-    - text: Zum Aufstellen der Geräte [container]
-    - text: Wettlauf [container]
-    - text: Fußball [container]
-    - text: Der Athlet [container]
-    - text: Am Hängetau [container]
-    - … 22 more
-1. `Schweizer-Skizzen`: linked, collection, 9 parts, 0 missing, order chain, validated
-    - toc: Schweizer-Skizzen
-    - text: Von Lindau bis Konstanz (`Polnische Dichtung in deutschem Gewande/Von Lindau bis Konstanz`) [container]
-    - text: Mer de glace (`Polnische Dichtung in deutschem Gewande/Mer de glace`) [container]
-    - text: Solothurn (`Polnische Dichtung in deutschem Gewande/Solothurn`) [container]
-    - text: Mont Blanc (`Polnische Dichtung in deutschem Gewande/Mont Blanc`) [container]
-    - text: Verneyaz (`Polnische Dichtung in deutschem Gewande/Verneyaz`) [container]
-    - text: Gießbach (`Polnische Dichtung in deutschem Gewande/Gießbach`) [container]
-    - text: Chillon (`Polnische Dichtung in deutschem Gewande/Chillon`) [container]
-    - text: Rigi (`Polnische Dichtung in deutschem Gewande/Rigi`) [container]
-    - text: Mein Adler (`Polnische Dichtung in deutschem Gewande/Mein Adler`) [container]
+1. `Die ältesten Privilegien und Statuten der Ludoviciana`: linked, collection, 4 parts, 0 missing, order chain, validated
+    - front: Die ältesten Privilegien und Statuten der Ludoviciana
+    - text: Die Stadt Gießen gewährt der Universität Gießen eine jährliche Finanzzuwendung [container]
+    - text: Die Stadt Gießen verpflichtet sich zur Unterstützung der Universität und ihrer Professoren [container]
+    - text: Das Gießener Universitätsprivileg (1607) [container]
+    - text: Ferdinand III. bestätigt der Juristenfakultät zu Gießen die Hofpfalzgrafenwürde [container]
 1. `Geschichte der protestantischen Theologie`: linked, collection, 4 parts, 0 missing, order single, validated
     - toc: Geschichte der protestantischen Theologie
     - volume: Spener und der Pietismus [container]
       - text: Die Zeit von Spener und Francke (`Spener und der Pietismus/Die Zeit von Spener und Francke`) [container]
       - text: Joh. Albr. Bengel und seine Schule (`Spener und der Pietismus/Joh. Albr. Bengel und seine Schule`) [container]
       - text: Zinzendorf und die Brüdergemeine (`Spener und der Pietismus/Zinzendorf und die Brüdergemeine`) [container]
-1. `Tagebuch einer musikalischen Reise`: linked, collection, 25 parts, 0 missing, order chain, validated
-    - front: Tagebuch einer musikalischen Reise
-    - text: Titel (`Burney Tagebuch 3/Titel`) [container]
-    - chapter: Vorrede des Uebersetzers (`Burney Tagebuch 3/Vorrede des Uebersetzers`) [container]
-    - text: Böhmen (`Burney Tagebuch 3/Böhmen`) [container]
-    - text: Prag (`Burney Tagebuch 3/Prag`) [container]
-    - text: Dresden (`Burney Tagebuch 3/Dresden`) [container]
-    - text: Leipzig (`Burney Tagebuch 3/Leipzig`) [container]
-    - text: Berlin (`Burney Tagebuch 3/Berlin 1`) [container]
-    - text: Potsdam (`Burney Tagebuch 3/Potsdam`) [container]
-    - text: Berlin (`Burney Tagebuch 3/Berlin 2`) [container]
-    - text: Hamburg (`Burney Tagebuch 3/Hamburg`) [container]
-    - text: Bremen (`Burney Tagebuch 3/Bremen`) [container]
-    - … 14 more
-1. `Kinder- und Haus-Märchen Band 1 (1857)`: linked, collection, 86 parts, 0 missing, order chain, validated
-    - front: Kinder- und Haus-Märchen Band 1 (1857)
-    - text: Der Froschkönig oder der eiserne Heinrich (`Der Froschkönig oder der eiserne Heinrich (1857)`) [container]
-    - text: Katze und Maus in Gesellschaft (`Katze und Maus in Gesellschaft (1857)`) [container]
-    - text: Marienkind (`Marienkind (1857)`) [container]
-    - text: Mährchen von einem, der auszog das Fürchten zu lernen (`Mährchen von einem, der auszog das Fürchten zu lernen (1857)`) [container]
-    - text: Der Wolf und die sieben jungen Geislein (`Der Wolf und die sieben jungen Geislein (1857)`) [container]
-    - text: Der treue Johannes (`Der treue Johannes (1857)`) [container]
-    - text: Der gute Handel (`Der gute Handel (1857)`) [container]
-    - text: Der wunderliche Spielmann (`Der wunderliche Spielmann (1857)`) [container]
-    - text: Die zwölf Brüder (`Die zwölf Brüder (1857)`) [container]
-    - text: Das Lumpengesindel (`Das Lumpengesindel (1857)`) [container]
-    - text: Brüderchen und Schwesterchen (`Brüderchen und Schwesterchen (1857)`) [container]
-    - … 75 more
-1. `Buch der Katastrophen`: linked, collection, 20 parts, 0 missing, order chain, validated
-    - front: Buch der Katastrophen
-    - text: Aus einem rheinischen Städtchen [container]
-    - text: Der gute Mensch [container]
-    - text: Onkel Bogumil trinkt [container]
-    - text: Die Bluse [container]
-    - text: Vom treuen Leser [container]
-    - text: Lillichens Verlobung [container]
-    - text: Der Tierfreund [container]
-    - text: Die vierbeinige Gefahr [container]
-    - text: Theater (`Theater (Schmitz)`) [container]
-    - text: Der interessante Kopf [container]
-    - text: Beethoven (`Beethoven (Schmitz)`) [container]
+1. `Erzählungen vom Oberharz in Oberharzer Mundart – Heft 9`: linked, collection, 3 parts, 0 missing, order chain, proofread
+    - front: Erzählungen vom Oberharz in Oberharzer Mundart – Heft 9
+    - text: Harzer Wildschitzen [container]
+    - text: Ae Anreesoomd (Andreasabend) [container]
+    - text: Daar gruße Wassermangel im Jahr 1892 [container]
+1. `Kinder- und Haus-Märchen Band 2 (1815)`: linked, collection, 70 parts, 0 missing, order chain, validated
+    - front: Kinder- und Haus-Märchen Band 2 (1815)
+    - text: Der Arme und der Reiche (`Der Arme und der Reiche (1815)`) [container]
+    - text: Das singende, springende Löweneckerchen (`Das singende, springende Löweneckerchen (1815)`) [container]
+    - text: Die Gänsemagd (`Die Gänsemagd (1815)`) [container]
+    - text: Von einem jungen Riesen (`Von einem jungen Riesen (1815)`) [container]
+    - text: Dat Erdmänneken (`Dat Erdmänneken (1815)`) [container]
+    - text: Der König vom goldenen Berg (`Der König vom goldenen Berg (1815)`) [container]
+    - text: Die Rabe (`Die Rabe (1815)`) [container]
+    - text: Die kluge Bauerntochter (`Die kluge Bauerntochter (1815)`) [container]
+    - text: Der Geist im Glas (`Der Geist im Glas (1815)`) [container]
+    - text: De drei Vügelkens (`De drei Vügelkens (1815)`) [container]
+    - text: Das Wasser des Lebens (`Das Wasser des Lebens (1815)`) [container]
+    - … 59 more
+1. `Lina’s Mährchenbuch`: linked, collection, 8 parts, 0 missing, order chain, validated
+    - front: Lina’s Mährchenbuch
+    - text: Mordi’s Garten, ein dramatisirtes Mährchen [container]
+    - text: Der kleine Frieder mit seiner Geige [container]
+    - text: Der Knüppel aus dem Sacke [container]
+    - text: Seltsame Freundschaft zwischen einer Katze, einem Kaninchen und einem Perlhuhn [container]
+    - text: Laß dem Thoren seine Thorheit [container]
+    - text: Das Mährchen von Brunnenhold und Brunnenstark [container]
+    - text: Die schwarze Zither, ein Mährchen [container]
+    - text: Laß dich der Narren Spott nicht kümmern [container]
+1. `Forschungen und Fortschritte`: linked, collection, 1 parts, 0 missing, order single, validated
+    - toc: Forschungen und Fortschritte
+    - text: Georg Wissowa zum 70. Geburtstage [container]
+1. `Sagen aus der Provinz Sachsen IV`: linked, collection, 3 parts, 0 missing, order chain, validated
+    - toc: Sagen aus der Provinz Sachsen IV
+    - text: Das Verschwören Gottes [container]
+    - text: Das Hexenmahl [container]
+    - text: Die erkannte Hexe [container]
+1. `Volcks-Sagen`: linked, collection, 24 parts, 0 missing, order chain, validated
+    - front: Volcks-Sagen
+    - text: Lora, die Göttin der Liebe [container]
+    - text: Jakob Nimmernüchtern [container]
+    - text: Die Hufeisen an der Kirchthür (`Die Hufeisen`) [container]
+    - text: Die Quäste [container]
+    - text: Der Ritterkeller auf dem Kyffhäuser (`Der Ritter-Keller`) [container]
+    - text: Die goldnen Flachsknoten [container]
+    - text: Die Wunderblume (`Die Wunderblume (Nachtigal)`) [container]
+    - text: Der Ziegenhirt [container]
+    - text: Der verzauberte Kaiser [container]
+    - text: Die Bewohnerin des Ilsensteins (`Ilse, oder, die Bewohnerin des Ilsensteins`) [container]
+    - text: Die beiden Teufels-Mauern (`Die Teufels-Mauer`) [container]
+    - … 13 more
+1. `Land und Leute Württembergs`: linked, collection, 1 parts, 0 missing, order single, validated
+    - front: Land und Leute Württembergs
+    - text: Ravensburg (`Ravensburg (Glökler)`) [container]
+1. `Hausblätter`: linked, collection, 1 parts, 0 missing, order single, validated
+    - front: Hausblätter
+    - text: Zur Naturgeschichte des Menschen [container]
+1. `Nicolaus Lenau’s dichterischer Nachlaß`: linked, collection, 33 parts, 0 missing, order chain, validated
+    - front: Nicolaus Lenau’s dichterischer Nachlaß
+    - text: Don Juan (`Don Juan (Lenau)`) [container]
+    - text: Helena (`Helena (Lenau)`) [container]
+    - text: Protest (`Protest (Lenau)`) [container]
+    - text: Des Teufels Lied vom Aristokraten [container]
+    - text: Das Gespenst (`Das Gespenst (Lenau)`) [container]
+    - text: Zuruf (`Zuruf (Lenau)`) [container]
+    - text: Die Frivolen [container]
+    - text: Schade! [container]
+    - text: Unberufen (`Unberufen (Lenau)`) [container]
+    - text: Ein offner Wald [container]
+    - text: Trutz euch! (`Trutz euch! (1858)`) [container]
+    - … 22 more
+1. `Nachrichten über deutsche Alterthumsfunde`: linked, collection, 2 parts, 0 missing, order chain, validated
+    - front: Nachrichten über deutsche Alterthumsfunde
+    - text: Funde von Hirschgarten bei Köpenick, Prov. Brandenburg [container]
+    - text: Ausgrabungen bei Klein-Leppin, Kr. West-Priegnitz, Brandenburg [container]
+1. `Gedichte von Ludwig Uhland (1815)`: linked, collection, 174 parts, 0 missing, order chain, validated
+    - front: Gedichte von Ludwig Uhland (1815)
+    - text: Des Dichters Abendgang [container]
+    - text: An den Tod [container]
+    - text: Harfnerlied am Hochzeitmahle [container]
+    - text: Der König auf dem Thurme [container]
+    - text: Maiklage [container]
+    - text: Lied eines Armen [container]
+    - chapter: Gesang der Jünglinge [container]
+    - text: Lied des Gärtners [container]
+    - text: Die Kapelle [container]
+    - text: Die sanften Tage (`Die sanften Tage (Gedichte von Ludwig Uhland (1815))`) [container]
+    - text: Im Herbste [container]
+    - … 163 more
+1. `Kladderadatsch`: linked, collection, 1 parts, 0 missing, order single, validated
+    - front: Kladderadatsch
+    - text: An unsre lieben Paderborner [container]
+1. `Die Geschichtschreiber der deutschen Vorzeit (2. Gesamtausgabe)`: linked, book, 20 parts, 0 missing, order toc, validated
+    - front: Die Geschichtschreiber der deutschen Vorzeit (2. Gesamtausgabe)
+    - text: Isidors Geschichte der Gothen, Vandalen, Sueven, nebst Auszügen aus der Kirchengeschichte des Beda Venerabilis (`Isidors Geschichte der Gothen, Vandalen, Sueven`) [container]
+    - text: Aus Liudprands Werken [container]
+    - text: Das Leben der Kaiserin Adalheid [container]
+    - volume: Die Chronik des Thietmar von Merseburg [container]
+      - chapter: Erstes Buch (`Die Chronik des Thietmar von Merseburg/Erstes Buch`) [hierarchy]
+      - chapter: Zweites Buch (`Die Chronik des Thietmar von Merseburg/Zweites Buch`) [hierarchy]
+      - chapter: Drittes Buch (`Die Chronik des Thietmar von Merseburg/Drittes Buch`) [hierarchy]
+      - chapter: Viertes Buch (`Die Chronik des Thietmar von Merseburg/Viertes Buch`) [hierarchy]
+      - chapter: Fünftes Buch (`Die Chronik des Thietmar von Merseburg/Fünftes Buch`) [hierarchy]
+      - chapter: Sechstes Buch (`Die Chronik des Thietmar von Merseburg/Sechstes Buch`) [hierarchy]
+      - chapter: Siebentes Buch (`Die Chronik des Thietmar von Merseburg/Siebentes Buch`) [hierarchy]
     - … 9 more
-1. `Zeitung für die elegante Welt`: linked, collection, 8 parts, 0 missing, order natural, proofread
-    - front: Zeitung für die elegante Welt
-    - text: Die dießjährige Kunstausstellung in Dresden (`Die dießjährige Kunstausstellung in Dresden (1807)`) [container]
-    - text: Die Dresdner Ausstellung von 1808 und Prof. Seidelmanns Kopie der Madonna von Raphael [container]
-    - text: Die Kunstausstellung in Dresden. Erster Brief. (`Die Kunstausstellung in Dresden. Erster Brief`) [container]
-    - text: Einige Worte über die Gemähldeausstellung im Brühlschen Garten in Dresden (`Einige Worte über die Gemähldeausstellung im Brühlschen Garten in Dresden (1804)`) [container]
-    - text: Erinnerungen von der Dresdner Kunstausstellung im Jahre 1802 [container]
-    - text: Etwas über die Dresdener Kunstausstellung von 1811 [container]
-    - text: Ueber die diesjährige Kunstausstellung zu Dresden [container]
-    - text: Ueber einige leicht übersehene Gemälde der jetzigen Dresdner Ausstellung [container]
-1. `Sagen aus der Provinz Sachsen VII`: linked, collection, 8 parts, 0 missing, order chain, validated
-    - toc: Sagen aus der Provinz Sachsen VII
-    - text: Pumput [container]
-    - text: Der Spuk in der Scheune [container]
-    - text: Der Spuk in den Hürden [container]
-    - text: Der Spuk im Teiche [container]
-    - text: Der Schatz unter der Tenne [container]
-    - text: Das Schatzfeuer [container]
-    - text: Der Drachenbaum [container]
-    - text: Der Teufelsstein bei Zerbst [container]
-1. `Märchen (Montzheimer)`: linked, collection, 7 parts, 0 missing, order chain, validated
-    - front: Märchen (Montzheimer)
-    - text: Die Harfe der Königin [container]
-    - text: Der Erdbeerkönig [container]
-    - text: Die wilde Marinka [container]
-    - text: Was Hannchen im Walde erlebte [container]
-    - text: Springmännchen und Goldfasan [container]
-    - text: Stiefmütterchen [container]
-    - text: Das dankbare Heinzelmännchen [container]
-1. `Gedichte (Heine, 1822)`: linked, collection, 19 parts, 0 missing, order toc-partial, validated
-    - front: Gedichte (Heine, 1822)
-    - text: Die Wundermaid [toc]
-    - text: Minnegruß [toc]
-    - text: Ständchen eines Mauren [toc]
-    - text: Der schlimmste Wurm: des Zweifels Dolchgedanken [container]
-    - text: Zufrieden nicht mit deinem Eigenthume [container]
-    - text: An den Hofrath Georg S. in Göttingen [container]
-    - text: An J. B. R. [container]
-    - text: Die Welt war mir nur eine Marterkammer [container]
-    - text: Die Nacht auf dem Drachenfels [container]
-    - text: An Str. (`Wenn der Frühling kommt mit dem Sonnenschein`) [container]
-    - text: An Alexander, Pr. von W. (`Eine große Landstraß’ ist unsre Erd’`) [container]
-    - … 8 more
-1. `Deutsche Sagen (Brüder Grimm, Band 2)`: linked, collection, 223 parts, 0 missing, order chain, validated
-    - front: Deutsche Sagen (Brüder Grimm, Band 2)
-    - text: Der heilige Salzfluß [container]
-    - text: Der heilige See der Hertha [container]
-    - text: Der heilige Wald der Semnonen [container]
-    - text: Die Wanderung der Ansivaren [container]
-    - text: Die Seefahrt der Usipier [container]
-    - text: Wanderung der Gothen [container]
-    - text: Die eingefallene Brücke [container]
-    - text: Warum die Gothen in Griechenland eingebrochen [container]
-    - text: Fridigern [container]
-    - text: Des Königs Grab [container]
-    - text: Athaulfs Tod [container]
-    - … 212 more
-1. `Jahrbuch der Preußischen Kunstsammlungen`: linked, collection, 1 parts, 0 missing, order single, validated
-    - front: Jahrbuch der Preußischen Kunstsammlungen
-    - text: Zu einem Bilde von Hieronymus Bosch in der Figdorschen Sammlung in Wien [container]
-1. `Adolf Loos – Sämtliche Schriften`: linked, collection, 63 parts, 0 missing, order chain, validated
-    - front: Adolf Loos – Sämtliche Schriften
-    - chapter: Vorwort 1921/1931 (Loos) [container]
-    - text: Lederwaren und Gold- und Silberschmiedekunst [container]
-    - text: Die Herrenmode [container]
-    - text: Der neue Stil und die Bronze-Industrie [container]
-    - text: Interieurs [container]
-    - text: Die Interieurs in der Rotunde [container]
-    - text: Das Sitzmöbel [container]
-    - text: Glas und Ton [container]
-    - text: Das Luxusfuhrwerk [container]
-    - text: Die Plumber [container]
-    - text: Die Herrenhüte [container]
-    - … 52 more
-1. `Aus dem Märchenschatz der Kaschubei`: linked, collection, 20 parts, 0 missing, order chain, validated
-    - front: Aus dem Märchenschatz der Kaschubei
-    - text: Der kluge Matz [container]
-    - text: Die ungetreue Frau [container]
-    - text: Der fromme Tagelöhner und der habgierige Nachbar [container]
-    - text: Der Soldat und der Jude [container]
-    - text: Der Jungbrunnen [container]
-    - text: Drei Gläser Wein [container]
-    - text: Der Schmied vor der Höllentür [container]
-    - text: Bestrafte Habgier [container]
-    - text: Die umgeschmiedete Frau [container]
-    - text: Der starke Gottlieb [container]
-    - text: Der Soldat und der Teufel [container]
-    - … 9 more
-1. `BKV Erste Ausgabe Band 38`: linked, collection, 26 parts, 0 missing, order toc, validated
-    - toc: BKV Erste Ausgabe Band 38
-    - chapter: Einleitung über Leben und Schriften des Aphraates [toc]
-    - text: Ausgewählte Abhandlungen des Bischofs Aphraates von Mar Matthäus [toc]
-    - chapter: Einleitung über Leben und Schriften des Rabulas [toc]
-    - text: Panegyrikus auf Rabulas von einem gleichzeitigen Edessener [toc]
-    - text: Bekehrung des Rabulas aus der Biographie des Akömeten Alexander (`Bericht über die Bekehrung des Rabulas aus der Biographie des Akömeten Alexander`) [toc]
-    - text: Canones für Mönche [toc]
-    - text: Kanones für Priester und Kleriker (`Canones für Priester und Kleriker`) [toc]
-    - text: Predigt gegen den Nestorianismus, gehalten zu Konstantinopel [toc]
-    - text: Fragment eines Briefes des Rabulas an den hl. Cyrillus [toc]
-    - chapter: Brief des hl. Cyrillus an Rabulas [toc]
-    - chapter: Brief des Rabulas an den Bischof Gemellinus von Perrha [toc]
-    - … 15 more
-1. `Die Schnurren des Rochus Mang`: linked, collection, 46 parts, 0 missing, order chain, validated
-    - front: Die Schnurren des Rochus Mang
-    - text: Notizen über Rochus Mang [container]
-    - text: Der Raubschütz von der Irxenklamm [container]
-    - text: Wie der Dokter dem Vierhäuslschneider sein schweres Leiden kuriert hat [container]
-    - text: Die Seelenwanderung [container]
-    - text: Wie der heilige Sankt Petrus nicht hat dreschen mögen [container]
-    - text: Von den tapferen Zandlingern [container]
-    - text: Flurprozession [container]
-    - text: Was aus den hundert Hirschen des Dionys Pfezzerer geworden ist [container]
-    - text: Vom Zecken Toni, den die Wildsäu gfressen haben [container]
-    - text: Pfingstwunder [container]
-    - text: Zwei Paar Füß [container]
-    - … 35 more
-1. `Freiburg im Breisgau. Die Stadt und ihre Bauten`: linked, collection, 54 parts, 6 missing, order toc, proofread
-    - front: Freiburg im Breisgau. Die Stadt und ihre Bauten
-    - text: Die Stadt und ihre Umgebung [container]
-    - text: Geschichtlicher Ueberblick [container]
-    - text: Die Baubehörden [container]
-    - text: Technischer Unterricht [container]
-    - text: Die Baustoffe [container]
-    - text: Die Industrie-Anlagen [container]
-    - text: Heizung und Beleuchtung [container]
-    - text: Elektrische Uhren [container]
-    - text: Das Feuerlöschwesen [container]
-    - text: Das Plakatwesen [container]
-    - text: Landstrassen, Kreisstrassen und Kreiswege [container]
-    - … 43 more
-1. `Meyer’s Universum, oder Abbildung und Beschreibung des Sehenswerthesten und Merkwürdigsten der Natur und Kunst auf der ganzen Erde. Siebenzehnter Band`: linked, collection, 47 parts, 0 missing, order chain, proofread
-    - toc: Meyer’s Universum, oder Abbildung und Beschreibung des Sehenswerthesten und Merkwürdigsten der Natur und Kunst auf der ganzen Erde. Siebenzehnter Band
-    - text: Pompeji (`Pompeji (Meyer’s Universum)`) [container]
-    - text: Der große Geyser auf Island (`Der große Geyser in Island`) [container]
-    - text: Hohen-Salzburg [container]
-    - text: Der See Nicaragua an der Mündung des Las Lajas [container]
-    - text: Tiflis [container]
-    - text: Die Kapelle von Coldspring am Hudson [container]
-    - text: Die Geroldsauer Kaskade bei Baden-Baden [container]
-    - text: Das Moselthal [container]
-    - text: Morgenscene auf dem obern Mississippi (`Morgenscene auf dem oberen Mississippi`) [container]
-    - text: Bei Caën an der bretagne’schen Küste [container]
-    - text: Das Grabmal der heil. Genoveva in der Frauenkirche bei Andernach (`Das Grabmal der heiligen Genoveva in der Frauenkirche bei Andernach`) [container]
-    - … 36 more
+1. `Betrachtung (Sammelband)`: linked, collection, 9 parts, 0 missing, order toc, validated
+    - front: Betrachtung (Sammelband)
+    - text: Kinder auf der Landstraße [container]
+    - text: Entlarvung eines Bauernfängers [container]
+    - text: Der plötzliche Spaziergang [container]
+    - text: Entschlüsse [container]
+    - text: Der Ausflug ins Gebirge [container]
+    - text: Das Unglück des Junggesellen [container]
+    - text: Das Gassenfenster [container]
+    - text: Wunsch, Indianer zu werden [container]
+    - text: Unglücklichsein [container]
+1. `Briefe eines Leipziger Studenten (1572-1574)`: linked, collection, 1 parts, 1 missing, order single, validated
+    - front: Briefe eines Leipziger Studenten (1572-1574)
+    - text: Briefe eines Leipziger Studenten aus den Jahren 1572 bis 1574 [toc]
 1. `Die Schnupftabaksdose (Sammelband)`: linked, collection, 33 parts, 0 missing, order toc, validated
     - toc: Die Schnupftabaksdose (Sammelband)
     - text: War einmal ein Schwefelholz [container]
@@ -487,97 +402,121 @@ Rows count multi-part works only, one row per part plus the root row. 25,071 sin
     - text: Lackschuh sprach zum Wasserstiebel [container]
     - text: Ein Taschenkrebs und ein Känguruh [container]
     - … 22 more
-1. `Taschenbuch von der Donau 1824`: linked, collection, 73 parts, 0 missing, order toc-partial, validated
-    - front: Taschenbuch von der Donau 1824
-    - text: Crescentia und ihre Schwestern [container]
-    - text: Oden aus Horaz [container]
-    - text: Konradin. Bruchstück von L. Uhland (`Konradin (Uhland)`) [container]
-    - text: Erinnerung und Freude [container]
-    - text: Die Burg [container]
-    - text: Drey Sonette an Grafen Reinhardt (`Drey Sonnette an Grafen Reinhardt`) [container]
-    - text: Dem Könige von Würtemberg [container]
-    - text: An Herrn Baron von Laßberg [container]
-    - text: Der Kirchhof (`Der Kirchhof (Conz)`) [container]
-    - text: An Göttinn Freya [container]
-    - text: Nänie [container]
-    - … 62 more
 1. `Theatri Saxonici Ander Theil`: linked, collection, 2 parts, 0 missing, order natural, validated
     - front: Theatri Saxonici Ander Theil
     - text: Beltzig (`Theatri Saxonici Ander Theil:Belzig`) [container]
     - text: Plauen (`Theatri Saxonici Ander Theil:Plauen`) [container]
-1. `Allgemeine deutsche Bibliothek (Musikartikel)`: linked, collection, 1 parts, 0 missing, order single, validated
-    - front: Allgemeine deutsche Bibliothek (Musikartikel)
-    - text: Auszug eines Schreibens aus – – – vom 27sten Febr. 1788 (`CPE Bach – Auszug eines Schreibens`) [container]
-1. `Allgemeiner Harz-Berg-Kalender für das Schaltjahr 1924`: linked, collection, 4 parts, 2 missing, order toc, unproofread
-    - front: Allgemeiner Harz-Berg-Kalender für das Schaltjahr 1924
-    - text: Mahnung (`Mahnung (Ernst von Wildenbruch)`) [container]
-    - text: Im Harze [container]
-    - text: Der stille See [container]
-    - text: Der Vogelfang [container]
-1. `Biographisches Jahrbuch für Altertumskunde`: linked, collection, 1 parts, 2 missing, order single, validated
-    - front: Biographisches Jahrbuch für Altertumskunde
-    - text: Adolf Philippi (Selbstbiographie) (`Adolf Philippi (Biographisches Jahrbuch für Altertumskunde)`) [container]
-1. `Passionsbilder`: linked, collection, 2 parts, 0 missing, order chain, validated
-    - front: Passionsbilder
-    - text: Eine löbliche Passion [container]
-    - text: Das Passionsspiel in Schwäbisch-Gmünd [container]
-1. `Palaeontographica`: linked, collection, 2 parts, 1 missing, order toc, validated
-    - front: Palaeontographica
-    - text: Ueber ein bisher nicht beschriebenes Exemplar von Eurypterus aus devonischen Schichten des Staates New York in Nord-Amerika [container]
-    - text: Ueber die Crustaceen der Steinkohlenformation von Saarbrücken [container]
-1. `Seifenblasen`: linked, collection, 14 parts, 0 missing, order chain, validated
-    - front: Seifenblasen
-    - text: Prolog (`Prolog (Laßwitz: Seifenblasen)`) [container]
-    - text: Auf der Seifenblase [container]
-    - text: Stäubchen [container]
-    - text: Apoikis [container]
-    - text: Aladdins Wunderlampe [container]
-    - text: Aus dem Tagebuche einer Ameise [container]
-    - text: Musen und Weise [container]
-    - text: Unverwüstlich [container]
-    - text: Der Traumfabrikant [container]
-    - text: Psychotomie [container]
-    - text: Mirax [container]
-    - … 3 more
-1. `Die schöne Müllerin`: linked, collection, 25 parts, 0 missing, order chain, validated
-    - front: Die schöne Müllerin
-    - text: Der Dichter, als Prolog [container]
-    - text: Wanderschaft [container]
-    - text: Wohin? (`Wohin`) [container]
-    - text: Halt! [container]
-    - text: Danksagung an den Bach [container]
-    - text: Am Feierabend [container]
-    - text: Der Neugierige [container]
-    - text: Das Mühlenleben [container]
-    - text: Ungeduld [container]
-    - text: Morgengruß [container]
-    - text: Des Müllers Blumen [container]
-    - … 14 more
-1. `Schwänke und Streiche aus Westpreussen II`: linked, collection, 3 parts, 0 missing, order chain, validated
-    - toc: Schwänke und Streiche aus Westpreussen II
-    - text: Die Katze als Kind [container]
-    - text: Die dumme Wirtin [container]
-    - text: Der dwatsche Hans [container]
-1. `Allgemeiner Harz-Berg-Kalender 1941`: linked, collection, 1 parts, 0 missing, order single, proofread
-    - front: Allgemeiner Harz-Berg-Kalender 1941
-    - text: Ein berühmter Apotheker in Clausthal (`Ein berühmter Apotheker in Clausthal – Johann Christoph Ilsemann`) [container]
+1. `Altjüdisches Schrifttum außerhalb der Bibel`: linked, collection, 58 parts, 0 missing, order chain, validated
+    - front: Altjüdisches Schrifttum außerhalb der Bibel
+    - text: Achtzehngebet [container]
+    - text: Fragmente bei Alexander Polyhistor (`Anonymus (bei Alexander Polyhistor)`) [container]
+    - text: Apokalypse des Abraham [container]
+    - text: Apokalypse des Baruch (griechisch) [container]
+    - text: Apokalypse des Baruch (syrisch) [container]
+    - text: Apokalypse des Elias [container]
+    - text: Apokalypse des Esdras [container]
+    - text: Apokalypse des Moses [container]
+    - text: Apokalypse des Sedrach [container]
+    - text: Apokalypse des Sophonias [container]
+    - text: Aristeas [container]
+    - … 47 more
+1. `Beim Bau der Chinesischen Mauer (Sammelband)`: linked, collection, 21 parts, 0 missing, order chain, validated
+    - toc: Beim Bau der Chinesischen Mauer (Sammelband)
+    - text: Beim Bau der Chinesischen Mauer (1931) [container]
+    - text: Zur Frage der Gesetze [container]
+    - text: Das Stadtwappen [container]
+    - text: Von den Gleichnissen [container]
+    - text: Die Wahrheit über Sancho Pansa [container]
+    - text: Das Schweigen der Sirenen [container]
+    - text: Prometheus (`Prometheus (Kafka)`) [container]
+    - text: Der Jäger Gracchus [container]
+    - text: Der Schlag ans Hoftor [container]
+    - text: Eine Kreuzung [container]
+    - text: Die Brücke [container]
+    - … 10 more
+1. `Allgemeiner Harz-Berg-Kalender für das Jahr 1915`: linked, collection, 2 parts, 4 missing, order toc, unproofread
+    - front: Allgemeiner Harz-Berg-Kalender für das Jahr 1915
+    - text: Gutentag und Gutenabend [container]
+    - text: Clausthaler Winter (`Clausthaler Winter (Gedicht)`) [container]
+1. `Ein Landarzt (Sammelband)`: linked, collection, 4 parts, 0 missing, order toc, validated
+    - front: Ein Landarzt (Sammelband)
+    - text: Auf der Galerie [container]
+    - text: Ein Besuch im Bergwerk [container]
+    - text: Das nächste Dorf [container]
+    - text: Elf Söhne [container]
+1. `Zeitschrift des Vereins für Lübeckische Geschichte und Altertumskunde`: linked, collection, 1 parts, 0 missing, order single, validated
+    - front: Zeitschrift des Vereins für Lübeckische Geschichte und Altertumskunde
+    - text: Briefe an Matthias Mulich, geschrieben im Jahre 1523 [container]
+1. `Rheinlands schönste Sagen und Geschichten`: linked, collection, 40 parts, 0 missing, order chain, validated
+    - front: Rheinlands schönste Sagen und Geschichten
+    - text: Liebfrauenmilch [container]
+    - text: Die Nibelungen [container]
+    - text: Die Juden in Worms [container]
+    - text: Die Gründung von Mainz [container]
+    - text: Der Eichelstein [container]
+    - text: Kloster Altmünster zu Mainz [container]
+    - text: Eginhard und Emma (Ingelheimer Novelle) [container]
+    - text: Doktor Faust (Kreuznach) [container]
+    - text: Der Eber von der Ebernburg bei Kreuznach [container]
+    - text: Adalbert der Landmann [container]
+    - text: Hans Brömser von Rüdesheim [container]
+    - … 29 more
+1. `Der Deutsche Krieg. Politische Flugschriften`: linked, collection, 1 parts, 0 missing, order single, validated
+    - front: Der Deutsche Krieg. Politische Flugschriften
+    - text: Die Ukraine der Lebensnerv Rußlands [container]
+1. `Das Hermanns-Denkmal und der Teutoburger Wald`: linked, collection, 20 parts, 0 missing, order chain, validated
+    - front: Das Hermanns-Denkmal und der Teutoburger Wald
+    - text: Dem Befreier Deutschlands [container]
+    - text: Die Heimath (`Die Heimath (Altenbernd)`) [container]
+    - text: Das Schloß zu Detmold [container]
+    - text: An der Inselwiese [container]
+    - text: E. von Bandels Wohnung auf der Grotenburg [container]
+    - text: Das Hermanns-Denkmal [container]
+    - text: Am Fuß des Hermannsdenkmals [container]
+    - text: Im Heidenthal [container]
+    - text: Am Donoper Teiche [container]
+    - text: Lopshorn [container]
+    - text: Die Hünenkapelle [container]
+    - … 9 more
+1. `Sagen aus der Provinz Sachsen VI`: linked, collection, 6 parts, 0 missing, order chain, validated
+    - toc: Sagen aus der Provinz Sachsen VI
+    - text: Der Charakter [container]
+    - text: Der gebannte Dieb [container]
+    - text: Das gestohlene Laken [container]
+    - text: Die gespenstige Katze [container]
+    - text: Der dreibeinige Hase (`Der dreibeinige Hase (Adler)`) [container]
+    - text: Der lahme Hase [container]
+1. `Kostbare Waffen aus der Dresdner Rüstkammer`: linked, collection, 82 parts, 0 missing, order chain, validated
+    - front: Kostbare Waffen aus der Dresdner Rüstkammer
+    - text: Tafel 1 (`Haenel Kostbare Waffen/Tafel 1`) [container]
+    - text: Tafel 2 (`Haenel Kostbare Waffen/Tafel 2`) [container]
+    - text: Tafel 3 (`Haenel Kostbare Waffen/Tafel 3`) [container]
+    - text: Tafel 4 (`Haenel Kostbare Waffen/Tafel 4`) [container]
+    - text: Tafel 5 (`Haenel Kostbare Waffen/Tafel 5`) [container]
+    - text: Tafel 6 (`Haenel Kostbare Waffen/Tafel 6`) [container]
+    - text: Tafel 7 (`Haenel Kostbare Waffen/Tafel 7`) [container]
+    - text: Tafel 8 (`Haenel Kostbare Waffen/Tafel 8`) [container]
+    - text: Tafel 9 (`Haenel Kostbare Waffen/Tafel 9`) [container]
+    - text: Tafel 10 (`Haenel Kostbare Waffen/Tafel 10`) [container]
+    - text: Tafel 11 (`Haenel Kostbare Waffen/Tafel 11`) [container]
+    - … 71 more
+1. `Geistliche Oden und Lieder`: linked, collection, 54 parts, 0 missing, order chain, validated
+    - front: Geistliche Oden und Lieder
+    - text: Bitten (`Gott, deine Güte reicht so weit`) [container]
+    - text: Danklied (`Du bists, dem Ruhm und Ehre gebühret`) [container]
+    - text: Das Gebet (`Dein Heil, o Christ, nicht zu verscherzen`) [container]
+    - text: Die Ehre Gottes aus der Natur (`Die Himmel rühmen des Ewigen Ehre`) [container]
+    - text: Prüfung am Abend (`Der Tag ist wieder hin, und diesen Theil des Lebens`) [container]
+    - text: Gelassenheit (`Was ists, daß ich mich quäle?`) [container]
+    - text: Die Wachsamkeit (`Nicht, daß ichs schon ergriffen hätte`) [container]
+    - text: Wider den Uebermuth (`Was ist mein Stand, mein Glück, und jede gute Gabe?`) [container]
+    - text: Beständige Erinnerung des Todes (`Was sorgst du ängstlich für dein Leben?`) [container]
+    - text: Osterlied. (`Erinnre dich, mein Geist, erfreut`) [container]
+    - text: Der Kampf der Tugend (`Oft klagt dein Herz, wie schwer es sey`) [container]
+    - … 43 more
 
 ### B: mixed (89)
 
-1. `Die Gartenlaube (1866)`: mixed, collection, 405 parts, 0 missing, order toc-partial, validated
-    - front: Die Gartenlaube (1866)
-    - text: Goldelse [toc]
-    - text: Die Sängerrunde am Weinsberger Thurm [toc]
-    - text: Kleine Ursachen, große Wirkung [toc]
-    - text: Die Mutter Gottes [toc]
-    - text: Eine Alpenstraße [toc]
-    - text: Coburgische Erinnerungen an König Leopold von Belgien [toc]
-    - text: Onkel und Neffe (`Onkel und Neffe (Die Gartenlaube 1866/1)`) [toc]
-    - text: Neuestes Zeloten-Gesangbuch [toc]
-    - text: Der Elephant in der Gefangenschaft [toc]
-    - text: Eine vergessene Freundin Schiller’s [toc]
-    - text: Ein ungarisches Reiterleben [toc]
-    - … 394 more
 1. `Die Gartenlaube (1897)`: mixed, collection, 414 parts, 1 missing, order toc-partial, validated
     - front: Die Gartenlaube (1897)
     - text: Die Hansebrüder [toc]
@@ -784,20 +723,20 @@ Rows count multi-part works only, one row per part plus the root row. 25,071 sin
       - text: Ueber den Nebenstrom im getheilten Schließungsdraht der Batterie (`Ueber den Nebenstrom im getheilten Schließungsdrahte der Batterie`) [container]
       - text: Ein Paar Bemerkungen über die neue Theorie in Herrn Professor Chr. Doppler’s Schrift: „Ueber das farbige Licht der Doppelsterne und einiger anderer Gestirne des Himmels“ (`Ein Paar Bemerkungen über die neue Theorie in Herrn Professor Chr. Doppler’s Schrift`) [container]
     - … 115 more
-1. `W. Hogarth’s Zeichnungen, nach den Originalen in Stahl gestochen`: mixed, collection, 99 parts, 0 missing, order toc, validated
-    - toc: W. Hogarth’s Zeichnungen, nach den Originalen in Stahl gestochen
-    - volume: W. Hogarth’s Zeichnungen, nach den Originalen in Stahl gestochen. Erste Abtheilung (`W. Hogarth’s Zeichnungen, nach den Originalen in Stahl gestochen/Erste Abtheilung`) [container]
-      - text: Lebensgeschichte Hogarths von Dr. Franz Kottenkamp (`Lebensgeschichte Hogarths`) [container]
-      - chapter: Vorrede von G. C. Lichtenberg [container]
-      - text: Die Heirath nach der Mode. Sechs Blätter (`Die Heirath nach der Mode. Erstes Blatt`) [container]
-      - text: Die Heirath nach der Mode. Zweites Blatt [container]
-      - text: Die Heirath nach der Mode. Drittes Blatt [container]
-      - text: Die Heirath nach der Mode. Viertes Blatt [container]
-      - text: Die Heirath nach der Mode. Fünftes Blatt [container]
-      - text: Die Heirath nach der Mode. Sechstes Blatt [container]
-      - text: Herumstreichende Comödiantinnen, die sich in einer Scheune ankleiden [container]
-      - text: Die Punschgesellschaft [container]
-    - … 88 more
+1. `Mitteilungen des Vereins für Chemnitzer Geschichte Dritter und Vierter Band`: mixed, collection, 15 parts, 0 missing, order toc, proofread
+    - front: Mitteilungen des Vereins für Chemnitzer Geschichte Dritter und Vierter Band
+    - text: Allgemeiner Bericht (`Mitteilungen des Vereins für Chemnitzer Geschichte Dritter und Vierter Band/Allgemeiner Bericht (3)`) [hierarchy]
+    - text: Katalog der Bibliothek (`Mitteilungen des Vereins für Chemnitzer Geschichte Dritter und Vierter Band/Katalog der Bibliothek`) [hierarchy]
+    - text: Mitglieder-Verzeichnis (`Mitteilungen des Vereins für Chemnitzer Geschichte Dritter und Vierter Band/Mitgliederverzeichniss`) [hierarchy]
+    - text: Kassenbericht 1879–81 (`Mitteilungen des Vereins für Chemnitzer Geschichte Dritter und Vierter Band/Kassenbericht 1879–81`) [hierarchy]
+    - text: die Chemnitzer Taxordnung der Vorsprechen vom 13. Juni 1412 (`Die Chemnitzer Taxordnung der Vorsprechen vom 13. Juni 1412`) [toc]
+    - text: über Chemnitzer Ratswillküren (`Über Chemnitzer Ratswillküren`) [toc]
+    - text: Johann Theophilus Lessing und das Chemnitzer Lyceum zu Ende des vorigen und zu Anfang dieses Jahrhunderts (`Johann Theophilus Lessing und das Chemnitzer Lyceum`) [toc]
+    - text: J. Th. Lessings Gedicht über die Überschwemmung der Gablenz in deutscher Übersetzung. (`Johann Theophilus Lessings Gedicht über die Überschwemmung der Gablenz`) [toc]
+    - text: Allgemeiner Bericht (`Mitteilungen des Vereins für Chemnitzer Geschichte Dritter und Vierter Band/Allgemeiner Bericht (4)`) [hierarchy]
+    - text: Kassenbericht 1882–83 (`Mitteilungen des Vereins für Chemnitzer Geschichte Dritter und Vierter Band/Kassenbericht 1882–83`) [hierarchy]
+    - text: Adam Andreä und das Chemnitzer Lyceum in der ersten Hälfte des 17. Jahrhunderts [toc]
+    - … 4 more
 1. `Die Gartenlaube (1875)`: mixed, collection, 395 parts, 1 missing, order toc-partial, validated
     - front: Die Gartenlaube (1875)
     - text: Zum neuen Jahr (`Zum neuen Jahr (Ernst Ziel)`) [toc]
@@ -840,20 +779,14 @@ Rows count multi-part works only, one row per part plus the root row. 25,071 sin
     - text: Das Rauhthier [container]
     - text: Wache, Wache, Ronde raus! [container]
     - … 55 more
-1. `Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band`: mixed, collection, 15 parts, 0 missing, order toc, validated
-    - front: Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band
-    - text: Allgemeiner Bericht (`Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band/Allgemeiner Bericht (1)`) [hierarchy]
-    - text: Bericht über das Archiv (`Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band/Bericht über das Archiv`) [hierarchy]
-    - text: Bericht über die Bibliothek (`Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band/Bericht über die Bibliothek`) [hierarchy]
-    - text: Mitgliederverzeichniss (`Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band/Mitgliederverzeichniss (1)`) [hierarchy]
-    - text: Kassenbericht 1873–74 (`Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band/Kassenbericht 1873–74`) [hierarchy]
-    - chapter: Anhang (`Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band/Anhang`) [hierarchy]
-    - text: Allgemeiner Bericht (`Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band/Allgemeiner Bericht (2)`) [hierarchy]
-    - text: Katalog der Bibliothek (`Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band/Katalog der Bibliothek`) [hierarchy]
-    - text: Bericht über das Museum (`Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band/Bericht über das Museum`) [hierarchy]
-    - text: Mitglieder-Verzeichniss (`Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band/Mitgliederverzeichniss (2)`) [hierarchy]
-    - text: Nekrologe: (`Mitteilungen des Vereins für Chemnitzer Geschichte Erster und Zweiter Band/Nekrologe`) [hierarchy]
-    - … 4 more
+1. `Jugend (Zeitschrift)`: mixed, collection, 6 parts, 0 missing, order toc-partial, proofread
+    - front: Jugend (Zeitschrift)
+    - text: 01-15. Jg, 1896–1910 (`Jugend (Zeitschrift)/Inhalt 1896–1910`) [hierarchy]
+    - text: 16-34. Jg, 1911–1929 (`Jugend (Zeitschrift)/Inhalt 1911–1929`) [hierarchy]
+    - text: 35-45. Jg, 1930–1940 (`Jugend (Zeitschrift)/Inhalt 1930–1940`) [hierarchy]
+    - text: Der Schuft [container]
+    - text: Elegie bei einer Tasse Mocca [container]
+    - text: Gespräch einer Hausschnecke mit sich selbst [container]
 1. `Die Schaubühne – Die Weltbühne`: mixed, collection, 23 parts, 0 missing, order natural, validated
     - front: Die Schaubühne – Die Weltbühne
     - text: Begnadigung [container]
@@ -882,83 +815,129 @@ Rows count multi-part works only, one row per part plus the root row. 25,071 sin
     - text: Unglückliches Vorzeichen der Schlacht bei Mühlberg [container]
     - text: Dem Churfürsten Johann Friedrich wird sein Tod verkündigt [container]
     - … 990 more
-1. `Fliegende Blätter`: mixed, collection, 241 parts, 1 missing, order toc-partial, proofread
-    - front: Fliegende Blätter
-    - text: Liste der Verfasser (`Fliegende Blätter/Verfasser`) [hierarchy]
-    - text: Liste der Illustratoren (`Fliegende Blätter/Illustratoren`) [hierarchy]
-    - volume: 1. 1845 (`Fliegende Blätter (Band 1)`) [container]
-      - text: Das Heidelberger Fass [container]
-      - text: Fliegende Blätter Heft 1 (Band 1) [container]
-      - text: Sprüchwörter. (`Sprüchwörter (Fliegende Blätter Nr. 1)`) [container]
-      - text: Weltgeschichte. (`Weltgeschichte (Fliegende Blätter Nr. 1)`) [container]
-      - text: Deutsches Schauspiel zu Venedig (`Deutsches Schauspiel zu Venedig (Fliegende Blätter Nr. 2)`) [container]
-      - text: Fliegende Blätter Heft 2 (Band 1) [container]
-      - text: Die Viborger [container]
-      - text: II 13 (`Sprüchwörter (Fliegende Blätter Nr. 2)`) [container]
-    - … 230 more
-1. `Die Gartenlaube (1864)`: mixed, collection, 398 parts, 0 missing, order toc-partial, validated
-    - front: Die Gartenlaube (1864)
-    - text: Neujahrsgebet (`Neujahrsgebet (Die Gartenlaube 1864)`) [toc]
-    - text: Der Kranz am Marterl [toc]
-    - text: Der polnische Schreiber [toc]
-    - text: Im Kerker der Hoffnungslosen [toc]
-    - text: Unsere Bären [toc]
-    - text: Ein Name für das erste deutsche Kriegsschiff [toc]
-    - text: Der Tod und das Begräbniß eines Freiheitskämpfers [toc]
-    - text: Berichtigung (`Berichtigung (Die Gartenlaube 1864/1)`) [toc]
-    - text: Für die braven Schleswig-Holsteiner (`Für die braven Schleswig-Holsteiner (Die Gartenlaube 1864/1)`) [toc]
-    - text: Das ewige Licht [toc]
-    - text: Die Kinderzeche in Dinkelsbühl [toc]
-    - … 387 more
-1. `Die Gartenlaube (1879)`: mixed, collection, 390 parts, 0 missing, order toc-partial, validated
-    - front: Die Gartenlaube (1879)
-    - text: Das Evangelium der Toleranz [toc]
-    - text: Vernünftige Gedanken einer Hausmutter. 1. Der Mutter Stufenjahre (`Vernünftige Gedanken einer Hausmutter (1)`) [toc]
-    - text: Madonna Violanta [toc]
-    - text: Ein Wort am Grabe Karl Gutzkow’s [toc]
-    - text: Die Kunst im Hause [toc]
-    - text: Neujahr in China [toc]
-    - text: Ein verfolgter Räuber [toc]
-    - text: Das Satyrspiel von 1878 [toc]
-    - text: Des Kaisers Lector [toc]
-    - text: Ein Augenblick [toc]
-    - text: Deutsches Frauenleben im Mittelalter. 7. Bei Spiel und Tanz. (`Deutsches Frauenleben im Mittelalter (Die Gartenlaube 1879/2)`) [toc]
-    - … 379 more
-1. `Die Gartenlaube (1893)`: mixed, collection, 411 parts, 3 missing, order toc-partial, proofread
-    - front: Die Gartenlaube (1893)
-    - text: Am „Eisernen Thor“ [toc]
-    - text: Auf Geben und Nehmen [toc]
-    - text: Vom Struwwelpeter [toc]
-    - text: Heimstätten für Genesende [toc]
-    - text: Der schüchterne Freier [toc]
-    - text: Warum schweben die Wolken [toc]
-    - text: Im Dschungl [toc]
-    - text: Frühlingsblüthen [toc]
-    - text: Eine Zauberwurzel [toc]
-    - text: Friedrich von Esmarch (`Friedrich von Esmarch (Die Gartenlaube 1893)`) [toc]
-    - text: Die letzten Büffel von Nordamerika [toc]
-    - … 400 more
-1. `Die Gartenlaube (1877)`: mixed, collection, 424 parts, 0 missing, order toc-partial, validated
-    - front: Die Gartenlaube (1877)
-    - text: Jubelgruß der „Gartenlaube“ [toc]
-    - text: Aus gährender Zeit [toc]
-    - text: Die Zeit der Rosen [toc]
-    - text: Aus dem Herzensleben unseres Lieblingsdichters [toc]
-    - text: Kanossa [toc]
-    - text: Der Spiritismus vor dem Gerichtshofe der Wissenschaft [toc]
-    - text: Parlamentarische Photographien aus Versailles [toc]
-    - text: Die Taufe des heiligen Aristophanes [toc]
-    - text: Nochmals die Eisenbahnen [toc]
-    - text: Gratulation bei der Gutsherrschaft [toc]
-    - text: Aus dem Nachlasse Herbert König’s [toc]
-    - … 413 more
+1. `Picanders Ernst-Schertzhaffte und Satyrische Gedichte`: mixed, collection, 3 parts, 0 missing, order toc, proofread
+    - front: Picanders Ernst-Schertzhaffte und Satyrische Gedichte
+    - text: Picanders Ernst-Schertzhaffte und Satyrische Gedichte. Dritter Theil (`Picanders Ernst-Schertzhaffte und Satyrische Gedichte/3. Teil`) [hierarchy]
+    - text: Der Streit zwischen Phoebus und Pan in einem Dramate aufgeführt [container]
+    - text: Über den Caffe [container]
+1. `Die Gartenlaube (1872)`: mixed, collection, 438 parts, 0 missing, order toc-partial, validated
+    - front: Die Gartenlaube (1872)
+    - text: Zum neuen Jahr! [toc]
+    - text: Am Altar [toc]
+    - text: Ein Stillleben in der Havel [toc]
+    - text: Der Wundermann auf der G-Saite [toc]
+    - text: Der Landwehr blutigster Tag vor Metz [toc]
+    - text: Im Palmengarten eines Depossedirten [toc]
+    - text: Für einen deutschen Geisteskämpfer [toc]
+    - text: Die barmherzige Schwester [toc]
+    - text: Französische Wissenschaft [toc]
+    - text: Instinct oder Ueberlegung? (`Instinct oder Ueberlegung? (Die Gartenlaube 1872/1)`) [toc]
+    - text: Heinrich Kruse (`Heinrich Kruse (Die Gartenlaube 1872/1)`) [toc]
+    - … 427 more
+1. `Die Gartenlaube (1859)`: mixed, collection, 335 parts, 0 missing, order toc-partial, validated
+    - front: Die Gartenlaube (1859)
+    - text: Er betet [toc]
+    - text: Aerztliche Strafpredigten – Den Müttern hustender Kinder [toc]
+    - text: Eine deutsche Frau in der Fremde [toc]
+    - text: Wanderungen im südlichen Rußland. 1. Mitten in den Heuschrecken (`Mitten in den Heuschrecken`) [toc]
+    - text: Gräfin Lichtenau (`Preußische Licht- und Schattenbilder 1. Gräfin Lichtenau`) [toc]
+    - text: Ein Besuch bei Kane, dem Nordpolfahrer [toc]
+    - text: Schönbrunn [toc]
+    - text: Das sicherste Schutzmittel gegen die Entzündung feiner Gewebe und anderer leicht feuerfangender Gegenstände (`Das sicherste Schutzmittel gegen die Entzündung feiner Gewebe`) [toc]
+    - text: Savoyen in Paris [toc]
+    - text: Wat sek de Schwaalkes vertellen [toc]
+    - text: Das germanische Nationalmuseum zu Nürnberg [toc]
+    - … 324 more
+1. `W. Hogarth’s Zeichnungen, nach den Originalen in Stahl gestochen`: mixed, collection, 99 parts, 0 missing, order toc, validated
+    - toc: W. Hogarth’s Zeichnungen, nach den Originalen in Stahl gestochen
+    - volume: W. Hogarth’s Zeichnungen, nach den Originalen in Stahl gestochen. Erste Abtheilung (`W. Hogarth’s Zeichnungen, nach den Originalen in Stahl gestochen/Erste Abtheilung`) [container]
+      - text: Lebensgeschichte Hogarths von Dr. Franz Kottenkamp (`Lebensgeschichte Hogarths`) [container]
+      - chapter: Vorrede von G. C. Lichtenberg [container]
+      - text: Die Heirath nach der Mode. Sechs Blätter (`Die Heirath nach der Mode. Erstes Blatt`) [container]
+      - text: Die Heirath nach der Mode. Zweites Blatt [container]
+      - text: Die Heirath nach der Mode. Drittes Blatt [container]
+      - text: Die Heirath nach der Mode. Viertes Blatt [container]
+      - text: Die Heirath nach der Mode. Fünftes Blatt [container]
+      - text: Die Heirath nach der Mode. Sechstes Blatt [container]
+      - text: Herumstreichende Comödiantinnen, die sich in einer Scheune ankleiden [container]
+      - text: Die Punschgesellschaft [container]
+    - … 88 more
+1. `Die Gartenlaube (1880)`: mixed, collection, 387 parts, 0 missing, order toc-partial, validated
+    - front: Die Gartenlaube (1880)
+    - text: Ledige Kinder [toc]
+    - text: Das Denkmal der Königin Luise für Berlin [toc]
+    - text: Die Spielwuth in San Francisco [toc]
+    - text: Geborgtes Sonnenlicht [toc]
+    - text: Die Cremoneser Geige [toc]
+    - text: König Friedrich Wilhelm der Erste und die Akademie der Wissenschaften in Berlin [toc]
+    - text: Ein deutscher Waldbaum der Zukunft [toc]
+    - text: Er ist todt [toc]
+    - text: Amerikanischer Arbeiterverein für deutsche Einwanderer [toc]
+    - text: In Deutschland verloren (`In Deutschland verloren (Die Gartenlaube 1880/1)`) [toc]
+    - text: Aus der Schülerzeit [toc]
+    - … 376 more
+1. `Die Gartenlaube (1899)`: mixed, collection, 624 parts, 226 missing, order toc-partial, proofread
+    - front: Die Gartenlaube (1899)
+    - text: Tierleben im Schwarzen Meer [toc]
+    - text: Die Sichtbarkeit der Töne und die Abbildung des Gesanges [toc]
+    - text: Das Schweigen im Walde [toc]
+    - text: Neue Heilbäder [toc]
+    - text: Die Leuchten unserer Väter [toc]
+    - text: Abendstunde [toc]
+    - text: Mein Töchterlein [toc]
+    - text: Fräulein Johanne [toc]
+    - text: Die „Frau von Auvernier“ [toc]
+    - text: Die Wahrheit und die Legende über die Pariser Bastille [toc]
+    - text: Ein Seminar für allgemeine Krankenpflege [toc]
+    - … 613 more
 
-### D: virtual roots (52)
+### D: virtual roots (46)
 
-1. `Zeitschriften (Veterinärmedizin)`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: The veterinarian (`Zeitschriften (Veterinärmedizin)/fremdsprachige/The veterinarian : a monthly journal of veterinary science`)
 1. `Handeln die Thiere nur aus Instinct oder mit Ueberlegung?`: virtual, book, 1 parts, 0 missing, order single, validated
     - chapter: 1 (`Handeln die Thiere nur aus Instinct oder mit Ueberlegung?/1`)
+1. `Zeitschriften (Kunst)`: virtual, collection, 5 parts, 0 missing, order natural, unknown
+    - text: La belle assemblée (`Zeitschriften (Kunst)/fremdsprachige/La belle assemblée : being Bell's court and fashionable magazine, addressed particulary to the ladies`)
+    - text: The ladies' cabinet of fashion, music & romance (`Zeitschriften (Kunst)/fremdsprachige/The ladies' cabinet of fashion, music & romance`) [hierarchy]
+    - text: The ladies' companion and monthly magazine (`Zeitschriften (Kunst)/fremdsprachige/The ladies' companion and monthly magazine`) [hierarchy]
+    - text: The lady's magazine or entertaining companion for the fair sex : (`Zeitschriften (Kunst)/fremdsprachige/The lady's magazine or entertaining companion for the fair sex`) [hierarchy]
+    - text: The new monthly assemblée (`Zeitschriften (Kunst)/fremdsprachige/The new monthly assemblée`) [hierarchy]
+1. `Aus den politischen Salons des neuen Italiens`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Aus den politischen Salons des neuen Italiens/1. Die Frau des Märtyrers
+1. `Agrumi`: virtual, collection, 4 parts, 0 missing, order scan, validated
+    - text: Der Geliebten (`Agrumi/Der Geliebten`)
+    - text: Nachtgesang I (`Agrumi/Nachtgesang I`) [hierarchy]
+    - text: Die launenhafte Geliebte (`Agrumi/Die launenhafte Geliebte`) [hierarchy]
+    - chapter: Gesang zur Tarantella (`Agrumi/Gesang zur Tarantella`) [hierarchy]
+1. `Topographie der historischen und kunstgeschichtlichen Denkmale in den Bezirken Tepl und Marienbad`: virtual, collection, 2 parts, 0 missing, order scan, proofread
+    - text: Maiersgrün (`Topographie der historischen und kunstgeschichtlichen Denkmale in den Bezirken Tepl und Marienbad/Maiersgrün`)
+    - text: Tepl, Pfarrkirche zu S. Ägidius (`Topographie der historischen und kunstgeschichtlichen Denkmale in den Bezirken Tepl und Marienbad/Tepl, Pfarrkirche zu S. Ägidius`) [hierarchy]
+1. `Bilder aus dem jüdischen Leben`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Bilder aus dem jüdischen Leben/1. Polnische Schnorrer
+1. `Mein erster Hirsch`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Mein erster Hirsch/1881
+1. `Aus der Beamtenwelt`: virtual, collection, 4 parts, 0 missing, order natural, validated
+    - text: Aus dem Beamtenleben/Nr. 1. Der Herr Director (`Aus der Beamtenwelt/Nr. 1. Der Herr Director`)
+    - text: Aus der Beamtenwelt/Nr. 2. Ein Ruheposten [hierarchy]
+    - text: Aus der Beamtenwelt/Nr. 3. Das Stipendium [hierarchy]
+    - text: Aus der Beamtenwelt Nr.&nbsp;4. Der Postschein (`Aus der Beamtenwelt/Nr. 4. Der Postschein`) [hierarchy]
+1. `Zeitschriften (Veterinärmedizin)`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: The veterinarian (`Zeitschriften (Veterinärmedizin)/fremdsprachige/The veterinarian : a monthly journal of veterinary science`)
+1. `Neuer Görlitzer Anzeiger`: virtual, collection, 2 parts, 0 missing, order natural, validated
+    - text: Heimatbilder #38: Berzdorf auf dem Eigen I. (`Neuer Görlitzer Anzeiger/Berzdorf auf dem Eigen I`)
+    - text: Heimatbilder #39: Berzdorf auf dem Eigen II. (`Neuer Görlitzer Anzeiger/Berzdorf auf dem Eigen II`) [hierarchy]
+1. `Begegnungen mit Zeitgenossen`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Begegnungen mit Zeitgenossen/Nr. 1. A. v. Humboldt
+1. `Flugblätter der Weissen Rose`: virtual, book, 6 parts, 0 missing, order chain, validated
+    - chapter: I (`Flugblätter der Weissen Rose/I`)
+    - chapter: II (`Flugblätter der Weissen Rose/II`) [hierarchy]
+    - chapter: III (`Flugblätter der Weissen Rose/III`) [hierarchy]
+    - chapter: IV (`Flugblätter der Weissen Rose/IV`) [hierarchy]
+    - chapter: V (`Flugblätter der Weissen Rose/V`) [hierarchy]
+    - chapter: VI (`Flugblätter der Weissen Rose/VI`) [hierarchy]
+1. `Kataloge der Jahresausstellungen der Kurfürstl.`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Kataloge der Jahresausstellungen der Kurfürstl./Königl. Sächsischen Akademie der Künste
+1. `Fundamento de Esperanto`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Grammatik (`Fundamento de Esperanto/Grammatik`)
 1. `Geschichtsauffassung und Geschichtsschreibung`: virtual, book, 7 parts, 0 missing, order natural, validated
     - chapter: I. Das Alte und die neuen Probleme (`Geschichtsauffassung und Geschichtsschreibung/I. Das Alte und die neuen Probleme`)
     - chapter: II. Vorläufer und Vorbilder (`Geschichtsauffassung und Geschichtsschreibung/II. Vorläufer und Vorbilder`) [hierarchy]
@@ -967,185 +946,117 @@ Rows count multi-part works only, one row per part plus the root row. 25,071 sin
     - chapter: V. Entdecker und Kritiker (`Geschichtsauffassung und Geschichtsschreibung/V. Entdecker und Kritiker`) [hierarchy]
     - chapter: VI. Germania illustrata (`Geschichtsauffassung und Geschichtsschreibung/VI. Germania illustrata`) [hierarchy]
     - chapter: VII. Die humanistische Hofgeschichtschreibung unter Kaiser Maximilian (`Geschichtsauffassung und Geschichtsschreibung/VII. Die humanistische Hofgeschichtschreibung unter Kaiser Maximilian`) [hierarchy]
-1. `Galerie historischer Enthüllungen`: virtual, collection, 5 parts, 0 missing, order natural, validated
-    - text: Galerie historischer Enthüllungen 1.&nbsp;Wilhelm Tell und der Rütlibund (`Galerie historischer Enthüllungen/1. Wilhelm Tell und der Rütlibund`)
-    - text: Galerie historischer Enthüllungen/2. Die Sage von dem Heldentode der vierhundert Pforzheimer [hierarchy]
-    - text: Galerie historischer Enthüllungen/3. Agnes Bernauer [hierarchy]
-    - text: Galerie historischer Enthüllungen 4.&nbsp;Arnold von Winkelried (`Galerie historischer Enthüllungen/4. Arnold von Winkelried`) [hierarchy]
-    - text: Galerie historischer Enthüllungen 5.&nbsp;Kaufmännische Noblesse (`Galerie historischer Enthüllungen/5. Kaufmännische Noblesse`) [hierarchy]
-1. `Die Verfälschung der Nahrungs- und Genußmittel`: virtual, collection, 2 parts, 0 missing, order natural, validated
-    - text: Die Verfälschung der Nahrungs und Genußmittel. 2. Das Bier. (`Die Verfälschung der Nahrungs- und Genußmittel/2. Das Bier`)
-    - text: Die Verfälschung der Nahrungs und Genußmittel. 3. Die chemischen Biersurrogate. (`Die Verfälschung der Nahrungs- und Genußmittel/3. Die chemischen Biersurrogate`) [hierarchy]
-1. `Kunstketzereien`: virtual, book, 2 parts, 0 missing, order natural, validated
-    - chapter: 1 (`Kunstketzereien/1`)
-    - chapter: 2. (`Kunstketzereien/2.`) [hierarchy]
-1. `Preußisches Obertribunal - Rose`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Rosahl (`Preußisches Obertribunal - Rose/Rosahl`)
+1. `Source-Provider`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Landesarchiv Baden-Württemberg (`Source-Provider/Landesarchiv Baden-Württemberg`)
+1. `Aus meiner Pilgertasche`: virtual, collection, 3 parts, 0 missing, order natural, validated
+    - text: Aus meiner Pilgertasche/1. Eine Begegnung mit General Radowitz
+    - text: Aus meiner Pilgertasche/2. Herr von Senkenberg [hierarchy]
+    - text: Aus meiner Pilgertasche/3. [hierarchy]
 1. `Wikisource`: virtual, collection, 1 parts, 0 missing, order single, unknown
     - text: Hilf mit! (`Wikisource/Hilf mit!`)
-1. `Zeitschriften (Kunst)`: virtual, collection, 5 parts, 0 missing, order natural, unknown
-    - text: La belle assemblée (`Zeitschriften (Kunst)/fremdsprachige/La belle assemblée : being Bell's court and fashionable magazine, addressed particulary to the ladies`)
-    - text: The ladies' cabinet of fashion, music & romance (`Zeitschriften (Kunst)/fremdsprachige/The ladies' cabinet of fashion, music & romance`) [hierarchy]
-    - text: The ladies' companion and monthly magazine (`Zeitschriften (Kunst)/fremdsprachige/The ladies' companion and monthly magazine`) [hierarchy]
-    - text: The lady's magazine or entertaining companion for the fair sex : (`Zeitschriften (Kunst)/fremdsprachige/The lady's magazine or entertaining companion for the fair sex`) [hierarchy]
-    - text: The new monthly assemblée (`Zeitschriften (Kunst)/fremdsprachige/The new monthly assemblée`) [hierarchy]
-1. `Reiseerinnerungen`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Reiseerinnerungen/I. Bamberg
-1. `Neuer Görlitzer Anzeiger`: virtual, collection, 2 parts, 0 missing, order natural, validated
-    - text: Heimatbilder #38: Berzdorf auf dem Eigen I. (`Neuer Görlitzer Anzeiger/Berzdorf auf dem Eigen I`)
-    - text: Heimatbilder #39: Berzdorf auf dem Eigen II. (`Neuer Görlitzer Anzeiger/Berzdorf auf dem Eigen II`) [hierarchy]
-1. `Topographie der historischen und kunstgeschichtlichen Denkmale in den Bezirken Tepl und Marienbad`: virtual, collection, 2 parts, 0 missing, order scan, proofread
-    - text: Maiersgrün (`Topographie der historischen und kunstgeschichtlichen Denkmale in den Bezirken Tepl und Marienbad/Maiersgrün`)
-    - text: Tepl, Pfarrkirche zu S. Ägidius (`Topographie der historischen und kunstgeschichtlichen Denkmale in den Bezirken Tepl und Marienbad/Tepl, Pfarrkirche zu S. Ägidius`) [hierarchy]
-1. `Die Heimath in der neuen Welt`: virtual, book, 50 parts, 0 missing, order chain, validated
-    - volume: Die Heimath in der neuen Welt, Erster Band (`Die Heimath in der neuen Welt/Erster Band`)
-      - text: An den Leser. (`Die Heimath in der neuen Welt/Erster Band/An den Leser`) [hierarchy]
-      - text: An meine amerikanischen Freunde! (`Die Heimath in der neuen Welt/Erster Band/An meine amerikanischen Freunde!`) [hierarchy]
-      - chapter: Erster Brief. (`Die Heimath in der neuen Welt/Erster Band/Erster Brief`) [container]
-      - chapter: Zweiter Brief. (`Die Heimath in der neuen Welt/Erster Band/Zweiter Brief`) [container]
-      - chapter: Dritter Brief. (`Die Heimath in der neuen Welt/Erster Band/Dritter Brief`) [container]
-      - chapter: Vierter Brief. (`Die Heimath in der neuen Welt/Erster Band/Vierter Brief`) [container]
-      - chapter: Fünfter Brief. (`Die Heimath in der neuen Welt/Erster Band/Fünfter Brief`) [container]
-      - chapter: Sechster Brief. (`Die Heimath in der neuen Welt/Erster Band/Sechster Brief`) [container]
-      - chapter: Siebenter Brief. (`Die Heimath in der neuen Welt/Erster Band/Siebenter Brief`) [container]
-      - chapter: Achter Brief. (`Die Heimath in der neuen Welt/Erster Band/Achter Brief`) [container]
-      - chapter: Neunter Brief. (`Die Heimath in der neuen Welt/Erster Band/Neunter Brief`) [container]
-    - … 38 more
-1. `Erinnerungen aus meinem Leben (Friedrich Hecker)`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Der Hexenmeister der Prairie (`Erinnerungen aus meinem Leben (Friedrich Hecker)/2`)
-1. `Aus der Beamtenwelt`: virtual, collection, 4 parts, 0 missing, order natural, validated
-    - text: Aus dem Beamtenleben/Nr. 1. Der Herr Director (`Aus der Beamtenwelt/Nr. 1. Der Herr Director`)
-    - text: Aus der Beamtenwelt/Nr. 2. Ein Ruheposten [hierarchy]
-    - text: Aus der Beamtenwelt/Nr. 3. Das Stipendium [hierarchy]
-    - text: Aus der Beamtenwelt Nr.&nbsp;4. Der Postschein (`Aus der Beamtenwelt/Nr. 4. Der Postschein`) [hierarchy]
-1. `Seegeschichten`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Seegeschichten 2. Die Springstange (`Seegeschichten/2. Die Springstange`)
-1. `Aus den Arbeitssälen des Kunsthandwerks`: virtual, collection, 2 parts, 0 missing, order natural, validated
-    - text: Aus den Arbeitssälen des Kunsthandwerks/Die Goldschmiedekunst
-    - text: Aus den Arbeitssälen des Kunsthandwerks/Stil und Mode [hierarchy]
+1. `Der Wille zum Stil`: virtual, collection, 2 parts, 0 missing, order natural, proofread
+    - text: „Der Wille zum Stil“ (`Der Wille zum Stil/1`)
+    - text: „Der Wille zum Stil“ (Neugestaltung von Leben, Kunst und Technik) (`Der Wille zum Stil/2`) [hierarchy]
 1. `Aus dem Fuchsleben`: virtual, collection, 2 parts, 0 missing, order natural, validated
     - text: Aus dem Fuchsleben/I
     - text: Aus dem Fuchsleben/II [hierarchy]
-1. `Fundamento de Esperanto`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Grammatik (`Fundamento de Esperanto/Grammatik`)
-1. `Zwanglose Blätter(1883/9)`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Briefkasten (`Zwanglose Blätter(1883/9)/Briefkasten`)
-1. `Bilderschau in meinem Zimmer`: virtual, book, 3 parts, 0 missing, order natural, validated
-    - chapter: 1 (`Bilderschau in meinem Zimmer/1`)
-    - text: Bilderschau in meinem Zimmer/2 [hierarchy]
-    - chapter: 3 (`Bilderschau in meinem Zimmer/3`) [hierarchy]
+1. `Hoff Budde`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Nr. 271 (`Hoff Budde/Test/Nr. 271`)
+1. `Etwas zum Nachdenken`: virtual, collection, 2 parts, 0 missing, order natural, validated
+    - text: Etwas zum Nachdenken von einem Menschenfreund. I. Sendung (`Etwas zum Nachdenken/I. Sendung`)
+    - text: Etwas zum Nachdenken von einem Menschenfreund. II. Sendung (`Etwas zum Nachdenken/II. Sendung`) [hierarchy]
+1. `Zwanglose Blätter(1883/8)`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Briefkasten (`Zwanglose Blätter(1883/8)/Briefkasten`)
+1. `Ausgewählte Abhandlungen des Bischofs Aphraates`: virtual, collection, 8 parts, 0 missing, order chain, validated
+    - text: Abhandlung über den Glauben (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über den Glauben`)
+    - text: Abhandlung über die Liebe (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über die Liebe`) [hierarchy]
+    - text: Abhandlung über das Fasten (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über das Fasten`) [hierarchy]
+    - text: Abhandlung über das Gebet (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über das Gebet`) [hierarchy]
+    - text: Abhandlung über die Buße (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über die Buße`) [hierarchy]
+    - text: Abhandlung über das Pascha (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über das Pascha`) [hierarchy]
+    - text: Abhandlung über die Jungfräulichkeit und Heiligkeit gegen die Juden (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über die Jungfräulichkeit und Heiligkeit gegen die Juden`) [hierarchy]
+    - text: Abhandlung über den Tod und die letzten Zeiten (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über den Tod und die letzten Zeiten`) [hierarchy]
+1. `Reiseerinnerungen`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Reiseerinnerungen/I. Bamberg
+1. `Preußisches Obertribunal - Rose`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Rosahl (`Preußisches Obertribunal - Rose/Rosahl`)
+1. `Leipzigs Industrien`: virtual, collection, 2 parts, 0 missing, order natural, validated
+    - text: Leipzigs Industrien/Nr. 1. Aetherische Oele und Essenzen
+    - text: Leipzigs Industrien/Nr. 2. Ein überwundenes Vorurtheil in einer Bagatellsache [hierarchy]
 1. `Der Handlungsreisende wie er sein soll`: virtual, book, 1 parts, 0 missing, order single, validated
     - chapter: 6 (`Der Handlungsreisende wie er sein soll/6`)
-1. `Kleine Bilder aus der Gegenwart`: virtual, collection, 15 parts, 0 missing, order natural, proofread
-    - text: Kleine Bilder aus der Gegenwart. Nr. 8. Aus der Welt der Reclame. (`Kleine Bilder aus der Gegenwart/Aus der Welt der Reclame`)
-    - text: Bei J. Wickersheimer (`Kleine Bilder aus der Gegenwart/Bei J. Wickersheimer`) [hierarchy]
-    - text: Das fescheste Zeugl (`Kleine Bilder aus der Gegenwart/Das fescheste Zeugl`) [hierarchy]
-    - text: Der Brand in Aachen am 29. Juni dieses Jahres (`Kleine Bilder aus der Gegenwart/Der Brand in Aachen am 29. Juni dieses Jahres`) [hierarchy]
-    - text: Der Fang der Eintagsfliege (`Kleine Bilder aus der Gegenwart/Der Fang der Eintagsfliege`) [hierarchy]
-    - text: Der Hafenbrand in Hamburg am 31. Mai (`Kleine Bilder aus der Gegenwart/Der Hafenbrand in Hamburg am 31. Mai`) [hierarchy]
-    - text: Der „Munk-Affe“ (`Kleine Bilder aus der Gegenwart/Der Munk-Affe`) [hierarchy]
-    - text: Der Schweizer Alpenclub auf der Ausstellung in Zürich (`Kleine Bilder aus der Gegenwart/Der Schweizer Alpenclub auf der Ausstellung in Zürich`) [hierarchy]
-    - text: Die chinesische Panzercorvette „Ting Yuen“ (`Kleine Bilder aus der Gegenwart/Die chinesische Panzercorvette Ting Yuen`) [hierarchy]
-    - text: Kleine Bilder aus der Gegenwart. Die letzte Personenpost in Breslau (`Kleine Bilder aus der Gegenwart/Die letzte Personenpost in Breslau`) [hierarchy]
-    - text: Kleine Bilder aus der Gegenwart. 3. Im Taucherpavillon der Hygiene-Ausstellung in Berlin. (`Kleine Bilder aus der Gegenwart/Im Taucherpavillon der Hygiene-Ausstellung in Berlin`) [hierarchy]
-    - text: Ischia (`Kleine Bilder aus der Gegenwart/Ischia`) [hierarchy]
-    - … 3 more
-1. `Gallerie berühmter Firmengründer`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Gallerie berühmter Firmengründer 1. Ein Leipziger Buchhändler (`Gallerie berühmter Firmengründer/1. Ein Leipziger Buchhändler`)
-1. `Mein erster Hirsch`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Mein erster Hirsch/1881
-1. `Begegnungen mit Zeitgenossen`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Begegnungen mit Zeitgenossen/Nr. 1. A. v. Humboldt
-1. `Mährchen und Jugenderinnerungen`: virtual, collection, 51 parts, 0 missing, order chain, validated
-    - volume: Erster Theil (`Mährchen und Jugenderinnerungen/Erster Theil`)
-      - text: Geschichte von den sieben bunten Mäusen [container]
-      - text: Prinzessin Svanvithe [container]
-      - text: Der Wolf und die Nachtigall, oder wie zwei arme Königskinder verwandelt und zuletzt nach vieler Noth doch wieder zu Menschen geschaffen wurden [container]
-      - text: Der Wolf und die Nachtigall (Schwedisches Volksmährchen) [container]
-      - text: Klas Avenstaken [container]
-      - text: Paiwai und Paiwuzzo [container]
-      - text: Die Neun Berge bei Rambin [container]
-      - text: Schneeflöckchen [container]
-      - text: Erdwurm [container]
-      - text: Rattenkönig Birlibi [container]
-      - text: Der Schlangenkönig [container]
-    - … 39 more
-1. `Kataloge der Jahresausstellungen der Kurfürstl.`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Kataloge der Jahresausstellungen der Kurfürstl./Königl. Sächsischen Akademie der Künste
-1. `Zeitschriften (Illustrierte)`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: The St. James' magazine (`Zeitschriften (Illustrierte)/fremdsprachige/The St. James' magazine`)
-1. `In Friedrich Rückert’s Haus`: virtual, collection, 2 parts, 0 missing, order natural, validated
-    - text: In Friedrich Rückert’s Haus/1
-    - text: In Friedrich Rückert’s Haus/2 [hierarchy]
+1. `Archiv für die zeichnenden Künste`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Notizen über Hieronymus van Aeken, genannt Bosch, und Alart Du Hameel (`Archiv für die zeichnenden Künste/Jahrgang 7-8/Notizen über Hieronymus van Aeken, genannt Bosch, und Alart Du Hameel`)
+1. `Thierstudien eines Laien`: virtual, collection, 2 parts, 0 missing, order natural, validated
+    - text: Ameisenwirthschaft (`Thierstudien eines Laien/Ameisenwirthschaft`)
+    - text: Hirschkäfer und Ohrwurm (`Thierstudien eines Laien/Hirschkäfer und Ohrwurm`) [hierarchy]
 
-### E: subpage texts reached from a disambiguation or versions page (50)
+### E: subpage texts reached from a disambiguation or versions page (26)
 
-1. text “Anmerkungen zu den einzelnen Märchen” (`Kinder- und Haus-Märchen Band 3 (1856)/Anmerkungen`), part 6 of `Kinder- und Haus-Märchen Band 3 (1856)` (collection, 11 parts, 10 texts)
-1. text “Von einem, der auszog, das Fürchten zu lernen” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Von einem der auszog, das Fürchten zu lernen`), part 4 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
-1. text “Der Froschkönig oder der eiserne Heinrich” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Der Froschkönig oder der eiserne Heinrich`), part 1 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
-1. text “Der „Munk-Affe“” (`Kleine Bilder aus der Gegenwart/Der Munk-Affe`), part 6 of `Kleine Bilder aus der Gegenwart` (collection, 15 parts, 15 texts)
-1. chapter “1” (`Bilderschau in meinem Zimmer/1`), part 0 of `Bilderschau in meinem Zimmer` (book, 3 parts, 1 texts)
-1. text “Bilderschau in meinem Zimmer/2” (`Bilderschau in meinem Zimmer/2`), part 1 of `Bilderschau in meinem Zimmer` (book, 3 parts, 1 texts)
-1. chapter “1” (`Kunstketzereien/1`), part 0 of `Kunstketzereien` (book, 2 parts, 0 texts)
-1. text “Die Hand mit dem Messer” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Die Hand mit dem Messer`), part 10 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
-1. text “Der Brand in Aachen am 29. Juni dieses Jahres” (`Kleine Bilder aus der Gegenwart/Der Brand in Aachen am 29. Juni dieses Jahres`), part 3 of `Kleine Bilder aus der Gegenwart` (collection, 15 parts, 15 texts)
-1. text “Marienkind” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Marienkind`), part 3 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
-1. volume “Erster Band” (`Thalia/Erster Band`), part 1 of `Thalia` (collection, 68 parts, 64 texts)
-1. text “Der Schweizer Alpenclub auf der Ausstellung in Zürich” (`Kleine Bilder aus der Gegenwart/Der Schweizer Alpenclub auf der Ausstellung in Zürich`), part 7 of `Kleine Bilder aus der Gegenwart` (collection, 15 parts, 15 texts)
-1. text “Der Hafenbrand in Hamburg am 31. Mai” (`Kleine Bilder aus der Gegenwart/Der Hafenbrand in Hamburg am 31. Mai`), part 5 of `Kleine Bilder aus der Gegenwart` (collection, 15 parts, 15 texts)
-1. text “Kleine Bilder aus der Gegenwart : Wettfahrt von Segelschlitten auf dem Müggelsee bei Berlin” (`Kleine Bilder aus der Gegenwart/Wettfahrt von Segelschlitten auf dem Müggelsee bei Berlin`), part 12 of `Kleine Bilder aus der Gegenwart` (collection, 15 parts, 15 texts)
-1. volume “Mährchen und Jugenderinnerungen. Zweiter Theil.” (`Mährchen und Jugenderinnerungen/Zweiter Theil`), part 20 of `Mährchen und Jugenderinnerungen` (collection, 51 parts, 49 texts)
-1. text “Der getreue Johannes” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Der getreue Johannes`), part 6 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
-1. text “Bei J. Wickersheimer” (`Kleine Bilder aus der Gegenwart/Bei J. Wickersheimer`), part 1 of `Kleine Bilder aus der Gegenwart` (collection, 15 parts, 15 texts)
-1. text “Der gestiefelte Kater” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Der gestiefelte Kater`), part 38 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
-1. text “Ischia” (`Kleine Bilder aus der Gegenwart/Ischia`), part 11 of `Kleine Bilder aus der Gegenwart` (collection, 15 parts, 15 texts)
+1. text “Adler” (`Christliche Symbolik/Adler`), part 13 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. text “A” (`Fliegende Blätter/Inhalt Band 1`), part 147 of `Fliegende Blätter` (collection, 241 parts, 231 texts)
+1. text “Hirsch” (`Christliche Symbolik/Hirsch`), part 233 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. text “Abel” (`Christliche Symbolik/Abel`), part 5 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
 1. text “Der Wolf und die sieben jungen Geißlein” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Der Wolf und die sieben jungen Geißlein`), part 5 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
 1. text “Wie Kinder Schlachtens miteinander gespielt haben” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Wie Kinder Schlachtens miteinander gespielt haben`), part 25 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
-1. text “Kleine Bilder aus der Gegenwart: Zwei unpolitische „Kongresse“” (`Kleine Bilder aus der Gegenwart/Zwei unpolitische „Kongresse“`), part 13 of `Kleine Bilder aus der Gegenwart` (collection, 15 parts, 15 texts)
-1. text “Der Fang der Eintagsfliege” (`Kleine Bilder aus der Gegenwart/Der Fang der Eintagsfliege`), part 4 of `Kleine Bilder aus der Gegenwart` (collection, 15 parts, 15 texts)
-1. text “Pan” (`Christliche Symbolik/Pan`), part 385 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. text “Katze und Maus in Gesellschaft” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Katze und Maus in Gesellschaft`), part 2 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
+1. text “Die zwölf Brüder” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Die zwölf Brüder`), part 11 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
+1. text “Der gestiefelte Kater” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Der gestiefelte Kater`), part 38 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
+1. volume “Erster Band” (`Thalia/Erster Band`), part 1 of `Thalia` (collection, 68 parts, 64 texts)
 1. text “Der wunderliche Spielmann” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Der wunderliche Spielmann`), part 9 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
+1. text “Der Froschkönig oder der eiserne Heinrich” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Der Froschkönig oder der eiserne Heinrich`), part 1 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
 1. text “Von der Nachtigall und der Blindschleiche” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Von der Nachtigall und der Blindschleiche`), part 7 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
-1. chapter “3” (`Bilderschau in meinem Zimmer/3`), part 2 of `Bilderschau in meinem Zimmer` (book, 3 parts, 1 texts)
-1. text “A” (`Fliegende Blätter/Inhalt Band 1`), part 147 of `Fliegende Blätter` (collection, 241 parts, 231 texts)
-1. text “Das fescheste Zeugl” (`Kleine Bilder aus der Gegenwart/Das fescheste Zeugl`), part 2 of `Kleine Bilder aus der Gegenwart` (collection, 15 parts, 15 texts)
-1. text “Abel” (`Christliche Symbolik/Abel`), part 5 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. chapter “1” (`Handeln die Thiere nur aus Instinct oder mit Ueberlegung?/1`), part 0 of `Handeln die Thiere nur aus Instinct oder mit Ueberlegung?` (book, 1 parts, 0 texts)
+1. text “Der Tod und der Gänshirt” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Der Tod und der Gänshirt`), part 31 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
+1. text “Ahasver” (`Christliche Symbolik/Ahasver`), part 20 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. text “Von einem, der auszog, das Fürchten zu lernen” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Von einem der auszog, das Fürchten zu lernen`), part 4 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
+1. text “Der getreue Johannes” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Der getreue Johannes`), part 6 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
+1. text “Auferstehung” (`Christliche Symbolik/Auferstehung`), part 41 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. text “Marienkind” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Marienkind`), part 3 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
+1. text “Der gute Handel” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Der gute Handel`), part 8 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
+1. text “Anmerkungen zu den einzelnen Märchen” (`Kinder- und Haus-Märchen Band 3 (1856)/Anmerkungen`), part 6 of `Kinder- und Haus-Märchen Band 3 (1856)` (collection, 11 parts, 10 texts)
+1. text “Hans Dumm” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Hans Dumm`), part 60 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
+1. text “Adam” (`Christliche Symbolik/Adam`), part 12 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. text “Pan” (`Christliche Symbolik/Pan`), part 385 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. text “Die Hand mit dem Messer” (`Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I/Die Hand mit dem Messer`), part 10 of `Anmerkungen zu den Kinder- und Hausmärchen der Brüder Grimm I` (collection, 66 parts, 66 texts)
 
-### all searchable subpage texts (chapter titles that the label patterns miss show up here) (7,883)
+### all searchable subpage texts (chapter titles that the label patterns miss show up here) (8,097)
 
-1. text “Für den kranken Gatten” (`Stunden der Andacht/Für den kranken Gatten`), part 65 of `Stunden der Andacht` (collection, 102 parts, 100 texts)
-1. text “Georg Kleinfeller” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Georg Kleinfeller`), part 391 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
-1. text “Fritz Gschnitzer” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Fritz Gschnitzer`), part 373 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
-1. text “Riedeldorf” (`Geschichte von Kloster Heilsbronn/Riedeldorf`), part 372 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
-1. text “Leiden” (`Christliche Symbolik/Leiden`), part 315 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
-1. text “Richard Foerster” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Richard Foerster`), part 1012 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
-1. text “Romanze XIV: Apo und Meliore” (`Romanzen vom Rosenkranz/Romanze XIV: Apo und Meliore`), part 16 of `Romanzen vom Rosenkranz` (collection, 24 parts, 24 texts)
-1. text “Eduardo Luigi De Stefani” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Eduardo Luigi De Stefani`), part 208 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
-1. text “Otto Crusius” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Otto Crusius`), part 898 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
-1. text “Achstetten” (`Beschreibung des Oberamts Laupheim/Achstetten`), part 9 of `Beschreibung des Oberamts Laupheim` (collection, 50 parts, 43 texts)
-1. text “Malmersdorf” (`Geschichte von Kloster Heilsbronn/Malmersdorf`), part 295 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
-1. text “Gemeinde Berkheim” (`Beschreibung des Oberamts Leutkirch/Berkheim`), part 9 of `Beschreibung des Oberamts Leutkirch` (collection, 32 parts, 25 texts)
-1. text “Wie nach der letzsten schlacht, so die Cimbri verloren, etliche von inen wider in das Teutschland komen, die sich vor dem Schwarzwald an dem Negker nidergelassen, dieselbig art erbawen und bewonet hab” (`Zimmerische Chronik/Band 1/Kapitel 2`), part 5 of `Zimmerische Chronik` (collection, 159 parts, 139 texts)
-1. text “Aglishardt” (`Beschreibung des Oberamts Urach/Kapitel B 4`), part 11 of `Beschreibung des Oberamts Urach` (collection, 36 parts, 29 texts)
-1. text “Carl Watzinger” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Carl Watzinger`), part 150 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
-1. text “Monate” (`Christliche Symbolik/Monate`), part 349 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
-1. text “Alt-Steußlingen mit Briel” (`Beschreibung des Oberamts Ehingen/Kapitel B 6`), part 13 of `Beschreibung des Oberamts Ehingen` (collection, 55 parts, 48 texts)
-1. text “Ringsheim” (`Die Kunstdenkmäler des Grossherzogthums Baden. Band 6/Ringsheim`), part 17 of `Die Kunstdenkmäler des Grossherzogthums Baden. Band 6` (collection, 30 parts, 30 texts)
-1. text “Dritter Brieff” (`Merckwürdige Nachricht aus Ost-Indien/Dritter Brieff`), part 3 of `Merckwürdige Nachricht aus Ost-Indien` (collection, 7 parts, 7 texts)
-1. text “71 Bei dem Grabe einer alten armen Frau” (`Melpomene/Band 1/071 Bei dem Grabe einer alten armen Frau`), part 92 of `Melpomene` (collection, 223 parts, 221 texts)
-1. text “Vom falsch vnd beschisß” (`Doctor Brants Narrenschiff/Von Falschheit und Betrug`), part 105 of `Doctor Brants Narrenschiff` (collection, 118 parts, 118 texts)
-1. text “Die Etappe” (`Ob-Ost/Die Etappe`), part 3 of `Ob-Ost` (collection, 12 parts, 12 texts)
-1. text “Stödtlen” (`Beschreibung des Oberamts Ellwangen/Kapitel B 19`), part 26 of `Beschreibung des Oberamts Ellwangen` (collection, 37 parts, 36 texts)
-1. text “Heumaden” (`Beschreibung des Oberamts Stuttgart, Amt/Kapitel B 10`), part 17 of `Beschreibung des Oberamts Stuttgart, Amt` (collection, 35 parts, 27 texts)
-1. text “Von etlichen seltzamen handlungen, die sich bei zeiten herrn Gotfridt Wernhers freiherrn von Zimbern zue Mösskirch und in der herrschaft zue Guetenstain begeben haben.” (`Zimmerische Chronik/Band 2/Kapitel 44`), part 123 of `Zimmerische Chronik` (collection, 159 parts, 139 texts)
-1. text “Berichtigungen” (`Beschreibung des Oberamts Laupheim/Berichtigungen`), part 49 of `Beschreibung des Oberamts Laupheim` (collection, 50 parts, 43 texts)
-1. text “Inhaltsverzeichnis 1901–1915” (`Die Musik/Inhaltsverzeichnis 1901–1915`), part 1 of `Die Musik` (collection, 2 parts, 2 texts)
-1. text “Döffingen” (`Beschreibung des Oberamts Böblingen/Kapitel B 9`), part 16 of `Beschreibung des Oberamts Böblingen` (collection, 25 parts, 18 texts)
-1. text “Tafeln Mosis” (`Christliche Symbolik/Tafeln Mosis`), part 568 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
-1. text “Eulalia” (`Rosen-Monate heiliger Frauen/Eulalia`), part 9 of `Rosen-Monate heiliger Frauen` (collection, 61 parts, 60 texts)
+1. text “Gültstein” (`Beschreibung des Oberamts Herrenberg/Kapitel B 8`), part 15 of `Beschreibung des Oberamts Herrenberg` (collection, 34 parts, 28 texts)
+1. text “Eugen Lieben” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Eugen Lieben`), part 288 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Ernst Meyer (Historiker)” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Ernst Meyer (Historiker)`), part 270 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Gastenfelden” (`Geschichte von Kloster Heilsbronn/Gastenfelden`), part 190 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
+1. text “Greif” (`Christliche Symbolik/Greif`), part 202 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. text “Hirschkäfer und Ohrwurm” (`Thierstudien eines Laien/Hirschkäfer und Ohrwurm`), part 1 of `Thierstudien eines Laien` (collection, 2 parts, 2 texts)
+1. text “Otto Keller (Philologe)” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Otto Keller (Philologe)`), part 909 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Schlusslied Der Tod an den Verfasser” (`Melpomene/Band 2/Schlusslied`), part 222 of `Melpomene` (collection, 223 parts, 221 texts)
+1. text “August Schmekel” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/August Schmekel`), part 105 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Leopold Cohn” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Leopold Cohn`), part 794 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “St. Vitus” (`Christliche Symbolik/St. Vitus`), part 548 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. text “Der erste Grundbesitz des Klosters” (`Geschichte von Kloster Heilsbronn/Der erste Grundbesitz des Klosters`), part 113 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
+1. text “Heidgau” (`Beschreibung des Oberamts Waldsee/Kapitel BW6`), part 19 of `Beschreibung des Oberamts Waldsee` (collection, 39 parts, 28 texts)
+1. text “Die verbindung eines hauptsatzes bzw. zweier oder mehrerer hauptsätze mit einem nebensatze bzw. zweien oder mehreren nebensätzen” (`Die araner mundart/Die verbindung eines hauptsatzes`), part 14 of `Die araner mundart` (collection, 60 parts, 52 texts)
+1. text “Diaconissenanstalt Neuendettelsau” (`Etwas aus der Geschichte des Diaconissenhauses Neuendettelsau/§. 2. Diaconissenanstalt Neuendettelsau`), part 4 of `Etwas aus der Geschichte des Diaconissenhauses Neuendettelsau` (collection, 14 parts, 14 texts)
+1. text “Alfons Wiedersich” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Alfons Wiedersich`), part 47 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
+1. text “Honig” (`Christliche Symbolik/Honig`), part 236 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. text “Neunundvierzigster Brief” (`Chemische Briefe/Neunundvierzigster Brief`), part 49 of `Chemische Briefe` (collection, 53 parts, 40 texts)
+1. text “Gemeinde Sulzbach am Kocher” (`Beschreibung des Oberamts Gaildorf/Kapitel B 19`), part 26 of `Beschreibung des Oberamts Gaildorf` (collection, 31 parts, 24 texts)
+1. text “Berlin” (`Leben und Thaten des berühmten Ritters Schnapphahnski/III. Berlin`), part 4 of `Leben und Thaten des berühmten Ritters Schnapphahnski` (collection, 24 parts, 24 texts)
+1. text “9 Bei dem Grabe eines Mannes, der von Jägern erschossen wurde” (`Melpomene/Band 1/009 Bei dem Grabe eines Mannes, der von Jägern erschossen wurde`), part 30 of `Melpomene` (collection, 223 parts, 221 texts)
+1. text “§4. Vollständige Lösung für Kugeln und Hohlkugeln von endlicher Dicke.” (`Ueber die Induction in rotirenden Kugeln/§4`), part 6 of `Ueber die Induction in rotirenden Kugeln` (collection, 14 parts, 13 texts)
+1. text “Text” (`Über die Verwirrung der Sprachen/Text`), part 3 of `Über die Verwirrung der Sprachen` (collection, 3 parts, 2 texts)
+1. text “Seinsheim” (`Geschichte von Kloster Heilsbronn/Seinsheim`), part 390 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
+1. text “Maubach” (`Beschreibung des Oberamts Backnang/Kapitel B 15`), part 22 of `Beschreibung des Oberamts Backnang` (collection, 38 parts, 31 texts)
+1. text “Wie herr Gotfridt freiherr zu Zimbern sambt seinen underthonen zu Winzlaw von Conradten Glücken zu Westphaln vorm haimlichen gericht ist fürgenomen und beclagt, und wie solche handlung durch ain apt v” (`Zimmerische Chronik/Band 1/Kapitel 68`), part 65 of `Zimmerische Chronik` (collection, 159 parts, 149 texts)
+1. text “Topf” (`Christliche Symbolik/Topf`), part 588 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. text “Wieseth-Bruck” (`Geschichte von Kloster Heilsbronn/Wieseth-Bruck`), part 462 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
+1. text “St. Georg” (`Christliche Symbolik/St. Georg`), part 531 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
+1. text “Ameisenwirthschaft” (`Thierstudien eines Laien/Ameisenwirthschaft`), part 0 of `Thierstudien eines Laien` (collection, 2 parts, 2 texts)
 
 ### C: oversized (317)
 
+1. `Abhandlung des Daseyns der Gespenster, nebst einem Anhange vom Vampyrismus`: single, single, 1 parts, 0 missing, order –, validated
+    - text: Abhandlung des Daseyns der Gespenster, nebst einem Anhange vom Vampyrismus
 1. `Zeitschrift der Gesellschaft für Erdkunde zu Berlin`: mixed, collection, 72 parts, 0 missing, order toc, validated
     - front: Zeitschrift der Gesellschaft für Erdkunde zu Berlin
     - volume: Zweiter Band (`Zeitschrift der Gesellschaft für Erdkunde zu Berlin/Zweiter Band`) [hierarchy]
@@ -1326,14 +1237,26 @@ Rows count multi-part works only, one row per part plus the root row. 25,071 sin
     - text: Faust - Der Tragödie zweiter Teil
 1. `Raisonirendes Journal vom deutschen Theater zu Hamburg (1.–13. Stück)`: single, single, 1 parts, 0 missing, order –, proofread
     - text: Raisonirendes Journal vom deutschen Theater zu Hamburg (1.–13. Stück)
-1. `Kleiner Briefkasten (Die Gartenlaube 1880)`: single, single, 1 parts, 0 missing, order –, validated
-    - text: Kleiner Briefkasten (Die Gartenlaube 1880)
 
 ### G: reference works (0)
 
 
 ### H: deep nesting (7)
 
+1. `Frau Auguste Pattberg geb. von Kettner`: linked, collection, 38 parts, 0 missing, order toc, validated
+    - front: Frau Auguste Pattberg geb. von Kettner
+    - text: Ein altes Volkslied [container]
+    - text: Die Wanderschaft [container]
+    - text: Auf die urkundliche Berichtigung der Volkssage vom Minneberg [container]
+    - text: Antikritik [container]
+    - text: Das Neckarthal [container]
+    - volume: Volkssage von der Burg Stolzeneck [container]
+      - text: Der Minneberg [container]
+      - volume: Volkssage (`Volkssage (Badische Wochenschrift Nr. 2)`) [container]
+        - text: Volkssage (`Volkssage (Badische Wochenschrift Nr. 34)`) [container]
+    - text: Volkssage (`Volkssage (Badische Wochenschrift Nr. 19)`) [container]
+    - text: Nachricht von einigen Volksfesten [container]
+    - … 27 more
 1. `Annalen der Physik`: mixed, collection, 126 parts, 0 missing, order natural, proofread
     - front: Annalen der Physik
     - text: Acht und zwanzigste Reihe von Experimental-Untersuchungen über Elektricität [container]
@@ -1348,16 +1271,6 @@ Rows count multi-part works only, one row per part plus the root row. 25,071 sin
       - text: Ueber den Nebenstrom im getheilten Schließungsdraht der Batterie (`Ueber den Nebenstrom im getheilten Schließungsdrahte der Batterie`) [container]
       - text: Ein Paar Bemerkungen über die neue Theorie in Herrn Professor Chr. Doppler’s Schrift: „Ueber das farbige Licht der Doppelsterne und einiger anderer Gestirne des Himmels“ (`Ein Paar Bemerkungen über die neue Theorie in Herrn Professor Chr. Doppler’s Schrift`) [container]
     - … 115 more
-1. `Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil`: subpages, collection, 8 parts, 0 missing, order chain, validated
-    - front: Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil
-    - text: Inhaltsübersicht (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/Inhaltsübersicht`) [container]
-    - volume: Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation`) [container]
-      - text: Schule und Gelehrsamkeit (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/5. Schule und Gelehrsamkeit`) [container]
-      - text: Lebensformen und Gesinnung (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/7. Lebensformen und Gesinnung`) [container]
-      - volume: 6. Die Kirche (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/6. Die Kirche`) [hierarchy]
-        - chapter: Erster Teil (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/6. Die Kirche/1`) [container]
-        - chapter: Zweiter Teil (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/6. Die Kirche/2`) [container]
-    - text: Anmerkungen und Belege (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/Anmerkungen und Belege`) [container]
 1. `Journal von und für Franken`: linked, collection, 398 parts, 0 missing, order toc-partial, proofread
     - front: Journal von und für Franken
     - chapter: Vorrede (`Vorrede (Journal von und für Franken)`) [container]
@@ -1400,25 +1313,21 @@ Rows count multi-part works only, one row per part plus the root row. 25,071 sin
       - text: Gnandstein (`Rittergüter und Schlösser im Königreiche Sachsen: Gnandstein`) [container]
       - text: Pomsen (`Rittergüter und Schlösser im Königreiche Sachsen: Pomsen`) [container]
     - … 764 more
-1. `Frau Auguste Pattberg geb. von Kettner`: linked, collection, 38 parts, 0 missing, order toc, validated
-    - front: Frau Auguste Pattberg geb. von Kettner
-    - text: Ein altes Volkslied [container]
-    - text: Die Wanderschaft [container]
-    - text: Auf die urkundliche Berichtigung der Volkssage vom Minneberg [container]
-    - text: Antikritik [container]
-    - text: Das Neckarthal [container]
-    - volume: Volkssage von der Burg Stolzeneck [container]
-      - text: Der Minneberg [container]
-      - volume: Volkssage (`Volkssage (Badische Wochenschrift Nr. 2)`) [container]
-        - text: Volkssage (`Volkssage (Badische Wochenschrift Nr. 34)`) [container]
-    - text: Volkssage (`Volkssage (Badische Wochenschrift Nr. 19)`) [container]
-    - text: Nachricht von einigen Volksfesten [container]
-    - … 27 more
 1. `Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes`: linked, collection, 3 parts, 0 missing, order single, proofread
     - front: Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes
     - volume: II. Künstlerwiedergaben nach dem Meister (`Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes - Fortsetzung 1`) [toc]
       - volume: Fortsetzung siehe: Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes - Fortsetzung 2 (`Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes - Fortsetzung 2`) [toc]
         - text: Fortsetzung siehe: Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes - Fortsetzung 3 (`Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes - Fortsetzung 3`) [toc]
+1. `Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil`: subpages, collection, 8 parts, 0 missing, order chain, validated
+    - front: Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil
+    - text: Inhaltsübersicht (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/Inhaltsübersicht`) [container]
+    - volume: Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation`) [container]
+      - text: Schule und Gelehrsamkeit (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/5. Schule und Gelehrsamkeit`) [container]
+      - text: Lebensformen und Gesinnung (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/7. Lebensformen und Gesinnung`) [container]
+      - volume: 6. Die Kirche (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/6. Die Kirche`) [hierarchy]
+        - chapter: Erster Teil (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/6. Die Kirche/1`) [container]
+        - chapter: Zweiter Teil (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/8. Stadt und Gesellschaft von der rudolfinischen Zeit bis zur Reformation/6. Die Kirche/2`) [container]
+    - text: Anmerkungen und Belege (`Geschichte der Stadt Basel. Zweiten Bandes zweiter Teil/Anmerkungen und Belege`) [container]
 
 ### I: works with other editions (49)
 
