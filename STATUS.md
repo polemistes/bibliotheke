@@ -137,10 +137,15 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 - Running when last updated: `python -I -m wscatalog.catalog de fr en`
   fetching Wikidata for fr and en (slow: Wikidata maxlag). If interrupted,
   rerun it; fetched items are cached and committed per batch.
-- Still to do: re-extract fr and en (extract version 5) and rebuild all
-  catalogs; Wikidata genre/type/language mappings in `default.yaml` from the
-  reports' "Mapping work" sections; en document typing check; Wikidata for
-  it, sv, da, fi, es, mul; PLAN.md notes on the schema details; README.
+- Still to do: re-extract fr and en (extract version 6) and rebuild all
+  catalogs; en acceptance checks; final STATUS.md. Done since: Wikidata
+  mappings in `default.yaml`, en document typing, PLAN.md notes, README.
+- **Owner's decision (2026-11-01): Wikidata for it, sv, da, fi, es and mul
+  is fetched by the first CI run**, not locally (it would take about an
+  hour; the bottleneck is Wikidata's server time and maxlag, not the
+  connection). Their local catalogs are built with `--offline` from the
+  header and Index data only, so their author, year and genre figures in
+  `report/{wiki}.md` are lower bounds.
 
 ## How to resume / rerun
 
