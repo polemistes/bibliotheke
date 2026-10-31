@@ -18,13 +18,18 @@ structure:
   plain_title_params: [voriger, nächster]  # VORIGER/NÄCHSTER are plain titles
   toc_marker: [herkunft, "off"]
   toc_fields: [inhaltsverzeichnis]
-  page_templates: {SeitePR: 2, SeiteST: 2, SeitePR1: 2, "SeitePR Rand": 2, PoemPR: 2, SeiteLST: 2}
-  chapter_label_regex: '^((erstes|zweites|drittes|viertes|fünftes|sechstes|siebentes|siebtes|achtes|neuntes|zehntes|\d+\.) (kapitel|buch|heft|stück)|(erster|zweiter|dritter|vierter|fünfter|sechster|siebenter|siebter|achter|neunter|zehnter|\d+\.) (band|teil|theil|abschnitt|aufzug|akt|gesang|brief)|kapitel|buch|teil|theil|abschnitt|aufzug|gesang|heft|vorrede|vorwort|einleitung|anhang|nachwort|inhalt)\b'
+  # templates that transclude Seite:{{{2}}} (checked 2026-10-31; SeitePR1 and Seite only mark a page)
+  page_templates: {SeitePR: 2, SeiteST: 2, "SeitePR Rand": 2, PoemPR: 2, SeiteLST: 2}
+  chapter_label_regex: '^(\S+\s+)?(kapitel|buch|heft|stück|teil|theil|abschnitt|aufzug|gesang|lieferung|jahrgang)\b|^(vorrede|vorwort|einleitung|anhang|nachwort|inhalt|register)\b'
 # Lexicon pseudo-namespaces (F§1, WS§1); the survey lists every colon prefix with >= 100 root pages.
 exclude_title_prefixes: ["RE:", "MKL1888:", "ADB:", "BLKÖ:", "Zedler:", "Boetticher:", "Haan:"]
 disambiguation_templates: [Begriffsklärung, BKS]
 versions_templates: []
 author_page_templates: [Personendaten]
+# Portals in ns0 (step 1): topic, place, list and book-series pages
+exclude_templates: [Themendaten, Ortsdaten, Listendaten]
+exclude_categories: [Thema, Orte, Listen]
+exclude_headerless_roots: true     # root pages without header, scans or status (see structure.py)
 other_versions_templates: [Andere Version]
 quality:
   status_params: [bearbeitungsstand, status]

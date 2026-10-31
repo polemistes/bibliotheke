@@ -20,7 +20,11 @@ structure:                           # WS§5.3; resolution rules in PLAN.md 5.2 
   toc_sources: [ws-summary, summary, body-links]
   summary_templates: []              # templates wrapping the TOC (emit .ws-summary)
   page_templates: {}                 # templates transcluding a Page: page -> positional param
-  chapter_label_regex_default: '^(chapter|kapitel|kapittel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\b|^[ivxlcdm]+\.?$|^\d+\.?$|^[ivxlcdm]+\.?\s*$'
+  # A display title matching this is a chapter label, not a searchable text
+  # (WS§4 step 4): a label word, optionally after one ordinal word or number
+  # ("Første kapitel", "Chapter 1", "Zweiter Band"), or a bare number or
+  # roman numeral.
+  chapter_label_regex_default: '^(\S+\s+)?(chapter|kapitel|kapittel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\b|^[ivxlcdm]+\.?$|^\d+\.?$'
   chapter_label_regex: null          # per-wiki additions, tuned from the survey
   oversized_bytes: 300000
   parts_cap: 2000

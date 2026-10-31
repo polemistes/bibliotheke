@@ -50,7 +50,7 @@ UNSET = 255
 class PageRec:
     """Raw signals of one ns0 page (non-redirect)."""
     __slots__ = ("title", "page_id", "bytes", "hdr", "tags", "refs", "links", "texts",
-                 "cats", "tpls", "own_chars", "flags")
+                 "cats", "tpls", "own_chars", "flags", "snippet")
 
     def __init__(self, title: str, page_id: int, nbytes: int):
         self.title = title
@@ -65,6 +65,7 @@ class PageRec:
         self.tpls: frozenset[str] = frozenset()
         self.own_chars = 0
         self.flags = 0                        # bit 0: placeholder
+        self.snippet = ""                     # start of the text, typed-in pages only
 
 
 class Namespaces:
@@ -162,7 +163,9 @@ def parse_ns0(title: str, page_id: int, nbytes: int, text: str, cfg: configmod.C
     rec = PageRec(title, page_id, nbytes)
     text = wt.clean(text)
     names = wt.template_names(text)
-    rec.tpls = frozenset(n for n in names if n in interest)
+    rec.tpls = frozenset(sys.intern(n) for n in names
+                         if n and n[0] not in "#:" and len(n) <= 80
+                         and not n.lower().startswith(ns.page_prefixes))
     hdr = rec.hdr
     header_spans: list[tuple[int, int]] = []
 
@@ -268,6 +271,11 @@ def parse_ns0(title: str, page_id: int, nbytes: int, text: str, cfg: configmod.C
     rec.own_chars = _plain_len(text[:200_000], header_spans)
     if any(p in text for p in cfg.placeholders):
         rec.flags |= 1
+    if not rec.tags and not rec.refs:
+        body = text
+        for s, e in sorted(header_spans, reverse=True):
+            body = body[:s] + body[e:]
+        rec.snippet = wt.strip_markup(body[:3000])[:200]
     return rec
 
 

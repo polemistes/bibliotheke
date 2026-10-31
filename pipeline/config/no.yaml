@@ -14,12 +14,15 @@ structure:
   current_params: [seksjon, current, section]
   toc_fields: [sammendrag]
   summary_templates: [Innholdsfortegnelse]
-  chapter_label_regex: '^((første|anden|andet|annen|annet|tredje|fj[æe]rde|femte|sjette|syvende|sjuende|ottende|åttende|niende|tiende|\d+\.?) (kapit+el|akt|del|bind|brev|bok|sang)|kapit+el|akt|del|bind|brev|bok|sang|forord|innledning|indledning|tillæg|tillegg|efterskrift|etterord)\b'
+  chapter_label_regex: '^(\S+\s+)?(kapit+el|akt|del|bind|brev|bok|sang|hefte)\b|^(forord|innledning|indledning|tillæg|tillegg|efterskrift|etterord|fortale)\b'
 disambiguation_templates: [Peker, Flertydig, disambiguation]
 versions_templates: []
 quality:
   show_unknown_by_default: true      # owner decision, WS§10.8 item 2
   index_progress_fields: [fremgang]
+  # Fremgang is free text on no (F§5): OCR is on 546 Indexes whose works are
+  # often proofread, so only T/V/C are read as progress codes.
+  index_progress_values: {MS: null, OCR: null, L: null, X: null}
   incomplete_templates: [ufullstendig]
   junk_templates: [opprydning, slett, sletting]
   placeholders: ["Ennå ikke fri"]
