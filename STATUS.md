@@ -7,10 +7,29 @@ Last updated: 2026-11-01
 
 ## Current package
 
-**WP0 — Spike and verification: complete. WP1 — Catalog pipeline:
-complete** (acceptance met; the CI workflow has not run yet because the
-repository has no remote). Next: **WP2 — App skeleton**. WP1 followed
-`docs/work-structure-plan.md` (decided by the owner on 2026-10-31):
+**WP2 — App skeleton: in progress** (started 2026-11-01). WP0 and WP1 are
+complete (WP1: acceptance 19 of 19, commit 161472a; details below).
+
+WP2 sub-steps:
+
+- [x] 1. Gradle project at the repo root (AGP 9.1.1, Kotlin 2.4.10, Gradle
+      9.6.1; `gradle/libs.versions.toml`) and the catalog query layer in
+      the plain Kotlin module `:core-catalog` (see "WP2 notes" below)
+- [x] 2. Network: `PoliteHttp` (User-Agent, one request in flight per host,
+      backoff on 429/5xx/I/O honouring `Retry-After`), online search
+      client, resumable catalog download verified by sha256, catalog store
+- [ ] 3. App module: Hilt, settings (DataStore), catalog download worker,
+      wiki picker (first run)
+- [ ] 4. Browse with facets and quality chips
+- [ ] 5. Search (offline works and texts, hidden-matches row, online),
+      open by URL
+- [ ] 6. Work detail (metadata, labels, attribution, parts tree, size)
+- [ ] 7. Settings, About, UI language override; nb, nn (and `no`) strings
+- [ ] 8. Acceptance on the emulator: offline browsing, facets combine, nb
+      and nn on every screen
+
+WP1 followed `docs/work-structure-plan.md` (decided by the owner on
+2026-10-31):
 
 - [x] 1. Planning files committed as written
 - [x] 2. Section 9 edits applied to PLAN.md, marked "(WS, 2026-10-31 …)"
@@ -38,6 +57,41 @@ repository has no remote). Next: **WP2 — App skeleton**. WP1 followed
       catalogs rebuilt, PLAN.md amended "(WP1, 2026-11-01 …)",
       `docs/work-structure-plan.md` section 12. **Acceptance: 19 of 19
       checks pass.**
+
+## WP2 notes (implementation choices, for review)
+
+- **SQLite with FTS5**: `androidx.sqlite:sqlite-bundled` 2.6.2 (AndroidX,
+  Apache-2.0) bundles its own SQLite with FTS5 on every Android version,
+  and the same build runs on the host JVM. This answers the WP1 note on
+  FTS5 on API 26 without requery. Catalogs are opened read-only through
+  its driver and queried in place (PLAN.md 6.1); no Room for catalogs.
+- **`:core-catalog`** is a plain Kotlin/JVM module (D5 says single module
+  to start): it lets every catalog query run in host unit tests against a
+  fixture catalog with the pipeline's schema
+  (`core-catalog/src/test/resources/schema-v2.sql`) and against the real
+  catalogs in `pipeline/out` when present. `RealCatalogTest` checks that
+  the app's default view counts exactly the manifest's
+  `default_view_count` on all 11 wikis (it does).
+- **Filter semantics** (PLAN.md 5.4): the "Include unverified texts" chip
+  starts as the wiki's `show_unknown_by_default`, so on no, en, sv … it
+  starts on and can be turned off. With no type selected the type rule
+  hides `reference` and `document` (documents behind their chip); selecting
+  a type in the type facet shows exactly that type, including `reference`
+  and `document`. Type facet counts ignore the type rule so they show what
+  selecting a type gives. The author facet counts every role (translators
+  too).
+- **Search**: every word is a prefix match (`"word"*`), over works_fts and
+  parts_fts (parts joined on `id`); a text is shown by its own tier and
+  completeness (a proofread poem in an unfinished collection keeps its
+  standing, PLAN.md 5.4) and its work's type. Matches the chips hide,
+  reference works included, are counted for the "n more hidden" row and
+  returned, marked, when the user expands it, so nothing disappears
+  silently.
+- Host timings on en (desktop): count 22 ms, browse at offset 20,000 73 ms,
+  facet counts 26–43 ms, search "the" 189 ms, "t" 253 ms.
+- Tests: `./gradlew :core-catalog:test` (with
+  `JAVA_HOME=/opt/android-studio/jbr`; no JDK 17 is installed, so the
+  module targets JVM 17 bytecode from JBR 25 instead of using a toolchain).
 
 ## WP1 results (dumps of 2026-10-01, rebuilt 2026-11-01 after the decisions)
 
