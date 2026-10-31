@@ -1,0 +1,2179 @@
+{
+ "summary": {
+  "root_pages": 3850,
+  "root_pages_with_qid": 497,
+  "disambiguation_root_pages": 58,
+  "sample_size": 50,
+  "editions": 28,
+  "humans": 0,
+  "with_work_item": 5,
+  "coverage": {
+   "P577": {
+    "edition": 35,
+    "work only": 0,
+    "either": 35
+   },
+   "P136": {
+    "edition": 4,
+    "work only": 4,
+    "either": 8
+   },
+   "P50": {
+    "edition": 41,
+    "work only": 0,
+    "either": 41
+   },
+   "P407": {
+    "edition": 47,
+    "work only": 0,
+    "either": 47
+   }
+  },
+  "p31": {
+   "Q3331189 version, edition or translation": 28,
+   "Q7725634 literary work": 6,
+   "Q191067 article": 5,
+   "Q699 fairy tale": 2,
+   "Q15629444 government report": 1,
+   "Q3627146 Christian prayer": 1,
+   "Q7239036 prayer in the New Testament": 1,
+   "Q1385610 excerpt": 1,
+   "Q1868072 logion": 1,
+   "Q41298 magazine": 1,
+   "Q1221280 folk tale": 1,
+   "Q571 book": 1,
+   "Q277759 book series": 1,
+   "Q24457192 eddic poem": 1
+  },
+  "p407": {
+   "Q25167 Bokmål": 22,
+   "Q9043 Norwegian": 19,
+   "(none) (none)": 3,
+   "Q25164 Nynorsk": 3,
+   "Q9129 Greek": 1,
+   "Q9056 Czech": 1,
+   "Q1860 English": 1,
+   "Q7737 Russian": 1,
+   "Q34909 Old Icelandic": 1
+  },
+  "badges": {
+   "(none) (none)": 48,
+   "Q20748093 validated": 1,
+   "Q20748092 proofread": 1
+  }
+ },
+ "sample": [
+  {
+   "title": "Aar og dag",
+   "qid": "Q139380033",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1913-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q3498167"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Anbefaling av en sunnhetsmerkeordning",
+   "qid": "Q133455576",
+   "p31": [
+    "Q15629444"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+2008-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q1770849"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Autobiographi",
+   "qid": "Q133475598",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1866-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q1776242"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Bekjendelser",
+   "qid": "Q136311603",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1902-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q924021"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Bevissystemets Udvikling i den norske Criminalproces indtil Christian den femtes Lov",
+   "qid": "Q133280107",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1864-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q3436836"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Bogtrykkeren Benjamin Franklin",
+   "qid": "Q133456925",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1920-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q34969"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Carl XII i Norge",
+   "qid": "Q120964632",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1868-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q11957969"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "De hundrede aar",
+   "qid": "Q139601309",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1928-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q1078143"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Den 4de November",
+   "qid": "Q110959832",
+   "p31": [],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q318358"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [],
+    "work": []
+   }
+  },
+  {
+   "title": "Den gamle Richards Kunst at blive rig og lykkelig tilligemed godt Raad til en ung Mand",
+   "qid": "Q136218752",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1845-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q34969"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Det kommunistiske manifest (1919)",
+   "qid": "Q57313148",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": "Q40591",
+   "is_edition": true,
+   "is_human": false,
+   "badges": [
+    "Q20748093"
+   ],
+   "P577": {
+    "edition": [
+     "+1919-00-00T00:00:00Z"
+    ],
+    "work": [
+     "+1848-02-21T00:00:00Z"
+    ]
+   },
+   "P136": {
+    "edition": [],
+    "work": [
+     "Q104783349"
+    ]
+   },
+   "P50": {
+    "edition": [
+     "Q9061",
+     "Q34787"
+    ],
+    "work": [
+     "Q9061",
+     "Q34787"
+    ]
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": [
+     "Q188"
+    ]
+   }
+  },
+  {
+   "title": "Det store nashornet",
+   "qid": "Q136117572",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1939-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q350160"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Dronning Astrids Skjulested",
+   "qid": "Q139589490",
+   "p31": [
+    "Q191067"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Elektra",
+   "qid": "Q138312623",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": "Q733444",
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1924-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": [
+     "Q34620",
+     "Q182015"
+    ]
+   },
+   "P50": {
+    "edition": [
+     "Q7235"
+    ],
+    "work": [
+     "Q7235"
+    ]
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": [
+     "Q35497"
+    ]
+   }
+  },
+  {
+   "title": "En nordlandsk topograf fra 1591",
+   "qid": "Q139589592",
+   "p31": [
+    "Q191067"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q1384056"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Et Advarsels-Ord imod Mormonerne",
+   "qid": "Q139806289",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1855-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Fader vår",
+   "qid": "Q23393",
+   "p31": [
+    "Q3627146",
+    "Q7239036",
+    "Q1385610",
+    "Q1868072"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [
+     "Q124455603"
+    ],
+    "work": []
+   },
+   "P50": {
+    "edition": [],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9129",
+     "Q9056"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Folkevennen",
+   "qid": "Q12311844",
+   "p31": [
+    "Q41298"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Frederik IIIs hylding i Kristiania 1648",
+   "qid": "Q139589424",
+   "p31": [
+    "Q191067"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q1384056"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Geistliges Kaldelse i den norske Kirke efter Reformationen",
+   "qid": "Q133280266",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1879-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q946290"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Grisen og Kassen",
+   "qid": "Q4571957",
+   "p31": [
+    "Q7725634"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+2006-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [
+     "Q131539",
+     "Q693"
+    ],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q24699648"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q1860"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Haugtussa",
+   "qid": "Q136117458",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1933-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q467497"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Historiske Oplysninger om det juridiske Fakultet ved det Norske Fredriks-Universitet",
+   "qid": "Q133279852",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1870-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q3436836"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "I cancelliraadens dage",
+   "qid": "Q11976713",
+   "p31": [
+    "Q7725634"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1897-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q721693"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Imod Pastor Kristensens Kristusfornægtelse",
+   "qid": "Q133278647",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1894-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q1395097"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Kjerringa mot strømmen",
+   "qid": "Q11980947",
+   "p31": [
+    "Q1221280"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Kontraktspantets historiske Udvikling især i dansk og norsk Ret",
+   "qid": "Q93605714",
+   "p31": [
+    "Q571"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1872-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q3436836"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [],
+    "work": []
+   }
+  },
+  {
+   "title": "Kva som held folk ilive",
+   "qid": "Q7991328",
+   "p31": [
+    "Q7725634"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q7243"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q7737"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Ludwig den anden. Konge af Bayern",
+   "qid": "Q139380562",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1905-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q4983493"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Martin Luthers litle Katekisma",
+   "qid": "Q136192498",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": "Q528092",
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1868-00-00T00:00:00Z"
+    ],
+    "work": [
+     "+1529-00-00T00:00:00Z"
+    ]
+   },
+   "P136": {
+    "edition": [],
+    "work": [
+     "Q189279"
+    ]
+   },
+   "P50": {
+    "edition": [
+     "Q9554"
+    ],
+    "work": [
+     "Q9554"
+    ]
+   },
+   "P407": {
+    "edition": [
+     "Q25164"
+    ],
+    "work": [
+     "Q188"
+    ]
+   }
+  },
+  {
+   "title": "Morderen fra mørket",
+   "qid": "Q133279224",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1914-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q3498167"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Noget om Akershus Slot 1559",
+   "qid": "Q139589560",
+   "p31": [
+    "Q191067"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q946290"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Norges historie fremstillet for det norske folk",
+   "qid": "Q11992113",
+   "p31": [
+    "Q277759"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [
+     "Q213051"
+    ],
+    "work": []
+   },
+   "P50": {
+    "edition": [],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Norske Bygdesagn",
+   "qid": "Q136218633",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1881-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q946290"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Odysseen",
+   "qid": "Q132817395",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": "Q35160",
+   "is_edition": true,
+   "is_human": false,
+   "badges": [
+    "Q20748092"
+   ],
+   "P577": {
+    "edition": [
+     "+1922-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": [
+     "Q37484",
+     "Q21802675"
+    ]
+   },
+   "P50": {
+    "edition": [
+     "Q11995485"
+    ],
+    "work": [
+     "Q6691"
+    ]
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": [
+     "Q990062"
+    ]
+   }
+  },
+  {
+   "title": "Om Myrdyrkning",
+   "qid": "Q139503346",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1856-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q355485"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Om den Lundske Erkebisp Mag. Jørgen Skodborg",
+   "qid": "Q139589551",
+   "p31": [
+    "Q191067"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q946290"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "P. A. Munchs Levnet og Breve i Familiekredsen",
+   "qid": "Q139588663",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1901-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Populær-videnskabelige Foredrag",
+   "qid": "Q133277984",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1907-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q1369073"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "På stengrunn (diktsamling)",
+   "qid": "Q85971066",
+   "p31": [
+    "Q7725634"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1925-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q2165126"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Russland og vi",
+   "qid": "Q65529616",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": "Q16055030",
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1930-01-01T00:00:00Z"
+    ],
+    "work": [
+     "+1930-01-01T00:00:00Z"
+    ]
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q151364"
+    ],
+    "work": [
+     "Q151364"
+    ]
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": [
+     "Q9043"
+    ]
+   }
+  },
+  {
+   "title": "Segner fraa Elvrom",
+   "qid": "Q136202526",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1907-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q17120039"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25164"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Småguttene som traff trollene på Hedalsskogen",
+   "qid": "Q60930334",
+   "p31": [
+    "Q699"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q355485"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q25167"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Soria Moria slott",
+   "qid": "Q1772908",
+   "p31": [
+    "Q699"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q355485",
+     "Q470002"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Storhertuginnen av Speilsalen",
+   "qid": "Q136459674",
+   "p31": [
+    "Q7725634"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1931-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q3498167"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Svend Bidevind",
+   "qid": "Q136462752",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1911-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q3354739"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Terje Vigen",
+   "qid": "Q1777844",
+   "p31": [
+    "Q7725634"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1862-00-00T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q36661"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Tolstoi-boki",
+   "qid": "Q65523551",
+   "p31": [
+    "Q3331189"
+   ],
+   "work_qid": null,
+   "is_edition": true,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [
+     "+1897-01-01T00:00:00Z"
+    ],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [
+     "Q7243"
+    ],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q9043",
+     "Q25164"
+    ],
+    "work": []
+   }
+  },
+  {
+   "title": "Vaaren",
+   "qid": "Q12719492",
+   "p31": [],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [],
+    "work": []
+   },
+   "P50": {
+    "edition": [],
+    "work": []
+   },
+   "P407": {
+    "edition": [],
+    "work": []
+   }
+  },
+  {
+   "title": "Voluspaa",
+   "qid": "Q940563",
+   "p31": [
+    "Q24457192"
+   ],
+   "work_qid": null,
+   "is_edition": false,
+   "is_human": false,
+   "badges": [],
+   "P577": {
+    "edition": [],
+    "work": []
+   },
+   "P136": {
+    "edition": [
+     "Q3481604",
+     "Q474090"
+    ],
+    "work": []
+   },
+   "P50": {
+    "edition": [],
+    "work": []
+   },
+   "P407": {
+    "edition": [
+     "Q34909"
+    ],
+    "work": []
+   }
+  }
+ ],
+ "header_coverage": {
+  "sample_size": 50,
+  "with_qid": 14,
+  "ws-author": 44,
+  "ws-year": 46,
+  "ws-year numeric": 46,
+  "ws-title": 46,
+  "coins": 46,
+  "uses <pages>": 46,
+  "rows": [
+   {
+    "title": "1. mai på Karl Johan",
+    "qid": null,
+    "ws-author": "Rudolf Nilsen",
+    "ws-year": "1946",
+    "ws-title": "Samlede dikt",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Almindelig Udsigt over vor zoologiske Litteratur i de sidste Decennier, samt Anmeldelse af de vigtigste i denne Periode udkomne zoologiske Skrifter og Afhandlinger",
+    "qid": null,
+    "ws-author": "H. H. Rasch",
+    "ws-year": "1853",
+    "ws-title": "Almindelig Udsigt over vor zoologiske Litteratur i de sidste Decennier, samt Anmeldelse af de vigtigste i denne Periode udkomne zoologiske Skrifter og Afhandlinger",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Askeladden som fikk prinsessen til å løgste sig",
+    "qid": null,
+    "ws-author": "Asbjørnsen og Moe",
+    "ws-year": "1928",
+    "ws-title": "Eventyr",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Bergensianna (Udsikt fra Ulrikken)",
+    "qid": null,
+    "ws-author": "",
+    "ws-year": "",
+    "ws-title": "",
+    "coins": false,
+    "pages_tag": false
+   },
+   {
+    "title": "Blot en dag et øyeblikk jeg sender",
+    "qid": null,
+    "ws-author": "",
+    "ws-year": "",
+    "ws-title": "",
+    "coins": false,
+    "pages_tag": false
+   },
+   {
+    "title": "Bygde-Helgener",
+    "qid": null,
+    "ws-author": "Ole Andreas Øverland",
+    "ws-year": "1897",
+    "ws-title": "Af Sagnet og Historien",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Dagen viger og gaar bort",
+    "qid": null,
+    "ws-author": "",
+    "ws-year": "",
+    "ws-title": "",
+    "coins": false,
+    "pages_tag": false
+   },
+   {
+    "title": "Den burtkomne Faderen",
+    "qid": "Q136117336",
+    "ws-author": "Arne Garborg",
+    "ws-year": "1899",
+    "ws-title": "Den burtkomne Faderen",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Der det er kjærleik, der er Gud",
+    "qid": "Q3714680",
+    "ws-author": "Leo Tolstoi",
+    "ws-year": "1897",
+    "ws-title": "Tolstoi-boki",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Don Juan de Maraña (novelle)",
+    "qid": "Q51954860",
+    "ws-author": "Prosper Mérimée",
+    "ws-year": "1921",
+    "ws-title": "Don Juan de Maraña",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Ein triskilling",
+    "qid": null,
+    "ws-author": "Per Sivle",
+    "ws-year": "1906",
+    "ws-title": "Sogor: ein bundel",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "En Tale om Maalsagen",
+    "qid": "Q136117246",
+    "ws-author": "Bjørnstjerne Bjørnson",
+    "ws-year": "1900",
+    "ws-title": "En Tale om Maalsagen",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Epistel angaaende sjøormen",
+    "qid": null,
+    "ws-author": "Nils Kjær",
+    "ws-year": "1921",
+    "ws-title": "Samlede skrifter",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "E’svolls-Mann han Paal Haarelsta",
+    "qid": null,
+    "ws-author": "Ivar Kleiven",
+    "ws-year": "1908",
+    "ws-title": "I gamle Daagaa",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Folkesorg",
+    "qid": null,
+    "ws-author": "Henrik Ibsen",
+    "ws-year": "1899",
+    "ws-title": "Folkesorg",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Fra en svunden tid",
+    "qid": "Q133280122",
+    "ws-author": "Ole Andreas Øverland",
+    "ws-year": "1888",
+    "ws-title": "Fra en svunden tid",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Gamle Hansegara",
+    "qid": null,
+    "ws-author": "",
+    "ws-year": "1871",
+    "ws-title": "Segner fraa Bygdom",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Grevinde Platers Kampbøn",
+    "qid": null,
+    "ws-author": "",
+    "ws-year": "",
+    "ws-title": "",
+    "coins": false,
+    "pages_tag": false
+   },
+   {
+    "title": "Han Anders Ulv",
+    "qid": null,
+    "ws-author": "Ivar Kleiven",
+    "ws-year": "1908",
+    "ws-title": "I gamle Daagaa",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Haustbragd",
+    "qid": "Q61052468",
+    "ws-author": "Emilie",
+    "ws-year": "1930",
+    "ws-title": "Haustbragd: En samling dikt og prosa",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Hjemvé",
+    "qid": null,
+    "ws-author": "Rudolf Nilsen",
+    "ws-year": "1946",
+    "ws-title": "Samlede dikt",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Hvad var Skíringssalr?",
+    "qid": null,
+    "ws-author": "Albert Kjær",
+    "ws-year": "1909",
+    "ws-title": "Hvad var Skíringssalr?",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Ilias",
+    "qid": "Q28195327",
+    "ws-author": "Leo Tolstoi",
+    "ws-year": "1897",
+    "ws-title": "Tolstoi-boki",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Journalisten og filmstjernen",
+    "qid": null,
+    "ws-author": "Øvre Richter Frich",
+    "ws-year": "1929",
+    "ws-title": "Journalisten og filmstjernen",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Kjerringa mot strømmen",
+    "qid": "Q11980947",
+    "ws-author": "Asbjørnsen og Moe",
+    "ws-year": "1928",
+    "ws-title": "Eventyr",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Kongesønnen fra Færøerne",
+    "qid": null,
+    "ws-author": "Rudolf Muus",
+    "ws-year": "cirka 1901",
+    "ws-title": "Kongesønnen fra Færøerne",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Leitande etter Blaamann",
+    "qid": null,
+    "ws-author": "Aasmund Olavsson Vinje",
+    "ws-year": "1897",
+    "ws-title": "A. O. Vinjes Skrifter i Utval",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Løyndomen. Den forunderlege soga om dr. Jekyll og mr. Hyde",
+    "qid": "Q140078589",
+    "ws-author": "Robert Louis Stevenson",
+    "ws-year": "1942",
+    "ws-title": "Løyndomen. Den forunderlege soga om dr. Jekyll og mr. Hyde",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Menigmands Ven, af A. Bang",
+    "qid": null,
+    "ws-author": "Christian C. A. Lange",
+    "ws-year": "1847",
+    "ws-title": "Menigmands Ven , af A. Bang",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Mot Vest",
+    "qid": null,
+    "ws-author": "Rudolf Nilsen",
+    "ws-year": "1946",
+    "ws-title": "Samlede dikt",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Nogle Bidrag til Erkebiskop Olaf III Engelbrektssøns Historie",
+    "qid": null,
+    "ws-author": "Ludvig Daae",
+    "ws-year": "1907",
+    "ws-title": "Nogle Bidrag til Erkebiskop Olaf III Engelbrektssøns Historie",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Norsk aandsliv i hundrede aar. Ny samling",
+    "qid": null,
+    "ws-author": "Gerhard Gran",
+    "ws-year": "1916",
+    "ws-title": "Norsk aandsliv i hundrede aar. Ny samling",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Og jeg vil ha mig en hjertenskjær",
+    "qid": null,
+    "ws-author": "Vilhelm Krag",
+    "ws-year": "1894",
+    "ws-title": "Digte",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Om Johan Nicolai Madvig",
+    "qid": null,
+    "ws-author": "Ludvig Daae",
+    "ws-year": "1887",
+    "ws-title": "Om Johan Nicolai Madvig",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Om det gamle Hamar og den gamle „Hamars Beskrivelse“ fra 1553",
+    "qid": null,
+    "ws-author": "Gustav Storm",
+    "ws-year": "1890",
+    "ws-title": "Om det gamle Hamar og den gamle „Hamars Beskrivelse“ fra 1553",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "P. A. Munchs Levnet og Breve i Familiekredsen",
+    "qid": "Q139588663",
+    "ws-author": "Laura Larsen-Naur",
+    "ws-year": "1901",
+    "ws-title": "P. A. Munchs Levnet og Breve i Familiekredsen",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Piræus-Løven i Venedig og dens Indskrifter",
+    "qid": null,
+    "ws-author": "Sophus Bugge",
+    "ws-year": "1907",
+    "ws-title": "Populær-videnskabelige Foredrag",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "På Sct. Jørgen",
+    "qid": "Q139380502",
+    "ws-author": "Amalie Skram",
+    "ws-year": "1895",
+    "ws-title": "På Sct. Jørgen",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Rikets tilstand 2005",
+    "qid": null,
+    "ws-author": "Kongen",
+    "ws-year": "2005",
+    "ws-title": "Rikets tilstand 2005",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Schillers svigermor",
+    "qid": null,
+    "ws-author": "Nils Kjær",
+    "ws-year": "1921",
+    "ws-title": "Samlede skrifter",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Skuespiller C. N. Rosenkildes Skaal",
+    "qid": null,
+    "ws-author": "Johan Sebastian Welhaven",
+    "ws-year": "1845",
+    "ws-title": "Nyere Digte",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Sporak ell Noperi",
+    "qid": null,
+    "ws-author": "Hallvard Bergh",
+    "ws-year": "1879",
+    "ws-title": "Segner fraa Bygdom IV",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Store Uaar nordenfjelds",
+    "qid": null,
+    "ws-author": "",
+    "ws-year": "1881",
+    "ws-title": "Norske Bygdesagn",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Svend Bidevind",
+    "qid": "Q136462752",
+    "ws-author": "Bernt Lie",
+    "ws-year": "1911",
+    "ws-title": "Svend Bidevind",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Terje Vigen",
+    "qid": "Q1777844",
+    "ws-author": "Henrik Ibsen",
+    "ws-year": "1899",
+    "ws-title": "Terje Vigen",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Til min ven revolutions-taleren",
+    "qid": null,
+    "ws-author": "Henrik Ibsen",
+    "ws-year": "1899",
+    "ws-title": "Til min ven revolutions-taleren",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Trold som Bygmestre",
+    "qid": null,
+    "ws-author": "Andreas Faye",
+    "ws-year": "1844",
+    "ws-title": "Norske Folke-Sagn",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Um Kristi Etterfylgjing",
+    "qid": "Q136333290",
+    "ws-author": "Thomas à Kempis",
+    "ws-year": "1880",
+    "ws-title": "Um Kristi Etterfylgjing",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Ved Havet (Nyere Digte)",
+    "qid": null,
+    "ws-author": "Johan Sebastian Welhaven",
+    "ws-year": "1845",
+    "ws-title": "Nyere Digte",
+    "coins": true,
+    "pages_tag": true
+   },
+   {
+    "title": "Vinterkvælden",
+    "qid": null,
+    "ws-author": "Otto Sinding",
+    "ws-year": "1862",
+    "ws-title": "Skovstjerner",
+    "coins": true,
+    "pages_tag": true
+   }
+  ]
+ }
+}

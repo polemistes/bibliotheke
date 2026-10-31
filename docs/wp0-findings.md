@@ -244,3 +244,83 @@ Rules for the normaliser:
   `prop=imageinfo&iiurlwidth=800`.
 - Icons (PD-icon 40 px, Wikimedia/Wikidata logos 20 px) appear in licence and
   sister-project boxes; the "skip icons < 32 px" rule drops them.
+
+## 3. Wikidata coverage for Norwegian works
+
+Script: `python3 pipeline/wp0/wikidata_no.py` →
+[wp0/wikidata-no.json](wp0/wikidata-no.json) (every sampled title with its
+values, so the numbers can be checked).
+
+### 3.1 How many works have a Wikidata item at all
+
+- no.wikisource has **3,850 main-namespace root pages** (non-redirect, no
+  `/`) out of 15,071 content pages; 58 of them are disambiguation pages.
+- **Only 497 root pages (13 %) have a `wikibase_item`.** Most Norwegian works are
+  not connected to Wikidata (e.g. Vinje's `Ved Rundarne (1864)`); their page
+  props carry `unexpectedUnconnectedPage` instead.
+
+### 3.2 Coverage among works that have an item (50 evenly spaced)
+
+Sample: every 9.6th root page with a QID, alphabetically, excluding
+disambiguation pages.
+
+| property | on the linked item | added via P629 work item | either |
+|---|---|---|---|
+| P577 publication date | 35/50 | 0 | **35/50 (70 %)** |
+| P136 genre | 4/50 | 4 | **8/50 (16 %)** |
+| P50 author | 41/50 | 0 | **41/50 (82 %)** |
+| P407 language of work | 47/50 | 0 | **47/50 (94 %)** |
+
+- The linked item is an edition (`P31 = Q3331189`) for only 28 of 50; the
+  rest are linked straight to work-level items (literary work 6, article 5,
+  fairy tale 2, folk tale, prayer, magazine, book series, eddic poem…).
+  Only 5 have P629, so the edition → work hop adds little. The pipeline must
+  read P50/P577/P136 from whatever item is linked, edition or not.
+- P407: Bokmål (Q25167) 22, Norwegian (Q9043) 19, Nynorsk (Q25164) 3, other
+  languages 6 (Greek, Czech, English, Russian, Old Icelandic), none 3.
+  Danish (Q9035) does not occur. Wikidata labels 19th-century
+  Dano-Norwegian texts as "Bokmål", so an `nb`/`nn`/`da` sub-facet from P407
+  is possible but historically loose; "Norwegian" (Q9043) must map to the
+  plain "Norwegian" bucket.
+- Sitelink badges: 48 none, 1 proofread (Q20748092), 1 validated
+  (Q20748093). Badges are not a useful quality source on no.
+
+### 3.3 Header microformats as the main fallback
+
+The same measurement on **50 evenly spaced root pages of any kind** (14 of
+them have a QID), reading the Parsoid header microformats:
+
+| field | present |
+|---|---|
+| `ws-author` | 44/50 (88 %) |
+| `ws-year` (all numeric) | 46/50 (92 %) |
+| `ws-title` | 46/50 |
+| COinS `span.Z3988` | 46/50 |
+| uses `<pages>` (scan-backed) | 46/50 |
+
+The 6 without `ws-author` are mostly hymns and short songs with older
+header templates that emit no microformats (e.g. `Dagen viger og gaar bort`).
+`ws-author` is a display string and can name several people
+(`Asbjørnsen og Moe`); take author identities from the `Forfatter:` links
+inside the header, not by splitting the text.
+
+### 3.4 Consequences for WP1
+
+- With Wikidata alone, the WP1 acceptance target for `no` (≥ 90 % with an
+  author, ≥ 60 % with a year) is out of reach: at most about 11 % of works
+  would have an author (82 % of the 13 % that are connected).
+- The header data is what reaches the target. Scan-backed works (92 % here)
+  get it from `<pages … header=1>`, which pulls the fields of the `Indeks:`
+  page, so **Index pages are the main metadata source on no**.
+- PLAN.md 5.1 does not list an input that contains header data: the SQL
+  dumps carry no wikitext. WP1 needs one of:
+  - the `{dbname}-latest-pages-articles.xml.bz2` dump, parsing ns 0 root
+    pages (header template params, `<pages index=… header=1>`) and Index
+    pages (their field values); this scales to en and de; or
+  - Parsoid HTML (or `action=parse`) per root page, reading the `ws-*`
+    microformats; fine for no (3,850 requests) and is, not for en or de.
+  Recommendation: pages-articles dump as the primary source on every wiki,
+  Parsoid microformats as a cross-check in the smoke test.
+- Genre needs categories (no: `Kategori:Dikt` has 419 members,
+  `Kategori:Diktsamlinger` 45) and header `ws-type`; Wikidata gives genre
+  for 16 % of connected works.
