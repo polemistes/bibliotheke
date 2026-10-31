@@ -135,3 +135,97 @@ quality:                             # WS§10, PLAN.md 5.4
   coverage_min: 0.95
   coverage_slack: 3
   own_translation: {params: [], values: []}
+# Wikidata value mappings (5.2 step 3), every QID checked against its English
+# label on 2026-11-01. genres: P136 and P31 values -> genre key; types: P31 ->
+# type key; languages: P407 -> BCP47.
+wikidata:
+  genres:
+    Q8261: novel               # novel
+    Q49084: short-story        # short story
+    Q5185279: poetry           # poem
+    Q482: poetry               # poetry
+    Q37484: poetry             # epic poem
+    Q474090: poetry            # narrative poetry
+    Q24457192: poetry          # eddic poem
+    Q12106333: poetry          # poetry collection
+    Q182357: poetry            # lyric poetry
+    Q25379: drama              # play
+    Q116476516: drama          # dramatic work
+    Q1370860: drama            # verse drama
+    Q80930: drama              # tragedy
+    Q40831: drama              # comedy
+    Q35760: essay              # essay
+    Q133492: letters           # letter
+    Q4184: memoir-biography    # autobiography
+    Q36279: memoir-biography   # biography
+    Q112983: memoir-biography  # memoir
+    Q309481: memoir-biography  # obituary
+    Q34274: religious          # Gospel
+    Q29154430: religious       # book of the Bible
+    Q183770: religious         # Christian creed
+    Q856713: song-hymn         # Christian hymn
+    Q484692: song-hymn         # hymn
+    Q7366: song-hymn           # song
+    Q63141557: song-hymn       # translated song
+    Q23691: song-hymn          # national anthem
+    Q105543609: song-hymn      # musical work/composition
+    Q699: folklore             # fairy tale
+    Q12827256: folklore        # myth
+    Q41298: periodical         # magazine
+    Q1002697: periodical       # periodical
+    Q737498: periodical        # academic journal
+    Q627517: periodical        # history journal
+    Q773668: periodical        # open-access journal
+    Q11032: periodical         # newspaper
+    Q922203: legal-government  # code of law
+    Q327000: legal-government  # court decision
+    Q131569: legal-government  # treaty
+    Q7748: legal-government    # law
+    Q820655: legal-government  # statute
+    Q15629444: legal-government   # government report
+    Q2334719: legal-government # legal case
+    Q861911: speech            # oration
+    Q3026054: philosophy       # Socratic dialogue
+    Q1164267: travel           # travel book
+    Q131539: children          # children's literature
+    Q2352616: reference        # catalog
+    Q5292: reference           # encyclopedia
+    Q23622: reference          # dictionary
+  types:
+    Q8261: book                # novel
+    Q571: book                 # book
+    Q5185279: poem             # poem
+    Q24457192: poem            # eddic poem
+    Q37484: poem               # epic poem
+    Q12106333: collection      # poetry collection
+    Q277759: collection        # book series
+    Q25379: play               # play
+    Q116476516: play           # dramatic work
+    Q1370860: play             # verse drama
+    Q191067: article           # article
+    Q13442814: article         # scholarly article
+    Q35760: article            # essay
+    Q41298: periodical-issue   # magazine
+    Q1002697: periodical-issue # periodical
+    Q737498: periodical-issue  # academic journal
+    Q627517: periodical-issue  # history journal
+    Q773668: periodical-issue  # open-access journal
+    Q11032: periodical-issue   # newspaper
+    Q922203: document          # code of law
+    Q327000: document          # court decision
+    Q131569: document          # treaty
+    Q7748: document            # law
+    Q820655: document          # statute
+    Q15629444: document        # government report
+    Q2334719: document         # legal case
+    Q567303: document          # announcement
+    Q5292: reference           # encyclopedia
+    Q23622: reference          # dictionary
+  languages: {Q1860: en, Q150: fr, Q188: de, Q652: it, Q1321: es, Q9027: sv, Q9035: da, Q9043: "no",
+              Q25167: nb, Q25164: nn, Q1412: fi, Q294: is, Q397: la, Q35497: grc, Q9129: el, Q36510: el,
+              Q7737: ru, Q809: pl, Q9056: cs, Q5146: pt, Q7411: nl, Q9288: he, Q13955: ar, Q7850: zh,
+              Q5287: ja, Q9176: ko, Q9067: hu, Q7913: ro, Q36392: ro, Q8641: yi, Q8798: uk, Q9299: sr,
+              Q6654: hr, Q9063: sl, Q9058: sk, Q9078: lv, Q9083: lt, Q9072: et, Q8752: eu, Q7026: ca,
+              Q9309: cy, Q9142: ga, Q12107: br, Q1568: hi, Q9610: bn, Q11059: sa, Q9240: id, Q256: tr,
+              Q9168: fa, Q5885: ta, Q8785: hy, Q9292: az, Q9314: gd, Q8108: ka, Q1617: ur, Q7930: mg,
+              Q42365: ang, Q35214: xno}

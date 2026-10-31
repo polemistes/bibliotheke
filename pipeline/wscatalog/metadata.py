@@ -27,7 +27,7 @@ from urllib.parse import quote
 
 from . import wikitext as wt
 from .extract import resolve_target
-from .structure import Resolver, Work
+from .structure import Resolver, Work, roman_value
 from .wikidata import Wikidata
 
 GENRES = ("novel", "short-story", "poetry", "drama", "essay", "letters", "memoir-biography",
@@ -374,7 +374,8 @@ class Merger:
             for pat, prec in cfg.year_categories:
                 mm = next((x for x in map(pat.match, hrec.cats) if x), None)
                 if mm:
-                    v = int(mm.group(1))
+                    g = mm.group(1)
+                    v = int(g) if g.isdigit() else roman_value(g.upper())     # fr "XIXe siècle"
                     m.year = (v - 1) * 100 + 50 if prec == 7 else v
                     m.year_precision, m.year_source = prec, "category"
                     break

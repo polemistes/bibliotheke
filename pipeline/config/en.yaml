@@ -24,3 +24,37 @@ quality:
   incomplete_templates: [incomplete]
   junk_templates: [delete, sdelete, copyvio, cleanup]
   own_translation_templates: [translation license]
+metadata:                            # 5.2 step 3
+  sort_articles: [the, a, an]
+  anonymous_names: [Anonymous, Unknown, Anon., Anon, Various]
+  # Government and legal documents (decision 1 of 2026-11-01: about half of
+  # en's unknown works are court cases, proclamations, acts, executive
+  # orders, resolutions): licence and case templates, then categories.
+  document_templates: [PD-EdictGov, PD-UN, PD-PhilGovDoc, PD-UKGov, PD-CN, PD-IndiaGov, CaseCaption,
+                       USSCcase, Parallel reporter, Potus-eo, Act of Congress, USBill, Pdusgov]
+  document_template_patterns: ['^PD-USGov', '^PD-[A-Za-z]+Gov', '^PD-ROC', '^Decisions-', '^Cl-act', '^UK-SLD']
+  document_category_patterns:
+    - 'court decisions|Supreme Court decisions|Court of Appeals decisions|District Court decisions|^Case law'
+    - '^Acts of |^Statutory Instruments|^Laws of |^Ordinances|federal law|^Proposed .* law|^H\.R\. bills|^S\. bills|bills \('
+    - '^Executive orders|^Presidential proclamations|^Proclamations of|^Presidential memoranda|^Presidential determinations'
+    - '^UN .*Resolutions|^United Nations .*[Rr]esolutions|^Treaties|^Constitutional documents|^National constitutions|^Defunct Constitutions'
+    - '^Congressional Record|^White papers|press briefings$|^Press releases|^Guantanamo|^Declassified documents|^Memoranda of conversations|^Floor statements|^American state papers|^US Government Documents|^Works of the United States Government|^Accident investigation reports'
+  genre_category_patterns:
+    - ['short stories', short-story]
+    - ['^Collections of poetry$|poetry$|^Poems$|^Sonnets$|^Ballads$|^Odes$', poetry]
+    - ['novels?\b|^Novellas', novel]
+    - ['^Plays$|drama$|^Tragedies$|^Comedies \(plays\)', drama]
+    - ['^Collections of essays$|^Essays$', essay]
+    - ['^Letters$|^Correspondence', letters]
+    - ['^Memoirs$|^Biographies$|^Autobiographies$|^Diaries$', memoir-biography]
+    - ['speeches$|^Speeches$|addresses|^Lectures$', speech]
+    - ['^Sermons$|^Christianity$|^Roman Catholic Church$|^Hymnals', religious]
+    - ['^Song lyrics$|hymns$|^Show tunes$|^Songs$', song-hymn]
+    - ["^Children's books$|^Children's literature$|^Nursery rhymes$", children]
+    - ['^Fairy tales$|^Folklore$|^Folk tales$|^Legends$|^Fables$', folklore]
+    - ['^History$|^Histories$', history]
+    - ['^Philosophy$|philosophical works$', philosophy]
+    - ['^Physics$|^Relativity$|^Chemistry$|^Mathematics$|^Astronomy$|^Biology$|^Medicine$|^Science$', science]
+    - ['^Travel', travel]
+    - ['^Periodicals|^Journal articles$|^Newspaper articles$', periodical]
+    - ['dictionaries$|^Encyclopedias', reference]
