@@ -107,7 +107,7 @@ Root-page works that sit on a prev/next chain but stay separate works (no contai
 
 ## 7. Orphan trees, oversized pages, red links
 
-**Orphan trees** (virtual roots): 34, holding 128 parts. Examples: `Almuens Sanger` (1); `Lappisk Mytologi` (1); `Det nye Testamentet (1886)` (1); `11-119207ENE-OTIR` (3); `Topografisk-statistisk beskrivelse over Bratsberg amt` (6); `Den kristelige Troeslære i dens Grundtræk` (4); `Brevet til de Ebræer` (1); `Norske kongesagaer` (4).
+**Orphan trees** (virtual roots): 34, holding 128 parts. Examples: `Brevet til de Ebræer` (1); `Den kristelige Troeslære i dens Grundtræk` (4); `Ezechiels Syner` (1); `Østers-Kulturen` (5); `Illustreret Norges Historie` (7); `Almuens Sanger` (1); `Det nye Testamentet (1886)` (1); `08-156741TVI-OTIR` (1).
 
 **Oversized pages** (> 300,000 bytes of wikitext including transcluded scan pages): 12. Largest: `Gustav den III’s norske Politik` 0.6 MB; `Ordbog over det norske Folkesprog/S` 0.6 MB; `Norske Rigs-Registranter/Christian den 3die` 0.5 MB; `Det norske Folkesprogs Grammatik` 0.5 MB; `En Krønike om Erkebiskopperne i Nidaros` 0.4 MB; `Optegnelser om visitatsreisen i Baahuslen og Borgesyssel 1 Marts – 1 Mai 1594` 0.4 MB; `Jury-Institutionen i Storbritanien, Canada og de forenede Stater af Amerika` 0.4 MB; `Angaaende Forandringer i Lovgivningen om Husmænd` 0.4 MB; `Realitets-Procedure og Dom i Rigsretssagen imod Hs. Excellence Statsminister m. m. Løvenskiold` 0.4 MB; `Biskop Peder Herslebs Embedsskrivelser til Akershus Stifts Gejstlighed` 0.3 MB.
 
@@ -213,55 +213,6 @@ Rows count multi-part works only, one row per part plus the root row. 639 single
 
 ### A: collections of root pages (82)
 
-1. `Stjerneskud paa Ekeberg`: linked, book, 41 parts, 0 missing, order toc, proofread
-    - toc: Stjerneskud paa Ekeberg
-    - volume: Blandt Kristiania-Vampyrer [container]
-      - chapter: I. En natlig reise (`Blandt Kristiania-Vampyrer/01`) [container]
-      - chapter: II. Helge og Schwartz møtes (`Blandt Kristiania-Vampyrer/02`) [container]
-      - chapter: III. Forbuden elskov (`Blandt Kristiania-Vampyrer/03`) [container]
-      - chapter: IV. Schwartz's privatforretninger (`Blandt Kristiania-Vampyrer/04`) [container]
-      - chapter: V. Bak kulisserne (`Blandt Kristiania-Vampyrer/05`) [container]
-      - chapter: VI. Familien Danielsen (`Blandt Kristiania-Vampyrer/06`) [container]
-      - chapter: VII. Generalprøve (`Blandt Kristiania-Vampyrer/07`) [container]
-      - chapter: VIII. Dagmars flugt (`Blandt Kristiania-Vampyrer/08`) [container]
-    - volume: I hovedstadens malstrøm [container]
-      - chapter: I. En farlig situation (`I hovedstadens malstrøm/01`) [container]
-    - … 30 more
-1. `Gjestebodet`: linked, book, 4 parts, 0 missing, order toc, proofread
-    - toc: Gjestebodet
-    - text: Innleiing (`Gjestebodet Innleiing`) [container]
-    - text: Gjestebodet (`Gjestebodet Tekst`) [container]
-    - text: Namn (`Gjestebodet Namn`) [container]
-    - text: Andre opplysningar (`Gjestebodet Andre opplysningar`) [container]
-1. `Gamla Segner fraa Valdres`: linked, book, 8 parts, 0 missing, order scan, unproofread
-    - front: Gamla Segner fraa Valdres
-    - text: Um Jolesvaina [container]
-    - text: Um Haugafolk (Vang) [container]
-    - text: Hurdabak’en [container]
-    - text: Um han Trond Myro [container]
-    - text: Um ai Kjering som va so andægtig’e te be’a [container]
-    - text: Riddaren i Bjødnahame [container]
-    - text: Um ain Mann, som hadde ain svart’e Flekk i Aakre sino [container]
-    - text: Ain Kunge, som hadde tryaa late Søne [container]
-1. `Digte efter det Græske og Latinske`: linked, book, 3 parts, 32 missing, order toc, proofread
-    - front: Digte efter det Græske og Latinske
-    - text: Den XIV olympiske Ode [container]
-    - text: Ved en Spurves Död [container]
-    - text: Til Lesbia [container]
-1. `Nye digte`: linked, book, 18 parts, 0 missing, order toc, proofread
-    - front: Nye digte
-    - text: Fantasi (`Fantasi (Nye digte)`) [container]
-    - text: Pilestrædet [container]
-    - text: Elvira [container]
-    - text: Hvid jul [container]
-    - text: Vaarkjenning [container]
-    - text: Vaarbrytning [container]
-    - text: Betlehemsstjernen [container]
-    - text: Tilbakekomsten [container]
-    - text: Clara Eugenie [container]
-    - text: Seireren [container]
-    - text: Solen [container]
-    - … 7 more
 1. `En Jægers Erindringer`: linked, book, 6 parts, 0 missing, order toc, validated
     - toc: En Jægers Erindringer
     - text: Sæterpigen og Jægeren [container]
@@ -270,88 +221,42 @@ Rows count multi-part works only, one row per part plus the root row. 639 single
     - text: I Nordmarken [container]
     - text: Carl [container]
     - text: Skovene [container]
-1. `Dagbog for Aarene 1812–1813`: linked, book, 3 parts, 0 missing, order toc, proofread
-    - toc: Dagbog for Aarene 1812–1813
-    - chapter: I. Dagbog under en Reise til og fra Bergen fra 30te Marts til 14de Juni 1812 (`Dagbog under en Reise til og fra Bergen fra 30te Marts til 14de Juni 1812`) [container]
-    - chapter: II. Dagbog fra 1ste August til 31te December 1812 (`Dagbog fra 1ste August til 31te December 1812`) [container]
-    - chapter: III. Dagbog for 1813 (`Dagbog for 1813`) [container]
-1. `En Fyrstikke`: linked, collection, 18 parts, 0 missing, order toc, validated
-    - toc: En Fyrstikke
-    - text: En Fyrstikke (`En Fyrstikke (dikt)`) [container]
-    - text: Lur-Leik [container]
-    - text: Irland [container]
-    - text: Ivar Aasen (`Ivar Aasen (Sivle)`) [container]
-    - text: Til „Fram“s Mænd [container]
-    - text: Daad [container]
-    - text: Sol [container]
-    - text: Snorre [container]
-    - text: Jul [container]
-    - text: Noregs Dag [container]
-    - text: Kuba [container]
-    - … 7 more
-1. `Lauvduskar`: linked, collection, 45 parts, 0 missing, order single, unproofread
-    - toc: Lauvduskar
-    - volume: I. (Andre Utgaava) II. (`Lauvduskar I. II`) [container]
-      - text: Svein Urædd [container]
-      - text: Attersyn paa Livet [container]
-      - text: Storm og Stilla [container]
-      - text: Den tyngste Sorg og Møda [container]
-      - text: Gamle Stev elder «Frøde-Vers» [container]
-      - text: Nyare Stev [container]
-      - text: Her er det Land, som hugar meg best [container]
-      - text: Dei træla, – dei træla [container]
-      - text: Høgferd (`Høgferd (Lauvduskar)`) [container]
-      - text: Reven paa Alvstad [container]
-    - … 34 more
-1. `Lys og Skygge. Den hemmelighedsfulde Thomas Ryer – Norges farligste Forbryder`: linked, collection, 63 parts, 0 missing, order toc, proofread
-    - front: Lys og Skygge. Den hemmelighedsfulde Thomas Ryer – Norges farligste Forbryder
-    - text: Et Mennesketyveri [container]
-    - chapter: I. Benzinmotoren. (`Et Mennesketyveri/01`) [container]
-    - chapter: II. Cyclisten. (`Et Mennesketyveri/02`) [container]
-    - chapter: III. Det er ham. (`Et Mennesketyveri/03`) [container]
-    - chapter: IV. Ansigt til Ansigt. (`Et Mennesketyveri/04`) [container]
-    - chapter: V. En fuldendt Gentleman. (`Et Mennesketyveri/05`) [container]
-    - chapter: VI. Lysningen. (`Et Mennesketyveri/06`) [container]
-    - chapter: VII. Den stjaalne Hest. (`Et Mennesketyveri/07`) [container]
-    - chapter: VIII. Et genialt Kup. (`Et Mennesketyveri/08`) [container]
-    - chapter: IX. Seks Tusen Pund. (`Et Mennesketyveri/09`) [container]
-    - chapter: X. Et Ord til Afsked. (`Et Mennesketyveri/10`) [container]
-    - … 52 more
-1. `Fraa Sogn`: linked, book, 38 parts, 0 missing, order toc, unproofread
-    - front: Fraa Sogn
-    - text: Huldrer — alvar [container]
-    - text: Budeia og huldri [container]
-    - text: Huldri og budeia [container]
-    - text: Ein, som vart gift med ei (`Ein, som vart gift med ei huld`) [container]
-    - text: Mannen, som laante pengar hjaa trollet [container]
-    - text: Baldershaug-bonden og Gjevvaldshaug-bonden [container]
-    - text: Helakleiv-brudri [container]
-    - text: Ho, som var jordamoder [container]
-    - text: Den gode fiskagrunnen [container]
-    - text: Ho gamle Liv fortel [container]
-    - text: Han Endre Raun [container]
-    - … 27 more
-1. `Norske Viser og Stev i Folkesproget`: linked, collection, 43 parts, 0 missing, order toc, unproofread
-    - front: Norske Viser og Stev i Folkesproget
-    - text: Heimatkomsten [container]
-    - text: Skogmøtet ha’s Thorger Skjelle [container]
-    - text: Huldre og ’en Elland [container]
-    - text: Alderdomin [container]
-    - text: Sæterreisen [container]
-    - text: Hjemreise fraa Sæteren [container]
-    - text: Guten og Gjenta paa Fjøshjellen [container]
-    - text: Førkja aat Guten [container]
-    - text: Fermannen [container]
-    - text: Gjenten, som glæder sig til Dands [container]
-    - text: Aagots Fjeldsang [container]
-    - … 32 more
-1. `Halvhundrede Digte`: linked, book, 5 parts, 45 missing, order toc, proofread
-    - front: Halvhundrede Digte
-    - text: Tidens Løsen [container]
-    - text: Den Salige [container]
-    - text: I Kivledal [container]
-    - text: Dyre Vaa [container]
-    - text: Harald fra Reine [container]
+1. `Til dem som forkynner eller lærer i det norske mål (bok)`: linked, book, 6 parts, 0 missing, order toc, proofread
+    - front: Til dem som forkynner eller lærer i det norske mål (bok)
+    - text: Til dem som forkynner eller lærer i det norske mål [container]
+    - text: Bondemålstrævet [container]
+    - text: Fra striden i bladene [container]
+    - text: Målstræver-sanhet [container]
+    - text: Landsgyldigt eller ikke landsgyldigt [container]
+    - text: Gammel dansk som et „andet Sprog“ æn gl. norsk [container]
+1. `Stjernerne (diktsamling)`: linked, collection, 34 parts, 0 missing, order toc, unproofread
+    - toc: Stjernerne (diktsamling)
+    - text: Mit hjerte (`Mit hjerte (Stjernerne)`) [container]
+    - text: En sang om ingenting [container]
+    - text: Lady Gwendoline [container]
+    - text: Dialog [container]
+    - text: Paul Gauguin [container]
+    - text: Sophus Bugge (`Sophus Bugge (dikt)`) [container]
+    - text: Mot norden [container]
+    - text: I høsten [container]
+    - text: Schero (`Scherzo`) [container]
+    - text: Vor gyldne ungdom! [container]
+    - text: Sub Rosa [container]
+    - … 23 more
+1. `Norsk billedbog for børn (1890)`: linked, book, 14 parts, 0 missing, order toc, validated
+    - toc: Norsk billedbog for børn (1890)
+    - text: Glædelig jul og tak for sidst! [container]
+    - text: By by barne'! [container]
+    - text: So ro, liten tull [container]
+    - text: Hoppe sa gaasa [container]
+    - text: Han Per og hu Guri [container]
+    - text: Kjærringa med staven [container]
+    - text: Huttetu, jeg fryser saa [container]
+    - text: Gunnar uti Sunde [container]
+    - text: Kattepus, kattepus! [container]
+    - text: Reiar skulde ut aa gjæte [container]
+    - text: Jeg sku' helse [container]
+    - … 3 more
 1. `Ein Soge-Bundel`: linked, collection, 13 parts, 0 missing, order toc, unproofread
     - front: Ein Soge-Bundel
     - text: So løna dei God-Gjerningar [container]
@@ -366,6 +271,48 @@ Rows count multi-part works only, one row per part plus the root row. 639 single
     - text: Kong Katt paa Heidbergs Borg med fjorom gyltom Krunom [container]
     - text: Halvpening [container]
     - … 2 more
+1. `Fram over Polhavet`: linked, book, 27 parts, 0 missing, order toc, unproofread
+    - toc: Fram over Polhavet
+    - chapter: INNLEDNING (`Fram over Polhavet I/1`) [container]
+    - text: PLANEN (`Fram over Polhavet I/2`) [container]
+    - text: FORBEREDELSER (`Fram over Polhavet I/3`) [container]
+    - text: AVREISEN (`Fram over Polhavet I/4`) [container]
+    - text: FARVEL TIL NORGE (`Fram over Polhavet I/5`) [container]
+    - text: REISEN GJENNEM KARA-HAVET (`Fram over Polhavet I/6`) [container]
+    - text: RUNDT DEN GAMLE VERDENS NORDENDE (`Fram over Polhavet I/7`) [container]
+    - text: VINTERNATTEN (`Fram over Polhavet I/8`) [container]
+    - text: FØRSTE JUL OG NYTTÅR OMBORD I &bdquo;FRAM&rdquo; (`Fram over Polhavet I/9`) [container]
+    - text: VÅREN OG SOMMEREN 1894 (`Fram over Polhavet I/10`) [container]
+    - text: DEN ANNEN HØST I ISEN (`Fram over Polhavet I/11`) [container]
+    - … 16 more
+1. `Vestlandsviser`: linked, book, 32 parts, 0 missing, order toc, proofread
+    - toc: Vestlandsviser
+    - text: O, VESTLAND, DU MIN MODERJORD (`O, vestland, du min moderjord`) [container]
+    - text: Lilleguts vise [container]
+    - text: Sjømandens afskedssang til sin kjæreste [toc]
+    - text: En vise om pigerne i Spanien [container]
+    - text: Den vidtbereiste Salve [toc]
+    - text: Hvad sjøgutterne synger [toc]
+    - text: Alene i båden om høstnatte [toc]
+    - text: Vårvise [toc]
+    - text: Hvad Hans Jørgen tænker [toc]
+    - text: Vintervise [toc]
+    - text: Det spøger [toc]
+    - … 21 more
+1. `Fra en svunden tid`: linked, book, 34 parts, 0 missing, order toc, unproofread
+    - toc: Fra en svunden tid
+    - text: Alfelande [container]
+    - text: Guri Kunnan [container]
+    - text: Jutulen i Hifjeldet [container]
+    - text: Bobben paa Musgjerd [container]
+    - text: Indtagelse i berg [container]
+    - text: Lisbet Nypen [container]
+    - text: Ulykken paa Folden [container]
+    - text: Finnernes tryllekyndighed [container]
+    - text: Lensmand Nideros [container]
+    - text: Brødreskifte [container]
+    - text: Hauk-varpet [container]
+    - … 23 more
 1. `Metope (diktsamling)`: linked, collection, 21 parts, 0 missing, order toc, unproofread
     - front: Metope (diktsamling)
     - text: Metope (`Metope (dikt)`) [container]
@@ -380,100 +327,22 @@ Rows count multi-part works only, one row per part plus the root row. 639 single
     - text: Betragtning over Minni [container]
     - text: Idyl (`Idyl (Metope)`) [container]
     - … 10 more
-1. `Norsk aandsliv i hundrede aar 3`: linked, book, 9 parts, 9 missing, order toc, proofread
-    - toc: Norsk aandsliv i hundrede aar 3
-    - text: Romantik [container]
-    - text: Paa kirkegaarden (`Paa kirkegaarden (Gran)`) [container]
-    - text: Camilla Collett (`Camilla Collett (Gran)`) [container]
-    - text: E. A. Erichsen (`E. A. Erichsen (Gran)`) [container]
-    - text: Gustav Storm (`Gustav Storm (Gran)`) [container]
-    - text: Ossian Sars (`Ossian Sars (Gran)`) [container]
-    - text: Alf Torp (`Alf Torp (Gran)`) [container]
-    - text: Jørgen Brunchorst (`Jørgen Brunchorst (Gran)`) [container]
-    - text: Mindeord ved Hans Jægers baare [container]
-1. `Norsk aandsliv i hundrede aar. Ny samling`: linked, book, 9 parts, 0 missing, order toc, proofread
-    - front: Norsk aandsliv i hundrede aar. Ny samling
-    - text: Henrik Wergeland (`Norskaandslivih00unkngoog/Henrik Wergeland`) [container]
-    - text: Vinje (`Norskaandslivih00unkngoog/Vinje`) [container]
-    - text: Jonas Lie (`Norskaandslivih00unkngoog/Jonas Lie`) [container]
-    - text: Moltke Moe (`Norskaandslivih00unkngoog/Moltke Moe`) [container]
-    - text: Irgens-Hansen (`Norskaandslivih00unkngoog/Irgens-Hansen`) [container]
-    - text: Demokrati eller almue (`Norskaandslivih00unkngoog/Demokrati eller almue`) [container]
-    - text: Gunnar Heiberg - 50 aar (`Norskaandslivih00unkngoog/Gunnar Heiberg - 50 aar`) [container]
-    - text: Tante Ulrikke (`Norskaandslivih00unkngoog/Tante Ulrikke`) [container]
-    - text: Kjærlighedens Tragedie (`Norskaandslivih00unkngoog/Kjærlighedens Tragedie`) [container]
-1. `Norske Folke- og Huldre-Eventyr`: linked, book, 38 parts, 0 missing, order toc, proofread
-    - front: Norske Folke- og Huldre-Eventyr
-    - chapter: Forord (`Norske Folke- og Huldre-eventyr/Forord`) [container]
-    - text: Biografiske Oplysninger om P. Chr. Asbjørnsen og Jørgen Moe (`Norske Folke- og Huldre-eventyr/Biografiske Oplysninger`) [container]
-    - text: En gammeldags Julaften (`Norske Folke- og Huldre-eventyr/1`) [container]
-    - text: Smaagutterne som traf Troldene paa Hedalsskoven (`Norske Folke- og Huldre-eventyr/2`) [container]
-    - text: Matthias Skytters Historier (`Norske Folke- og Huldre-eventyr/3`) [container]
-    - text: Vesle Aase Gaasepige (`Norske Folke- og Huldre-eventyr/4`) [container]
-    - text: Gutten og Fanden (`Norske Folke- og Huldre-eventyr/5`) [container]
-    - text: Manden som skulle stelle hjemme (`Norske Folke- og Huldre-eventyr/6`) [container]
-    - text: Skarvene fra Udrøst (`Norske Folke- og Huldre-eventyr/7`) [container]
-    - text: Om Risen som ikke havde noget Hjerte paa sig (`Norske Folke- og Huldre-eventyr/8`) [container]
-    - text: Pandekagen (`Norske Folke- og Huldre-eventyr/9`) [container]
-    - … 27 more
-1. `Udvalgte mindre juridiske afhandlinger (1901)`: linked, book, 2 parts, 5 missing, order toc, proofread
-    - toc: Udvalgte mindre juridiske afhandlinger (1901)
-    - text: Til retsvidenskabens metode [container]
-    - text: Ihering–Windscheid, et bidrag til belysning af retsforskningen i det nittende aarhundrede (`Ihering – Windscheid`) [container]
-1. `Digte (Welhaven)`: linked, book, 25 parts, 41 missing, order scan, unproofread
-    - toc: Digte (Welhaven)
-    - volume: Børnelege [container]
-      - text: En Erindring [container]
-      - text: Liremanden [container]
-      - text: Havets Stemme [container]
-      - text: Julemorgen [container]
-      - text: Fuglens Drømme [container]
-      - text: Extremer [container]
-      - text: Vildt og Tamt [container]
-      - text: Skumring [container]
-      - text: Nattergal og Papagøi [container]
-      - text: Søfuglen [container]
-    - … 14 more
-1. `Segner fraa Bygdom II`: linked, book, 28 parts, 0 missing, order toc, unproofread
-    - front: Segner fraa Bygdom II
-    - text: Fosgubbind [container]
-    - text: Selbu [container]
-    - text: Potet’n [container]
-    - text: Kaffe’n [container]
-    - text: Jøvra [container]
-    - text: Kjørkja [container]
-    - text: Sjursmesda’n [container]
-    - text: Bortigarsgubbind aa Tuftend [container]
-    - text: Teveldalingind [container]
-    - text: Hrr. Petter [container]
-    - text: Storsme’n aa Tuftend [container]
-    - … 17 more
-1. `Femten oder af Horats`: linked, book, 15 parts, 0 missing, order toc, proofread
-    - toc: Femten oder af Horats
-    - text: Tilegnelse [container]
-    - text: Pyrra [container]
-    - text: Teuker [container]
-    - text: Ved vintertid [container]
-    - text: Forsoning [container]
-    - text: Til Lyren [container]
-    - text: Sølvet [container]
-    - text: Hvor tiden haster! [container]
-    - text: Tilfredshed [container]
-    - text: Nøisomhed [container]
-    - text: Romas storhed [container]
-    - … 4 more
-1. `Norsk aandsliv i hundrede aar`: linked, book, 10 parts, 0 missing, order toc, proofread
-    - front: Norsk aandsliv i hundrede aar
-    - text: Norsk aandsliv i hundrede aar (`Norsk aandsliv i hundrede aar (foredrag)`) [container]
-    - text: Patriotisk digtning i 1814 [container]
-    - text: Johan Sebastian Welhaven (`Johan Sebastian Welhaven (Gran)`) [container]
-    - text: Grotid [container]
-    - text: Bjørnsons religiøse krise [container]
-    - text: Ved budskapet om Bjørnstjerne Bjørnsons død [container]
-    - text: Henrik Ibsen i videnskapsselskapet [container]
-    - text: Ibsen og Morgenbladet [container]
-    - text: Alexander Kielland i hans breve [container]
-    - text: To stadier i Universitetets liv [container]
+1. `Fra det mørke Fastland`: linked, book, 8 parts, 0 missing, order toc, proofread
+    - front: Fra det mørke Fastland
+    - text: I Stavanger [toc]
+    - text: I Jernbanestationens Venteværelse [toc]
+    - text: Stille Betragtninger [toc]
+    - text: Det skikkelige Stavanger [toc]
+    - text: Sydover Jæderen [toc]
+    - text: En Jærbu-Lidenskab [toc]
+    - text: Eventyr (`Eventyr (Garborg)`) [toc]
+    - text: Jædersk Politik [toc]
+1. `Diktsamling`: linked, collection, 4 parts, 116 missing, order toc, unproofread
+    - front: Diktsamling
+    - text: Leitande efter Blaamann [container]
+    - text: Gamle Moder [container]
+    - text: Vaaren [toc]
+    - text: Ved Rundarne (`Ved Rundarne (1864)`) [container]
 1. `Skovstjerner`: linked, book, 26 parts, 0 missing, order toc, validated
     - front: Skovstjerner
     - text: Skovstjernen [container]
@@ -488,48 +357,20 @@ Rows count multi-part works only, one row per part plus the root row. 639 single
     - text: Sneklokken [container]
     - text: Vinterkvælden [container]
     - … 15 more
-1. `Udvalg af Luthers Reformationsskrifter`: linked, book, 13 parts, 0 missing, order toc, proofread
-    - toc: Udvalg af Luthers Reformationsskrifter
-    - text: De 95 teser [container]
-    - chapter: Brev til erkebiskop Albrekt af Maints [container]
-    - text: Om aflad og naade [container]
-    - chapter: Brev til paven (`Brev til paven (1518)`) [container]
-    - chapter: Brev til Johan Staupitz [container]
-    - text: To breve fra Augsburg [container]
-    - chapter: Brev til paven (`Brev til paven (1520)`) [container]
-    - text: Om et kristen-menneskes frihed [container]
-    - text: Breve om rigstinget i Vorms [container]
-    - text: Om klosterløfterne [container]
-    - chapter: Brev til kurfyrsten af Saksen [container]
-    - … 2 more
-1. `Diktsamling`: linked, collection, 4 parts, 116 missing, order toc, unproofread
-    - front: Diktsamling
-    - text: Leitande efter Blaamann [container]
-    - text: Gamle Moder [container]
-    - text: Vaaren [toc]
-    - text: Ved Rundarne (`Ved Rundarne (1864)`) [container]
-1. `Til dem som forkynner eller lærer i det norske mål (bok)`: linked, book, 6 parts, 0 missing, order toc, proofread
-    - front: Til dem som forkynner eller lærer i det norske mål (bok)
-    - text: Til dem som forkynner eller lærer i det norske mål [container]
-    - text: Bondemålstrævet [container]
-    - text: Fra striden i bladene [container]
-    - text: Målstræver-sanhet [container]
-    - text: Landsgyldigt eller ikke landsgyldigt [container]
-    - text: Gammel dansk som et „andet Sprog“ æn gl. norsk [container]
-1. `Samlede dikt`: linked, book, 94 parts, 0 missing, order toc, proofread
-    - toc: Samlede dikt
-    - text: På stengrunn [container]
-    - text: Storby-natt [container]
-    - text: Fedreland [container]
-    - text: Ættens sang [container]
-    - text: Hjemvé [container]
-    - text: Bekjennelse [container]
-    - text: Ridderslag [container]
-    - text: Løfte [container]
-    - text: Mesteren [container]
-    - text: Arbeidsløs jul [container]
-    - text: Sommer-skoft [container]
-    - … 83 more
+1. `Mange slags kunst`: linked, book, 12 parts, 0 missing, order toc, unproofread
+    - front: Mange slags kunst
+    - text: Et par ting om ættesagaen [container]
+    - text: Kjærligheten i Kormaks saga [container]
+    - text: Rundt fænomenet Villon [container]
+    - text: Nogen ord om Hamlets alder [container]
+    - text: Ved Ragnhild Jølsens død [container]
+    - text: En hovmodig digter [container]
+    - text: Professor Catharinus Bang [container]
+    - text: Litt om stil [container]
+    - text: Tre smaa redegjørelser [container]
+    - text: Rytme og rim [container]
+    - chapter: Fortale til «Auswanderer» [container]
+    - … 1 more
 1. `Udvalgte lyriske Digte`: linked, collection, 94 parts, 0 missing, order toc, unproofread
     - front: Udvalgte lyriske Digte
     - text: Ode til Norges Frihed [container]
@@ -544,669 +385,156 @@ Rows count multi-part works only, one row per part plus the root row. 639 single
     - text: Baron Hoff-Rosenkrone [container]
     - text: Mandens Vrede, Længsel og Sorg [container]
     - … 83 more
-1. `Sagn og Fortællinger af Oldtidens Historie for Skolen og Hjemmet. I: De østerlandske Folk og Hellenerne`: linked, book, 53 parts, 0 missing, order toc, proofread
-    - front: Sagn og Fortællinger af Oldtidens Historie for Skolen og Hjemmet. I: De østerlandske Folk og Hellenerne
-    - chapter: 1. Sagnet om Rhampsinits Skatkammer (`De østerlandske Folk/01`) [container]
-    - chapter: 2. Sagnet om Phønix (`De østerlandske Folk/02`) [container]
-    - chapter: 3. Psammetik. Neko og hans Foretagender (`De østerlandske Folk/03`) [container]
-    - chapter: 4. Sagnet om Dido og Karthagos Anlæg (`De østerlandske Folk/04`) [container]
-    - chapter: 5. Kaldæernes Sagn om den store Vandflom (`De østerlandske Folk/05`) [container]
-    - chapter: 6. Sagnet om Sardanapal (`De østerlandske Folk/06`) [container]
-    - chapter: 7. Dejokes. Kyaxares. Skythernes Indfald (`De østerlandske Folk/07`) [container]
-    - chapter: 8. Kyros, det persiske Riges Stifter (558—529 f. Kr.) (`De østerlandske Folk/08`) [container]
-    - chapter: 9. Sagnene om Kong Midas (`De østerlandske Folk/09`) [container]
-    - chapter: 10. Krøsos, Lydiens sidste Konge (563—549 f. Kr.) (`De østerlandske Folk/10`) [container]
-    - chapter: 11. Kambyses, Persernes Konge (529—522) (`De østerlandske Folk/11`) [container]
-    - … 42 more
-
-### B: mixed (38)
-
-1. `Efterlatte arbeider`: mixed, book, 31 parts, 0 missing, order scan, proofread
-    - front: Efterlatte arbeider
-    - chapter: 01 (`Efterladte arbeider/01`) [container]
-    - text: Katungen døde (ca. 1891). (`Efterlatte arbeider/01`) [container]
-    - chapter: 02 (`Efterladte arbeider/02`) [container]
-    - text: Svenskebirka (ca. 1896). (`Efterlatte arbeider/02`) [container]
-    - chapter: 03 (`Efterladte arbeider/03`) [container]
-    - text: Ørnen (ca. 1896). (`Efterlatte arbeider/03`) [container]
-    - chapter: 04 (`Efterladte arbeider/04`) [container]
-    - text: Digerheim Herreborg (1896). (`Efterlatte arbeider/04`) [container]
-    - chapter: 05 (`Efterladte arbeider/05`) [container]
-    - text: Lidt om en Herregaardsslegt (1897). (`Efterlatte arbeider/05`) [container]
-    - chapter: 06 (`Efterladte arbeider/06`) [container]
-    - … 20 more
-1. `Tolstoi-boki`: mixed, book, 13 parts, 0 missing, order toc, proofread
-    - front: Tolstoi-boki
-    - text: Inngang (`Tolstoi-boki/Inngang`) [container]
-    - text: Der det er kjærleik, der er Gud [container]
-    - text: Dei tri gamle mennerne [container]
-    - volume: Myrkemagterne [container]
-      - text: Personar (`Myrkemagterne/Personar`) [container]
-      - text: Fyrste vending (`Myrkemagterne/Fyrste vending`) [container]
-      - text: Andre vending (`Myrkemagterne/Andre vending`) [container]
-      - text: Tridje vending (`Myrkemagterne/Tridje vending`) [container]
-      - text: Fjorde vending (`Myrkemagterne/Fjorde vending`) [container]
-      - text: Brigde (`Myrkemagterne/Brigde`) [container]
-      - text: Femte vending (`Myrkemagterne/Femte vending`) [container]
-    - … 2 more
-1. `Folkevennen`: mixed, collection, 178 parts, 198 missing, order scan-volumes, unproofread
-    - toc: Folkevennen
-    - volume: Første Aargang (`Folkevennen/1852`) [hierarchy]
-      - text: Til Tidsskriftets Læsere [container]
-      - text: Et Par Smaatræk af Folkelivet [container]
-      - text: Lidt om Bøger og Læsning [container]
-      - text: Nogle Sprogbemærkninger [container]
-      - text: Han Nils Prest [container]
-      - text: Om Aarsagerne til Arbejdslønnens Forskjellighed [container]
-      - text: Om Landalmuens Næringsdrift og Levemaade [container]
-      - text: Henrik Wergeland – Fædrelandskjærlighed [container]
-    - volume: Anden Aargang (`Folkevennen/1853`) [hierarchy]
-      - text: Gjætlugutin [container]
-    - … 167 more
-1. `Blandt Nordpolens Naboer`: mixed, book, 13 parts, 0 missing, order toc, proofread
-    - front: Blandt Nordpolens Naboer
-    - chapter: Indledning (`Blandt Nordpolens Naboer/1`) [container]
-    - text: De to Peary-expeditioner (`Blandt Nordpolens Naboer/2`) [container]
-    - text: En fattig kyst (`Blandt Nordpolens Naboer/3`) [container]
-    - text: De indfødte ved Smiths sund (`Blandt Nordpolens Naboer/4`) [container]
-    - text: Jagt (`Blandt Nordpolens Naboer5/`) [container]
-    - text: Eskimoernes slædereiser. Den nord-grønlandske hund (`Blandt Nordpolens Naboer/6`) [container]
-    - text: Nordover paa den grønlandske indlandsis (`Blandt Nordpolens Naboer/7`) [container]
-    - text: Paa vandring mod nye kyster (`Blandt Nordpolens Naboer/8`) [container]
-    - text: Hjemover gjennem skyerne (`Blandt Nordpolens Naboer/9`) [container]
-    - text: Eskimoernes levevis, skikke, karakter, moral og sociale forhold (`Blandt Nordpolens Naboer/10`) [container]
-    - text: Intelligents og kunstnerisk begavelse. Religiøse forestillinger, skikke etc. (`Blandt Nordpolens Naboer/11`) [container]
-    - … 2 more
-1. `Nye Digte`: mixed, book, 62 parts, 0 missing, order toc, proofread
-    - toc: Nye Digte
-    - text: Poesien [container]
-    - chapter: I (`Nye Digte/I`) [container]
-    - text: Visen om stolt Kunigunde [container]
-    - text: Morgensang [container]
-    - text: Og atter ser jeg [container]
-    - text: Andagt [container]
-    - text: Lær mig, o skov [container]
-    - text: Stilhed [container]
-    - text: Dengang du gik [container]
-    - text: I de forunderlige, blonde nætter [container]
-    - text: Samtale [container]
-    - … 51 more
-1. `Vidar`: mixed, collection, 13 parts, 34 missing, order scan-volumes, unproofread
-    - toc: Vidar
-    - volume: 1887 (`Vidar/1887`) [hierarchy]
-      - text: Om Jury [container]
-      - text: Stemninger i Danmark og Norge i Anledning af og nærmest efter Adskillelsen [container]
-      - text: Anton Martin Schweigaards Dom om Andreas Høyer [container]
-      - text: Et utrykt Brev fra Henrik Wergeland [container]
-      - text: En Hexeproces fra Østerdalen i det 17de Aarhundrede [container]
-      - text: Om Johan Nicolai Madvig [container]
-    - chapter: 1888 (`Vidar/1888`) [hierarchy]
-    - text: Fra Professor Christian Lassens Ungdom [container]
-    - text: Paul Botten Hansen (Daae) [container]
-    - chapter: 1889 (`Vidar/1889`) [hierarchy]
-    - … 2 more
-1. `Samlede skrifter (1918–1940)`: mixed, collection, 32 parts, 21 missing, order toc, proofread
-    - toc: Samlede skrifter (1918–1940)
-    - volume: Avhandlinger, opplysningsskrifter 1. bind: 1829―1834 (`Samlede skrifter (1918–1940)/13`) [container]
-      - text: HVAD MENNESKET VEED, BØR TROE OG GJØRE. EN UNDERVISNINGSBOG FOR SANDHEDENS UNGE VENNER (`Hvad Mennesket veed, bør troe og gjøre`) [container]
-      - chapter: BREV TIL SELSKABET FOR NORGES VEL (`Brev til Selskabet for Norges Vel`) [container]
-      - text: FOR ALMUEN. FØRSTE HEFTE (`For Almuen/1`) [container]
-      - text: FOR ALMUEN. ANDET HEFTE (`For Almuen/2`) [container]
-      - text: FOR ALMUEN. TREDIE HEFTE (`For Almuen/3`) [container]
-      - text: FOR ALMUEN. FJERDE HEFTE (`For Almuen/4`) [container]
-      - text: FOR ALMUEN. FEMTE HEFTE (`For Almuen/5`) [container]
-      - text: HVI SKRIDER MENNESKEHEDEN SAA LANGSOMT FREM? (`Hvi skrider Menneskeheden saa langsomt frem?`) [container]
-      - text: FOR ALMUEN. SJETTE HEFTE (`For Almuen/6`) [container]
-      - text: HEINRICH HEINES INDLEDNING TIL KAHLDORF OM ADEL, I BREVE TIL GREVE M. AF MOLTKE. OVERSAT (`Heinrich Heines Indledning til Kahldorf om Adel, i Breve til Greve M. af Moltke`) [container]
-    - … 21 more
-1. `Norsk Tidsskrift for Videnskab og Litteratur`: mixed, collection, 163 parts, 27 missing, order toc, unproofread
-    - toc: Norsk Tidsskrift for Videnskab og Litteratur
-    - volume: Første Aargang (`Norsk Tidsskrift for Videnskab og Litteratur/1`) [hierarchy]
-      - chapter: Forord (`Forord (Norsk Tidsskrift for Videnskab og Litteratur 1)`) [container]
-      - text: Brudstykker af Kong Haakon Magnussøns Historie (`Brudstykker af Kong Haakon V Magnussøns Historie`) [container]
-      - text: Udledelse af nogle norske Sted- og Folkenavne [container]
-      - text: i vor Kirke (`Kroningsaktens Betydning i vor Kirke`) [container]
-      - text: Bidrag til Norges Historie under Unionen [container]
-      - text: Nordmændenes Boliger og daglige Sysler [container]
-      - text: B. Moes Tidsskrift for norsk Personalhistorie [container]
-      - text: Norge i Tegninger. 1ste Hefte [container]
-      - text: Nor, Tidsskrift for Videnskab og Litteratur [container]
-      - text: Norges gamle Love för 1387 (`Norges gamle Love før 1387 (Fritzner)`) [container]
-    - … 152 more
-1. `Mauritz Hansens Noveller og Fortællinger`: mixed, book, 96 parts, 6 missing, order scan-volumes, proofread
-    - toc: Mauritz Hansens Noveller og Fortællinger
-    - volume: Første Bind (`Mauritz Hansens Noveller og Fortællinger/1`) [container]
-      - text: Den Unævnelige [container]
-      - text: Emil [container]
-      - text: Fødselsdagsgaven [container]
-      - text: Othar af Bretagne [container]
-      - text: Luren [container]
-      - text: Bergmanden (`Bergmanden (Maurits Hansen)`) [container]
-      - text: Snedkerkonen [container]
-      - text: Svigerdatteren [container]
-      - text: Den gale Christian [container]
-      - text: De to Søstre [container]
-    - … 85 more
-1. `Tragedier (Sofokles)`: mixed, collection, 9 parts, 0 missing, order toc, unproofread
-    - front: Tragedier (Sofokles)
-    - chapter: Fortale (`Tragedier (Sofokles)/Fortale`) [container]
-    - chapter: Indledning (`Tragedier (Sofokles)/Indledning`) [container]
-    - text: Kong Oidipus [container]
-    - text: Oidipus i Kolonos [container]
-    - text: Antigone [container]
-    - text: Elektra [container]
-    - text: Kvinderne i Trakis [container]
-    - text: Aias [container]
-    - text: Filoktetes [container]
-1. `Smaabilleder af Folkelivet`: mixed, book, 13 parts, 0 missing, order toc, unproofread
-    - front: Smaabilleder af Folkelivet
-    - text: Politinotitser (`Smaabilleder af Folkelivet/Politinotitser`) [container]
-    - text: Agtelse for Edens Hellighed [container]
-    - text: En godmodig Mand [container]
-    - text: En Indbrudstyv og hans Søn [container]
-    - text: En lystig Gesel [container]
-    - text: Et Fante-Par [container]
-    - text: Drukkenskab [container]
-    - text: Som Herren er, saa følge ham hans Svende [container]
-    - text: Kammeratskab mellem Forbrydere [container]
-    - text: Faderkjærlighed [container]
-    - text: En Dalekarl [container]
-    - … 2 more
-1. `Den gamle Richards Kunst at blive rig og lykkelig tilligemed godt Raad til en ung Mand`: mixed, book, 3 parts, 0 missing, order toc, proofread
-    - front: Den gamle Richards Kunst at blive rig og lykkelig tilligemed godt Raad til en ung Mand
-    - chapter: Forord (`Den gamle Richards Kunst at blive rig og lykkelig tilligemed godt Raad til en ung Mand/Forord`) [container]
-    - text: Den gamle Richards Kunst at blive rig og lykkelig [container]
-    - text: Godt Raad til en ung Mand [container]
-1. `Storegut`: mixed, book, 34 parts, 0 missing, order toc, unproofread
-    - front: Storegut
-    - text: Dei Olavarne [container]
-    - text: Olav sjølv [container]
-    - text: Daa Olav lærde lesa [container]
-    - text: Olav verd Hermann [container]
-    - text: Olav fær prøva mangt [container]
-    - text: Olav maa elska [container]
-    - text: Olav høyrer Musik og Song i Byen [container]
-    - text: Det gjeng godt fyr’n Olav [container]
-    - text: Det gjeng ’n Olav baade godt og vondt [container]
-    - text: Uppvokstren hans [container]
-    - text: Storegut verd bergteken [container]
-    - … 23 more
-1. `Historisk Tidsskrift`: mixed, collection, 403 parts, 86 missing, order scan-volumes, unproofread
-    - toc: Historisk Tidsskrift
-    - volume: Andet Bind (`Historisk Tidsskrift/Anden Række/Andet Bind`) [hierarchy]
-      - text: Om nogle middelalderske Slægter i det vestenfjeldske Norge [container]
-      - text: To utrykte Digte af Petter Dass [container]
-      - text: Stiftsprovst Dr. Theol. Otto Holmboes Dagbogs-Optegnelser 1751–1773 [container]
-      - text: Armfeldts Tog Nordenfjelds 1718 (`Armfeldts tog nordenfjelds 1718`) [container]
-      - text: Vikingetogenes tidligste Udgangspunkter [container]
-      - text: Erik af Pommerns, Danmarks, Sveriges og Norges Konges, Giftermaal med Philippa, Prindsesse af England [container]
-      - text: Den Bergenske Biskop Arnes Bibliothek [container]
-      - text: Uddrag af Bergens Kongsgaards Regnskaber 1516–23 (`Uddrag af Bergens kongsgaards regnskaber 1516–23`) [container]
-      - text: Ravnebryllupet i Kraakelund [container]
-      - text: Om en paatænkt Restauration af Throndhjems Domkirke i Begyndelsen af det 18de Aarhundrede (`Om en paatænkt restauration af Trondhjems domkirke i begyndelsen af det 18de aarhundrede`) [container]
-    - … 392 more
-1. `Symra`: mixed, book, 26 parts, 0 missing, order toc, proofread
-    - toc: Symra
-    - text: Fyrestev [container]
-    - text: Gamle Norig [container]
-    - text: Nordmannen [container]
-    - text: Dei gamle Fjelli [container]
-    - text: Heimvegen [container]
-    - text: Gamle Grendi [container]
-    - text: Vaardagen [container]
-    - text: Sumarkvelden [container]
-    - text: Haustvisa [container]
-    - text: Hugen [container]
-    - text: Von og Minne [container]
-    - … 15 more
-1. `Blandkorn`: mixed, book, 47 parts, 0 missing, order toc, unproofread
-    - toc: Blandkorn
-    - text: Fyreord (`Blandkorn/Fyreord`) [container]
-    - text: Attersyn [container]
-    - text: Den gamle Kona [container]
-    - text: Klungen [container]
-    - text: D’er leidt [container]
-    - text: D’er gildt [container]
-    - chapter: 1859 [container]
-    - text: Det var no Du det [container]
-    - text: Løn som forskyldt [container]
-    - text: Du lyt faa med deg dei Bedste [container]
-    - text: D’er Strid med det [container]
-    - … 36 more
-1. `I gamle Daagaa`: mixed, book, 94 parts, 0 missing, order toc, unproofread
-    - front: I gamle Daagaa
-    - text: Huldre i Sjoli’n [container]
-    - text: Huldre ve Flaakka [container]
-    - text: Brings-Huldre [container]
-    - text: Skardaa-Gubbin og Darthus-Kall’n [container]
-    - text: Jenta fraa Heringsta som vart inn-tikjin [container]
-    - text: Bess-Leiken [container]
-    - text: Brure fraa Ransverk (`Brure fraa Ransverk (Kleiven)`) [container]
-    - text: Trolle paa Heidals-Skogje og Blankenborg-Vetlgutann [container]
-    - text: Prestberg-Jutul’n og Blessom’n [container]
-    - text: Gjestbo’s-Hopen paa Staalom. Ho Eli Fugelsang [container]
-    - text: Huldre i Ellingsbø-Rusten [container]
-    - … 83 more
-1. `Reise-Erindringer (Hansteen)`: mixed, book, 4 parts, 1 missing, order toc, proofread
-    - front: Reise-Erindringer (Hansteen)
-    - text: Bemærkninger og Iagttagelser paa en Reise fra Christiania til Bergen og tilbage i Sommeren 1821 [container]
-    - chapter: I. Foranledning til Reisen. (`Reise i Sibirien/1`) [container]
-    - chapter: II. (`Reise i Sibirien/2`) [container]
-    - chapter: Forord (`Reise-Erindringer (Hansteen)/Forord`) [container]
-1. `Amok`: mixed, book, 3 parts, 0 missing, order toc, proofread
-    - front: Amok
-    - text: Stefan Zweig (`Amok/00`) [container]
-    - text: Amokløper [container]
-    - text: Brennende hemmelighet [container]
-1. `Syn og segn`: mixed, collection, 13 parts, 41 missing, order toc, unproofread
-    - toc: Syn og segn
-    - volume: Fyrste aargangen (`Syn og segn/1895`) [hierarchy]
-      - text: Store-Jon Aakre [container]
-      - text: Ho Rangdi [container]
-      - text: Friedrich Nietzsche [container]
-    - volume: Andre aargangen (`Syn og segn/1896`) [hierarchy]
-      - text: Anders Rongli [container]
-      - text: Eit møte [container]
-      - text: Hansliguten [container]
-      - text: Daa stor-uksen skulde slagtast [container]
-      - text: Til fots [container]
-      - text: Stormen (Hovden) [container]
-    - … 2 more
-1. `Heimskringlam`: mixed, book, 6 parts, 0 missing, order toc, proofread
-    - front: Heimskringlam
-    - text: Prologus (`Heimskringlam/Prologus`) [container]
-    - text: Heimskringlam (`Heimskringlam (tekst)`) [container]
-    - text: Almindelige bemærkninger (`Heimskringlam/Almindelige bemærkninger`) [container]
-    - chapter: Tillæg (`Heimskringlam/Tillæg`) [container]
-    - text: Bilag (`Heimskringlam/Bilag`) [container]
-    - text: Slutbemærkning (`Heimskringlam/Slutbemærkning`) [container]
-1. `Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge`: mixed, book, 24 parts, 15 missing, order scan-volumes, unproofread
-    - toc: Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge
-    - chapter: Andet Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/2`) [hierarchy]
-    - chapter: 3 (`Om Mag. Niels Svendsen Krønikes Stridigheder med Præsteskabet i Christiania i Aarene 1642–1652/3`) [container]
-    - text: Mag. Jørgen Erichsson, den tredje evangeliske Superintendent i Stavanger Stift [container]
-    - text: Bidrag til den tromsøiske „Vækkelses“ Historie [container]
-    - text: Et Bidrag til Mag. Kjeld Stubs Historie [container]
-    - chapter: Fjerde Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/4`) [hierarchy]
-    - chapter: 2 (`Syv throndhjemske Præsters Bønskrifter til Kirkestyrelsen om Skjærpelse i Kirketugten og Oprettelse af en Kirkeret/2`) [container]
-    - chapter: Første Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/1`) [hierarchy]
-    - chapter: 1 (`Om Mag. Niels Svendsen Krønikes Stridigheder med Præsteskabet i Christiania i Aarene 1642–1652/1`) [container]
-    - chapter: 2 (`Om Mag. Niels Svendsen Krønikes Stridigheder med Præsteskabet i Christiania i Aarene 1642–1652/2`) [container]
-    - chapter: Niende Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/9`) [hierarchy]
-    - … 13 more
-1. `Samlede Værker (Kielland)`: mixed, book, 157 parts, 3 missing, order scan-volumes, proofread
-    - toc: Samlede Værker (Kielland)
-    - volume: Første Bind (`Samlede Værker (Kielland)/1`) [container]
-      - text: Novelletter [container]
-      - text: Haabet er lysegrønt [container]
-      - volume: Garman og Worse [container]
-        - chapter: XXI. (`Garman og Worse/21`) [hierarchy]
-        - chapter: XXII. (`Garman og Worse/22`) [hierarchy]
-        - chapter: XXIII. (`Garman og Worse/23`) [hierarchy]
-        - chapter: XXIV. (`Garman og Worse/24`) [hierarchy]
-        - chapter: XXV. (`Garman og Worse/25`) [hierarchy]
-        - chapter: XXVI. (`Garman og Worse/26`) [hierarchy]
-      - text: Tre Smaastykker for Scenen [container]
-    - … 146 more
-1. `Nils Kjær Samlede skrifter`: mixed, collection, 20 parts, 4 missing, order scan, proofread
-    - toc: Nils Kjær Samlede skrifter
-    - volume: Bind 5. Epistler og noveller (`Nils Kjær Samlede skrifter/5`) [container]
-      - text: EPISTLER (`Nils Kjær Epistler`) [container]
-      - text: Hugormen [container]
-      - text: Epistel angaaende sjøormen [container]
-      - text: Magsveir [container]
-      - text: Julibrev fra Son [container]
-      - text: Rousseaus skygge [container]
-      - text: Vestlandsreise [container]
-      - text: Brekkestøbreve [container]
-      - text: Schillers svigermor [container]
-      - text: Den stjaalne frak [container]
-    - … 9 more
-1. `Nyere Digte`: mixed, book, 55 parts, 13 missing, order toc, proofread
-    - toc: Nyere Digte
-    - chapter: I (`Nyere Digte/I`) [container]
-    - text: Suttungs Mjød [container]
-    - text: Ved Havet (`Ved Havet (Nyere Digte)`) [container]
-    - text: Elveløbet [container]
-    - text: En Vaarnat [container]
-    - text: Hvile i Skoven [container]
-    - text: Den forladte Kirke [container]
-    - text: Svindende Haab [container]
-    - text: Troubadouren [container]
-    - text: Alfernes Hvisken [container]
-    - text: Paa Fjeldet [container]
-    - … 44 more
-1. `Martyra`: mixed, book, 21 parts, 0 missing, order toc, proofread
-    - toc: Martyra
-    - text: Roger Bacon [toc]
-    - text: Guttenberg [toc]
-    - text: Ramus [toc]
-    - text: Giordano Bruno [toc]
-    - text: Thomas Campanella [toc]
-    - text: Etienne Dolet [toc]
-    - text: Galilei [toc]
-    - text: Bernard Pallissy [toc]
-    - text: Blaine Pascal [toc]
-    - text: Denis Papin [toc]
-    - text: John Fitch [toc]
-    - … 10 more
-1. `Fru Bovary`: mixed, book, 6 parts, 0 missing, order scan, proofread
-    - toc: Fru Bovary
-    - chapter: Første del (`Fru Bovary/1`) [container]
-    - text: Fru Bovary: Første del [container]
-    - chapter: Annen del (`Fru Bovary/2`) [container]
-    - text: Fru Bovary: Annen del [container]
-    - chapter: Tredje del (`Fru Bovary/3`) [container]
-    - text: Fru Bovary: Tredje del [container]
-1. `Statholderen i Judæa og andre noveller`: mixed, book, 18 parts, 0 missing, order scan, proofread
-    - toc: Statholderen i Judæa og andre noveller
-    - text: De dødes messe. (`Statholderen i Judæa og andre noveller/01`) [container]
-    - chapter: 01 (`Statholderen/01`) [container]
-    - text: Gestas. (`Statholderen i Judæa og andre noveller/02`) [container]
-    - chapter: 02 (`Statholderen/02`) [container]
-    - text: Leslie Wood. (`Statholderen i Judæa og andre noveller/03`) [container]
-    - chapter: 03 (`Statholderen/03`) [container]
-    - text: Scolastica. (`Statholderen i Judæa og andre noveller/04`) [container]
-    - chapter: 04 (`Statholderen/04`) [container]
-    - text: Statholderen i Judæa. (`Statholderen i Judæa og andre noveller/05`) [container]
-    - chapter: 05 (`Statholderen/05`) [container]
-    - text: Legenden om den hellige Oliverie og den hellige Liberette. (`Statholderen i Judæa og andre noveller/06`) [container]
-    - … 7 more
-1. `Strenglege`: mixed, book, 18 parts, 0 missing, order toc, unproofread
-    - front: Strenglege
-    - text: Den oldnorske Oversætters Fortale (`Strenglege/Den oldnorske Oversætters Fortale`) [container]
-    - text: Den franske Samlers Fortale (`Strenglege/Den franske Samlers Fortale`) [container]
-    - text: Gujamars Sang [container]
-    - text: Eskjas Sang [container]
-    - text: Ekvitans Sang [container]
-    - text: Bisklarets Sang [container]
-    - text: Laustiks Sang [container]
-    - text: Desirés Sang [container]
-    - text: Chetovels Sang [container]
-    - text: Douns Sang [container]
-    - text: To elskendes Sang [container]
-    - … 7 more
-1. `Norske Folke-Sagn`: mixed, book, 168 parts, 0 missing, order toc, unproofread
-    - front: Norske Folke-Sagn
-    - chapter: Fortale (`Norske Folke-Sagn/Fortale`) [container]
-    - text: Om de overnaturlige Væsener i Norge og andre Lande (`Norske Folke-Sagn/Indledning`) [container]
-    - text: 1ste Afdeling om overnaturlige Væsener (`Norske Folke-Sagn/1`) [container]
-    - text: Thor og Loke [container]
-    - text: Thor og Urebø-Urden [container]
-    - text: Lokje [container]
-    - text: Jutulen eller Bjergrisen [container]
-    - text: Guri Kunnan (`Guri Kunnan (Faye)`) [container]
-    - text: Jutulen paa Hestmandø [container]
-    - text: Vaagekallen [container]
-    - text: Raamanden og Djurren paa Molaug [container]
-    - … 157 more
-
-### D: virtual roots (34)
-
-1. `05-130602TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
-    - chapter: 06 (`05-130602TVI-OTIR/06`)
-1. `Almuens Sanger`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: Forerindring (`Almuens Sanger/Forerindring`)
-1. `Norske kongesagaer`: virtual, book, 4 parts, 0 missing, order scan, proofread
-    - text: Oversætterens fortale (`Norske kongesagaer/Oversætterens fortale`)
-    - text: Snorre Sturlasøns fortale (`Norske kongesagaer/Snorre Sturlasøns fortale`) [hierarchy]
-    - text: Ynglinge-saga (`Norske kongesagaer/Ynglinge-saga`) [hierarchy]
-    - text: Halvdan Svartes saga (`Norske kongesagaer/Halvdan Svartes saga`) [hierarchy]
-1. `08-156741TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
-    - chapter: 01 (`08-156741TVI-OTIR/01`)
-1. `Karl Marx`: virtual, book, 3 parts, 0 missing, order scan, proofread
-    - chapter: Forord (`Karl Marx/Forord`)
-    - chapter: 1 (`Karl Marx/1`) [hierarchy]
-    - text: Etterskrift (`Karl Marx/Etterskrift`) [hierarchy]
-1. `10-099305-MED-OTIR`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: 04 (`10-099305-MED-OTIR/04`)
-1. `Topografisk-statistisk beskrivelse over Finmarkens amt`: virtual, book, 5 parts, 3 missing, order scan-volumes, proofread
-    - volume: 1 (`Topografisk-statistisk beskrivelse over Finmarkens amt/1`)
-      - chapter: Innledning (`Topografisk-statistisk beskrivelse over Finmarkens amt/1/2`) [container]
-      - chapter: 3 (`Topografisk-statistisk beskrivelse over Finmarkens amt/1/3`) [container]
-    - volume: 2 (`Topografisk-statistisk beskrivelse over Finmarkens amt/2`) [hierarchy]
-      - text: Finnekonger (`Topografisk-statistisk beskrivelse over Finmarkens amt/2/67`) [container]
-1. `Ær dæt Fårnuftigt at have Religion`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: Fortale (`Ær dæt Fårnuftigt at have Religion/Fortale`)
-1. `Hvorledes Dr Wrangel kom`: virtual, book, 38 parts, 0 missing, order scan, proofread
-    - chapter: 1 (`Hvorledes Dr Wrangel kom/1`)
-    - chapter: 2 (`Hvorledes Dr Wrangel kom/2`) [hierarchy]
-    - chapter: 3 (`Hvorledes Dr Wrangel kom/3`) [hierarchy]
-    - chapter: 4 (`Hvorledes Dr Wrangel kom/4`) [hierarchy]
-    - chapter: 5 (`Hvorledes Dr Wrangel kom/5`) [hierarchy]
-    - chapter: 6 (`Hvorledes Dr Wrangel kom/6`) [hierarchy]
-    - chapter: 7 (`Hvorledes Dr Wrangel kom/7`) [hierarchy]
-    - chapter: 8 (`Hvorledes Dr Wrangel kom/8`) [hierarchy]
-    - chapter: 9 (`Hvorledes Dr Wrangel kom/9`) [hierarchy]
-    - chapter: 10 (`Hvorledes Dr Wrangel kom/10`) [hierarchy]
-    - chapter: 11 (`Hvorledes Dr Wrangel kom/11`) [hierarchy]
-    - chapter: 12 (`Hvorledes Dr Wrangel kom/12`) [hierarchy]
-    - … 26 more
-1. `Brevet til de Ebræer`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: Fortale (`Brevet til de Ebræer/Fortale`)
-1. `Jødedommen`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: 1 (`Jødedommen/1`)
-1. `Norge i 1814, fra russiske Arkiver`: virtual, book, 3 parts, 0 missing, order scan, proofread
-    - chapter: 1 (`Norge i 1814, fra russiske Arkiver/1`)
-    - chapter: 2 (`Norge i 1814, fra russiske Arkiver/2`) [hierarchy]
-    - chapter: 3 (`Norge i 1814, fra russiske Arkiver/3`) [hierarchy]
-1. `Det nye Testamente (1856)`: virtual, collection, 3 parts, 0 missing, order natural, proofread
-    - text: Evangelium paa Christi Fødselsdag (`Det nye Testamente (1856)/Evangelium paa Christi Fødselsdag`)
-    - text: St Johannis 2det Brev (`Det nye Testamente (1856)/St Johannis 2det Brev`) [hierarchy]
-    - text: St Johannis 3die Brev (`Det nye Testamente (1856)/St Johannis 3die Brev`) [hierarchy]
-1. `Lappisk Mytologi`: virtual, book, 1 parts, 0 missing, order single, unknown, excluded no-text-pages
-    - chapter: Forord (`Lappisk Mytologi/Forord`)
-1. `Urd`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Pianist Sigvart Høgh-Nilsen (`Urd/1907/Pianist Sigvart Høgh-Nilsen`)
-1. `Gudekvæde`: virtual, book, 2 parts, 0 missing, order scan, validated
-    - text: Forerindring (`Gudekvæde/Forerindring`)
-    - text: Fyriord (`Gudekvæde/Fyriord`) [hierarchy]
-1. `11-098785MED-OTIR`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: 01 (`11-098785MED-OTIR/01`)
-1. `Østers-Kulturen`: virtual, book, 5 parts, 0 missing, order scan, proofread
-    - chapter: 11 (`Østers-Kulturen/11`)
-    - chapter: 12 (`Østers-Kulturen/12`) [hierarchy]
-    - chapter: 13 (`Østers-Kulturen/13`) [hierarchy]
-    - chapter: 14 (`Østers-Kulturen/14`) [hierarchy]
-    - chapter: 15 (`Østers-Kulturen/15`) [hierarchy]
-1. `11-007057ENE-OTIR`: virtual, document, 1 parts, 0 missing, order single, validated
-    - chapter: 08 (`11-007057ENE-OTIR/08`)
-1. `Topografisk-statistisk beskrivelse over Nedenes amt`: virtual, book, 3 parts, 0 missing, order single, proofread
-    - volume: 1 (`Topografisk-statistisk beskrivelse over Nedenes amt/1`)
-      - chapter: 81 (`Topografisk-statistisk beskrivelse over Nedenes amt/1/81`) [container]
-      - chapter: 82 (`Topografisk-statistisk beskrivelse over Nedenes amt/1/82`) [container]
-1. `Illustreret Norges Historie`: virtual, book, 7 parts, 0 missing, order scan, proofread
-    - chapter: 17 (`Illustreret Norges Historie/4/17`)
-    - chapter: 18 (`Illustreret Norges Historie/4/18`) [hierarchy]
-    - chapter: 19 (`Illustreret Norges Historie/4/19`) [hierarchy]
-    - chapter: 20 (`Illustreret Norges Historie/4/20`) [hierarchy]
-    - chapter: 21 (`Illustreret Norges Historie/4/21`) [hierarchy]
-    - chapter: 22 (`Illustreret Norges Historie/4/22`) [hierarchy]
-    - chapter: 23 (`Illustreret Norges Historie/4/23`) [hierarchy]
-1. `Den kristelige Troeslære i dens Grundtræk`: virtual, book, 4 parts, 0 missing, order scan, proofread
-    - chapter: Forord (`Den kristelige Troeslære i dens Grundtræk/Forord`)
-    - chapter: Indledning (`Den kristelige Troeslære i dens Grundtræk/Indledning`) [hierarchy]
-    - chapter: 1 (`Den kristelige Troeslære i dens Grundtræk/1`) [hierarchy]
-    - chapter: 2 (`Den kristelige Troeslære i dens Grundtræk/2`) [hierarchy]
-1. `Niels Klims underjordiske Reise`: virtual, book, 11 parts, 0 missing, order scan, proofread
-    - chapter: Fortale (`Niels Klims underjordiske Reise/Fortale`)
-    - chapter: Første Kapitel (`Niels Klims underjordiske Reise/Første Kapitel`) [hierarchy]
-    - chapter: Andet Kapitel (`Niels Klims underjordiske Reise/Andet Kapitel`) [hierarchy]
-    - chapter: Tredie Kapitel (`Niels Klims underjordiske Reise/Tredie Kapitel`) [hierarchy]
-    - chapter: Fierde Kapitel (`Niels Klims underjordiske Reise/Fierde Kapitel`) [hierarchy]
-    - chapter: Femte Kapitel (`Niels Klims underjordiske Reise/Femte Kapitel`) [hierarchy]
-    - chapter: Siette Kapitel (`Niels Klims underjordiske Reise/Siette Kapitel`) [hierarchy]
-    - chapter: Syvende Kapitel (`Niels Klims underjordiske Reise/Syvende Kapitel`) [hierarchy]
-    - chapter: Ottende Kapitel (`Niels Klims underjordiske Reise/Ottende Kapitel`) [hierarchy]
-    - text: Abelins Tillæg (`Niels Klims underjordiske Reise/Abelins Tillæg`) [hierarchy]
-    - chapter: Efterskrift (`Niels Klims underjordiske Reise/Efterskrift`) [hierarchy]
-1. `Topografisk-statistisk beskrivelse over Bratsberg amt`: virtual, book, 6 parts, 7 missing, order scan-volumes, proofread
-    - volume: 1 (`Topografisk-statistisk beskrivelse over Bratsberg amt/1`)
-      - chapter: 1 (`Topografisk-statistisk beskrivelse over Bratsberg amt/1/1`) [container]
-      - text: Beliggenhed (`Topografisk-statistisk beskrivelse over Bratsberg amt/1/2`) [container]
-      - text: Gammel norsk tidsregning og primstaven (`Topografisk-statistisk beskrivelse over Bratsberg amt/1/95`) [container]
-    - volume: 2 (`Topografisk-statistisk beskrivelse over Bratsberg amt/2`) [hierarchy]
-      - text: Vinje herred (`Topografisk-statistisk beskrivelse over Bratsberg amt/30`) [container]
-1. `Reisehaandbog over Norge`: virtual, book, 2 parts, 0 missing, order scan, unproofread
-    - chapter: Forord (`Reisehaandbog over Norge/Forord`)
-    - chapter: 1 (`Reisehaandbog over Norge/1`) [hierarchy]
-1. `Ordbog over det gamle norske Sprog`: virtual, book, 6 parts, 0 missing, order scan, proofread
-    - text: A (`Ordbog over det gamle norske Sprog/A`)
-    - text: a (`Ordbog over det gamle norske Sprog/a`) [hierarchy]
-    - text: á 1 (`Ordbog over det gamle norske Sprog/á 1`) [hierarchy]
-    - text: á 2 (`Ordbog over det gamle norske Sprog/á 2`) [hierarchy]
-    - text: á 3 (`Ordbog over det gamle norske Sprog/á 3`) [hierarchy]
-    - text: at 1 (`Ordbog over det gamle norske Sprog/at 1`) [hierarchy]
-1. `11-119207ENE-OTIR`: virtual, book, 3 parts, 0 missing, order scan-volumes, validated
-    - text: 03 (Varetektsfengsling) (`11-119207ENE-OTIR/03 (Varetektsfengsling)`)
-    - text: 03 (Uniform) (`11-119207ENE-OTIR/03 (Uniform)`) [hierarchy]
-    - text: 03 (Lukkede dører) (`11-119207ENE-OTIR/03 (Lukkede dører)`) [hierarchy]
-1. `En Sommer i Finnmarken, Russisk Lapland og Nordkarelen`: virtual, book, 2 parts, 0 missing, order scan, proofread
-    - chapter: Forord (`En Sommer i Finnmarken, Russisk Lapland og Nordkarelen/Forord`)
-    - chapter: 1 (`En Sommer i Finnmarken, Russisk Lapland og Nordkarelen/1`) [hierarchy]
-1. `Ezechiels Syner`: virtual, collection, 1 parts, 0 missing, order single, unknown, excluded under-300-bytes
-    - text: Résumé på fransk (`Ezechiels Syner/Résumé`)
-1. `Det nye Testamentet (1886)`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Juleevangeliet (`Det nye Testamentet (1886)/Juleevangeliet`)
-
-### E: subpage texts reached from a disambiguation or versions page (33)
-
-1. text “Amos” (`Bibelen (1891)/Profeten Amos`), part 5 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Prædikerens Bog” (`Bibelen (1891)/Prædikerens Bog`), part 2 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Haggaj” (`Bibelen (1891)/Profeten Haggaj`), part 12 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Malakias” (`Bibelen (1891)/Profeten Malakias`), part 14 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Joel” (`Bibelen (1891)/Profeten Joel`), part 4 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “03 (Uniform)” (`11-119207ENE-OTIR/03 (Uniform)`), part 1 of `11-119207ENE-OTIR` (book, 3 parts, 3 texts)
-1. text “Peters andet almindelige Brev” (`Bibelen (1891)/Peters andet almindelige Brev`), part 20 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Sakarias” (`Bibelen (1891)/Profeten Sakarias`), part 13 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Juleevangeliet” (`Bibelen (1891)/Juleevangeliet`), part 26 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Peters første almindelige Brev” (`Bibelen (1891)/Peters første almindelige Brev`), part 19 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Nahum” (`Bibelen (1891)/Profeten Nahum`), part 9 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Paulus’s andet Brev til Tessalonikerne” (`Bibelen (1891)/Paulus's andet Brev til Tessalonikerne`), part 15 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Jonas” (`Bibelen (1891)/Profeten Jonas`), part 7 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Paulus’s Brev til Titus” (`Bibelen (1891)/Paulus's Brev til Titus`), part 16 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Habakuk” (`Bibelen (1891)/Profeten Habakuk`), part 10 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Evangelium paa Christi Fødselsdag” (`Det nye Testamente (1856)/Evangelium paa Christi Fødselsdag`), part 0 of `Det nye Testamente (1856)` (collection, 3 parts, 3 texts)
-1. text “Zefanias” (`Bibelen (1891)/Profeten Zefanias`), part 11 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Johannes’s andet Brev” (`Bibelen (1891)/Johannes's andet almindelige Brev`), part 22 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Judas’ Brev” (`Det nye Testamente (1883-1889)/Judas' Brev`), part 19 of `Det nye Testamente (1883-1889)` (book, 20 parts, 6 texts)
-1. text “Obadias” (`Bibelen (1891)/Profeten Obadias`), part 6 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Ruths Bog” (`Trende Bibelske Bøger/Ruths Bog`), part 2 of `Trende Bibelske Bøger` (book, 3 parts, 3 texts)
-1. text “Ruts Bog” (`Bibelen (1891)/Ruts Bog`), part 1 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “03 (Varetektsfengsling)” (`11-119207ENE-OTIR/03 (Varetektsfengsling)`), part 0 of `11-119207ENE-OTIR` (book, 3 parts, 3 texts)
-1. text “Mika” (`Bibelen (1891)/Profeten Mika`), part 8 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “03 (Lukkede dører)” (`11-119207ENE-OTIR/03 (Lukkede dører)`), part 2 of `11-119207ENE-OTIR` (book, 3 parts, 3 texts)
-1. text “Evangeliet etter Markus” (`Det nye Testamente (1883-1889)/Markus`), part 4 of `Det nye Testamente (1883-1889)` (book, 20 parts, 6 texts)
-1. text “Johannes’s første almindelige Brev” (`Bibelen (1891)/Johannes's første almindelige Brev`), part 21 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Apostelen Pauli Brev til Romararne” (`Det nye Testamente (1883-1889)/Brev til Romararne`), part 11 of `Det nye Testamente (1883-1889)` (book, 20 parts, 6 texts)
-1. text “Johannes’s Aabenbaring” (`Bibelen (1891)/Johannes's Aabenbaring`), part 25 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-1. text “Johannes’s tredje Brev” (`Bibelen (1891)/Johannes's tredje almindelige Brev`), part 23 of `Bibelen (1891)` (book, 26 parts, 26 texts)
-
-### all searchable subpage texts (chapter titles that the label patterns miss show up here) (3,683)
-
-1. text “Leo Tolstois kultur- og samfundsproblem” (`Leo Tolstoi, Ruslands digter-profet/Leo Tolstois kultur- og samfundsproblem`), part 7 of `Leo Tolstoi, Ruslands digter-profet` (book, 10 parts, 9 texts)
-1. text “Aderno” (`Norsk Haandlexikon for almennyttige Kundskaber/Aderno`), part 314 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
-1. text “FRIERNE BLIR DRÆPT” (`Odysseen illustrert/22`), part 22 of `Odysseen illustrert` (book, 24 parts, 24 texts)
-1. text “BESØKET I PYLOS.” (`Odysseen/BESØKET I PYLOS.`), part 6 of `Odysseen` (book, 48 parts, 48 texts)
-1. text “Adana” (`Norsk Haandlexikon for almennyttige Kundskaber/Adana`), part 298 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
-1. text “Ampére” (`Norsk Haandlexikon for almennyttige Kundskaber/Ampére`), part 1057 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
-1. text “Advis” (`Norsk Haandlexikon for almennyttige Kundskaber/Advis`), part 361 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
-1. text “Agronom” (`Norsk Haandlexikon for almennyttige Kundskaber/Agronom`), part 484 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
-1. text “Knut Hamsun” (`Skildringer og Stemninger fra den yngre Litteratur/Knut Hamsun`), part 1 of `Skildringer og Stemninger fra den yngre Litteratur` (book, 38 parts, 38 texts)
-1. text “Albenga” (`Norsk Haandlexikon for almennyttige Kundskaber/Albenga`), part 635 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
-1. text “DIREKTØR JOACHIM REISMAN.” (`Fjerdemand/1`), part 1 of `Fjerdemand` (book, 42 parts, 42 texts)
-1. text “Otteogtyvende kapitel” (`Andreas Lavik/XXVIII`), part 28 of `Andreas Lavik` (book, 33 parts, 13 texts)
-1. text “Fyrst Kropotkin” (`Blandt anarkister/Fyrst Kropotkin`), part 10 of `Blandt anarkister` (book, 10 parts, 9 texts)
-1. text “Amasia (konge)” (`Norsk Haandlexikon for almennyttige Kundskaber/Amasia (konge)`), part 72 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
-1. text “Ibsen og John Paulsen på fottur” (`Erindringer fra et dikterhjem/12`), part 12 of `Erindringer fra et dikterhjem` (book, 31 parts, 31 texts)
-1. text “Hjem” (`Fridtjof Nansen (1932)/Hjem`), part 22 of `Fridtjof Nansen (1932)` (book, 37 parts, 37 texts)
-1. text “Alcolea” (`Norsk Haandlexikon for almennyttige Kundskaber/Alcolea`), part 678 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
-1. text “Kongsdottera i fjellet det blå” (`Det store nashornet/10`), part 10 of `Det store nashornet` (book, 13 parts, 13 texts)
-1. text “Marionetteatret” (`Min vens bok/Marionetteatret`), part 30 of `Min vens bok` (book, 37 parts, 37 texts)
-1. text “KJELDSEN VENTER” (`Storhertuginnen av Speilsalen/34`), part 34 of `Storhertuginnen av Speilsalen` (book, 37 parts, 37 texts)
-1. text “Conjugationer” (`Det oldnorske Verbum/2`), part 3 of `Det oldnorske Verbum` (book, 8 parts, 7 texts)
-1. text “Fjerde Handling” (`Peer Gynt/Fjerde akt`), part 5 of `Peer Gynt` (book, 6 parts, 6 texts)
-1. text “I Raadhuskjælderen.” (`Hr. Arnes Penge/05`), part 6 of `Hr. Arnes Penge` (book, 10 parts, 10 texts)
-1. text “Dansk Panteret” (`Kontraktspantets historiske Udvikling især i dansk og norsk Ret/III`), part 4 of `Kontraktspantets historiske Udvikling især i dansk og norsk Ret` (book, 6 parts, 6 texts)
-1. text “Aber” (`Norsk Haandlexikon for almennyttige Kundskaber/Aber`), part 194 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
-1. text “Aften- og Morgenrøde” (`Norsk Haandlexikon for almennyttige Kundskaber/Aften- og Morgenrøde`), part 420 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
-1. text “KANCELLISTEN” (`Renæssanse-mennesker/4`), part 4 of `Renæssanse-mennesker` (book, 9 parts, 9 texts)
-1. text “120 Kongens anden Sammenkomst med Æskil Lagmand og farefulde Vinterfart til Bergen.” (`Det norske Folks Historie/4/120`), part 433 of `Det norske Folks Historie` (book, 691 parts, 15 texts)
-1. text “Aistulf” (`Norsk Haandlexikon for almennyttige Kundskaber/Aistulf`), part 524 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
-1. text “Altenstein” (`Norsk Haandlexikon for almennyttige Kundskaber/Altenstein`), part 902 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
-
-### C: oversized (11)
-
-1. `Fru Bovary`: mixed, book, 6 parts, 0 missing, order scan, proofread
-    - toc: Fru Bovary
-    - chapter: Første del (`Fru Bovary/1`) [container]
-    - text: Fru Bovary: Første del [container]
-    - chapter: Annen del (`Fru Bovary/2`) [container]
-    - text: Fru Bovary: Annen del [container]
-    - chapter: Tredje del (`Fru Bovary/3`) [container]
-    - text: Fru Bovary: Tredje del [container]
-1. `Norske Rigs-Registranter`: subpages, book, 19 parts, 11 missing, order single, unproofread
-    - front: Norske Rigs-Registranter
-    - volume: Første Bind (`Norske Rigs-Registranter/1`) [hierarchy]
-      - chapter: Forord (`Norske Rigs-Registranter/I/Forord`) [container]
-      - text: Frederik den 1ste (`Norske Rigs-Registranter/Frederik den 1ste`) [container]
-      - text: Christian den 3die (`Norske Rigs-Registranter/Christian den 3die`) [container]
-      - chapter: 1559 (`Norske Rigs-Registranter/1559`) [container]
-      - chapter: 1560 (`Norske Rigs-Registranter/1560`) [container]
-      - chapter: 1561 (`Norske Rigs-Registranter/1561`) [container]
-      - chapter: 1562 (`Norske Rigs-Registranter/1562`) [container]
-      - chapter: 1563 (`Norske Rigs-Registranter/1563`) [container]
-      - chapter: 1564 (`Norske Rigs-Registranter/1564`) [container]
-      - chapter: 1565 (`Norske Rigs-Registranter/1565`) [container]
-    - … 8 more
-1. `Historisk Tidsskrift`: mixed, collection, 403 parts, 86 missing, order scan-volumes, unproofread
-    - toc: Historisk Tidsskrift
-    - volume: Andet Bind (`Historisk Tidsskrift/Anden Række/Andet Bind`) [hierarchy]
-      - text: Om nogle middelalderske Slægter i det vestenfjeldske Norge [container]
-      - text: To utrykte Digte af Petter Dass [container]
-      - text: Stiftsprovst Dr. Theol. Otto Holmboes Dagbogs-Optegnelser 1751–1773 [container]
-      - text: Armfeldts Tog Nordenfjelds 1718 (`Armfeldts tog nordenfjelds 1718`) [container]
-      - text: Vikingetogenes tidligste Udgangspunkter [container]
-      - text: Erik af Pommerns, Danmarks, Sveriges og Norges Konges, Giftermaal med Philippa, Prindsesse af England [container]
-      - text: Den Bergenske Biskop Arnes Bibliothek [container]
-      - text: Uddrag af Bergens Kongsgaards Regnskaber 1516–23 (`Uddrag af Bergens kongsgaards regnskaber 1516–23`) [container]
-      - text: Ravnebryllupet i Kraakelund [container]
-      - text: Om en paatænkt Restauration af Throndhjems Domkirke i Begyndelsen af det 18de Aarhundrede (`Om en paatænkt restauration af Trondhjems domkirke i begyndelsen af det 18de aarhundrede`) [container]
-    - … 392 more
-1. `Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge`: mixed, book, 24 parts, 15 missing, order scan-volumes, unproofread
-    - toc: Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge
-    - chapter: Andet Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/2`) [hierarchy]
-    - chapter: 3 (`Om Mag. Niels Svendsen Krønikes Stridigheder med Præsteskabet i Christiania i Aarene 1642–1652/3`) [container]
-    - text: Mag. Jørgen Erichsson, den tredje evangeliske Superintendent i Stavanger Stift [container]
-    - text: Bidrag til den tromsøiske „Vækkelses“ Historie [container]
-    - text: Et Bidrag til Mag. Kjeld Stubs Historie [container]
-    - chapter: Fjerde Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/4`) [hierarchy]
-    - chapter: 2 (`Syv throndhjemske Præsters Bønskrifter til Kirkestyrelsen om Skjærpelse i Kirketugten og Oprettelse af en Kirkeret/2`) [container]
-    - chapter: Første Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/1`) [hierarchy]
-    - chapter: 1 (`Om Mag. Niels Svendsen Krønikes Stridigheder med Præsteskabet i Christiania i Aarene 1642–1652/1`) [container]
-    - chapter: 2 (`Om Mag. Niels Svendsen Krønikes Stridigheder med Præsteskabet i Christiania i Aarene 1642–1652/2`) [container]
-    - chapter: Niende Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/9`) [hierarchy]
-    - … 13 more
-1. `Det norske Folkesprogs Grammatik`: single, book, 1 parts, 7 missing, order –, unproofread
-    - text: Det norske Folkesprogs Grammatik
-1. `Angaaende Forandringer i Lovgivningen om Husmænd`: single, book, 1 parts, 0 missing, order –, proofread
-    - text: Angaaende Forandringer i Lovgivningen om Husmænd
-1. `En Krønike om Erkebiskopperne i Nidaros`: single, book, 1 parts, 0 missing, order –, unproofread
-    - text: En Krønike om Erkebiskopperne i Nidaros
-1. `Norsk Tidsskrift for Videnskab og Litteratur`: mixed, collection, 163 parts, 27 missing, order toc, unproofread
-    - toc: Norsk Tidsskrift for Videnskab og Litteratur
-    - volume: Første Aargang (`Norsk Tidsskrift for Videnskab og Litteratur/1`) [hierarchy]
-      - chapter: Forord (`Forord (Norsk Tidsskrift for Videnskab og Litteratur 1)`) [container]
-      - text: Brudstykker af Kong Haakon Magnussøns Historie (`Brudstykker af Kong Haakon V Magnussøns Historie`) [container]
-      - text: Udledelse af nogle norske Sted- og Folkenavne [container]
-      - text: i vor Kirke (`Kroningsaktens Betydning i vor Kirke`) [container]
-      - text: Bidrag til Norges Historie under Unionen [container]
-      - text: Nordmændenes Boliger og daglige Sysler [container]
-      - text: B. Moes Tidsskrift for norsk Personalhistorie [container]
-      - text: Norge i Tegninger. 1ste Hefte [container]
-      - text: Nor, Tidsskrift for Videnskab og Litteratur [container]
-      - text: Norges gamle Love för 1387 (`Norges gamle Love før 1387 (Fritzner)`) [container]
-    - … 152 more
+1. `Skisser fra fjeldbygden`: linked, book, 11 parts, 0 missing, order toc, unproofread
+    - toc: Skisser fra fjeldbygden
+    - text: Sollien [container]
+    - text: Kirken [container]
+    - text: Præstegaarden (`Præstegaarden (Helene Lassen)`) [container]
+    - text: Mit kongerige [container]
+    - text: Uveirshumoreske [container]
+    - text: Paa ski i maaneskin [container]
+    - text: Høstslagtningen [container]
+    - text: Tull-Ingeborg [container]
+    - text: Gamlemor begraves [container]
+    - text: Fra bygd til bygd [container]
+    - text: Paa skoleeksamen [container]
+1. `Lauvduskar`: linked, collection, 45 parts, 0 missing, order single, unproofread
+    - toc: Lauvduskar
+    - volume: I. (Andre Utgaava) II. (`Lauvduskar I. II`) [container]
+      - text: Svein Urædd [container]
+      - text: Attersyn paa Livet [container]
+      - text: Storm og Stilla [container]
+      - text: Den tyngste Sorg og Møda [container]
+      - text: Gamle Stev elder «Frøde-Vers» [container]
+      - text: Nyare Stev [container]
+      - text: Her er det Land, som hugar meg best [container]
+      - text: Dei træla, – dei træla [container]
+      - text: Høgferd (`Høgferd (Lauvduskar)`) [container]
+      - text: Reven paa Alvstad [container]
+    - … 34 more
+1. `Nat. Digte i prosa`: linked, book, 12 parts, 0 missing, order toc, proofread
+    - toc: Nat. Digte i prosa
+    - text: MAINÆTTER (`Nat/01`) [container]
+    - text: Første nat (`Nat/02`) [container]
+    - text: Anden nat (`Nat/03`) [container]
+    - text: Tredie nat (`Nat/04`) [container]
+    - text: Fjerde nat (`Nat/05`) [container]
+    - text: HØSTNÆTTER (`Nat/06`) [container]
+    - chapter: I (`Nat/07`) [container]
+    - chapter: II (`Nat/08`) [container]
+    - chapter: III (`Nat/09`) [container]
+    - chapter: IV (`Nat/10`) [container]
+    - chapter: V (`Nat/11`) [container]
+    - … 1 more
+1. `Digte og noveller`: linked, book, 17 parts, 0 missing, order toc, proofread
+    - front: Digte og noveller
+    - text: Til ordene [container]
+    - text: Barnet [container]
+    - text: I mørket [container]
+    - text: Sommerens forlis [container]
+    - text: Mit hjerte [container]
+    - text: Avmagt [container]
+    - text: Vaar (`Vaar (Bull)`) [container]
+    - text: Idyl [container]
+    - text: Drøm [container]
+    - text: Menons tale [container]
+    - text: Lisken [container]
+    - … 6 more
+1. `Steder og folk`: linked, book, 7 parts, 0 missing, order toc, unproofread
+    - front: Steder og folk
+    - text: Sætesdal [container]
+    - text: Hardanger [container]
+    - text: Strandebarm kirke [container]
+    - text: Rundt om Vestlandshus [container]
+    - text: Byens sjæl [container]
+    - text: De tre stammer i Norden [container]
+    - text: Abruzzer-sommer [container]
+1. `Segner fraa Bygdom II`: linked, book, 28 parts, 0 missing, order toc, unproofread
+    - front: Segner fraa Bygdom II
+    - text: Fosgubbind [container]
+    - text: Selbu [container]
+    - text: Potet’n [container]
+    - text: Kaffe’n [container]
+    - text: Jøvra [container]
+    - text: Kjørkja [container]
+    - text: Sjursmesda’n [container]
+    - text: Bortigarsgubbind aa Tuftend [container]
+    - text: Teveldalingind [container]
+    - text: Hrr. Petter [container]
+    - text: Storsme’n aa Tuftend [container]
+    - … 17 more
+1. `Den ældre Edda`: linked, book, 2 parts, 19 missing, order toc, proofread
+    - front: Den ældre Edda
+    - text: Volvens spaadom [container]
+    - text: Den Høies ord [container]
+1. `Digte (Krag)`: linked, book, 40 parts, 0 missing, order toc, proofread
+    - front: Digte (Krag)
+    - text: Fandango [container]
+    - text: Ouverture [container]
+    - text: Valborgsnat [container]
+    - text: Mens jeg venter [container]
+    - text: Liden Kirsten [container]
+    - text: Minde [container]
+    - text: Der skreg en fugl [container]
+    - text: Sange (`Sange (Krag)`) [container]
+    - text: December (`December (Krag)`) [container]
+    - text: Moderen synger [container]
+    - text: Nytårsnat [container]
+    - … 29 more
+1. `Steen Steensen Blicher`: linked, book, 7 parts, 0 missing, order toc, proofread
+    - front: Steen Steensen Blicher
+    - text: Undsets innledning (`Steen Steenersen Blicher/01`) [container]
+    - chapter: I (`Steen Steenersen Blicher/02`) [container]
+    - chapter: II (`Steen Steenersen Blicher/03`) [container]
+    - chapter: III (`Steen Steenersen Blicher/04`) [container]
+    - chapter: IV (`Steen Steenersen Blicher/05`) [container]
+    - chapter: V (`Steen Steenersen Blicher/06`) [container]
+    - chapter: VI (`Steen Steenersen Blicher/07`) [container]
+1. `Forraadt (novellesamling)`: linked, book, 3 parts, 1 missing, order toc, proofread
+    - toc: Forraadt (novellesamling)
+    - text: Madam Høiers Lejefolk [container]
+    - text: Karens Jul [container]
+    - text: In Asiam profectus est [container]
+1. `Femten oder af Horats`: linked, book, 15 parts, 0 missing, order toc, proofread
+    - toc: Femten oder af Horats
+    - text: Tilegnelse [container]
+    - text: Pyrra [container]
+    - text: Teuker [container]
+    - text: Ved vintertid [container]
+    - text: Forsoning [container]
+    - text: Til Lyren [container]
+    - text: Sølvet [container]
+    - text: Hvor tiden haster! [container]
+    - text: Tilfredshed [container]
+    - text: Nøisomhed [container]
+    - text: Romas storhed [container]
+    - … 4 more
+1. `Studier og portræter`: linked, book, 1 parts, 5 missing, order single, proofread
+    - toc: Studier og portræter
+    - text: En norsk mor. (Fru Maren Sars) (`En norsk mor`) [container]
+1. `Lys og Skygge. Den hemmelighedsfulde Thomas Ryer – Norges farligste Forbryder`: linked, collection, 63 parts, 0 missing, order toc, proofread
+    - front: Lys og Skygge. Den hemmelighedsfulde Thomas Ryer – Norges farligste Forbryder
+    - text: Et Mennesketyveri [container]
+    - chapter: I. Benzinmotoren. (`Et Mennesketyveri/01`) [container]
+    - chapter: II. Cyclisten. (`Et Mennesketyveri/02`) [container]
+    - chapter: III. Det er ham. (`Et Mennesketyveri/03`) [container]
+    - chapter: IV. Ansigt til Ansigt. (`Et Mennesketyveri/04`) [container]
+    - chapter: V. En fuldendt Gentleman. (`Et Mennesketyveri/05`) [container]
+    - chapter: VI. Lysningen. (`Et Mennesketyveri/06`) [container]
+    - chapter: VII. Den stjaalne Hest. (`Et Mennesketyveri/07`) [container]
+    - chapter: VIII. Et genialt Kup. (`Et Mennesketyveri/08`) [container]
+    - chapter: IX. Seks Tusen Pund. (`Et Mennesketyveri/09`) [container]
+    - chapter: X. Et Ord til Afsked. (`Et Mennesketyveri/10`) [container]
+    - … 52 more
+1. `De hundrede aar`: linked, book, 3 parts, 0 missing, order toc, proofread
+    - front: De hundrede aar
+    - text: Henrik Wergeland (`Henrik Wergeland (Bull)`) [container]
+    - text: Silhouettslægten [container]
+    - text: Bjørnstjerne Bjørnson (`Bjørnstjerne Bjørnson (Bull)`) [container]
+1. `Udvalgte mindre juridiske afhandlinger (1901)`: linked, book, 2 parts, 5 missing, order toc, proofread
+    - toc: Udvalgte mindre juridiske afhandlinger (1901)
+    - text: Til retsvidenskabens metode [container]
+    - text: Ihering–Windscheid, et bidrag til belysning af retsforskningen i det nittende aarhundrede (`Ihering – Windscheid`) [container]
 1. `Biskop Jens Nilssøns visitatsbøger og reiseoptegnelser 1574–1597`: linked, book, 21 parts, 6 missing, order toc, unproofread
     - toc: Biskop Jens Nilssøns visitatsbøger og reiseoptegnelser 1574–1597
     - volume: Biskop Jens Nilssøns liv og virksomhed 1538–1600 [container]
@@ -1221,8 +549,576 @@ Rows count multi-part works only, one row per part plus the root row. 639 single
       - chapter: IX. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/9`) [container]
       - chapter: X. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/10`) [container]
     - … 10 more
+
+### B: mixed (38)
+
+1. `Fru Bovary`: mixed, book, 6 parts, 0 missing, order scan, proofread
+    - toc: Fru Bovary
+    - chapter: Første del (`Fru Bovary/1`) [container]
+    - text: Fru Bovary: Første del [container]
+    - chapter: Annen del (`Fru Bovary/2`) [container]
+    - text: Fru Bovary: Annen del [container]
+    - chapter: Tredje del (`Fru Bovary/3`) [container]
+    - text: Fru Bovary: Tredje del [container]
+1. `Samlede Skrifter (Moe)`: mixed, book, 4 parts, 117 missing, order toc, proofread
+    - toc: Samlede Skrifter (Moe)
+    - text: Indledningsdigt [container]
+    - text: Fanitullen [container]
+    - text: Om Vaaren (`Om Vaaren (Moe)`) [container]
+    - chapter: Forord (`Samlede Skrifter (Moe)/Forord`) [container]
+1. `Symra`: mixed, book, 26 parts, 0 missing, order toc, proofread
+    - toc: Symra
+    - text: Fyrestev [container]
+    - text: Gamle Norig [container]
+    - text: Nordmannen [container]
+    - text: Dei gamle Fjelli [container]
+    - text: Heimvegen [container]
+    - text: Gamle Grendi [container]
+    - text: Vaardagen [container]
+    - text: Sumarkvelden [container]
+    - text: Haustvisa [container]
+    - text: Hugen [container]
+    - text: Von og Minne [container]
+    - … 15 more
+1. `Det norske Folks Historie`: mixed, book, 691 parts, 23 missing, order scan-volumes, proofread
+    - toc: Det norske Folks Historie
+    - volume: I-1-1 (`Det norske Folks Historie/1`) [hierarchy]
+      - chapter: 1. Norges geographiske og physiske Forhold. (`Det norske Folks Historie/1/1`) [container]
+      - chapter: 2. Urbeboere. Finner. Oldtidslevninger. (`Det norske Folks Historie/1/2`) [container]
+      - chapter: 3. Levninger fra ældre Befolkninger i Sydsverige og Danmark. (`Det norske Folks Historie/1/3`) [container]
+      - chapter: 4. Nordmændene og den germaniske Stamme. (`Det norske Folks Historie/1/4`) [container]
+      - chapter: 5. Germanernes ældste Hjem og Omgivelser. Kelter, Skyther, Tschuder. (`Det norske Folks Historie/1/5`) [container]
+      - chapter: 6. Grækernes og Romernes Efterretninger om Norden. (`Det norske Folks Historie/1/6`) [container]
+      - chapter: 7. Oldgermaniske Vandringssagn. (`Det norske Folks Historie/1/7`) [container]
+      - chapter: 8. Indvandringsvejen. Gardarike. Russer. (`Det norske Folks Historie/1/8`) [container]
+      - chapter: 9. De germaniske Folks Navn i Almindelighed, og vore Forfædres i Særdeleshed. (`Det norske Folks Historie/1/9`) [container]
+      - chapter: 10. Goterne og den gotiske Kulturperiode i Norden. Gauter, Daner o. fl. (`Det norske Folks Historie/1/10`) [container]
+    - … 680 more
+1. `Historisk Tidsskrift`: mixed, collection, 403 parts, 86 missing, order scan-volumes, unproofread
+    - toc: Historisk Tidsskrift
+    - volume: Andet Bind (`Historisk Tidsskrift/Anden Række/Andet Bind`) [hierarchy]
+      - text: Om nogle middelalderske Slægter i det vestenfjeldske Norge [container]
+      - text: To utrykte Digte af Petter Dass [container]
+      - text: Stiftsprovst Dr. Theol. Otto Holmboes Dagbogs-Optegnelser 1751–1773 [container]
+      - text: Armfeldts Tog Nordenfjelds 1718 (`Armfeldts tog nordenfjelds 1718`) [container]
+      - text: Vikingetogenes tidligste Udgangspunkter [container]
+      - text: Erik af Pommerns, Danmarks, Sveriges og Norges Konges, Giftermaal med Philippa, Prindsesse af England [container]
+      - text: Den Bergenske Biskop Arnes Bibliothek [container]
+      - text: Uddrag af Bergens Kongsgaards Regnskaber 1516–23 (`Uddrag af Bergens kongsgaards regnskaber 1516–23`) [container]
+      - text: Ravnebryllupet i Kraakelund [container]
+      - text: Om en paatænkt Restauration af Throndhjems Domkirke i Begyndelsen af det 18de Aarhundrede (`Om en paatænkt restauration af Trondhjems domkirke i begyndelsen af det 18de aarhundrede`) [container]
+    - … 392 more
+1. `Statholderen i Judæa og andre noveller`: mixed, book, 18 parts, 0 missing, order scan, proofread
+    - toc: Statholderen i Judæa og andre noveller
+    - text: De dødes messe. (`Statholderen i Judæa og andre noveller/01`) [container]
+    - chapter: 01 (`Statholderen/01`) [container]
+    - text: Gestas. (`Statholderen i Judæa og andre noveller/02`) [container]
+    - chapter: 02 (`Statholderen/02`) [container]
+    - text: Leslie Wood. (`Statholderen i Judæa og andre noveller/03`) [container]
+    - chapter: 03 (`Statholderen/03`) [container]
+    - text: Scolastica. (`Statholderen i Judæa og andre noveller/04`) [container]
+    - chapter: 04 (`Statholderen/04`) [container]
+    - text: Statholderen i Judæa. (`Statholderen i Judæa og andre noveller/05`) [container]
+    - chapter: 05 (`Statholderen/05`) [container]
+    - text: Legenden om den hellige Oliverie og den hellige Liberette. (`Statholderen i Judæa og andre noveller/06`) [container]
+    - … 7 more
+1. `Nils Kjær Samlede skrifter`: mixed, collection, 20 parts, 4 missing, order scan, proofread
+    - toc: Nils Kjær Samlede skrifter
+    - volume: Bind 5. Epistler og noveller (`Nils Kjær Samlede skrifter/5`) [container]
+      - text: EPISTLER (`Nils Kjær Epistler`) [container]
+      - text: Hugormen [container]
+      - text: Epistel angaaende sjøormen [container]
+      - text: Magsveir [container]
+      - text: Julibrev fra Son [container]
+      - text: Rousseaus skygge [container]
+      - text: Vestlandsreise [container]
+      - text: Brekkestøbreve [container]
+      - text: Schillers svigermor [container]
+      - text: Den stjaalne frak [container]
+    - … 9 more
+1. `Tragedier (Sofokles)`: mixed, collection, 9 parts, 0 missing, order toc, unproofread
+    - front: Tragedier (Sofokles)
+    - chapter: Fortale (`Tragedier (Sofokles)/Fortale`) [container]
+    - chapter: Indledning (`Tragedier (Sofokles)/Indledning`) [container]
+    - text: Kong Oidipus [container]
+    - text: Oidipus i Kolonos [container]
+    - text: Antigone [container]
+    - text: Elektra [container]
+    - text: Kvinderne i Trakis [container]
+    - text: Aias [container]
+    - text: Filoktetes [container]
+1. `Heimskringlam`: mixed, book, 6 parts, 0 missing, order toc, proofread
+    - front: Heimskringlam
+    - text: Prologus (`Heimskringlam/Prologus`) [container]
+    - text: Heimskringlam (`Heimskringlam (tekst)`) [container]
+    - text: Almindelige bemærkninger (`Heimskringlam/Almindelige bemærkninger`) [container]
+    - chapter: Tillæg (`Heimskringlam/Tillæg`) [container]
+    - text: Bilag (`Heimskringlam/Bilag`) [container]
+    - text: Slutbemærkning (`Heimskringlam/Slutbemærkning`) [container]
+1. `Blandkorn`: mixed, book, 47 parts, 0 missing, order toc, unproofread
+    - toc: Blandkorn
+    - text: Fyreord (`Blandkorn/Fyreord`) [container]
+    - text: Attersyn [container]
+    - text: Den gamle Kona [container]
+    - text: Klungen [container]
+    - text: D’er leidt [container]
+    - text: D’er gildt [container]
+    - chapter: 1859 [container]
+    - text: Det var no Du det [container]
+    - text: Løn som forskyldt [container]
+    - text: Du lyt faa med deg dei Bedste [container]
+    - text: D’er Strid med det [container]
+    - … 36 more
+1. `Vidar`: mixed, collection, 13 parts, 34 missing, order scan-volumes, unproofread
+    - toc: Vidar
+    - volume: 1887 (`Vidar/1887`) [hierarchy]
+      - text: Om Jury [container]
+      - text: Stemninger i Danmark og Norge i Anledning af og nærmest efter Adskillelsen [container]
+      - text: Anton Martin Schweigaards Dom om Andreas Høyer [container]
+      - text: Et utrykt Brev fra Henrik Wergeland [container]
+      - text: En Hexeproces fra Østerdalen i det 17de Aarhundrede [container]
+      - text: Om Johan Nicolai Madvig [container]
+    - chapter: 1888 (`Vidar/1888`) [hierarchy]
+    - text: Fra Professor Christian Lassens Ungdom [container]
+    - text: Paul Botten Hansen (Daae) [container]
+    - chapter: 1889 (`Vidar/1889`) [hierarchy]
+    - … 2 more
+1. `Amok`: mixed, book, 3 parts, 0 missing, order toc, proofread
+    - front: Amok
+    - text: Stefan Zweig (`Amok/00`) [container]
+    - text: Amokløper [container]
+    - text: Brennende hemmelighet [container]
+1. `Efterlatte arbeider`: mixed, book, 31 parts, 0 missing, order scan, proofread
+    - front: Efterlatte arbeider
+    - chapter: 01 (`Efterladte arbeider/01`) [container]
+    - text: Katungen døde (ca. 1891). (`Efterlatte arbeider/01`) [container]
+    - chapter: 02 (`Efterladte arbeider/02`) [container]
+    - text: Svenskebirka (ca. 1896). (`Efterlatte arbeider/02`) [container]
+    - chapter: 03 (`Efterladte arbeider/03`) [container]
+    - text: Ørnen (ca. 1896). (`Efterlatte arbeider/03`) [container]
+    - chapter: 04 (`Efterladte arbeider/04`) [container]
+    - text: Digerheim Herreborg (1896). (`Efterlatte arbeider/04`) [container]
+    - chapter: 05 (`Efterladte arbeider/05`) [container]
+    - text: Lidt om en Herregaardsslegt (1897). (`Efterlatte arbeider/05`) [container]
+    - chapter: 06 (`Efterladte arbeider/06`) [container]
+    - … 20 more
+1. `Levende og døde`: mixed, book, 29 parts, 0 missing, order toc, unproofread
+    - toc: Levende og døde
+    - text: SMAA PORTRÆTTER (`Levende og døde/Smaa portrætter`) [container]
+    - text: En gammel kjærlighetshistorie [container]
+    - text: Halfdan Kjerulf [container]
+    - text: Welhaven (`Welhaven (Collett Vogt)`) [container]
+    - text: H. C. Andersen [container]
+    - chapter: 1876 [container]
+    - text: Thomasine Lie [container]
+    - text: Portrætter [container]
+    - text: Da Erik Vullum døde [container]
+    - text: Holger Drachmann [container]
+    - text: Fredrik Collett [container]
+    - … 18 more
+1. `Nyere Digte`: mixed, book, 55 parts, 13 missing, order toc, proofread
+    - toc: Nyere Digte
+    - chapter: I (`Nyere Digte/I`) [container]
+    - text: Suttungs Mjød [container]
+    - text: Ved Havet (`Ved Havet (Nyere Digte)`) [container]
+    - text: Elveløbet [container]
+    - text: En Vaarnat [container]
+    - text: Hvile i Skoven [container]
+    - text: Den forladte Kirke [container]
+    - text: Svindende Haab [container]
+    - text: Troubadouren [container]
+    - text: Alfernes Hvisken [container]
+    - text: Paa Fjeldet [container]
+    - … 44 more
+1. `Nye Digte`: mixed, book, 62 parts, 0 missing, order toc, proofread
+    - toc: Nye Digte
+    - text: Poesien [container]
+    - chapter: I (`Nye Digte/I`) [container]
+    - text: Visen om stolt Kunigunde [container]
+    - text: Morgensang [container]
+    - text: Og atter ser jeg [container]
+    - text: Andagt [container]
+    - text: Lær mig, o skov [container]
+    - text: Stilhed [container]
+    - text: Dengang du gik [container]
+    - text: I de forunderlige, blonde nætter [container]
+    - text: Samtale [container]
+    - … 51 more
+1. `Tragedier (Evripides)`: mixed, collection, 6 parts, 0 missing, order toc, unproofread
+    - front: Tragedier (Evripides)
+    - chapter: Indledning (`Tragedier (Evripides)/Indledning`) [container]
+    - text: Medea [container]
+    - text: Ifigeneia i Avlis [container]
+    - text: Ifigeneia i tavrernes land [container]
+    - text: Hippolytos [container]
+    - text: Bakkantinderne [container]
+1. `Bogtrykkeren Benjamin Franklin`: mixed, book, 8 parts, 0 missing, order toc, proofread
+    - front: Bogtrykkeren Benjamin Franklin
+    - chapter: Forord (`Bogtrykkeren Benjamin Franklin/Forord`) [container]
+    - chapter: Indledning (`Bogtrykkeren Benjamin Franklin/1`) [container]
+    - text: Uddrag af Benjamin Franklins Selvbiografi (`Bogtrykkeren Benjamin Franklin/2`) [container]
+    - text: Veien til Velstand [container]
+    - text: Gode Raad til en ung Haandverker [container]
+    - text: Nogle Vink for de som gjerne vil blive velstaaende [container]
+    - text: Fløiten [container]
+    - text: Middel til at fylde alle Folks Lommer med Penge [container]
+1. `Samtiden`: mixed, collection, 39 parts, 77 missing, order scan-volumes, unproofread
+    - toc: Samtiden
+    - volume: Første aargang (`Samtiden/1890`) [container]
+      - text: Om drømme [container]
+      - text: „På Guds Veje“ (`Om „På Guds Veje“`) [container]
+      - text: Home-rule-bevægelsen i Irland [container]
+      - text: Russiske sekter [container]
+      - text: Clemenceau [container]
+      - text: Under skvætlæderet [container]
+      - text: Magdalene Thoresen [container]
+      - text: Fra Kjøbenhavn [container]
+      - text: En uheldig statsunderstøttelse [container]
+      - text: Fyrst Kropotkin [container]
+    - … 28 more
+1. `Syn og segn`: mixed, collection, 13 parts, 41 missing, order toc, unproofread
+    - toc: Syn og segn
+    - volume: Fyrste aargangen (`Syn og segn/1895`) [hierarchy]
+      - text: Store-Jon Aakre [container]
+      - text: Ho Rangdi [container]
+      - text: Friedrich Nietzsche [container]
+    - volume: Andre aargangen (`Syn og segn/1896`) [hierarchy]
+      - text: Anders Rongli [container]
+      - text: Eit møte [container]
+      - text: Hansliguten [container]
+      - text: Daa stor-uksen skulde slagtast [container]
+      - text: Til fots [container]
+      - text: Stormen (Hovden) [container]
+    - … 2 more
+1. `Den gamle Richards Kunst at blive rig og lykkelig tilligemed godt Raad til en ung Mand`: mixed, book, 3 parts, 0 missing, order toc, proofread
+    - front: Den gamle Richards Kunst at blive rig og lykkelig tilligemed godt Raad til en ung Mand
+    - chapter: Forord (`Den gamle Richards Kunst at blive rig og lykkelig tilligemed godt Raad til en ung Mand/Forord`) [container]
+    - text: Den gamle Richards Kunst at blive rig og lykkelig [container]
+    - text: Godt Raad til en ung Mand [container]
+1. `Samlede Værker (Kielland)`: mixed, book, 157 parts, 3 missing, order scan-volumes, proofread
+    - toc: Samlede Værker (Kielland)
+    - volume: Første Bind (`Samlede Værker (Kielland)/1`) [container]
+      - text: Novelletter [container]
+      - text: Haabet er lysegrønt [container]
+      - volume: Garman og Worse [container]
+        - chapter: XXI. (`Garman og Worse/21`) [hierarchy]
+        - chapter: XXII. (`Garman og Worse/22`) [hierarchy]
+        - chapter: XXIII. (`Garman og Worse/23`) [hierarchy]
+        - chapter: XXIV. (`Garman og Worse/24`) [hierarchy]
+        - chapter: XXV. (`Garman og Worse/25`) [hierarchy]
+        - chapter: XXVI. (`Garman og Worse/26`) [hierarchy]
+      - text: Tre Smaastykker for Scenen [container]
+    - … 146 more
+1. `I gamle Daagaa`: mixed, book, 94 parts, 0 missing, order toc, unproofread
+    - front: I gamle Daagaa
+    - text: Huldre i Sjoli’n [container]
+    - text: Huldre ve Flaakka [container]
+    - text: Brings-Huldre [container]
+    - text: Skardaa-Gubbin og Darthus-Kall’n [container]
+    - text: Jenta fraa Heringsta som vart inn-tikjin [container]
+    - text: Bess-Leiken [container]
+    - text: Brure fraa Ransverk (`Brure fraa Ransverk (Kleiven)`) [container]
+    - text: Trolle paa Heidals-Skogje og Blankenborg-Vetlgutann [container]
+    - text: Prestberg-Jutul’n og Blessom’n [container]
+    - text: Gjestbo’s-Hopen paa Staalom. Ho Eli Fugelsang [container]
+    - text: Huldre i Ellingsbø-Rusten [container]
+    - … 83 more
+1. `Blandt Nordpolens Naboer`: mixed, book, 13 parts, 0 missing, order toc, proofread
+    - front: Blandt Nordpolens Naboer
+    - chapter: Indledning (`Blandt Nordpolens Naboer/1`) [container]
+    - text: De to Peary-expeditioner (`Blandt Nordpolens Naboer/2`) [container]
+    - text: En fattig kyst (`Blandt Nordpolens Naboer/3`) [container]
+    - text: De indfødte ved Smiths sund (`Blandt Nordpolens Naboer/4`) [container]
+    - text: Jagt (`Blandt Nordpolens Naboer5/`) [container]
+    - text: Eskimoernes slædereiser. Den nord-grønlandske hund (`Blandt Nordpolens Naboer/6`) [container]
+    - text: Nordover paa den grønlandske indlandsis (`Blandt Nordpolens Naboer/7`) [container]
+    - text: Paa vandring mod nye kyster (`Blandt Nordpolens Naboer/8`) [container]
+    - text: Hjemover gjennem skyerne (`Blandt Nordpolens Naboer/9`) [container]
+    - text: Eskimoernes levevis, skikke, karakter, moral og sociale forhold (`Blandt Nordpolens Naboer/10`) [container]
+    - text: Intelligents og kunstnerisk begavelse. Religiøse forestillinger, skikke etc. (`Blandt Nordpolens Naboer/11`) [container]
+    - … 2 more
+1. `Mauritz Hansens Noveller og Fortællinger`: mixed, book, 96 parts, 6 missing, order scan-volumes, proofread
+    - toc: Mauritz Hansens Noveller og Fortællinger
+    - volume: Første Bind (`Mauritz Hansens Noveller og Fortællinger/1`) [container]
+      - text: Den Unævnelige [container]
+      - text: Emil [container]
+      - text: Fødselsdagsgaven [container]
+      - text: Othar af Bretagne [container]
+      - text: Luren [container]
+      - text: Bergmanden (`Bergmanden (Maurits Hansen)`) [container]
+      - text: Snedkerkonen [container]
+      - text: Svigerdatteren [container]
+      - text: Den gale Christian [container]
+      - text: De to Søstre [container]
+    - … 85 more
+1. `Norsk Tidsskrift for Videnskab og Litteratur`: mixed, collection, 163 parts, 27 missing, order toc, unproofread
+    - toc: Norsk Tidsskrift for Videnskab og Litteratur
+    - volume: Første Aargang (`Norsk Tidsskrift for Videnskab og Litteratur/1`) [hierarchy]
+      - chapter: Forord (`Forord (Norsk Tidsskrift for Videnskab og Litteratur 1)`) [container]
+      - text: Brudstykker af Kong Haakon Magnussøns Historie (`Brudstykker af Kong Haakon V Magnussøns Historie`) [container]
+      - text: Udledelse af nogle norske Sted- og Folkenavne [container]
+      - text: i vor Kirke (`Kroningsaktens Betydning i vor Kirke`) [container]
+      - text: Bidrag til Norges Historie under Unionen [container]
+      - text: Nordmændenes Boliger og daglige Sysler [container]
+      - text: B. Moes Tidsskrift for norsk Personalhistorie [container]
+      - text: Norge i Tegninger. 1ste Hefte [container]
+      - text: Nor, Tidsskrift for Videnskab og Litteratur [container]
+      - text: Norges gamle Love för 1387 (`Norges gamle Love før 1387 (Fritzner)`) [container]
+    - … 152 more
+1. `Martyra`: mixed, book, 21 parts, 0 missing, order toc, proofread
+    - toc: Martyra
+    - text: Roger Bacon [toc]
+    - text: Guttenberg [toc]
+    - text: Ramus [toc]
+    - text: Giordano Bruno [toc]
+    - text: Thomas Campanella [toc]
+    - text: Etienne Dolet [toc]
+    - text: Galilei [toc]
+    - text: Bernard Pallissy [toc]
+    - text: Blaine Pascal [toc]
+    - text: Denis Papin [toc]
+    - text: John Fitch [toc]
+    - … 10 more
+1. `Populær-videnskabelige Foredrag`: mixed, collection, 9 parts, 0 missing, order scan, proofread
+    - toc: Populær-videnskabelige Foredrag
+    - chapter: Forord (`Populær-videnskabelige Foredrag/Forord`) [container]
+    - chapter: Forord (`Populær-videnskabeligeForedrag/Forord`) [container]
+    - text: Irlands gamle Aandskultur [container]
+    - text: Braavalla-Slaget [container]
+    - text: Nordboerne i Irland [container]
+    - text: Piræus-Løven i Venedig og dens Indskrifter [container]
+    - text: Om Sprogstriden [container]
+    - text: Samhold i Norden [container]
+    - text: Mindeord om P. A. Munch [container]
+1. `Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge`: mixed, book, 24 parts, 15 missing, order scan-volumes, unproofread
+    - toc: Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge
+    - chapter: Andet Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/2`) [hierarchy]
+    - chapter: 3 (`Om Mag. Niels Svendsen Krønikes Stridigheder med Præsteskabet i Christiania i Aarene 1642–1652/3`) [container]
+    - text: Mag. Jørgen Erichsson, den tredje evangeliske Superintendent i Stavanger Stift [container]
+    - text: Bidrag til den tromsøiske „Vækkelses“ Historie [container]
+    - text: Et Bidrag til Mag. Kjeld Stubs Historie [container]
+    - chapter: Fjerde Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/4`) [hierarchy]
+    - chapter: 2 (`Syv throndhjemske Præsters Bønskrifter til Kirkestyrelsen om Skjærpelse i Kirketugten og Oprettelse af en Kirkeret/2`) [container]
+    - chapter: Første Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/1`) [hierarchy]
+    - chapter: 1 (`Om Mag. Niels Svendsen Krønikes Stridigheder med Præsteskabet i Christiania i Aarene 1642–1652/1`) [container]
+    - chapter: 2 (`Om Mag. Niels Svendsen Krønikes Stridigheder med Præsteskabet i Christiania i Aarene 1642–1652/2`) [container]
+    - chapter: Niende Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/9`) [hierarchy]
+    - … 13 more
+1. `Strenglege`: mixed, book, 18 parts, 0 missing, order toc, unproofread
+    - front: Strenglege
+    - text: Den oldnorske Oversætters Fortale (`Strenglege/Den oldnorske Oversætters Fortale`) [container]
+    - text: Den franske Samlers Fortale (`Strenglege/Den franske Samlers Fortale`) [container]
+    - text: Gujamars Sang [container]
+    - text: Eskjas Sang [container]
+    - text: Ekvitans Sang [container]
+    - text: Bisklarets Sang [container]
+    - text: Laustiks Sang [container]
+    - text: Desirés Sang [container]
+    - text: Chetovels Sang [container]
+    - text: Douns Sang [container]
+    - text: To elskendes Sang [container]
+    - … 7 more
+
+### D: virtual roots (34)
+
+1. `10-099305-MED-OTIR`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: 04 (`10-099305-MED-OTIR/04`)
+1. `Afholdssagens historie`: virtual, book, 5 parts, 0 missing, order scan, proofread
+    - chapter: Forord (`Afholdssagens historie/Forord`)
+    - chapter: I (`Afholdssagens historie/I`) [hierarchy]
+    - chapter: II (`Afholdssagens historie/II`) [hierarchy]
+    - chapter: III (`Afholdssagens historie/III`) [hierarchy]
+    - chapter: XXII (`Afholdssagens historie/XXII`) [hierarchy]
+1. `Sigurd Slembe`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: 1 (`Sigurd Slembe/1/1`)
+1. `Ezechiels Syner`: virtual, collection, 1 parts, 0 missing, order single, unknown, excluded under-300-bytes
+    - text: Résumé på fransk (`Ezechiels Syner/Résumé`)
+1. `Topografisk-statistisk beskrivelse over Finmarkens amt`: virtual, book, 5 parts, 3 missing, order scan-volumes, proofread
+    - volume: 1 (`Topografisk-statistisk beskrivelse over Finmarkens amt/1`)
+      - chapter: Innledning (`Topografisk-statistisk beskrivelse over Finmarkens amt/1/2`) [container]
+      - chapter: 3 (`Topografisk-statistisk beskrivelse over Finmarkens amt/1/3`) [container]
+    - volume: 2 (`Topografisk-statistisk beskrivelse over Finmarkens amt/2`) [hierarchy]
+      - text: Finnekonger (`Topografisk-statistisk beskrivelse over Finmarkens amt/2/67`) [container]
+1. `Illustreret Norges Historie`: virtual, book, 7 parts, 0 missing, order scan, proofread
+    - chapter: 17 (`Illustreret Norges Historie/4/17`)
+    - chapter: 18 (`Illustreret Norges Historie/4/18`) [hierarchy]
+    - chapter: 19 (`Illustreret Norges Historie/4/19`) [hierarchy]
+    - chapter: 20 (`Illustreret Norges Historie/4/20`) [hierarchy]
+    - chapter: 21 (`Illustreret Norges Historie/4/21`) [hierarchy]
+    - chapter: 22 (`Illustreret Norges Historie/4/22`) [hierarchy]
+    - chapter: 23 (`Illustreret Norges Historie/4/23`) [hierarchy]
+1. `Det nye Testamentet (1886)`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Juleevangeliet (`Det nye Testamentet (1886)/Juleevangeliet`)
+1. `Norske kongesagaer`: virtual, book, 4 parts, 0 missing, order scan, proofread
+    - text: Oversætterens fortale (`Norske kongesagaer/Oversætterens fortale`)
+    - text: Snorre Sturlasøns fortale (`Norske kongesagaer/Snorre Sturlasøns fortale`) [hierarchy]
+    - text: Ynglinge-saga (`Norske kongesagaer/Ynglinge-saga`) [hierarchy]
+    - text: Halvdan Svartes saga (`Norske kongesagaer/Halvdan Svartes saga`) [hierarchy]
+1. `En Sommer i Finnmarken, Russisk Lapland og Nordkarelen`: virtual, book, 2 parts, 0 missing, order scan, proofread
+    - chapter: Forord (`En Sommer i Finnmarken, Russisk Lapland og Nordkarelen/Forord`)
+    - chapter: 1 (`En Sommer i Finnmarken, Russisk Lapland og Nordkarelen/1`) [hierarchy]
+1. `08-073828PRI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
+    - chapter: 06 (`08-073828PRI-OTIR/06`)
+1. `08-156741TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
+    - chapter: 01 (`08-156741TVI-OTIR/01`)
+1. `Topografisk-statistisk beskrivelse over Bratsberg amt`: virtual, book, 6 parts, 7 missing, order scan-volumes, proofread
+    - volume: 1 (`Topografisk-statistisk beskrivelse over Bratsberg amt/1`)
+      - chapter: 1 (`Topografisk-statistisk beskrivelse over Bratsberg amt/1/1`) [container]
+      - text: Beliggenhed (`Topografisk-statistisk beskrivelse over Bratsberg amt/1/2`) [container]
+      - text: Gammel norsk tidsregning og primstaven (`Topografisk-statistisk beskrivelse over Bratsberg amt/1/95`) [container]
+    - volume: 2 (`Topografisk-statistisk beskrivelse over Bratsberg amt/2`) [hierarchy]
+      - text: Vinje herred (`Topografisk-statistisk beskrivelse over Bratsberg amt/30`) [container]
+1. `Ordbog over det gamle norske Sprog`: virtual, book, 6 parts, 0 missing, order scan, proofread
+    - text: A (`Ordbog over det gamle norske Sprog/A`)
+    - text: a (`Ordbog over det gamle norske Sprog/a`) [hierarchy]
+    - text: á 1 (`Ordbog over det gamle norske Sprog/á 1`) [hierarchy]
+    - text: á 2 (`Ordbog over det gamle norske Sprog/á 2`) [hierarchy]
+    - text: á 3 (`Ordbog over det gamle norske Sprog/á 3`) [hierarchy]
+    - text: at 1 (`Ordbog over det gamle norske Sprog/at 1`) [hierarchy]
+1. `Den kristelige Troeslære i dens Grundtræk`: virtual, book, 4 parts, 0 missing, order scan, proofread
+    - chapter: Forord (`Den kristelige Troeslære i dens Grundtræk/Forord`)
+    - chapter: Indledning (`Den kristelige Troeslære i dens Grundtræk/Indledning`) [hierarchy]
+    - chapter: 1 (`Den kristelige Troeslære i dens Grundtræk/1`) [hierarchy]
+    - chapter: 2 (`Den kristelige Troeslære i dens Grundtræk/2`) [hierarchy]
+1. `Almuens Sanger`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - text: Forerindring (`Almuens Sanger/Forerindring`)
+1. `05-130602TVI-OTIR`: virtual, book, 1 parts, 0 missing, order single, unknown
+    - chapter: 06 (`05-130602TVI-OTIR/06`)
+1. `Lappisk Mytologi`: virtual, book, 1 parts, 0 missing, order single, unknown, excluded no-text-pages
+    - chapter: Forord (`Lappisk Mytologi/Forord`)
+1. `Karl Marx`: virtual, book, 3 parts, 0 missing, order scan, proofread
+    - chapter: Forord (`Karl Marx/Forord`)
+    - chapter: 1 (`Karl Marx/1`) [hierarchy]
+    - text: Etterskrift (`Karl Marx/Etterskrift`) [hierarchy]
+1. `11-007057ENE-OTIR`: virtual, document, 1 parts, 0 missing, order single, validated
+    - chapter: 08 (`11-007057ENE-OTIR/08`)
+1. `Niels Klims underjordiske Reise`: virtual, book, 11 parts, 0 missing, order scan, proofread
+    - chapter: Fortale (`Niels Klims underjordiske Reise/Fortale`)
+    - chapter: Første Kapitel (`Niels Klims underjordiske Reise/Første Kapitel`) [hierarchy]
+    - chapter: Andet Kapitel (`Niels Klims underjordiske Reise/Andet Kapitel`) [hierarchy]
+    - chapter: Tredie Kapitel (`Niels Klims underjordiske Reise/Tredie Kapitel`) [hierarchy]
+    - chapter: Fierde Kapitel (`Niels Klims underjordiske Reise/Fierde Kapitel`) [hierarchy]
+    - chapter: Femte Kapitel (`Niels Klims underjordiske Reise/Femte Kapitel`) [hierarchy]
+    - chapter: Siette Kapitel (`Niels Klims underjordiske Reise/Siette Kapitel`) [hierarchy]
+    - chapter: Syvende Kapitel (`Niels Klims underjordiske Reise/Syvende Kapitel`) [hierarchy]
+    - chapter: Ottende Kapitel (`Niels Klims underjordiske Reise/Ottende Kapitel`) [hierarchy]
+    - text: Abelins Tillæg (`Niels Klims underjordiske Reise/Abelins Tillæg`) [hierarchy]
+    - chapter: Efterskrift (`Niels Klims underjordiske Reise/Efterskrift`) [hierarchy]
+1. `Det nye Testamente (1856)`: virtual, collection, 3 parts, 0 missing, order natural, proofread
+    - text: Evangelium paa Christi Fødselsdag (`Det nye Testamente (1856)/Evangelium paa Christi Fødselsdag`)
+    - text: St Johannis 2det Brev (`Det nye Testamente (1856)/St Johannis 2det Brev`) [hierarchy]
+    - text: St Johannis 3die Brev (`Det nye Testamente (1856)/St Johannis 3die Brev`) [hierarchy]
+1. `Ær dæt Fårnuftigt at have Religion`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: Fortale (`Ær dæt Fårnuftigt at have Religion/Fortale`)
+1. `Østers-Kulturen`: virtual, book, 5 parts, 0 missing, order scan, proofread
+    - chapter: 11 (`Østers-Kulturen/11`)
+    - chapter: 12 (`Østers-Kulturen/12`) [hierarchy]
+    - chapter: 13 (`Østers-Kulturen/13`) [hierarchy]
+    - chapter: 14 (`Østers-Kulturen/14`) [hierarchy]
+    - chapter: 15 (`Østers-Kulturen/15`) [hierarchy]
+1. `Brevet til de Ebræer`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: Fortale (`Brevet til de Ebræer/Fortale`)
+1. `Norge i 1814, fra russiske Arkiver`: virtual, book, 3 parts, 0 missing, order scan, proofread
+    - chapter: 1 (`Norge i 1814, fra russiske Arkiver/1`)
+    - chapter: 2 (`Norge i 1814, fra russiske Arkiver/2`) [hierarchy]
+    - chapter: 3 (`Norge i 1814, fra russiske Arkiver/3`) [hierarchy]
+1. `11-098785MED-OTIR`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: 01 (`11-098785MED-OTIR/01`)
+1. `Urd`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Pianist Sigvart Høgh-Nilsen (`Urd/1907/Pianist Sigvart Høgh-Nilsen`)
+1. `Jødedommen`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: 1 (`Jødedommen/1`)
+1. `Gudekvæde`: virtual, book, 2 parts, 0 missing, order scan, validated
+    - text: Forerindring (`Gudekvæde/Forerindring`)
+    - text: Fyriord (`Gudekvæde/Fyriord`) [hierarchy]
+1. `Reisehaandbog over Norge`: virtual, book, 2 parts, 0 missing, order scan, unproofread
+    - chapter: Forord (`Reisehaandbog over Norge/Forord`)
+    - chapter: 1 (`Reisehaandbog over Norge/1`) [hierarchy]
+
+### E: subpage texts reached from a disambiguation or versions page (33)
+
+1. text “Malakias” (`Bibelen (1891)/Profeten Malakias`), part 14 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Juleevangeliet” (`Bibelen (1891)/Juleevangeliet`), part 26 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Johannes’s første almindelige Brev” (`Bibelen (1891)/Johannes's første almindelige Brev`), part 21 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Joel” (`Bibelen (1891)/Profeten Joel`), part 4 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Nahum” (`Bibelen (1891)/Profeten Nahum`), part 9 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Evangelium paa Christi Fødselsdag” (`Det nye Testamente (1856)/Evangelium paa Christi Fødselsdag`), part 0 of `Det nye Testamente (1856)` (collection, 3 parts, 3 texts)
+1. text “Peters andet almindelige Brev” (`Bibelen (1891)/Peters andet almindelige Brev`), part 20 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Ruts Bog” (`Bibelen (1891)/Ruts Bog`), part 1 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Judas’ Brev” (`Det nye Testamente (1883-1889)/Judas' Brev`), part 19 of `Det nye Testamente (1883-1889)` (book, 20 parts, 6 texts)
+1. text “03 (Lukkede dører)” (`11-119207ENE-OTIR/03 (Lukkede dører)`), part 2 of `11-119207ENE-OTIR` (book, 3 parts, 3 texts)
+1. text “Judas’s almindelige Brev” (`Bibelen (1891)/Judas's almindelige Brev`), part 24 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Johannes’s andet Brev” (`Bibelen (1891)/Johannes's andet almindelige Brev`), part 22 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Obadias” (`Bibelen (1891)/Profeten Obadias`), part 6 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Jonas” (`Bibelen (1891)/Profeten Jonas`), part 7 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Ruths Bog” (`Trende Bibelske Bøger/Ruths Bog`), part 2 of `Trende Bibelske Bøger` (book, 3 parts, 3 texts)
+1. text “Apostelen Pauli Brev til Romararne” (`Det nye Testamente (1883-1889)/Brev til Romararne`), part 11 of `Det nye Testamente (1883-1889)` (book, 20 parts, 6 texts)
+1. text “Paulus’s Brev til Filemon” (`Bibelen (1891)/Paulus's Brev til Filemon`), part 17 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Evangeliet etter Markus” (`Det nye Testamente (1883-1889)/Markus`), part 4 of `Det nye Testamente (1883-1889)` (book, 20 parts, 6 texts)
+1. text “Johannes’s Aabenbaring” (`Bibelen (1891)/Johannes's Aabenbaring`), part 25 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Prædikerens Bog” (`Bibelen (1891)/Prædikerens Bog`), part 2 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Mika” (`Bibelen (1891)/Profeten Mika`), part 8 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “03 (Uniform)” (`11-119207ENE-OTIR/03 (Uniform)`), part 1 of `11-119207ENE-OTIR` (book, 3 parts, 3 texts)
+1. text “Paulus’s Brev til Titus” (`Bibelen (1891)/Paulus's Brev til Titus`), part 16 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Peters første almindelige Brev” (`Bibelen (1891)/Peters første almindelige Brev`), part 19 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Haggaj” (`Bibelen (1891)/Profeten Haggaj`), part 12 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Johannes’s tredje Brev” (`Bibelen (1891)/Johannes's tredje almindelige Brev`), part 23 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Amos” (`Bibelen (1891)/Profeten Amos`), part 5 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Paulus’s andet Brev til Tessalonikerne” (`Bibelen (1891)/Paulus's andet Brev til Tessalonikerne`), part 15 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Sakarias” (`Bibelen (1891)/Profeten Sakarias`), part 13 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Zefanias” (`Bibelen (1891)/Profeten Zefanias`), part 11 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+
+### all searchable subpage texts (chapter titles that the label patterns miss show up here) (3,683)
+
+1. text “Reiseskizzer.” (`Ephemerer/21`), part 21 of `Ephemerer` (book, 21 parts, 21 texts)
+1. text “Abascal” (`Norsk Haandlexikon for almennyttige Kundskaber/Abascal`), part 158 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
+1. text “Ferdmanns-Kvila” (`I Heimegrendi/2`), part 2 of `I Heimegrendi` (book, 11 parts, 11 texts)
+1. text “Aldstone-Moor” (`Norsk Haandlexikon for almennyttige Kundskaber/Aldstone-Moor`), part 697 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
+1. text “Hvorfor knælte han” (`Negeren med de hvite hænder/30`), part 30 of `Negeren med de hvite hænder` (book, 39 parts, 39 texts)
+1. text “§ 14.” (`De norske Klostres Historie i Middelalderen/3/14`), part 35 of `De norske Klostres Historie i Middelalderen` (book, 58 parts, 56 texts)
+1. text “Alen” (`Norsk Haandlexikon for almennyttige Kundskaber/Alen`), part 703 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
+1. text “Holbergs gamle Dage” (`Ludvig Holberg (Daae)/9`), part 9 of `Ludvig Holberg (Daae)` (book, 10 parts, 9 texts)
+1. text “Stallo-vagge” (`Lappiske Eventyr og Folkesagn/Stallo-vagge`), part 38 of `Lappiske Eventyr og Folkesagn` (book, 53 parts, 52 texts)
+1. text “Paulus’s Brev til Filemon” (`Bibelen (1891)/Paulus's Brev til Filemon`), part 17 of `Bibelen (1891)` (book, 26 parts, 26 texts)
+1. text “Norgesbannerets Drøm” (`Digte (Lie)/04`), part 4 of `Digte (Lie)` (book, 28 parts, 28 texts)
+1. text “Albatani” (`Norsk Haandlexikon for almennyttige Kundskaber/Albatani`), part 627 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
+1. text “Akiba” (`Norsk Haandlexikon for almennyttige Kundskaber/Akiba`), part 551 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
+1. text “SLUTNING.” (`Fjerdemand/42`), part 42 of `Fjerdemand` (book, 42 parts, 42 texts)
+1. text “Alcobaça” (`Norsk Haandlexikon for almennyttige Kundskaber/Alcobaça`), part 677 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
+1. text “Viktor Rydberg” (`Essays. Fremmede Forfattere/01`), part 1 of `Essays. Fremmede Forfattere` (book, 8 parts, 8 texts)
+1. text “Fogden i Vadsø, som gjorde sig til en Stallo” (`Lappiske Eventyr og Folkesagn/Fogden i Vadsø, som gjorde sig til en Stallo`), part 33 of `Lappiske Eventyr og Folkesagn` (book, 53 parts, 52 texts)
+1. text “FRITZI OG LOTTE” (`Storhertuginnen av Speilsalen/33`), part 33 of `Storhertuginnen av Speilsalen` (book, 37 parts, 37 texts)
+1. text “Vildt” (`Lærebog i de forskjellige Grene af Huusholdningen/31`), part 31 of `Lærebog i de forskjellige Grene af Huusholdningen` (book, 63 parts, 62 texts)
+1. text “Nye Svenske Intriger. Kronprindsens Besøg 1788. Stemninger i Christiania under den franske Revolution” (`Det gamle Christiania/16`), part 16 of `Det gamle Christiania` (book, 22 parts, 21 texts)
+1. text “Albendorf” (`Norsk Haandlexikon for almennyttige Kundskaber/Albendorf`), part 634 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
+1. text “Adramyttium” (`Norsk Haandlexikon for almennyttige Kundskaber/Adramyttium`), part 346 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
+1. text “Amrit” (`Norsk Haandlexikon for almennyttige Kundskaber/Amrit`), part 1067 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
+1. text “Adolf af Nassau” (`Norsk Haandlexikon for almennyttige Kundskaber/Adolf af Nassau`), part 335 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
+1. text “Aar og Dag” (`Norsk Haandlexikon for almennyttige Kundskaber/Aar og Dag`), part 129 of `Norsk Haandlexikon for almennyttige Kundskaber` (collection, 1,138 parts, 1,136 texts)
+1. text “Slutnings-Ord” (`Excentriske Prædikanter/Slutt`), part 1 of `Excentriske Prædikanter` (book, 2 parts, 1 texts)
+1. text “Troerne drives bort fra skibene.” (`Iliaden/15`), part 31 of `Iliaden` (book, 50 parts, 49 texts)
+1. text “§ 1.” (`De norske Klostres Historie i Middelalderen/3/1`), part 22 of `De norske Klostres Historie i Middelalderen` (book, 58 parts, 56 texts)
+1. text “Vedlegg 8” (`Anbefaling av en sunnhetsmerkeordning/Vedlegg 8`), part 20 of `Anbefaling av en sunnhetsmerkeordning` (document, 27 parts, 27 texts)
+1. text “Andre akt” (`John Gabriel Borkman/Andre akt`), part 3 of `John Gabriel Borkman` (book, 5 parts, 2 texts)
+
+### C: oversized (11)
+
 1. `Realitets-Procedure og Dom i Rigsretssagen imod Hs. Excellence Statsminister m. m. Løvenskiold`: single, single, 1 parts, 0 missing, order –, proofread
     - text: Realitets-Procedure og Dom i Rigsretssagen imod Hs. Excellence Statsminister m. m. Løvenskiold
+1. `Norske Rigs-Registranter`: subpages, book, 19 parts, 11 missing, order single, unproofread
+    - front: Norske Rigs-Registranter
+    - volume: Første Bind (`Norske Rigs-Registranter/1`) [hierarchy]
+      - chapter: Forord (`Norske Rigs-Registranter/I/Forord`) [container]
+      - text: Frederik den 1ste (`Norske Rigs-Registranter/Frederik den 1ste`) [container]
+      - text: Christian den 3die (`Norske Rigs-Registranter/Christian den 3die`) [container]
+      - chapter: 1559 (`Norske Rigs-Registranter/1559`) [container]
+      - chapter: 1560 (`Norske Rigs-Registranter/1560`) [container]
+      - chapter: 1561 (`Norske Rigs-Registranter/1561`) [container]
+      - chapter: 1562 (`Norske Rigs-Registranter/1562`) [container]
+      - chapter: 1563 (`Norske Rigs-Registranter/1563`) [container]
+      - chapter: 1564 (`Norske Rigs-Registranter/1564`) [container]
+      - chapter: 1565 (`Norske Rigs-Registranter/1565`) [container]
+    - … 8 more
 1. `Ordbog over det norske Folkesprog`: subpages, book, 32 parts, 0 missing, order toc, proofread
     - toc: Ordbog over det norske Folkesprog
     - text: Tittel (`Ordbog over det norske Folkesprog/Tittel`) [container]
@@ -1237,6 +1133,76 @@ Rows count multi-part works only, one row per part plus the root row. 639 single
     - text: F (`Ordbog over det norske Folkesprog/F`) [container]
     - text: G (`Ordbog over det norske Folkesprog/G`) [container]
     - … 21 more
+1. `Angaaende Forandringer i Lovgivningen om Husmænd`: single, book, 1 parts, 0 missing, order –, proofread
+    - text: Angaaende Forandringer i Lovgivningen om Husmænd
+1. `En Krønike om Erkebiskopperne i Nidaros`: single, book, 1 parts, 0 missing, order –, unproofread
+    - text: En Krønike om Erkebiskopperne i Nidaros
+1. `Historisk Tidsskrift`: mixed, collection, 403 parts, 86 missing, order scan-volumes, unproofread
+    - toc: Historisk Tidsskrift
+    - volume: Andet Bind (`Historisk Tidsskrift/Anden Række/Andet Bind`) [hierarchy]
+      - text: Om nogle middelalderske Slægter i det vestenfjeldske Norge [container]
+      - text: To utrykte Digte af Petter Dass [container]
+      - text: Stiftsprovst Dr. Theol. Otto Holmboes Dagbogs-Optegnelser 1751–1773 [container]
+      - text: Armfeldts Tog Nordenfjelds 1718 (`Armfeldts tog nordenfjelds 1718`) [container]
+      - text: Vikingetogenes tidligste Udgangspunkter [container]
+      - text: Erik af Pommerns, Danmarks, Sveriges og Norges Konges, Giftermaal med Philippa, Prindsesse af England [container]
+      - text: Den Bergenske Biskop Arnes Bibliothek [container]
+      - text: Uddrag af Bergens Kongsgaards Regnskaber 1516–23 (`Uddrag af Bergens kongsgaards regnskaber 1516–23`) [container]
+      - text: Ravnebryllupet i Kraakelund [container]
+      - text: Om en paatænkt Restauration af Throndhjems Domkirke i Begyndelsen af det 18de Aarhundrede (`Om en paatænkt restauration af Trondhjems domkirke i begyndelsen af det 18de aarhundrede`) [container]
+    - … 392 more
+1. `Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge`: mixed, book, 24 parts, 15 missing, order scan-volumes, unproofread
+    - toc: Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge
+    - chapter: Andet Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/2`) [hierarchy]
+    - chapter: 3 (`Om Mag. Niels Svendsen Krønikes Stridigheder med Præsteskabet i Christiania i Aarene 1642–1652/3`) [container]
+    - text: Mag. Jørgen Erichsson, den tredje evangeliske Superintendent i Stavanger Stift [container]
+    - text: Bidrag til den tromsøiske „Vækkelses“ Historie [container]
+    - text: Et Bidrag til Mag. Kjeld Stubs Historie [container]
+    - chapter: Fjerde Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/4`) [hierarchy]
+    - chapter: 2 (`Syv throndhjemske Præsters Bønskrifter til Kirkestyrelsen om Skjærpelse i Kirketugten og Oprettelse af en Kirkeret/2`) [container]
+    - chapter: Første Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/1`) [hierarchy]
+    - chapter: 1 (`Om Mag. Niels Svendsen Krønikes Stridigheder med Præsteskabet i Christiania i Aarene 1642–1652/1`) [container]
+    - chapter: 2 (`Om Mag. Niels Svendsen Krønikes Stridigheder med Præsteskabet i Christiania i Aarene 1642–1652/2`) [container]
+    - chapter: Niende Bind (`Theologisk Tidsskrift for den evangelisk-lutherske Kirke i Norge/9`) [hierarchy]
+    - … 13 more
+1. `Biskop Jens Nilssøns visitatsbøger og reiseoptegnelser 1574–1597`: linked, book, 21 parts, 6 missing, order toc, unproofread
+    - toc: Biskop Jens Nilssøns visitatsbøger og reiseoptegnelser 1574–1597
+    - volume: Biskop Jens Nilssøns liv og virksomhed 1538–1600 [container]
+      - chapter: I. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/1`) [container]
+      - chapter: II. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/2`) [container]
+      - chapter: III. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/3`) [container]
+      - chapter: IV. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/4`) [container]
+      - chapter: V. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/5`) [container]
+      - chapter: VI. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/6`) [container]
+      - chapter: VII. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/7`) [container]
+      - chapter: VIII. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/8`) [container]
+      - chapter: IX. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/9`) [container]
+      - chapter: X. (`Biskop Jens Nilssøns liv og virksomhed 1538–1600/10`) [container]
+    - … 10 more
+1. `Fru Bovary`: mixed, book, 6 parts, 0 missing, order scan, proofread
+    - toc: Fru Bovary
+    - chapter: Første del (`Fru Bovary/1`) [container]
+    - text: Fru Bovary: Første del [container]
+    - chapter: Annen del (`Fru Bovary/2`) [container]
+    - text: Fru Bovary: Annen del [container]
+    - chapter: Tredje del (`Fru Bovary/3`) [container]
+    - text: Fru Bovary: Tredje del [container]
+1. `Norsk Tidsskrift for Videnskab og Litteratur`: mixed, collection, 163 parts, 27 missing, order toc, unproofread
+    - toc: Norsk Tidsskrift for Videnskab og Litteratur
+    - volume: Første Aargang (`Norsk Tidsskrift for Videnskab og Litteratur/1`) [hierarchy]
+      - chapter: Forord (`Forord (Norsk Tidsskrift for Videnskab og Litteratur 1)`) [container]
+      - text: Brudstykker af Kong Haakon Magnussøns Historie (`Brudstykker af Kong Haakon V Magnussøns Historie`) [container]
+      - text: Udledelse af nogle norske Sted- og Folkenavne [container]
+      - text: i vor Kirke (`Kroningsaktens Betydning i vor Kirke`) [container]
+      - text: Bidrag til Norges Historie under Unionen [container]
+      - text: Nordmændenes Boliger og daglige Sysler [container]
+      - text: B. Moes Tidsskrift for norsk Personalhistorie [container]
+      - text: Norge i Tegninger. 1ste Hefte [container]
+      - text: Nor, Tidsskrift for Videnskab og Litteratur [container]
+      - text: Norges gamle Love för 1387 (`Norges gamle Love før 1387 (Fritzner)`) [container]
+    - … 152 more
+1. `Det norske Folkesprogs Grammatik`: single, book, 1 parts, 7 missing, order –, unproofread
+    - text: Det norske Folkesprogs Grammatik
 
 ### G: reference works (0)
 
@@ -1257,34 +1223,6 @@ Rows count multi-part works only, one row per part plus the root row. 639 single
         - chapter: XXVI. (`Garman og Worse/26`) [hierarchy]
       - text: Tre Smaastykker for Scenen [container]
     - … 146 more
-1. `Nils Kjær Samlede skrifter`: mixed, collection, 20 parts, 4 missing, order scan, proofread
-    - toc: Nils Kjær Samlede skrifter
-    - volume: Bind 5. Epistler og noveller (`Nils Kjær Samlede skrifter/5`) [container]
-      - text: EPISTLER (`Nils Kjær Epistler`) [container]
-      - text: Hugormen [container]
-      - text: Epistel angaaende sjøormen [container]
-      - text: Magsveir [container]
-      - text: Julibrev fra Son [container]
-      - text: Rousseaus skygge [container]
-      - text: Vestlandsreise [container]
-      - text: Brekkestøbreve [container]
-      - text: Schillers svigermor [container]
-      - text: Den stjaalne frak [container]
-    - … 9 more
-1. `Diplomatarium Norvegicum`: subpages, book, 20 parts, 2 missing, order single, unproofread
-    - toc: Diplomatarium Norvegicum
-    - volume: 1 (`Diplomatarium Norvegicum/1`) [hierarchy]
-      - chapter: Forord (`Diplomatarium Norvegicum/1/Forord`) [container]
-      - chapter: 3 (`Diplomatarium Norvegicum/1/3`) [container]
-      - chapter: 7 (`Diplomatarium Norvegicum/1/7`) [container]
-      - chapter: 8 (`Diplomatarium Norvegicum/1/8`) [container]
-      - chapter: 51 (`Diplomatarium Norvegicum/1/51`) [container]
-      - chapter: 177 (`Diplomatarium Norvegicum/1/177`) [container]
-      - volume: Hjælpemidler til Beregningen af de i norske Oldbreve forekommende Tidsbestemmelser (`Diplomatarium Norvegicum/1/Hjælpemidler`) [hierarchy]
-        - chapter: I. (`Diplomatarium Norvegicum/1/Hjælpemidler/I`) [hierarchy]
-        - chapter: II. (`Diplomatarium Norvegicum/1/Hjælpemidler/II`) [hierarchy]
-        - chapter: III. (`Diplomatarium Norvegicum/1/Hjælpemidler/III`) [hierarchy]
-    - … 9 more
 1. `Det norske Folks Historie`: mixed, book, 691 parts, 23 missing, order scan-volumes, proofread
     - toc: Det norske Folks Historie
     - volume: I-1-1 (`Det norske Folks Historie/1`) [hierarchy]
@@ -1299,6 +1237,20 @@ Rows count multi-part works only, one row per part plus the root row. 639 single
       - chapter: 9. De germaniske Folks Navn i Almindelighed, og vore Forfædres i Særdeleshed. (`Det norske Folks Historie/1/9`) [container]
       - chapter: 10. Goterne og den gotiske Kulturperiode i Norden. Gauter, Daner o. fl. (`Det norske Folks Historie/1/10`) [container]
     - … 680 more
+1. `Nils Kjær Samlede skrifter`: mixed, collection, 20 parts, 4 missing, order scan, proofread
+    - toc: Nils Kjær Samlede skrifter
+    - volume: Bind 5. Epistler og noveller (`Nils Kjær Samlede skrifter/5`) [container]
+      - text: EPISTLER (`Nils Kjær Epistler`) [container]
+      - text: Hugormen [container]
+      - text: Epistel angaaende sjøormen [container]
+      - text: Magsveir [container]
+      - text: Julibrev fra Son [container]
+      - text: Rousseaus skygge [container]
+      - text: Vestlandsreise [container]
+      - text: Brekkestøbreve [container]
+      - text: Schillers svigermor [container]
+      - text: Den stjaalne frak [container]
+    - … 9 more
 1. `Folkevennen`: mixed, collection, 178 parts, 198 missing, order scan-volumes, unproofread
     - toc: Folkevennen
     - volume: Første Aargang (`Folkevennen/1852`) [hierarchy]
@@ -1313,6 +1265,20 @@ Rows count multi-part works only, one row per part plus the root row. 639 single
     - volume: Anden Aargang (`Folkevennen/1853`) [hierarchy]
       - text: Gjætlugutin [container]
     - … 167 more
+1. `Diplomatarium Norvegicum`: subpages, book, 20 parts, 2 missing, order single, unproofread
+    - toc: Diplomatarium Norvegicum
+    - volume: 1 (`Diplomatarium Norvegicum/1`) [hierarchy]
+      - chapter: Forord (`Diplomatarium Norvegicum/1/Forord`) [container]
+      - chapter: 3 (`Diplomatarium Norvegicum/1/3`) [container]
+      - chapter: 7 (`Diplomatarium Norvegicum/1/7`) [container]
+      - chapter: 8 (`Diplomatarium Norvegicum/1/8`) [container]
+      - chapter: 51 (`Diplomatarium Norvegicum/1/51`) [container]
+      - chapter: 177 (`Diplomatarium Norvegicum/1/177`) [container]
+      - volume: Hjælpemidler til Beregningen af de i norske Oldbreve forekommende Tidsbestemmelser (`Diplomatarium Norvegicum/1/Hjælpemidler`) [hierarchy]
+        - chapter: I. (`Diplomatarium Norvegicum/1/Hjælpemidler/I`) [hierarchy]
+        - chapter: II. (`Diplomatarium Norvegicum/1/Hjælpemidler/II`) [hierarchy]
+        - chapter: III. (`Diplomatarium Norvegicum/1/Hjælpemidler/III`) [hierarchy]
+    - … 9 more
 
 ### I: works with other editions (0)
 

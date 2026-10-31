@@ -548,7 +548,8 @@ class Survey:
             items = pats[key]
             out.append(f"### {label} ({len(items):,})")
             out.append("")
-            for it in self.rng.sample(items, min(30, len(items))):
+            rng = random.Random(f"wp1a-{self.wiki}-{key}")    # stable per pattern
+            for it in rng.sample(items, min(30, len(items))):
                 if key in ("E", "E*"):
                     w, p = it
                     out.append(f"1. {p.kind} “{esc(p.node.display)}” (`{esc(p.node.title)}`), part {p.ord} "
