@@ -1,0 +1,1227 @@
+{
+ "no": {
+  "domain": "no.wikisource.org",
+  "sitename": "Wikikilden",
+  "lang": "nb",
+  "dbname": "nowikisource",
+  "rtl": true,
+  "mainpage": "Wikikilden:Forside",
+  "generator": "MediaWiki 1.48.0-wmf.1",
+  "author_ns": 102,
+  "index_ns": 106,
+  "page_ns": 104,
+  "quality_levels": [
+   {
+    "id": 0,
+    "category": "Uten tekst"
+   },
+   {
+    "id": 1,
+    "category": "Rå"
+   },
+   {
+    "id": 2,
+    "category": "Ufullstendig"
+   },
+   {
+    "id": 3,
+    "category": "Korrekturlest"
+   },
+   {
+    "id": 4,
+    "category": "Validert"
+   }
+  ],
+  "namespaces": {
+   "0": {
+    "name": "",
+    "canonical": null,
+    "aliases": []
+   },
+   "102": {
+    "name": "Forfatter",
+    "canonical": "Forfatter",
+    "aliases": [
+     "Author"
+    ]
+   },
+   "103": {
+    "name": "Forfatterdiskusjon",
+    "canonical": "Forfatterdiskusjon",
+    "aliases": [
+     "Author talk"
+    ]
+   },
+   "104": {
+    "name": "Side",
+    "canonical": "Page",
+    "aliases": []
+   },
+   "105": {
+    "name": "Sidediskusjon",
+    "canonical": "Page talk",
+    "aliases": []
+   },
+   "106": {
+    "name": "Indeks",
+    "canonical": "Index",
+    "aliases": []
+   },
+   "107": {
+    "name": "Indeksdiskusjon",
+    "canonical": "Index talk",
+    "aliases": []
+   },
+   "710": {
+    "name": "Undertekster",
+    "canonical": "TimedText",
+    "aliases": [
+     "Undertekst"
+    ]
+   },
+   "711": {
+    "name": "Undertekstdiskusjon",
+    "canonical": "TimedText talk",
+    "aliases": []
+   },
+   "828": {
+    "name": "Modul",
+    "canonical": "Module",
+    "aliases": []
+   },
+   "829": {
+    "name": "Moduldiskusjon",
+    "canonical": "Module talk",
+    "aliases": []
+   },
+   "1728": {
+    "name": "Arrangement",
+    "canonical": "Event",
+    "aliases": []
+   },
+   "1729": {
+    "name": "Arrangementsdiskusjon",
+    "canonical": "Event talk",
+    "aliases": []
+   }
+  }
+ },
+ "en": {
+  "domain": "en.wikisource.org",
+  "sitename": "Wikisource",
+  "lang": "en",
+  "dbname": "enwikisource",
+  "rtl": true,
+  "mainpage": "Main Page",
+  "generator": "MediaWiki 1.48.0-wmf.1",
+  "author_ns": 102,
+  "index_ns": 106,
+  "page_ns": 104,
+  "quality_levels": [
+   {
+    "id": 0,
+    "category": "Without text"
+   },
+   {
+    "id": 1,
+    "category": "Not proofread"
+   },
+   {
+    "id": 2,
+    "category": "Problematic"
+   },
+   {
+    "id": 3,
+    "category": "Proofread"
+   },
+   {
+    "id": 4,
+    "category": "Validated"
+   }
+  ],
+  "namespaces": {
+   "0": {
+    "name": "",
+    "canonical": null,
+    "aliases": []
+   },
+   "100": {
+    "name": "Portal",
+    "canonical": "Portal",
+    "aliases": []
+   },
+   "101": {
+    "name": "Portal talk",
+    "canonical": "Portal talk",
+    "aliases": []
+   },
+   "102": {
+    "name": "Author",
+    "canonical": "Author",
+    "aliases": []
+   },
+   "103": {
+    "name": "Author talk",
+    "canonical": "Author talk",
+    "aliases": []
+   },
+   "104": {
+    "name": "Page",
+    "canonical": "Page",
+    "aliases": []
+   },
+   "105": {
+    "name": "Page talk",
+    "canonical": "Page talk",
+    "aliases": []
+   },
+   "106": {
+    "name": "Index",
+    "canonical": "Index",
+    "aliases": []
+   },
+   "107": {
+    "name": "Index talk",
+    "canonical": "Index talk",
+    "aliases": []
+   },
+   "114": {
+    "name": "Translation",
+    "canonical": "Translation",
+    "aliases": []
+   },
+   "115": {
+    "name": "Translation talk",
+    "canonical": "Translation talk",
+    "aliases": []
+   },
+   "710": {
+    "name": "TimedText",
+    "canonical": "TimedText",
+    "aliases": []
+   },
+   "711": {
+    "name": "TimedText talk",
+    "canonical": "TimedText talk",
+    "aliases": []
+   },
+   "828": {
+    "name": "Module",
+    "canonical": "Module",
+    "aliases": []
+   },
+   "829": {
+    "name": "Module talk",
+    "canonical": "Module talk",
+    "aliases": []
+   },
+   "1728": {
+    "name": "Event",
+    "canonical": "Event",
+    "aliases": []
+   },
+   "1729": {
+    "name": "Event talk",
+    "canonical": "Event talk",
+    "aliases": []
+   }
+  }
+ },
+ "fr": {
+  "domain": "fr.wikisource.org",
+  "sitename": "Wikisource",
+  "lang": "fr",
+  "dbname": "frwikisource",
+  "rtl": true,
+  "mainpage": "Wikisource:Accueil",
+  "generator": "MediaWiki 1.48.0-wmf.1",
+  "author_ns": 102,
+  "index_ns": 112,
+  "page_ns": 104,
+  "quality_levels": [
+   {
+    "id": 0,
+    "category": "Sans texte"
+   },
+   {
+    "id": 1,
+    "category": "Page non corrigée"
+   },
+   {
+    "id": 2,
+    "category": "Page à problème"
+   },
+   {
+    "id": 3,
+    "category": "Page corrigée"
+   },
+   {
+    "id": 4,
+    "category": "Page validée"
+   }
+  ],
+  "namespaces": {
+   "0": {
+    "name": "",
+    "canonical": null,
+    "aliases": []
+   },
+   "100": {
+    "name": "Transwiki",
+    "canonical": "Transwiki",
+    "aliases": []
+   },
+   "101": {
+    "name": "Discussion Transwiki",
+    "canonical": "Discussion Transwiki",
+    "aliases": []
+   },
+   "102": {
+    "name": "Auteur",
+    "canonical": "Auteur",
+    "aliases": [
+     "Author"
+    ]
+   },
+   "103": {
+    "name": "Discussion Auteur",
+    "canonical": "Discussion Auteur",
+    "aliases": [
+     "Author talk"
+    ]
+   },
+   "104": {
+    "name": "Page",
+    "canonical": "Page",
+    "aliases": []
+   },
+   "105": {
+    "name": "Discussion Page",
+    "canonical": "Page talk",
+    "aliases": []
+   },
+   "106": {
+    "name": "Portail",
+    "canonical": "Portail",
+    "aliases": []
+   },
+   "107": {
+    "name": "Discussion Portail",
+    "canonical": "Discussion Portail",
+    "aliases": []
+   },
+   "112": {
+    "name": "Livre",
+    "canonical": "Index",
+    "aliases": []
+   },
+   "113": {
+    "name": "Discussion Livre",
+    "canonical": "Index talk",
+    "aliases": []
+   },
+   "710": {
+    "name": "TimedText",
+    "canonical": "TimedText",
+    "aliases": []
+   },
+   "711": {
+    "name": "TimedText talk",
+    "canonical": "TimedText talk",
+    "aliases": []
+   },
+   "828": {
+    "name": "Module",
+    "canonical": "Module",
+    "aliases": []
+   },
+   "829": {
+    "name": "Discussion module",
+    "canonical": "Module talk",
+    "aliases": []
+   },
+   "1728": {
+    "name": "Event",
+    "canonical": "Event",
+    "aliases": []
+   },
+   "1729": {
+    "name": "Event talk",
+    "canonical": "Event talk",
+    "aliases": []
+   },
+   "2600": {
+    "name": "Sujet",
+    "canonical": "Topic",
+    "aliases": []
+   }
+  }
+ },
+ "de": {
+  "domain": "de.wikisource.org",
+  "sitename": "Wikisource",
+  "lang": "de",
+  "dbname": "dewikisource",
+  "rtl": true,
+  "mainpage": "Hauptseite",
+  "generator": "MediaWiki 1.48.0-wmf.1",
+  "author_ns": null,
+  "index_ns": 104,
+  "page_ns": 102,
+  "quality_levels": [
+   {
+    "id": 0,
+    "category": "Sofort fertig"
+   },
+   {
+    "id": 1,
+    "category": "Unkorrigiert"
+   },
+   {
+    "id": 2,
+    "category": "KProblem"
+   },
+   {
+    "id": 3,
+    "category": "Korrigiert"
+   },
+   {
+    "id": 4,
+    "category": "Fertig"
+   }
+  ],
+  "namespaces": {
+   "0": {
+    "name": "",
+    "canonical": null,
+    "aliases": []
+   },
+   "102": {
+    "name": "Seite",
+    "canonical": "Page",
+    "aliases": []
+   },
+   "103": {
+    "name": "Seite Diskussion",
+    "canonical": "Page talk",
+    "aliases": []
+   },
+   "104": {
+    "name": "Index",
+    "canonical": "Index",
+    "aliases": []
+   },
+   "105": {
+    "name": "Index Diskussion",
+    "canonical": "Index talk",
+    "aliases": []
+   },
+   "710": {
+    "name": "TimedText",
+    "canonical": "TimedText",
+    "aliases": []
+   },
+   "711": {
+    "name": "TimedText talk",
+    "canonical": "TimedText talk",
+    "aliases": []
+   },
+   "828": {
+    "name": "Modul",
+    "canonical": "Module",
+    "aliases": []
+   },
+   "829": {
+    "name": "Modul Diskussion",
+    "canonical": "Module talk",
+    "aliases": []
+   },
+   "1728": {
+    "name": "Veranstaltung",
+    "canonical": "Event",
+    "aliases": []
+   },
+   "1729": {
+    "name": "Veranstaltung Diskussion",
+    "canonical": "Event talk",
+    "aliases": []
+   }
+  }
+ },
+ "it": {
+  "domain": "it.wikisource.org",
+  "sitename": "Wikisource",
+  "lang": "it",
+  "dbname": "itwikisource",
+  "rtl": true,
+  "mainpage": "Pagina principale",
+  "generator": "MediaWiki 1.48.0-wmf.1",
+  "author_ns": 102,
+  "index_ns": 110,
+  "page_ns": 108,
+  "quality_levels": [
+   {
+    "id": 0,
+    "category": "Pagine SAL 00%"
+   },
+   {
+    "id": 1,
+    "category": "Pagine SAL 25%"
+   },
+   {
+    "id": 2,
+    "category": "Pagine SAL 50%"
+   },
+   {
+    "id": 3,
+    "category": "Pagine SAL 75%"
+   },
+   {
+    "id": 4,
+    "category": "Pagine SAL 100%"
+   }
+  ],
+  "namespaces": {
+   "0": {
+    "name": "",
+    "canonical": null,
+    "aliases": []
+   },
+   "102": {
+    "name": "Autore",
+    "canonical": "Autore",
+    "aliases": [
+     "Author"
+    ]
+   },
+   "103": {
+    "name": "Discussioni autore",
+    "canonical": "Discussioni autore",
+    "aliases": [
+     "Author talk"
+    ]
+   },
+   "104": {
+    "name": "Progetto",
+    "canonical": "Progetto",
+    "aliases": []
+   },
+   "105": {
+    "name": "Discussioni progetto",
+    "canonical": "Discussioni progetto",
+    "aliases": []
+   },
+   "106": {
+    "name": "Portale",
+    "canonical": "Portale",
+    "aliases": []
+   },
+   "107": {
+    "name": "Discussioni portale",
+    "canonical": "Discussioni portale",
+    "aliases": []
+   },
+   "108": {
+    "name": "Pagina",
+    "canonical": "Page",
+    "aliases": []
+   },
+   "109": {
+    "name": "Discussioni pagina",
+    "canonical": "Page talk",
+    "aliases": []
+   },
+   "110": {
+    "name": "Indice",
+    "canonical": "Index",
+    "aliases": []
+   },
+   "111": {
+    "name": "Discussioni indice",
+    "canonical": "Index talk",
+    "aliases": []
+   },
+   "112": {
+    "name": "Opera",
+    "canonical": "Opera",
+    "aliases": [
+     "Work"
+    ]
+   },
+   "113": {
+    "name": "Discussioni opera",
+    "canonical": "Discussioni opera",
+    "aliases": [
+     "Work talk"
+    ]
+   },
+   "710": {
+    "name": "TimedText",
+    "canonical": "TimedText",
+    "aliases": []
+   },
+   "711": {
+    "name": "TimedText talk",
+    "canonical": "TimedText talk",
+    "aliases": []
+   },
+   "828": {
+    "name": "Modulo",
+    "canonical": "Module",
+    "aliases": []
+   },
+   "829": {
+    "name": "Discussioni modulo",
+    "canonical": "Module talk",
+    "aliases": []
+   },
+   "1728": {
+    "name": "Evento",
+    "canonical": "Event",
+    "aliases": []
+   },
+   "1729": {
+    "name": "Discussioni evento",
+    "canonical": "Event talk",
+    "aliases": []
+   }
+  }
+ },
+ "sv": {
+  "domain": "sv.wikisource.org",
+  "sitename": "Wikisource",
+  "lang": "sv",
+  "dbname": "svwikisource",
+  "rtl": true,
+  "mainpage": "Wikisource:Huvudsida",
+  "generator": "MediaWiki 1.48.0-wmf.1",
+  "author_ns": 106,
+  "index_ns": 108,
+  "page_ns": 104,
+  "quality_levels": [
+   {
+    "id": 0,
+    "category": "Utan text"
+   },
+   {
+    "id": 1,
+    "category": "Ej korrekturläst"
+   },
+   {
+    "id": 2,
+    "category": "Ofullständigt"
+   },
+   {
+    "id": 3,
+    "category": "Korrekturläst"
+   },
+   {
+    "id": 4,
+    "category": "Validerat"
+   }
+  ],
+  "namespaces": {
+   "0": {
+    "name": "",
+    "canonical": null,
+    "aliases": []
+   },
+   "104": {
+    "name": "Sida",
+    "canonical": "Page",
+    "aliases": []
+   },
+   "105": {
+    "name": "Siddiskussion",
+    "canonical": "Page talk",
+    "aliases": []
+   },
+   "106": {
+    "name": "Författare",
+    "canonical": "Författare",
+    "aliases": [
+     "Author"
+    ]
+   },
+   "107": {
+    "name": "Författardiskussion",
+    "canonical": "Författardiskussion",
+    "aliases": [
+     "Author talk"
+    ]
+   },
+   "108": {
+    "name": "Index",
+    "canonical": "Index",
+    "aliases": []
+   },
+   "109": {
+    "name": "Indexdiskussion",
+    "canonical": "Index talk",
+    "aliases": []
+   },
+   "710": {
+    "name": "TimedText",
+    "canonical": "TimedText",
+    "aliases": []
+   },
+   "711": {
+    "name": "TimedText talk",
+    "canonical": "TimedText talk",
+    "aliases": []
+   },
+   "828": {
+    "name": "Modul",
+    "canonical": "Module",
+    "aliases": []
+   },
+   "829": {
+    "name": "Moduldiskussion",
+    "canonical": "Module talk",
+    "aliases": []
+   },
+   "1728": {
+    "name": "Event",
+    "canonical": "Event",
+    "aliases": []
+   },
+   "1729": {
+    "name": "Event talk",
+    "canonical": "Event talk",
+    "aliases": []
+   },
+   "2600": {
+    "name": "Ämne",
+    "canonical": "Topic",
+    "aliases": []
+   }
+  }
+ },
+ "da": {
+  "domain": "da.wikisource.org",
+  "sitename": "Wikisource",
+  "lang": "da",
+  "dbname": "dawikisource",
+  "rtl": true,
+  "mainpage": "Forside",
+  "generator": "MediaWiki 1.48.0-wmf.1",
+  "author_ns": 102,
+  "index_ns": 106,
+  "page_ns": 104,
+  "quality_levels": [
+   {
+    "id": 0,
+    "category": "Uden tekst"
+   },
+   {
+    "id": 1,
+    "category": "Ikke korrekturlæst"
+   },
+   {
+    "id": 2,
+    "category": "Problematisk"
+   },
+   {
+    "id": 3,
+    "category": "Korrekturlæst"
+   },
+   {
+    "id": 4,
+    "category": "Valideret"
+   }
+  ],
+  "namespaces": {
+   "0": {
+    "name": "",
+    "canonical": null,
+    "aliases": []
+   },
+   "102": {
+    "name": "Forfatter",
+    "canonical": "Forfatter",
+    "aliases": [
+     "Author"
+    ]
+   },
+   "103": {
+    "name": "Forfatterdiskussion",
+    "canonical": "Forfatterdiskussion",
+    "aliases": [
+     "Author talk"
+    ]
+   },
+   "104": {
+    "name": "Side",
+    "canonical": "Page",
+    "aliases": []
+   },
+   "105": {
+    "name": "Sidediskussion",
+    "canonical": "Page talk",
+    "aliases": []
+   },
+   "106": {
+    "name": "Indeks",
+    "canonical": "Index",
+    "aliases": []
+   },
+   "107": {
+    "name": "Indeksdiskussion",
+    "canonical": "Index talk",
+    "aliases": []
+   },
+   "710": {
+    "name": "TimedText",
+    "canonical": "TimedText",
+    "aliases": []
+   },
+   "711": {
+    "name": "TimedText talk",
+    "canonical": "TimedText talk",
+    "aliases": []
+   },
+   "828": {
+    "name": "Modul",
+    "canonical": "Module",
+    "aliases": []
+   },
+   "829": {
+    "name": "Moduldiskussion",
+    "canonical": "Module talk",
+    "aliases": []
+   },
+   "1728": {
+    "name": "Event",
+    "canonical": "Event",
+    "aliases": []
+   },
+   "1729": {
+    "name": "Event talk",
+    "canonical": "Event talk",
+    "aliases": []
+   }
+  }
+ },
+ "fi": {
+  "domain": "fi.wikisource.org",
+  "sitename": "Wikiaineisto",
+  "lang": "fi",
+  "dbname": "fiwikisource",
+  "rtl": true,
+  "mainpage": "Etusivu",
+  "generator": "MediaWiki 1.48.0-wmf.1",
+  "author_ns": null,
+  "index_ns": 252,
+  "page_ns": 250,
+  "quality_levels": [
+   {
+    "id": 0,
+    "category": "Ilman tekstiä"
+   },
+   {
+    "id": 1,
+    "category": "Oikolukematta"
+   },
+   {
+    "id": 2,
+    "category": "Ongelmallinen"
+   },
+   {
+    "id": 3,
+    "category": "Oikoluettu"
+   },
+   {
+    "id": 4,
+    "category": "Hyväksytty"
+   }
+  ],
+  "namespaces": {
+   "0": {
+    "name": "",
+    "canonical": null,
+    "aliases": []
+   },
+   "250": {
+    "name": "Sivu",
+    "canonical": "Page",
+    "aliases": []
+   },
+   "251": {
+    "name": "Keskustelu sivusta",
+    "canonical": "Page talk",
+    "aliases": []
+   },
+   "252": {
+    "name": "Hakemisto",
+    "canonical": "Index",
+    "aliases": []
+   },
+   "253": {
+    "name": "Keskustelu hakemistosta",
+    "canonical": "Index talk",
+    "aliases": []
+   },
+   "710": {
+    "name": "TimedText",
+    "canonical": "TimedText",
+    "aliases": []
+   },
+   "711": {
+    "name": "TimedText talk",
+    "canonical": "TimedText talk",
+    "aliases": []
+   },
+   "828": {
+    "name": "Moduuli",
+    "canonical": "Module",
+    "aliases": []
+   },
+   "829": {
+    "name": "Keskustelu moduulista",
+    "canonical": "Module talk",
+    "aliases": []
+   },
+   "1728": {
+    "name": "Event",
+    "canonical": "Event",
+    "aliases": []
+   },
+   "1729": {
+    "name": "Event talk",
+    "canonical": "Event talk",
+    "aliases": []
+   }
+  }
+ },
+ "is": {
+  "domain": "is.wikisource.org",
+  "sitename": "Wikiheimild",
+  "lang": "is",
+  "dbname": "iswikisource",
+  "rtl": true,
+  "mainpage": "Wikiheimild:Forsíða",
+  "generator": "MediaWiki 1.48.0-wmf.1",
+  "author_ns": 102,
+  "index_ns": 252,
+  "page_ns": 250,
+  "quality_levels": [
+   {
+    "id": 0,
+    "category": "Án texta"
+   },
+   {
+    "id": 1,
+    "category": "Ekki prófarkalesin"
+   },
+   {
+    "id": 2,
+    "category": "Vafasöm"
+   },
+   {
+    "id": 3,
+    "category": "Prófarkalesin"
+   },
+   {
+    "id": 4,
+    "category": "Staðfest"
+   }
+  ],
+  "namespaces": {
+   "0": {
+    "name": "",
+    "canonical": null,
+    "aliases": []
+   },
+   "100": {
+    "name": "Gátt",
+    "canonical": "Gátt",
+    "aliases": [
+     "Portal"
+    ]
+   },
+   "101": {
+    "name": "Gáttarspjall",
+    "canonical": "Gáttarspjall",
+    "aliases": [
+     "Portal talk"
+    ]
+   },
+   "102": {
+    "name": "Höfundur",
+    "canonical": "Höfundur",
+    "aliases": [
+     "Author"
+    ]
+   },
+   "103": {
+    "name": "Höfundarspjall",
+    "canonical": "Höfundarspjall",
+    "aliases": [
+     "Author talk"
+    ]
+   },
+   "250": {
+    "name": "Blaðsíða",
+    "canonical": "Page",
+    "aliases": []
+   },
+   "251": {
+    "name": "Blaðsíðuspjall",
+    "canonical": "Page talk",
+    "aliases": []
+   },
+   "252": {
+    "name": "Frumrit",
+    "canonical": "Index",
+    "aliases": []
+   },
+   "253": {
+    "name": "Frumritsspjall",
+    "canonical": "Index talk",
+    "aliases": []
+   },
+   "710": {
+    "name": "Skjátexti",
+    "canonical": "TimedText",
+    "aliases": []
+   },
+   "711": {
+    "name": "Skjátextaspjall",
+    "canonical": "TimedText talk",
+    "aliases": []
+   },
+   "828": {
+    "name": "Module",
+    "canonical": "Module",
+    "aliases": []
+   },
+   "829": {
+    "name": "Module talk",
+    "canonical": "Module talk",
+    "aliases": []
+   },
+   "1728": {
+    "name": "Event",
+    "canonical": "Event",
+    "aliases": []
+   },
+   "1729": {
+    "name": "Event talk",
+    "canonical": "Event talk",
+    "aliases": []
+   }
+  }
+ },
+ "es": {
+  "domain": "es.wikisource.org",
+  "sitename": "Wikisource",
+  "lang": "es",
+  "dbname": "eswikisource",
+  "rtl": true,
+  "mainpage": "Portada",
+  "generator": "MediaWiki 1.48.0-wmf.1",
+  "author_ns": 106,
+  "index_ns": 104,
+  "page_ns": 102,
+  "quality_levels": [
+   {
+    "id": 0,
+    "category": "Sin texto"
+   },
+   {
+    "id": 1,
+    "category": "No corregido"
+   },
+   {
+    "id": 2,
+    "category": "Problemática"
+   },
+   {
+    "id": 3,
+    "category": "Corregido"
+   },
+   {
+    "id": 4,
+    "category": "Validado"
+   }
+  ],
+  "namespaces": {
+   "0": {
+    "name": "",
+    "canonical": null,
+    "aliases": []
+   },
+   "100": {
+    "name": "Portal",
+    "canonical": "Portal",
+    "aliases": []
+   },
+   "101": {
+    "name": "Portal discusión",
+    "canonical": "Portal discusión",
+    "aliases": []
+   },
+   "102": {
+    "name": "Página",
+    "canonical": "Page",
+    "aliases": []
+   },
+   "103": {
+    "name": "Página Discusión",
+    "canonical": "Page talk",
+    "aliases": []
+   },
+   "104": {
+    "name": "Índice",
+    "canonical": "Index",
+    "aliases": []
+   },
+   "105": {
+    "name": "Índice Discusión",
+    "canonical": "Index talk",
+    "aliases": []
+   },
+   "106": {
+    "name": "Autor",
+    "canonical": "Autor",
+    "aliases": []
+   },
+   "107": {
+    "name": "Autor discusión",
+    "canonical": "Autor discusión",
+    "aliases": []
+   },
+   "710": {
+    "name": "TimedText",
+    "canonical": "TimedText",
+    "aliases": []
+   },
+   "711": {
+    "name": "TimedText talk",
+    "canonical": "TimedText talk",
+    "aliases": []
+   },
+   "828": {
+    "name": "Módulo",
+    "canonical": "Module",
+    "aliases": []
+   },
+   "829": {
+    "name": "Módulo discusión",
+    "canonical": "Module talk",
+    "aliases": []
+   },
+   "1728": {
+    "name": "Evento",
+    "canonical": "Event",
+    "aliases": []
+   },
+   "1729": {
+    "name": "Evento discusión",
+    "canonical": "Event talk",
+    "aliases": []
+   }
+  }
+ },
+ "mul": {
+  "domain": "wikisource.org",
+  "sitename": "Wikisource",
+  "lang": "en",
+  "dbname": "sourceswiki",
+  "rtl": true,
+  "mainpage": "Wikisource:Main Page",
+  "generator": "MediaWiki 1.48.0-wmf.1",
+  "author_ns": 108,
+  "index_ns": 106,
+  "page_ns": 104,
+  "quality_levels": [
+   {
+    "id": 0,
+    "category": "Without text"
+   },
+   {
+    "id": 1,
+    "category": "Not proofread"
+   },
+   {
+    "id": 2,
+    "category": "Problematic"
+   },
+   {
+    "id": 3,
+    "category": "Proofread"
+   },
+   {
+    "id": 4,
+    "category": "Validated"
+   }
+  ],
+  "namespaces": {
+   "0": {
+    "name": "",
+    "canonical": null,
+    "aliases": []
+   },
+   "104": {
+    "name": "Page",
+    "canonical": "Page",
+    "aliases": []
+   },
+   "105": {
+    "name": "Page talk",
+    "canonical": "Page talk",
+    "aliases": []
+   },
+   "106": {
+    "name": "Index",
+    "canonical": "Index",
+    "aliases": []
+   },
+   "107": {
+    "name": "Index talk",
+    "canonical": "Index talk",
+    "aliases": []
+   },
+   "108": {
+    "name": "Author",
+    "canonical": "Author",
+    "aliases": []
+   },
+   "109": {
+    "name": "Author talk",
+    "canonical": "Author talk",
+    "aliases": []
+   },
+   "710": {
+    "name": "TimedText",
+    "canonical": "TimedText",
+    "aliases": []
+   },
+   "711": {
+    "name": "TimedText talk",
+    "canonical": "TimedText talk",
+    "aliases": []
+   },
+   "828": {
+    "name": "Module",
+    "canonical": "Module",
+    "aliases": []
+   },
+   "829": {
+    "name": "Module talk",
+    "canonical": "Module talk",
+    "aliases": []
+   },
+   "1198": {
+    "name": "Translations",
+    "canonical": "Translations",
+    "aliases": []
+   },
+   "1199": {
+    "name": "Translations talk",
+    "canonical": "Translations talk",
+    "aliases": []
+   }
+  }
+ }
+}

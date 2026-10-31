@@ -1,0 +1,767 @@
+[
+ {
+  "code": "ang",
+  "autonym": "Ænglisc",
+  "english_name": "Old English",
+  "url": "https://ang.wikisource.org",
+  "dbname": "angwikisource",
+  "sitename": "Wicifruma",
+  "closed": true
+ },
+ {
+  "code": "ar",
+  "autonym": "العربية",
+  "english_name": "Arabic",
+  "url": "https://ar.wikisource.org",
+  "dbname": "arwikisource",
+  "sitename": "ويكي مصدر",
+  "closed": false
+ },
+ {
+  "code": "as",
+  "autonym": "অসমীয়া",
+  "english_name": "Assamese",
+  "url": "https://as.wikisource.org",
+  "dbname": "aswikisource",
+  "sitename": "ৱিকিউৎস",
+  "closed": false
+ },
+ {
+  "code": "az",
+  "autonym": "azərbaycanca",
+  "english_name": "Azerbaijani",
+  "url": "https://az.wikisource.org",
+  "dbname": "azwikisource",
+  "sitename": "Vikimənbə",
+  "closed": false
+ },
+ {
+  "code": "ban",
+  "autonym": "Basa Bali",
+  "english_name": "Balinese",
+  "url": "https://ban.wikisource.org",
+  "dbname": "banwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "bcl",
+  "autonym": "Bikol Central",
+  "english_name": "Central Bikol",
+  "url": "https://bcl.wikisource.org",
+  "dbname": "bclwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "be",
+  "autonym": "беларуская",
+  "english_name": "Belarusian",
+  "url": "https://be.wikisource.org",
+  "dbname": "bewikisource",
+  "sitename": "Вікікрыніцы",
+  "closed": false
+ },
+ {
+  "code": "bg",
+  "autonym": "български",
+  "english_name": "Bulgarian",
+  "url": "https://bg.wikisource.org",
+  "dbname": "bgwikisource",
+  "sitename": "Уикиизточник",
+  "closed": false
+ },
+ {
+  "code": "bn",
+  "autonym": "বাংলা",
+  "english_name": "Bangla",
+  "url": "https://bn.wikisource.org",
+  "dbname": "bnwikisource",
+  "sitename": "উইকিসংকলন",
+  "closed": false
+ },
+ {
+  "code": "br",
+  "autonym": "brezhoneg",
+  "english_name": "Breton",
+  "url": "https://br.wikisource.org",
+  "dbname": "brwikisource",
+  "sitename": "Wikimammenn",
+  "closed": false
+ },
+ {
+  "code": "bs",
+  "autonym": "bosanski",
+  "english_name": "Bosnian",
+  "url": "https://bs.wikisource.org",
+  "dbname": "bswikisource",
+  "sitename": "Wikizvor",
+  "closed": false
+ },
+ {
+  "code": "ca",
+  "autonym": "català",
+  "english_name": "Catalan",
+  "url": "https://ca.wikisource.org",
+  "dbname": "cawikisource",
+  "sitename": "Viquitexts",
+  "closed": false
+ },
+ {
+  "code": "cs",
+  "autonym": "čeština",
+  "english_name": "Czech",
+  "url": "https://cs.wikisource.org",
+  "dbname": "cswikisource",
+  "sitename": "Wikizdroje",
+  "closed": false
+ },
+ {
+  "code": "cy",
+  "autonym": "Cymraeg",
+  "english_name": "Welsh",
+  "url": "https://cy.wikisource.org",
+  "dbname": "cywikisource",
+  "sitename": "Wicidestun",
+  "closed": false
+ },
+ {
+  "code": "da",
+  "autonym": "dansk",
+  "english_name": "Danish",
+  "url": "https://da.wikisource.org",
+  "dbname": "dawikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "de",
+  "autonym": "Deutsch",
+  "english_name": "German",
+  "url": "https://de.wikisource.org",
+  "dbname": "dewikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "el",
+  "autonym": "Ελληνικά",
+  "english_name": "Greek",
+  "url": "https://el.wikisource.org",
+  "dbname": "elwikisource",
+  "sitename": "Βικιθήκη",
+  "closed": false
+ },
+ {
+  "code": "en",
+  "autonym": "English",
+  "english_name": "English",
+  "url": "https://en.wikisource.org",
+  "dbname": "enwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "eo",
+  "autonym": "Esperanto",
+  "english_name": "Esperanto",
+  "url": "https://eo.wikisource.org",
+  "dbname": "eowikisource",
+  "sitename": "Vikifontaro",
+  "closed": false
+ },
+ {
+  "code": "es",
+  "autonym": "español",
+  "english_name": "Spanish",
+  "url": "https://es.wikisource.org",
+  "dbname": "eswikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "et",
+  "autonym": "eesti",
+  "english_name": "Estonian",
+  "url": "https://et.wikisource.org",
+  "dbname": "etwikisource",
+  "sitename": "Vikitekstid",
+  "closed": false
+ },
+ {
+  "code": "eu",
+  "autonym": "euskara",
+  "english_name": "Basque",
+  "url": "https://eu.wikisource.org",
+  "dbname": "euwikisource",
+  "sitename": "Wikiteka",
+  "closed": false
+ },
+ {
+  "code": "fa",
+  "autonym": "فارسی",
+  "english_name": "Persian",
+  "url": "https://fa.wikisource.org",
+  "dbname": "fawikisource",
+  "sitename": "ویکی‌نبشته",
+  "closed": false
+ },
+ {
+  "code": "fi",
+  "autonym": "suomi",
+  "english_name": "Finnish",
+  "url": "https://fi.wikisource.org",
+  "dbname": "fiwikisource",
+  "sitename": "Wikiaineisto",
+  "closed": false
+ },
+ {
+  "code": "fo",
+  "autonym": "føroyskt",
+  "english_name": "Faroese",
+  "url": "https://fo.wikisource.org",
+  "dbname": "fowikisource",
+  "sitename": "Wikiheimild",
+  "closed": false
+ },
+ {
+  "code": "fr",
+  "autonym": "français",
+  "english_name": "French",
+  "url": "https://fr.wikisource.org",
+  "dbname": "frwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "gl",
+  "autonym": "galego",
+  "english_name": "Galician",
+  "url": "https://gl.wikisource.org",
+  "dbname": "glwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "gu",
+  "autonym": "ગુજરાતી",
+  "english_name": "Gujarati",
+  "url": "https://gu.wikisource.org",
+  "dbname": "guwikisource",
+  "sitename": "વિકિસ્રોત",
+  "closed": false
+ },
+ {
+  "code": "he",
+  "autonym": "עברית",
+  "english_name": "Hebrew",
+  "url": "https://he.wikisource.org",
+  "dbname": "hewikisource",
+  "sitename": "ויקיטקסט",
+  "closed": false
+ },
+ {
+  "code": "hi",
+  "autonym": "हिन्दी",
+  "english_name": "Hindi",
+  "url": "https://hi.wikisource.org",
+  "dbname": "hiwikisource",
+  "sitename": "विकिस्रोत",
+  "closed": false
+ },
+ {
+  "code": "hr",
+  "autonym": "hrvatski",
+  "english_name": "Croatian",
+  "url": "https://hr.wikisource.org",
+  "dbname": "hrwikisource",
+  "sitename": "Wikizvor",
+  "closed": false
+ },
+ {
+  "code": "ht",
+  "autonym": "Kreyòl ayisyen",
+  "english_name": "Haitian Creole",
+  "url": "https://ht.wikisource.org",
+  "dbname": "htwikisource",
+  "sitename": "Wikisòrs",
+  "closed": true
+ },
+ {
+  "code": "hu",
+  "autonym": "magyar",
+  "english_name": "Hungarian",
+  "url": "https://hu.wikisource.org",
+  "dbname": "huwikisource",
+  "sitename": "Wikiforrás",
+  "closed": false
+ },
+ {
+  "code": "hy",
+  "autonym": "հայերեն",
+  "english_name": "Armenian",
+  "url": "https://hy.wikisource.org",
+  "dbname": "hywikisource",
+  "sitename": "Վիքիդարան",
+  "closed": false
+ },
+ {
+  "code": "id",
+  "autonym": "Bahasa Indonesia",
+  "english_name": "Indonesian",
+  "url": "https://id.wikisource.org",
+  "dbname": "idwikisource",
+  "sitename": "Wikisumber",
+  "closed": false
+ },
+ {
+  "code": "is",
+  "autonym": "íslenska",
+  "english_name": "Icelandic",
+  "url": "https://is.wikisource.org",
+  "dbname": "iswikisource",
+  "sitename": "Wikiheimild",
+  "closed": false
+ },
+ {
+  "code": "it",
+  "autonym": "italiano",
+  "english_name": "Italian",
+  "url": "https://it.wikisource.org",
+  "dbname": "itwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "ja",
+  "autonym": "日本語",
+  "english_name": "Japanese",
+  "url": "https://ja.wikisource.org",
+  "dbname": "jawikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "jv",
+  "autonym": "Jawa",
+  "english_name": "Javanese",
+  "url": "https://jv.wikisource.org",
+  "dbname": "jvwikisource",
+  "sitename": "Wikisumber",
+  "closed": false
+ },
+ {
+  "code": "ka",
+  "autonym": "ქართული",
+  "english_name": "Georgian",
+  "url": "https://ka.wikisource.org",
+  "dbname": "kawikisource",
+  "sitename": "ვიკიწყარო",
+  "closed": false
+ },
+ {
+  "code": "kn",
+  "autonym": "ಕನ್ನಡ",
+  "english_name": "Kannada",
+  "url": "https://kn.wikisource.org",
+  "dbname": "knwikisource",
+  "sitename": "ವಿಕಿಸೋರ್ಸ್",
+  "closed": false
+ },
+ {
+  "code": "ko",
+  "autonym": "한국어",
+  "english_name": "Korean",
+  "url": "https://ko.wikisource.org",
+  "dbname": "kowikisource",
+  "sitename": "위키문헌",
+  "closed": false
+ },
+ {
+  "code": "la",
+  "autonym": "Latina",
+  "english_name": "Latin",
+  "url": "https://la.wikisource.org",
+  "dbname": "lawikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "li",
+  "autonym": "Limburgs",
+  "english_name": "Limburgish",
+  "url": "https://li.wikisource.org",
+  "dbname": "liwikisource",
+  "sitename": "Wikibrónne",
+  "closed": false
+ },
+ {
+  "code": "lij",
+  "autonym": "Ligure",
+  "english_name": "Ligurian",
+  "url": "https://lij.wikisource.org",
+  "dbname": "lijwikisource",
+  "sitename": "Wikivivàgna",
+  "closed": false
+ },
+ {
+  "code": "lt",
+  "autonym": "lietuvių",
+  "english_name": "Lithuanian",
+  "url": "https://lt.wikisource.org",
+  "dbname": "ltwikisource",
+  "sitename": "Vikišaltiniai",
+  "closed": false
+ },
+ {
+  "code": "mad",
+  "autonym": "Madhurâ",
+  "english_name": "Madurese",
+  "url": "https://mad.wikisource.org",
+  "dbname": "madwikisource",
+  "sitename": "Wikigherbhung",
+  "closed": false
+ },
+ {
+  "code": "min",
+  "autonym": "Minangkabau",
+  "english_name": "Minangkabau",
+  "url": "https://min.wikisource.org",
+  "dbname": "minwikisource",
+  "sitename": "Wikibasurek",
+  "closed": false
+ },
+ {
+  "code": "mk",
+  "autonym": "македонски",
+  "english_name": "Macedonian",
+  "url": "https://mk.wikisource.org",
+  "dbname": "mkwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "ml",
+  "autonym": "മലയാളം",
+  "english_name": "Malayalam",
+  "url": "https://ml.wikisource.org",
+  "dbname": "mlwikisource",
+  "sitename": "വിക്കിഗ്രന്ഥശാല",
+  "closed": false
+ },
+ {
+  "code": "mr",
+  "autonym": "मराठी",
+  "english_name": "Marathi",
+  "url": "https://mr.wikisource.org",
+  "dbname": "mrwikisource",
+  "sitename": "विकिस्रोत",
+  "closed": false
+ },
+ {
+  "code": "ms",
+  "autonym": "Bahasa Melayu",
+  "english_name": "Malay",
+  "url": "https://ms.wikisource.org",
+  "dbname": "mswikisource",
+  "sitename": "Wikisumber",
+  "closed": false
+ },
+ {
+  "code": "mul",
+  "autonym": "multilingual",
+  "english_name": "Multilingual",
+  "url": "https://wikisource.org",
+  "dbname": "sourceswiki",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "my",
+  "autonym": "မြန်မာဘာသာ",
+  "english_name": "Burmese",
+  "url": "https://my.wikisource.org",
+  "dbname": "mywikisource",
+  "sitename": "ဝီကီရင်းမြစ်",
+  "closed": false
+ },
+ {
+  "code": "nan",
+  "autonym": "閩南語 / Bân-lâm-gí",
+  "english_name": "Minnan",
+  "url": "https://zh-min-nan.wikisource.org",
+  "dbname": "zh_min_nanwikisource",
+  "sitename": "Wiki Tô·-su-kóan",
+  "closed": false
+ },
+ {
+  "code": "nap",
+  "autonym": "Napulitano",
+  "english_name": "Neapolitan",
+  "url": "https://nap.wikisource.org",
+  "dbname": "napwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "nl",
+  "autonym": "Nederlands",
+  "english_name": "Dutch",
+  "url": "https://nl.wikisource.org",
+  "dbname": "nlwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "no",
+  "autonym": "norsk",
+  "english_name": "Norwegian",
+  "url": "https://no.wikisource.org",
+  "dbname": "nowikisource",
+  "sitename": "Wikikilden",
+  "closed": false
+ },
+ {
+  "code": "or",
+  "autonym": "ଓଡ଼ିଆ",
+  "english_name": "Odia",
+  "url": "https://or.wikisource.org",
+  "dbname": "orwikisource",
+  "sitename": "ଉଇକିପାଠାଗାର",
+  "closed": false
+ },
+ {
+  "code": "pa",
+  "autonym": "ਪੰਜਾਬੀ",
+  "english_name": "Punjabi",
+  "url": "https://pa.wikisource.org",
+  "dbname": "pawikisource",
+  "sitename": "ਵਿਕੀਸਰੋਤ",
+  "closed": false
+ },
+ {
+  "code": "pl",
+  "autonym": "polski",
+  "english_name": "Polish",
+  "url": "https://pl.wikisource.org",
+  "dbname": "plwikisource",
+  "sitename": "Wikiźródła",
+  "closed": false
+ },
+ {
+  "code": "pms",
+  "autonym": "Piemontèis",
+  "english_name": "Piedmontese",
+  "url": "https://pms.wikisource.org",
+  "dbname": "pmswikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "pt",
+  "autonym": "português",
+  "english_name": "Portuguese",
+  "url": "https://pt.wikisource.org",
+  "dbname": "ptwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "ro",
+  "autonym": "română",
+  "english_name": "Romanian",
+  "url": "https://ro.wikisource.org",
+  "dbname": "rowikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "ru",
+  "autonym": "русский",
+  "english_name": "Russian",
+  "url": "https://ru.wikisource.org",
+  "dbname": "ruwikisource",
+  "sitename": "Викитека",
+  "closed": false
+ },
+ {
+  "code": "sa",
+  "autonym": "संस्कृतम्",
+  "english_name": "Sanskrit",
+  "url": "https://sa.wikisource.org",
+  "dbname": "sawikisource",
+  "sitename": "विकिस्रोतः",
+  "closed": false
+ },
+ {
+  "code": "sah",
+  "autonym": "саха тыла",
+  "english_name": "Yakut",
+  "url": "https://sah.wikisource.org",
+  "dbname": "sahwikisource",
+  "sitename": "Бикитиэкэ",
+  "closed": false
+ },
+ {
+  "code": "sk",
+  "autonym": "slovenčina",
+  "english_name": "Slovak",
+  "url": "https://sk.wikisource.org",
+  "dbname": "skwikisource",
+  "sitename": "Wikizdroje",
+  "closed": false
+ },
+ {
+  "code": "sl",
+  "autonym": "slovenščina",
+  "english_name": "Slovenian",
+  "url": "https://sl.wikisource.org",
+  "dbname": "slwikisource",
+  "sitename": "Wikivir",
+  "closed": false
+ },
+ {
+  "code": "sr",
+  "autonym": "српски / srpski",
+  "english_name": "Serbian",
+  "url": "https://sr.wikisource.org",
+  "dbname": "srwikisource",
+  "sitename": "Викизворник",
+  "closed": false
+ },
+ {
+  "code": "su",
+  "autonym": "Sunda",
+  "english_name": "Sundanese",
+  "url": "https://su.wikisource.org",
+  "dbname": "suwikisource",
+  "sitename": "Wikipabukon",
+  "closed": false
+ },
+ {
+  "code": "sv",
+  "autonym": "svenska",
+  "english_name": "Swedish",
+  "url": "https://sv.wikisource.org",
+  "dbname": "svwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "ta",
+  "autonym": "தமிழ்",
+  "english_name": "Tamil",
+  "url": "https://ta.wikisource.org",
+  "dbname": "tawikisource",
+  "sitename": "விக்கிமூலம்",
+  "closed": false
+ },
+ {
+  "code": "tcy",
+  "autonym": "ತುಳು",
+  "english_name": "Tulu",
+  "url": "https://tcy.wikisource.org",
+  "dbname": "tcywikisource",
+  "sitename": "ವಿಕಿಸೋರ್ಸ್",
+  "closed": false
+ },
+ {
+  "code": "te",
+  "autonym": "తెలుగు",
+  "english_name": "Telugu",
+  "url": "https://te.wikisource.org",
+  "dbname": "tewikisource",
+  "sitename": "వికీసోర్స్",
+  "closed": false
+ },
+ {
+  "code": "th",
+  "autonym": "ไทย",
+  "english_name": "Thai",
+  "url": "https://th.wikisource.org",
+  "dbname": "thwikisource",
+  "sitename": "วิกิซอร์ซ",
+  "closed": false
+ },
+ {
+  "code": "tl",
+  "autonym": "Tagalog",
+  "english_name": "Tagalog",
+  "url": "https://tl.wikisource.org",
+  "dbname": "tlwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "tr",
+  "autonym": "Türkçe",
+  "english_name": "Turkish",
+  "url": "https://tr.wikisource.org",
+  "dbname": "trwikisource",
+  "sitename": "Vikikaynak",
+  "closed": false
+ },
+ {
+  "code": "uk",
+  "autonym": "українська",
+  "english_name": "Ukrainian",
+  "url": "https://uk.wikisource.org",
+  "dbname": "ukwikisource",
+  "sitename": "Вікіджерела",
+  "closed": false
+ },
+ {
+  "code": "ur",
+  "autonym": "اردو",
+  "english_name": "Urdu",
+  "url": "https://ur.wikisource.org",
+  "dbname": "urwikisource",
+  "sitename": "ویکی ماخذ",
+  "closed": false
+ },
+ {
+  "code": "vec",
+  "autonym": "vèneto",
+  "english_name": "Venetian",
+  "url": "https://vec.wikisource.org",
+  "dbname": "vecwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "vi",
+  "autonym": "Tiếng Việt",
+  "english_name": "Vietnamese",
+  "url": "https://vi.wikisource.org",
+  "dbname": "viwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "wa",
+  "autonym": "walon",
+  "english_name": "Walloon",
+  "url": "https://wa.wikisource.org",
+  "dbname": "wawikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ },
+ {
+  "code": "yi",
+  "autonym": "ייִדיש",
+  "english_name": "Yiddish",
+  "url": "https://yi.wikisource.org",
+  "dbname": "yiwikisource",
+  "sitename": "װיקיביבליאָטעק",
+  "closed": false
+ },
+ {
+  "code": "zh",
+  "autonym": "中文",
+  "english_name": "Chinese",
+  "url": "https://zh.wikisource.org",
+  "dbname": "zhwikisource",
+  "sitename": "Wikisource",
+  "closed": false
+ }
+]
