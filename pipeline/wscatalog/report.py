@@ -50,10 +50,11 @@ def write_report(b) -> "Path":
     unknown = bool(cfg.show_unknown_by_default)
     dv = b.default_view(False)
     du = b.default_view(True)
-    texts = lambda ws: sum(w.text_count if w.structure != "single" else 1 for w in ws)
+    texts = lambda ws: sum(w.text_count for w in ws)
     lines += ["## Default view (PLAN.md 5.4)", "",
               f"Validated or proofread, complete, not `reference`: **{len(dv):,} works** "
-              f"({texts(dv):,} texts); with unknown works: {len(du):,} works ({texts(du):,} texts). "
+              f"({texts(dv):,} texts, i.e. searchable parts; single-page works are found as works); "
+              f"with unknown works: {len(du):,} works ({texts(du):,} texts). "
               f"`show_unknown_by_default` is `{str(unknown).lower()}`, so the wiki picker shows "
               f"{len(du if unknown else dv):,}.", ""]
     rows = []

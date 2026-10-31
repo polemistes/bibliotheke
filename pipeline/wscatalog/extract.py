@@ -256,6 +256,7 @@ def parse_ns0(title: str, page_id: int, nbytes: int, text: str, cfg: configmod.C
     seen: dict[str, str | None] = {}
     cats = []
     spans = sorted(header_spans)
+    author_ns = cfg.ns.get("author")
     for m in wt.LINK.finditer(text):
         if spans and any(s <= m.start() < e for s, e in spans):
             continue
@@ -263,6 +264,13 @@ def parse_ns0(title: str, page_id: int, nbytes: int, text: str, cfg: configmod.C
         num, rest = ns.split(raw.lstrip(":").strip()) if raw.strip() else (None, "")
         if num == 14 and not raw.strip().startswith(":"):
             cats.append(wt.norm_title(rest))
+            continue
+        if num == author_ns and author_ns is not None and "body_author" not in hdr:
+            # an author link near the top of the page's own text ("trolig
+            # skrevet av [[Forfatter:Gjest Baardsen]]"): author fallback
+            before = m.start() - sum(min(e, m.start()) - s for s, e in spans if s < m.start())
+            if before < 600:
+                hdr["body_author"] = m.group(0)
             continue
         tgt = resolve_target(raw, title, ns)
         if tgt and tgt != title and tgt not in seen:

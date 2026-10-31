@@ -34,3 +34,65 @@ quality:
   junk_templates: [opprydning, slett, sletting]
   placeholders: ["Ennå ikke fri"]
   own_translation: {params: [oversetter], values: [Wikikilden]}
+metadata:                            # 5.2 step 3
+  sort_articles: [en, ei, et, den, det, de]
+  anonymous_names: [Anonym, Ukjent, Ukjend, Ukjent forfatter]
+  author_link_templates: [forfatterl]
+  author_categories: true            # categories named like an author page (Henrik Wergeland)
+  # Index Malform (F§5): bokmål, nynorsk, Dano-Norwegian
+  language_map: {NB: nb, NN: nn, ND: da, "NORSK BOKMÅL": nb, BOKMÅL: nb, NYNORSK: nn, DANSK: da}
+  year_category_regex: '^(?:Tekster fra )?(\d{4})$'
+  document_templates: [PD-Regjeringa, Norsk rettsavgjørelse, Trusselvurdering]
+  document_category_patterns: ['^(Lover|Rettsavgjørelser|Offisielle dokumenter|Grunnlovsforslag|Partiprogram)$']
+  genre_templates: {Tidsskrift: periodical}
+  genre_categories:
+    Dikt: poetry
+    Diktsamlinger: poetry
+    Poesi: poetry
+    Kvad: poetry
+    Sonetter: poetry
+    Minnedikt: poetry
+    Epos: poetry
+    Romaner: novel
+    Krimromaner: novel
+    Kortromaner: novel
+    Folkelivsromaner: novel
+    Noveller: short-story
+    Novellesamlinger: short-story
+    Skuespill: drama
+    Drama: drama
+    Essays: essay
+    Artikler: essay
+    Litteraturkritikk: essay
+    Brev: letters
+    Biografier: memoir-biography
+    Memoarer: memoir-biography
+    Selvbiografier: memoir-biography
+    Dagbøker: memoir-biography
+    Norges historie: history
+    Rettshistorie: history
+    Sagn: folklore
+    Eventyr: folklore
+    Eventyrsamlinger: folklore
+    Sagaer: other
+    Salmer: song-hymn
+    Julesanger: song-hymn
+    Barnesanger: song-hymn
+    Norske fedrelandssanger: song-hymn
+    Taler: speech
+    Prekener: religious
+    Kristenliv: religious
+    Kristendom: religious
+    Religion: religious
+    Lukasevangeliet: religious
+    Rettsvitenskap: legal-government
+    Lover: legal-government
+    Rettsavgjørelser: legal-government
+    Offisielle dokumenter: legal-government
+    Grunnlovsforslag: legal-government
+    Partiprogram: legal-government
+    Reiseskildringer: travel
+    Barne- og ungdomslitteratur: children
+    Filosofi: philosophy
+    Språkvitenskap: science
+    Ordbøker: reference

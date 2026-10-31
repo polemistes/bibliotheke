@@ -68,7 +68,7 @@ def parse_year(raw: str | None) -> tuple[int, int] | None:
     text = wt.strip_markup(raw)
     m = DECADE.search(text)
     y = YEAR.search(text)
-    if y and (not m or y.start() <= m.start()) and 500 <= int(y.group(1)) <= time.gmtime().tm_year + 1:
+    if y and (not m or y.start() < m.start()) and 500 <= int(y.group(1)) <= time.gmtime().tm_year + 1:
         return int(y.group(1)), 9
     if m:
         return int(m.group(1)) * 10, 8
@@ -331,6 +331,18 @@ class Merger:
                 if ps:
                     m.authors, m.author_source = ps, src
                     break
+        if not m.authors and hrec is not None and self.cfg.raw.get("metadata", {}).get("author_categories"):
+            # Implementation choice (no): a category named exactly like an
+            # existing author page names the author ("Henrik Wergeland").
+            ps = [Person(c, self.author_page(c)) for c in hrec.cats if self.author_page(c)]
+            if ps:
+                m.authors, m.author_source = ps, "category"
+        if not m.authors and hdr.get("body_author"):
+            # Implementation choice: an author link in the first 600
+            # characters of the page's own text (typed-in pages without header)
+            ps = [p for p in self.people(hdr["body_author"]) if p.page]
+            if ps:
+                m.authors, m.author_source = ps, "body"
         for q in items:
             ps = self.wd_people(wd.claims(q, "P655")) if wd else []
             if ps:

@@ -33,7 +33,8 @@ SCHEMA_VERSION = 2
 OUT_DIR = PIPELINE_DIR / "out"
 REPORT_DIR = PIPELINE_DIR.parent / "report"
 # parts_fts is contentless; its rowid addresses the part (parts has a
-# composite key): rowid = work_id * PARTS_ROWID_STRIDE + ord.
+# composite key): rowid = work_id * 4096 + ord, so work_id = rowid >> 12 and
+# ord = rowid & 4095 (ord stays below 4096 because parts_cap is 2,000).
 PARTS_ROWID_STRIDE = 4096
 DEFAULT_TIERS = ("validated", "proofread")
 
@@ -113,7 +114,8 @@ def pages_json(c: Counter) -> str | None:
 
 
 class Build:
-    def __init__(self, wiki: str, offline: bool = False, ext: dict | None = None):
+    def __init__(self, wiki: str, offline: bool = False, ext: dict | None = None,
+                 wd: Wikidata | None = None):
         t0 = time.time()
         self.wiki = wiki
         self.ext = ext if ext is not None else extract.load(wiki)
@@ -122,8 +124,8 @@ class Build:
         self.ass = quality.Assessor(self.res)
         self.q = {w.root.title: self.ass.assess(w) for w in self.res.works}
         self.works = [w for w in self.res.works if not self.q[w.root.title][0].excluded]
-        self.wd = Wikidata(langs=LANGS + (self.cfg.language,), sites={self.cfg.dbname},
-                           offline=offline)
+        self.wd = wd or Wikidata(langs=LANGS + (self.cfg.language,), sites={self.cfg.dbname},
+                                 offline=offline)
         self.merger = Merger(self.res, self.wd)
         self.merger.prefetch(self.works)
         self.meta: dict[str, Meta] = {w.root.title: self.merger.merge(w, self.q[w.root.title][0])

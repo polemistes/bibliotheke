@@ -20,3 +20,34 @@ other_versions_templates: [Aðrar útgáfur]
 quality:
   show_unknown_by_default: true      # owner decision 2026-11-01 (item 1): 243 of 250 works are typed-in sagas and poems
   index_progress_fields: [framvinda, progress]
+metadata:
+  anonymous_names: [óþekktur, Óþekktur höfundur, Ókunnur]
+  genre_categories:
+    Ljóð: poetry
+    Rímur: poetry
+    Þulur: poetry
+    Eddukvæði: poetry
+    Krummavísur: poetry
+    Ferskeytlur: poetry
+    Níðkvæði: poetry
+    Grýlukvæði: poetry
+    Þjóðkvæði: poetry
+    Íslensk þjóðkvæði: poetry
+    Sagnadans: poetry
+    Vikivakar: song-hymn
+    Barnagælur: song-hymn
+    Þjóðsöngvar: song-hymn
+    Smásögur: short-story
+    Skáldsögur: novel
+    Saga Íslands: history
+    Íslendingasögur: other
+    Íslendingaþættir: other
+    Fornrit: other
+    Fornaldarsögur Norðurlanda: other
+    Ævintýri: folklore
+    Íslenskar þjóðsögur: folklore
+    Bréf: letters
+    Biblían: religious
+    Verk um lög: legal-government
+    Lög: legal-government
+    Alþjóðasamningar: legal-government

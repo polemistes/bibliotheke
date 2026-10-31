@@ -52,6 +52,22 @@ structure:                           # WS§5.3; resolution rules in PLAN.md 5.2 
   # header and an Index that lists >= 3 such pages counts as TOC-like
   # (de page-by-page books and Merian's Topographia volumes).
   headerless_toc_members: false
+metadata:                            # metadata merge (5.2 step 3)
+  sort_articles: []                  # leading articles ignored in sort_title
+  anonymous_names: []                # author values that name nobody
+  author_link_templates: []          # templates whose first parameter is an author's name
+  author_categories: false           # a category named like an author page names the author
+  language_map: {}                   # Index language field value -> BCP47
+  year_category_regex: null          # category -> year (group 1)
+  document_templates: []             # licence or case templates of government documents
+  document_template_patterns: []
+  document_category_patterns: []
+  genre_templates: {}                # template -> genre key
+  genre_categories: {}               # category (without namespace) -> genre key
+  genre_category_patterns: []        # [regex, genre key]
+  # type of a single-page work from its genre (Merger.work_type)
+  genre_types: {poetry: poem, song-hymn: poem, drama: play, essay: article,
+                legal-government: document, speech: document}
 exclude_title_prefixes: []
 disambiguation_templates: [disambiguation]
 versions_templates: [versions]
