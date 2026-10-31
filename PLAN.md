@@ -8,6 +8,11 @@ and complete. Where a detail is marked **VERIFY**, confirm it against the
 live service during work package 0 before building on it.
 (WP0, 2026-10-31: all VERIFY items are resolved; passages changed by WP0 are
 marked "(WP0 …)" and explained in `docs/wp0-findings.md`, cited as "F§n".)
+(WS, 2026-10-31: the work-structure plan `docs/work-structure-plan.md`,
+decided by the owner, defines how Wikisource pages become works, parts and
+searchable texts, and the quality and completeness policy; passages it
+changed are marked "(WS, 2026-10-31 …)" and cite it as "WS§n". Decisions
+D1–D9 are unchanged.)
 
 ---
 
@@ -51,6 +56,9 @@ R1. **Content scope**: all Wikisource language editions (83 open wikis in the
     sitematrix at WP0, F§1) plus the multilingual edition at
     `wikisource.org`. Only works that are actually
     readable are listed (see 5.4 for the completeness filter).
+    (WS, 2026-10-31, WS§10: only unreadable texts and junk are excluded;
+    unproofread and incomplete works are listed, flagged and hidden by the
+    app's default filter, 5.4.)
 R2. **Browse facets**: language/wiki, genre, century and year, author, work type,
     text quality. Combinable. Fast and fully offline once a catalog is downloaded.
 R3. **Search**: offline full-text search over titles and authors in downloaded
@@ -187,9 +195,67 @@ Confirm specifics against the live wikis in WP0, but this is the shape.
   entries marked `closed`.)
 
 ### 3.2 Namespaces and page types
-- Main namespace (0): the readable texts. A *work* is a root page (no `/` in the
-  title); chapters are subpages `Work/Chapter 1`, `Work/Part 2/Chapter 3`.
-  Single-page works (poems, short texts) exist and are common.
+- Main namespace (0): the readable texts. (WS, 2026-10-31, WS§1–2: this
+  replaces "a *work* is a root page; chapters are its subpages", which holds
+  for books on en, fr and no but not for collections of root pages, the
+  normal book structure on de.) Three concepts:
+  - **Work**: a catalog entry, what a reader picks from the shelf: one
+    edition of one book or text (a book, a poetry collection, a play, a
+    standalone poem, a volume of a periodical). Editions are never merged:
+    Grimm 1812 and Grimm 1857 are two works, and an overview page of all
+    editions (de `Kinder und Hausmärchen`) is not a work. Browse lists and
+    facets show works only.
+  - **Part**: one reading unit, one normalised HTML file (a chapter, a poem
+    inside a collection, an act, a volume's front matter, a synthetic slice
+    of an oversized page). Parts form a tree under their work (`depth`,
+    `parent`) in the book's reading order; the reader's TOC shows them.
+    Every content page belongs to exactly one work: the container that the
+    page's own header names wins over a TOC page that merely links it.
+  - **Text**: a part with a title of its own (a poem, a tale, an article, a
+    letter). It is findable in search and opens its work at that part. A
+    standalone poem is a work and its only part at once.
+  A work's pages come in several structures (WS§1, patterns A–I):
+  subpages `Work/Chapter 1`, `Work/Part 2/Chapter 3` (depth up to 9 on en);
+  **collections of root pages**, where a TOC root page links separate root
+  pages whose headers link back (de `Der Sagenschatz des Königreichs
+  Sachsen`, 990 members; no `Diktsamling`, 125 poems of which 9 exist);
+  mixed collections with root-title redirects to subpages (fr `La Légende
+  des siècles`); whole books on one page (de `Käthe`); texts that exist
+  only inside a collection (en `…Shelley (ed. Hutchinson,
+  1914)/Ozymandias`). Single-page works (poems, short texts) exist and are
+  common. Section 5.2 steps 1a–1h resolve these structures; the app runs
+  the same rules live (7.1).
+  - **Virtual roots** (WS§4 step 6): a subpage tree whose root page does
+    not exist (de `Die Heimath in der neuen Welt/{Erster,Zweiter,Dritter}
+    Band`) is one work under the missing title, `is_virtual = 1`, opened at
+    its first part.
+  - **Reference works** (WS§2 rule 5, §8 item 6): dictionaries and
+    encyclopedias with thousands of entries (en `1911 Encyclopædia
+    Britannica`, 39,272 subpages) are works of type `reference`: listed and
+    searchable by title, hidden by the default type filter, entries loaded
+    live, never a TOC in the catalog. de's colon-prefixed entries stay
+    excluded by title prefix (below).
+- **Structure signals** (WS, 2026-10-31, WS§3). Each is in the wikitext
+  (pages-articles dump, for the pipeline) and in Parsoid's `data-mw` (for
+  the app), so both apply the same rules:
+  - ProofreadPage header (`<pages index=… header=1 />`, every wiki):
+    container `tittel` (no) / `titre` (fr) / `title` (en), `prev`, `next`,
+    `current`, Index `type` (book, collection, journal, dictionary, …), TOC
+    `sammendrag` / `sommaire`. Its `from`/`to` are displayed page labels;
+    order by the integer scan indexes in the wikitext `<pages from= to=>`
+    or by the transcluded `Page:` titles. A container link outside ns0 (fr
+    `titre = [[Livre:…]]`) is ignored.
+  - en `{{header}}` on pages without a scan: `title = [[../]]`, `section`,
+    `previous`, `next`; relative links are resolved against the page title.
+  - de `{{Textdaten}}`: the container is the first wikilink inside
+    `HERKUNFT` when it is an existing ns0 page (`HERKUNFT = off` on a TOC
+    page); the order is the `VORIGER`/`NÄCHSTER` chain; `INDEXSEITE` groups
+    a scanned volume; `TITEL` may link an editions overview and is never
+    used for grouping; `BEARBEITUNGSSTAND` is the quality (3.4).
+  - Title hierarchy; root-title redirects to subpages (fr `Clarté d’âmes`),
+    which become aliases that make texts inside collections findable; TOC
+    links from `.ws-summary`, the summary parameter, else the root page body
+    in document order, with red links kept and counted as missing parts.
 - `Author:` (102 on en; number varies by wiki): author pages. Not works.
   (WP0, F§1: 102 on no/en/fr/it/da/is, 106 on sv/es, 108 on mul; **de and
   fi have no Author namespace** and keep author pages in the main namespace,
@@ -206,8 +272,14 @@ Confirm specifics against the live wikis in WP0, but this is the shape.
   `Category:Versions pages`; the templates are required.)
 - (WP0, F§1) de has about 196,000 mainspace root pages in lexicon
   pseudo-namespaces (`RE:`, `MKL1888:`, `ADB:`, `BLKÖ:`); exclude them by
-  title prefix. (F§2.4) Orphan subpage trees exist (subpages whose root page
-  is missing); treat the top-most existing ancestor as the work.
+  title prefix. (WS, 2026-10-31, WS§1, §5.3, §8 item 6: in the dump titles
+  the four prefixes hold 203,575 root pages, and about 25,000 more sit under
+  `Zedler:`, `Boetticher:`, `Haan:` and others; the WP1a survey lists every
+  colon prefix shared by ≥ 100 root pages to complete the list. A colon
+  alone excludes nothing: `Woher das Sprichwort: …` is a text.)
+  (F§2.4) Orphan subpage trees exist (subpages whose root page is missing).
+  (WS, 2026-10-31, WS§4 step 6: they become virtual roots, above, instead
+  of making the top-most existing ancestor the work.)
 - Namespace numbers and names per wiki: query
   `api.php?action=query&meta=siteinfo&siprop=namespaces`.
 
@@ -220,6 +292,8 @@ Confirm specifics against the live wikis in WP0, but this is the shape.
   (WP0, F§2.4: present on some no/en/fr works only and can be nested; no
   template emits it on de, where collections are TOC pages linking separate
   root pages; fr roots may link a `…/Texte entier` subpage outside it.)
+  (WS, 2026-10-31, WS§3.4: TOC links may point to root pages, not only to
+  subpages; discovery follows 3.2 and 5.2 step 1a.)
 - `ws-noexport`: content to exclude from exports (header boxes, nav, notices).
   Drop these elements.
 - `ws-pagenum` / `pagenum`: the page-number markers emitted when `Page:` pages
@@ -239,24 +313,44 @@ Confirm specifics against the live wikis in WP0, but this is the shape.
   prose the marker sits inside the `<p>` at the exact break.
 - Header template output also has `previous` / `next` links (classes like
   `ws-prev`, `ws-next` on some wikis). Use as a secondary chapter-order signal.
+  (WS, 2026-10-31, WS§4 step 3: the prev/next chain is now the first order
+  source among siblings, ahead of the TOC order.)
 
 ### 3.4 Quality and completeness signals
-- ProofreadPage page statuses: not proofread, problematic, proofread,
-  validated. The `Index:` page carries an overall progress value. Verified in
-  WP0 (F§5), which corrected the en codes: `T` done (all validated) →
-  validated; `V` to be validated → proofread; `C` to be proofread →
-  unproofread; `MS`, `OCR`, `L`, `X` (pagelist needed) → unproofread.
-  fr (`Avancement`), es (`Progreso`), da (`Status`: F/V/K) and mul have
-  similar enumerated fields; it and no use free text; sv, de, fi, is have
-  none. The source that works on every wiki is the per-page
-  `<pagequality level="0–4">` of the transcluded `Page:` pages (same five
-  levels everywhere); take the lowest. no's Index pages also carry
-  `Malform` (NB/NN/ND/NO), the best source for the nb/nn sub-facet (3.1).
-- Text-quality templates on the root page (en: `{{textquality}}` 25/50/75/100%;
-  other wikis have equivalents or none).
-- Incomplete-work templates (en: `{{incomplete}}`; per-wiki equivalents).
-- Wikidata: edition items may carry P31 subclasses and badges (e.g. "proofread",
-  "validated" sitelink badges exist on some wikis).
+(WS, 2026-10-31, WS§10.2: replaces the earlier list, which took the lowest
+page level and Wikidata badges. The policy built on these signals is in 5.4.)
+- **Per-page ProofreadPage level 0–4**, the same five levels on every wiki:
+  `<pagequality level="n" user="…" />` in the `Page:` wikitext (dump); in
+  Parsoid HTML `data-page-quality` (en) or the `quality` parameter of the
+  pagenum template in `data-mw` (no), so the app can judge a text it opens
+  by URL. Level 0 means "without text" (blank pages) and is left out of
+  ratios. Only 751 de texts use `<pages>`; the rest transclude scans through
+  templates (`{{SeitePR}}`, `{{Seite}}`), so follow those or use
+  `templatelinks`.
+- **de `BEARBEITUNGSSTAND`** in `{{Textdaten}}` on every de text: `fertig`
+  82.5 %, `korrigiert` 12.8 %, `unkorrigiert` 0.6 %, `unvollständig` 4.1 %
+  of 53,893 texts (also `teilkorrigiert`; the WP1a survey verifies the value
+  list).
+- **Text-quality templates**: fr `{{TextQuality}}` on 178,361 pages (mostly
+  100 % or `Textes validés`), en `{{TextQuality}}` on 15,654, it SAL
+  25/50/75/100 %.
+- **Index progress**, enumerated on en, mul, fr (`Avancement`), es
+  (`Progreso`) and da (`Status`: F/V/K); it and no use free text; sv, de,
+  fi, is have none. en codes as corrected in WP0 (F§5): `T` all validated,
+  `V` to be validated, `C` to be proofread (complete but unproofread);
+  `MS`, `OCR`, `L` (es `L dañado`) mean a faulty or missing text layer;
+  `X` a missing pagelist. no's Index pages also carry `Malform`
+  (NB/NN/ND/NO), the best source for the nb/nn sub-facet (3.1).
+- **Incompleteness**: en `{{incomplete}}` (2,758 pages), no
+  `{{ufullstendig}}`, de `unvollständig`; red links in a work's TOC
+  (`missing_part_count`); missing `Page:` pages inside a transcluded range
+  (`missing_page_count`; 64 works on no); coverage of the Index's text
+  pages, only for a work that *is* the Index's book (header container link
+  = work root, Index type book).
+- **Junk markers on typed-in texts**: cleanup or deletion templates (no
+  `opprydning`, `slett`, `sletting`), size under 300 bytes, placeholders
+  ("Ennå ikke fri"). Wikisource's own translations (no `oversetter =
+  Wikikilden`) are kept but labelled.
 
 ### 3.5 APIs
 - **Action API**: `https://{wiki}/w/api.php`. Used for: page lists
@@ -346,35 +440,137 @@ always reach a text even if the catalog lags.
    Index page fields are the main metadata source. Only 13 % of no root
    pages have a Wikidata item; header microformats give an author for 88 %
    and a year for 92 %.
+   (WS, 2026-10-31, WS§3.5, §4) Inputs and their use in the structure
+   resolution: pages-articles for the header parameters (container,
+   prev/next, current, Index, summary), `<pages>` tags with their scan
+   ranges, the `Page:` quality levels and the Index fields; `redirect` for
+   `aliases` (root-title redirects to parts, open-by-URL); `pagelinks` for
+   TOC membership and red links (missing parts) without parsing;
+   `templatelinks` for the `Page:` pages each text transcludes, including
+   de's template transclusion, and for header, quality and exclusion
+   templates; `linktarget`, which both link tables need for their target
+   titles.
 3. Wikidata: for every root page with a QID, fetch the edition item and its
    work item (wbgetentities in batches of 50, or a SPARQL `VALUES` query in
    chunks of ~500). Cache raw JSON on disk between runs.
 4. Per-wiki config `pipeline/config/{wiki}.yaml` (section 5.5).
 
 ### 5.2 Steps
+0. (WS, 2026-10-31, WS§6) **Structure survey**: steps 1–1h and 4 in report
+   mode, writing `report/{wiki}-structure.md` (contents in WP1a, section 9).
+   Run first in WP1a, before the schema is frozen; kept as a pipeline mode
+   afterwards.
 1. **Candidate works**: namespace 0, not redirect, title has no `/`, not
    disambiguation, not matching per-wiki exclusion categories/templates.
+   (WS, 2026-10-31, WS§4 step 0: candidates are now all ns0 non-redirect
+   pages at any depth, since steps 1a–1h decide which are works; redirects
+   become `aliases`. Excluded, with the reason in `excluded`:
+   disambiguation and versions pages (page prop *and* per-wiki templates),
+   author pages in ns0 (de, fi; 3.2), colon-prefix reference works
+   (`exclude_title_prefixes`), whole-text duplicate subpages
+   (`whole_text_subpages`, fr `Texte entier`), portals and project pages in
+   ns0, and the per-wiki exclusion categories and templates.)
+
+   (WS, 2026-10-31: steps 1a–1h resolve pages into works and parts, WS§4.
+   The app runs the same rules live on Parsoid HTML, 7.1. Per-wiki
+   parameters are in the `structure` config block, 5.5.)
+
+1a. **Structure record** per candidate page: `title`; `container`, the
+    header's container link (no `tittel`, fr `titre`, en `title` with
+    relative links resolved, de the first wikilink inside `HERKUNFT`) when
+    it is an existing, non-excluded ns0 page other than the page itself,
+    else null; `prev`, `next` (resolved titles); `index` (from `<pages
+    index=>`, de `INDEXSEITE`, or the transcluded `Page:` titles);
+    `scan_from`, `scan_to` (integers from `<pages>`); `index_type` (book,
+    collection, journal, dictionary, …); `toc_links` (ordered ns0 link
+    targets from `.ws-summary`, the summary parameter or the body, red
+    links kept and flagged); `bytes`; `has_pages_tag`; the quality signals
+    of 3.4.
+1b. **Parent assignment**, first rule that applies:
+    1. `container` if set: the page is a part of that page's work (the
+       container may have a container of its own; walk up, cycle-safe,
+       max depth 6).
+    2. Title hierarchy: parent = the longest existing proper title prefix
+       `A/B` of `A/B/C`; if no ancestor exists, the page joins the virtual
+       root `A`.
+    3. TOC membership: the page is in `toc_links` of exactly one TOC-like
+       root page (links ≥ 3 ns0 pages, has `HERKUNFT = off` or an Index
+       `Type`, is not a versions page) **and** shares that page's `index`
+       or is reached from it by the prev/next chain. This catches members
+       whose header lacks a container link.
+    4. Otherwise the page is a work of its own.
+    A prev/next chain alone never merges root pages into one work (two
+    root-page volumes with `HERKUNFT = off` stay two works in v1), and rule
+    1 never climbs through `TITEL` or title fields, so editions are not
+    merged.
+1c. **Order** of the children of a node, first source that covers all of
+    them: the prev/next chain among siblings; the parent's `toc_links`
+    order; ascending `scan_from` within the same `index`; natural sort of
+    the titles (`Chapter 2` before `Chapter 10`). Record `order_source`.
+1d. **Classification**: a node with children or without a parent is a
+    work. Its children are parts, recursively, with `depth`. Part kinds:
+    `volume` (has children), `chapter`, `text`, `front` (the root's own
+    text beyond header and TOC, 7.1 step 4), `toc` (a TOC page without text
+    of its own: structure only, not downloaded). A part is a searchable
+    **text** when its display title does not match the per-language
+    `chapter_label_regex` (Chapter, Kapitel, Kapittel, Chapitre, Capitolo,
+    Act(e), Akt, Letter, Brief, Part(ie), Book, Band, Bind, Tome, Volume,
+    roman numerals, bare numbers): "Ozymandias" and "Ved Rundarne" are
+    texts, "Chapter 1", "Første akt" and "Zweiter Band" are not. Display
+    title of a part: header `current` / `section` / `TITEL`, else the link
+    text in the parent's TOC, else the last title segment.
+1e. **Work type**: Index `Type` → `book`, `collection`,
+    `periodical-issue` (journal), `reference` (dictionary), `document`
+    (phdthesis); else from structure (a work whose parts are mostly texts →
+    `collection`; a single text → `poem`, `article`, … from categories and
+    header type); the Wikidata and category mappings of step 3 stay as
+    further sources. A work with more than `reference_threshold` (2,000)
+    parts and no Index type is `reference`.
+1f. **Virtual roots**: the work's `page_title` is the missing title,
+    `is_virtual = 1`, `entry_title` = the first child in reading order; display title
+    from the common prefix, cleaned of volume suffixes; author and year
+    from the children's headers; the source link points to the entry page.
+1g. **Oversized pages**: `oversized = 1` when a page's wikitext exceeds
+    `oversized_bytes` (300 kB, about 100 k characters of text). The
+    pipeline only flags; the app splits at download time (7.1 step 6).
+1h. **Completeness counts**: `missing_part_count` = red links in the TOC
+    (they never become parts; Diktsamling: 9 parts, 116 missing);
+    `complete` follows in step 4.
 2. **Parts count**: number of subpages `Title/...` (from the page table). Used for
    size estimate and to decide single-page vs multi-part.
+   (WS, 2026-10-31, WS§5.1–5.2: now from the resolution: `part_count`
+   (existing parts; 1 for a single-page work), `text_count`,
+   `missing_part_count`, `bytes_total`. Works over `parts_cap` (2,000,
+   confirmed after the survey, WS§8 item 4) and reference works get
+   `parts_in_catalog = 0` and carry counts only.)
 3. **Metadata merge** (priority order; record `*_source` for each):
    title (display title from page_props `displaytitle`, else page title),
    authors (Wikidata P50 → header `author` param), year (edition P577 → work
    P577 → header `year`), language (P407 → wiki language), genres (P136 and
    P31 on edition then work → category mapping), type (P31 mapping),
    description (Wikidata description in wiki language, else English).
-4. **Quality**: from Index progress via templatelinks/transclusion, text-quality
-   template, incomplete template, Wikidata badges → one of
-   `validated | proofread | unproofread | unknown` plus `incomplete` boolean.
-5. **Completeness filter** (5.4). Excluded works are kept in a separate
+4. **Quality and completeness** (WS, 2026-10-31, WS§10.3: replaces "from
+   Index progress, text-quality template, incomplete template, Wikidata
+   badges → one value plus an `incomplete` boolean"): a tier, `complete`
+   and their sources for every work and every part, by the rules of 5.4.
+5. **Hard exclusions** (5.4; WS, 2026-10-31, WS§10.4: replaces the
+   completeness filter). Excluded works are kept in a separate
    `excluded` table with a reason, for debugging coverage.
 6. **Write SQLite** per wiki (5.3), gzip, compute sha256.
 7. **Coverage report** per wiki: % of works with year, genre, author, quality.
    Written to `report/{wiki}.md` and printed in CI. This is the tool for deciding
-   where to improve mappings.
+   where to improve mappings. (WS, 2026-10-31) Also works per quality tier
+   and per `structure`, and the size of the default view (5.4).
 8. **Manifest**: `manifest.json` listing every wiki: code, language name
    (autonym), url, sha256, size, work_count, generated_at, schema_version.
+   (WS, 2026-10-31, WS§10.5) Also `show_unknown_by_default` (from the
+   wiki's config) and the work counts per tier.
 
-### 5.3 Catalog schema (per-wiki SQLite, schema_version 1)
+### 5.3 Catalog schema (per-wiki SQLite, schema_version 2)
+(WS, 2026-10-31, WS§5.1, §10.5: schema_version 2 replaces version 1. It adds
+the structure columns, the `parts`, `aliases` and `parts_fts` tables, and
+replaces version 1's `quality` / `incomplete` with the quality and
+completeness fields of 5.4.)
 ```sql
 CREATE TABLE meta(key TEXT PRIMARY KEY, value TEXT);   -- wiki, generated_at, schema_version
 CREATE TABLE works(
@@ -387,13 +583,45 @@ CREATE TABLE works(
   year INTEGER, year_precision INTEGER, year_source TEXT,
   language TEXT,                     -- BCP47, e.g. nb, nn, da, en
   type TEXT,                         -- see canonical taxonomy
-  quality TEXT NOT NULL,             -- validated|proofread|unproofread|unknown
-  incomplete INTEGER NOT NULL DEFAULT 0,
-  part_count INTEGER NOT NULL,       -- 1 for single-page works
+  -- structure (WS§5.1)
+  structure TEXT NOT NULL,           -- single | subpages | linked | mixed | virtual
+  is_virtual INTEGER NOT NULL DEFAULT 0,
+  entry_title TEXT,                  -- page to open/link when is_virtual (else = page_title)
+  part_count INTEGER NOT NULL,       -- existing parts; a single-page work has 1
+  text_count INTEGER NOT NULL,       -- searchable parts
+  missing_part_count INTEGER NOT NULL DEFAULT 0,  -- red links in the TOC
+  parts_in_catalog INTEGER NOT NULL DEFAULT 1,    -- 0 for reference works and works over parts_cap
+  oversized INTEGER NOT NULL DEFAULT 0,
+  bytes_total INTEGER,               -- sum of wikitext bytes, for the size estimate
+  index_titles TEXT,                 -- JSON list of Index pages (quality, scans)
+  -- quality and completeness (WS§10.5, rules in 5.4)
+  quality TEXT NOT NULL,             -- validated | proofread | unproofread | unknown
+  quality_source TEXT,               -- page-levels | status-template | textquality | index-progress | none
+  quality_pages TEXT,                -- JSON {"4":n,"3":n,"2":n,"1":n,"0":n,"missing":n}
+  complete INTEGER NOT NULL,         -- 1 unless a rule in 5.4 says otherwise
+  incomplete_reason TEXT,            -- template | missing-parts | missing-pages | index-progress | coverage
+  missing_page_count INTEGER NOT NULL DEFAULT 0,
+  coverage REAL,                     -- transcluded / existing text pages of the Index, when applicable
+  own_translation INTEGER NOT NULL DEFAULT 0,
   description TEXT,
   cover_url TEXT,
   rev_id INTEGER, touched TEXT
 );
+CREATE TABLE parts(
+  work_id INTEGER NOT NULL, ord INTEGER NOT NULL,   -- reading order, 0-based, depth-first
+  depth INTEGER NOT NULL, parent_ord INTEGER,       -- tree
+  page_title TEXT NOT NULL,                         -- exact title; '#anchor' never stored
+  display_title TEXT NOT NULL,
+  kind TEXT NOT NULL,                               -- volume | chapter | text | front | toc
+  searchable INTEGER NOT NULL DEFAULT 0,
+  bytes INTEGER, scan_from INTEGER, scan_to INTEGER, index_title TEXT,
+  quality TEXT, quality_pages TEXT, complete INTEGER,
+  PRIMARY KEY(work_id, ord));
+CREATE INDEX parts_title ON parts(page_title);      -- open-by-URL, link rewriting
+CREATE TABLE aliases(alias_title TEXT PRIMARY KEY, work_id INTEGER NOT NULL, ord INTEGER);
+  -- redirects to a work or a part; used by search and open-by-URL
+CREATE VIRTUAL TABLE parts_fts USING fts5(display_title, work_title, author_names, content='');
+  -- only searchable parts
 CREATE TABLE authors(id INTEGER PRIMARY KEY, name TEXT NOT NULL, sort_name TEXT NOT NULL,
   qid TEXT, birth_year INTEGER, death_year INTEGER, author_page_title TEXT);
 CREATE TABLE work_authors(work_id INTEGER, author_id INTEGER, role TEXT, position INTEGER,
@@ -402,21 +630,70 @@ CREATE TABLE genres(id INTEGER PRIMARY KEY, key TEXT UNIQUE);           -- canon
 CREATE TABLE work_genres(work_id INTEGER, genre_id INTEGER, PRIMARY KEY(work_id, genre_id));
 CREATE VIRTUAL TABLE works_fts USING fts5(display_title, author_names, content='');
 CREATE TABLE excluded(page_title TEXT PRIMARY KEY, reason TEXT);
+  -- (WS) every page excluded in step 1 and every work excluded in step 5, with the
+  -- reason; pages absorbed as parts are not "excluded" and do not appear here
 -- indexes on works(year), works(type), works(quality), works(sort_title), work_genres(genre_id)
 ```
 Genre keys are a fixed canonical list (localised in the app):
 `novel, short-story, poetry, drama, essay, letters, memoir-biography, history,
 religious, legal-government, speech, periodical, children, reference, song-hymn,
 travel, philosophy, science, folklore, other`.
-Type keys: `book, poem, play, article, document, collection, periodical-issue, other`.
+Type keys: `book, poem, play, article, document, collection, periodical-issue, other`,
+and (WS, 2026-10-31, WS§5.1) `reference`.
 
-### 5.4 Completeness filter
-Include a work only if: namespace 0 root page; not redirect/disambiguation;
-not in per-wiki exclusion categories (e.g. "Works to be split", portals in
-mainspace, index-like lists); not flagged `incomplete` unless config allows
-(default: include but mark, so the user can filter; the app's default filter
-hides `incomplete`). Keep quality as a facet rather than excluding
-`unproofread`: on smaller wikis that would remove most texts.
+### 5.4 Quality and completeness policy
+(WS, 2026-10-31, WS§10, decided by the owner in WS§10.8: replaces the
+completeness filter.) Two stages: the pipeline excludes only what nobody can
+read; the catalog records quality and completeness for every work and every
+part; the app hides unproofread and incomplete works by default and lets the
+reader opt in. Typed-in texts carry no signal, and a hard cut would empty
+the small wikis.
+
+**Tiers** are computed over the text pages (levels 1–4) a work transcludes.
+Sources in order of precedence: page levels, then a status or text-quality
+template, then Index progress, else unknown. A collection aggregates over
+all its parts; every part also gets its own tier, so a proofread poem inside
+an unfinished collection keeps its standing.
+
+| tier | rule |
+|---|---|
+| `validated` | every text page at level 4; or de `fertig`; or a 100 % / validated text-quality template |
+| `proofread` | every text page at level 3 or better, or at least 90 % at level 3 or better (the app shows "n of m pages not yet proofread" from `quality_pages`); or de `korrigiert`; or a 75 % template |
+| `unproofread` | any other work that has a signal |
+| `unknown` | no signal at all (typed-in text without a template) |
+
+**Completeness**: `complete = 0` when an incomplete template or de
+`unvollständig` is present; `missing_part_count > 0`; `missing_page_count >
+0`; Index progress is `MS`/`OCR`/`L`/`X`; or the work is the Index's book
+and covers under 95 % of that Index's text pages. Otherwise `complete = 1`
+(unknown completeness counts as complete, since nothing says otherwise).
+
+**Hard exclusions** (pipeline, into `excluded` with the reason): the work
+has no part with text; all referenced scan pages are missing or at level 0;
+its Index progress says the source is faulty; or a junk marker applies
+(cleanup or deletion template, under 300 bytes, placeholder). Everything
+else enters the catalog with its flags.
+
+**App defaults** (WS§10.6): the default filter is `quality IN (validated,
+proofread)`, plus `unknown` where the wiki's manifest sets
+`show_unknown_by_default`, and `complete = 1`. no shows unknown works by
+default (after the junk rules, labelled "Not verified against a scan"); for
+every other wiki the owner sets `show_unknown_by_default` from the WP1a
+survey. Filter chips, off by default and also reachable from Settings:
+"Include texts not yet proofread", "Include incomplete works", "Include
+unverified texts". Search collapses hidden matches into one row ("n more
+texts hidden by your quality filter"); nothing disappears silently. Labels
+on the detail screen, in the reader's info sheet and for texts opened by
+URL: "Validated", "Proofread", "Proofread, 3 of 210 pages not yet
+proofread", "Not proofread, may contain OCR errors", "Not verified against
+a scan", "Incomplete: 116 of 125 poems not yet transcribed", "Wikisource
+translation". The wiki picker shows the number of works in the default view
+per wiki.
+
+Measured on no (WS§10.7): of 3,845 works, 1,523 are validated or
+proofread, about 220 unknown works remain after the junk rules, and 2,041
+unproofread works (1,835 of them level 1 throughout, i.e. raw OCR) are
+hidden by default.
 
 ### 5.5 Per-wiki config (`pipeline/config/{wiki}.yaml`)
 ```yaml
@@ -442,6 +719,24 @@ exclude_subpage_titles: []          # fr: ["Texte entier"] (F§2.4)
 licence_templates: [PD-old]         # licence boxes the normaliser drops (F§2.5)
 # line_number_selectors, fr: ['span.OptionText[title="Vers numérotés"]'];
 #   de: ["span.zeilennummer"] (F§2.7). page_number_selectors, de: add "span.pr1pn".
+# Added by WS (WS§5.3; the de prefix list is extended from the WP1a survey,
+#   WS§8 item 6: [RE:, MKL1888:, ADB:, BLKÖ:, Zedler:, Boetticher:, Haan:, …]):
+structure:
+  container_params: [tittel]            # fr: [titre]; en: [title]; de: [HERKUNFT]  (first wikilink)
+  prev_next_params: [[prev, next]]      # en also [previous, next]; de [[VORIGER, NÄCHSTER]]
+  current_params: [current]             # en: [current, section]; de: [TITEL]
+  index_params: [index]                 # de: [INDEXSEITE]
+  toc_sources: [ws-summary, sammendrag, body-links]   # fr: sommaire; en: ws-summary, remarks
+  chapter_label_regex: '^((Første|Anden|Andet|Tredje|Fj[æe]rde|Femte|\d+\.?) (kapit+el|akt|del|bind|brev)|Kapit+el|Akt|Del|Bind|Brev)\b'  # starting point, tuned from the survey
+  oversized_bytes: 300000
+  parts_cap: 2000
+  reference_threshold: 2000
+  whole_text_subpages: []               # fr: [Texte entier]
+# Quality markers and the app default (WS§10): show_unknown_by_default
+# (no: true, owner decision WS§10.8; other wikis set by the owner from the
+# survey), the status parameter (de: BEARBEITUNGSSTAND), text-quality,
+# incomplete, junk (no: opprydning, slett, sletting) and own-translation
+# markers (no: oversetter = Wikikilden).
 ```
 Start with configs for: no, en, fr, de, it, sv, da, fi, is, es, mul. Other
 wikis run with a generic default config (Wikidata-only metadata) and still
@@ -485,6 +780,10 @@ docs/                   this plan, STATUS.md, decisions
   `SupportSQLiteOpenHelper` and queried directly; do not import rows into the
   main DB (catalogs are tens of MB for `en`).
 - Update check against `manifest.json` at most daily; download when sha differs.
+- (WS, 2026-10-31, WS§10.5–10.6) `manifest.json` carries per wiki
+  `show_unknown_by_default` and the work counts per quality tier. The app
+  reads the flag for its default filter (5.4) and shows the default-view
+  count in the wiki picker.
 - The app's own Room database (`library.db`) holds downloaded works, parts,
   bookmarks, positions, download jobs, and settings not in DataStore.
 
@@ -499,30 +798,51 @@ ReadingPosition(workId PK, partId, charOffset, progress REAL, updatedAt)
 Bookmark(id PK, workId, partId, charOffset, excerpt, note, createdAt)
 DownloadJob(id, workId, kind: full|parts, partIds JSON, state, bytesDone, bytesTotal, error)
 ```
+(WS, 2026-10-31, WS§7.2) `DownloadedWork` adds `structure`
+(single|subpages|linked|mixed|virtual) and `entryTitle`. `Part` adds
+`sourceUrl`, `kind` (volume|chapter|text|front|toc|synthetic), `depth`,
+`parentIndex` and, for synthetic parts, `anchor`; `pageTitle` is the part's
+own wiki page, a root page or a subpage.
 
 ---
 
 ## 7. Content: fetching and normalising
 
 ### 7.1 Resolving a work into parts
-1. Fetch Parsoid HTML of the root page.
-2. Parts = links inside `.ws-summary` whose target is a subpage of the work
-   (`Title/...`), in document order, de-duplicated. If no `.ws-summary`, use all
-   such subpage links in the root page body. If there are none, the work is a
-   single part (the root page itself).
-3. If the root page has readable text of its own beyond header/TOC (e.g. a
-   preface), include it as part 0 "Front matter". Heuristic: > 400 characters of
-   paragraph text after removing `ws-noexport`, header, and TOC.
-4. Deeply nested works (`Work/Volume 1/Chapter 2`) are flattened in order, with
-   the hierarchy kept as a `depth` field for the TOC display. Nested TOC pages
-   (a volume page that is itself a TOC) are expanded recursively, max depth 3.
-5. Store the resolved part list before downloading content, so a partial
-   download still knows the whole structure.
+(WS, 2026-10-31, WS§7.2: catalog parts first, live resolution with the same
+rules second. This replaces the subpage-only resolution from the root page's
+`.ws-summary`, flattened to depth 3.)
+1. Use the catalog `parts` rows when the work has them (`parts_in_catalog =
+   1`).
+2. Otherwise (reference works, works over `parts_cap`, pages opened by URL
+   that the catalog lacks) resolve live with the rules of 5.2 steps 1a–1h
+   on Parsoid HTML: `data-mw` holds the same header parameters,
+   `.ws-summary` or the body links give the TOC, and the `Page:` titles in
+   the page markers give the Index. A reference work's TOC loads live with
+   a filter box.
+3. A refresh re-resolves live and merges new parts.
+4. Each part is fetched by its own page title, root pages and subpages
+   alike. If the root page has readable text of its own beyond header/TOC
+   (e.g. a preface), it is the `front` part. Heuristic: > 400 characters of
+   paragraph text after removing `ws-noexport`, header, and TOC. A TOC page
+   without text of its own is a `toc` part: structure only, not downloaded.
+5. Store the resolved part tree (`depth`, parent) before downloading
+   content, so a partial download still knows the whole structure.
 6. (Added in WP0, F§2.4) Split oversized parts into synthetic parts (at
    headings, else at page markers) above a threshold such as 100 k
    characters: de puts whole novels on one page (`Käthe`: 604 k characters),
    which breaks N3 and makes every relayout slow (about 0.2 s on the
    emulator, F§4.5).
+   (WS, 2026-10-31, WS§7.2, §8 item 8: the catalog flags such pages as
+   `oversized`; the app splits at download time when a page exceeds
+   `oversized_chars` (100 k), with this fallback ladder: at `h2`/`h3`
+   headings when at least three exist; else at chapter-like blocks (a short
+   centred or bold paragraph followed by a page marker or a `<br>` gap);
+   else every N page markers so that no part exceeds 100 k characters.
+   Synthetic parts get `kind = synthetic`, `anchor` = the first element id,
+   and as display title the heading text or "Pages 1–40". Locators stay
+   `(partId, charOffset)`, the part being the synthetic one. `Käthe` has
+   471 page markers and no headings.)
 
 ### 7.2 Normaliser (Jsoup) — Parsoid HTML → reader HTML
 Output: one self-contained HTML fragment per part, UTF-8, with only these
@@ -559,6 +879,9 @@ Rules:
 3. Links: internal links to other parts of the same work → `app://part/{index}#anchor`;
    links to other Wikisource pages → `https://{wiki}/wiki/...` (opened in
    browser with a confirmation); `Author:` links likewise.
+   (WS, 2026-10-31, WS§7.2: a link to *any* page that is a part of the same
+   work, root page or subpage, becomes `app://part/{index}`; de member pages
+   link to their neighbours and to the TOC root.)
 4. Images: download chosen `srcset` variant to `works/{workId}/img/`, rewrite
    `src` to `https://appassets.androidplatform.net/works/...` served via
    `WebViewAssetLoader` with an internal-storage path handler. Keep `alt`.
@@ -672,6 +995,9 @@ TOC drawer (parts with depth), bookmarks list, progress slider (jumps by
 locator), "go to page number of original" when page marks exist, search within
 work (JS `window.find` or own index over normalised text), chapter title and
 page x/y of chapter in the footer.
+(WS, 2026-10-31, WS§7.3) The TOC drawer renders the part tree, with volumes
+collapsible; the footer shows the part's display title; for a text opened
+from search the reader's info sheet shows "Part of: Diktsamling".
 
 ---
 
@@ -690,22 +1016,57 @@ Acceptance: findings documented; pagination prototype turns pages at 60 fps
 on an emulator; locator restores to the same sentence after re-pagination.
 
 ### WP1 — Catalog pipeline for the 11 configured wikis (3–4 weeks)
+- (WS, 2026-10-31, WS§6, §10.8 item 4) **WP1a, structure and quality survey
+  (3–4 days), first.** Run 5.2 steps 1–1h and 4 over the pages-articles
+  dumps of no, is, de, fr and en and write `report/{wiki}-structure.md`:
+  counts per pattern A–I (WS§1) and per `structure` value; the parent-rule
+  histogram (container / hierarchy / TOC / own) and the `order_source`
+  histogram; container links that point outside ns0 or to excluded pages;
+  prev/next chains that cross `index` boundaries; orphan trees (count,
+  examples), oversized pages (count, largest), red-link ratios in TOCs;
+  colon prefixes with ≥ 100 root pages; the parts-table row count and
+  gzipped size at `parts_cap` ∈ {500, 2,000, ∞}; works per quality tier,
+  the unknown count with a 30-text random sample, junk-rule yields,
+  missing-page counts and the size of the default view; 30 random works
+  per pattern with their resolved TOC, for eyeballing. Acceptance: the
+  report exists for the five wikis; the eyeball samples for patterns A, B,
+  D and E are correct for at least 27 of 30; the owner has set the
+  thresholds of WS§8 and each wiki's `show_unknown_by_default` from the
+  numbers.
 - Implement sections 5.1–5.6. Start with `no` and `is` (small), then `en`.
 - CI workflow producing manifest + catalogs.
 Acceptance: `make catalog WIKI=no` produces a catalog where ≥ 90 % of works
 have an author, ≥ 60 % have a year, and the coverage report prints; FTS query
 "Ibsen" returns Ibsen's works; `excluded` table explains every exclusion.
+(WS, 2026-10-31, WS§9) Also: `Der Sagenschatz des Königreichs Sachsen` is
+one work with about 990 parts in TOC order; `Diktsamling` is one work with 9
+parts, 116 missing, incomplete; `Ved Rundarne (1864)` is found by search as
+a text of `Diktsamling`; `Die Heimath in der neuen Welt` is one virtual-root
+work with three volumes; `Ozymandias` finds the Hutchinson text (and any
+other edition on en); `Käthe` is flagged `oversized`; `Kinder und
+Hausmärchen` (the editions overview) is not a work and `Kinder- und
+Haus-Märchen Band 1 (1857)` is; the en catalog grows by no more than the
+agreed budget (WS§5.2); the default view of the no catalog holds about
+1,500 works and none of them is raw OCR; the `excluded` table names every
+hard exclusion.
 
 ### WP2 — App skeleton: catalog, browse, search, work detail (3 weeks)
 - First-run wiki selection and catalog download; browse facets; offline FTS;
   online search; work detail with metadata, attribution, parts list, size
   estimate.
+- (WS, 2026-10-31, WS§7.1) Search returns works and texts; open-by-URL
+  resolves through `parts` and `aliases`; quality filter chips and labels
+  (5.4); the parts tree and "9 of 125 texts transcribed" on the detail
+  screen.
 Acceptance: fully offline browsing after catalog download; all facets combine;
 switching UI language to nb and nn shows translated strings on every screen.
 
 ### WP3 — Content fetching, normaliser, downloads (3 weeks)
 - Sections 7.1–7.4 with fixture tests; WorkManager queue; partial downloads;
   images; storage management (per-work size, delete).
+- (WS, 2026-10-31, WS§7.2, §7.4) Live resolution, per-page attribution for
+  works made of several wiki pages (R11), synthetic parts, and the
+  structure fixtures listed in WS§7.4.
 Acceptance: all fixtures pass; a 60-chapter novel downloads in the background
 and survives app kill; airplane mode after download still opens every chapter.
 
@@ -745,7 +1106,8 @@ notice present; launcher shows `Bibliotheke`.
 ### WP8 — Later (not scheduled)
 Text-to-speech, dictionary lookup, highlights with notes, cross-device sync,
 "random text" and "recently added" feeds, EPUB export, scan image view beside
-text, reading statistics.
+text, reading statistics. (WS, 2026-10-31, WS§8 item 6) Lookup in reference
+works.
 
 ---
 
@@ -774,6 +1136,9 @@ text, reading statistics.
 | Wikimedia API changes / RESTBase retirement | All network access behind one interface; endpoints in config; WP0 verification |
 | Catalog size on device for `en` | Read-only attached SQLite, FTS5, no row import |
 | Translations wrong in 9 languages | Native review flags; strings kept short and literal; glossary in `docs/glossary.md` |
+| (WS, 2026-10-31, WS§9) Header container links are wrong or missing | Rule 3 (TOC membership) as fallback, 5.2 step 1b; the WP1a survey counts how often rule 1 fails |
+| (WS) Editions merged by mistake | Rule 1 never climbs through `TITEL` or title fields; a work is one edition (3.2) |
+| (WS) Good texts drowned by raw OCR | Default filter of 5.4 (unproofread and incomplete hidden), measured per wiki by the WP1a survey |
 
 ---
 
@@ -796,3 +1161,9 @@ users can browse before the first catalog download finishes.
 Decided since the first draft: licence GPL-3.0-or-later (D8), contact address
 for the User-Agent (section 0), application id and Play title (1.2), catalog
 host GitHub Releases (D6).
+
+(WS, 2026-10-31, WS§8–9) Later items, not in v1: grouping editions of one
+text (versions pages, de `{{Andere Version}}`, Wikidata P629/P747, the it
+`Opera:` namespace); "also in" memberships of a text in a second work; a
+lookup feature for reference works (WP8); merging root-page volumes that
+are chained only by prev/next (revisit with the WP1a survey's counts).

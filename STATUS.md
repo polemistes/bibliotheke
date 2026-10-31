@@ -7,11 +7,18 @@ Last updated: 2026-10-31
 
 ## Current package
 
-**WP0 — Spike and verification: complete.** Next: **WP1 — Catalog pipeline**
-(not started). WP1 follows `docs/work-structure-plan.md` (decided by the
-owner on 2026-10-31): first apply its section 9 edits to PLAN.md, then run
-WP1a (the structure and quality survey, section 6 and 10.8), then build the
-pipeline with schema version 2 (sections 5.1 and 10.5).
+**WP0 — Spike and verification: complete.** Current: **WP1 — Catalog
+pipeline**. WP1 follows `docs/work-structure-plan.md` (decided by the owner
+on 2026-10-31):
+
+- [x] 1. Planning files committed as written
+- [x] 2. Section 9 edits applied to PLAN.md, marked "(WS, 2026-10-31 …)"
+      and citing the plan as "WS§n"; D1–D9 unchanged
+- [ ] 3. WP1a: structure and quality survey over the pages-articles dumps of
+      no, is, de, fr, en → `report/{wiki}-structure.md`; numbers in STATUS.md;
+      **then stop**: the owner sets the thresholds and per-wiki
+      `show_unknown_by_default`
+- [ ] 4. WP1 pipeline, schema version 2, acceptance cases of PLAN.md WP1
 
 ## WP0 checklist
 
@@ -49,7 +56,7 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## In progress
 
-- Nothing. WP1 starts from PLAN.md section 5 plus findings section 6.
+- WP1a survey (task 3), not yet started.
 
 ## How to resume / rerun
 
