@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Defaults for every wiki (PLAN.md 5.5); pipeline/config/{wiki}.yaml overrides
+# them key by key. Template names are case-insensitive in the first letter;
+# parameter and Index field names are case-insensitive.
+wiki: null
+namespaces: {}
+header_templates: [header]           # templates whose named parameters carry structure
+positional_headers: {}               # name -> {container: n, prev: n, next: n, relative: bool}
+header_params:                       # metadata parameters (5.2 step 3)
+  author: [author]
+  year: [year]
+structure:                           # WS§5.3; resolution rules in PLAN.md 5.2 steps 1a-1h
+  container_params: [title]          # header template, <pages header=1> attribute or Index field
+  prev_next_params: [[prev, next], [previous, next]]
+  current_params: [current, section]
+  index_params: [index]
+  plain_title_params: []             # parameters whose value is a plain title, not a link (de)
+  toc_marker: null                   # [param, value] marking a TOC page (de: [HERKUNFT, off])
+  toc_fields: [toc, contents]        # Index fields holding the TOC
+  toc_sources: [ws-summary, summary, body-links]
+  summary_templates: []              # templates wrapping the TOC (emit .ws-summary)
+  page_templates: {}                 # templates transcluding a Page: page -> positional param
+  chapter_label_regex_default: '^(chapter|kapitel|kapittel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\b|^[ivxlcdm]+\.?$|^\d+\.?$|^[ivxlcdm]+\.?\s*$'
+  chapter_label_regex: null          # per-wiki additions, tuned from the survey
+  oversized_bytes: 300000
+  parts_cap: 2000
+  reference_threshold: 2000
+  whole_text_subpages: []
+exclude_title_prefixes: []
+disambiguation_templates: [disambiguation]
+versions_templates: [versions]
+author_page_templates: []
+exclude_templates: []
+exclude_categories: []
+other_versions_templates: [other versions]   # pattern I on text pages
+quality:                             # WS§10, PLAN.md 5.4
+  show_unknown_by_default: null      # set by the owner from the WP1a survey
+  status_params: []
+  status_values: {}
+  textquality_templates: [TextQuality]
+  textquality_values: {"100%": validated, "100": validated, "75%": proofread, "75": proofread,
+                       "50%": unproofread, "50": unproofread, "25%": unproofread, "25": unproofread,
+                       "00%": unproofread, "0%": unproofread}
+  index_type_fields: [type]
+  index_types: {book: book, collection: collection, journal: periodical-issue,
+                dictionary: reference, phdthesis: document}
+  index_progress_fields: [progress]
+  index_progress_values: {T: validated, V: proofread, C: unproofread,
+                          MS: faulty, OCR: faulty, L: faulty, X: incomplete}
+  incomplete_templates: [incomplete]
+  junk_templates: []
+  placeholders: []
+  own_translation: {params: [], values: []}

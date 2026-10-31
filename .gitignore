@@ -25,3 +25,6 @@ captures/
 # OS / editor
 .DS_Store
 *.swp
+
+# Pipeline package build metadata
+*.egg-info/

@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bibliotheke-pipeline"
+version = "0.1.0.dev0"
+description = "Catalog pipeline for Bibliotheke for Wikisource books (PLAN.md section 5)"
+license = "GPL-3.0-or-later"
+requires-python = ">=3.12"
+dependencies = ["requests>=2.31", "PyYAML>=6.0"]
+
+[tool.setuptools]
+packages = ["wscatalog"]

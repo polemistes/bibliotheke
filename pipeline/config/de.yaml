@@ -1,0 +1,36 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+wiki: de
+domain: de.wikisource.org
+dbname: dewikisource
+language: de
+namespaces: {index: 104, page: 102}   # no Author namespace on de (F§1)
+header_templates: [Textdaten, Navigation2, GartenlaubenArtikel, Gesetzestext, Zeitschrift]
+positional_headers:
+  Navigation: {container: 1, prev: 2, next: 3, relative: true}
+header_params:
+  author: [autor]
+  year: [erscheinungsjahr, jahr]
+structure:
+  container_params: [herkunft, artikel]    # first wikilink inside HERKUNFT (WS§3.3)
+  prev_next_params: [[voriger, nächster]]
+  current_params: [titel]
+  index_params: [indexseite]
+  plain_title_params: [voriger, nächster]  # VORIGER/NÄCHSTER are plain titles
+  toc_marker: [herkunft, "off"]
+  toc_fields: [inhaltsverzeichnis]
+  page_templates: {SeitePR: 2, SeiteST: 2, SeitePR1: 2, "SeitePR Rand": 2, PoemPR: 2, SeiteLST: 2}
+  chapter_label_regex: '^((erstes|zweites|drittes|viertes|fünftes|sechstes|siebentes|siebtes|achtes|neuntes|zehntes|\d+\.) (kapitel|buch|heft|stück)|(erster|zweiter|dritter|vierter|fünfter|sechster|siebenter|siebter|achter|neunter|zehnter|\d+\.) (band|teil|theil|abschnitt|aufzug|akt|gesang|brief)|kapitel|buch|teil|theil|abschnitt|aufzug|gesang|heft|vorrede|vorwort|einleitung|anhang|nachwort|inhalt)\b'
+# Lexicon pseudo-namespaces (F§1, WS§1); the survey lists every colon prefix with >= 100 root pages.
+exclude_title_prefixes: ["RE:", "MKL1888:", "ADB:", "BLKÖ:", "Zedler:", "Boetticher:", "Haan:"]
+disambiguation_templates: [Begriffsklärung, BKS]
+versions_templates: []
+author_page_templates: [Personendaten]
+other_versions_templates: [Andere Version]
+quality:
+  status_params: [bearbeitungsstand, status]
+  status_values: {fertig: validated, korrigiert: proofread, unkorrigiert: unproofread,
+                  teilkorrigiert: unproofread, unvollständig: incomplete}
+  textquality_templates: []
+  index_type_fields: []
+  index_progress_fields: []
+  incomplete_templates: []

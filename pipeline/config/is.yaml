@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+wiki: is
+domain: is.wikisource.org
+dbname: iswikisource
+language: is
+namespaces: {author: 102, index: 252, page: 250}   # verified in WP0, F§1
+header_templates: [Verk, header]
+header_params:
+  author: [höfundur, author]
+  year: [ár, year]
+structure:
+  container_params: [titill, title]
+  prev_next_params: [[fyrri, næsti], [previous, next], [prev, next]]
+  current_params: [hluti, section, current]
+  chapter_label_regex: '^(\d+\.? )?(kafli|þáttur|bók|bindi|hluti)\b'
+disambiguation_templates: [Aðgreining]
+versions_templates: [Útgáfur]
+other_versions_templates: [Aðrar útgáfur]
+quality:
+  index_progress_fields: [framvinda, progress]

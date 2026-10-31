@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+wiki: no
+domain: no.wikisource.org
+dbname: nowikisource
+language: nb
+namespaces: {author: 102, index: 106, page: 104}   # verified in WP0, F§1
+header_templates: [topp, topp2, header]
+header_params:
+  author: [forfatter, author]
+  year: [år, year]
+structure:
+  container_params: [tittel, title]
+  prev_next_params: [[forrige, neste], [prev, next], [previous, next]]
+  current_params: [seksjon, current, section]
+  toc_fields: [sammendrag]
+  summary_templates: [Innholdsfortegnelse]
+  chapter_label_regex: '^((første|anden|andet|annen|annet|tredje|fj[æe]rde|femte|sjette|syvende|sjuende|ottende|åttende|niende|tiende|\d+\.?) (kapit+el|akt|del|bind|brev|bok|sang)|kapit+el|akt|del|bind|brev|bok|sang|forord|innledning|indledning|tillæg|tillegg|efterskrift|etterord)\b'
+disambiguation_templates: [Peker, Flertydig, disambiguation]
+versions_templates: []
+quality:
+  show_unknown_by_default: true      # owner decision, WS§10.8 item 2
+  index_progress_fields: [fremgang]
+  incomplete_templates: [ufullstendig]
+  junk_templates: [opprydning, slett, sletting]
+  placeholders: ["Ennå ikke fri"]
+  own_translation: {params: [oversetter], values: [Wikikilden]}
