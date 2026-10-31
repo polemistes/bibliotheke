@@ -464,12 +464,29 @@ class Resolver:
         # the Index's own book (its title field links the page).
         listed: dict[str, list[str]] = defaultdict(list)
         self.toc_like = set()
+        cfg = self.cfg
+        headers = cfg.header_templates | frozenset(cfg.positional_headers)
+
+        def headerless(t: str) -> bool:
+            """No header template and no status: on de such a root page cannot
+            be a text of its own (step 1 `no-header`), only a page of a book
+            stored page by page (decided 2026-11-01, STATUS.md item 4)."""
+            r = nodes[t].rec
+            return r is not None and not (r.tpls & headers) and not r.hdr.get("status")
+
         for n in nodes.values():
             if self.existing_prefix(n.title) or is_subpage(n.title):
                 continue
             targets = [t for t in n.toc if t not in self.excluded]
-            if len(targets) >= 3 and (n.rec.hdr.get("toc_marker")
-                                      or (n.index_type_raw and self.links_to_self(n))):
+            if len(targets) < 3:
+                continue
+            toc_like = bool(n.rec.hdr.get("toc_marker")) or bool(n.index_type_raw and self.links_to_self(n))
+            if not toc_like and cfg.headerless_toc_members and n.index and n.rec.tpls & headers:
+                # A root page with a header and an Index that lists at least
+                # three headerless pages is their TOC (de `Topographia Hassiae`:
+                # HERKUNFT names the series, not `off`).
+                toc_like = sum(1 for t in targets if t in nodes and headerless(t)) >= 3
+            if toc_like:
                 self.toc_like.add(n.title)
                 for t in targets:
                     if t in nodes and not is_subpage(t):
@@ -519,7 +536,11 @@ class Resolver:
                     reach_cache[toc.title] = reach(toc.title)
                 members = toc_sets.setdefault(toc.title, set(toc.toc))
                 chained = (t in reach_cache[toc.title] or n.prev in members or n.next in members)
-                if set(n.indexes) & set(toc.indexes) or chained:
+                # A headerless page listed by exactly one TOC-like page is its
+                # member even without a shared Index or chain (de page-by-page
+                # books: the pages carry no header, Index or status).
+                bare = cfg.headerless_toc_members and headerless(t)
+                if set(n.indexes) & set(toc.indexes) or chained or bare:
                     n.rule = "toc"
                     n.parent = toc.title
         for v in self.virtual:
@@ -674,7 +695,15 @@ class Resolver:
             t = wt.strip_markup(parent.toc_texts[n.title])
             if t:
                 return t[:200]
-        return parent_titles(n.title) and n.title[len(parent_titles(n.title)[0]) + 1:] or n.title
+        if parent_titles(n.title):
+            return n.title[len(parent_titles(n.title)[0]) + 1:]
+        # A colon prefix shared by at least three siblings is the book's name,
+        # not the part's (de "Elektrische Kraft Hertz:005" -> "005").
+        if parent is not None and ":" in n.title:
+            prefix = n.title.split(":", 1)[0] + ":"
+            if sum(1 for c in parent.children if c.startswith(prefix)) >= 3:
+                return n.title[len(prefix):].strip() or n.title
+        return n.title
 
     def own_text(self, n: Node) -> int:
         if n.rec is None:
@@ -747,7 +776,12 @@ class Resolver:
             itype = root.index_type or (members[0].node.index_type if is_virtual and members else None)
             if itype:
                 wtype = itype
-            elif part_count > cfg.reference_threshold:
+            elif part_count > cfg.reference_threshold and root.order_source not in ("chain", "toc"):
+                # Decided 2026-11-01 (STATUS.md item 3): size alone does not
+                # make a reference work; a prev/next chain or a TOC that covers
+                # the children is the reading order of a periodical or
+                # collection (en Popular Science Monthly, Nicene Fathers, is
+                # Íslenzkar þjóðsögur). Entries of dictionaries have neither.
                 wtype = "reference"
             elif not members:
                 wtype = "single"

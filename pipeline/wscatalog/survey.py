@@ -348,7 +348,11 @@ class Survey:
         cov = [self.wq(w).coverage for w in cat if self.wq(w).coverage is not None]
         if cov:
             out.append(f"Coverage was computed for {len(cov):,} works that are their Index's book; "
-                       f"{sum(c < 0.95 for c in cov):,} cover under 95 % of the Index's text pages.")
+                       f"{sum(c < self.cfg.coverage_min for c in cov):,} cover under "
+                       f"{self.cfg.coverage_min:.0%} of the Index's text pages that no other work "
+                       f"transcludes, and {sum(1 for w in cat if self.wq(w).reason == 'coverage'):,} "
+                       f"are incomplete for that reason alone (more than {self.cfg.coverage_slack} "
+                       f"pages left out).")
         unres = sum(1 for w in cat if self.wq(w).unresolved)
         if unres:
             out.append(f"{unres:,} works transclude scan pages of files the dump has no Page: "
@@ -424,56 +428,65 @@ class Survey:
         rows = []
         cat = self.in_catalog()
         singles = sum(1 for w in cat if w.structure == "single")
-        for cap, compact in ((500, False), (2000, False), (None, False), (2000, True)):
+        variants = ((500, "decided", "500"), (2000, "decided", "2,000 (decided)"),
+                    (None, "decided", "∞ (all, reference works included)"),
+                    (2000, "plain", "2,000, index_title as text and display_title always set (WS§5.1 as first written)"),
+                    (2000, "suffix", "2,000, page_title as suffix of the root title (deferred)"))
+        for cap, enc, label in variants:
             sel = [w for w in cat if w.structure != "single"
                    and (cap is None or (w.part_count <= cap and w.type != "reference"))]
-            nrows, gz, fts = self.measure(sel, compact)
-            label = f"{cap:,}" if cap else "∞ (all, reference works included)"
-            rows.append([label + (", compact encoding" if compact else ""), f"{len(sel):,}",
-                         f"{nrows:,}", f"{gz / 1e6:.2f} MB", f"{fts / 1e6:.2f} MB"])
-        out += md_table(["parts_cap", "works with catalog parts", "parts rows", "parts table, gzipped",
-                         "parts_fts, gzipped"], rows)
+            nrows, raw, gz, fts = self.measure(sel, enc)
+            rows.append([label, f"{len(sel):,}", f"{nrows:,}", f"{raw / 1e6:.1f} MB",
+                         f"{gz / 1e6:.2f} MB", f"{fts / 1e6:.2f} MB"])
+        out += md_table(["parts_cap", "works with catalog parts", "parts rows", "parts table, raw SQLite",
+                         "parts table, gzipped", "parts_fts, gzipped"], rows)
         out.append("")
         out.append(f"Rows count multi-part works only, one row per part plus the root row. "
                    f"{singles:,} single-page works would add one row each if stored. Sizes are a "
-                   f"SQLite file holding only the table (with its index) at gzip level 9. The "
-                   f"compact encoding (not in WS§5.1, measured for the cap decision) stores a part's "
-                   f"page_title as the suffix after the work root's title where possible, "
-                   f"display_title only when it differs from the last title segment, and no "
-                   f"per-part quality_pages.")
+                   f"SQLite file holding only the table (with its index); gzipped at level 9. The "
+                   f"decided encoding (2026-11-01, STATUS.md item 2) stores `index_ref` as the "
+                   f"position of the part's Index in `works.index_titles` and `display_title` as "
+                   f"NULL when it equals the last segment of `page_title`; per-part `quality_pages` "
+                   f"stays. The suffix encoding (page_title stored as the suffix after the work "
+                   f"root's title) halves the raw size and is deferred: it complicates open-by-URL "
+                   f"and link rewriting.")
         out.append("")
         return out
 
-    def measure(self, works, compact: bool = False) -> tuple[int, int, int]:
+    def measure(self, works, enc: str = "decided") -> tuple[int, int, int, int]:
         con = sqlite3.connect(":memory:")
         con.execute("""CREATE TABLE parts(work_id INTEGER NOT NULL, ord INTEGER NOT NULL,
             depth INTEGER NOT NULL, parent_ord INTEGER, page_title TEXT NOT NULL,
-            display_title TEXT NOT NULL, kind TEXT NOT NULL, searchable INTEGER NOT NULL DEFAULT 0,
-            bytes INTEGER, scan_from INTEGER, scan_to INTEGER, index_title TEXT,
+            display_title TEXT, kind TEXT NOT NULL, searchable INTEGER NOT NULL DEFAULT 0,
+            bytes INTEGER, scan_from INTEGER, scan_to INTEGER, index_ref ANY,
             quality TEXT, quality_pages TEXT, complete INTEGER, PRIMARY KEY(work_id, ord))""")
         con.execute("CREATE INDEX parts_title ON parts(page_title)")
         rows, fts_rows = [], []
         for w in works:
             wid = w.root.rec.page_id if w.root.rec else -(abs(hash(w.root.title)) % 10**9) - 1
             pq = self.q[w.root.title][1]
+            idxs = list(dict.fromkeys(p.node.index for p in w.parts if p.node.index))
             for p, q in zip(w.parts, pq):
                 n = p.node
                 title, display = n.title, n.display or n.title
                 qp = json.dumps({str(k): v for k, v in q.pages.items()}) if q.pages else None
-                if compact:
-                    if title.startswith(w.root.title + "/"):
-                        title = title[len(w.root.title):]
+                if enc == "plain":
+                    idx = n.index
+                else:
+                    idx = idxs.index(n.index) if n.index else None
                     if display == n.title.rsplit("/", 1)[-1] or display == n.title:
-                        display = ""
-                    qp = None
+                        display = None
+                    if enc == "suffix" and title.startswith(w.root.title + "/"):
+                        title = title[len(w.root.title):]
                 rows.append((wid, p.ord, p.depth, p.parent_ord, title, display, p.kind,
-                             int(p.searchable), self.res.node_bytes(n), n.scan_from, n.scan_to, n.index,
+                             int(p.searchable), self.res.node_bytes(n), n.scan_from, n.scan_to, idx,
                              q.tier, qp, int(q.complete)))
                 if p.searchable:
                     fts_rows.append((n.display, w.root.title, ""))
         con.executemany("INSERT INTO parts VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", rows)
         con.commit()
-        size = len(gzip.compress(con.serialize(), 9))
+        raw = con.serialize()
+        size = len(gzip.compress(raw, 9))
         con.close()
         con = sqlite3.connect(":memory:")
         con.execute("CREATE VIRTUAL TABLE parts_fts USING fts5(display_title, work_title, author_names, content='')")
@@ -481,7 +494,7 @@ class Survey:
         con.commit()
         fts = len(gzip.compress(con.serialize(), 9))
         con.close()
-        return len(rows), size, fts
+        return len(rows), len(raw), size, fts
 
     def named_section(self) -> list[str]:
         out = ["## 11. Named cases (PLAN.md WP1 acceptance, WS§9)", ""]
@@ -602,6 +615,17 @@ class Survey:
             "and a root page without header template, scans or status is a portal "
             "(`no-header`) unless other pages name it as their container.",
             "- A bare `<pages index=X/>` renders the Index's TOC field, not the book.",
+            "- Decided 2026-11-01 (report/wp1a-decisions.md): with `headerless_toc_members` (de), "
+            "a page without header template and status that is listed by exactly one TOC-like "
+            "page is its member regardless of Index or chain, and a root page with a header and "
+            "an Index that lists at least three such pages is TOC-like (page-by-page books, the "
+            "Topographia volumes); a work over `reference_threshold` without an Index type is "
+            "`reference` only when its children have no chain or TOC order; a faulty Index "
+            "progress code excludes a work only when none of its pages is proofread; coverage "
+            "counts only the Index's text pages that no other work transcludes and tolerates "
+            "`coverage_slack` untranscluded pages; a single-page root whose only header is a "
+            "`bibliography_templates` template (de `Zeitschrift`), without scans or status, is "
+            "excluded as `bibliography`.",
             "",
         ]
 

@@ -29,9 +29,19 @@ structure:                           # WS§5.3; resolution rules in PLAN.md 5.2 
   chapter_label_regex_default: '^((\d+|[ivxlc]+)\.?\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\b|^[ivxlcdm]+\.?$|^\d+\.?$|^(\d+|[ivxlcdm]+)[.)]\s'
   chapter_label_regex: null          # per-wiki additions, tuned from the survey
   oversized_bytes: 300000
-  parts_cap: 2000
+  parts_cap: 2000                    # confirmed 2026-11-01 (decision 8.4; STATUS.md item 2)
+  # A work over reference_threshold parts with no Index type is `reference`
+  # only when its root's children have no reading-order signal (order
+  # natural or toc-partial); a chain or TOC order marks a periodical or
+  # collection (decided 2026-11-01, item 3).
   reference_threshold: 2000
   whole_text_subpages: []
+  # Rule 3 extension (decided 2026-11-01, item 4; de only): a page with no
+  # header template and no status that is listed by exactly one TOC-like
+  # page is its member regardless of Index or chain, and a root page with a
+  # header and an Index that lists >= 3 such pages counts as TOC-like
+  # (de page-by-page books and Merian's Topographia volumes).
+  headerless_toc_members: false
 exclude_title_prefixes: []
 disambiguation_templates: [disambiguation]
 versions_templates: [versions]
@@ -56,4 +66,13 @@ quality:                             # WS§10, PLAN.md 5.4
   incomplete_templates: [incomplete]
   junk_templates: []
   placeholders: []
+  # A single-page root whose only header template is one of these, with no
+  # scans and no status, is a bibliography page, not a text (de
+  # {{Zeitschrift}}; decided 2026-11-01, item 1): hard-excluded as `bibliography`.
+  bibliography_templates: []
+  # Coverage (item 7): of the Index's text pages that no other work
+  # transcludes, the work must cover coverage_min; up to coverage_slack
+  # untranscluded pages (title pages) are tolerated.
+  coverage_min: 0.95
+  coverage_slack: 3
   own_translation: {params: [], values: []}

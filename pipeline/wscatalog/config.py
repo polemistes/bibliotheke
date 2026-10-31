@@ -58,6 +58,7 @@ class Config:
     parts_cap: int = 2000
     reference_threshold: int = 2000
     whole_text_subpages: frozenset[str] = frozenset()
+    headerless_toc_members: bool = False
     exclude_title_prefixes: tuple[str, ...] = ()
     disambiguation_templates: frozenset[str] = frozenset()
     not_disambiguation_templates: frozenset[str] = frozenset()
@@ -77,6 +78,9 @@ class Config:
     index_progress_values: dict[str, str] = field(default_factory=dict)
     incomplete_templates: frozenset[str] = frozenset()
     junk_templates: frozenset[str] = frozenset()
+    bibliography_templates: frozenset[str] = frozenset()
+    coverage_min: float = 0.95
+    coverage_slack: int = 3
     placeholders: list[str] = field(default_factory=list)
     own_translation_params: list[str] = field(default_factory=list)
     own_translation_values: frozenset[str] = frozenset()
@@ -125,6 +129,7 @@ def load(wiki: str) -> Config:
         parts_cap=int(s["parts_cap"]),
         reference_threshold=int(s["reference_threshold"]),
         whole_text_subpages=frozenset(t.lower() for t in s.get("whole_text_subpages") or []),
+        headerless_toc_members=bool(s.get("headerless_toc_members")),
         exclude_title_prefixes=tuple(raw.get("exclude_title_prefixes") or []),
         disambiguation_templates=_tset(raw.get("disambiguation_templates")),
         not_disambiguation_templates=_tset(raw.get("not_disambiguation_templates")),
@@ -144,6 +149,9 @@ def load(wiki: str) -> Config:
         index_progress_values={str(k).upper(): v for k, v in (q.get("index_progress_values") or {}).items()},
         incomplete_templates=_tset(q.get("incomplete_templates")),
         junk_templates=_tset(q.get("junk_templates")),
+        bibliography_templates=_tset(q.get("bibliography_templates")),
+        coverage_min=float(q.get("coverage_min", 0.95)),
+        coverage_slack=int(q.get("coverage_slack", 3)),
         placeholders=list(q.get("placeholders") or []),
         own_translation_params=_lower((q.get("own_translation") or {}).get("params")),
         own_translation_values=frozenset((q.get("own_translation") or {}).get("values") or []),

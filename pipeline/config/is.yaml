@@ -17,4 +17,5 @@ disambiguation_templates: [Aðgreining]
 versions_templates: [Útgáfur]
 other_versions_templates: [Aðrar útgáfur]
 quality:
+  show_unknown_by_default: true      # owner decision 2026-11-01 (item 1): 243 of 250 works are typed-in sagas and poems
   index_progress_fields: [framvinda, progress]

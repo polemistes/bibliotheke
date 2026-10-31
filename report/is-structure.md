@@ -1,6 +1,6 @@
 # is.wikisource: structure and quality survey (WP1a)
 
-Generated 2026-10-31 by `python -I -m wscatalog.survey is` from `iswikisource-20261001-pages-articles.xml.bz2` (resolution and quality rules: PLAN.md 5.2 steps 1–1h and 5.4; config `pipeline/config/is.yaml`). Resolution took 0 s on the cached extract.
+Generated 2026-11-01 by `python -I -m wscatalog.survey is` from `iswikisource-20261001-pages-articles.xml.bz2` (resolution and quality rules: PLAN.md 5.2 steps 1–1h and 5.4; config `pipeline/config/is.yaml`). Resolution took 0 s on the cached extract.
 
 Input: 4,978 ns0 pages, 2 ns0 redirects, 723 scan pages, 8 Index pages, 0 pages with the `disambiguation` page prop.
 
@@ -20,15 +20,14 @@ Input: 4,978 ns0 pages, 2 ns0 redirects, 723 scan pages, 8 Index pages, 0 pages 
 |---|---|
 | single | 224 |
 | book | 17 |
-| collection | 13 |
-| reference | 1 |
+| collection | 14 |
 | periodical-issue | 1 |
 
 Largest works by parts:
 
 | work | structure | type | parts | texts | missing | rules of the parts |
 |---|---|---|---|---|---|---|
-| Íslenzkar þjóðsögur og æfintýri | mixed | reference | 3,058 | 2,964 | 2 | container 3055, hierarchy 3 |
+| Íslenzkar þjóðsögur og æfintýri | mixed | collection | 3,058 | 2,964 | 2 | container 3055, hierarchy 3 |
 | Heimskringla | subpages | book | 852 | 5 | 0 | container 852 |
 | Brennu-Njáls saga | subpages | book | 159 | 0 | 0 | hierarchy 159 |
 | Landnámabók | subpages | book | 108 | 1 | 0 | hierarchy 106, container 2 |
@@ -61,7 +60,7 @@ Largest works by parts:
 | D | missing root, virtual root (`virtual`) | 2 works, 2 parts |
 | E | texts inside a subpage collection reached from a disambiguation or versions page | 0 parts (0 searchable); all searchable subpage texts: 3,221 |
 | F | whole-text duplicate subpages (excluded) | 0 pages |
-| G | reference works (type `reference`) | 1 works, 3,058 parts; 0 pages excluded by title prefix |
+| G | reference works (type `reference`) | 0 works, 0 parts; 0 pages excluded by title prefix |
 | H | deep nesting (parts at depth ≥ 2, i.e. three levels below the root) | 1 works |
 | I | several editions: works with an other-versions template | 3 works; 4 versions pages excluded |
 
@@ -169,18 +168,19 @@ Size: median 3,588 bytes, p10 492, p90 66,831; multi-part 25.
 - `Hulduljóð` (single, 8,020 B): Skáld er ég ei, en huldukonan kallar og kveða biður hyggjuþungan beim. Mun ég því sitja, meðan degi hallar og mæddur smali fénu kemur heim, þar sem að háan hama
 - `Stormur` (single, 1,137 B): Ég elska þig, stormur, sem geisar um grund og gleðiþyt vekur í blaðstyrkum lund, en gráfeysknu kvistina bugar og brýtur og bjarkirnar treystir um leið og þú þýt
 
-**Default view** (validated or proofread, complete, not reference): 5 works with 60 texts; with unknown works shown: 246 works (241 texts). Works in the default view whose pages are all level 1: 0. Current setting: `show_unknown_by_default = None`.
+**Default view** (validated or proofread, complete, not reference): 5 works with 60 texts; with unknown works shown: 246 works (241 texts). Works in the default view whose pages are all level 1: 0. Current setting: `show_unknown_by_default = True`.
 
 ## 10. Parts table size (WS§5.2)
 
-| parts_cap | works with catalog parts | parts rows | parts table, gzipped | parts_fts, gzipped |
-|---|---|---|---|---|
-| 500 | 30 | 835 | 0.04 MB | 0.01 MB |
-| 2,000 | 31 | 1,688 | 0.07 MB | 0.01 MB |
-| ∞ (all, reference works included) | 32 | 4,747 | 0.24 MB | 0.06 MB |
-| 2,000, compact encoding | 31 | 1,688 | 0.07 MB | 0.01 MB |
+| parts_cap | works with catalog parts | parts rows | parts table, raw SQLite | parts table, gzipped | parts_fts, gzipped |
+|---|---|---|---|---|---|
+| 500 | 30 | 835 | 0.1 MB | 0.03 MB | 0.01 MB |
+| 2,000 (decided) | 31 | 1,688 | 0.3 MB | 0.07 MB | 0.01 MB |
+| ∞ (all, reference works included) | 32 | 4,747 | 1.0 MB | 0.23 MB | 0.06 MB |
+| 2,000, index_title as text and display_title always set (WS§5.1 as first written) | 31 | 1,688 | 0.3 MB | 0.07 MB | 0.01 MB |
+| 2,000, page_title as suffix of the root title (deferred) | 31 | 1,688 | 0.2 MB | 0.07 MB | 0.01 MB |
 
-Rows count multi-part works only, one row per part plus the root row. 218 single-page works would add one row each if stored. Sizes are a SQLite file holding only the table (with its index) at gzip level 9. The compact encoding (not in WS§5.1, measured for the cap decision) stores a part's page_title as the suffix after the work root's title where possible, display_title only when it differs from the last title segment, and no per-part quality_pages.
+Rows count multi-part works only, one row per part plus the root row. 218 single-page works would add one row each if stored. Sizes are a SQLite file holding only the table (with its index); gzipped at level 9. The decided encoding (2026-11-01, STATUS.md item 2) stores `index_ref` as the position of the part's Index in `works.index_titles` and `display_title` as NULL when it equals the last segment of `page_title`; per-part `quality_pages` stays. The suffix encoding (page_title stored as the suffix after the work root's title) halves the raw size and is deferred: it complicates open-by-URL and link rewriting.
 
 ## 11. Named cases (PLAN.md WP1 acceptance, WS§9)
 
@@ -200,6 +200,7 @@ None for this wiki.
 - A slash inside unclosed parentheses is part of the name (de `X (Die Gartenlaube 1871/17)`), not a subpage separator.
 - Exclusions: a page with scan transclusion is never a disambiguation page (fr dictionary roots carry the prop); subpages inherit only portal and author-page exclusions; on de, portal pages are marked by `Themendaten`, `Ortsdaten`, `Listendaten` (and the categories Thema, Orte, Listen when the page has no header), and a root page without header template, scans or status is a portal (`no-header`) unless other pages name it as their container.
 - A bare `<pages index=X/>` renders the Index's TOC field, not the book.
+- Decided 2026-11-01 (report/wp1a-decisions.md): with `headerless_toc_members` (de), a page without header template and status that is listed by exactly one TOC-like page is its member regardless of Index or chain, and a root page with a header and an Index that lists at least three such pages is TOC-like (page-by-page books, the Topographia volumes); a work over `reference_threshold` without an Index type is `reference` only when its children have no chain or TOC order; a faulty Index progress code excludes a work only when none of its pages is proofread; coverage counts only the Index's text pages that no other work transcludes and tolerates `coverage_slack` untranscluded pages; a single-page root whose only header is a `bibliography_templates` template (de `Zeitschrift`), without scans or status, is excluded as `bibliography`.
 
 ## 12. Random samples for eyeballing (30 per pattern)
 
@@ -217,7 +218,7 @@ None for this wiki.
 
 ### B: mixed (1)
 
-1. `Íslenzkar þjóðsögur og æfintýri`: mixed, reference, 3,058 parts, 2 missing, order toc, unknown
+1. `Íslenzkar þjóðsögur og æfintýri`: mixed, collection, 3,058 parts, 2 missing, order toc, unknown
     - toc: Íslenzkar þjóðsögur og æfintýri
     - text: Formáli 1. útgáfu (`Íslenzkar þjóðsögur og æfintýri/Formáli 1. útgáfu`) [container]
     - text: Formáli Jóns Árnasonar (`Íslenzkar þjóðsögur og æfintýri/Formáli Jóns Árnasonar`) [container]
@@ -244,60 +245,46 @@ None for this wiki.
 
 ### all searchable subpage texts (chapter titles that the label patterns miss show up here) (3,221)
 
-1. text “Vinnukonan og biskupsfrú í Skálholti” (`Íslenzkar þjóðsögur og æfintýri/Draugasögur/Vinnukonan og biskupsfrú í Skálholti`), part 795 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Bandrúnir” (`Íslenzkar þjóðsögur og æfintýri/Galdrasögur/Bandrúnir`), part 1385 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Mókollshaugur” (`Íslenzkar þjóðsögur og æfintýri/Viðburðasögur/Mókollshaugur`), part 2229 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Haga-Lalli” (`Íslenzkar þjóðsögur og æfintýri/Ævintýri/Haga-Lalli`), part 1078 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Treysti á Kamp” (`Íslenzkar þjóðsögur og æfintýri/Kímnisögur/Treysti á kamp`), part 2745 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Eiríkur skyggni” (`Íslenzkar þjóðsögur og æfintýri/Galdrasögur/Eiríkur skyggni`), part 1201 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
+1. text “Vinnukonan og biskupsfrú í Skálholti” (`Íslenzkar þjóðsögur og æfintýri/Draugasögur/Vinnukonan og biskupsfrú í Skálholti`), part 795 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Bandrúnir” (`Íslenzkar þjóðsögur og æfintýri/Galdrasögur/Bandrúnir`), part 1385 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Mókollshaugur” (`Íslenzkar þjóðsögur og æfintýri/Viðburðasögur/Mókollshaugur`), part 2229 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Haga-Lalli” (`Íslenzkar þjóðsögur og æfintýri/Ævintýri/Haga-Lalli`), part 1078 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Treysti á Kamp” (`Íslenzkar þjóðsögur og æfintýri/Kímnisögur/Treysti á kamp`), part 2745 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Eiríkur skyggni” (`Íslenzkar þjóðsögur og æfintýri/Galdrasögur/Eiríkur skyggni`), part 1201 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
 1. text “Sagan af hinum unga konungi á svörtu eyjunum” (`Þúsund og ein nótt/Sagan af hinum unga konungi á svörtu eyjunum`), part 28 of `Þúsund og ein nótt` (collection, 46 parts, 46 texts)
-1. text “Karlsstaðahvammur” (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Karlsstaðahvammur`), part 47 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Guðný á Végeirsstöðum” (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Guðný á Végeirsstöðum`), part 235 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Hofströnd” (`Íslenzkar þjóðsögur og æfintýri/Viðburðasögur/Hofströnd`), part 2265 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Sæmundur smiður” (`Íslenzkar þjóðsögur og æfintýri/Útilegumannasögur/Sæmundur smiður`), part 2526 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Flutningur álfa og helgihald” (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Flutningur álfa og helgihald`), part 344 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Einar skálaglam” (`Íslenzkar þjóðsögur og æfintýri/Viðburðasögur/Einar skálaglam`), part 2227 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Sagan af Rauðabola” (`Íslenzkar þjóðsögur og æfintýri/Ævintýri/Sagan af Rauðabola`), part 989 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “„Atla að hann sé ekki líkur mér?“” (`Íslenzkar þjóðsögur og æfintýri/Kímnisögur/Atla að hann sé ekki líkur mér?`), part 2871 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Kýrhvarfið” (`Íslenzkar þjóðsögur og æfintýri/Galdrasögur/Kýrhvarfið`), part 1750 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
+1. text “Karlsstaðahvammur” (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Karlsstaðahvammur`), part 47 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Guðný á Végeirsstöðum” (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Guðný á Végeirsstöðum`), part 235 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Hofströnd” (`Íslenzkar þjóðsögur og æfintýri/Viðburðasögur/Hofströnd`), part 2265 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Sæmundur smiður” (`Íslenzkar þjóðsögur og æfintýri/Útilegumannasögur/Sæmundur smiður`), part 2526 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Flutningur álfa og helgihald” (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Flutningur álfa og helgihald`), part 344 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Einar skálaglam” (`Íslenzkar þjóðsögur og æfintýri/Viðburðasögur/Einar skálaglam`), part 2227 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Sagan af Rauðabola” (`Íslenzkar þjóðsögur og æfintýri/Ævintýri/Sagan af Rauðabola`), part 989 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “„Atla að hann sé ekki líkur mér?“” (`Íslenzkar þjóðsögur og æfintýri/Kímnisögur/Atla að hann sé ekki líkur mér?`), part 2871 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Kýrhvarfið” (`Íslenzkar þjóðsögur og æfintýri/Galdrasögur/Kýrhvarfið`), part 1750 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
 1. text “Sagan af hinum þriðja förumunki og kóngssyni” (`Þúsund og ein nótt/Sagan af hinum þriðja förumunki og kóngssyni`), part 33 of `Þúsund og ein nótt` (collection, 46 parts, 46 texts)
-1. text “Sending” (`Íslenzkar þjóðsögur og æfintýri/Galdrasögur/Sending (2)`), part 1316 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Hrólfur sterki” (`Íslenzkar þjóðsögur og æfintýri/Viðburðasögur/Hrólfur sterki`), part 2369 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
+1. text “Sending” (`Íslenzkar þjóðsögur og æfintýri/Galdrasögur/Sending (2)`), part 1316 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Hrólfur sterki” (`Íslenzkar þjóðsögur og æfintýri/Viðburðasögur/Hrólfur sterki`), part 2369 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
 1. text “Annar þáttur” (`Galdra-Loftur: leikrit í þremur þáttum/Annar þáttur`), part 2 of `Galdra-Loftur: leikrit í þremur þáttum` (book, 4 parts, 4 texts)
-1. text “Vestmannaeyjar” (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Vestmannaeyjar`), part 563 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Halla bóndadóttir” (`Íslenzkar þjóðsögur og æfintýri/Útilegumannasögur/Halla bóndadóttir`), part 2542 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Dreki kemur úr arnareggi” (`Íslenzkar þjóðsögur og æfintýri/Náttúrusögur/Dreki kemur úr arnareggi`), part 1897 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Karlsdæturnar þrjár” (`Íslenzkar þjóðsögur og æfintýri/Ævintýri/Karlsdæturnar þrjár`), part 1080 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Kola á Kolugili” (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Kola á Kolugili`), part 476 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Af meydómi kerlingar” (`Íslenzkar þjóðsögur og æfintýri/Kímnisögur/Af meydómi kerlingar`), part 2786 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Ljúflingsmál” (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Ljúflingsmál`), part 258 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Tómasar saga” (`Íslenzkar þjóðsögur og æfintýri/Útilegumannasögur/Tómasar saga`), part 2471 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Séra Páll í Selárdal og ræningjaskipið” (`Íslenzkar þjóðsögur og æfintýri/Galdrasögur/Séra Páll í Selárdal og ræningjaskipið`), part 1805 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
-1. text “Sagan af Hlini kóngssyni” (`Íslenzkar þjóðsögur og æfintýri/Ævintýri/Sagan af Hlini kóngssyni`), part 1041 of `Íslenzkar þjóðsögur og æfintýri` (reference, 3,058 parts, 2,964 texts)
+1. text “Vestmannaeyjar” (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Vestmannaeyjar`), part 563 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Halla bóndadóttir” (`Íslenzkar þjóðsögur og æfintýri/Útilegumannasögur/Halla bóndadóttir`), part 2542 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Dreki kemur úr arnareggi” (`Íslenzkar þjóðsögur og æfintýri/Náttúrusögur/Dreki kemur úr arnareggi`), part 1897 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Karlsdæturnar þrjár” (`Íslenzkar þjóðsögur og æfintýri/Ævintýri/Karlsdæturnar þrjár`), part 1080 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Kola á Kolugili” (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Kola á Kolugili`), part 476 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Af meydómi kerlingar” (`Íslenzkar þjóðsögur og æfintýri/Kímnisögur/Af meydómi kerlingar`), part 2786 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Ljúflingsmál” (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Ljúflingsmál`), part 258 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Tómasar saga” (`Íslenzkar þjóðsögur og æfintýri/Útilegumannasögur/Tómasar saga`), part 2471 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Séra Páll í Selárdal og ræningjaskipið” (`Íslenzkar þjóðsögur og æfintýri/Galdrasögur/Séra Páll í Selárdal og ræningjaskipið`), part 1805 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
+1. text “Sagan af Hlini kóngssyni” (`Íslenzkar þjóðsögur og æfintýri/Ævintýri/Sagan af Hlini kóngssyni`), part 1041 of `Íslenzkar þjóðsögur og æfintýri` (collection, 3,058 parts, 2,964 texts)
 
 ### C: oversized (0)
 
 
-### G: reference works (1)
+### G: reference works (0)
 
-1. `Íslenzkar þjóðsögur og æfintýri`: mixed, reference, 3,058 parts, 2 missing, order toc, unknown
-    - toc: Íslenzkar þjóðsögur og æfintýri
-    - text: Formáli 1. útgáfu (`Íslenzkar þjóðsögur og æfintýri/Formáli 1. útgáfu`) [container]
-    - text: Formáli Jóns Árnasonar (`Íslenzkar þjóðsögur og æfintýri/Formáli Jóns Árnasonar`) [container]
-    - volume: Fyrsti flokkur: Goðfræðisögur (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur`) [container]
-      - text: Uppruni álfa (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Uppruni álfa (inngangur)`) [container]
-      - text: Huldumanna genesis [container]
-      - text: Uppruni álfa (`Íslenzkar þjóðsögur og æfintýri/Uppruni álfa`) [container]
-      - text: Ýmsar sagnir um uppruna álfa (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Ýmsar sagnir um uppruna álfa`) [container]
-      - text: Uppruni álfa (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Uppruni álfa 2`) [container]
-      - text: Álfur og Alvör (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Álfur og Alvör`) [container]
-      - text: Tilorðning huldufólks (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Tilorðning huldufólks`) [container]
-      - text: Enn um uppruna álfa (`Íslenzkar þjóðsögur og æfintýri/Goðfræðisögur/Enn um uppruna álfa`) [container]
-    - … 3,047 more
 
 ### H: deep nesting (1)
 
-1. `Íslenzkar þjóðsögur og æfintýri`: mixed, reference, 3,058 parts, 2 missing, order toc, unknown
+1. `Íslenzkar þjóðsögur og æfintýri`: mixed, collection, 3,058 parts, 2 missing, order toc, unknown
     - toc: Íslenzkar þjóðsögur og æfintýri
     - text: Formáli 1. útgáfu (`Íslenzkar þjóðsögur og æfintýri/Formáli 1. útgáfu`) [container]
     - text: Formáli Jóns Árnasonar (`Íslenzkar þjóðsögur og æfintýri/Formáli Jóns Árnasonar`) [container]

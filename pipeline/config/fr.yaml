@@ -21,6 +21,7 @@ not_disambiguation_templates: [Dct, IndexAlpha]
 versions_templates: [éditions, traductions]
 other_versions_templates: [voir éditions, AutreVersion]
 quality:
+  show_unknown_by_default: false     # owner decision 2026-11-01 (item 1): 120 works, a third of them empty shells
   textquality_values: {"textes validés": validated}
   index_progress_fields: [avancement]
   index_progress_values: {D: null}  # D: duplicate file, not a progress state

@@ -60,6 +60,23 @@ class Assessor:
     def __init__(self, res: Resolver):
         self.res = res
         self.cfg = res.cfg
+        self.headers = self.cfg.header_templates | frozenset(self.cfg.positional_headers)
+        # Scan pages of the coverage-checked Index files transcluded by each
+        # work: pages that belong to another work in the same scan (several
+        # texts bound in one volume) do not count against a work's coverage
+        # (decided 2026-11-01, STATUS.md item 7).
+        files = {w.root.index for w in res.works if self.coverage_applies(w)}
+        self.used_by: dict[str, dict[str, set[int]]] = {}
+        for w in res.works:
+            for p in w.parts:
+                if p.node.rec is None:
+                    continue
+                for f, n in res.scan_pages(p.node.rec):
+                    if n is not None and f in files:
+                        self.used_by.setdefault(f, {}).setdefault(w.root.title, set()).add(n)
+
+    def coverage_applies(self, w: Work) -> bool:
+        return w.root.rec is not None and w.root.index_type == "book" and self.res.links_to_self(w.root)
 
     def node_pages(self, n: Node) -> tuple[Counter, int, int]:
         """Level counts of the scan pages a page transcludes, the number of
@@ -143,9 +160,10 @@ class Assessor:
             q.complete, q.reason = False, "missing-pages"
         elif prog == "incomplete":
             q.complete, q.reason = False, "index-progress"
-        if w.root.rec is not None and w.root.index_type == "book" and self.res.links_to_self(w.root):
-            q.coverage = self.coverage(w)
-            if q.coverage is not None and q.coverage < 0.95 and q.complete:
+        if self.coverage_applies(w):
+            q.coverage, uncovered = self.coverage(w)
+            if (q.coverage is not None and q.coverage < cfg.coverage_min
+                    and uncovered > cfg.coverage_slack and q.complete):
                 q.complete, q.reason = False, "coverage"
         for pq, p in zip(part_q, w.parts):
             if pq.missing_pages:
@@ -161,19 +179,30 @@ class Assessor:
             return False
         return bool(n.rec.tpls & self.cfg.incomplete_templates) or self.status(n) == "incomplete"
 
-    def coverage(self, w: Work) -> float | None:
+    def coverage(self, w: Work) -> tuple[float | None, int]:
+        """Share of the Index's text pages (levels 1-4) that no other work
+        transcludes which this work transcludes, and the number of such pages
+        it leaves out (title pages are tolerated through coverage_slack)."""
         f = w.root.index
         lv = self.res.levels.get(f or "")
         if lv is None:
-            return None
+            return None, 0
         existing = {i for i, x in enumerate(lv) if x in (1, 2, 3, 4)}
         if not existing:
-            return None
+            return None, 0
         used = set()
         for p in w.parts:
             if p.node.rec:
                 used.update(n for ff, n in self.res.scan_pages(p.node.rec) if ff == f)
-        return len(used & existing) / len(existing)
+        used &= existing
+        others = set()
+        for title, pages in self.used_by.get(f, {}).items():
+            if title != w.root.title:
+                others |= pages
+        ours = existing - (others - used)
+        if not ours:
+            return None, 0
+        return len(used) / len(ours), len(ours) - len(used)
 
     def hard_exclusion(self, w: Work, q: Quality, part_q: list[Quality], prog) -> str | None:
         """PLAN.md 5.4 hard exclusions; junk rules apply to typed-in texts."""
@@ -182,7 +211,10 @@ class Assessor:
         own = sum(p.node.rec.own_chars for p in w.parts if p.node.rec)
         if has_scan and not text_pages and not q.unresolved and own < 50:
             return "no-text-pages"
-        if prog == "faulty":
+        if prog == "faulty" and not (q.pages.get(3, 0) + q.pages.get(4, 0)):
+            # Decided 2026-11-01 (STATUS.md item 6): the Index code is often
+            # stale (en `Cane (Toomer)`: code L, 244 proofread pages); a
+            # proofread page is readable whatever the Index says.
             return "index-faulty"
         if q.tier == "unknown" and not has_scan:
             tpls = set().union(*(p.node.rec.tpls for p in w.parts if p.node.rec))
@@ -192,6 +224,12 @@ class Assessor:
                 return "placeholder"
             if w.bytes_total < 300:
                 return "under-300-bytes"
+            if (w.structure == "single" and w.root.rec is not None
+                    and w.root.rec.tpls & self.cfg.bibliography_templates
+                    and not w.root.rec.tpls & (self.headers - self.cfg.bibliography_templates)):
+                # de {{Zeitschrift}} pages that only list digitised volumes
+                # elsewhere (decided 2026-11-01, STATUS.md item 1)
+                return "bibliography"
         if not has_scan and not q.unresolved and own < 50 and not w.missing:
             return "no-text"
         return None
