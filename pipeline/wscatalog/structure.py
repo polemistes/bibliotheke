@@ -202,7 +202,10 @@ class Resolver:
         a, b = num(fr), num(to)
         lv = self.levels.get(f)
         if a is None and b is None:
-            nums = set() if lv is None else {i for i, x in enumerate(lv) if x != UNSET}
+            if (inc or "").strip():
+                nums = set()
+            else:
+                nums = set() if lv is None else {i for i, x in enumerate(lv) if x != UNSET}
         else:
             if a is None:
                 a = 1
@@ -247,18 +250,26 @@ class Resolver:
         cfg, disamb = self.cfg, self.ext["disamb"]
         headers = cfg.header_templates | frozenset(cfg.positional_headers)
         # Pages that other pages' headers name as their container are collection
-        # roots: the portal rules below never exclude them.
+        # roots: the heuristic portal rules below (category, no header) never
+        # exclude them; an explicit portal template does.
         named = set()
         for t, rec in self.pages.items():
             raw = self.hdr(rec, "container")
-            for link, _ in wt.links(raw or ""):
-                tgt = resolve_target(link, t, self.ns)
-                if tgt:
-                    named.add(self.resolve(tgt))
+            cands = [self.resolve(x) for x in (resolve_target(link, t, self.ns)
+                                                for link, _ in wt.links(raw or "")) if x]
+            cands = [c for c in cands if c in self.pages and c != t]
+            if not cands:
+                continue
+            mine = set(self.page_indexes(rec))
+            shared = [c for c in cands if mine & set(self.page_indexes(self.pages[c]))]
+            named.add(shared[0] if shared else cands[0])
         for t, rec in self.pages.items():
             portal_ok = t not in named
             reason = None
-            if rec.page_id in disamb or rec.tpls & cfg.disambiguation_templates:
+            if (rec.page_id in disamb or rec.tpls & cfg.disambiguation_templates) \
+                    and not rec.tags and not rec.refs:
+                # A page that transcludes scans is not a disambiguation page
+                # (fr dictionary roots carry the prop through {{Dct}}).
                 reason = "disambiguation"
             elif rec.tpls & cfg.versions_templates:
                 reason = "versions"
@@ -268,7 +279,7 @@ class Resolver:
                 reason = "reference-prefix"
             elif "/" in t and t.rsplit("/", 1)[1].lower() in cfg.whole_text_subpages:
                 reason = "whole-text"
-            elif portal_ok and rec.tpls & cfg.exclude_templates and not rec.tpls & headers:
+            elif rec.tpls & cfg.exclude_templates and not rec.tpls & headers:
                 reason = "excluded-template"
             elif portal_ok and set(rec.cats) & cfg.exclude_categories and not rec.tpls & headers:
                 reason = "excluded-category"
@@ -283,8 +294,7 @@ class Resolver:
                 self.excluded[t] = reason
         # Subpages of an excluded page (author bibliographies, portal subpages)
         # are excluded with it, unless an existing ancestor below it is a text.
-        inherit = {"author-page", "excluded-template", "excluded-category", "no-header",
-                   "disambiguation", "versions"}
+        inherit = {"author-page", "excluded-template", "excluded-category", "no-header"}
         for t in self.pages:
             if t in self.excluded:
                 continue
@@ -412,30 +422,41 @@ class Resolver:
 
     def assign_parents(self) -> None:
         nodes = self.nodes
-        # TOC-like root pages and the prev/next chain components (rule 3)
-        uf: dict[str, str] = {}
-        def find(x):
-            while uf.get(x, x) != x:
-                uf[x] = uf.get(uf[x], uf[x])
-                x = uf[x]
-            return x
-        for n in nodes.values():
-            for o in (n.prev, n.next):
-                if o and o in nodes:
-                    a, b = find(n.title), find(o)
-                    if a != b:
-                        uf[a] = b
+        # TOC-like root pages (rule 3): marked as TOC (de HERKUNFT = off) or
+        # the Index's own book (its title field links the page).
         listed: dict[str, list[str]] = defaultdict(list)
         self.toc_like = set()
         for n in nodes.values():
             if is_subpage(n.title):
                 continue
             targets = [t for t in n.toc if t not in self.excluded]
-            if len(targets) >= 3 and (n.rec.hdr.get("toc_marker") or n.index_type_raw):
+            if len(targets) >= 3 and (n.rec.hdr.get("toc_marker")
+                                      or (n.index_type_raw and self.links_to_self(n))):
                 self.toc_like.add(n.title)
                 for t in targets:
                     if t in nodes and not is_subpage(t):
                         listed[t].append(n.title)
+        # "Reached from it by the prev/next chain": the chain runs from the TOC
+        # page (the first member names it as prev, de VORIGER) or through its
+        # members (the page's prev or next is listed on the same TOC page, de
+        # Gartenlaube articles); a chain of separate works that merely cite
+        # each other (UN resolutions) does not qualify.
+        prev_of: dict[str, list[str]] = defaultdict(list)
+        for n in nodes.values():
+            if n.prev:
+                prev_of[n.prev].append(n.title)
+        def reach(toc: str) -> set[str]:
+            seen, todo = set(), list(prev_of.get(toc, ())) + ([nodes[toc].next] if nodes[toc].next else [])
+            while todo and len(seen) < 20000:
+                cur = todo.pop()
+                if cur in seen or cur not in nodes or cur == toc:
+                    continue
+                seen.add(cur)
+                if nodes[cur].next:
+                    todo.append(nodes[cur].next)
+            return seen
+        reach_cache: dict[str, set[str]] = {}
+        toc_sets: dict[str, set[str]] = {}
         for n in nodes.values():
             t = n.title
             if n.container:
@@ -456,7 +477,11 @@ class Resolver:
                 n.parent = p
             elif len(listed.get(t, ())) == 1:
                 toc = nodes[listed[t][0]]
-                if set(n.indexes) & set(toc.indexes) or find(t) == find(toc.title):
+                if toc.title not in reach_cache:
+                    reach_cache[toc.title] = reach(toc.title)
+                members = toc_sets.setdefault(toc.title, set(toc.toc))
+                chained = (t in reach_cache[toc.title] or n.prev in members or n.next in members)
+                if set(n.indexes) & set(toc.indexes) or chained:
                     n.rule = "toc"
                     n.parent = toc.title
         for v in self.virtual:
@@ -485,12 +510,25 @@ class Resolver:
         for d in nodes.values():
             if d.rec is None or not d.toc or d.parent is None:
                 continue
-            for t in d.toc:
-                tn = nodes.get(t)
-                if tn is not None and tn.rule == "container" and tn.parent != d.title:
-                    listed[t].append(d.title)
+            if self.own_text(d) >= 2000:     # a chapter with a navigation list, not a TOC page
+                continue
+            # a volume page lists several members; a page that only links its
+            # neighbours (prev/next in the body) is not one
+            members = [t for t in d.toc if t not in (d.prev, d.next) and t in nodes
+                       and nodes[t].rule == "container" and nodes[t].parent != d.title]
+            if len(members) < 3:
+                continue
+            for t in members:
+                listed[t].append(d.title)
+        members_of: dict[str, list[str]] = defaultdict(list)
+        for n in nodes.values():
+            if n.rule == "container" and n.parent:
+                members_of[n.parent].append(n.title)
+        chained = {p for p, ms in members_of.items() if len(ms) > 1 and self.chain_order(ms)}
         for t, ds in listed.items():
             tn = nodes[t]
+            if tn.parent in chained:      # the flat chain is the reading order (de Sagenschatz)
+                continue
             cands = [d for d in ds if tn.parent in self.ancestors(d) and t not in self.ancestors(d)]
             if len(cands) == 1:
                 tn.parent = cands[0]
@@ -522,11 +560,9 @@ class Resolver:
                     cut.parent, cut.rule = None, "own"
 
     # ---- step 1c -------------------------------------------------------
-    def order(self, n: Node) -> None:
-        kids = n.children
-        if len(kids) <= 1:
-            n.order_source = "single" if kids else ""
-            return
+    def chain_order(self, kids: list[str]) -> list[str] | None:
+        """kids in prev/next chain order when the next links or the prev links
+        alone chain all of them, else None."""
         ks = set(kids)
         for links in ("next", "prev"):
             succ = {}
@@ -544,8 +580,18 @@ class Resolver:
                 while cur is not None and cur not in seen:
                     seen.add(cur); seq.append(cur); cur = succ.get(cur)
                 if len(seq) == len(kids):
-                    n.children, n.order_source = seq, "chain"
-                    return
+                    return seq
+        return None
+
+    def order(self, n: Node) -> None:
+        kids = n.children
+        if len(kids) <= 1:
+            n.order_source = "single" if kids else ""
+            return
+        seq = self.chain_order(kids)
+        if seq:
+            n.children, n.order_source = seq, "chain"
+            return
         if n.toc:
             pos = {t: i for i, t in enumerate(n.toc)}
             if all(k in pos for k in kids):

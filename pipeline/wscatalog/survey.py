@@ -406,7 +406,7 @@ class Survey:
         dv = [w for w in cat if self.wq(w).complete and self.wq(w).tier in ("validated", "proofread")
               and w.type != "reference"]
         du = [w for w in cat if self.wq(w).complete and self.wq(w).tier == "unknown" and w.type != "reference"]
-        rawdv = sum(1 for w in dv if self.wq(w).pages and not sum(
+        rawdv = sum(1 for w in dv if self.wq(w).pages.get(1) and not sum(
             v for k, v in self.wq(w).pages.items() if k in (2, 3, 4)))
         out.append(f"**Default view** (validated or proofread, complete, not reference): "
                    f"{len(dv):,} works with {sum(w.text_count for w in dv):,} texts; "
@@ -425,22 +425,27 @@ class Survey:
         rows = []
         cat = self.in_catalog()
         singles = sum(1 for w in cat if w.structure == "single")
-        for cap in (500, 2000, None):
+        for cap, compact in ((500, False), (2000, False), (None, False), (2000, True)):
             sel = [w for w in cat if w.structure != "single"
                    and (cap is None or (w.part_count <= cap and w.type != "reference"))]
-            nrows, gz, fts = self.measure(sel)
-            rows.append([f"{cap:,}" if cap else "∞ (all, reference works included)", f"{len(sel):,}",
+            nrows, gz, fts = self.measure(sel, compact)
+            label = f"{cap:,}" if cap else "∞ (all, reference works included)"
+            rows.append([label + (", compact encoding" if compact else ""), f"{len(sel):,}",
                          f"{nrows:,}", f"{gz / 1e6:.2f} MB", f"{fts / 1e6:.2f} MB"])
         out += md_table(["parts_cap", "works with catalog parts", "parts rows", "parts table, gzipped",
                          "parts_fts, gzipped"], rows)
         out.append("")
         out.append(f"Rows count multi-part works only, one row per part plus the root row. "
                    f"{singles:,} single-page works would add one row each if stored. Sizes are a "
-                   f"SQLite file holding only the table (with its index) at gzip level 9.")
+                   f"SQLite file holding only the table (with its index) at gzip level 9. The "
+                   f"compact encoding (not in WS§5.1, measured for the cap decision) stores a part's "
+                   f"page_title as the suffix after the work root's title where possible, "
+                   f"display_title only when it differs from the last title segment, and no "
+                   f"per-part quality_pages.")
         out.append("")
         return out
 
-    def measure(self, works) -> tuple[int, int, int]:
+    def measure(self, works, compact: bool = False) -> tuple[int, int, int]:
         con = sqlite3.connect(":memory:")
         con.execute("""CREATE TABLE parts(work_id INTEGER NOT NULL, ord INTEGER NOT NULL,
             depth INTEGER NOT NULL, parent_ord INTEGER, page_title TEXT NOT NULL,
@@ -454,10 +459,17 @@ class Survey:
             pq = self.q[w.root.title][1]
             for p, q in zip(w.parts, pq):
                 n = p.node
-                rows.append((wid, p.ord, p.depth, p.parent_ord, n.title, n.display or n.title, p.kind,
+                title, display = n.title, n.display or n.title
+                qp = json.dumps({str(k): v for k, v in q.pages.items()}) if q.pages else None
+                if compact:
+                    if title.startswith(w.root.title + "/"):
+                        title = title[len(w.root.title):]
+                    if display == n.title.rsplit("/", 1)[-1] or display == n.title:
+                        display = ""
+                    qp = None
+                rows.append((wid, p.ord, p.depth, p.parent_ord, title, display, p.kind,
                              int(p.searchable), self.res.node_bytes(n), n.scan_from, n.scan_to, n.index,
-                             q.tier, json.dumps({str(k): v for k, v in q.pages.items()}) if q.pages else None,
-                             int(q.complete)))
+                             q.tier, qp, int(q.complete)))
                 if p.searchable:
                     fts_rows.append((n.display, w.root.title, ""))
         con.executemany("INSERT INTO parts VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", rows)
@@ -480,7 +492,12 @@ class Survey:
         for t in names:
             t2 = self.res.resolve(t)
             if t in self.res.excluded:
-                out.append(f"- `{esc(t)}`: excluded ({self.res.excluded[t]}).")
+                hits = [(w, p) for w in self.res.works for p in w.parts
+                        if p.searchable and p.node.display.strip(" .") == t]
+                out.append(f"- `{esc(t)}`: excluded ({self.res.excluded[t]})"
+                           + (f"; search finds {len(hits)} text(s) with this title: " + "; ".join(
+                               f"`{esc(p.node.title)}` in `{esc(w.root.title)}`" for w, p in hits[:6])
+                              if hits else "") + ".")
             elif t2 in self.by_title:
                 w = self.by_title[t2]
                 q = self.wq(w)
