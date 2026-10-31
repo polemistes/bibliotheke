@@ -3,6 +3,7 @@ package app.bibliotheke.wikisource.catalog
 
 import java.net.URI
 import java.net.URLDecoder
+import java.net.URLEncoder
 
 /** Wikisource links and page titles (open-by-URL, WS§7.1). */
 object WikiLinks {
@@ -27,7 +28,10 @@ object WikiLinks {
         return if (t.isEmpty()) null else Link(domain, t)
     }
 
-    private fun decode(s: String): String = URLDecoder.decode(s.replace("+", "%2B"), Charsets.UTF_8)
+    // The charset-name overloads: the Charset ones need Android API 33 (min SDK is 26).
+    private fun decode(s: String): String = URLDecoder.decode(s.replace("+", "%2B"), "UTF-8")
+
+    private fun encode(title: String): String = URLEncoder.encode(title.replace(' ', '_'), "UTF-8")
 
     /** Underscores to spaces, collapsed whitespace, anchor removed. */
     fun normalise(title: String): String =
@@ -43,6 +47,8 @@ object WikiLinks {
     }
 
     fun pageUrl(domain: String, title: String): String =
-        "https://$domain/wiki/" + java.net.URLEncoder.encode(title.replace(' ', '_'), Charsets.UTF_8)
+        "https://$domain/wiki/" + encode(title)
             .replace("%2F", "/").replace("%3A", ":").replace("%28", "(").replace("%29", ")").replace("%2C", ",")
+
+    fun historyUrl(domain: String, title: String): String = "https://$domain/w/index.php?title=${encode(title)}&action=history"
 }

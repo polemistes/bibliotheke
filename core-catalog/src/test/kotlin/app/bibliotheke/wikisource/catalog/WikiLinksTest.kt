@@ -24,6 +24,7 @@ class WikiLinksTest {
         assertEquals(listOf("ørneredet", "Ørneredet"), WikiLinks.titleVariants("ørneredet"))
         assertEquals(listOf("A b"), WikiLinks.titleVariants(" A_b "))
         assertEquals("https://no.wikisource.org/wiki/Et_Dukkehjem/F%C3%B8rste_akt", WikiLinks.pageUrl("no.wikisource.org", "Et Dukkehjem/Første akt"))
+        assertEquals("https://de.wikisource.org/w/index.php?title=K%C3%A4the&action=history", WikiLinks.historyUrl("de.wikisource.org", "Käthe"))
     }
 
     @Test fun ftsQueryQuotesEveryWordAsAPrefix() {

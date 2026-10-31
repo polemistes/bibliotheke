@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<!-- Norsk nynorsk. -->
+<resources>
+    <string name="app_full_name">Bibliotheke for Wikisource-bøker</string>
+
+    <string name="action_back">Tilbake</string>
+    <string name="action_search">Søk</string>
+    <string name="action_settings">Innstillingar</string>
+    <string name="action_retry">Prøv igjen</string>
+    <string name="action_clear">Nullstill</string>
+    <string name="action_done">Ferdig</string>
+    <string name="action_cancel">Avbryt</string>
+    <string name="action_remove">Fjern</string>
+    <string name="action_more">Fleire val</string>
+    <string name="action_open_on_wikisource">Opne på Wikisource</string>
+    <string name="action_share_link">Del lenkje</string>
+    <string name="loading">Lastar …</string>
+    <string name="unknown">Ukjend</string>
+
+    <string name="picker_title">Katalogar</string>
+    <string name="picker_welcome">Velkomen til Bibliotheke</string>
+    <string name="picker_intro">Vel dei Wikisource-utgåvene du vil bla i. Kvar katalog blir lasta ned éin gong og verkar sidan utan nett.</string>
+    <string name="picker_manifest_error">Kunne ikkje hente lista over katalogar. Sjekk tilkoplinga.</string>
+    <string name="picker_works">%1$s verk</string>
+    <string name="picker_installed">Installert</string>
+    <string name="picker_update_available">Oppdatering tilgjengeleg</string>
+    <string name="picker_download_button">Last ned (%1$s)</string>
+    <string name="picker_continue">Hald fram</string>
+    <string name="picker_multilingual">Fleirspråkleg Wikisource</string>
+    <string name="picker_remove_title">Fjerne katalogen?</string>
+    <string name="picker_remove_text">Katalogen for %1$s blir sletta frå eininga. Du kan laste han ned igjen seinare.</string>
+
+    <string name="download_queued">Ventar på tilkopling …</string>
+    <string name="download_running">Lastar ned katalogen … %1$d %%</string>
+    <string name="download_failed">Nedlastinga mislukkast</string>
+    <string name="download_cancel">Avbryt nedlastinga</string>
+
+    <string name="browse_choose_wiki">Vel katalog</string>
+    <string name="browse_manage_catalogs">Administrer katalogar …</string>
+    <plurals name="browse_count">
+        <item quantity="one">%1$s verk</item>
+        <item quantity="other">%1$s verk</item>
+    </plurals>
+    <string name="browse_no_results">Ingen verk passar til desse filtera.</string>
+    <string name="browse_no_catalog">Ingen katalog enno.</string>
+    <string name="browse_get_catalogs">Last ned katalogar</string>
+    <string name="browse_catalog_downloading">Katalogen blir lasta ned. Når han er på plass, kan du bla i han utan nett.</string>
+    <string name="browse_catalog_error">Denne katalogen kunne ikkje opnast.</string>
+    <string name="sort_label">Sortering</string>
+    <string name="sort_title">Tittel</string>
+    <string name="sort_year_asc">Eldste først</string>
+    <string name="sort_year_desc">Nyaste først</string>
+
+    <string name="chip_unproofread">Ikkje korrekturlese</string>
+    <string name="chip_incomplete">Ufullstendige</string>
+    <string name="chip_unverified">Ikkje kontrollert</string>
+    <string name="chip_documents">Dokument</string>
+    <string name="setting_unproofread">Ta med tekstar som ikkje er korrekturlesne</string>
+    <string name="setting_incomplete">Ta med ufullstendige verk</string>
+    <string name="setting_unverified">Ta med tekstar som ikkje er kontrollerte</string>
+    <string name="setting_documents">Ta med dokument</string>
+    <string name="setting_unproofread_summary">Tekstar der sidene ikkje er sjekka mot skanninga; dei kan innehalde OCR-feil.</string>
+    <string name="setting_incomplete_summary">Verk med delar eller sider som ikkje er transkriberte enno.</string>
+    <string name="setting_unverified_summary">Tekstar som er skrivne inn utan ei skanning å kontrollere dei mot.</string>
+    <string name="setting_unverified_per_wiki">Standarden for kvar katalog</string>
+    <string name="setting_unverified_reset">Bruk standarden for kvar katalog</string>
+    <string name="setting_documents_summary">Lover, rettsavgjerder, offentlege dokument og talar.</string>
+
+    <string name="facet_genre">Sjanger</string>
+    <string name="facet_period">Periode</string>
+    <string name="facet_author">Forfattar</string>
+    <string name="facet_type">Type</string>
+    <string name="facet_language">Språk</string>
+    <string name="facet_clear_all">Fjern filter</string>
+    <string name="facet_no_genre">Utan oppgjeven sjanger</string>
+    <string name="facet_no_year">Ukjend år</string>
+    <string name="facet_year_from">Frå år</string>
+    <string name="facet_year_to">Til år</string>
+    <string name="facet_author_search">Finn ein forfattar</string>
+    <string name="facet_no_values">Ingenting å velje med dei gjeldande filtera.</string>
+    <string name="century">%1$d-talet</string>
+    <string name="century_bc">%1$d-talet f.Kr.</string>
+
+    <string name="search_hint">Tittel eller forfattar, eller ei Wikisource-lenkje</string>
+    <string name="search_works">Verk</string>
+    <string name="search_texts">Tekstar</string>
+    <string name="search_text_in">i %1$s</string>
+    <plurals name="search_hidden">
+        <item quantity="one">%1$d treff til er gøymt av kvalitetsfilteret</item>
+        <item quantity="other">%1$d treff til er gøymde av kvalitetsfilteret</item>
+    </plurals>
+    <plurals name="search_hidden_shown">
+        <item quantity="one">%1$d treff som kvalitetsfilteret gøymer, blir vist</item>
+        <item quantity="other">%1$d treff som kvalitetsfilteret gøymer, blir viste</item>
+    </plurals>
+    <string name="search_hidden_show">Vis</string>
+    <string name="search_hidden_hide">Gøym dei igjen</string>
+    <string name="search_more_works">%1$s verk passar; dei første %2$d blir viste.</string>
+    <string name="search_more_texts">%1$s tekstar passar; dei første %2$d blir viste.</string>
+    <string name="search_no_matches">Ingen treff i katalogane dine.</string>
+    <string name="search_online_on">Søk på nett på %1$s</string>
+    <string name="search_online_title">Treff på nett frå %1$s</string>
+    <string name="search_online_error">Søket på nett mislukkast. Sjekk tilkoplinga.</string>
+    <string name="search_online_none">Ingen treff på nett.</string>
+    <string name="search_online_not_in_catalog">Ikkje i katalogen</string>
+    <string name="search_open_link">Opne denne lenkja</string>
+
+    <string name="link_title">Wikisource-lenkje</string>
+    <string name="link_not_wikisource">Dette er ikkje ei Wikisource-lenkje.</string>
+    <string name="link_no_catalog">Du har ingen katalog for %1$s.</string>
+    <string name="link_not_found">Denne sida er ikkje i katalogen for %1$s. Det kan vere ei side som ikkje er eit verk, eit verk katalogen utelèt, eller ei side som er nyare enn katalogen.</string>
+
+    <string name="detail_by">av %1$s</string>
+    <string name="detail_translated_by">omsett av %1$s</string>
+    <string name="detail_year">År</string>
+    <string name="detail_language">Språk</string>
+    <string name="detail_type">Type</string>
+    <string name="detail_genres">Sjangrar</string>
+    <string name="detail_contents">Innhald</string>
+    <string name="detail_texts_transcribed">%1$d av %2$d tekstar transkriberte</string>
+    <plurals name="detail_texts">
+        <item quantity="one">%1$d tekst</item>
+        <item quantity="other">%1$d tekstar</item>
+    </plurals>
+    <string name="detail_size">Om lag %1$s tekst, utan bilete</string>
+    <string name="detail_parts_live">Innhaldslista for dette verket blir henta frå Wikisource når du lastar det ned.</string>
+    <string name="detail_attribution">Kjelde og lisens</string>
+    <string name="detail_source">Kjelde: %1$s</string>
+    <string name="detail_licence">Teksten er i det fri eller har ein fri lisens; kjeldesida oppgjev kva for ein. Wikisource sine eigne bidrag er tilgjengelege under CC BY-SA 4.0.</string>
+    <string name="detail_contributors">Transkribert og korrekturlesen av bidragsytarane på Wikisource. Sjå sidehistorikken for lista over bidragsytarar.</string>
+    <string name="detail_history">Sidehistorikk</string>
+    <string name="detail_wikidata">Wikidata: %1$s</string>
+    <string name="detail_not_found">Dette verket er ikkje i katalogen.</string>
+    <string name="detail_virtual">Samla frå fleire sider på Wikisource</string>
+
+    <string name="quality_validated">Validert</string>
+    <string name="quality_proofread">Korrekturlesen</string>
+    <string name="quality_proofread_partly">Korrekturlesen, %1$d av %2$d sider ikkje korrekturlesne enno</string>
+    <string name="quality_unproofread">Ikkje korrekturlesen, kan innehalde OCR-feil</string>
+    <string name="quality_unknown">Ikkje kontrollert mot ei skanning</string>
+    <string name="incomplete">Ufullstendig</string>
+    <string name="incomplete_parts">Ufullstendig: %1$d av %2$d tekstar er ikkje transkriberte enno</string>
+    <string name="incomplete_pages">Ufullstendig: %1$d sider manglar</string>
+    <string name="incomplete_template">Ufullstendig, slik det er merkt på Wikisource</string>
+    <string name="incomplete_index">Ufullstendig: skanninga er ikkje ferdig transkribert</string>
+    <string name="incomplete_coverage">Ufullstendig: dekkjer %1$d %% av skanninga</string>
+    <string name="own_translation">Wikisource-omsetjing</string>
+
+    <string name="genre_novel">Romanar</string>
+    <string name="genre_short_story">Noveller</string>
+    <string name="genre_poetry">Lyrikk</string>
+    <string name="genre_drama">Drama</string>
+    <string name="genre_essay">Essay</string>
+    <string name="genre_letters">Brev</string>
+    <string name="genre_memoir_biography">Memoarar og biografi</string>
+    <string name="genre_history">Historie</string>
+    <string name="genre_religious">Religion</string>
+    <string name="genre_legal_government">Lov og forvaltning</string>
+    <string name="genre_speech">Talar</string>
+    <string name="genre_periodical">Tidsskrift og aviser</string>
+    <string name="genre_children">Barnebøker</string>
+    <string name="genre_reference">Oppslagsverk</string>
+    <string name="genre_song_hymn">Songar og salmar</string>
+    <string name="genre_travel">Reiser</string>
+    <string name="genre_philosophy">Filosofi</string>
+    <string name="genre_science">Vitskap</string>
+    <string name="genre_folklore">Folkedikting</string>
+    <string name="genre_other">Anna</string>
+
+    <string name="type_book">Bok</string>
+    <string name="type_poem">Dikt</string>
+    <string name="type_play">Skodespel</string>
+    <string name="type_article">Artikkel</string>
+    <string name="type_document">Dokument</string>
+    <string name="type_collection">Samling</string>
+    <string name="type_periodical_issue">Tidsskrifthefte</string>
+    <string name="type_reference">Oppslagsverk</string>
+    <string name="type_other">Anna</string>
+
+    <string name="settings_language">Språk i appen</string>
+    <string name="settings_language_system">Systemstandard</string>
+    <string name="settings_quality">Kvalitetsfilter</string>
+    <string name="settings_quality_intro">Som standard viser katalogen korrekturlesne, fullstendige verk. Desse brytarane er dei same som vala over lista.</string>
+    <string name="settings_catalogs">Katalogar</string>
+    <string name="settings_manage_catalogs">Administrer katalogar</string>
+    <string name="settings_check_updates">Sjå etter katalogoppdateringar</string>
+    <string name="settings_checking">Sjekkar …</string>
+    <string name="settings_up_to_date">Katalogane er sjekka</string>
+    <string name="settings_check_failed">Kunne ikkje sjå etter oppdateringar</string>
+    <string name="settings_about">Om</string>
+
+    <string name="about_version">Versjon %1$s</string>
+    <string name="about_description">Bibliotheke viser verka på alle språkutgåvene av Wikisource som kan lesast: sider som berre er lister, stubbar eller tomme, er utelatne. Verk som ikkje er korrekturlesne, er ufullstendige eller ikkje er kontrollerte mot ei skanning, er med, men gøymde som standard; kvalitetsfilteret viser dei.</string>
+    <string name="about_credits">Tekstane kjem frå Wikisource og katalogdataa frå Wikisource og Wikidata, skrivne og haldne ved like av frivillige bidragsytarar.</string>
+    <string name="about_non_affiliation">Bibliotheke er ein uavhengig app og er ikkje knytt til eller godkjend av Wikimedia Foundation. Wikisource er eit varemerke for Wikimedia Foundation.</string>
+    <string name="about_licence">Bibliotheke er fri programvare under GNU General Public License, versjon 3 eller seinare.</string>
+    <string name="about_source_code">Kjeldekode</string>
+</resources>

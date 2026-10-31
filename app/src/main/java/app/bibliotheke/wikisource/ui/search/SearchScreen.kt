@@ -158,7 +158,7 @@ private fun LazyListScope.wikiSection(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                pluralStringResource(R.plurals.search_hidden, res.hidden, res.hidden),
+                pluralStringResource(if (r.expanded) R.plurals.search_hidden_shown else R.plurals.search_hidden, res.hidden, res.hidden),
                 style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1f),
             )
             TextButton(onClick = { onToggleHidden(code) }) {

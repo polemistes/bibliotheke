@@ -78,6 +78,12 @@ class PoliteHttp(
 
     suspend fun getString(url: String): String = get(url) { it.body.string() }
 
+    /** For clients that do not go through [get] (the image loader): the User-Agent on every request. */
+    class UserAgentInterceptor(private val userAgent: String) : okhttp3.Interceptor {
+        override fun intercept(chain: okhttp3.Interceptor.Chain): Response =
+            chain.proceed(chain.request().newBuilder().header("User-Agent", userAgent).build())
+    }
+
     companion object {
         const val REPO_URL = "https://github.com/polemistes/bibliotheke"
         const val CONTACT = "develop@robertemilberge.no"

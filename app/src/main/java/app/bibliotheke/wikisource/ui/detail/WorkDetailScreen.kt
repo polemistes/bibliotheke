@@ -243,9 +243,7 @@ private fun Attribution(w: WorkDetail, domain: String, open: (String) -> Unit) {
         )
         Text(stringResource(R.string.detail_licence), style = MaterialTheme.typography.bodySmall)
         Text(stringResource(R.string.detail_contributors), style = MaterialTheme.typography.bodySmall)
-        TextButton(onClick = {
-            open("https://$domain/w/index.php?title=" + java.net.URLEncoder.encode(w.entryTitle.replace(' ', '_'), Charsets.UTF_8) + "&action=history")
-        }) { Text(stringResource(R.string.detail_history)) }
+        TextButton(onClick = { open(WikiLinks.historyUrl(domain, w.entryTitle)) }) { Text(stringResource(R.string.detail_history)) }
         w.qid?.let { q ->
             Text(
                 stringResource(R.string.detail_wikidata, q), style = MaterialTheme.typography.bodySmall,

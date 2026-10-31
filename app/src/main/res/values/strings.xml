@@ -19,7 +19,7 @@
     <string name="action_share_link">Share link</string>
     <string name="loading">Loading…</string>
     <string name="unknown">Unknown</string>
-    <string name="list_separator">" · "</string>
+    <string name="list_separator" translatable="false">" · "</string>
 
     <!-- Wiki picker (first run and catalog management) -->
     <string name="picker_title">Catalogs</string>
@@ -80,7 +80,7 @@
     <string name="facet_author">Author</string>
     <string name="facet_type">Type</string>
     <string name="facet_language">Language</string>
-    <string name="facet_selected">%1$s (%2$d)</string>
+    <string name="facet_selected" translatable="false">%1$s (%2$d)</string>
     <string name="facet_clear_all">Clear filters</string>
     <string name="facet_no_genre">No genre given</string>
     <string name="facet_no_year">Year unknown</string>
@@ -90,7 +90,7 @@
     <string name="facet_no_values">Nothing to choose under the current filters.</string>
     <string name="century">%1$ds</string>
     <string name="century_bc">%1$ds BC</string>
-    <string name="author_dates">%1$s–%2$s</string>
+    <string name="author_dates" translatable="false">%1$s–%2$s</string>
 
     <!-- Search (R3, WS§7.1) -->
     <string name="search_hint">Title or author, or a Wikisource link</string>
@@ -100,6 +100,10 @@
     <plurals name="search_hidden">
         <item quantity="one">%1$d more match hidden by your quality filter</item>
         <item quantity="other">%1$d more matches hidden by your quality filter</item>
+    </plurals>
+    <plurals name="search_hidden_shown">
+        <item quantity="one">%1$d match shown that your quality filter hides</item>
+        <item quantity="other">%1$d matches shown that your quality filter hides</item>
     </plurals>
     <string name="search_hidden_show">Show</string>
     <string name="search_hidden_hide">Hide them again</string>
@@ -122,7 +126,6 @@
     <!-- Work detail -->
     <string name="detail_by">by %1$s</string>
     <string name="detail_translated_by">translated by %1$s</string>
-    <string name="detail_more_by">More by %1$s</string>
     <string name="detail_year">Year</string>
     <string name="detail_language">Language</string>
     <string name="detail_type">Type</string>

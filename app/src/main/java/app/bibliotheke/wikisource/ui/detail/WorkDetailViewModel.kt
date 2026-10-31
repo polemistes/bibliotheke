@@ -39,7 +39,8 @@ class WorkDetailViewModel @Inject constructor(
         viewModelScope.launch {
             val db = catalogs.db(route.wiki)
             val work = db?.work(route.id)
-            val parts = if (work != null && work.partsInCatalog) db.parts(work.id) else emptyList()
+            // The root's own TOC row is the work itself: structure only, nothing to list.
+            val parts = if (work != null && work.partsInCatalog) db.parts(work.id).filterNot { it.ord == 0 && it.kind == "toc" } else emptyList()
             _ui.value = DetailUi(false, catalogs.installed.value[route.wiki], work, parts, route.ord)
         }
     }
