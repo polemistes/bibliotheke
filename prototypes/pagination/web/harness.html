@@ -42,6 +42,7 @@
   function start() {
     if (params.get('test')) {
       let result;
+      R.setQuiet(true);
       try { result = window.WsrTest.run(names, params); }
       catch (e) { result = { error: String(e), stack: e.stack, pass: false }; }
       document.getElementById('wsr-result').textContent = JSON.stringify(result);

@@ -1,0 +1,2 @@
+{"anchor":39729,"page":42,"pages":79,"visible":true,"firstOnPage":39426,"pageWidth":914.28125}
+{"anchor":39729,"page":35,"pages":64,"visible":true,"firstOnPage":39729,"pageWidth":411.421875}

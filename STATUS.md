@@ -21,7 +21,7 @@ Last updated: 2026-10-31
 - [x] 4. Wikidata coverage for 50 Norwegian works (P577 / P136 / P50)
 - [x] 5. Pagination prototype in a browser harness: CSS columns, locator
       round-trip after font-size change
-- [ ] 6. Pagination prototype in an Android WebView on the emulator: swipe
+- [x] 6. Pagination prototype in an Android WebView on the emulator: swipe
       overlay, frame timing (60 fps target)
 - [ ] 7. `docs/wp0-findings.md` written; **VERIFY** items in PLAN.md updated
 
@@ -41,10 +41,14 @@ Last updated: 2026-10-31
   source. WP1 needs the pages-articles dump as an input.
 - Pagination prototype (`prototypes/pagination/`): locator round-trip passes
   on all pages of 5 parts in headless Chromium (findings section 4).
+- Android WebView prototype on the emulator (AVD `bibliotheke_wp0`): locator
+  tests pass; page turns at 60 fps (no skipped vsync); rotation keeps the
+  position with a reading anchor (findings 4.5, 4.6).
 
 ## In progress
 
-- WP0 step 6 (Android WebView prototype on the emulator).
+- WP0 step 7: write up remaining findings sections and update the VERIFY
+  items in PLAN.md.
 
 ## Known problems and open questions
 

@@ -1,0 +1,5 @@
+turn 1: 18 frames over 283 ms, max gap 16.7 ms, late frames (index, ms past deadline): [(0, 0.2)]
+turn 2: 18 frames over 283 ms, max gap 16.7 ms, late frames (index, ms past deadline): [(0, 0.3)]
+turn 3: 18 frames over 283 ms, max gap 16.7 ms, late frames (index, ms past deadline): [(0, 0.4)]
+turn 4: 18 frames over 283 ms, max gap 16.7 ms, late frames (index, ms past deadline): [(0, 0.2)]
+turn 5: 18 frames over 283 ms, max gap 16.7 ms, late frames (index, ms past deadline): [(0, 0.3)]

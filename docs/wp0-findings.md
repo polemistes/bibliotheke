@@ -390,7 +390,7 @@ change and after the geometry change, and going back gave **exactly the same
 page and the same locator** (e.g. Sult page 20, L = 25132, "Jeg kasted mig
 flad paa Gulvet og græd af Glæde…" → page 42 at 26 px → page 48 landscape →
 page 20, L = 25132). The acceptance criterion "locator restores to the same
-sentence after re-pagination" is met in the browser engine; section 4.4
+sentence after re-pagination" is met in the browser engine; section 4.5
 covers the Android WebView.
 
 ### 4.4 Normaliser lessons from the prototype (input for WP3)
@@ -413,3 +413,74 @@ covers the Android WebView.
 - A 600 k-character part lays out in about 140 ms in desktop Chromium; on a
   phone expect several times that on every font change. This supports
   splitting oversized single-page works (section 2.4).
+
+### 4.5 Results in the Android WebView on the emulator
+
+Code: [prototypes/pagination/android/](../prototypes/pagination/android/)
+(plain Views, no Compose: a WebView loading the same reader files through
+`WebViewAssetLoader`, no INTERNET permission, and a transparent overlay
+that takes every touch and turns pages via `evaluateJavascript`). Run with
+`prototypes/pagination/android/run_device_test.sh`.
+
+Device: dedicated AVD `bibliotheke_wp0` (Pixel 7 profile, 1080 × 2400,
+420 dpi, Android 16, system WebView 134.0.6998.135), host GPU (AMD Radeon
+780M via the emulator's GLES translator), 60 Hz display, headless.
+
+**Locators** ([wp0/pagination-android.json](wp0/pagination-android.json)):
+the same tests as 4.3 pass on all pages of all five parts. The CSS width is
+fractional here (411.43 px); the snapped page width is 411.421875 px, and no
+page drifted (Käthe: 580 pages at 18 px, 1177 at 26 px). Layout and relayout
+of the 600 k-character Käthe take about 200–230 ms; the other parts 2–36 ms.
+
+**Page turns** ([wp0/pagination-android-gfxinfo.txt](wp0/pagination-android-gfxinfo.txt),
+[wp0/pagination-android-framestats.txt](wp0/pagination-android-framestats.txt)):
+30 real swipes (`adb shell input swipe`) through the overlay on Sult.
+
+| measure | value |
+|---|---|
+| frames rendered | 540 (18 per turn: 260 ms transition) |
+| frame time 50th / 90th / 95th / 99th percentile | 16 / 16 / 16 / 17 ms |
+| missed vsync | 0 |
+| largest gap between frames within a turn | 16.7 ms (no skipped vsync) |
+| "janky" (new metric) | 30 = the first frame of each turn, 0.1–0.4 ms past its deadline |
+| "janky" (legacy metric) | 0 |
+
+**Acceptance "turns pages at 60 fps on an emulator": met.** Every turn
+renders a frame on every vsync. The one late first frame per turn finishes
+just after its deadline without delaying the next frame. It comes from
+starting the transition through `evaluateJavascript` (a main-thread style
+change); WP4 can avoid it by starting the animation natively (the WebView's
+`translationX`, as PLAN.md 8.1 suggests) or with the Web Animations API.
+
+**Rotation** ([wp0/pagination-android-rotation.txt](wp0/pagination-android-rotation.txt)):
+the first version re-read the locator on every resize, and the position
+drifted: portrait page 30 → landscape → portrait page 29, because each new
+page starts before the stored position. With a reading *anchor* (below),
+portrait → landscape (page 42/79, anchor visible) → portrait returned to
+page 35/64 with its first character exactly at the anchor (39729).
+
+### 4.6 Lessons for WP4
+
+- **Keep a reading anchor.** The stored locator changes only on navigation
+  (turns, jumps, TOC, bookmarks). Relayouts (font, margins, rotation, window
+  resize) restore it without re-reading it. Re-reading after each relayout
+  makes the position creep backwards.
+- **Pages without locator text.** Locator text excludes `.wsr-footnotes`,
+  so a page holding only the footnote section (Käthe's last page) has no
+  locator of its own: `firstOffsetOnPage` returns the end of the text. Two
+  such pages in a row would share a locator, and a full-page image would
+  share the next text page's. WP4 needs a secondary position for these
+  pages (e.g. footnote index, or "page n after offset x").
+- **Taps must be forwarded.** With the overlay taking every touch, links,
+  footnote references (8.4) and page marks (8.2) never get clicks. On a tap,
+  Kotlin must ask JS what is under the point (`document.elementFromPoint`)
+  and act on `.wsr-fnref`, `.wsr-page` or links before falling back to the
+  tap zones.
+- **Measure positions relative to the content box.** Character rects and
+  the content box carry the same, possibly mid-animation, transform, so
+  `rect.left − contentBox.left` is valid even during a turn.
+- Large single-page parts relayout in about 0.2 s on the emulator; splitting
+  them (section 2.4) keeps font changes snappy on slower phones.
+- Compose was not used, to avoid an uncached dependency download in the
+  spike; the production reader wraps the same WebView in `AndroidView`, with
+  the overlay as a `pointerInput` modifier. The gesture logic is identical.

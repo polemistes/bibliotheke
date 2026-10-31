@@ -22,18 +22,28 @@
   let starts = [];      // locator offset of each node
   let total = 0;
   let measurable = [];  // indices of nodes that produce boxes (not collapsed)
+  // Reading position. Set only by navigation (turns, jumps); a relayout
+  // restores it without re-reading it, otherwise every rotation or font
+  // change would move the position back to the start of the new page.
+  let anchor = 0;
   let settings = {};
   const range = document.createRange();
 
+  let quiet = false; // tests turn events off: each one is a synchronous call into Kotlin
+
   function bridge(event, data) {
-    if (window.WsrBridge && window.WsrBridge.onEvent) {
+    if (!quiet && window.WsrBridge && window.WsrBridge.onEvent) {
       window.WsrBridge.onEvent(event, JSON.stringify(data));
     }
   }
 
   function init(el) {
     content = el;
-    window.addEventListener('resize', () => relayoutKeeping());
+    window.addEventListener('resize', () => {
+      relayoutKeeping();
+      bridge('relayout', { anchor, page, pages, visible: pageOfOffset(anchor) === page,
+                           firstOnPage: getLocator(), pageWidth: pageW });
+    });
   }
 
   function buildIndex() {
@@ -56,6 +66,7 @@
     content.innerHTML = html;
     document.documentElement.lang = lang || '';
     page = 0;
+    anchor = 0;
     buildIndex();
     layout();
   }
@@ -94,9 +105,8 @@
 
   // Re-layout after a geometry or settings change, keeping the reading position.
   function relayoutKeeping(next) {
-    const loc = getLocator();
     if (next) apply(next); else layout();
-    return goToLocator(loc);
+    return goToLocator(anchor);
   }
 
   function originX() {
@@ -139,9 +149,12 @@
     bridge('page', { page, pages });
   }
 
-  function goToPage(p, animate) {
+  function goToPage(p, animate, keepAnchor) {
     page = Math.max(0, Math.min(p, pages - 1));
     setTransform(animate);
+    // Rects are measured relative to the content box, which carries the same
+    // (possibly mid-animation) transform, so this is valid during a turn.
+    if (!keepAnchor) anchor = firstOffsetOnPage(page);
     return page;
   }
 
@@ -208,7 +221,8 @@
   }
 
   function goToLocator(offset) {
-    return goToPage(pageOfOffset(offset));
+    anchor = offset;
+    return goToPage(pageOfOffset(offset), false, true);
   }
 
   function text(from, to) {
@@ -223,8 +237,10 @@
     init, load, apply, layout, relayoutKeeping, goToPage, turn, getLocator, goToLocator,
     pageOfOffset, firstOffsetOnPage, text,
     pageCount: () => pages,
+    anchor: () => anchor,
     currentPage: () => page,
     textLength: () => total,
     pageWidth: () => pageW,
+    setQuiet: (q) => { quiet = q; },
   };
 })();

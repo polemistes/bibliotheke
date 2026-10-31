@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-"""Extract the harness test result from a dumped DOM (stdin), save it as JSON
-(argv[1]) and print a summary. Used by run_browser_test.sh."""
+"""Read a harness test result from stdin (a DOM dumped by headless Chromium, or
+plain JSON from the Android WebView), save it as JSON (argv[1]) and print a
+summary. Used by run_browser_test.sh and android/run_device_test.sh."""
 
 import html
 import json
@@ -28,11 +29,16 @@ def summarise(res: dict) -> None:
 
 
 if __name__ == "__main__":
-    dom = sys.stdin.read()
-    m = re.search(r'<pre id="wsr-result">(.*?)</pre>', dom, re.S)
-    if not m or not m.group(1).strip():
-        sys.exit("no test result in page (did a script fail?)")
-    result = json.loads(html.unescape(m.group(1)))
+    data = sys.stdin.read()
+    if data.lstrip().startswith("{"):  # plain JSON (from the Android WebView log)
+        result = json.loads(data)
+    else:  # DOM dumped by headless Chromium
+        m = re.search(r'<pre id="wsr-result">(.*?)</pre>', data, re.S)
+        if not m or not m.group(1).strip():
+            sys.exit("no test result in page (did a script fail?)")
+        result = json.loads(html.unescape(m.group(1)))
+    if "error" in result:
+        sys.exit(f"test error: {result['error']}\n{result.get('stack', '')}")
     with open(sys.argv[1], "w", encoding="utf-8") as f:
         f.write(json.dumps(result, ensure_ascii=False, indent=1) + "\n")
     summarise(result)
