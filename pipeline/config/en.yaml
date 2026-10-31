@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+wiki: en
+domain: en.wikisource.org
+dbname: enwikisource
+language: en
+namespaces: {author: 102, index: 106, page: 104}   # verified in WP0, F§1
+header_templates: [header]
+header_params:
+  author: [author]
+  year: [year]
+structure:
+  container_params: [title]
+  prev_next_params: [[previous, next], [prev, next]]
+  current_params: [section, current]
+  toc_fields: [remarks, toc]
+  summary_templates: [AuxTOC]
+  chapter_label_regex: '^(\S+\s+)?(chapter|book|part|volume|act|scene|canto|letter|section|lecture|number|issue)\b|^(preface|introduction|contents|appendix|index|notes|epilogue|prologue|conclusion|title page|front matter|advertisements?|errata)\b'
+disambiguation_templates: [disambiguation, disambig, dab]
+versions_templates: [versions, translations]
+other_versions_templates: [other versions, other translations]
+quality:
+  incomplete_templates: [incomplete]
+  junk_templates: [delete, sdelete, copyvio, cleanup]
+  own_translation_templates: [translation license]

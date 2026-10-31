@@ -151,7 +151,8 @@ class Assessor:
             if pq.missing_pages:
                 pq.complete = False
         tr = [(n.rec.hdr.get("translator") or "") for n in nodes if n.rec]
-        q.own_translation = any(wt.strip_markup(v).strip() in cfg.own_translation_values for v in tr if v)
+        q.own_translation = (any(wt.strip_markup(v).strip() in cfg.own_translation_values for v in tr if v)
+                             or any(n.rec.tpls & cfg.own_translation_templates for n in nodes if n.rec))
         q.excluded = self.hard_exclusion(w, q, part_q, prog)
         return q, part_q
 

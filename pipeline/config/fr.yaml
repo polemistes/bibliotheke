@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+wiki: fr
+domain: fr.wikisource.org
+dbname: frwikisource
+language: fr
+namespaces: {author: 102, index: 112, page: 104}   # verified in WP0, F§1
+header_templates: [header]          # fr structure comes from <pages header=1> and the Index fields
+header_params:
+  author: [auteur, author]
+  year: [annee, année, year]
+structure:
+  container_params: [titre, title]
+  prev_next_params: [[prev, next], [précédent, suivant]]
+  current_params: [current]
+  toc_fields: [sommaire]
+  chapter_label_regex: '^(\S+\s+)?(chapitre|livre|partie|acte|scène|chant|tome|volume|lettre|section|fable)\b|^(préface|avant-propos|introduction|conclusion|épilogue|prologue|appendice|notes?|table des matières|table)\b'
+  whole_text_subpages: [Texte entier]
+disambiguation_templates: [homonymie, disambiguation]
+versions_templates: [éditions, traductions]
+other_versions_templates: [voir éditions, AutreVersion]
+quality:
+  textquality_values: {"textes validés": validated}
+  index_progress_fields: [avancement]
+  index_progress_values: {D: null}  # D: duplicate file, not a progress state
+  incomplete_templates: [incomplet]

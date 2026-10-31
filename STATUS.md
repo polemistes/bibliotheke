@@ -52,14 +52,29 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 - PLAN.md: VERIFY items resolved; WP0 corrections marked "(WP0 …)".
 - User-Agent (repo URL given by the owner after WP0):
   `Bibliotheke/0.1.0-dev (https://github.com/polemistes/bibliotheke; develop@robertemilberge.no) <client>/<version>`;
-  the URL is `REPO_URL` in `pipeline/wp0/wmhttp.py`.
+  the URL is `REPO_URL` in `pipeline/wscatalog/http.py` (and in the WP0
+  spike helper `pipeline/wp0/wmhttp.py`).
 
 ## In progress
 
-- WP1a survey (task 3), not yet started.
+- WP1a survey (task 3). Done so far: pipeline package `pipeline/wscatalog/`
+  (dump downloader, extractor, structure resolution, quality rules, survey
+  report), configs for no, is, de, fr, en in `pipeline/config/`; reports
+  for is, no, de written to `report/`. Running: fr and en extraction. Then:
+  fr/en reports, eyeball samples for patterns A, B, D, E, numbers below.
 
 ## How to resume / rerun
 
+- Pipeline: `python3 -m venv .venv && .venv/bin/pip install -e pipeline`
+  (needs PyYAML, requests). Dumps (2026-10-01 run, about 6.4 GB in
+  `pipeline/cache/dumps/`, gitignored):
+  `.venv/bin/python -I -m wscatalog.dumps nowikisource articles page_props`.
+  Extract (cached in `pipeline/cache/extract/{wiki}.pickle`):
+  `.venv/bin/python -I -m wscatalog.extract no`. Survey report:
+  `.venv/bin/python -I -m wscatalog.survey no` → `report/no-structure.md`.
+  Resolution and quality rules can be changed and re-run without
+  re-extracting; header parameter and transclusion settings in the config
+  need a fresh extract.
 - Browser tests: `prototypes/pagination/run_browser_test.sh` (needs
   `chromium`).
 - Android build: `cd prototypes/pagination/android &&

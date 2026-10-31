@@ -79,6 +79,7 @@ class Config:
     placeholders: list[str] = field(default_factory=list)
     own_translation_params: list[str] = field(default_factory=list)
     own_translation_values: frozenset[str] = frozenset()
+    own_translation_templates: frozenset[str] = frozenset()
     author_params: list[str] = field(default_factory=list)
     year_params: list[str] = field(default_factory=list)
 
@@ -144,6 +145,7 @@ def load(wiki: str) -> Config:
         placeholders=list(q.get("placeholders") or []),
         own_translation_params=_lower((q.get("own_translation") or {}).get("params")),
         own_translation_values=frozenset((q.get("own_translation") or {}).get("values") or []),
+        own_translation_templates=_tset(q.get("own_translation_templates")),
         author_params=_lower((raw.get("header_params") or {}).get("author")),
         year_params=_lower((raw.get("header_params") or {}).get("year")),
     )

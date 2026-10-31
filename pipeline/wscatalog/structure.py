@@ -195,6 +195,10 @@ class Resolver:
                     f = wt.norm_title(ff)
                     return int(n)
             return int(v) if v.isdigit() else None
+        if not (fr or "").strip() and not (to or "").strip() and not (inc or "").strip():
+            # A bare <pages index=X/> renders the Index's TOC field, not the
+            # book (fr `Madame Bovary`: 57 chapter links, no page markers).
+            return self.index_toc(idx)[0]
         a, b = num(fr), num(to)
         lv = self.levels.get(f)
         if a is None and b is None:
@@ -335,6 +339,27 @@ class Resolver:
             self.toc_of(n)
             self.nodes[t] = n
 
+    def index_toc(self, idx: str | None, current: str = "") -> tuple[list, list]:
+        """Scan pages transcluded by, and (target, text) links in, the TOC
+        field of Index idx."""
+        keys, pairs = [], []
+        fields = self.indexes.get(idx or "") or {}
+        for fname in self.cfg.toc_fields:
+            v = fields.get(fname)
+            if not v:
+                continue
+            for m in wt.TEMPLATE_START.finditer(v):
+                name = m.group(1).strip().lstrip(":")
+                if name.lower().startswith(self.ns.page_prefixes):
+                    key = page_key(name.split(":", 1)[1])
+                    keys.append(key)
+                    pairs.extend(self.plinks.get(key) or ())
+            for raw, text in wt.links(v):
+                t = resolve_target(raw, current, self.ns)
+                if t:
+                    pairs.append((t, text))
+        return keys, pairs
+
     def links_to_self(self, n: Node) -> bool:
         link = wt.first_link(self.hdr(n.rec, "container") or "")
         t = resolve_target(link, n.title, self.ns) if link else None
@@ -356,27 +381,15 @@ class Resolver:
             if got:
                 sources.append(src)
         # The Index TOC field belongs to the Index's own book: the page its
-        # title field links to (otherwise every member would look TOC-like).
-        if n.header_tag and self.cfg.toc_fields and self.links_to_self(n):
-            fields = self.indexes.get(n.index or "") or {}
-            for fname in self.cfg.toc_fields:
-                v = fields.get(fname)
-                if not v:
-                    continue
-                pairs = []
-                for m in wt.TEMPLATE_START.finditer(v):
-                    name = m.group(1).strip().lstrip(":")
-                    if name.lower().startswith(self.ns.page_prefixes):
-                        key = page_key(name.split(":", 1)[1])
-                        pl = self.plinks.get(key)
-                        if pl:
-                            n.toc_pages.add(key)
-                            pairs.extend(pl)
-                for raw, text in wt.links(v):
-                    t = resolve_target(raw, n.title, self.ns)
-                    if t:
-                        pairs.append((t, text))
-                add(pairs, "summary")
+        # title field links to (otherwise every member would look TOC-like),
+        # and any page with a bare <pages index=X/>, which renders it.
+        bare = [tg[0] for tg in rec.tags if not tg[1].strip() and not tg[2].strip() and not tg[3].strip()]
+        toc_indexes = list(dict.fromkeys(
+            bare + ([n.index] if n.header_tag and self.links_to_self(n) else [])))
+        for idx in toc_indexes:
+            keys, pairs = self.index_toc(idx, n.title)
+            n.toc_pages.update(keys)
+            add(pairs, "summary")
         pairs = []
         for key in self.scan_pages(rec):
             pl = self.plinks.get(key)
