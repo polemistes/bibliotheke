@@ -59,6 +59,8 @@ class Config:
     reference_threshold: int = 2000
     whole_text_subpages: frozenset[str] = frozenset()
     headerless_toc_members: bool = False
+    ordinals: dict[str, int] = field(default_factory=dict)
+    navigation_texts: frozenset[str] = frozenset()
     exclude_title_prefixes: tuple[str, ...] = ()
     disambiguation_templates: frozenset[str] = frozenset()
     not_disambiguation_templates: frozenset[str] = frozenset()
@@ -194,6 +196,9 @@ def load(wiki: str) -> Config:
         reference_threshold=int(s["reference_threshold"]),
         whole_text_subpages=frozenset(t.lower() for t in s.get("whole_text_subpages") or []),
         headerless_toc_members=bool(s.get("headerless_toc_members")),
+        ordinals={str(k).casefold(): int(v) for k, v in
+                  ((raw.get("ordinals") or {}).get(raw.get("language") or wiki) or {}).items()},
+        navigation_texts=frozenset(str(t).casefold() for t in s.get("navigation_link_texts") or []),
         exclude_title_prefixes=tuple(raw.get("exclude_title_prefixes") or []),
         disambiguation_templates=_tset(raw.get("disambiguation_templates")),
         not_disambiguation_templates=_tset(raw.get("not_disambiguation_templates")),

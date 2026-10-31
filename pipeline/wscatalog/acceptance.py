@@ -17,7 +17,7 @@ from .catalog import OUT_DIR
 
 REASONS = {"disambiguation", "versions", "author-page", "whole-text", "excluded-template",
            "excluded-category", "no-header", "under-excluded", "no-text-pages", "index-faulty",
-           "junk-template", "placeholder", "under-300-bytes", "bibliography", "no-text"}
+           "junk-template", "placeholder", "under-300-bytes", "bibliography", "no-text", "duplicate"}
 
 
 def one(con, sql, *args):

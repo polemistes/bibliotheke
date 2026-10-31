@@ -278,6 +278,9 @@ class Build:
             t = self.res.resolve(src)
             if t in where and src not in where:
                 rows.append((src, *where[t]))
+        for src, t in self.res.duplicate_of.items():     # duplicates found by their title
+            if t in where and src not in where:
+                rows.append((src, *where[t]))
         con.executemany("INSERT OR IGNORE INTO aliases VALUES (?,?,?)", rows)
         self.counts["aliases"] = len(rows)
 

@@ -31,7 +31,7 @@ from .http import CACHE_DIR
 
 EXTRACT_DIR = CACHE_DIR / "extract"
 # Bump when the extract's content changes, so that wscatalog.build re-extracts.
-EXTRACT_VERSION = 4
+EXTRACT_VERSION = 5
 REPO_DIR = Path(__file__).resolve().parents[2]
 CANONICAL_NS = {
     "media": -2, "special": -1, "talk": 1, "user": 2, "user talk": 3, "project": 4,
@@ -60,7 +60,7 @@ class PageRec:
         self.page_id = page_id
         self.bytes = nbytes
         self.hdr: dict[str, str] = {}
-        self.tags: list[tuple] = []          # (index, from, to, include, exclude, header)
+        self.tags: list[tuple] = []          # (index, from, to, include, exclude, header, sections)
         self.refs: list[tuple] = []          # (file, num|None) via templates / {{Page:..}}
         self.links: tuple[str, ...] = ()     # ns0 targets, document order, unique
         self.texts: tuple[str | None, ...] = ()
@@ -215,8 +215,10 @@ def parse_ns0(title: str, page_id: int, nbytes: int, text: str, cfg: configmod.C
     for attrs in wt.pages_tags(text):
         idx = wt.norm_title(attrs.get("index", ""))
         header = attrs.get("header", "").lower() in ("1", "yes", "true", "y")
+        sections = "|".join(attrs.get(k, "") for k in ("fromsection", "tosection", "onlysection"))
         rec.tags.append((idx, attrs.get("from", ""), attrs.get("to", ""),
-                         attrs.get("include", ""), attrs.get("exclude", ""), header))
+                         attrs.get("include", ""), attrs.get("exclude", ""), header,
+                         sections.strip("|")))
         if header:
             for role, plist in (("tag_container", cfg.container_params),
                                 ("tag_current", cfg.current_params)):

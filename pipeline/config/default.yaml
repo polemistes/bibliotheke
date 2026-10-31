@@ -52,6 +52,38 @@ structure:                           # WS§5.3; resolution rules in PLAN.md 5.2 
   # header and an Index that lists >= 3 such pages counts as TOC-like
   # (de page-by-page books and Merian's Topographia volumes).
   headerless_toc_members: false
+  # TOC link texts that name nothing (display titles fall back to the title)
+  navigation_link_texts: [hier, here, ici, her, här, qui, aquí, tästä, "->", "→", link, mehr, more]
+# Ordinal words by language: natural order reads them as numbers
+# ("Første Række, Andet Bind" after "Første Række, Første Bind"; de "Zweiter Band")
+ordinals:
+  "no": {første: 1, forste: 1, anden: 2, andet: 2, annen: 2, annet: 2, tredje: 3, tredie: 3, fjerde: 4,
+         fierde: 4, femte: 5, sjette: 6, siette: 6, syvende: 7, sjuende: 7, ottende: 8, åttende: 8,
+         niende: 9, tiende: 10, ellevte: 11, tolvte: 12, trettende: 13, fjortende: 14, femtende: 15,
+         sekstende: 16, syttende: 17, attende: 18, nittende: 19, tyvende: 20}
+  da: {første: 1, anden: 2, andet: 2, tredje: 3, tredie: 3, fjerde: 4, femte: 5, sjette: 6,
+       syvende: 7, ottende: 8, niende: 9, tiende: 10, ellevte: 11, tolvte: 12}
+  sv: {första: 1, andra: 2, tredje: 3, fjärde: 4, femte: 5, sjätte: 6, sjunde: 7, åttonde: 8,
+       nionde: 9, tionde: 10}
+  de: {erste: 1, erster: 1, erstes: 1, zweite: 2, zweiter: 2, zweites: 2, dritte: 3, dritter: 3,
+       drittes: 3, vierte: 4, vierter: 4, viertes: 4, fünfte: 5, fünfter: 5, fünftes: 5, sechste: 6,
+       sechster: 6, sechstes: 6, siebente: 7, siebenter: 7, siebte: 7, siebter: 7, achte: 8,
+       achter: 8, neunte: 9, neunter: 9, zehnte: 10, zehnter: 10, elfte: 11, elfter: 11,
+       zwölfte: 12, zwölfter: 12}
+  en: {first: 1, second: 2, third: 3, fourth: 4, fifth: 5, sixth: 6, seventh: 7, eighth: 8,
+       ninth: 9, tenth: 10, eleventh: 11, twelfth: 12}
+  fr: {premier: 1, première: 1, deuxième: 2, second: 2, seconde: 2, troisième: 3, quatrième: 4,
+       cinquième: 5, sixième: 6, septième: 7, huitième: 8, neuvième: 9, dixième: 10}
+  it: {primo: 1, prima: 1, secondo: 2, seconda: 2, terzo: 3, terza: 3, quarto: 4, quarta: 4,
+       quinto: 5, quinta: 5, sesto: 6, sesta: 6, settimo: 7, settima: 7, ottavo: 8, ottava: 8,
+       nono: 9, nona: 9, decimo: 10, decima: 10}
+  es: {primero: 1, primera: 1, segundo: 2, segunda: 2, tercero: 3, tercera: 3, cuarto: 4,
+       cuarta: 4, quinto: 5, quinta: 5, sexto: 6, sexta: 6, séptimo: 7, séptima: 7, octavo: 8,
+       octava: 8, noveno: 9, novena: 9, décimo: 10, décima: 10}
+  is: {fyrsta: 1, fyrsti: 1, annað: 2, annar: 2, önnur: 2, þriðja: 3, þriðji: 3, fjórða: 4,
+       fjórði: 4, fimmta: 5, fimmti: 5}
+  fi: {ensimmäinen: 1, toinen: 2, kolmas: 3, neljäs: 4, viides: 5, kuudes: 6, seitsemäs: 7,
+       kahdeksas: 8, yhdeksäs: 9, kymmenes: 10}
 metadata:                            # metadata merge (5.2 step 3)
   sort_articles: []                  # leading articles ignored in sort_title
   anonymous_names: []                # author values that name nobody

@@ -64,9 +64,15 @@ def roman_value(s: str) -> int:
     return total
 
 
-def natural_key(title: str):
+ORDINAL_WORD = re.compile(r"\w+", re.U)
+
+
+def natural_key(title: str, ordinals: dict[str, int] | None = None):
     """Numbers compare as numbers; a last segment that is a roman numeral
-    compares by its value (I, II, … IX, X)."""
+    compares by its value (I, II, … IX, X); with ordinals, ordinal words
+    compare as their numbers ("Andet Bind" after "Første Bind")."""
+    if ordinals:
+        title = ORDINAL_WORD.sub(lambda m: str(ordinals.get(m.group(0).casefold(), m.group(0))), title)
     head, _, last = title.rpartition("/")
     if ROMAN.match(last):
         return [p.lower() if not p.isdigit() else int(p) for p in NATURAL.split(head)] + [roman_value(last)]
@@ -144,6 +150,11 @@ class Resolver:
         self.works: list[Work] = []
         self.stats: Counter = Counter()
         self.chain_cross = Counter()
+        self.ordinals = cfg.ordinals
+        self.duplicate_of: dict[str, str] = {}
+
+    def natural(self, title: str):
+        return natural_key(title, self.ordinals)
 
     # ---- helpers -------------------------------------------------------
     def resolve(self, title: str | None) -> str | None:
@@ -213,7 +224,7 @@ class Resolver:
 
     def tag_pages(self, tag: tuple) -> list[tuple[str, int | None]]:
         """Scan pages (file, num) transcluded by one <pages> tag."""
-        idx, fr, to, inc, exc, _ = tag
+        idx, fr, to, inc, exc = tag[:5]
         f = idx
         def num(v):
             nonlocal f
@@ -551,6 +562,39 @@ class Resolver:
         for n in nodes.values():
             if n.parent:
                 nodes[n.parent].children.append(n.title)
+        self._drop_duplicates()
+
+    def _drop_duplicates(self) -> None:
+        """Implementation choice: siblings whose only <pages> tag transcludes
+        the same range of two or more pages of the same Index (no sections) are one text
+        stored twice (no `Fru Bovary/1` and `Fru Bovary: Første del`). The
+        subpage of the parent is kept (else the shortest title); the other
+        page is excluded as `duplicate`."""
+        nodes = self.nodes
+        for n in list(nodes.values()):
+            if len(n.children) < 2:
+                continue
+            groups: dict[tuple, list[str]] = defaultdict(list)
+            for c in n.children:
+                cn = nodes[c]
+                tags = cn.rec.tags if cn.rec is not None else ()
+                # one whole-range <pages> tag: texts that share a scan page
+                # through sections (dictionary entries, short poems) differ
+                if (len(tags) == 1 and len(tags[0]) > 6 and not tags[0][6] and not cn.rec.refs
+                        and cn.scan_from is not None and (cn.scan_to or 0) > cn.scan_from
+                        and not cn.children):
+                    groups[(cn.index, cn.scan_from, cn.scan_to, tags[0][3], tags[0][4])].append(c)
+            for same in groups.values():
+                if len(same) < 2:
+                    continue
+                keep = min(same, key=lambda t: (not t.startswith(n.title + "/"), len(t), t))
+                for t in same:
+                    if t != keep:
+                        n.children.remove(t)
+                        del nodes[t]
+                        self.excluded[t] = "duplicate"
+                        self.duplicate_of[t] = keep        # an alias of the kept part
+                        self.stats["duplicates"] += 1
 
     def ancestors(self, title: str) -> list[str]:
         out, cur, seen = [], self.nodes[title].parent, set()
@@ -658,15 +702,15 @@ class Resolver:
                 return
         idxs = {self.nodes[k].index for k in kids}
         if len(idxs) == 1 and None not in idxs and all(self.nodes[k].scan_from is not None for k in kids):
-            n.children = sorted(kids, key=lambda k: (self.nodes[k].scan_from, natural_key(k)))
+            n.children = sorted(kids, key=lambda k: (self.nodes[k].scan_from, self.natural(k)))
             n.order_source = "scan"
             return
         # Implementation choice: children from several scan files (volumes)
         # that all have a scan position follow the files in natural order,
         # then the scan position (en The Wealth of Nations, 1902).
         if all(self.nodes[k].scan_from is not None and self.nodes[k].index for k in kids):
-            n.children = sorted(kids, key=lambda k: (natural_key(self.nodes[k].index),
-                                                     self.nodes[k].scan_from, natural_key(k)))
+            n.children = sorted(kids, key=lambda k: (self.natural(self.nodes[k].index),
+                                                     self.nodes[k].scan_from, self.natural(k)))
             n.order_source = "scan-volumes"
             return
         # Implementation choice: when no source covers all children but the
@@ -677,11 +721,11 @@ class Resolver:
             pos = {t: i for i, t in enumerate(n.toc)}
             listed = [k for k in kids if k in pos]
             if len(listed) * 2 >= len(kids):
-                rest = sorted((k for k in kids if k not in pos), key=natural_key)
+                rest = sorted((k for k in kids if k not in pos), key=self.natural)
                 n.children = sorted(listed, key=pos.__getitem__) + rest
                 n.order_source = "toc-partial"
                 return
-        n.children, n.order_source = sorted(kids, key=natural_key), "natural"
+        n.children, n.order_source = sorted(kids, key=self.natural), "natural"
 
     # ---- step 1d-1h ----------------------------------------------------
     def display(self, n: Node, parent: Node | None) -> str:
@@ -693,7 +737,9 @@ class Resolver:
             return n.current
         if parent is not None and n.title in parent.toc_texts:
             t = wt.strip_markup(parent.toc_texts[n.title])
-            if t:
+            # a navigation link ("Eine Übersicht ist [[…|hier]] zu finden") or
+            # a letter of an alphabetical index names nothing
+            if len(t) > 1 and t.casefold() not in self.cfg.navigation_texts:
                 return t[:200]
         if parent_titles(n.title):
             return n.title[len(parent_titles(n.title)[0]) + 1:]
