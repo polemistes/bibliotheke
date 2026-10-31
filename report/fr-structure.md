@@ -6,36 +6,36 @@ Input: 537,405 ns0 pages, 56,685 ns0 redirects, 4,030,797 scan pages, 28,847 Ind
 
 ## 1. Works
 
-40,763 works resolved from 524,624 non-excluded ns0 pages; 40,070 enter the catalog after the hard exclusions (section 9). Multi-part works hold 484,735 parts, of which 372,982 are searchable texts.
+40,889 works resolved from 524,624 non-excluded ns0 pages; 40,195 enter the catalog after the hard exclusions (section 9). Multi-part works hold 484,586 parts, of which 372,246 are searchable texts.
 
 | structure | works | parts | texts |
 |---|---|---|---|
-| single | 28,951 | 28,951 | 0 |
-| subpages | 9,710 | 347,294 | 252,535 |
-| virtual | 874 | 52,952 | 49,331 |
-| linked | 815 | 22,874 | 17,766 |
-| mixed | 413 | 61,615 | 53,350 |
+| single | 29,091 | 29,091 | 0 |
+| subpages | 9,719 | 347,371 | 252,032 |
+| virtual | 851 | 52,726 | 49,104 |
+| linked | 815 | 22,874 | 17,765 |
+| mixed | 413 | 61,615 | 53,345 |
 
 | type (step 1e) | works |
 |---|---|
 | periodical-issue | 20,707 |
-| book | 14,125 |
-| collection | 5,017 |
-| single | 496 |
-| reference | 273 |
+| book | 14,171 |
+| collection | 5,049 |
+| single | 543 |
+| reference | 274 |
 | document | 145 |
 
 Largest works by parts:
 
 | work | structure | type | parts | texts | missing | rules of the parts |
 |---|---|---|---|---|---|---|
-| L’Encyclopédie | virtual | reference | 41,677 | 41,615 | 0 | container 41632, hierarchy 44 |
+| L’Encyclopédie | virtual | reference | 41,677 | 41,610 | 0 | container 41632, hierarchy 44 |
 | Dictionnaire de Trévoux/6e édition, 1771 | mixed | reference | 31,513 | 31,473 | 20 | container 31256, hierarchy 257 |
-| Petit dictionnaire de la langue française (1836) | subpages | reference | 23,874 | 23,829 | 0 | hierarchy 23874 |
+| Petit dictionnaire de la langue française (1836) | subpages | reference | 23,874 | 23,825 | 0 | hierarchy 23874 |
 | Dictionnaire des patois romans de la Moselle | subpages | reference | 21,247 | 21,230 | 64 | container 21244, hierarchy 3 |
-| Petit dictionnaire de la langue française (1860) | subpages | reference | 20,406 | 20,367 | 7 | hierarchy 20406 |
+| Petit dictionnaire de la langue française (1860) | subpages | reference | 20,406 | 20,364 | 7 | hierarchy 20406 |
 | Correspondance de Voltaire | subpages | collection | 10,426 | 387 | 2 | container 10375, hierarchy 51 |
-| Petit dictionnaire de la langue française (Hocquart, 1831) | subpages | reference | 7,352 | 7,334 | 19 | hierarchy 7352 |
+| Petit dictionnaire de la langue française (Hocquart, 1831) | subpages | reference | 7,352 | 7,333 | 19 | hierarchy 7352 |
 | Grand dictionnaire universel du XIXe siècle | subpages | reference | 5,834 | 5,829 | 19902 | container 5402, hierarchy 432 |
 | Dictionnaire liégeois-français (Forir) | subpages | reference | 4,534 | 4,515 | 303 | container 4516, hierarchy 18 |
 | Le Littré de la Grand’Côte/3e éd., 1903 | subpages | reference | 4,250 | 4,216 | 0 | hierarchy 4250 |
@@ -60,33 +60,34 @@ Largest works by parts:
 | A | collection of root pages (`structure = linked`) | 815 works, 22,874 parts |
 | B | mixed subpages and root pages (`mixed`) | 413 works, 61,615 parts |
 | C | work with an oversized page (> oversized_bytes, transcluded scan pages included) | 605 works |
-| D | missing root, virtual root (`virtual`) | 874 works, 52,952 parts |
-| E | texts inside a subpage collection reached from a disambiguation or versions page | 11,366 parts (9,993 searchable); all searchable subpage texts: 346,025 |
+| D | missing root, virtual root (`virtual`) | 851 works, 52,726 parts |
+| E | texts inside a subpage collection reached from a disambiguation or versions page | 11,365 parts (9,586 searchable); all searchable subpage texts: 345,292 |
 | F | whole-text duplicate subpages (excluded) | 4,271 pages |
-| G | reference works (type `reference`) | 273 works, 216,950 parts; 0 pages excluded by title prefix |
-| H | deep nesting (parts at depth ≥ 2, i.e. three levels below the root) | 165 works |
+| G | reference works (type `reference`) | 274 works, 216,950 parts; 0 pages excluded by title prefix |
+| H | deep nesting (parts at depth ≥ 2, i.e. three levels below the root) | 164 works |
 | I | several editions: works with an other-versions template | 579 works; 55 versions pages excluded |
 
-Tree depth of multi-part works (levels below the root): 1: 10,654, 2: 993, 3: 130, 4: 29, 5: 5, 6: 1.
+Tree depth of multi-part works (levels below the root): 1: 10,644, 2: 990, 3: 129, 4: 29, 5: 5, 6: 1.
 
 ## 4. Parent rules and order sources (steps 1b, 1c)
 
 | parent rule | pages |
 |---|---|
 | container | 372,131 |
-| hierarchy | 112,419 |
-| own | 39,889 |
+| hierarchy | 112,270 |
+| own | 40,038 |
 | toc | 185 |
 
 | order source (nodes with ≥ 2 children) | nodes |
 |---|---|
 | toc | 8,327 |
-| scan | 2,818 |
+| scan | 2,809 |
 | chain | 2,559 |
-| natural | 461 |
-| toc-partial | 297 |
+| scan-volumes | 480 |
+| natural | 194 |
+| toc-partial | 74 |
 
-`toc-partial` (implementation choice, see section 13): the TOC lists at least half of the children, which keep its order; the rest follow in natural order. 251 `natural` nodes have a TOC that lists fewer than half.
+`toc-partial` (implementation choice, see section 13): the TOC lists at least half of the children, which keep its order; the rest follow in natural order. 125 `natural` nodes have a TOC that lists fewer than half.
 
 Root pages attached by their header's container link: 9,167; most frequent containers: `Lettres de Madame de Sévigné/Édition Monmerqué` 887; `Œuvres de P. Lachambeaudie. ― Fables et Poésies (1854)` 411; `Les Fables complètes (Viennet)` 213; `Parnasse de la Jeune Belgique` 162; `La Chanson française du XVe au XXe siècle` 147; `La Nuit (Gilkin)` 130; `Œuvres de Sully Prudhomme/Poésies 1866-1872` 128; `Œuvres de Théophile Gautier (Lemerre, 1890)` 124; `Échos de France` 121; `Poésies diverses (Corneille)` 109.
 
@@ -109,11 +110,11 @@ Root-page works that sit on a prev/next chain but stay separate works (no contai
 
 ## 7. Orphan trees, oversized pages, red links
 
-**Orphan trees** (virtual roots): 874, holding 52,952 parts. Examples: `Discours sur Théophraste` (2); `Imitations de Plotin (S. Basile)` (4); `Le journal de la jeunesse` (1); `Cahier 01` (2); `Histoire du parlement` (73); `Revue des périodiques - Périodiques hollandais` (1); `Revue pour les Français Février 1907` (6); `Mes cahiers (éd. Fleuron 1950)` (2).
+**Orphan trees** (virtual roots): 851, holding 52,726 parts. Examples: `Revue pour les Français Octobre 1907` (6); `Lettres de Catherine de Médicis` (1); `Revue des périodiques - Périodiques hollandais` (1); `Revue Musicale de Lyon 1904-03-23` (6); `Lexique de la langue algonquine` (2); `Bibliographie française` (1); `Le Figaro du 23 mars 1881` (1); `Histoire de Chartres` (1).
 
 **Oversized pages** (> 300,000 bytes of wikitext including transcluded scan pages): 1,275. Largest: `Jean part1` 2.0 MB; `Le Système du Monde/Texte entier/Tome 6` 2.0 MB; `Essais/édition Michaud, 1907/Livre II/Chapitre 12` 1.9 MB; `Dictionnaire de la langue française du seizième siècle/A1` 1.9 MB; `Jean Chrysostome/Commentaire sur les Psaumes` 1.9 MB; `Thresor de la langue françoise/Nomenclator` 1.8 MB; `Le Système du Monde/Texte entier/Tome 7` 1.8 MB; `George Sand, sa vie et ses œuvres/Texte entier du tome 3` 1.8 MB; `George Sand, sa vie et ses œuvres/3` 1.8 MB; `Le Coran (Traduction de Savary)/Titre` 1.8 MB.
 
-**Red links in TOCs** (missing parts): 1,037 multi-part works have red links, 72,475 in total; median share of the TOC 56%. Most missing: `Grand dictionnaire universel du XIXe siècle` 19902 of 25736; `Dictionnaire de théologie catholique` 5325 of 7312; `Dictionnaire de Trévoux/4e édition, 1743` 5112 of 5152; `Dictionnaire de Trévoux/5e édition, 1752` 5104 of 5231; `Thresor de la langue françoise` 4690 of 8047; `Dictionnaire historique de l’ancien langage françois/1re éd., 1875` 3462 of 3472; `Nouveau dictionnaire de pédagogie et d’instruction primaire` 1517 of 1665; `Nouvelle Biographie générale` 1252 of 1532.
+**Red links in TOCs** (missing parts): 1,043 multi-part works have red links, 72,552 in total; median share of the TOC 55%. Most missing: `Grand dictionnaire universel du XIXe siècle` 19902 of 25736; `Dictionnaire de théologie catholique` 5325 of 7312; `Dictionnaire de Trévoux/4e édition, 1743` 5112 of 5152; `Dictionnaire de Trévoux/5e édition, 1752` 5104 of 5231; `Thresor de la langue françoise` 4690 of 8047; `Dictionnaire historique de l’ancien langage françois/1re éd., 1875` 3462 of 3472; `Nouveau dictionnaire de pédagogie et d’instruction primaire` 1517 of 1665; `Nouvelle Biographie générale` 1252 of 1532.
 
 ## 8. Colon prefixes with ≥ 100 root pages
 
@@ -121,18 +122,18 @@ None.
 
 ## 9. Quality and completeness (PLAN.md 5.4)
 
-**Hard exclusions**: 693 works — no-text 315, no-text-pages 165, index-faulty 109, under-300-bytes 104.
+**Hard exclusions**: 694 works — no-text 315, no-text-pages 165, index-faulty 109, under-300-bytes 105.
 
 | tier | works | share | texts in them | source |
 |---|---|---|---|---|
-| validated | 11,210 | 28.0 % | 46,345 | page-levels 11,123, textquality 77, index-progress 10 |
-| proofread | 21,172 | 52.8 % | 289,181 | page-levels 21,064, textquality 97, index-progress 11 |
-| unproofread | 7,568 | 18.9 % | 36,254 | page-levels 7,392, textquality 102, index-progress 74 |
+| validated | 11,255 | 28.0 % | 46,301 | page-levels 11,130, textquality 115, index-progress 10 |
+| proofread | 21,246 | 52.9 % | 288,905 | page-levels 21,138, textquality 97, index-progress 11 |
+| unproofread | 7,574 | 18.8 % | 35,838 | page-levels 7,398, textquality 102, index-progress 74 |
 | unknown | 120 | 0.3 % | 281 | none 120 |
 
-591 works are proofread by the ≥ 90 % rule. 5,186 of the 7,568 unproofread works have no page above level 1 (raw OCR).
+590 works are proofread by the ≥ 90 % rule. 5,187 of the 7,574 unproofread works have no page above level 1 (raw OCR).
 
-**Incomplete**: 2,734 works — missing-parts 1,194, missing-pages 839, coverage 700, index-progress 1.
+**Incomplete**: 2,740 works — missing-parts 1,200, missing-pages 839, coverage 700, index-progress 1.
 Works with missing scan pages inside a transcluded range: 1,086 (76,690 pages).
 Coverage was computed for 2,906 works that are their Index's book; 854 cover under 95 % of the Index's text pages.
 6 works transclude scan pages of files the dump has no Page: pages for (counted as no signal, not as missing).
@@ -142,7 +143,7 @@ Text-quality template values: `100%` 98,462, `Textes validés` 52,459, `75%` 18,
 Index progress values: `C` 16,819, `T` 5,888, `V` 5,061, `OCR` 474, `L` 51, `MS` 39, `D` 8, `X` 2.
 Works excluded as index-faulty, by the tier their page levels would give: unproofread 53, proofread 37, none 16, validated 3.
 
-**Unknown works** (no signal): 120 in the catalog after the junk rules; the junk rules removed 104 (under-300-bytes 104).
+**Unknown works** (no signal): 120 in the catalog after the junk rules; the junk rules removed 105 (under-300-bytes 105).
 Size: median 3,211 bytes, p10 677, p90 90,005; multi-part 13.
 
 30 random unknown works:
@@ -178,24 +179,24 @@ Size: median 3,211 bytes, p10 677, p90 90,005; multi-part 13.
 - `En regardant une partie de Go` (single, 2,542 B): __EXPECTWITHOUTSCANS__ 觀棋並序 — 观棋并序, En regardant une partie de Go. Chinois classique : 觀棋並序 五老峰前，白鶴遺址。 長松蔭庭，風日清美。 我時獨游，不逢一士。 誰歟棋者，戶外屨二。 不聞人聲，時聞落子。 紋枰坐對，誰究此味。 空鉤
 - `Dénonciation d'un soldat français défaitiste pendant la Première Guerre Mondiale` (single, 2,603 B): __EXPECTWITHOUTSCANS__ « Calan, 21 mai 1915 Monsieur le Préfet, Je trouve qu’il est de mon devoir d’institutrice française de vous faire part des conversations 
 
-**Default view** (validated or proofread, complete, not reference): 30,681 works with 120,795 texts; with unknown works shown: 30,792 works (120,847 texts). Works in the default view whose pages are all level 1: 0. Current setting: `show_unknown_by_default = None`.
+**Default view** (validated or proofread, complete, not reference): 30,793 works with 120,352 texts; with unknown works shown: 30,904 works (120,404 texts). Works in the default view whose pages are all level 1: 0. Current setting: `show_unknown_by_default = None`.
 
 ## 10. Parts table size (WS§5.2)
 
 | parts_cap | works with catalog parts | parts rows | parts table, gzipped | parts_fts, gzipped |
 |---|---|---|---|---|
-| 500 | 11,560 | 239,786 | 14.29 MB | 2.32 MB |
-| 2,000 | 11,585 | 263,175 | 15.44 MB | 2.50 MB |
-| ∞ (all, reference works included) | 11,778 | 494,688 | 24.90 MB | 4.65 MB |
-| 2,000, compact encoding | 11,585 | 263,175 | 13.49 MB | 2.50 MB |
+| 500 | 11,547 | 239,648 | 14.28 MB | 2.31 MB |
+| 2,000 | 11,572 | 263,037 | 15.43 MB | 2.50 MB |
+| ∞ (all, reference works included) | 11,764 | 494,548 | 24.88 MB | 4.65 MB |
+| 2,000, compact encoding | 11,572 | 263,037 | 13.48 MB | 2.50 MB |
 
-Rows count multi-part works only, one row per part plus the root row. 28,292 single-page works would add one row each if stored. Sizes are a SQLite file holding only the table (with its index) at gzip level 9. The compact encoding (not in WS§5.1, measured for the cap decision) stores a part's page_title as the suffix after the work root's title where possible, display_title only when it differs from the last title segment, and no per-part quality_pages.
+Rows count multi-part works only, one row per part plus the root row. 28,431 single-page works would add one row each if stored. Sizes are a SQLite file holding only the table (with its index) at gzip level 9. The compact encoding (not in WS§5.1, measured for the cap decision) stores a part's page_title as the suffix after the work root's title where possible, display_title only when it differs from the last title segment, and no per-part quality_pages.
 
 ## 11. Named cases (PLAN.md WP1 acceptance, WS§9)
 
-- `La Légende des siècles`: work, mixed, type collection, 132 parts (128 texts), 0 missing, order toc-partial, oversized False, quality unproofread (page-levels), complete False (missing-pages).
-- `L’Épopée du ver`: part 71 of `La Légende des siècles` (text, display “L’Épopée du ver”, rule container, searchable True).
-- `Clarté d’âmes`: part 73 of `La Légende des siècles` (text, display “Clarté d’âmes”, rule container, searchable True).
+- `La Légende des siècles`: work, mixed, type collection, 132 parts (128 texts), 0 missing, order scan-volumes, oversized False, quality unproofread (page-levels), complete False (missing-pages).
+- `L’Épopée du ver`: part 131 of `La Légende des siècles` (text, display “L’Épopée du ver”, rule container, searchable True).
+- `Clarté d’âmes`: part 74 of `La Légende des siècles` (text, display “Clarté d’âmes”, rule container, searchable True).
 - `Madame Bovary`: work, mixed, type book, 57 parts (17 texts), 0 missing, order toc, oversized False, quality validated (page-levels), complete True.
 
 ## 13. Implementation notes
@@ -205,7 +206,7 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
 - Display titles come from `current`/`section`/`TITEL`, else the link text in the parent's TOC, else the last title segment. A work's first part row is its root (`front` above 400 characters of own text, else `toc`); `part_count` excludes it.
 - Missing parts are red links in the TOCs of the work's root and volumes: subpages of the root always, other titles only in linked or mixed works and on TOC-like pages.
 - Junk rules (cleanup or deletion template, placeholder, under 300 bytes) apply to works without scan pages and without any quality signal.
-- Order (step 1c): when no source covers all children but the TOC lists at least half, the listed children keep the TOC order and the rest follow in natural order (`toc-partial`), so that collections are not shown alphabetically (WS§2 rule 3).
+- Order (step 1c), after the plan's sources: children from several scan files that all have a scan position follow the files in natural order, then the position (`scan-volumes`); else, when the TOC lists at least half of the children, they keep the TOC order and the rest follow in natural order (`toc-partial`); natural order reads roman numerals. So collections are not shown alphabetically (WS§2 rule 3).
 - Rule 3: a TOC page is marked as one (de `HERKUNFT = off`) or is its Index's own book; "reached from it by the prev/next chain" is read as: the member's chain starts at the TOC page or its prev or next page is listed on the same TOC page.
 - A container with several links (de `HERKUNFT`) resolves to the first link that shares the page's Index, else the first link (the KHM tales link the editions overview first).
 - Volume placement: a part attached by its container is placed under the one TOC page (under 2,000 bytes of own text, listing at least three members) of the same work that lists it, unless the container's members already form one prev/next chain.
@@ -388,7 +389,7 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - front: La foi des hommes
     - volume: L’Amour de la vie [container]
       - chapter: Préface (`Préface du supplément à L'Illustration du 10 février 1912`) [container]
-1. `Le Danger des Liaisons`: linked, book, 6 parts, 0 missing, order natural, unproofread
+1. `Le Danger des Liaisons`: linked, book, 6 parts, 0 missing, order scan-volumes, unproofread
     - toc: Le Danger des Liaisons
     - chapter: 1 (`Le Danger des liaisons/1/1`) [container]
     - chapter: 2 (`Le Danger des liaisons/1/2`) [container]
@@ -590,19 +591,19 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - chapter: Troisième partie (`Faust (Goethe, trad. Nerval, 1877)/Faust/Troisième partie`) [container]
     - text: SECOND FAUST (`Faust (Goethe, trad. Nerval, 1877)/Second Faust/Entete`) [container]
     - … 61 more
-1. `L’Heptaméron des nouvelles`: mixed, book, 127 parts, 0 missing, order natural, proofread
+1. `L’Heptaméron des nouvelles`: mixed, book, 127 parts, 0 missing, order scan-volumes, proofread
     - front: L’Heptaméron des nouvelles
-    - chapter: 39 (`L’Heptaméron des nouvelles/39`) [container]
-    - chapter: 40 (`L’Heptaméron des nouvelles/40`) [container]
-    - volume: Tome deuxième (`L’Heptaméron des nouvelles/Tome deuxième`) [container]
-      - text: DEUXIÈME JOURNÉE. (`L’Heptaméron/La deuxième journée`) [container]
-      - chapter: Prologue (deuxième journée) (`L’Heptaméron des nouvelles/Prologue (deuxième journée)`) [container]
-      - text: Mésaventure de Madame de Roncex dans le couvent des Cordeliers de Thouars (`L’Heptaméron des nouvelles/11`) [container]
-      - text: Propos facétieux d’un Cordelier Tourangeau (`L’Heptaméron des nouvelles/11 bis`) [container]
-      - text: Histoire du Duc de Florence Alexandre de Médicis, assassiné par son cousin, Lorenzino de Médicis, pour sauver l’honneur de sa sœur (`L’Heptaméron des nouvelles/12`) [container]
-      - text: Honnête finesse de la Dame à qui un Capitaine des Galères envoie des lettres & un anneau de diamant, & qui, en les adressant à la femme du Capitaine comme s’ils lui étaient destinés, remet ensemble le (`L’Heptaméron des nouvelles/13`) [container]
-      - text: Le Seigneur de Bonnivet, après avoir fait réussir l’amour d’un Gentilhomme Italien pour une Dame de Milan, trouve le moyen de se substituer à lui & de le supplanter auprès de la Dame qui l’avait aupar (`L’Heptaméron des nouvelles/14`) [container]
-      - text: Ennuis & mauvaise fortune d’une honnête Dame qui, après avoir été longtemps négligée par le Gentilhomme son mari, est ensuite poursuivie par la jalousie de celui-ci (`L’Heptaméron des nouvelles/15`) [container]
+    - volume: Tome premier (`L’Heptaméron des nouvelles/Tome premier`) [container]
+      - text: Avertissement (`L’Heptaméron des nouvelles/Avertissement`) [container]
+      - text: Oraison funèbre de la mort de l’incomparable Marguerite, Royne de Navarre & Duchesse d’Alençon, composée en latin par Charles de Sainte-Marthe, & traduicte par lui en langue françoise (`L’Heptaméron des nouvelles/Oraison funèbre`) [container]
+      - text: Extraits de Brantôme (`L’Heptaméron des nouvelles/Extraits de Brantôme`) [container]
+      - text: Notice des manuscrits de l’Heptaméron de la Reine de Navarre. — L. (`L’Heptaméron des nouvelles/Notice des manuscrits`) [container]
+      - text: Notice des éditions de l’Heptaméron. — L. (`L’Heptaméron des nouvelles/Notice des éditions`) [container]
+      - text: Notice des manuscrits & des éditions des Poésies de la Reine de Navarre. — L. (`L’Heptaméron des nouvelles/Notice des manuscrits & des éditions des Poésies`) [container]
+      - text: Notice d’un manuscrit (Instruction en la Religion chrétienne pour les enfants), composé pour la Reine de Navarre. — L. (`L’Heptaméron des nouvelles/Notice d’un manuscrit`) [container]
+      - text: Indication de quelques portraits originaux de la Reine de Navarre. — L. (`L’Heptaméron des nouvelles/Indication de quelques portraits`) [container]
+      - text: Notice de l’édition de Berne. — M. (`L’Heptaméron des nouvelles/Notice de l’édition de Berne`) [container]
+      - chapter: Prologue général (`L’Heptaméron des nouvelles/Prologue`) [container]
     - … 116 more
 1. `Les Parisiennes de Paris`: mixed, collection, 22 parts, 0 missing, order toc, proofread
     - toc: Les Parisiennes de Paris
@@ -618,7 +619,7 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - text: La Femme de treize ans (`Les Parisiennes de Paris/8`) [container]
     - text: La Jeune fille honnête (`Les Parisiennes de Paris/9`) [container]
     - … 11 more
-1. `Rabevel ou Le mal des ardents`: mixed, book, 14 parts, 0 missing, order natural, proofread
+1. `Rabevel ou Le mal des ardents`: mixed, book, 14 parts, 0 missing, order scan-volumes, proofread
     - toc: Rabevel ou Le mal des ardents
     - volume: Tome I (`Rabevel ou Le mal des ardents/Tome I`) [hierarchy]
       - chapter: Chapitre premier (`Rabevel ou le mal des ardents/01/01`) [container]
@@ -632,35 +633,35 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
       - chapter: Chapitre quatrième (`Rabevel ou le mal des ardents/02/04`) [container]
     - volume: Tome III (`Rabevel ou Le mal des ardents/Tome III`) [hierarchy]
     - … 3 more
-1. `Des artistes`: mixed, book, 8 parts, 69 missing, order toc-partial, unproofread
+1. `Des artistes`: mixed, book, 8 parts, 69 missing, order scan-volumes, unproofread
     - toc: Des artistes
     - text: Claude Monet (`Des artistes/Claude Monet (1)`) [hierarchy]
     - text: Paul Gauguin (`Des artistes/Paul Gauguin`) [container]
+    - text: Vincent van Gogh (`Des artistes/Vincent van Gogh`) [hierarchy]
     - text: Camille Pissarro (`Des artistes/Camille Pissarro`) [hierarchy]
     - text: Auguste Rodin (`Des artistes/Auguste Rodin (3)`) [hierarchy]
-    - text: Claude Monet (`Des artistes/Claude Monet — Venise`) [hierarchy]
     - text: Claude Monet (Figaro) [container]
+    - text: Claude Monet (`Des artistes/Claude Monet — Venise`) [hierarchy]
     - text: Eugène Carrière (`Des artistes/Eugène Carrière`) [container]
-    - text: Vincent van Gogh (`Des artistes/Vincent van Gogh`) [hierarchy]
 1. `Contribution de la Guadeloupe à la pensée française`: mixed, book, 4 parts, 7 missing, order scan, proofread
     - toc: Contribution de la Guadeloupe à la pensée française
     - text: (Général Jacques-Coquille) (`Contribution de la Guadeloupe à la pensée française/Jacques-Coquille Dugommier`) [container]
     - text: pagination (test technique) (`Contribution de la Guadeloupe à la pensée française/pagination (test technique)`) [container]
     - text: Germain (`Contribution de la Guadeloupe à la pensée française/Germain Léonard`) [hierarchy]
     - text: (Julien de) (`Le Mauvais Génie (Julien de Mallian)`) [toc]
-1. `Œuvres complètes de Charles Péguy`: mixed, book, 46 parts, 2 missing, order natural, proofread
+1. `Œuvres complètes de Charles Péguy`: mixed, book, 46 parts, 2 missing, order scan-volumes, proofread
     - front: Œuvres complètes de Charles Péguy
-    - text: La Tapisserie de sainte Geneviève et de Jeanne d’Arc [container]
-    - text: Le Mystère des saints innocents [container]
-    - text: Le Porche du mystère de la deuxième vertu [container]
-    - text: Les Quatre Prières dans la cathédrale de Chartres [container]
-    - chapter: Note sur M. Bergson [container]
-    - text: notre jeunesse (`Notre Jeunesse`) [container]
-    - text: Paris double galère [container]
-    - text: Paris vaisseau de charge [container]
-    - text: Paris vaisseau de guerre [container]
-    - text: Présentation de la Beauce à Notre Dame de Chartres [container]
-    - text: Présentation de Paris à Notre Dame [container]
+    - volume: Tome 1 (`Œuvres complètes de Charles Péguy/Tome 1`) [container]
+      - chapter: Introduction (`Œuvres complètes de Charles Péguy/Tome 1/Introduction`) [container]
+      - chapter: Lettre du provincial (`Œuvres complètes de Charles Péguy/Tome 1/Lettre du provincial`) [container]
+      - text: Le triomphe de la république (`Œuvres complètes de Charles Péguy/Tome 1/Le triomphe de la république`) [container]
+      - text: Du second provincial (`Œuvres complètes de Charles Péguy/Tome 1/Du second provincial`) [container]
+      - text: De la grippe (`Œuvres complètes de Charles Péguy/Tome 1/De la grippe`) [container]
+      - text: Encore de la grippe (`Œuvres complètes de Charles Péguy/Tome 1/Encore de la grippe`) [container]
+      - text: Toujours de la grippe (`Œuvres complètes de Charles Péguy/Tome 1/Toujours de la grippe`) [container]
+      - text: Entre deux trains (`Œuvres complètes de Charles Péguy/Tome 1/Entre deux trains`) [container]
+      - text: Deuxième série au provincial (`Œuvres complètes de Charles Péguy/Tome 1/Deuxième série au provincial`) [container]
+      - text: Pour ma maison (`Œuvres complètes de Charles Péguy/Tome 1/Pour ma maison`) [container]
     - … 35 more
 1. `Zola, Dumas, Maupassant`: mixed, collection, 7 parts, 0 missing, order toc, validated
     - toc: Zola, Dumas, Maupassant
@@ -761,19 +762,19 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - text: . I : Paulo « minora » canamus (`Paulo « minora » canamus`) [container]
     - text: . II : Réalité (`Réalité`) [container]
     - … 68 more
-1. `Œuvres complètes de François Arago`: mixed, collection, 478 parts, 0 missing, order natural, proofread
+1. `Œuvres complètes de François Arago`: mixed, collection, 478 parts, 0 missing, order scan-volumes, proofread
     - front: Œuvres complètes de François Arago
-    - text: Alexandre Volta (Arago) [toc]
-    - text: Naissance de Volta ; sa jeunesse ; ses premiers travaux. — Bouteille de Leyde. — Électrophore perpétuel. — Perfectionnements de la machine électrique. — Électromètre condensateur. — Pistolet électriqu (`Alexandre Volta (Arago)/1`) [container]
-    - text: Dilatation de l’air (`Alexandre Volta (Arago)/2`) [container]
-    - text: Électricité atmosphérique (`Alexandre Volta (Arago)/3`) [container]
-    - text: Pile voltaïque (`Alexandre Volta (Arago)/4`) [container]
-    - text: Vie de Volta. — Fonctions qu’il a remplies. — Son caractère. — Sa mort (`Alexandre Volta (Arago)/5`) [container]
-    - chapter: Introduction (`Alexandre Volta (Arago)/Introduction`) [container]
-    - chapter: 01 (`Ampère (Arago)/01`) [container]
-    - chapter: 02 (`Ampère (Arago)/02`) [container]
-    - chapter: 03 (`Ampère (Arago)/03`) [container]
-    - chapter: 04 (`Ampère (Arago)/04`) [container]
+    - chapter: Introduction (`Œuvres complètes de François Arago/Tome I/Introduction`) [container]
+    - text: Histoire de ma jeunesse (`Œuvres complètes de François Arago/Tome I/Histoire de ma jeunesse`) [container]
+    - text: Notices biographiques (`Œuvres complètes de François Arago/Tome I/Notices biographiques`) [container]
+    - text: Avertissement (`Œuvres complètes de François Arago/Tome I/Notices biographiques : Avertissement`) [container]
+    - chapter: Introduction (`Fresnel (Arago)/Introduction`) [container]
+    - text: Enfance de Fresnel. — Son entrée à l’École polytechnique et dans le corps des ponts et chaussées. — Sa destitution pour avoir été rejoindre l’armée royale à La Palud (`Fresnel (Arago)/1`) [container]
+    - text: Premiers Mémoires de Fresnel (`Fresnel (Arago)/2`) [container]
+    - text: Réfraction (`Fresnel (Arago)/3`) [container]
+    - text: Interférences (`Fresnel (Arago)/4`) [container]
+    - text: Polarisation (`Fresnel (Arago)/5`) [container]
+    - text: Caractères principaux du système de l’émission et de celui des ondes. — Motifs sur lesquels Fresnel s’était fondé pour rejeter sans réserve le système de l’émission (`Fresnel (Arago)/6`) [container]
     - … 467 more
 1. `À travers l'Afrique`: mixed, book, 39 parts, 0 missing, order toc, validated
     - toc: À travers l'Afrique
@@ -789,7 +790,7 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - text: Chapitre09 (`À travers l’Afrique/Chapitre09`) [container]
     - text: Chapitre10 (`À travers l’Afrique/Chapitre10`) [container]
     - … 28 more
-1. `L’Année terrible`: mixed, collection, 98 parts, 0 missing, order toc-partial, proofread
+1. `L’Année terrible`: mixed, collection, 98 parts, 0 missing, order scan-volumes, proofread
     - toc: L’Année terrible
     - text: Les 7,500,000 oui (`L’Année terrible/Les 7 500 000 oui`) [container]
     - text: Sedan (`L’Année terrible/Sedan`) [container]
@@ -803,7 +804,7 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - text: Sept. Le chiffre du mal (`L’Année terrible/Sept. Le chiffre du mal`) [container]
     - text: De Haut de la muraille de Paris, à la nuit tombante (`L’Année terrible/De Haut de la muraille de Paris, à la nuit tombante`) [container]
     - … 87 more
-1. `Le Manifeste communiste`: mixed, book, 11 parts, 0 missing, order toc-partial, proofread
+1. `Le Manifeste communiste`: mixed, book, 11 parts, 0 missing, order scan-volumes, proofread
     - toc: Le Manifeste communiste
     - text: Préfaces des auteurs (`Manifeste du parti communiste/Andler/Préface`) [container]
     - text: Le Manifeste communiste (`Manifeste du parti communiste/Andler`) [container]
@@ -816,8 +817,9 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
       - chapter: 3. Littérature socialiste et communiste (`Manifeste du parti communiste/Andler/II/Commentaire/3`) [container]
       - chapter: 4. Attitude des communistes devant les divers partis d’opposition (`Manifeste du parti communiste/Andler/II/Commentaire/4`) [container]
       - chapter: Conclusion (`Manifeste du parti communiste/Andler/II/Conclusion`) [container]
-1. `Les Poèmes d’Edgar Poe`: mixed, collection, 39 parts, 0 missing, order toc-partial, unproofread
+1. `Les Poèmes d’Edgar Poe`: mixed, collection, 39 parts, 0 missing, order scan-volumes, unproofread
     - front: Les Poèmes d’Edgar Poe
+    - text: Édition 1888 (`Les Poèmes d’Edgar Poe/Édition 1888`) [hierarchy]
     - text: Sonnet (`Les Poèmes d’Edgar Poe/Le Tombeau d’Edgar Poe`) [container]
     - text: Le Corbeau (`Le Corbeau (trad. Mallarmé)`) [container]
     - text: Stances à Hélène (`Stances à Hélène (Les Poèmes d’Edgar Poe)`) [container]
@@ -828,9 +830,8 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - text: Un Rêve dans un Rêve (`Un rêve dans un rêve`) [container]
     - text: À Quelqu’un Au Paradis (`À quelqu’un au paradis`) [container]
     - text: Ballade de Noces (`Ballade de noces`) [container]
-    - text: Lénore [container]
     - … 28 more
-1. `La Légende des siècles`: mixed, collection, 132 parts, 0 missing, order toc-partial, unproofread
+1. `La Légende des siècles`: mixed, collection, 132 parts, 0 missing, order scan-volumes, unproofread
     - front: La Légende des siècles
     - volume: Première série, 1859 (`La Légende des siècles/1e série, 1859`) [container]
       - text: Dédicace (`La Légende des siècles/Dédicace`) [container]
@@ -859,273 +860,214 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
       - chapter: I. (`Mémoires (Cellini)/t1-l2-1`) [container]
     - … 3 more
 
-### D: virtual roots (874)
+### D: virtual roots (851)
 
-1. `Ladvocat - Dictionnaire historique - 1821 - Tome 5`: virtual, reference, 2 parts, 0 missing, order scan, proofread
-    - text: S (`Ladvocat - Dictionnaire historique - 1821 - Tome 5/S`)
-    - text: T (`Ladvocat - Dictionnaire historique - 1821 - Tome 5/T`) [hierarchy]
-1. `Les Tendresses Viriles`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: Le Sonnet (`Les Tendresses Viriles/Le Sonnet`)
-1. `Une voix d’en bas`: virtual, book, 5 parts, 0 missing, order scan, unproofread
-    - text: Mon Profil (`Une voix d’en bas/Mon Profil`)
-    - text: Le Bois (`Une voix d’en bas/Le Bois`) [hierarchy]
-    - text: Morale à ma fille (`Une voix d’en bas/Morale à ma fille`) [hierarchy]
-    - text: Dans l’orage (`Une voix d’en bas/Dans l’orage`) [hierarchy]
-    - text: Les Barrières (`Une voix d’en bas/Les Barrières`) [hierarchy]
-1. `Prisons et Paradis (éd. Le Fleuron, 1950)`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: Récriminations (`Prisons et Paradis (éd. Le Fleuron, 1950)/Récriminations`)
-1. `Les nuits d’été`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: Villanelle (`Les nuits d’été/Villanelle`)
-1. `Traité de droit romain (Savigny)`: virtual, book, 8 parts, 0 missing, order natural, proofread
-    - volume: Sources du droit romain actuel (`Traité de droit romain (Savigny)/Livre I`)
-      - text: Objet de cet ouvrage (`Traité de droit romain (Savigny)/Livre I/Chapitre 1`) [hierarchy]
-      - text: De la nature des sources du droit en général (`Traité de droit romain (Savigny)/Livre I/Chapitre 2`) [hierarchy]
-      - chapter: Chapitre 3 (`Traité de droit romain (Savigny)/Livre I/Chapitre 3`) [hierarchy]
-      - text: Interprétations des lois (`Traité de droit romain (Savigny)/Livre I/Chapitre 4`) [hierarchy]
-    - text: Définition des rapports de droit, et de leurs différentes espèces (`Traité de droit romain (Savigny)/Livre II/Chapitre 1`) [hierarchy]
-    - text: Des personnes considérés comme sujets des rapports de droit (`Traité de droit romain (Savigny)/Livre II/Chapitre 2`) [hierarchy]
-    - chapter: Préface (`Traité de droit romain (Savigny)/Préface`) [hierarchy]
-1. `Revue Musicale de Lyon 1904-02-17`: virtual, periodical-issue, 4 parts, 0 missing, order scan, proofread
-    - text: César Franck (`Revue Musicale de Lyon 1904-02-17/César Franck`)
-    - text: Les Sonates de Beethoven (`Revue Musicale de Lyon 1904-02-17/Les Sonates de Beethoven`) [hierarchy]
-    - text: Chronique lyonnaise (`Revue Musicale de Lyon 1904-02-17/Chronique lyonnaise`) [hierarchy]
-    - text: Nouvelles diverses (`Revue Musicale de Lyon 1904-02-17/Nouvelles diverses`) [hierarchy]
-1. `Essai sur le naturisme`: virtual, book, 1 parts, 0 missing, order single, unproofread
-    - text: Stéphane Mallarmé (`Essai sur le naturisme/Stéphane Mallarmé`)
-1. `Correspondance de H. de Balzac, 1/1832`: virtual, book, 38 parts, 0 missing, order chain, proofread
-    - chapter: LX (`Correspondance de H. de Balzac, 1/1832/LX`)
-    - chapter: LXI (`Correspondance de H. de Balzac, 1/1832/LXI`) [hierarchy]
-    - chapter: LXII (`Correspondance de H. de Balzac, 1/1832/LXII`) [hierarchy]
-    - chapter: LXIII (`Correspondance de H. de Balzac, 1/1832/LXIII`) [hierarchy]
-    - chapter: LXIV (`Correspondance de H. de Balzac, 1/1832/LXIV`) [hierarchy]
-    - chapter: LXV (`Correspondance de H. de Balzac, 1/1832/LXV`) [hierarchy]
-    - chapter: LXVI (`Correspondance de H. de Balzac, 1/1832/LXVI`) [hierarchy]
-    - chapter: LXVII (`Correspondance de H. de Balzac, 1/1832/LXVII`) [hierarchy]
-    - chapter: LXVIII (`Correspondance de H. de Balzac, 1/1832/LXVIII`) [hierarchy]
-    - chapter: LXIX (`Correspondance de H. de Balzac, 1/1832/LXIX`) [hierarchy]
-    - chapter: LXX (`Correspondance de H. de Balzac, 1/1832/LXX`) [hierarchy]
-    - chapter: LXXI (`Correspondance de H. de Balzac, 1/1832/LXXI`) [hierarchy]
-    - … 26 more
-1. `Œuvres de Spinoza`: virtual, collection, 88 parts, 0 missing, order natural, unproofread
-    - volume: Tome 2 (`Œuvres de Spinoza/Tome 2`)
-      - volume: Traité théologico-politique [container]
-        - text: Vie de Benoît de Spinoza (`Œuvres de Spinoza/Vie de Benoît de Spinoza`) [container]
-        - chapter: Appendice, vie de Spinosa (`Œuvres de Spinoza/Appendice vie de Spinosa`) [container]
-        - text: Notice bibliographique (`Œuvres de Spinoza/Notice bibliographique`) [container]
-        - chapter: Préface (`Traité théologico-politique/Préface`) [container]
-        - text: De la prophétie (`Traité théologico-politique/Chapitre 1`) [container]
-        - text: Des prophètes (`Traité théologico-politique/Chapitre 2`) [container]
-        - text: De la vocation des Hébreux, et si le don de prophétie leur a été propre (`Traité théologico-politique/Chapitre 3`) [container]
-        - text: De la loi divine (`Traité théologico-politique/Chapitre 4`) [container]
-        - text: Du véritable objet de l’institution des cérémonies religieuses (`Traité théologico-politique/Chapitre 5`) [container]
-        - text: Des miracles (`Traité théologico-politique/Chapitre 6`) [container]
-    - … 76 more
-1. `Les explorateurs contemporains des régions polaires`: virtual, book, 9 parts, 0 missing, order scan, proofread
-    - chapter: 01 (`Les explorateurs contemporains des régions polaires/01`)
-    - chapter: 02 (`Les explorateurs contemporains des régions polaires/02`) [hierarchy]
-    - chapter: 03 (`Les explorateurs contemporains des régions polaires/03`) [hierarchy]
-    - chapter: 04 (`Les explorateurs contemporains des régions polaires/04`) [hierarchy]
-    - chapter: 05 (`Les explorateurs contemporains des régions polaires/05`) [hierarchy]
-    - chapter: 06 (`Les explorateurs contemporains des régions polaires/06`) [hierarchy]
-    - chapter: 07 (`Les explorateurs contemporains des régions polaires/07`) [hierarchy]
-    - chapter: 08 (`Les explorateurs contemporains des régions polaires/08`) [hierarchy]
-    - chapter: 09 (`Les explorateurs contemporains des régions polaires/09`) [hierarchy]
-1. `Zevaco - Triboulet`: virtual, book, 8 parts, 0 missing, order scan, proofread
-    - chapter: Chapitre 1 (`Zevaco - Triboulet/Chapitre 1`)
-    - chapter: Chapitre 2 (`Zevaco - Triboulet/Chapitre 2`) [hierarchy]
-    - chapter: Chapitre 3 (`Zevaco - Triboulet/Chapitre 3`) [hierarchy]
-    - chapter: Chapitre 4 (`Zevaco - Triboulet/Chapitre 4`) [hierarchy]
-    - chapter: Chapitre 5 (`Zevaco - Triboulet/Chapitre 5`) [hierarchy]
-    - chapter: Chapitre 6 (`Zevaco - Triboulet/Chapitre 6`) [hierarchy]
-    - chapter: Chapitre 7 (`Zevaco - Triboulet/Chapitre 7`) [hierarchy]
-    - chapter: Chapitre 8 (`Zevaco - Triboulet/Chapitre 8`) [hierarchy]
-1. `Almanach des muses 1781`: virtual, book, 4 parts, 0 missing, order scan, unproofread
-    - text: Épître à Madame la Comtesse de V**, qui était allée aux eaux de Languedoc (`Almanach des muses 1781/Épître à Madame la Comtesse de V**, qui était allée aux eaux de Languedoc`)
-    - text: Fragment d’un Discours prononcé par l’Auteur lors de sa réception à l’Académie de Nîmes (`Almanach des muses 1781/Fragment d’un Discours prononcé par l’Auteur lors de sa réception à l’Académie de Nîmes`) [hierarchy]
-    - text: Zélor et Acanthe (`Almanach des muses 1781/Zélor et Acanthe`) [hierarchy]
-    - chapter: Table (`Almanach des muses 1781/Table`) [hierarchy]
-1. `Bourdelle par lui-même, sa pensée et son art`: virtual, book, 4 parts, 0 missing, order scan, unproofread
-    - text: Bourdelle par lui-même (`Bourdelle par lui-même, sa pensée et son art/Bourdelle par lui-même`)
-    - text: Le maître d’œuvre (`Bourdelle par lui-même, sa pensée et son art/Le maître d’œuvre`) [hierarchy]
-    - text: La Danse (`Bourdelle par lui-même, sa pensée et son art/La Danse`) [hierarchy]
-    - text: Index alphabétique des noms cités (`Bourdelle par lui-même, sa pensée et son art/Index alphabétique des noms cités`) [hierarchy]
-1. `Almanach des muses 1780`: virtual, book, 1 parts, 0 missing, order single, unproofread
-    - chapter: Table (`Almanach des muses 1780/Table`)
-1. `Le Théosophisme, histoire d'une pseudo-religion`: virtual, book, 4 parts, 0 missing, order scan, proofread
-    - chapter: Avant-propos (`Le Théosophisme, histoire d'une pseudo-religion/Avant-propos`)
-    - chapter: 01 (`Le Théosophisme, histoire d'une pseudo-religion/01`) [hierarchy]
-    - chapter: 02 (`Le Théosophisme, histoire d'une pseudo-religion/02`) [hierarchy]
-    - chapter: 03 (`Le Théosophisme, histoire d'une pseudo-religion/03`) [hierarchy]
-1. `À la surface des choses`: virtual, book, 8 parts, 0 missing, order single, validated
-    - volume: L’énergie (`À la surface des choses/L’énergie`)
-      - text: Préambule (`À la surface des choses/L’énergie/Préambule`) [container]
-      - text: Température (`À la surface des choses/L’énergie/Température`) [container]
-      - text: Changements (`À la surface des choses/L’énergie/Changements`) [container]
-      - text: Enchaînements entre changements efficients (`À la surface des choses/L’énergie/Enchaînements entre changements efficients`) [container]
-      - text: La Notion d’énergie (`À la surface des choses/L’énergie/La Notion d’énergie`) [container]
-      - text: Formes de l’énergie (`À la surface des choses/L’énergie/Formes de l’énergie`) [container]
-      - text: Masse de l’énergie (`À la surface des choses/L’énergie/Masse de l’énergie`) [container]
-1. `Jean-Baptiste Glaire`: virtual, book, 1 parts, 0 missing, order single, validated
-    - text: La Sainte Bible selon la Vulgate (`Jean-Baptiste Glaire/La Sainte Bible selon la Vulgate`)
-1. `Contre la seconde réponse de Julien (Augustin d’Hippone)`: virtual, collection, 4 parts, 0 missing, order scan, unproofread
-    - chapter: Livre premier (`Contre la seconde réponse de Julien (Augustin d’Hippone)/Livre premier`)
-    - chapter: Livre deuxième (`Contre la seconde réponse de Julien (Augustin d’Hippone)/Livre deuxième`) [hierarchy]
-    - chapter: Livre troisième (`Contre la seconde réponse de Julien (Augustin d’Hippone)/Livre troisième`) [hierarchy]
-    - chapter: Livre quatrième (`Contre la seconde réponse de Julien (Augustin d’Hippone)/Livre quatrième`) [hierarchy]
-1. `Boileau - Œuvres poétiques`: virtual, collection, 73 parts, 0 missing, order natural, unproofread
-    - volume: Chansons, Stances, Sonnets, Épitaphes, etc. (`Boileau - Œuvres poétiques/Chansons, Stances, Sonnets, Épitaphes, etc.`)
-      - chapter: I. Chanson à boire (`Boileau - Œuvres poétiques/Chansons/Chanson à boire`) [container]
-      - chapter: II. Autre chanson à boire (`Boileau - Œuvres poétiques/Chansons/Autre chanson à boire`) [container]
-      - chapter: III. Vers sur Marie Poncher de Bretonville (`Boileau - Œuvres poétiques/Chansons/Vers sur Marie Poncher de Bretonville`) [container]
-      - chapter: IV. Chanson à boire, faite à Bâville (`Boileau - Œuvres poétiques/Chansons/Chanson à boire, faite à Bâville`) [container]
-      - chapter: V. Vers dans le style de Chapelain (`Boileau - Œuvres poétiques/Chansons/Vers dans le style de Chapelain`) [container]
-      - chapter: VI. Sonnet sur la mort d’une parente (`Boileau - Œuvres poétiques/Chansons/Sonnet sur la mort d’une parente`) [container]
-      - chapter: VII. Autre sonnet sur le même sujet (`Boileau - Œuvres poétiques/Chansons/Autre sonnet sur le même sujet`) [container]
-      - chapter: VIII. Stances à Molière (`Boileau - Œuvres poétiques/Chansons/Stances à Molière`) [container]
-      - chapter: IX. Épitaphe de la mère de l’auteur (`Boileau - Œuvres poétiques/Chansons/Épitaphe de la mère de l’auteur`) [container]
-      - chapter: X. Vers pour mettre au bas du portrait de mon père (`Boileau - Œuvres poétiques/Chansons/Vers pour mettre au bas du portrait de mon père`) [container]
-      - chapter: XI. Vers au bas du portrait de l’auteur (`Boileau - Œuvres poétiques/Chansons/Vers au bas du portrait de l’auteur`) [container]
-    - … 61 more
-1. `Les exilées de 1871`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - text: Non, Dieu n’est pas ! (`Les exilées de 1871/Non, Dieu n’est pas !`)
-1. `L’Odyssée (Bérard, Schmied)`: virtual, book, 47 parts, 0 missing, order natural, proofread
-    - chapter: Tome I (`L’Odyssée (Bérard, Schmied)/Texte entier/Tome I`)
-    - chapter: Tome II (`L’Odyssée (Bérard, Schmied)/Texte entier/Tome II`) [hierarchy]
-    - chapter: Tome III (`L’Odyssée (Bérard, Schmied)/Texte entier/Tome III`) [hierarchy]
-    - chapter: Tome IV (`L’Odyssée (Bérard, Schmied)/Texte entier/Tome IV`) [hierarchy]
-    - text: A Lacédémone (`L’Odyssée (Bérard, Schmied)/Tome 1/A Lacédémone`) [hierarchy]
-    - text: A Pylos (`L’Odyssée (Bérard, Schmied)/Tome 1/A Pylos`) [hierarchy]
-    - text: Invocation (`L’Odyssée (Bérard, Schmied)/Tome 1/Invocation`) [hierarchy]
-    - text: Le Festin des Prétendants (`L’Odyssée (Bérard, Schmied)/Tome 1/Le Festin des Prétendants`) [hierarchy]
-    - text: Le Retour de Télémaque (`L’Odyssée (Bérard, Schmied)/Tome 1/Le Retour de Télémaque`) [hierarchy]
-    - text: Le Voyage de Télémaque (`L’Odyssée (Bérard, Schmied)/Tome 1/Le Voyage de Télémaque`) [hierarchy]
-    - text: Les Conseils d’Athena (`L’Odyssée (Bérard, Schmied)/Tome 1/Les Conseils d’Athena`) [hierarchy]
-    - chapter: Lettre (`L’Odyssée (Bérard, Schmied)/Tome 1/Lettre`) [hierarchy]
-    - … 35 more
-1. `Bibliographie des œuvres de Remy de Gourmont`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: Avant-propos (`Bibliographie des œuvres de Remy de Gourmont/Avant-propos`)
-1. `Les Grandes Mystifications littéraires`: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - text: Clotilde de Surville (`Les Grandes Mystifications littéraires/Clotilde de Surville`)
-1. `Mémoires secrets de Bachaumont`: virtual, collection, 162 parts, 0 missing, order natural, proofread
-    - text: Août (`Mémoires secrets de Bachaumont/1762/Août`)
-    - text: Avril (`Mémoires secrets de Bachaumont/1762/Avril`) [hierarchy]
-    - text: Décembre (`Mémoires secrets de Bachaumont/1762/Décembre`) [hierarchy]
-    - text: Février (`Mémoires secrets de Bachaumont/1762/Février`) [hierarchy]
-    - text: Janvier (`Mémoires secrets de Bachaumont/1762/Janvier`) [hierarchy]
-    - text: Juillet (`Mémoires secrets de Bachaumont/1762/Juillet`) [hierarchy]
-    - text: Juin (`Mémoires secrets de Bachaumont/1762/Juin`) [hierarchy]
-    - text: Mai (`Mémoires secrets de Bachaumont/1762/Mai`) [hierarchy]
-    - text: Mars (`Mémoires secrets de Bachaumont/1762/Mars`) [hierarchy]
-    - text: Novembre (`Mémoires secrets de Bachaumont/1762/Novembre`) [hierarchy]
-    - text: Octobre (`Mémoires secrets de Bachaumont/1762/Octobre`) [hierarchy]
-    - text: Septembre (`Mémoires secrets de Bachaumont/1762/Septembre`) [hierarchy]
-    - … 150 more
-1. `Art et pornographie`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: Partie I (`Art et pornographie/Partie I`)
-1. `Correspondance de H. de Balzac, 1/1830`: virtual, book, 8 parts, 0 missing, order chain, validated
-    - chapter: XXXII (`Correspondance de H. de Balzac, 1/1830/XXXII`)
-    - chapter: XXXIII (`Correspondance de H. de Balzac, 1/1830/XXXIII`) [hierarchy]
-    - chapter: XXXIV (`Correspondance de H. de Balzac, 1/1830/XXXIV`) [hierarchy]
-    - chapter: XXXV (`Correspondance de H. de Balzac, 1/1830/XXXV`) [hierarchy]
-    - chapter: XXXVI (`Correspondance de H. de Balzac, 1/1830/XXXVI`) [hierarchy]
-    - chapter: XXXVII (`Correspondance de H. de Balzac, 1/1830/XXXVII`) [hierarchy]
-    - chapter: XXXVIII (`Correspondance de H. de Balzac, 1/1830/XXXVIII`) [hierarchy]
-    - chapter: XXXIX (`Correspondance de H. de Balzac, 1/1830/XXXIX`) [hierarchy]
-1. `Sophronime et Adélos`: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - chapter: Tome 25 (`Sophronime et Adélos/Édition Garnier`)
-1. `Questions de morale et d’éducation`: virtual, book, 1 parts, 0 missing, order single, proofread
-    - chapter: Avant-propos (`Questions de morale et d’éducation/Avant-propos`)
-1. `Les Œuvres de la pensée française`: virtual, book, 8 parts, 0 missing, order natural, proofread
-    - chapter: I (`Les Œuvres de la pensée française/Volume I/I`)
-    - chapter: II (`Les Œuvres de la pensée française/Volume I/II`) [hierarchy]
-    - chapter: III (`Les Œuvres de la pensée française/Volume I/III`) [hierarchy]
-    - chapter: IV (`Les Œuvres de la pensée française/Volume I/IV`) [hierarchy]
-    - text: Notice (`Les Œuvres de la pensée française/Volume I/Notice`) [hierarchy]
-    - chapter: I (`Les Œuvres de la pensée française/Volume II/I`) [hierarchy]
-    - chapter: II (`Les Œuvres de la pensée française/Volume II/II`) [hierarchy]
-    - chapter: III (`Les Œuvres de la pensée française/Volume II/III`) [hierarchy]
+1. `Chansons et Monologues (Bruant)`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - text: Le Boulevard des Étudiants (`Chansons et Monologues (Bruant)/Le Boulevard des Étudiants`)
+1. `Nouvelle Revue Française`: virtual, periodical-issue, 1 parts, 0 missing, order single, unproofread
+    - text: Jules Renard : Nos frères farouches, Ragotte (`Nouvelle Revue Française/1909, volume 2/Notes/Jules Renard : Nos frères farouches, Ragotte`)
+1. `Études sur le roman anglais contemporains`: virtual, periodical-issue, 1 parts, 0 missing, order single, proofread
+    - text: Les romans de Wilkie Collins (`Études sur le roman anglais contemporains/Les romans de Wilkie Collins`)
+1. `Le Roman en France pendant le XIXe siècle (Eugène Gilbert)`: virtual, book, 2 parts, 0 missing, order scan, proofread
+    - chapter: 6 (`Le Roman en France pendant le XIXe siècle (Eugène Gilbert)/III/6`)
+    - text: Index des noms cités (`Le Roman en France pendant le XIXe siècle (Eugène Gilbert)/Index des noms cités`) [hierarchy]
+1. `Bulletins d’arboriculture, de floriculture et de culture potagère`: virtual, periodical-issue, 30 parts, 0 missing, order scan-volumes, unproofread
+    - text: Pêche Mme Narcisse Gaujard (`Bulletins d’arboriculture, de floriculture et de culture potagère/Pêche Mme Narcisse Gaujard`)
+    - text: Pommes Belle-Fleur (`Bulletins d’arboriculture, de floriculture et de culture potagère/Pommes Belle-Fleur`) [hierarchy]
+    - text: Poire Crassane Du Mortier (`Bulletins d’arboriculture, de floriculture et de culture potagère/Poire Crassane Du Mortier`) [hierarchy]
+    - text: Pêche Grosse Mignonne (`Bulletins d’arboriculture, de floriculture et de culture potagère/Pêche Grosse Mignonne`) [hierarchy]
+    - text: Pomme Borawinskji (`Bulletins d’arboriculture, de floriculture et de culture potagère/Pomme Borawinskji`) [hierarchy]
+    - text: Pêche Alexandra Nobless (`Bulletins d’arboriculture, de floriculture et de culture potagère/Pêche Alexandra Nobless`) [hierarchy]
+    - text: Poire Ananas de Courtrai (`Bulletins d’arboriculture, de floriculture et de culture potagère/Poire Ananas de Courtrai`) [hierarchy]
+    - text: Prune Columbia (`Bulletins d’arboriculture, de floriculture et de culture potagère/Prune Columbia`) [hierarchy]
+    - text: Pêche Dagmar (`Bulletins d’arboriculture, de floriculture et de culture potagère/Pêche Dagmar`) [hierarchy]
+    - text: Poire Délices Cuvelier (`Bulletins d’arboriculture, de floriculture et de culture potagère/Poire Délices Cuvelier`) [hierarchy]
+    - text: Pomme Petit Emma (`Bulletins d’arboriculture, de floriculture et de culture potagère/Pomme Petit Emma`) [hierarchy]
+    - text: Poire Beurré Degallait (`Bulletins d’arboriculture, de floriculture et de culture potagère/Poire Beurré Degallait`) [hierarchy]
+    - … 18 more
+1. `De la maçonnerie parmi les chrétiens`: virtual, book, 1 parts, 0 missing, order single, validated
+    - chapter: Section 2 (`De la maçonnerie parmi les chrétiens/Section 2`)
+1. `Portraits et Souvenirs littéraires`: virtual, book, 2 parts, 0 missing, order scan, proofread
+    - text: Gérard de Nerval (`Portraits et Souvenirs littéraires/Gérard de Nerval`)
+    - text: Madame Émile de Girardin (`Portraits et Souvenirs littéraires/Madame Émile de Girardin`) [hierarchy]
+1. `Sermons sur l’Écriture`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - text: Troisième série Sermons divers (`Sermons sur l’Écriture/Troisième série Sermons divers`)
+1. `Trésor de livres rares et précieux - Graesse, 1861`: virtual, reference, 1 parts, 0 missing, order single, unproofread
+    - text: Encyclopédie méthodique (`Trésor de livres rares et précieux - Graesse, 1861/Encyclopédie méthodique`)
+1. `Corneille, Pierre - Œuvres, Marty-Laveaux, 1862, tome 5/Héraclius, empereur d'Orient`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Personnages (`Corneille, Pierre - Œuvres, Marty-Laveaux, 1862, tome 5/Héraclius, empereur d'Orient/Personnages`)
+1. `La Dame du lac`: virtual, collection, 9 parts, 0 missing, order single, proofread
+    - volume: Defauconpret, 1836 (`La Dame du lac/Defauconpret, 1836`)
+      - chapter: Introduction à la Dame du Lac (`La Dame du lac/Defauconpret, 1836/Introduction`) [hierarchy]
+      - chapter: Chant premier (`La Dame du lac/Defauconpret, 1836/Chant premier`) [hierarchy]
+      - chapter: Chant second (`La Dame du lac/Defauconpret, 1836/Chant second`) [hierarchy]
+      - chapter: Chant troisième (`La Dame du lac/Defauconpret, 1836/Chant troisième`) [hierarchy]
+      - chapter: Chant quatrième (`La Dame du lac/Defauconpret, 1836/Chant quatrième`) [hierarchy]
+      - chapter: Chant cinquième (`La Dame du lac/Defauconpret, 1836/Chant cinquième`) [hierarchy]
+      - chapter: Chant sixième (`La Dame du lac/Defauconpret, 1836/Chant sixième`) [hierarchy]
+      - chapter: Notes de la Dame du Lac (`La Dame du lac/Defauconpret, 1836/Notes de la Dame du Lac`) [hierarchy]
+1. `Toute Royauté qui`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - chapter: 1587 (`Toute Royauté qui/1587`)
+1. `Revue Musicale de Lyon 1904-04-20`: virtual, book, 7 parts, 0 missing, order scan, validated
+    - text: La Tétralogie (`Revue Musicale de Lyon 1904-04-20/La Tétralogie`)
+    - text: L'Année musicale à Paris (`Revue Musicale de Lyon 1904-04-20/L'Année musicale à Paris`) [hierarchy]
+    - text: Lieder français (`Revue Musicale de Lyon 1904-04-20/Lieder français`) [hierarchy]
+    - text: Chronique lyonnaise (`Revue Musicale de Lyon 1904-04-20/Chronique lyonnaise`) [hierarchy]
+    - text: À travers la presse (`Revue Musicale de Lyon 1904-04-20/À travers la presse`) [hierarchy]
+    - text: Nouvelles diverses (`Revue Musicale de Lyon 1904-04-20/Nouvelles diverses`) [hierarchy]
+    - text: Bibliographie (`Revue Musicale de Lyon 1904-04-20/Bibliographie`) [hierarchy]
+1. `Correspondance de H. de Balzac, 1/1821`: virtual, book, 4 parts, 0 missing, order chain, validated
+    - chapter: XI (`Correspondance de H. de Balzac, 1/1821/XI`)
+    - chapter: XII (`Correspondance de H. de Balzac, 1/1821/XII`) [hierarchy]
+    - chapter: XIII (`Correspondance de H. de Balzac, 1/1821/XIII`) [hierarchy]
+    - chapter: XIV (`Correspondance de H. de Balzac, 1/1821/XIV`) [hierarchy]
+1. `Manuel d’Épictète (trad. Joly)`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - text: Traduction (`Manuel d’Épictète (trad. Joly)/Traduction`)
+1. `Les mathématiques en Grèce au milieu du Vème siècle`: virtual, book, 2 parts, 0 missing, order scan, proofread
+    - chapter: Avant-propos (`Les mathématiques en Grèce au milieu du Vème siècle/Avant-propos`)
+    - chapter: Appendice (`Les mathématiques en Grèce au milieu du Vème siècle/Appendice`) [hierarchy]
+1. `Grammaire de la langue volofe`: virtual, book, 2 parts, 0 missing, order scan, unproofread
+    - chapter: Préface (`Grammaire de la langue volofe/Préface`)
+    - text: Division (`Grammaire de la langue volofe/Division`) [hierarchy]
+1. `Histoire socialiste`: virtual, book, 188 parts, 0 missing, order natural, proofread
+    - volume: Consulat et Empire (`Histoire socialiste/Consulat et Empire`)
+      - text: LE CONSULAT (`Histoire socialiste/Consulat et Empire/00`) [container]
+      - text: Chap. I. — La France au lendemain du 18 brumaire (`Histoire socialiste/Consulat et Empire/01`) [container]
+      - text: Chap. II. — Le Consulat provisoire : (`Histoire socialiste/Consulat et Empire/02`) [container]
+      - text: Chap. III. — Bonaparte, premier consul, « complète » la Constitution de l’an VIII (`Histoire socialiste/Consulat et Empire/02A`) [container]
+      - text: La Politique religieuse. (`Histoire socialiste/Consulat et Empire/03`) [container]
+      - text: Chap. I. — Le Régime de la Séparation (`Histoire socialiste/Consulat et Empire/04`) [container]
+      - text: Chap. II. — Le Concordat et les Articles organiques (`Histoire socialiste/Consulat et Empire/05`) [container]
+      - text: Chap. I. — La guerre ou la paix (`Histoire socialiste/Consulat et Empire/06`) [container]
+      - text: Chap. II. — La guerre contre l’Autriche (`Histoire socialiste/Consulat et Empire/07`) [container]
+      - text: Chap. III. — La guerre contre l’Angleterre (`Histoire socialiste/Consulat et Empire/08`) [container]
+      - text: L’Écrasement de la Liberté. (`Histoire socialiste/Consulat et Empire/09`) [container]
+    - … 176 more
+1. `L’Univers`: virtual, periodical-issue, 1 parts, 0 missing, order single, unproofread
+    - text: Karl Marx (`L’Univers/1883/03/19/Karl Marx`)
+1. `Anne… la maison aux pignons verts`: virtual, book, 1 parts, 0 missing, order single, unproofread
+    - chapter: Chapitre I (`Anne… la maison aux pignons verts/Chapitre I`)
+1. `Maurice Maeterlinck - Théâtre 1, 1903`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: Préface (`Maurice Maeterlinck - Théâtre 1, 1903/Préface`)
+1. `ONU`: virtual, book, 18 parts, 13 missing, order single, unproofread
+    - volume: 1964 (`ONU/Résolutions et décisions du Conseil de sécurité/1964`)
+      - text: Membres du Conseil de sécurité en 1964 (`ONU/Résolutions et décisions du Conseil de sécurité/1964/01`) [container]
+      - text: Résolutions adoptées et décisions prises par le Conseil de sécurité en 1964 (`ONU/Résolutions et décisions du Conseil de sécurité/1964/02`) [container]
+      - text: Question relative à la Zone du canal de Panama (`ONU/Résolutions et décisions du Conseil de sécurité/1964/03`) [container]
+      - text: Résolution 186 du Conseil de sécurité des Nations unies [container]
+      - text: Résolution 187 du Conseil de sécurité des Nations unies [container]
+      - text: Résolution 192 du Conseil de sécurité des Nations unies [container]
+      - text: Résolution 193 du Conseil de sécurité des Nations unies [container]
+      - text: Résolution 194 du Conseil de sécurité des Nations unies [container]
+      - text: Résolution 198 du Conseil de sécurité des Nations unies [container]
+      - text: Résolution 188 du Conseil de sécurité des Nations unies [container]
+      - text: Résolution 189 du Conseil de sécurité des Nations unies [container]
+    - … 6 more
+1. `Poëmes et légendes (Heine)`: virtual, collection, 1 parts, 0 missing, order single, unproofread
+    - chapter: Préface (`Poëmes et légendes (Heine)/Préface`)
+1. `Somme contre les Gentils`: virtual, book, 2 parts, 0 missing, order scan, proofread
+    - chapter: 10 (`Somme contre les Gentils/Livre premier/10`)
+    - chapter: 11 (`Somme contre les Gentils/Livre premier/11`) [hierarchy]
+1. `Les Nouvelles littéraires, 15 décembre 1928`: virtual, periodical-issue, 2 parts, 0 missing, order natural, validated
+    - text: Bergson au Japon par Shūzō Kuki (`Les Nouvelles littéraires, 15 décembre 1928/Bergson au Japon par Shūzō Kuki`)
+    - text: Le Bergsonnisme dans l’histoire de la philosophie (`Les Nouvelles littéraires, 15 décembre 1928/Le Bergsonnisme dans l’histoire de la philosophie`) [hierarchy]
+1. `Le Christianisme et l’esclavage`: virtual, book, 2 parts, 0 missing, order scan, proofread
+    - chapter: Préface (`Le Christianisme et l’esclavage/Préface`)
+    - text: Texte (`Le Christianisme et l’esclavage/Texte`) [hierarchy]
+1. `Correspondance de H. de Balzac, 1/1829`: virtual, book, 6 parts, 0 missing, order chain, validated
+    - chapter: XXVI (`Correspondance de H. de Balzac, 1/1829/XXVI`)
+    - chapter: XXVII (`Correspondance de H. de Balzac, 1/1829/XXVII`) [hierarchy]
+    - chapter: XXVIII (`Correspondance de H. de Balzac, 1/1829/XXVIII`) [hierarchy]
+    - chapter: XXIX (`Correspondance de H. de Balzac, 1/1829/XXIX`) [hierarchy]
+    - chapter: XXX (`Correspondance de H. de Balzac, 1/1829/XXX`) [hierarchy]
+    - chapter: XXXI (`Correspondance de H. de Balzac, 1/1829/XXXI`) [hierarchy]
+1. `Le Déserteur (Monsigny)`: virtual, book, 16 parts, 0 missing, order scan, proofread
+    - text: Ouverture (`Le Déserteur (Monsigny)/Ouverture`)
+    - text: I, 1 (`Le Déserteur (Monsigny)/I, 1`) [hierarchy]
+    - chapter: Acte I, Scène 2 (`Le Déserteur (Monsigny)/I, 2`) [hierarchy]
+    - chapter: Acte I, Scène 3 (`Le Déserteur (Monsigny)/I, 3`) [hierarchy]
+    - chapter: Acte I, Scène 4 (`Le Déserteur (Monsigny)/I, 4`) [hierarchy]
+    - chapter: Acte I, Scène 5 (`Le Déserteur (Monsigny)/I, 5`) [hierarchy]
+    - chapter: Acte I, Scène 6 (`Le Déserteur (Monsigny)/I, 6`) [hierarchy]
+    - chapter: Acte I, Scène 7 (`Le Déserteur (Monsigny)/I, 7`) [hierarchy]
+    - text: Entr’acte I (`Le Déserteur (Monsigny)/Entr’acte I`) [hierarchy]
+    - text: II, 1 (`Le Déserteur (Monsigny)/II, 1`) [hierarchy]
+    - chapter: Acte II, Scène 2 (`Le Déserteur (Monsigny)/II, 2`) [hierarchy]
+    - chapter: Acte II, Scène 3 (`Le Déserteur (Monsigny)/II, 3`) [hierarchy]
+    - … 4 more
+1. `Les Ennéades de Plotin, tome II.`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: Notes (trad. Bouillet) (`Les Ennéades de Plotin, tome II./Ennéade III, livre II/Notes (trad. Bouillet)`)
+1. `L’Allemand après la Guerre. L’Anglais et le Français, langues Internationales`: virtual, book, 1 parts, 0 missing, order single, proofread
+    - chapter: Avant-propos (`L’Allemand après la Guerre. L’Anglais et le Français, langues Internationales/Avant-propos`)
 
-### E: subpage texts reached from a disambiguation or versions page (11,366)
+### E: subpage texts reached from a disambiguation or versions page (11,365)
 
-1. text “Ch. XXVII : LES JEUNES-AVEUGLES” (`Paris, ses organes, ses fonctions et sa vie dans la seconde moitié du XIXe siècle/XXVII`), part 36 of `Paris, ses organes, ses fonctions et sa vie dans la seconde moitié du XIXe siècle` (book, 46 parts, 44 texts)
-1. text “Le Temps” (`Musique des chansons de Béranger/Le Temps`), part 147 of `Musique des chansons de Béranger` (collection, 345 parts, 341 texts)
 1. text “Sentences de Phocylide” (`Poètes Moralistes de la Grèce/Sentences de Phocylide`), part 20 of `Poètes Moralistes de la Grèce` (collection, 25 parts, 25 texts)
-1. text “Faire trève du cul” (`Dictionnaire érotique moderne/Faire trève du cul`), part 866 of `Dictionnaire érotique moderne` (book, 1,717 parts, 1,707 texts)
+1. text “Faire une cavalcade” (`Dictionnaire érotique moderne/Faire une cavalcade`), part 867 of `Dictionnaire érotique moderne` (book, 1,717 parts, 1,707 texts)
 1. text “Arbre à suif” (`Dictionnaire philosophique/Garnier (1878)/Arbre à suif`), part 59 of `Dictionnaire philosophique/Garnier (1878)` (collection, 637 parts, 628 texts)
-1. text “Joueur (le) de Cithare” (`Fables d’Ésope (trad. Chambry, 1927)/Le Joueur de Cithare`), part 548 of `Fables d’Ésope (trad. Chambry, 1927)` (collection, 725 parts, 722 texts)
-1. text “Mai 1724” (`Journal et mémoires de Mathieu Marais/1724/Mai`), part 58 of `Journal et mémoires de Mathieu Marais` (book, 72 parts, 71 texts)
+1. text “Le Joueur de Cithare (bilingue)” (`Fables d’Ésope (trad. Chambry, 1927)/Le Joueur de Cithare (bilingue)`), part 139 of `Fables d’Ésope (trad. Chambry, 1927)` (collection, 725 parts, 722 texts)
+1. text “Juin 1724” (`Journal et mémoires de Mathieu Marais/1724/Juin`), part 59 of `Journal et mémoires de Mathieu Marais` (book, 72 parts, 71 texts)
 1. text “Première préface” (`Les Diaboliques/Première préface`), part 10 of `Les Diaboliques` (book, 10 parts, 9 texts)
 1. text “La Femme de l’ouvrier” (`Poésies (Mallarmé, 1914, 8e éd.)/La Femme de l’ouvrier`), part 36 of `Poésies (Mallarmé, 1914, 8e éd.)` (collection, 65 parts, 64 texts)
-1. text “Une industrie intéressante” (`En ribouldinguant/Une industrie intéressante`), part 25 of `En ribouldinguant` (collection, 36 parts, 36 texts)
-1. text “Mutisme” (`Néologie, ou Vocabulaire de mots nouveaux/Mutisme (1)`), part 1938 of `Néologie, ou Vocabulaire de mots nouveaux` (book, 2,835 parts, 2,807 texts)
+1. text “L’Auto-ballon” (`Deux et deux font cinq/L’Auto-ballon`), part 32 of `Deux et deux font cinq` (collection, 65 parts, 62 texts)
+1. text “Mutisme” (`Néologie, ou Vocabulaire de mots nouveaux/Mutisme (2)`), part 2548 of `Néologie, ou Vocabulaire de mots nouveaux` (book, 2,835 parts, 2,807 texts)
 1. text “Réponse” (`Poèmes et Paysages/Réponse`), part 29 of `Poèmes et Paysages` (collection, 90 parts, 88 texts)
-1. text “Nouvelles diverses du 13 septembre 1896” (`Nouvelles diverses/13 septembre 1896`), part 11 of `Nouvelles diverses` (periodical-issue, 22 parts, 22 texts)
-1. text “Coureuse” (`Dictionnaire érotique moderne/Coureuse`), part 596 of `Dictionnaire érotique moderne` (book, 1,717 parts, 1,707 texts)
+1. text “Première représentation de Jacques Callot, à la Porte-Saint-Martin ; réouverture de l’Opéra-Comique ; reprise de la Vie parisienne aux Variétés” (`Semaine théâtrale/Première représentation de Jacques Callot, à la Porte-Saint-Martin ; réouverture de l’Opéra-Comique ; reprise de la Vie parisienne aux Variétés`), part 12 of `Semaine théâtrale` (periodical-issue, 21 parts, 21 texts)
+1. text “Courir” (`Dictionnaire érotique moderne/Courir`), part 597 of `Dictionnaire érotique moderne` (book, 1,717 parts, 1,707 texts)
 1. text “Clair de lune” (`Les Orientales/Clair de lune`), part 12 of `Les Orientales` (collection, 43 parts, 41 texts)
 1. chapter “Chapitre 6” (`Mémoires (Vidocq)/Chapitre 6`), part 7 of `Mémoires (Vidocq)` (book, 37 parts, 1 texts)
 1. text “Coin (le) de l’Amitié” (`Œuvres complètes de Béranger/Le Coin de l’Amitié`), part 88 of `Œuvres complètes de Béranger` (collection, 327 parts, 320 texts)
-1. text “Chose” (`Dictionnaire érotique moderne/Chose`), part 489 of `Dictionnaire érotique moderne` (book, 1,717 parts, 1,707 texts)
+1. text “Chouart” (`Dictionnaire érotique moderne/Chouart`), part 490 of `Dictionnaire érotique moderne` (book, 1,717 parts, 1,707 texts)
 1. text “Jane” (`Poèmes antiques/Jane`), part 48 of `Poèmes antiques` (collection, 56 parts, 54 texts)
 1. text “Les Bandits corses” (`Au soleil (recueil)/Les Bandits corses`), part 13 of `Au soleil (recueil)` (book, 18 parts, 18 texts)
-1. text “Persiller” (`Dictionnaire érotique moderne/Persiller`), part 1382 of `Dictionnaire érotique moderne` (book, 1,717 parts, 1,707 texts)
+1. text “Petit cadeau” (`Dictionnaire érotique moderne/Petit cadeau`), part 1383 of `Dictionnaire érotique moderne` (book, 1,717 parts, 1,707 texts)
 1. text “Rêverie” (`Œuvres posthumes (Musset)/Rêverie`), part 22 of `Œuvres posthumes (Musset)` (collection, 31 parts, 31 texts)
 1. text “L’Orgueil” (`L’Abîme (Rollinat)/L’Orgueil`), part 43 of `L’Abîme (Rollinat)` (collection, 89 parts, 89 texts)
-1. chapter “II. Le Banc vivant” (`Femmes slaves (RDDM)/Le Banc vivant`), part 2 of `Femmes slaves (RDDM)` (periodical-issue, 10 parts, 0 texts)
+1. chapter “III. Zarka” (`Femmes slaves (RDDM)/Zarka`), part 3 of `Femmes slaves (RDDM)` (periodical-issue, 10 parts, 0 texts)
 1. text “Faîtière” (`Dictionnaire raisonné de l’architecture française du XIe au XVIe siècle/Faîtière`), part 248 of `Dictionnaire raisonné de l’architecture française du XIe au XVIe siècle` (collection, 530 parts, 520 texts)
 1. text “La chanson de la vieille fileuse” (`Chansons populaires de la Basse-Bretagne/La chanson de la vieille fileuse`), part 59 of `Chansons populaires de la Basse-Bretagne` (book, 243 parts, 239 texts)
-1. text “Menin” (`Dictionnaire érotique moderne/Menin`), part 1229 of `Dictionnaire érotique moderne` (book, 1,717 parts, 1,707 texts)
+1. text “Mensonge cotonneux” (`Dictionnaire érotique moderne/Mensonge cotonneux`), part 1230 of `Dictionnaire érotique moderne` (book, 1,717 parts, 1,707 texts)
 1. text “(l’Autoclète, Phonographe, l’Art et la Science)” (`Les Minutes de sable mémorial/Guignol`), part 5 of `Les Minutes de sable mémorial` (book, 21 parts, 19 texts)
 1. text “Délits locaux” (`Dictionnaire philosophique/Garnier (1878)/Délits locaux`), part 220 of `Dictionnaire philosophique/Garnier (1878)` (collection, 637 parts, 628 texts)
-1. text “Amuser un homme” (`Dictionnaire érotique moderne/Amuser un homme`), part 109 of `Dictionnaire érotique moderne` (book, 1,717 parts, 1,707 texts)
+1. text “Amuser” (`Dictionnaire érotique moderne/Amuser`), part 108 of `Dictionnaire érotique moderne` (book, 1,717 parts, 1,707 texts)
+1. chapter “Chapitre V-1” (`Le Zend-Avesta (trad. Darmesteter)/Volume I/Introduction/Chapitre V-1`), part 22 of `Le Zend-Avesta (trad. Darmesteter)/Volume I` (book, 167 parts, 122 texts)
+1. text “Élégie italienne. Tel j’étais autrefois” (`Œuvres poétiques de Chénier (Moland, 1889)/Élégie italienne. Tel j’étais autrefois`), part 156 of `Œuvres poétiques de Chénier (Moland, 1889)` (collection, 304 parts, 290 texts)
 
-### all searchable subpage texts (chapter titles that the label patterns miss show up here) (346,025)
+### all searchable subpage texts (chapter titles that the label patterns miss show up here) (345,292)
 
-1. text “GAIN” (`Petit dictionnaire de la langue française (1836)/GAIN`), part 10268 of `Petit dictionnaire de la langue française (1836)` (reference, 23,874 parts, 23,829 texts)
-1. text “LUTHER Martin” (`Dictionnaire de théologie catholique/LUTHER Martin`), part 1142 of `Dictionnaire de théologie catholique` (collection, 1,987 parts, 1,852 texts)
-1. text “Valence” (`Thresor de la langue françoise/Valence`), part 2992 of `Thresor de la langue françoise` (reference, 3,357 parts, 3,324 texts)
-1. text “DÉLIBÉRÉ” (`L’Encyclopédie/1re édition/DÉLIBÉRÉ`), part 9396 of `L’Encyclopédie` (reference, 41,677 parts, 41,615 texts)
-1. text “Epitres de Saint Paul” (`Bible Sacy/Epitres de Saint Paul`), part 84 of `Bible Sacy` (book, 84 parts, 83 texts)
-1. text “Laisse CCCXLVIII” (`L’entrée d’Espagne/Laisse CCCXLVIII`), part 188 of `L’entrée d’Espagne` (book, 698 parts, 688 texts)
-1. text “Distrayeuse” (`Le Coffret de santal (éd. 1879)/Distrayeuse`), part 107 of `Le Coffret de santal (éd. 1879)` (collection, 112 parts, 108 texts)
-1. text “ISSON” (`Dictionnaire hydrographique de la France/ISSON`), part 392 of `Dictionnaire hydrographique de la France` (reference, 743 parts, 742 texts)
-1. text “SÉANCE DU 20 MARS 1857” (`Procès verbaux des séances de la Société littéraire et scientifique de Castres/1/9`), part 10 of `Procès verbaux des séances de la Société littéraire et scientifique de Castres/1` (book, 19 parts, 19 texts)
-1. text “La veille des armes” (`Les Croix de bois/La veille des armes`), part 5 of `Les Croix de bois` (book, 17 parts, 17 texts)
-1. text “SARSINA” (`L’Encyclopédie/1re édition/SARSINA`), part 32349 of `L’Encyclopédie` (reference, 41,677 parts, 41,615 texts)
-1. text “Pourquoi la renier” (`L’Adieu (Albert Mérat)/Pourquoi la renier`), part 34 of `L’Adieu (Albert Mérat)` (collection, 34 parts, 34 texts)
-1. text “calambac s. m.” (`Dictionnaire français illustré de Larive et Fleury/calambac s. m.`), part 42 of `Dictionnaire français illustré de Larive et Fleury` (reference, 198 parts, 197 texts)
-1. text “OBERWESEL” (`L’Encyclopédie/1re édition/OBERWESEL`), part 23268 of `L’Encyclopédie` (reference, 41,677 parts, 41,615 texts)
-1. text “Un pacte” (`L’Écho des feuilletons - 1844/Le Prince Formose/Un pacte`), part 7 of `L’Écho des feuilletons - 1844` (collection, 17 parts, 14 texts)
-1. text “. Du même au même” (`Les Voyages de Kang-Hi/Lettre 14`), part 15 of `Les Voyages de Kang-Hi` (book, 40 parts, 23 texts)
-1. text “Humble” (`Dictionnaire des mœurs/Humble`), part 433 of `Dictionnaire des mœurs` (reference, 719 parts, 711 texts)
-1. text “Z ⵣ, Ż ⵥ de ⵥⵏⴶ éżînaġ à la fin” (`Dictionnaire touareg – français/Z2`), part 29 of `Dictionnaire touareg – français` (reference, 33 parts, 27 texts)
-1. text “Marine” (`Œuvres (Rimbaud)/Illuminations/Marine`), part 103 of `Œuvres (Rimbaud)` (collection, 128 parts, 119 texts)
-1. text “Solution de la question générale des prolégomènes” (`Prolégomènes à toute métaphysique future/Solution`), part 9 of `Prolégomènes à toute métaphysique future` (book, 14 parts, 6 texts)
-1. text “Le soleil abaissé du soir” (`Les Éblouissements/Le soleil abaissé du soir`), part 111 of `Les Éblouissements` (book, 169 parts, 166 texts)
-1. text “PRISE” (`Petit dictionnaire de la langue française (1860)/PRISE`), part 16336 of `Petit dictionnaire de la langue française (1860)` (reference, 20,406 parts, 20,367 texts)
-1. text “HO” (`L’Encyclopédie/1re édition/HO`), part 15029 of `L’Encyclopédie` (reference, 41,677 parts, 41,615 texts)
-1. text “NITRIÈRE” (`Petit dictionnaire de la langue française (1860)/NITRIÈRE`), part 13777 of `Petit dictionnaire de la langue française (1860)` (reference, 20,406 parts, 20,367 texts)
-1. text “Liste des souscripteurs” (`Beautés de la poésie anglaise/Tome I/Liste des souscripteurs`), part 1 of `Beautés de la poésie anglaise` (collection, 52 parts, 49 texts)
-1. text “ORDINATIONS ANGLICANES I. Les origines de la hiérarchie anglicane” (`Dictionnaire de théologie catholique/ORDINATIONS ANGLICANES I. Les origines de la hiérarchie anglicane`), part 1323 of `Dictionnaire de théologie catholique` (collection, 1,987 parts, 1,852 texts)
-1. text “Vie del’empereur Charlemagne” (`Vie de Charlemagne (Éginhard, trad. Halphen)/Vie de l’empereur Charlemagne`), part 3 of `Vie de Charlemagne (Éginhard, trad. Halphen)` (book, 5 parts, 2 texts)
-1. text “Amour” (`Dictionnaire des mœurs/Amour`), part 34 of `Dictionnaire des mœurs` (reference, 719 parts, 711 texts)
-1. text “&nbsp;&nbsp;CXLIX. Narsit à Usbek. (Roman.)” (`Lettres persanes/Lettre 149`), part 156 of `Lettres persanes` (book, 169 parts, 163 texts)
-1. text “cabê” (`Dictionnaire liégeois (Haust)/cabê`), part 237 of `Dictionnaire liégeois (Haust)` (reference, 322 parts, 317 texts)
+1. text “Vassal” (`Thresor de la langue françoise/Vassal`), part 3023 of `Thresor de la langue françoise` (reference, 3,357 parts, 3,324 texts)
+1. text “FAUX-SAUNIER” (`L’Encyclopédie/1re édition/FAUX-SAUNIER`), part 11928 of `L’Encyclopédie` (reference, 41,677 parts, 41,610 texts)
+1. text “— M. le comte d’Artois” (`Souvenirs d’un page de la cour de Louis XVI/M. le comte d’Artois`), part 7 of `Souvenirs d’un page de la cour de Louis XVI` (book, 42 parts, 41 texts)
+1. text “Laisse CCCXXXI” (`L’entrée d’Espagne/Laisse CCCXXXI`), part 204 of `L’entrée d’Espagne` (book, 698 parts, 688 texts)
+1. text “Lassitude” (`Le Coffret de santal (éd. 1879)/Lassitude`), part 112 of `Le Coffret de santal (éd. 1879)` (collection, 112 parts, 108 texts)
+1. text “Index Alphabétique” (`Mémoires inédits de madame la comtesse de Genlis (ladvocat)/Index Alphabétique`), part 3 of `Mémoires inédits de madame la comtesse de Genlis (ladvocat)` (book, 3 parts, 1 texts)
+1. text “IX — Le voleur volé” (`Vengeance fatale/IX — Le voleur volé`), part 14 of `Vengeance fatale` (book, 25 parts, 23 texts)
+1. text “Notre-Dame des Biffins” (`Les Croix de bois/Notre-Dame des Biffins`), part 10 of `Les Croix de bois` (book, 17 parts, 17 texts)
+1. text “STATO DELLI PRESIDII, lo” (`L’Encyclopédie/1re édition/STATO DELLI PRESIDII, lo`), part 34885 of `L’Encyclopédie` (reference, 41,677 parts, 41,610 texts)
+1. text “Cuisses grosses mais fuselées” (`Odes en son honneur/Cuisses grosses mais fuselées`), part 8 of `Odes en son honneur` (collection, 19 parts, 19 texts)
+1. text “sans prép.” (`Dictionnaire français illustré de Larive et Fleury/sans prép.`), part 47 of `Dictionnaire français illustré de Larive et Fleury` (reference, 198 parts, 197 texts)
+1. text “PERGAMO” (`L’Encyclopédie/1re édition/PERGAMO`), part 25802 of `L’Encyclopédie` (reference, 41,677 parts, 41,610 texts)
+1. text “BITILISE” (`L’Encyclopédie/1re édition/BITILISE`), part 1431 of `L’Encyclopédie` (reference, 41,677 parts, 41,610 texts)
+1. text “Le château de Maran” (`Mathilde, Mémoires d’une jeune femme/Partie II/25`), part 49 of `Mathilde, Mémoires d’une jeune femme` (book, 107 parts, 101 texts)
+1. text “Abschinnen” (`Dictionnaire minier et métallurgique allemand-français/Abschinnen`), part 141 of `Dictionnaire minier et métallurgique allemand-français` (reference, 570 parts, 570 texts)
+1. text “Octavie, ou l’Illusion” (`Œuvres complètes de Gérard de Nerval - Tome V/Octavie, ou l’Illusion`), part 5 of `Œuvres complètes de Gérard de Nerval - Tome V` (collection, 16 parts, 16 texts)
+1. text “Janvier. Il neige !” (`Poésies (Amélie Gex)/Janvier. Il neige !`), part 2 of `Poésies (Amélie Gex)` (book, 85 parts, 79 texts)
+1. text “Ramasse-moi mon lamba” (`La Race inconnue/Ramasse-moi mon lamba`), part 5 of `La Race inconnue` (book, 25 parts, 25 texts)
+1. text “La tubéreuse” (`Les Éblouissements/La tubéreuse`), part 126 of `Les Éblouissements` (book, 169 parts, 166 texts)
+1. text “QUINTE” (`Petit dictionnaire de la langue française (1860)/QUINTE`), part 16851 of `Petit dictionnaire de la langue française (1860)` (reference, 20,406 parts, 20,364 texts)
+1. text “KILKENNY” (`L’Encyclopédie/1re édition/KILKENNY`), part 17573 of `L’Encyclopédie` (reference, 41,677 parts, 41,610 texts)
+1. text “ORIGINAIREMENT” (`Petit dictionnaire de la langue française (1860)/ORIGINAIREMENT`), part 14290 of `Petit dictionnaire de la langue française (1860)` (reference, 20,406 parts, 20,364 texts)
+1. text “L’Épousée-Démon” (`Beautés de la poésie anglaise/L’Épousée-Démon`), part 20 of `Beautés de la poésie anglaise` (collection, 52 parts, 49 texts)
+1. text “PHILOSOPHIE II. Philosophie et religion” (`Dictionnaire de théologie catholique/PHILOSOPHIE II. Philosophie et religion`), part 1380 of `Dictionnaire de théologie catholique` (collection, 1,987 parts, 1,852 texts)
+1. text “Le cordon” (`Théorie de la grande guerre/Livre VI/Chapitre 22`), part 22 of `Théorie de la grande guerre/Livre VI` (book, 30 parts, 30 texts)
+1. text “Justice” (`Dictionnaire des mœurs/Justice`), part 539 of `Dictionnaire des mœurs` (reference, 719 parts, 711 texts)
+1. text “&nbsp;&nbsp;CLIV. Usbek à ses femmes. (Roman.)” (`Lettres persanes/Lettre 154`), part 161 of `Lettres persanes` (book, 169 parts, 163 texts)
+1. text “Lexique” (`Essai sur le patois d’Hérémence/II/27`), part 54 of `Essai sur le patois d’Hérémence` (book, 56 parts, 35 texts)
+1. text “Papion” (`Dictionnaire des patois romans de la Moselle/Articles/Papion`), part 15447 of `Dictionnaire des patois romans de la Moselle` (reference, 21,247 parts, 21,230 texts)
+1. text “ELETTE” (`L’Encyclopédie/1re édition/ELETTE`), part 10025 of `L’Encyclopédie` (reference, 41,677 parts, 41,610 texts)
 
 ### C: oversized (605)
 
-1. `L’Orthopédie`: subpages, book, 11 parts, 0 missing, order toc, proofread
-    - toc: L’Orthopédie
-    - chapter: Préface (`L’Orthopédie/Préface`) [container]
-    - chapter: Table des articles (`L’Orthopédie/Table des articles`) [container]
-    - chapter: Livre I (`L’Orthopédie/Livre I`) [container]
-    - chapter: Livre II (`L’Orthopédie/Livre II`) [container]
-    - chapter: Livre III (`L’Orthopédie/Livre III`) [container]
-    - chapter: Table des matieres du Tome I (`L’Orthopédie/Table des matières tome I`) [container]
-    - chapter: Livre IV (`L’Orthopédie/Livre IV`) [container]
-    - chapter: Conclusion de l’Ouvrage (`L’Orthopédie/Conclusion`) [container]
-    - chapter: Table des matieres (`L’Orthopédie/Table des matières tome II`) [container]
-    - text: Approbation et Privilege (`L’Orthopédie/Privilège`) [container]
-    - text: Traduction d’une thèse latine : Si l’exercice modéré est le meilleur moyen de se conserver en santé ? (`L’Orthopédie/Thèse`) [container]
 1. `La Princesse de Clèves, édition Lepetit, 1820`: subpages, collection, 5 parts, 0 missing, order toc, validated
     - toc: La Princesse de Clèves, édition Lepetit, 1820
     - volume: &nbsp;&nbsp;&nbsp;Première partie (`La Princesse de Clèves, édition Lepetit, 1820/Première partie`) [hierarchy]
@@ -1133,50 +1075,26 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - text: &nbsp;&nbsp;&nbsp;Seconde partie (`La Princesse de Clèves, édition Lepetit, 1820/Seconde partie`) [hierarchy]
     - text: &nbsp;&nbsp;&nbsp;Troisième partie (`La Princesse de Clèves, édition Lepetit, 1820/Troisième partie`) [hierarchy]
     - text: &nbsp;&nbsp;&nbsp;Quatrième partie (`La Princesse de Clèves, édition Lepetit, 1820/Quatrième partie`) [hierarchy]
-1. `Œuvres complètes de Diderot`: mixed, collection, 102 parts, 4 missing, order natural, proofread
+1. `Œuvres complètes de Diderot`: mixed, collection, 102 parts, 4 missing, order scan-volumes, proofread
     - front: Œuvres complètes de Diderot
-    - text: Prospectus (`Articles de l’Encyclopédie rédigés par Diderot/Prospectus`) [container]
-    - text: Cinqmars et Derville [container]
-    - text: Complainte en rondeau de Denis, roi de la fève, sur les embarras de la royauté [container]
-    - volume: Est-il bon ? Est-il méchant ? [container]
-      - text: Notice préliminaire (`Est-il bon ? Est-il méchant ?/Notice préliminaire`) [container]
-      - text: Personnages (`Est-il bon ? Est-il méchant ?/Personnages`) [container]
-      - text: Est-il bon ? Est-il méchant ? (`Est-il bon ? Est-il méchant ?/pièce`) [container]
-    - text: La marquise de Claye et Saint-Alban [container]
-    - text: Le Fils naturel ou les Épreuves de la vertu [container]
-    - volume: Le Joueur (Diderot) [container]
-      - text: Notice Préliminaire (`Le Joueur (Diderot)/Notice Préliminaire`) [container]
+    - text: Avertissement (`Œuvres complètes de Diderot/Avertissement`) [container]
+    - volume: Principes philosophiques sur la matière et le mouvement [container]
+      - text: Notice préliminaire (`Principes philosophiques sur la matière et le mouvement/Notice`) [hierarchy]
+    - text: Sur les femmes [container]
+    - text: notice (`Les Bijoux indiscrets/notice`) [container]
+    - chapter: 0 (`Les Bijoux indiscrets/0`) [container]
+    - chapter: 1 (`Les Bijoux indiscrets/1`) [container]
+    - chapter: 2 (`Les Bijoux indiscrets/2`) [container]
+    - chapter: 3 (`Les Bijoux indiscrets/3`) [container]
+    - chapter: 4 (`Les Bijoux indiscrets/4`) [container]
+    - chapter: 5 (`Les Bijoux indiscrets/5`) [container]
     - … 91 more
-1. `Le colonel de Surville (Eugène Sue)`: single, collection, 1 parts, 0 missing, order –, validated
-    - text: Le colonel de Surville (Eugène Sue)
-1. `Cours d’agriculture (Rozier)`: subpages, reference, 3,148 parts, 0 missing, order natural, proofread
-    - toc: Cours d’agriculture (Rozier)
-    - text: ABAISSEMENT (`Cours d’agriculture (Rozier)/ABAISSEMENT`) [container]
-    - text: ABAISSER (`Cours d’agriculture (Rozier)/ABAISSER`) [container]
-    - text: ABAT-FOIN (`Cours d’agriculture (Rozier)/ABAT-FOIN`) [container]
-    - text: ABATIS (`Cours d’agriculture (Rozier)/ABATIS`) [container]
-    - text: ABATTEMENT (`Cours d’agriculture (Rozier)/ABATTEMENT`) [container]
-    - text: ABATTEMENT (supplément) (`Cours d’agriculture (Rozier)/ABATTEMENT (supplément)`) [container]
-    - text: ABATTIS (`Cours d’agriculture (Rozier)/ABATTIS`) [container]
-    - text: ABATTRE (`Cours d’agriculture (Rozier)/ABATTRE`) [container]
-    - text: ABATTRE DU PIED (`Cours d’agriculture (Rozier)/ABATTRE DU PIED`) [container]
-    - text: ABATTURE (`Cours d’agriculture (Rozier)/ABATTURE`) [container]
-    - text: ABATTURES (`Cours d’agriculture (Rozier)/ABATTURES`) [container]
-    - … 3,137 more
-1. `Vie de Benjamin Franklin`: virtual, book, 18 parts, 0 missing, order single, validated
-    - volume: Volume 1 (`Vie de Benjamin Franklin/Volume 1`)
-      - chapter: Préface du traducteur (`Vie de Benjamin Franklin/Volume 1/00`) [container]
-      - text: de Benjamin Franklin (`Vie de Benjamin Franklin/Volume 1/01`) [container]
-      - text: du Testament de Benjamin Franklin (`Vie de Benjamin Franklin/Volume 1/02`) [container]
-      - chapter: 03 (`Vie de Benjamin Franklin/Volume 1/03`) [container]
-      - text: les Personnes qui se marient jeunes. À John Alleyne (`Vie de Benjamin Franklin/Volume 1/04`) [container]
-      - text: la mort de son frère, John Franklin. À miss Hubbard (`Vie de Benjamin Franklin/Volume 1/05`) [container]
-      - text: au Docteur Mather de Boston (`Vie de Benjamin Franklin/Volume 1/06`) [container]
-      - text: Sifflet, histoire véritable, adressée, par Franklin, à son Neveu (`Vie de Benjamin Franklin/Volume 1/07`) [container]
-      - text: de la Main Gauche, à ceux qui sont chargés d’élever des Enfans (`Vie de Benjamin Franklin/Volume 1/08`) [container]
-      - text: belle Jambe et la Jambe difforme (`Vie de Benjamin Franklin/Volume 1/09`) [container]
-      - text: d’un essaim d’Éphémères, et soliloque d’un Vieillard. À Madame Brillant (`Vie de Benjamin Franklin/Volume 1/10`) [container]
-    - … 6 more
+1. `Aventures d'Hercule Hardi (Eugène Sue)`: single, collection, 1 parts, 0 missing, order –, validated
+    - text: Aventures d'Hercule Hardi (Eugène Sue)
+1. `La Bossue`: single, book, 1 parts, 0 missing, order –, proofread
+    - text: La Bossue
+1. `Catalogue général des manuscrits des bibliothèques publiques de France`: virtual, book, 1 parts, 0 missing, order single, unproofread
+    - text: Rennes (`Catalogue général des manuscrits des bibliothèques publiques de France/Rennes`)
 1. `Raoul de Cambrai`: subpages, book, 7 parts, 0 missing, order toc, validated
     - toc: Raoul de Cambrai
     - chapter: Introduction (`Raoul de Cambrai/Introduction`) [container]
@@ -1186,73 +1104,71 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - chapter: Table des noms (`Raoul de Cambrai/Table des noms`) [container]
     - chapter: Table des rimes (`Raoul de Cambrai/Table des rimes`) [container]
     - text: Errata (`Raoul de Cambrai/Errata`) [container]
-1. `De l’Imitation de Jésus-Christ (Brignon)`: subpages, book, 124 parts, 0 missing, order toc, proofread
-    - toc: De l’Imitation de Jésus-Christ (Brignon)
-    - text: Frontispice (`De l’Imitation de Jésus-Christ (Brignon)/Frontispice`) [container]
-    - chapter: Préface du traducteur (`De l’Imitation de Jésus-Christ (Brignon)/Préface du traducteur`) [container]
-    - text: Approbation (`De l’Imitation de Jésus-Christ (Brignon)/Approbation`) [container]
-    - text: Permission du R.P. Provincial (`De l’Imitation de Jésus-Christ (Brignon)/Permission du R.P. Provincial`) [container]
-    - text: Privilege du Roy (`De l’Imitation de Jésus-Christ (Brignon)/Privilege du Roy`) [container]
-    - volume: LIVRE PREMIER. (`De l’Imitation de Jésus-Christ (Brignon)/Livre 1`) [container]
-      - chapter: 01 (`De l’Imitation de Jésus-Christ (Brignon)/Livre 1/01`) [container]
-      - chapter: 02 (`De l’Imitation de Jésus-Christ (Brignon)/Livre 1/02`) [container]
-      - chapter: 03 (`De l’Imitation de Jésus-Christ (Brignon)/Livre 1/03`) [container]
-      - chapter: 04 (`De l’Imitation de Jésus-Christ (Brignon)/Livre 1/04`) [container]
-      - chapter: 05 (`De l’Imitation de Jésus-Christ (Brignon)/Livre 1/05`) [container]
-    - … 113 more
-1. `Œuvres complètes (Crémazie)`: subpages, collection, 76 parts, 0 missing, order toc, proofread
-    - toc: Œuvres complètes (Crémazie)
-    - text: Avertissement (`Œuvres complètes (Crémazie)/Avertissement`) [container]
-    - text: (notice biographique) (`Œuvres complètes (Crémazie)/Octave Crémazie (notice biographique)`) [container]
-    - chapter: Lettre à M. l’abbé Casgrain (2 avril 1864) (`Œuvres complètes (Crémazie)/Lettre à M. l’abbé Casgrain (2 avril 1864)`) [container]
-    - chapter: Lettre à M. l’abbé Casgrain (1866) (`Œuvres complètes (Crémazie)/Lettre à M. l’abbé Casgrain (1866)`) [container]
-    - chapter: Lettre à M. l’abbé Casgrain (10 août 1866) (`Œuvres complètes (Crémazie)/Lettre à M. l’abbé Casgrain (10 août 1866)`) [container]
-    - chapter: Lettre à M. l’abbé Casgrain (29 janvier 1867) (`Œuvres complètes (Crémazie)/Lettre à M. l’abbé Casgrain (29 janvier 1867)`) [container]
-    - chapter: Lettre à M. l’abbé Casgrain (15 décembre 1867) (`Œuvres complètes (Crémazie)/Lettre à M. l’abbé Casgrain (15 décembre 1867)`) [container]
-    - chapter: Lettre à M. l’abbé Casgrain (20 octobre 1869) (`Œuvres complètes (Crémazie)/Lettre à M. l’abbé Casgrain (20 octobre 1869)`) [container]
-    - chapter: Lettre à M. l’abbé Casgrain (1 mai 1870) (`Œuvres complètes (Crémazie)/Lettre à M. l’abbé Casgrain (1er mai 1870)`) [container]
-    - chapter: Lettre à M. l’abbé Casgrain (Bordeaux, 29 avril 1876) (`Œuvres complètes (Crémazie)/Lettre à M. l’abbé Casgrain (Bordeaux, 29 avril 1876)`) [container]
-    - chapter: Lettre à M. l’abbé Casgrain (Citry, 18 février 1877) (`Œuvres complètes (Crémazie)/Lettre à M. l’abbé Casgrain (Citry, 18 février 1877)`) [container]
-    - … 65 more
-1. `Clio`: single, book, 1 parts, 0 missing, order –, unproofread
-    - text: Clio
-1. `La sainte Bible selon la Vulgate (J.-B. Glaire)`: subpages, book, 164 parts, 0 missing, order scan, proofread
-    - toc: La sainte Bible selon la Vulgate (J.-B. Glaire)
-    - text: Titre (`La sainte Bible selon la Vulgate (J.-B. Glaire)/Titre`) [container]
-    - text: Avis (`La sainte Bible selon la Vulgate (J.-B. Glaire)/Avis`) [container]
-    - text: Approbations (`La sainte Bible selon la Vulgate (J.-B. Glaire)/Approbations`) [container]
-    - text: À Sa Sainteté Pie IX (`La sainte Bible selon la Vulgate (J.-B. Glaire)/À Sa Sainteté Pie IX`) [container]
-    - text: Jugement (`La sainte Bible selon la Vulgate (J.-B. Glaire)/Jugement`) [container]
-    - text: Avertissement (`La sainte Bible selon la Vulgate (J.-B. Glaire)/Avertissement`) [container]
-    - chapter: Préface (`La sainte Bible selon la Vulgate (J.-B. Glaire)/Préface`) [container]
-    - chapter: Introduction au Pentateuque (`La sainte Bible selon la Vulgate (J.-B. Glaire)/Introduction au Pentateuque`) [container]
-    - text: La Genèse (`La sainte Bible selon la Vulgate (J.-B. Glaire)/Genèse`) [container]
-    - text: L’Exode (`La sainte Bible selon la Vulgate (J.-B. Glaire)/Exode`) [container]
-    - text: Le Lévitique (`La sainte Bible selon la Vulgate (J.-B. Glaire)/Lévitique`) [container]
-    - … 153 more
-1. `La Philosophie sociale du XVIIIe siècle et la Révolution`: subpages, book, 5 parts, 0 missing, order toc, proofread
-    - toc: La Philosophie sociale du XVIIIe siècle et la Révolution
-    - text: La Politique nationale et la Politique humanitaire (`La Philosophie sociale du XVIIIe siècle et la Révolution/1`) [container]
-    - text: Les Crises sociales (`La Philosophie sociale du XVIIIe siècle et la Révolution/2`) [container]
-    - text: La Philosophie sociale du en France (`La Philosophie sociale du XVIIIe siècle et la Révolution/3`) [container]
-    - text: Le Socialisme et la Révolution française (`La Philosophie sociale du XVIIIe siècle et la Révolution/4`) [container]
-    - text: Babeuf et le Babouvisme (`La Philosophie sociale du XVIIIe siècle et la Révolution/5`) [container]
-1. `Le Correcteur typographe (Brossard)`: subpages, book, 177 parts, 0 missing, order toc, proofread
-    - toc: Le Correcteur typographe (Brossard)
-    - volume: Volume (`Le Correcteur typographe (Brossard)/volume 1`) [container]
-      - chapter: Avant-propos (`Le Correcteur typographe (Brossard)/volume 1/Avant-propos`) [container]
-      - volume: 01 (`Le Correcteur typographe (Brossard)/volume 1/01`) [container]
-        - chapter: 01 (`Le Correcteur typographe (Brossard)/volume 1/01/01`) [container]
-        - chapter: 02 (`Le Correcteur typographe (Brossard)/volume 1/01/02`) [container]
-        - chapter: 03 (`Le Correcteur typographe (Brossard)/volume 1/01/03`) [container]
-        - chapter: 04 (`Le Correcteur typographe (Brossard)/volume 1/01/04`) [container]
-      - volume: 02 (`Le Correcteur typographe (Brossard)/volume 1/02`) [container]
-        - chapter: 01 (`Le Correcteur typographe (Brossard)/volume 1/02/01`) [container]
-        - chapter: 02 (`Le Correcteur typographe (Brossard)/volume 1/02/02`) [container]
-        - chapter: 03 (`Le Correcteur typographe (Brossard)/volume 1/02/03`) [container]
-    - … 166 more
-1. `L’Empire des tsars et les Russes`: subpages, book, 122 parts, 0 missing, order toc-partial, proofread
+1. `Revue des Deux Mondes/Table générale 1831-1874/Table alphabétique par noms d’auteurs`: single, book, 1 parts, 0 missing, order –, proofread
+    - text: Revue des Deux Mondes/Table générale 1831-1874/Table alphabétique par noms d’auteurs
+1. `Histoire de ma vie (Sand, édition Gerhard)`: subpages, book, 82 parts, 0 missing, order scan-volumes, unproofread
+    - toc: Histoire de ma vie (Sand, édition Gerhard)
+    - chapter: Introduction de Wikisource (`Histoire de ma vie (Sand, édition Gerhard)/Introduction de Wikisource`) [container]
+    - text: Texte entier1 (`Histoire de ma vie (Sand, édition Gerhard)/Texte entier1`) [container]
+    - volume: PREMIÈRE PARTIE. (`Histoire de ma vie (Sand, édition Gerhard)/1`) [container]
+      - chapter: 01 (`Histoire de ma vie (Sand, édition Gerhard)/1/01`) [container]
+      - chapter: 02 (`Histoire de ma vie (Sand, édition Gerhard)/1/02`) [container]
+      - chapter: 03 (`Histoire de ma vie (Sand, édition Gerhard)/1/03`) [container]
+      - chapter: 04 (`Histoire de ma vie (Sand, édition Gerhard)/1/04`) [container]
+      - chapter: 05 (`Histoire de ma vie (Sand, édition Gerhard)/1/05`) [container]
+      - chapter: 07 (`Histoire de ma vie (Sand, édition Gerhard)/1/07`) [container]
+      - chapter: 08 (`Histoire de ma vie (Sand, édition Gerhard)/1/08`) [container]
+      - chapter: 09 (`Histoire de ma vie (Sand, édition Gerhard)/1/09`) [container]
+    - … 71 more
+1. `Œuvres complètes de Charles Péguy`: mixed, book, 46 parts, 2 missing, order scan-volumes, proofread
+    - front: Œuvres complètes de Charles Péguy
+    - volume: Tome 1 (`Œuvres complètes de Charles Péguy/Tome 1`) [container]
+      - chapter: Introduction (`Œuvres complètes de Charles Péguy/Tome 1/Introduction`) [container]
+      - chapter: Lettre du provincial (`Œuvres complètes de Charles Péguy/Tome 1/Lettre du provincial`) [container]
+      - text: Le triomphe de la république (`Œuvres complètes de Charles Péguy/Tome 1/Le triomphe de la république`) [container]
+      - text: Du second provincial (`Œuvres complètes de Charles Péguy/Tome 1/Du second provincial`) [container]
+      - text: De la grippe (`Œuvres complètes de Charles Péguy/Tome 1/De la grippe`) [container]
+      - text: Encore de la grippe (`Œuvres complètes de Charles Péguy/Tome 1/Encore de la grippe`) [container]
+      - text: Toujours de la grippe (`Œuvres complètes de Charles Péguy/Tome 1/Toujours de la grippe`) [container]
+      - text: Entre deux trains (`Œuvres complètes de Charles Péguy/Tome 1/Entre deux trains`) [container]
+      - text: Deuxième série au provincial (`Œuvres complètes de Charles Péguy/Tome 1/Deuxième série au provincial`) [container]
+      - text: Pour ma maison (`Œuvres complètes de Charles Péguy/Tome 1/Pour ma maison`) [container]
+    - … 35 more
+1. `L’Île inconnue`: subpages, book, 4 parts, 0 missing, order scan, unproofread
+    - toc: L’Île inconnue
+    - chapter: Introduction (`L’Île inconnue/Introduction`) [container]
+    - chapter: 1 (`L’Île inconnue/1`) [container]
+    - chapter: 2 (`L’Île inconnue/2`) [container]
+    - chapter: 3 (`L’Île inconnue/3`) [container]
+1. `Principes de la science sociale`: mixed, book, 62 parts, 0 missing, order scan-volumes, proofread
+    - toc: Principes de la science sociale
+    - text: Principes de la science sociale - Tome 1 [container]
+    - chapter: Préface (`Principes de la science sociale/Préface`) [container]
+    - chapter: CHAPITRE Ier. De la science et des méthodes de la science (`Principes de la science sociale/01`) [container]
+    - chapter: CHAPITRE II. De l’homme, sujet de la science sociale (`Principes de la science sociale/02`) [container]
+    - chapter: CHAPITRE III. De l’accroissement dans la quantité de l’espèce humaine (`Principes de la science sociale/03`) [container]
+    - chapter: CHAPITRE IV. De l’occupation de la terre (`Principes de la science sociale/04`) [container]
+    - chapter: CHAPITRE V. Continuation du même sujet (`Principes de la science sociale/05`) [container]
+    - chapter: CHAPITRE VI. De la valeur (`Principes de la science sociale/06`) [container]
+    - chapter: CHAPITRE VII. De la richesse (`Principes de la science sociale/07`) [container]
+    - chapter: CHAPITRE VIII. De la formation de la société (`Principes de la science sociale/08`) [container]
+    - chapter: CHAPITRE IX. De l’appropriation (`Principes de la science sociale/09`) [container]
+    - … 51 more
+1. `Une oubliée — Madame Cottin d’après sa correspondance`: subpages, book, 10 parts, 0 missing, order scan, unproofread
+    - toc: Une oubliée — Madame Cottin d’après sa correspondance
+    - chapter: 1 (`Une oubliée — Madame Cottin d’après sa correspondance/1`) [container]
+    - chapter: 2 (`Une oubliée — Madame Cottin d’après sa correspondance/2`) [container]
+    - text: Bibliographie (`Une oubliée — Madame Cottin d’après sa correspondance/Bibliographie`) [container]
+    - chapter: Appendice 1 (`Une oubliée — Madame Cottin d’après sa correspondance/Appendice 1`) [container]
+    - chapter: Appendice 2 (`Une oubliée — Madame Cottin d’après sa correspondance/Appendice 2`) [container]
+    - chapter: Appendice 3 (`Une oubliée — Madame Cottin d’après sa correspondance/Appendice 3`) [container]
+    - chapter: Appendice 4 (`Une oubliée — Madame Cottin d’après sa correspondance/Appendice 4`) [container]
+    - chapter: Appendice 5 (`Une oubliée — Madame Cottin d’après sa correspondance/Appendice 5`) [container]
+    - chapter: Appendice 6 (`Une oubliée — Madame Cottin d’après sa correspondance/Appendice 6`) [container]
+    - chapter: Appendice 7 (`Une oubliée — Madame Cottin d’après sa correspondance/Appendice 7`) [container]
+1. `L’Empire des tsars et les Russes`: subpages, book, 122 parts, 0 missing, order scan-volumes, proofread
     - front: L’Empire des tsars et les Russes
+    - chapter: Tome 1 (`L’Empire des tsars et les Russes/Texte entier/Tome 1`) [container]
     - volume: TOME 1. LE PAYS ET LES HABITANTS (`L’Empire des tsars et les Russes/Tome 1`) [container]
       - chapter: Avant-propos de la troisième édition (`L’Empire des tsars et les Russes/Tome 1/Avant-propos de la troisième édition`) [container]
       - chapter: Avant-propos de la deuxième édition (`L’Empire des tsars et les Russes/Tome 1/Avant-propos de la deuxième édition`) [container]
@@ -1263,44 +1179,39 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
           - chapter: Chapitre 2 (`L’Empire des tsars et les Russes/Tome 1/Livre 1/Chapitre 2`) [container]
           - chapter: Chapitre 3 (`L’Empire des tsars et les Russes/Tome 1/Livre 1/Chapitre 3`) [container]
         - volume: LIVRE II (`L’Empire des tsars et les Russes/Tome 1/Livre 2`) [container]
-          - chapter: Chapitre 1 (`L’Empire des tsars et les Russes/Tome 1/Livre 2/Chapitre 1`) [container]
     - … 111 more
-1. `Lettres de saint Augustin suite de la troisième série`: single, collection, 1 parts, 0 missing, order –, unproofread
-    - text: Lettres de saint Augustin suite de la troisième série
-1. `Li romans de Bauduin de Sebourc`: linked, book, 30 parts, 0 missing, order toc, proofread
-    - toc: Li romans de Bauduin de Sebourc
-    - text: LE ROMAN DE BAUDUIN DE SEBOURC (`Bauduin de Sebourc`) [container]
-    - text: , errata, corrections proposées (`Bauduin de Sebourc/AVERTISSEMENT`) [container]
-    - chapter: CHANT I (`Bauduin de Sebourc/Chant I`) [container]
-    - chapter: CHANT II (`Bauduin de Sebourc/Chant II`) [container]
-    - chapter: CHANT III (`Bauduin de Sebourc/Chant III`) [container]
-    - chapter: CHANT IV (`Bauduin de Sebourc/Chant IV`) [container]
-    - chapter: CHANT V (`Bauduin de Sebourc/Chant V`) [container]
-    - chapter: CHANT VI (`Bauduin de Sebourc/Chant VI`) [container]
-    - chapter: CHANT VII (`Bauduin de Sebourc/Chant VII`) [container]
-    - chapter: CHANT VIII (`Bauduin de Sebourc/Chant VIII`) [container]
-    - chapter: CHANT IX (`Bauduin de Sebourc/Chant IX`) [container]
-    - … 19 more
-1. `Un voyage. Belgique, Hollande, Allemagne, Italie`: subpages, book, 4 parts, 0 missing, order scan, validated
-    - toc: Un voyage. Belgique, Hollande, Allemagne, Italie
-    - chapter: 00 (`Un voyage. Belgique, Hollande, Allemagne, Italie/00`) [container]
-    - text: BELGIQUE, HOLLANDE (`Un voyage. Belgique, Hollande, Allemagne, Italie/01`) [container]
-    - text: L’ALLEMAGNE (`Un voyage. Belgique, Hollande, Allemagne, Italie/02`) [container]
-    - chapter: 03 (`Un voyage. Belgique, Hollande, Allemagne, Italie/03`) [container]
-1. `Dictionnaire encyclopédique de la noblesse de France`: mixed, collection, 1,089 parts, 0 missing, order natural, proofread
-    - front: Dictionnaire encyclopédique de la noblesse de France
-    - chapter: L (`Dictionnaire encyclopédique de la noblesse de France - volume 2 - Nicolas Viton de Saint-Allais/L`) [container]
-    - chapter: M (`Dictionnaire encyclopédique de la noblesse de France - volume 2 - Nicolas Viton de Saint-Allais/M`) [container]
-    - text: N (`Dictionnaire encyclopédique de la noblesse de France - volume 2 - Nicolas Viton de Saint-Allais/N`) [container]
-    - text: O (`Dictionnaire encyclopédique de la noblesse de France - volume 2 - Nicolas Viton de Saint-Allais/O`) [container]
-    - text: P (`Dictionnaire encyclopédique de la noblesse de France - volume 2 - Nicolas Viton de Saint-Allais/P`) [container]
-    - text: Q (`Dictionnaire encyclopédique de la noblesse de France - volume 2 - Nicolas Viton de Saint-Allais/Q`) [container]
-    - text: R (`Dictionnaire encyclopédique de la noblesse de France - volume 2 - Nicolas Viton de Saint-Allais/R`) [container]
-    - text: AB INTESTAT (`Dictionnaire encyclopédique de la noblesse de France/Articles/AB INTESTAT`) [container]
-    - text: ABAISSE (`Dictionnaire encyclopédique de la noblesse de France/Articles/ABAISSE`) [container]
-    - text: ABAISSEMENT ou ABATTEMENT (`Dictionnaire encyclopédique de la noblesse de France/Articles/ABAISSEMENT ou ABATTEMENT`) [container]
-    - text: ABEILLE (`Dictionnaire encyclopédique de la noblesse de France/Articles/ABEILLE`) [container]
-    - … 1,078 more
+1. `Les Cahiers de Malte Laurids Brigge`: single, book, 1 parts, 0 missing, order –, proofread
+    - text: Les Cahiers de Malte Laurids Brigge
+1. `Dictionnaire complet de la langue française`: mixed, reference, 21 parts, 0 missing, order scan, proofread
+    - toc: Dictionnaire complet de la langue française
+    - volume: Nouveau dictionnaire de la langue française [container]
+      - text: Signes et abréviations (`Nouveau dictionnaire de la langue française/Signes et abréviations`) [hierarchy]
+      - chapter: Lettre A (`Nouveau dictionnaire de la langue française/A`) [hierarchy]
+      - chapter: Lettre B (`Nouveau dictionnaire de la langue française/B`) [hierarchy]
+      - chapter: Lettre C (`Nouveau dictionnaire de la langue française/C`) [hierarchy]
+      - chapter: Lettre D (`Nouveau dictionnaire de la langue française/D`) [hierarchy]
+      - chapter: Lettre E (`Nouveau dictionnaire de la langue française/E`) [hierarchy]
+      - chapter: Lettre F (`Nouveau dictionnaire de la langue française/F`) [hierarchy]
+      - chapter: Lettre O (`Nouveau dictionnaire de la langue française/O`) [hierarchy]
+      - chapter: Lettre T (`Nouveau dictionnaire de la langue française/T`) [hierarchy]
+      - chapter: Lettre U (`Nouveau dictionnaire de la langue française/U`) [hierarchy]
+    - … 10 more
+1. `Bible Darby 1885`: subpages, book, 73 parts, 0 missing, order toc, proofread
+    - toc: Bible Darby 1885
+    - chapter: Préface (`Bible Darby 1885/Préface`) [container]
+    - text: Signes (`Bible Darby 1885/Signes`) [container]
+    - text: Dates chronologiques (`Bible Darby 1885/Dates chronologiques`) [container]
+    - text: Poids et mesures (`Bible Darby 1885/Poids et mesures`) [container]
+    - chapter: Table chronologique des rois et des prophètes de Juda et d’Israël (`Bible Darby 1885/Table chronologique des rois et des prophètes de Juda et d’Israël`) [container]
+    - volume: ANCIEN TESTAMENT (`Bible Darby 1885/Ancien Testament`) [container]
+      - text: NOUVEAU TESTAMENT (`Bible Darby 1885/Nouveau Testament`) [container]
+    - text: La Genèse (`Bible Darby 1885/Genèse`) [container]
+    - text: L’Exode (`Bible Darby 1885/Exode`) [container]
+    - text: Le Lévitique (`Bible Darby 1885/Lévitique`) [container]
+    - text: Les Nombres (`Bible Darby 1885/Nombres`) [container]
+    - … 62 more
+1. `Le Roman d’un bas-bleu`: single, book, 1 parts, 0 missing, order –, proofread
+    - text: Le Roman d’un bas-bleu
 1. `Histoire archéologique de l’époque gallo-romaine de la ville de Rennes`: subpages, book, 3 parts, 0 missing, order scan, unproofread
     - toc: Histoire archéologique de l’époque gallo-romaine de la ville de Rennes
     - chapter: Première partie (`Histoire archéologique de l’époque gallo-romaine de la ville de Rennes/Première partie`) [container]
@@ -1320,20 +1231,20 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - text: Ce qu’était Sa Majesté Louis XIV à l’âge de vingt-deux ans (`Le Vicomte de Bragelonne/Chapitre VIII`) [container]
     - text: Où l’inconnu de l’hôtellerie des Médicis perd son incognito (`Le Vicomte de Bragelonne/Chapitre IX`) [container]
     - … 260 more
-1. `Mémoires secrets de Bachaumont (1777-1789)`: subpages, collection, 78 parts, 417 missing, order toc-partial, proofread
-    - front: Mémoires secrets de Bachaumont (1777-1789)
-    - text: Juin (`Mémoires secrets de Bachaumont (1777-1789)/1773/Juin`) [container]
-    - text: Juillet (`Mémoires secrets de Bachaumont (1777-1789)/1773/Juillet`) [container]
-    - text: Août (`Mémoires secrets de Bachaumont (1777-1789)/1773/Août`) [container]
-    - text: Septembre (`Mémoires secrets de Bachaumont (1777-1789)/1773/Septembre`) [container]
-    - text: Janvier 1775 (`Mémoires secrets de Bachaumont (1777-1789)/1775/Janvier`) [container]
-    - text: Février 1775 (`Mémoires secrets de Bachaumont (1777-1789)/1775/Février`) [container]
-    - text: Mars 1775 (`Mémoires secrets de Bachaumont (1777-1789)/1775/Mars`) [hierarchy]
-    - text: Avril 1775 (`Mémoires secrets de Bachaumont (1777-1789)/1775/Avril`) [hierarchy]
-    - text: Mai 1775 (`Mémoires secrets de Bachaumont (1777-1789)/1775/Mai`) [hierarchy]
-    - text: Juin 1775 (`Mémoires secrets de Bachaumont (1777-1789)/1775/Juin`) [hierarchy]
-    - text: Juillet 1775 (`Mémoires secrets de Bachaumont (1777-1789)/1775/Juillet`) [hierarchy]
-    - … 67 more
+1. `Histoire de ma vie (Sand, Calmann-Levy 1855)`: subpages, book, 83 parts, 0 missing, order scan-volumes, proofread
+    - toc: Histoire de ma vie (Sand, Calmann-Levy 1855)
+    - chapter: Tome 1 (`Histoire de ma vie (Sand, Calmann-Levy 1855)/Texte entier/Tome 1`) [container]
+    - volume: 1 (`Histoire de ma vie (Sand, Calmann-Levy 1855)/1`) [container]
+      - chapter: 01 (`Histoire de ma vie (Sand, Calmann-Levy 1855)/1/01`) [container]
+      - chapter: 02 (`Histoire de ma vie (Sand, Calmann-Levy 1855)/1/02`) [container]
+      - chapter: 03 (`Histoire de ma vie (Sand, Calmann-Levy 1855)/1/03`) [container]
+      - chapter: 04 (`Histoire de ma vie (Sand, Calmann-Levy 1855)/1/04`) [container]
+      - chapter: 05 (`Histoire de ma vie (Sand, Calmann-Levy 1855)/1/05`) [container]
+      - chapter: 06 (`Histoire de ma vie (Sand, Calmann-Levy 1855)/1/06`) [container]
+      - chapter: 07 (`Histoire de ma vie (Sand, Calmann-Levy 1855)/1/07`) [container]
+      - chapter: 08 (`Histoire de ma vie (Sand, Calmann-Levy 1855)/1/08`) [container]
+      - chapter: 09 (`Histoire de ma vie (Sand, Calmann-Levy 1855)/1/09`) [container]
+    - … 72 more
 1. `Anthologie des poètes français contemporains`: mixed, collection, 98 parts, 206 missing, order toc-partial, unproofread
     - front: Anthologie des poètes français contemporains
     - chapter: Préface (`Anthologie des poètes français contemporains/Préface`) [container]
@@ -1373,8 +1284,9 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
       - chapter: 27 (`Satyricon (Heguin)/Trimalchion`) [container]
       - chapter: 79 (`Satyricon (Heguin)/Eumolpe`) [container]
       - text: Fr. 1 (`Satyricon (Heguin)/Fragments`) [container]
-1. `Les Papiers posthumes du Pickwick Club`: subpages, book, 59 parts, 0 missing, order toc-partial, validated
+1. `Les Papiers posthumes du Pickwick Club`: subpages, book, 59 parts, 0 missing, order scan-volumes, validated
     - toc: Les Papiers posthumes du Pickwick Club
+    - chapter: I (`Les Papiers posthumes du Pickwick Club/Texte entier/I`) [container]
     - chapter: Chapitre I — Les pickwickiens (`Les Papiers posthumes du Pickwick Club/Tome I/I.`) [container]
     - chapter: Chapitre II — Le premier jour de voyage et la première soirée d’aventures, avec leurs conséquences (`Les Papiers posthumes du Pickwick Club/Tome I/II.`) [container]
     - chapter: Chapitre III — Une nouvelle connaissance. Histoire d’un clown. Une interruption désagréable et une rencontre fâcheuse (`Les Papiers posthumes du Pickwick Club/Tome I/III.`) [container]
@@ -1385,13 +1297,13 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - chapter: Chapitre VIII — Faisant voir clairement que la route du véritable amour n’est pas aussi unie qu’un chemin de fer (`Les Papiers posthumes du Pickwick Club/Tome I/VIII.`) [container]
     - chapter: Chapitre IX — La découverte et la poursuite (`Les Papiers posthumes du Pickwick Club/Tome I/IX.`) [container]
     - chapter: Chapitre X — Destiné à dissiper tous les doutes qui pourraient exister sur le désintéressement de (`Les Papiers posthumes du Pickwick Club/Tome I/X.`) [container]
-    - chapter: Chapitre XI — Contenant un autre voyage et une découverte d’antiquité : annonçant la résolution de d’assister à une élection, et renfermant un manuscrit donné par le vieil ecclésiastique (`Les Papiers posthumes du Pickwick Club/Tome I/XI.`) [container]
     - … 48 more
 1. `Rimes de Dante (trad. Fertiault)`: single, book, 1 parts, 0 missing, order –, unproofread
     - text: Rimes de Dante (trad. Fertiault)
-1. `L’Ami commun`: subpages, book, 69 parts, 0 missing, order toc-partial, validated
+1. `L’Ami commun`: subpages, book, 69 parts, 0 missing, order scan-volumes, validated
     - toc: L’Ami commun
     - text: À la découverte (`L’Ami commun/I/1`) [container]
+    - chapter: tome 1 (`L’Ami commun/texte entier/tome 1`) [hierarchy]
     - text: L’homme de quelque part (`L’Ami commun/I/2`) [container]
     - text: Un nouveau personnage (`L’Ami commun/I/3`) [container]
     - text: La famille Wilfer (`L’Ami commun/I/4`) [container]
@@ -1401,70 +1313,61 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - text: Mister Boffin en consultation (`L’Ami commun/I/8`) [container]
     - text: Consultation de mister et de missis Boffin (`L’Ami commun/I/9`) [container]
     - text: Contrat de mariage (`L’Ami commun/I/10`) [container]
-    - text: Podsnaperie (`L’Ami commun/I/11`) [container]
     - … 58 more
-1. `Réflexions sur la révolution de France - 1819`: subpages, book, 5 parts, 0 missing, order toc, proofread
-    - toc: Réflexions sur la révolution de France - 1819
-    - chapter: Table détaillée (`Réflexions sur la révolution de France - 1819/Table`) [container]
-    - text: Avis de l’imprimeur (`Réflexions sur la révolution de France - 1819/Avis de l’imprimeur`) [container]
-    - text: L’Éditeur aux lecteurs (`Réflexions sur la révolution de France - 1819/L’Éditeur aux lecteurs`) [container]
-    - text: Notice sur E. Burke (`Réflexions sur la révolution de France - 1819/Notice sur E. Burke`) [container]
-    - text: Réflexions sur la Révolution de France (`Réflexions sur la révolution de France - 1819/Réflexions`) [container]
-1. `L’Amazone (Bataille)`: single, collection, 1 parts, 0 missing, order –, proofread
-    - text: L’Amazone (Bataille)
+1. `Histoire universelle — Index général`: single, book, 1 parts, 0 missing, order –, validated
+    - text: Histoire universelle — Index général
+1. `L’Enfant de l’Amour`: single, collection, 1 parts, 0 missing, order –, proofread
+    - text: L’Enfant de l’Amour
 1. `Tableau de la Géographie de la France`: single, book, 1 parts, 0 missing, order –, proofread
     - text: Tableau de la Géographie de la France
+1. `Grammaire de l’hébreu biblique`: subpages, book, 224 parts, 0 missing, order toc, proofread
+    - toc: Grammaire de l’hébreu biblique
+    - chapter: Avant-propos. (`Grammaire de l’hébreu biblique/Avant-propos`) [container]
+    - text: Abréviations et Signes conventionnels. (`Grammaire de l’hébreu biblique/Abréviations et Signes conventionnels`) [container]
+    - text: Définition de la grammaire hébraïque. (`Grammaire de l’hébreu biblique/Introduction/Paragraphe 1`) [container]
+    - text: Place de l’hébreu parmi les langues sémitiques. (`Grammaire de l’hébreu biblique/Introduction/Paragraphe 2`) [container]
+    - text: Histoire de l’hébreu biblique. (`Grammaire de l’hébreu biblique/Introduction/Paragraphe 3`) [container]
+    - text: Histoire de la grammaire hébraïque. (`Grammaire de l’hébreu biblique/Introduction/Paragraphe 4`) [container]
+    - text: Tableau comparatif des alphabets (`Grammaire de l’hébreu biblique/Introduction/Tableau comparatif`) [container]
+    - text: Les consonnes : graphie et prononciation. (`Grammaire de l’hébreu biblique/Écriture/Paragraphe 5`) [container]
+    - text: Les voyelles : graphie et prononciation. (`Grammaire de l’hébreu biblique/Écriture/Paragraphe 6`) [container]
+    - text: Des consonnes (matres lectionis) indiquant le timbre ou la quantité des voyelles. (`Grammaire de l’hébreu biblique/Écriture/Paragraphe 7`) [container]
+    - text: Du shewa. (`Grammaire de l’hébreu biblique/Écriture/Paragraphe 8`) [container]
+    - … 213 more
 
-### G: reference works (273)
+### G: reference works (274)
 
-1. `Dictionnaire des termes militaires et de l’argot des poilus`: subpages, reference, 18 parts, 6 missing, order toc, proofread
-    - toc: Dictionnaire des termes militaires et de l’argot des poilus
-    - chapter: Avant-propos et abréviations (`Dictionnaire des termes militaires et de l’argot des poilus/Intro`) [container]
-    - text: A (abatage – azor) (`Dictionnaire des termes militaires et de l’argot des poilus/A`) [container]
-    - text: B (babillarde – buvard) (`Dictionnaire des termes militaires et de l’argot des poilus/B`) [container]
-    - text: C (caban – czarine) (`Dictionnaire des termes militaires et de l’argot des poilus/C`) [container]
-    - text: D (D – dynamiterie) (`Dictionnaire des termes militaires et de l’argot des poilus/D`) [container]
-    - text: E (eau-de-vie – exposer) (`Dictionnaire des termes militaires et de l’argot des poilus/E`) [container]
-    - text: F (fabriquer – fuyard) (`Dictionnaire des termes militaires et de l’argot des poilus/F`) [container]
-    - text: G (gabier – G.V.C.) (`Dictionnaire des termes militaires et de l’argot des poilus/G`) [container]
-    - text: H (hache – hymne) (`Dictionnaire des termes militaires et de l’argot des poilus/H`) [container]
-    - text: I (ilot – issue) (`Dictionnaire des termes militaires et de l’argot des poilus/I`) [container]
-    - text: J (jaffe – juteux) (`Dictionnaire des termes militaires et de l’argot des poilus/J`) [container]
-    - … 7 more
-1. `Explication des abréviations maritimes les plus usuelles`: subpages, reference, 84 parts, 0 missing, order natural, validated
-    - front: Explication des abréviations maritimes les plus usuelles
-    - text: Against all risks (`Explication des abréviations maritimes les plus usuelles/Articles/Against all risks`) [container]
-    - text: Article 10 de la Police d’Assurance d’Anvers (`Explication des abréviations maritimes les plus usuelles/Articles/Article 10 de la Police d’Assurance d’Anvers`) [container]
-    - text: Bill of Lading (`Explication des abréviations maritimes les plus usuelles/Articles/Bill of Lading`) [container]
-    - text: Dead-freight (`Explication des abréviations maritimes les plus usuelles/Articles/Dead-freight`) [container]
-    - text: Dead-weight (`Explication des abréviations maritimes les plus usuelles/Articles/Dead-weight`) [container]
-    - text: Errors and omissions excepted (`Explication des abréviations maritimes les plus usuelles/Articles/Errors and omissions excepted`) [container]
-    - text: General Average (`Explication des abréviations maritimes les plus usuelles/Articles/General Average`) [container]
-    - text: Hundredweight (`Explication des abréviations maritimes les plus usuelles/Articles/Hundredweight`) [container]
-    - text: Less car load (`Explication des abréviations maritimes les plus usuelles/Articles/Less car load`) [container]
-    - text: Livres avoir du poids (`Explication des abréviations maritimes les plus usuelles/Articles/Livres avoir du poids`) [container]
-    - text: Sauf imprévus (`Explication des abréviations maritimes les plus usuelles/Articles/Sauf imprévus`) [container]
-    - … 73 more
-1. `Tresor de recherches et antiquitez gauloises et françoises/Nlle éd., 1882`: subpages, reference, 4 parts, 0 missing, order natural, unproofread
-    - toc: Tresor de recherches et antiquitez gauloises et françoises/Nlle éd., 1882
-    - text: Index alphabétique - A (`Tresor de recherches et antiquitez gauloises et françoises/Nlle éd., 1882/Index alphabétique - A`) [container]
-    - text: Index alphabétique - J (`Tresor de recherches et antiquitez gauloises et françoises/Nlle éd., 1882/Index alphabétique - J`) [container]
-    - chapter: Tome 1 (`Tresor de recherches et antiquitez gauloises et françoises/Nlle éd., 1882/Tome 1`) [container]
-    - chapter: Tome 2 (`Tresor de recherches et antiquitez gauloises et françoises/Nlle éd., 1882/Tome 2`) [container]
-1. `Dictionnaire du savoir-vivre`: subpages, reference, 481 parts, 0 missing, order chain, proofread
-    - toc: Dictionnaire du savoir-vivre
-    - text: Abbé (`Dictionnaire du savoir-vivre/Articles/Abbé`) [hierarchy]
-    - text: Accordailles (`Dictionnaire du savoir-vivre/Articles/Accordailles`) [hierarchy]
-    - text: Actes respectueux (`Dictionnaire du savoir-vivre/Articles/Actes respectueux`) [hierarchy]
-    - text: Adieu (`Dictionnaire du savoir-vivre/Articles/Adieu`) [hierarchy]
-    - text: Adresse (`Dictionnaire du savoir-vivre/Articles/Adresse`) [hierarchy]
-    - text: Affabilité (`Dictionnaire du savoir-vivre/Articles/Affabilité`) [hierarchy]
-    - text: Âge (`Dictionnaire du savoir-vivre/Articles/Âge`) [hierarchy]
-    - text: Agréments (`Dictionnaire du savoir-vivre/Articles/Agréments`) [hierarchy]
-    - text: Allégorie (`Dictionnaire du savoir-vivre/Articles/Allégorie`) [hierarchy]
-    - text: Allure (`Dictionnaire du savoir-vivre/Articles/Allure`) [hierarchy]
-    - text: Amabilité (`Dictionnaire du savoir-vivre/Articles/Amabilité`) [hierarchy]
-    - … 470 more
+1. `Dictionnaire des abréviations latines et françaises`: subpages, reference, 14 parts, 0 missing, order toc, proofread
+    - front: Dictionnaire des abréviations latines et françaises
+    - text: Avertissement sur la troisième édition (`Dictionnaire des abréviations latines et françaises/Avertissement sur la troisième édition`) [container]
+    - chapter: Préface de la première édition (`Dictionnaire des abréviations latines et françaises/Préface de la première édition`) [container]
+    - volume: De la brachygraphie du Moyen Âge (`Dictionnaire des abréviations latines et françaises/De la brachygraphie du Moyen Âge`) [container]
+      - text: Abréviations par sigles (`Dictionnaire des abréviations latines et françaises/De la brachygraphie du Moyen Âge/I`) [container]
+      - text: Abréviations par contraction (`Dictionnaire des abréviations latines et françaises/De la brachygraphie du Moyen Âge/II`) [container]
+      - text: Abréviations par suspension (`Dictionnaire des abréviations latines et françaises/De la brachygraphie du Moyen Âge/III`) [container]
+      - text: Abréviations par signes abréviatifs (`Dictionnaire des abréviations latines et françaises/De la brachygraphie du Moyen Âge/IV`) [container]
+      - text: Abréviations par lettres supérieures (`Dictionnaire des abréviations latines et françaises/De la brachygraphie du Moyen Âge/V`) [container]
+      - text: Abréviations par lettres abréviatives (`Dictionnaire des abréviations latines et françaises/De la brachygraphie du Moyen Âge/VI`) [container]
+      - text: Abréviations par lettres monogrammatiques ou conjointes, et par lettres enclavées, renversées et retournées (`Dictionnaire des abréviations latines et françaises/De la brachygraphie du Moyen Âge/VII`) [container]
+      - chapter: VIII. — par signes particuliers (`Dictionnaire des abréviations latines et françaises/De la brachygraphie du Moyen Âge/VIII`) [container]
+    - … 3 more
+1. `Tresor de recherches et antiquitez gauloises et françoises/Nlle éd., 1750`: subpages, reference, 1 parts, 0 missing, order single, proofread
+    - toc: Tresor de recherches et antiquitez gauloises et françoises/Nlle éd., 1750
+    - chapter: Tome 1 (`Tresor de recherches et antiquitez gauloises et françoises/Nlle éd., 1750/Tome 1`) [container]
+1. `Dictionnaire complet de la langue française`: mixed, reference, 21 parts, 0 missing, order scan, proofread
+    - toc: Dictionnaire complet de la langue française
+    - volume: Nouveau dictionnaire de la langue française [container]
+      - text: Signes et abréviations (`Nouveau dictionnaire de la langue française/Signes et abréviations`) [hierarchy]
+      - chapter: Lettre A (`Nouveau dictionnaire de la langue française/A`) [hierarchy]
+      - chapter: Lettre B (`Nouveau dictionnaire de la langue française/B`) [hierarchy]
+      - chapter: Lettre C (`Nouveau dictionnaire de la langue française/C`) [hierarchy]
+      - chapter: Lettre D (`Nouveau dictionnaire de la langue française/D`) [hierarchy]
+      - chapter: Lettre E (`Nouveau dictionnaire de la langue française/E`) [hierarchy]
+      - chapter: Lettre F (`Nouveau dictionnaire de la langue française/F`) [hierarchy]
+      - chapter: Lettre O (`Nouveau dictionnaire de la langue française/O`) [hierarchy]
+      - chapter: Lettre T (`Nouveau dictionnaire de la langue française/T`) [hierarchy]
+      - chapter: Lettre U (`Nouveau dictionnaire de la langue française/U`) [hierarchy]
+    - … 10 more
 1. `Biographie universelle ancienne et moderne/1re éd., 1811`: subpages, reference, 203 parts, 2 missing, order natural, proofread
     - toc: Biographie universelle ancienne et moderne/1re éd., 1811
     - text: Aa (Petrus van der) (`Biographie universelle ancienne et moderne/1re éd., 1811/Aa (Petrus van der)`) [hierarchy]
@@ -1484,89 +1387,20 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - chapter: Tome 1 (`Glossaire raisonné de la langue écrite et parlée/3e éd., 1855/Tome 1`) [container]
     - chapter: Tome 1 (`Nouveau Dictionnaire universel de la langue française/Tome 1`) [container]
     - chapter: Préface (`Nouveau Dictionnaire universel de la langue française/Préface`) [container]
-1. `Dictionnaire de Trévoux/1re édition, 1704`: subpages, reference, 195 parts, 50 missing, order natural, proofread
-    - front: Dictionnaire de Trévoux/1re édition, 1704
-    - text: Abside (`Dictionnaire de Trévoux/1re édition, 1704/Abside`) [container]
-    - text: Absorbant (`Dictionnaire de Trévoux/1re édition, 1704/Absorbant`) [container]
-    - text: Anguillade (`Dictionnaire de Trévoux/1re édition, 1704/Anguillade`) [container]
-    - text: Dictionarium latino-gallicum (`Dictionnaire de Trévoux/1re édition, 1704/Dictionarium latino-gallicum`) [container]
-    - volume: Index alphabétique - A (`Dictionnaire de Trévoux/1re édition, 1704/Index alphabétique - A`) [hierarchy]
-      - chapter: Introduction (`Dictionnaire de Trévoux/1re édition, 1704/Introduction`) [container]
-      - text: A (`Dictionnaire de Trévoux/1re édition, 1704/A`) [container]
-      - text: Ab (`Dictionnaire de Trévoux/1re édition, 1704/Ab`) [container]
-      - text: Aba (`Dictionnaire de Trévoux/1re édition, 1704/Aba`) [container]
-      - text: Abaco (`Dictionnaire de Trévoux/1re édition, 1704/Abaco`) [container]
-      - text: Abada (`Dictionnaire de Trévoux/1re édition, 1704/Abada`) [container]
-    - … 184 more
-1. `Dictionnaire d’argot ou Guide des gens du monde (2e éd.)`: subpages, reference, 832 parts, 1 missing, order natural, validated
-    - front: Dictionnaire d’argot ou Guide des gens du monde (2e éd.)
-    - chapter: I (`Dictionnaire d’argot ou Guide des gens du monde (2e éd.)/Articles/I`) [hierarchy]
-    - chapter: C. (`Dictionnaire d’argot ou Guide des gens du monde (2e éd.)/Articles/C.`) [hierarchy]
-    - chapter: C (`Dictionnaire d’argot ou Guide des gens du monde (2e éd.)/Articles/C`) [hierarchy]
-    - chapter: D (`Dictionnaire d’argot ou Guide des gens du monde (2e éd.)/Articles/D`) [hierarchy]
-    - chapter: M (`Dictionnaire d’argot ou Guide des gens du monde (2e éd.)/Articles/M`) [hierarchy]
-    - text: A (`Dictionnaire d’argot ou Guide des gens du monde (2e éd.)/Articles/A`) [hierarchy]
-    - text: Abbaye rusante (`Dictionnaire d’argot ou Guide des gens du monde (2e éd.)/Articles/Abbaye rusante`) [hierarchy]
-    - text: Abbé (`Dictionnaire d’argot ou Guide des gens du monde (2e éd.)/Articles/Abbé`) [hierarchy]
-    - text: Abloquir (`Dictionnaire d’argot ou Guide des gens du monde (2e éd.)/Articles/Abloquir`) [hierarchy]
-    - text: Acheter (`Dictionnaire d’argot ou Guide des gens du monde (2e éd.)/Articles/Acheter`) [hierarchy]
-    - text: Admirable, bon, excellent (`Dictionnaire d’argot ou Guide des gens du monde (2e éd.)/Articles/Admirable, bon, excellent`) [hierarchy]
-    - … 821 more
-1. `Biographie universelle, ou Dictionnaire historique`: single, reference, 1 parts, 0 missing, order –, unproofread
-    - text: Biographie universelle, ou Dictionnaire historique
-1. `Dictionnaire françois latin - Jean Nicot - 1re éd., 1573`: single, reference, 1 parts, 0 missing, order –, proofread
-    - text: Dictionnaire françois latin - Jean Nicot - 1re éd., 1573
-1. `Honnorat - Dictionnaire provençal-français`: single, reference, 1 parts, 0 missing, order –, unproofread
-    - text: Honnorat - Dictionnaire provençal-français
-1. `Grand vocabulaire françois/2e éd., 1767`: subpages, reference, 3 parts, 1 missing, order scan, proofread
-    - front: Grand vocabulaire françois/2e éd., 1767
-    - chapter: Introduction (`Grand vocabulaire françois/2e éd., 1767/Introduction`) [hierarchy]
-    - chapter: Tome 1 (`Grand vocabulaire françois/2e éd., 1767/Tome 1`) [container]
-    - text: abloquié adj. (`Grand vocabulaire françois/2e éd., 1767/abloquié adj.`) [container]
-1. `La Psychanalyse`: subpages, reference, 4 parts, 0 missing, order toc, proofread
-    - front: La Psychanalyse
-    - text: Présentation (`La Psychanalyse/Présentation`) [container]
-    - text: Dictionnaire (`La Psychanalyse/Dictionnaire`) [container]
-    - text: Bibliographie (`La Psychanalyse/Bibliographie`) [container]
-    - text: Index (`La Psychanalyse/Index`) [container]
-1. `Dictionnaire Universel de Boiste/7e éd., 1828`: single, reference, 1 parts, 2 missing, order –, unproofread
-    - text: Dictionnaire Universel de Boiste/7e éd., 1828
-1. `L’Encyclopédie`: virtual, reference, 41,677 parts, 0 missing, order single, proofread
-    - volume: 1re édition (`L’Encyclopédie/1re édition`)
-      - chapter: I (`L’Encyclopédie/1re édition/I`) [container]
-      - chapter: V (`L’Encyclopédie/1re édition/V`) [container]
-      - chapter: X (`L’Encyclopédie/1re édition/X`) [container]
-      - chapter: L (`L’Encyclopédie/1re édition/L`) [container]
-      - chapter: C (`L’Encyclopédie/1re édition/C`) [container]
-      - chapter: D (`L’Encyclopédie/1re édition/D`) [container]
-      - chapter: DIX (`L’Encyclopédie/1re édition/DIX`) [container]
-      - chapter: M (`L’Encyclopédie/1re édition/M`) [container]
-      - chapter: MI (`L’Encyclopédie/1re édition/MI`) [container]
-      - text: ACTES d’Archélaus (`L’Encyclopédie/1re édition/ACTES d’Archélaus`) [container]
-      - text: AFFABILITÉ (`L’Encyclopédie/1re édition/AFFABILITÉ`) [container]
-    - … 41,665 more
-1. `Dictionnaire de la Bible`: virtual, reference, 7 parts, 0 missing, order natural, proofread, excluded index-faulty
-    - text: Avertissement (`Dictionnaire de la Bible/Avertissement`)
-    - text: Collaborateurs tome I (`Dictionnaire de la Bible/Collaborateurs tome I`) [hierarchy]
-    - text: Encyclique de Léon XIII "Providentissimus Deus" sur l'étude de la Sainte Ecriture (`Dictionnaire de la Bible/Encyclique de Léon XIII "Providentissimus Deus" sur l'étude de la Sainte Ecriture`) [hierarchy]
-    - chapter: Préface (`Dictionnaire de la Bible/Préface`) [hierarchy]
-    - text: Transcription (`Dictionnaire de la Bible/Transcription`) [hierarchy]
-    - text: EPHPHÉTHA (`Dictionnaire de la Bible/Éphphétha`) [hierarchy]
-    - text: Éthiopienne (langue) (`Dictionnaire de la Bible/Éthiopienne (langue)`) [hierarchy]
-1. `Supplément au Dictionnaire argotique`: subpages, reference, 407 parts, 0 missing, order natural, validated
-    - front: Supplément au Dictionnaire argotique
-    - text: Avis (`Supplément au Dictionnaire argotique/Avis`) [container]
-    - volume: Index alphabétique - A (`Supplément au Dictionnaire argotique/Index alphabétique - A`) [hierarchy]
-      - text: Abouler (`Supplément au Dictionnaire argotique/Abouler`) [container]
-      - text: Abour (`Supplément au Dictionnaire argotique/Abour`) [container]
-      - text: Abourdier (`Supplément au Dictionnaire argotique/Abourdier`) [container]
-      - text: Accoerrer (`Supplément au Dictionnaire argotique/Accoerrer`) [container]
-      - text: Affur (`Supplément au Dictionnaire argotique/Affur`) [container]
-      - text: Agathe (`Supplément au Dictionnaire argotique/Agathe`) [container]
-      - text: Ambier (`Supplément au Dictionnaire argotique/Ambier`) [container]
-      - text: Amadoué (`Supplément au Dictionnaire argotique/Amadoué`) [container]
-      - text: Amadouage (`Supplément au Dictionnaire argotique/Amadouage`) [container]
-    - … 396 more
+1. `Dictionnaire raisonné du mobilier français de l’époque carlovingienne à la Renaissance`: mixed, reference, 110 parts, 0 missing, order natural, proofread
+    - toc: Dictionnaire raisonné du mobilier français de l’époque carlovingienne à la Renaissance
+    - text: Espalière (`Dictionnaire raisonné du mobilier français de l'époque carlovingienne à la Renaissance/Espalière`) [container]
+    - text: Estacheur (`Dictionnaire raisonné du mobilier français de l'époque carlovingienne à la Renaissance/Estacheur`) [container]
+    - volume: tome 1 (`Dictionnaire raisonné du mobilier français de l’époque carlovingienne à la Renaissance/tome 1`) [hierarchy]
+      - text: Armoire (`Dictionnaire raisonné du mobilier français de l’époque carlovingienne à la Renaissance/Armoire`) [container]
+      - text: Autel (`Dictionnaire raisonné du mobilier français de l’époque carlovingienne à la Renaissance/Autel`) [container]
+      - text: Bahut (`Dictionnaire raisonné du mobilier français de l’époque carlovingienne à la Renaissance/Bahut`) [container]
+      - text: Banc (`Dictionnaire raisonné du mobilier français de l’époque carlovingienne à la Renaissance/Banc`) [container]
+      - text: Berceau (`Dictionnaire raisonné du mobilier français de l’époque carlovingienne à la Renaissance/Berceau`) [container]
+      - text: Buffet (`Dictionnaire raisonné du mobilier français de l’époque carlovingienne à la Renaissance/Buffet`) [container]
+      - text: Bustail (`Dictionnaire raisonné du mobilier français de l’époque carlovingienne à la Renaissance/Bustail`) [container]
+      - text: Cabinet (`Dictionnaire raisonné du mobilier français de l’époque carlovingienne à la Renaissance/Cabinet`) [container]
+    - … 99 more
 1. `Dictionnaire de la prononciation de la langue française`: subpages, reference, 17 parts, 18 missing, order toc, proofread
     - toc: Dictionnaire de la prononciation de la langue française
     - text: Épigraphe (`Dictionnaire de la prononciation de la langue française/Épigraphe`) [container]
@@ -1581,50 +1415,92 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - text: U (`Dictionnaire de la prononciation de la langue française/U`) [container]
     - chapter: V (`Dictionnaire de la prononciation de la langue française/V`) [container]
     - … 6 more
-1. `Trésor de livres rares et précieux - Graesse, 1861`: virtual, reference, 1 parts, 0 missing, order single, unproofread
-    - text: Encyclopédie méthodique (`Trésor de livres rares et précieux - Graesse, 1861/Encyclopédie méthodique`)
+1. `Biographie universelle, ou Dictionnaire historique`: single, reference, 1 parts, 0 missing, order –, unproofread
+    - text: Biographie universelle, ou Dictionnaire historique
+1. `Curiositez françoises/Par lettres`: single, reference, 1 parts, 0 missing, order –, validated
+    - text: Curiositez françoises/Par lettres
+1. `Honnorat - Dictionnaire provençal-français`: single, reference, 1 parts, 0 missing, order –, unproofread
+    - text: Honnorat - Dictionnaire provençal-français
+1. `Dictionnaire grammatical de la langue françoise/Nlle éd., 1768`: single, reference, 1 parts, 4 missing, order –, unproofread
+    - text: Dictionnaire grammatical de la langue françoise/Nlle éd., 1768
+1. `La Psychanalyse`: subpages, reference, 4 parts, 0 missing, order toc, proofread
+    - front: La Psychanalyse
+    - text: Présentation (`La Psychanalyse/Présentation`) [container]
+    - text: Dictionnaire (`La Psychanalyse/Dictionnaire`) [container]
+    - text: Bibliographie (`La Psychanalyse/Bibliographie`) [container]
+    - text: Index (`La Psychanalyse/Index`) [container]
+1. `Dictionnaire infernal/6e éd., 1863`: subpages, reference, 3,826 parts, 0 missing, order scan, proofread
+    - front: Dictionnaire infernal/6e éd., 1863
+    - chapter: PRÉFACE (`Dictionnaire infernal/6e éd., 1863/Préface`) [hierarchy]
+    - text: Aaron (`Dictionnaire infernal/6e éd., 1863/Aaron`) [container]
+    - text: Abaddon (`Dictionnaire infernal/6e éd., 1863/Abaddon`) [container]
+    - text: Abadie (`Dictionnaire infernal/6e éd., 1863/Abadie`) [container]
+    - text: Abalam (`Dictionnaire infernal/6e éd., 1863/Abalam`) [container]
+    - chapter: Lettre A (`Dictionnaire infernal/6e éd., 1863/Lettre A`) [container]
+    - text: Abano (`Dictionnaire infernal/6e éd., 1863/Abano`) [container]
+    - text: Abaris (`Dictionnaire infernal/6e éd., 1863/Abaris`) [container]
+    - text: Abd-el-Azys (`Dictionnaire infernal/6e éd., 1863/Abd-el-Azys`) [container]
+    - text: Abdeel (`Dictionnaire infernal/6e éd., 1863/Abdeel`) [container]
+    - text: Abeilard (`Dictionnaire infernal/6e éd., 1863/Abeilard`) [container]
+    - … 3,815 more
+1. `Dictionnaire universel de matière médicale et de thérapeutique`: virtual, reference, 1 parts, 0 missing, order single, unproofread
+    - text: Or (médecine) (`Dictionnaire universel de matière médicale et de thérapeutique/Or (médecine)`)
+1. `Curiosités françaises (1640)`: virtual, reference, 1 parts, 0 missing, order single, proofread
+    - text: Titre (`Curiosités françaises (1640)/Titre`)
+1. `Petit Dictionnaire libéral`: subpages, reference, 221 parts, 0 missing, order natural, validated
+    - toc: Petit Dictionnaire libéral
+    - text: ABAISSEMENT (`Petit Dictionnaire libéral/ABAISSEMENT`) [hierarchy]
+    - text: ABANDON (`Petit Dictionnaire libéral/ABANDON`) [hierarchy]
+    - text: ABATTOIR (`Petit Dictionnaire libéral/ABATTOIR`) [hierarchy]
+    - text: ABATTRE (`Petit Dictionnaire libéral/ABATTRE`) [hierarchy]
+    - text: ABUS (`Petit Dictionnaire libéral/ABUS`) [hierarchy]
+    - text: ABÎME (`Petit Dictionnaire libéral/ABÎME`) [hierarchy]
+    - text: ACADÉMIE (`Petit Dictionnaire libéral/ACADÉMIE`) [hierarchy]
+    - text: ADHÉSION (`Petit Dictionnaire libéral/ADHÉSION`) [hierarchy]
+    - text: ALARME (`Petit Dictionnaire libéral/ALARME`) [hierarchy]
+    - text: ALLIANCE (`Petit Dictionnaire libéral/ALLIANCE`) [hierarchy]
+    - text: ALLÉGORIE (`Petit Dictionnaire libéral/ALLÉGORIE`) [hierarchy]
+    - … 210 more
+1. `Dictionnaire historique et critique/11e éd./Tome 16`: single, reference, 1 parts, 0 missing, order –, proofread, excluded no-text
+    - text: Dictionnaire historique et critique/11e éd./Tome 16
+1. `L’Enfer de la Bibliothèque nationale`: subpages, reference, 13 parts, 0 missing, order toc, proofread
+    - toc: L’Enfer de la Bibliothèque nationale
+    - chapter: Préface (`L’Enfer de la Bibliothèque nationale/Préface`) [container]
+    - text: 1 à 99 (`L’Enfer de la Bibliothèque nationale/1`) [container]
+    - text: 100 à 199 (`L’Enfer de la Bibliothèque nationale/2`) [container]
+    - text: 200 à 294 (`L’Enfer de la Bibliothèque nationale/3`) [container]
+    - text: 295 à 400 (`L’Enfer de la Bibliothèque nationale/4`) [container]
+    - text: 401 à 499 (`L’Enfer de la Bibliothèque nationale/5`) [container]
+    - text: 500 à 599 (`L’Enfer de la Bibliothèque nationale/6`) [container]
+    - text: 600 à 699 (`L’Enfer de la Bibliothèque nationale/7`) [container]
+    - text: 700 à 799 (`L’Enfer de la Bibliothèque nationale/8`) [container]
+    - text: 800 à 825 (`L’Enfer de la Bibliothèque nationale/9`) [container]
+    - text: 901 à 939 (`L’Enfer de la Bibliothèque nationale/10`) [container]
+    - … 2 more
+1. `Dictionnaire infernal/3e éd., 1844`: single, reference, 1 parts, 1 missing, order –, proofread
+    - text: Dictionnaire infernal/3e éd., 1844
+1. `Cours d’agriculture (Rozier)`: subpages, reference, 3,148 parts, 0 missing, order natural, proofread
+    - toc: Cours d’agriculture (Rozier)
+    - text: ABAISSEMENT (`Cours d’agriculture (Rozier)/ABAISSEMENT`) [container]
+    - text: ABAISSER (`Cours d’agriculture (Rozier)/ABAISSER`) [container]
+    - text: ABAT-FOIN (`Cours d’agriculture (Rozier)/ABAT-FOIN`) [container]
+    - text: ABATIS (`Cours d’agriculture (Rozier)/ABATIS`) [container]
+    - text: ABATTEMENT (`Cours d’agriculture (Rozier)/ABATTEMENT`) [container]
+    - text: ABATTEMENT (supplément) (`Cours d’agriculture (Rozier)/ABATTEMENT (supplément)`) [container]
+    - text: ABATTIS (`Cours d’agriculture (Rozier)/ABATTIS`) [container]
+    - text: ABATTRE (`Cours d’agriculture (Rozier)/ABATTRE`) [container]
+    - text: ABATTRE DU PIED (`Cours d’agriculture (Rozier)/ABATTRE DU PIED`) [container]
+    - text: ABATTURE (`Cours d’agriculture (Rozier)/ABATTURE`) [container]
+    - text: ABATTURES (`Cours d’agriculture (Rozier)/ABATTURES`) [container]
+    - … 3,137 more
 1. `Dictionnaire de l’ancien langage françois/1re éd., 1767`: single, reference, 1 parts, 0 missing, order –, unproofread
     - text: Dictionnaire de l’ancien langage françois/1re éd., 1767
-1. `Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809`: subpages, reference, 16 parts, 1 missing, order scan, proofread
-    - front: Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809
-    - text: Avertissement (`Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809/Avertissement`) [container]
-    - chapter: Introduction (`Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809/Introduction`) [container]
-    - chapter: Section complète - U (`Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809/Section complète - U`) [container]
-    - chapter: Section complète - Z (`Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809/Section complète - Z`) [container]
-    - text: Index alphabétique - A (`Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809/Index alphabétique - A`) [container]
-    - volume: Index alphabétique - U (`Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809/Index alphabétique - U`) [container]
-      - text: Uni, plain (`Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809/Index alphabétique - U/Uni, plain`) [container]
-      - text: Union, jonction (`Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809/Index alphabétique - U/Union, jonction`) [container]
-      - text: Unique, seul (`Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809/Index alphabétique - U/Unique, seul`) [container]
-      - text: Usage, coutume (`Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809/Index alphabétique - U/Usage, coutume`) [container]
-      - text: User, se servir, employer (`Nouveau dictionnaire universel des synonymes de la langue française/1re éd., 1809/Index alphabétique - U/User, se servir, employer`) [container]
-    - … 5 more
-1. `Dictionnaire historique de l’ancien langage françois/1re éd., 1875`: subpages, reference, 10 parts, 3462 missing, order natural, unproofread
-    - front: Dictionnaire historique de l’ancien langage françois/1re éd., 1875
-    - volume: Index alphabétique - A (`Dictionnaire historique de l’ancien langage françois/1re éd., 1875/Index alphabétique - A`) [hierarchy]
-      - text: A (lettre) (`Dictionnaire historique de l’ancien langage françois/1re éd., 1875/A (lettre)`) [container]
-      - text: A (exclamation) (`Dictionnaire historique de l’ancien langage françois/1re éd., 1875/A (exclamation)`) [container]
-      - text: A (preposition) (`Dictionnaire historique de l’ancien langage françois/1re éd., 1875/A (preposition)`) [container]
-      - text: A (adverbe) (`Dictionnaire historique de l’ancien langage françois/1re éd., 1875/A (adverbe)`) [container]
-      - text: Aaisans (`Dictionnaire historique de l’ancien langage françois/1re éd., 1875/Aaisans`) [container]
-      - text: Aatie (`Dictionnaire historique de l’ancien langage françois/1re éd., 1875/Aatie`) [container]
-      - text: Aatir (`Dictionnaire historique de l’ancien langage françois/1re éd., 1875/Aatir`) [container]
-    - chapter: Tome 1 (`Dictionnaire historique de l’ancien langage françois/1re éd., 1875/Tome 1`) [container]
-    - chapter: Tome 2 (`Dictionnaire historique de l’ancien langage françois/1re éd., 1875/Tome 2`) [container]
-1. `Lexique étymologique du breton moderne`: subpages, reference, 38 parts, 0 missing, order toc, proofread
-    - toc: Lexique étymologique du breton moderne
-    - chapter: Introduction (`Lexique étymologique du breton moderne/Introduction`) [hierarchy]
-    - text: Instruction pour l’usage du lexique (`Lexique étymologique du breton moderne/Instruction pour l’usage du lexique`) [hierarchy]
-    - text: A (`Lexique étymologique du breton moderne/Lettre A`) [hierarchy]
-    - text: B (`Lexique étymologique du breton moderne/Lettre B`) [hierarchy]
-    - text: K (`Lexique étymologique du breton moderne/Lettre K`) [hierarchy]
-    - chapter: D (`Lexique étymologique du breton moderne/Lettre D`) [hierarchy]
-    - text: E (`Lexique étymologique du breton moderne/Lettre E`) [hierarchy]
-    - text: F (`Lexique étymologique du breton moderne/Lettre F`) [hierarchy]
-    - text: G (`Lexique étymologique du breton moderne/Lettre G`) [hierarchy]
-    - text: H (`Lexique étymologique du breton moderne/Lettre H`) [hierarchy]
-    - text: CH (`Lexique étymologique du breton moderne/Lettre CH`) [hierarchy]
-    - … 27 more
+1. `Nouveau Dictionnaire de la langue française de Dochez`: subpages, reference, 4 parts, 0 missing, order scan, proofread
+    - toc: Nouveau Dictionnaire de la langue française de Dochez
+    - text: Titre (`Nouveau Dictionnaire de la langue française de Dochez/Titre`) [container]
+    - chapter: Tome 1a (`Nouveau Dictionnaire de la langue française de Dochez/Tome 1a`) [container]
+    - text: Avertissement de l'auteur (`Nouveau Dictionnaire de la langue française de Dochez/Avertissement de l'auteur`) [container]
+    - text: Discours préliminaire (`Nouveau Dictionnaire de la langue française de Dochez/Discours préliminaire`) [container]
 1. `Dictionaire général et curieux`: subpages, reference, 25 parts, 0 missing, order natural, unproofread
     - front: Dictionaire général et curieux
     - text: A Messieurs les imprimeurs (`Dictionaire général et curieux/A Messieurs`) [hierarchy]
@@ -1639,50 +1515,76 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - text: Abord (`Dictionaire général et curieux/Abord`) [hierarchy]
     - text: Age (`Dictionaire général et curieux/Age`) [hierarchy]
     - … 14 more
-1. `Le langaige du Bresil`: single, reference, 1 parts, 0 missing, order –, proofread
-    - text: Le langaige du Bresil
-1. `Dictionnaire de l’administration française`: mixed, reference, 311 parts, 90 missing, order natural, proofread
-    - toc: Dictionnaire de l’administration française
-    - chapter: Table des abréviations (`Block (Administration française) - Abréviations`) [container]
-    - chapter: Préface de la deuxième édition (`Block (Administration française) - Préface`) [container]
-    - chapter: Table systématique des matières (`Block (Administration française) - Table systématique`) [container]
-    - text: ABATTOIR (`Dictionnaire de l’administration française/ABATTOIR`) [container]
-    - chapter: ACTE ADMINISTRATIF (`Dictionnaire de l’administration française/ACTE ADMINISTRATIF`) [container]
-    - chapter: ACTE JUDICIAIRE (`Dictionnaire de l’administration française/ACTE JUDICIAIRE`) [container]
-    - chapter: ACTE RÉCOGNITIF ET CONFIRMATIF (`Dictionnaire de l’administration française/ACTE RÉCOGNITIF ET CONFIRMATIF`) [container]
-    - text: ADMINISTRATION (`Dictionnaire de l’administration française/ADMINISTRATION`) [container]
-    - text: ADOPTION (`Dictionnaire de l’administration française/ADOPTION`) [container]
-    - text: AGENT JUDICIAIRE DU TRÉSOR (`Dictionnaire de l’administration française/AGENT JUDICIAIRE DU TRÉSOR`) [container]
-    - text: ALIÉNÉS (`Dictionnaire de l’administration française/ALIÉNÉS`) [container]
-    - … 300 more
-1. `Curiositez françoises/1re éd., 1656`: subpages, reference, 3 parts, 28 missing, order single, proofread
-    - front: Curiositez françoises/1re éd., 1656
-    - volume: Par lettres (`Curiositez françoises/1re éd., 1656/Par lettres`) [hierarchy]
-      - text: A (`Curiositez françoises/1re éd., 1656/Par lettres/A`) [hierarchy]
-      - text: ADDITION (`Curiositez françoises/1re éd., 1656/Par lettres/ADDITION`) [hierarchy]
-1. `Dictionnaire de l’Académie française/8e éd., 1932`: subpages, reference, 9 parts, 0 missing, order scan, proofread
-    - toc: Dictionnaire de l’Académie française/8e éd., 1932
-    - text: Index alphabétique - A (`Dictionnaire de l’Académie française/8e éd., 1932/Index alphabétique - A`) [hierarchy]
-    - text: Index alphabétique - B (`Dictionnaire de l’Académie française/8e éd., 1932/Index alphabétique - B`) [hierarchy]
-    - text: Index alphabétique - C (`Dictionnaire de l’Académie française/8e éd., 1932/Index alphabétique - C`) [hierarchy]
-    - text: A (`Dictionnaire de l’Académie française/8e éd., 1932/A`) [container]
-    - text: À (`Dictionnaire de l’Académie française/8e éd., 1932/À`) [container]
-    - text: ABAISSANT, ANTE (`Dictionnaire de l’Académie française/8e éd., 1932/ABAISSANT, ANTE`) [container]
-    - text: ABAISSE (`Dictionnaire de l’Académie française/8e éd., 1932/ABAISSE`) [container]
-    - text: ABAISSEMENT (`Dictionnaire de l’Académie française/8e éd., 1932/ABAISSEMENT`) [container]
-    - text: ABAISSER (`Dictionnaire de l’Académie française/8e éd., 1932/ABAISSER`) [container]
-1. `Nouveau Dictionnaire de la langue française de Dochez`: subpages, reference, 4 parts, 0 missing, order scan, proofread
-    - toc: Nouveau Dictionnaire de la langue française de Dochez
-    - text: Titre (`Nouveau Dictionnaire de la langue française de Dochez/Titre`) [container]
-    - chapter: Tome 1a (`Nouveau Dictionnaire de la langue française de Dochez/Tome 1a`) [container]
-    - text: Avertissement de l'auteur (`Nouveau Dictionnaire de la langue française de Dochez/Avertissement de l'auteur`) [container]
-    - text: Discours préliminaire (`Nouveau Dictionnaire de la langue française de Dochez/Discours préliminaire`) [container]
-1. `Dictionnaire de la fable, ou Mythologie`: subpages, reference, 2 parts, 0 missing, order scan, unproofread
-    - front: Dictionnaire de la fable, ou Mythologie
-    - chapter: Préface (`Dictionnaire de la fable, ou Mythologie/Préface`) [container]
-    - text: Index alphabétique - A (`Dictionnaire de la fable, ou Mythologie/Index alphabétique - A`) [hierarchy]
+1. `Petit dictionnaire d'argot parisien`: subpages, reference, 258 parts, 0 missing, order natural, proofread
+    - toc: Petit dictionnaire d'argot parisien
+    - text: Abattis (`Petit dictionnaire d'argot parisien/Abattis`) [hierarchy]
+    - text: Acré (`Petit dictionnaire d'argot parisien/Acré`) [hierarchy]
+    - text: Affure (`Petit dictionnaire d'argot parisien/Affure`) [hierarchy]
+    - text: Agricher (`Petit dictionnaire d'argot parisien/Agricher`) [hierarchy]
+    - text: Aguicher (`Petit dictionnaire d'argot parisien/Aguicher`) [hierarchy]
+    - text: Allumer (`Petit dictionnaire d'argot parisien/Allumer`) [hierarchy]
+    - text: Aminche (`Petit dictionnaire d'argot parisien/Aminche`) [hierarchy]
+    - text: Apache (`Petit dictionnaire d'argot parisien/Apache`) [hierarchy]
+    - text: Arguche, argomuche (`Petit dictionnaire d'argot parisien/Arguche, argomuche`) [hierarchy]
+    - text: Arlequins (`Petit dictionnaire d'argot parisien/Arlequins`) [hierarchy]
+    - text: Avaler sa langue (`Petit dictionnaire d'argot parisien/Avaler sa langue`) [hierarchy]
+    - … 247 more
+1. `Dictionnaire historique Juigné/1re éd., 1627`: subpages, reference, 5 parts, 2 missing, order natural, unproofread
+    - front: Dictionnaire historique Juigné/1re éd., 1627
+    - text: Aristote (`Dictionnaire historique Juigné/1re éd., 1627/Aristote`) [container]
+    - text: Index alphabétique - A (`Dictionnaire historique Juigné/1re éd., 1627/Index alphabétique - A`) [hierarchy]
+    - text: Index alphabétique - E (`Dictionnaire historique Juigné/1re éd., 1627/Index alphabétique - E`) [hierarchy]
+    - text: Index alphabétique - Z (`Dictionnaire historique Juigné/1re éd., 1627/Index alphabétique - Z`) [hierarchy]
+    - text: Zoroastre (`Dictionnaire historique Juigné/1re éd., 1627/Zoroastre`) [container]
+1. `Dictionnaire de Trévoux/5e édition, 1752`: subpages, reference, 127 parts, 5104 missing, order natural, proofread
+    - front: Dictionnaire de Trévoux/5e édition, 1752
+    - text: Abater (`Dictionnaire de Trévoux/5e édition, 1752/Abater`) [container]
+    - volume: Index alphabétique - A (`Dictionnaire de Trévoux/5e édition, 1752/Index alphabétique - A`) [hierarchy]
+      - chapter: Introduction (`Dictionnaire de Trévoux/5e édition, 1752/Introduction`) [container]
+      - text: A (lettre) (`Dictionnaire de Trévoux/5e édition, 1752/A (lettre)`) [container]
+      - text: A s. m. (`Dictionnaire de Trévoux/5e édition, 1752/A s. m.`) [container]
+      - text: A (verbe) (`Dictionnaire de Trévoux/5e édition, 1752/A (verbe)`) [container]
+      - text: A (exclamation) (`Dictionnaire de Trévoux/5e édition, 1752/A (exclamation)`) [container]
+      - text: A (prép.) (`Dictionnaire de Trévoux/5e édition, 1752/A (prép.)`) [container]
+      - text: aa (`Dictionnaire de Trévoux/5e édition, 1752/aa`) [container]
+      - text: Aa (monnaie) (`Dictionnaire de Trévoux/5e édition, 1752/Aa (monnaie)`) [container]
+      - text: Aa (rivières) (`Dictionnaire de Trévoux/5e édition, 1752/Aa (rivières)`) [container]
+    - … 116 more
+1. `Dictionnaire pratique et historique de la musique`: subpages, reference, 2,416 parts, 0 missing, order natural, proofread
+    - front: Dictionnaire pratique et historique de la musique
+    - chapter: V (`Dictionnaire pratique et historique de la musique/V`) [hierarchy]
+    - chapter: M (`Dictionnaire pratique et historique de la musique/M`) [hierarchy]
+    - text: Allargando (`Dictionnaire pratique et historique de la musique/Allargando`) [container]
+    - text: Avertissement (`Dictionnaire pratique et historique de la musique/Avertissement`) [container]
+    - text: Ces (`Dictionnaire pratique et historique de la musique/Ces`) [container]
+    - text: Clairon (`Dictionnaire pratique et historique de la musique/Clairon`) [container]
+    - text: E (`Dictionnaire pratique et historique de la musique/E`) [container]
+    - text: E u o u a e (`Dictionnaire pratique et historique de la musique/E u o u a e`) [hierarchy]
+    - text: Ecphonèse (`Dictionnaire pratique et historique de la musique/Ecphonèse`) [hierarchy]
+    - text: Effet (`Dictionnaire pratique et historique de la musique/Effet`) [hierarchy]
+    - text: Eis (`Dictionnaire pratique et historique de la musique/Eis`) [hierarchy]
+    - … 2,405 more
+1. `Origines de la langue française/Nlle éd. posth., 1694`: linked, reference, 1 parts, 2 missing, order single, unproofread
+    - toc: Origines de la langue française/Nlle éd. posth., 1694
+    - text: de Caseneuve, 1694 (`Origines de la langue française/de Caseneuve, 1694`) [container]
+1. `Thresor de la langue françoise`: subpages, reference, 3,357 parts, 4690 missing, order natural, unproofread
+    - front: Thresor de la langue françoise
+    - chapter: I (`Thresor de la langue françoise/I`) [hierarchy]
+    - chapter: V (`Thresor de la langue françoise/V`) [hierarchy]
+    - chapter: X (`Thresor de la langue françoise/X`) [hierarchy]
+    - chapter: L (`Thresor de la langue françoise/L`) [hierarchy]
+    - chapter: C (`Thresor de la langue françoise/C`) [hierarchy]
+    - chapter: D (`Thresor de la langue françoise/D`) [hierarchy]
+    - chapter: M (`Thresor de la langue françoise/M`) [hierarchy]
+    - text: 005-066 (`Thresor de la langue françoise/005-066`) [hierarchy]
+    - text: A (`Thresor de la langue françoise/A`) [hierarchy]
+    - text: B (`Thresor de la langue françoise/B`) [hierarchy]
+    - text: Burre (participe) (`Thresor de la langue françoise/Burre (participe)`) [container]
+    - … 3,346 more
+1. `Dictionnaire historique et critique/11e éd./Tome 06`: single, reference, 1 parts, 0 missing, order –, unproofread, excluded no-text
+    - text: Dictionnaire historique et critique/11e éd./Tome 06
 
-### H: deep nesting (165)
+### H: deep nesting (164)
 
 1. `Anna Karénine (trad. Faguet)`: subpages, book, 248 parts, 0 missing, order single, proofread
     - toc: Anna Karénine (trad. Faguet)
@@ -1698,19 +1600,19 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
         - chapter: Chapitre 8 (`Anna Karénine (trad. Faguet)/Partie I/Chapitre 8`) [container]
         - chapter: Chapitre 9 (`Anna Karénine (trad. Faguet)/Partie I/Chapitre 9`) [container]
     - … 237 more
-1. `Œuvres de Saint Bernard`: mixed, book, 43 parts, 32 missing, order natural, proofread
+1. `Œuvres de Saint Bernard`: mixed, book, 43 parts, 32 missing, order scan-volumes, proofread
     - front: Œuvres de Saint Bernard
-    - text: Du combat spirituel (ou encore de la lutte des vertus et des vices) [container]
-    - chapter: Lettre CCCXXXVIII (Saint Bernard) [container]
-    - text: Sermon V de saint Bernard pour la nativité du Seigneur [container]
-    - text: Sermon XLVII de saint Bernard sur le Cantique des Cantiques [container]
     - text: Bref apostolique (`Œuvres de Saint Bernard/Bref apostolique`) [container]
+    - chapter: Préface (`Œuvres de Saint Bernard/Préface`) [container]
     - volume: 1 — Histoire de saint Bernard et de son siècle (`Œuvres de Saint Bernard/Histoire de saint Bernard et de son siècle`) [hierarchy]
       - chapter: Introduction. (`Œuvres de Saint Bernard/Histoire de saint Bernard et de son siècle/0`) [container]
       - volume: 1 (`Œuvres de Saint Bernard/Histoire de saint Bernard et de son siècle/1`) [container]
         - chapter: 01 (`Œuvres de Saint Bernard/Histoire de saint Bernard et de son siècle/1/01`) [container]
         - chapter: 02 (`Œuvres de Saint Bernard/Histoire de saint Bernard et de son siècle/1/02`) [container]
         - chapter: 03 (`Œuvres de Saint Bernard/Histoire de saint Bernard et de son siècle/1/03`) [container]
+        - chapter: 04 (`Œuvres de Saint Bernard/Histoire de saint Bernard et de son siècle/1/04`) [container]
+        - chapter: 05 (`Œuvres de Saint Bernard/Histoire de saint Bernard et de son siècle/1/05`) [container]
+        - chapter: 06 (`Œuvres de Saint Bernard/Histoire de saint Bernard et de son siècle/1/06`) [container]
     - … 32 more
 1. `Philosophie anatomique. Des monstruosités humaines`: subpages, book, 33 parts, 1 missing, order single, proofread
     - front: Philosophie anatomique. Des monstruosités humaines
@@ -1740,7 +1642,7 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
         - text: Agathes & dendrites imitées (`Encyclopédie méthodique/Amusements/Agathes & dendrites imitées`) [container]
         - text: Aigue-marine imitée (`Encyclopédie méthodique/Amusements/Aigue-marine imitée`) [container]
     - … 2,863 more
-1. `Les Misérables (1908)`: subpages, book, 442 parts, 0 missing, order natural, proofread
+1. `Les Misérables (1908)`: subpages, book, 442 parts, 0 missing, order scan-volumes, proofread
     - front: Les Misérables (1908)
     - volume: Tome 1 (`Les Misérables (1908)/Tome 1`) [hierarchy]
       - chapter: Préface (`Les Misérables (1908)/Tome 1/Préface`) [container]
@@ -1838,7 +1740,7 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
           - text: Paragraphe 1 (`Histoire de la chimie/Tome 1/Première époque/Première section/Égyptiens, Phéniciens, Hébreux/Paragraphe 1`) [container]
           - text: Paragraphe 2 (`Histoire de la chimie/Tome 1/Première époque/Première section/Égyptiens, Phéniciens, Hébreux/Paragraphe 2`) [container]
     - … 2 more
-1. `Les Pères de l’Église`: mixed, book, 266 parts, 2 missing, order toc-partial, unproofread
+1. `Les Pères de l’Église`: mixed, book, 266 parts, 2 missing, order scan-volumes, unproofread
     - toc: Les Pères de l’Église
     - volume: Tome 1 (`Les Pères de l’Église/Tome 1`) [hierarchy]
       - text: Dédicace (`Les Pères de l’Église/Tome 1/Dédicace`) [container]
@@ -1871,13 +1773,13 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
     - volume: Première partie (`Théorie des corps de nombres algébriques/première partie`) [container]
       - volume: Chapitre premier (`Théorie des corps de nombres algébriques/première partie/chapitre premier`) [container]
         - volume: S 1 (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S1`) [container]
-          - text: Théorème (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S1/théorème1`) [container]
+          - chapter: Théorème (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S1/théorème1`) [container]
         - volume: S 2 (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S2`) [container]
-          - text: Théorème 2 (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S2/théorème2`) [container]
-          - text: Théorème 3 (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S2/théorème3`) [container]
-          - text: Théorème 4 (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S2/théorème4`) [container]
+          - chapter: Théorème 2 (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S2/théorème2`) [container]
+          - chapter: Théorème 3 (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S2/théorème3`) [container]
+          - chapter: Théorème 4 (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S2/théorème4`) [container]
         - volume: S 3 (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S3`) [container]
-          - text: Théorème 5 (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S3/théorème5`) [container]
+          - chapter: Théorème 5 (`Théorie des corps de nombres algébriques/première partie/chapitre premier/S3/théorème5`) [container]
       - volume: Chapitre (`Théorie des corps de nombres algébriques/première partie/chapitre II`) [container]
     - … 1 more
 1. `Iconologie (Cesare Ripa, 1643)`: subpages, book, 456 parts, 0 missing, order toc, proofread
@@ -1922,8 +1824,9 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
         - text: Le Grillon (`Œuvres de Florian/Fables/2/Le Grillon`) [container]
         - text: La Pie et la Colombe (`Œuvres de Florian/Fables/2/La Pie et la Colombe`) [container]
     - … 21 more
-1. `L’Empire des tsars et les Russes`: subpages, book, 122 parts, 0 missing, order toc-partial, proofread
+1. `L’Empire des tsars et les Russes`: subpages, book, 122 parts, 0 missing, order scan-volumes, proofread
     - front: L’Empire des tsars et les Russes
+    - chapter: Tome 1 (`L’Empire des tsars et les Russes/Texte entier/Tome 1`) [container]
     - volume: TOME 1. LE PAYS ET LES HABITANTS (`L’Empire des tsars et les Russes/Tome 1`) [container]
       - chapter: Avant-propos de la troisième édition (`L’Empire des tsars et les Russes/Tome 1/Avant-propos de la troisième édition`) [container]
       - chapter: Avant-propos de la deuxième édition (`L’Empire des tsars et les Russes/Tome 1/Avant-propos de la deuxième édition`) [container]
@@ -1934,9 +1837,8 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
           - chapter: Chapitre 2 (`L’Empire des tsars et les Russes/Tome 1/Livre 1/Chapitre 2`) [container]
           - chapter: Chapitre 3 (`L’Empire des tsars et les Russes/Tome 1/Livre 1/Chapitre 3`) [container]
         - volume: LIVRE II (`L’Empire des tsars et les Russes/Tome 1/Livre 2`) [container]
-          - chapter: Chapitre 1 (`L’Empire des tsars et les Russes/Tome 1/Livre 2/Chapitre 1`) [container]
     - … 111 more
-1. `Œuvres de Théophile Gautier (Lemerre, 1890)`: linked, collection, 316 parts, 0 missing, order toc-partial, unproofread
+1. `Œuvres de Théophile Gautier (Lemerre, 1890)`: linked, collection, 316 parts, 0 missing, order scan-volumes, unproofread
     - toc: Œuvres de Théophile Gautier (Lemerre, 1890)
     - text: Sonnet VI (`Sonnet. « Avant cet heureux jour »`) [container]
     - text: Élégie IV (`Élégie. « Ma charmante, depuis »`) [container]
@@ -2107,19 +2009,19 @@ Rows count multi-part works only, one row per part plus the root row. 28,292 sin
 
 ### I: works with other editions (579)
 
-1. `Saynètes et Monologues`: mixed, collection, 16 parts, 0 missing, order natural, proofread
+1. `Saynètes et Monologues`: mixed, collection, 16 parts, 0 missing, order scan-volumes, proofread
     - toc: Saynètes et Monologues
-    - text: Autrefois [container]
-    - text: La Bonne (`La Bonne (Charles Cros)`) [container]
     - text: La Famille Dubois [container]
-    - text: La Journée verte [container]
-    - text: Le Bilboquet [container]
-    - text: Le Capitaliste [container]
-    - text: Le Maître d’armes [container]
-    - text: Le Voyage à trois-étoiles [container]
     - text: L’Affaire de la rue Beaubourg [container]
-    - text: L’Homme qui a réussi [container]
-    - text: L’Homme qui a voyagé [container]
+    - text: Le Voyage à trois-étoiles [container]
+    - text: Le Bilboquet [container]
+    - text: La Bonne (`La Bonne (Charles Cros)`) [container]
+    - text: Le Capitaliste [container]
+    - text: Mon ami Naz [container]
+    - text: Le Hareng saur (`Saynètes et Monologues/Le Hareng saur`) [container]
+    - text: Un coup de rasoir [container]
+    - text: Le Maître d’armes [container]
+    - text: Autrefois [container]
     - … 5 more
 1. `Petits Poèmes en prose`: mixed, collection, 47 parts, 1 missing, order scan, validated
     - toc: Petits Poèmes en prose

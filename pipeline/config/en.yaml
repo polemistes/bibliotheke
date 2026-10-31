@@ -14,7 +14,7 @@ structure:
   current_params: [section, current]
   toc_fields: [remarks, toc]
   summary_templates: [AuxTOC]
-  chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\s+)?(chapter|book|part|volume|act|scene|canto|letter|section|lecture|number|issue)\b|^(preface|introduction|contents|appendix|index|notes|epilogue|prologue|conclusion|title page|front matter|advertisements?|errata)\b'
+  chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\s+)?(chapter|book|part|volume|act|scene|canto|letter|section|lecture|number|issue|proposition|theorem|lemma|psalm)\b|^(preface|introduction|contents|appendix|index|notes|epilogue|prologue|conclusion|title page|front matter|advertisements?|errata)\b'
 disambiguation_templates: [disambiguation, disambig, dab]
 versions_templates: [versions, translations]
 other_versions_templates: [other versions, other translations]

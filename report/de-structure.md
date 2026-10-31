@@ -83,11 +83,12 @@ Tree depth of multi-part works (levels below the root): 1: 854, 2: 79, 3: 5, 4: 
 |---|---|
 | chain | 562 |
 | toc | 192 |
-| toc-partial | 115 |
-| natural | 72 |
+| toc-partial | 111 |
+| natural | 67 |
 | scan | 32 |
+| scan-volumes | 9 |
 
-`toc-partial` (implementation choice, see section 13): the TOC lists at least half of the children, which keep its order; the rest follow in natural order. 35 `natural` nodes have a TOC that lists fewer than half.
+`toc-partial` (implementation choice, see section 13): the TOC lists at least half of the children, which keep its order; the rest follow in natural order. 33 `natural` nodes have a TOC that lists fewer than half.
 
 Root pages attached by their header's container link: 21,497; most frequent containers: `Der Sagenschatz des Königreichs Sachsen` 999; `Die zehnte Muse` 472; `Deutsche Sagen (Brüder Grimm, Band 1)` 360; `Journal von und für Franken` 354; `Badisches Sagen-Buch II` 352; `Die Volkssagen von Pommern und Rügen` 287; `Das Ausland (1828)` 268; `Badisches Sagen-Buch I` 246; `Buch der Lieder` 242; `Deutsche Sagen (Brüder Grimm, Band 2)` 223.
 
@@ -110,7 +111,7 @@ Root-page works that sit on a prev/next chain but stay separate works (no contai
 
 ## 7. Orphan trees, oversized pages, red links
 
-**Orphan trees** (virtual roots): 46, holding 143 parts. Examples: `Etwas zum Nachdenken` (2); `In Friedrich Rückert’s Haus` (2); `Wikisource` (1); `Zwanglose Blätter(1883/9)` (1); `Flugblätter der Weissen Rose` (6); `Zedler` (1); `Zeitschriften (Illustrierte)` (1); `Erinnerungen aus meinem Leben (Friedrich Hecker)` (1).
+**Orphan trees** (virtual roots): 46, holding 143 parts. Examples: `In und um Tirols Oberammergau` (2); `Die Heimath in der neuen Welt` (50); `Aus deutschen Lustschlössern` (2); `Mein erster Hirsch` (1); `Topographie der historischen und kunstgeschichtlichen Denkmale in den Bezirken Tepl und Marienbad` (2); `Gallerie berühmter Firmengründer` (1); `Aus dem Fuchsleben` (2); `Wikisource` (1).
 
 **Oversized pages** (> 300,000 bytes of wikitext including transcluded scan pages): 549. Largest: `Ahrenshoop vor und im Krieg` 4.0 MB; `Weg nach Berlin – Birkenwerder` 2.2 MB; `Kunst und Kultur in Ahrenshoop 1945 bis 1948` 2.1 MB; `Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Hans Gärtner` 2.0 MB; `Jugend (Zeitschrift)/Inhalt 1896–1910` 1.9 MB; `Jugend (Zeitschrift)/Inhalt 1911–1929` 1.8 MB; `Hans Brass und die Religion, 1934` 1.5 MB; `Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/R` 1.5 MB; `Der Merker/Inhalt` 1.5 MB; `Allgemeine Wiener Musik-Zeitung` 1.5 MB.
 
@@ -210,7 +211,7 @@ Size: median 2,967 bytes, p10 1,061, p90 12,410; multi-part 42.
 - `Elektrische Kraft Hertz:107` (single, 2,702 B): 6. Inductionserscheinungen in Isolatoren. schiebung des Leiters AA′ nach oben haben würde. Qualitativ die gleiche Wirkung würde ein oberhalb AA′ angebrachter zw
 - `Stammbuch berümpter Fürsten, Graffen vnnd Herren Geschlechter:Seite 4` (single, 2,815 B): von Dingenstat / der sie also zu o m Stifft bracht Anno 1260. Chro. Magd. in vita Ludolphi Metrop. lib. 8. cap. 11. Es seind auch etliche hernacher von den Bisc
 - `Beyträge zu der Naturgeschichte des Schweizerlandes` (single, 686 B): 1.1775: uni-goettingen.de 1.1775,2: digitale-sammlungen.de
-- `Zedler` (virtual, 3,808 B): Quellen im Zedler: Bangens: Thür. Chron. Becherer: Thür. Chron. Beyer: Handwercks-Lex. Binhard: Thür. Chron. "Der Wohlerfahrne und Curiöse Kellermeister": Kunst
+- `Zeitschriften (Kunst)` (virtual, 26,947 B): __TOC__ Bibliographic information == new title 1: The new monthly assemblée new title 2: The court magazine : containing original papers Nationallizenz 1806 - 1
 - `Die Schedelsche Weltchronik (deutsch):156` (single, 7,265 B): CLV verso: == Das sechst alter ERffurt die groß vnnd gedechtnußwirdig statt ein hawbt Thu e ringer lannds von den alten Erphesfurt genant hat einen hohen berg d
 
 **Default view** (validated or proofread, complete, not reference): 19,334 works with 35,451 texts; with unknown works shown: 23,638 works (36,784 texts). Works in the default view whose pages are all level 1: 0. Current setting: `show_unknown_by_default = None`.
@@ -244,7 +245,7 @@ Rows count multi-part works only, one row per part plus the root row. 25,095 sin
 - Display titles come from `current`/`section`/`TITEL`, else the link text in the parent's TOC, else the last title segment. A work's first part row is its root (`front` above 400 characters of own text, else `toc`); `part_count` excludes it.
 - Missing parts are red links in the TOCs of the work's root and volumes: subpages of the root always, other titles only in linked or mixed works and on TOC-like pages.
 - Junk rules (cleanup or deletion template, placeholder, under 300 bytes) apply to works without scan pages and without any quality signal.
-- Order (step 1c): when no source covers all children but the TOC lists at least half, the listed children keep the TOC order and the rest follow in natural order (`toc-partial`), so that collections are not shown alphabetically (WS§2 rule 3).
+- Order (step 1c), after the plan's sources: children from several scan files that all have a scan position follow the files in natural order, then the position (`scan-volumes`); else, when the TOC lists at least half of the children, they keep the TOC order and the rest follow in natural order (`toc-partial`); natural order reads roman numerals. So collections are not shown alphabetically (WS§2 rule 3).
 - Rule 3: a TOC page is marked as one (de `HERKUNFT = off`) or is its Index's own book; "reached from it by the prev/next chain" is read as: the member's chain starts at the TOC page or its prev or next page is listed on the same TOC page.
 - A container with several links (de `HERKUNFT`) resolves to the first link that shares the page's Index, else the first link (the KHM tales link the editions overview first).
 - Volume placement: a part attached by its container is placed under the one TOC page (under 2,000 bytes of own text, listing at least three members) of the same work that lists it, unless the container's members already form one prev/next chain.
@@ -893,51 +894,51 @@ Rows count multi-part works only, one row per part plus the root row. 25,095 sin
 
 ### D: virtual roots (46)
 
+1. `Nachtseiten von London`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Nachtseiten von London/2
 1. `Handeln die Thiere nur aus Instinct oder mit Ueberlegung?`: virtual, book, 1 parts, 0 missing, order single, validated
     - chapter: 1 (`Handeln die Thiere nur aus Instinct oder mit Ueberlegung?/1`)
+1. `Galerie historischer Enthüllungen`: virtual, collection, 5 parts, 0 missing, order natural, validated
+    - text: Galerie historischer Enthüllungen 1.&nbsp;Wilhelm Tell und der Rütlibund (`Galerie historischer Enthüllungen/1. Wilhelm Tell und der Rütlibund`)
+    - text: Galerie historischer Enthüllungen/2. Die Sage von dem Heldentode der vierhundert Pforzheimer [hierarchy]
+    - text: Galerie historischer Enthüllungen/3. Agnes Bernauer [hierarchy]
+    - text: Galerie historischer Enthüllungen 4.&nbsp;Arnold von Winkelried (`Galerie historischer Enthüllungen/4. Arnold von Winkelried`) [hierarchy]
+    - text: Galerie historischer Enthüllungen 5.&nbsp;Kaufmännische Noblesse (`Galerie historischer Enthüllungen/5. Kaufmännische Noblesse`) [hierarchy]
+1. `Source-Provider`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Landesarchiv Baden-Württemberg (`Source-Provider/Landesarchiv Baden-Württemberg`)
+1. `Kataloge der Jahresausstellungen der Kurfürstl.`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Kataloge der Jahresausstellungen der Kurfürstl./Königl. Sächsischen Akademie der Künste
+1. `Hoff Budde`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Nr. 271 (`Hoff Budde/Test/Nr. 271`)
 1. `Zeitschriften (Kunst)`: virtual, collection, 5 parts, 0 missing, order natural, unknown
     - text: La belle assemblée (`Zeitschriften (Kunst)/fremdsprachige/La belle assemblée : being Bell's court and fashionable magazine, addressed particulary to the ladies`)
     - text: The ladies' cabinet of fashion, music & romance (`Zeitschriften (Kunst)/fremdsprachige/The ladies' cabinet of fashion, music & romance`) [hierarchy]
     - text: The ladies' companion and monthly magazine (`Zeitschriften (Kunst)/fremdsprachige/The ladies' companion and monthly magazine`) [hierarchy]
     - text: The lady's magazine or entertaining companion for the fair sex : (`Zeitschriften (Kunst)/fremdsprachige/The lady's magazine or entertaining companion for the fair sex`) [hierarchy]
     - text: The new monthly assemblée (`Zeitschriften (Kunst)/fremdsprachige/The new monthly assemblée`) [hierarchy]
-1. `Aus den politischen Salons des neuen Italiens`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Aus den politischen Salons des neuen Italiens/1. Die Frau des Märtyrers
-1. `Agrumi`: virtual, collection, 4 parts, 0 missing, order scan, validated
-    - text: Der Geliebten (`Agrumi/Der Geliebten`)
-    - text: Nachtgesang I (`Agrumi/Nachtgesang I`) [hierarchy]
-    - text: Die launenhafte Geliebte (`Agrumi/Die launenhafte Geliebte`) [hierarchy]
-    - chapter: Gesang zur Tarantella (`Agrumi/Gesang zur Tarantella`) [hierarchy]
+1. `Zeitschriften (Veterinärmedizin)`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: The veterinarian (`Zeitschriften (Veterinärmedizin)/fremdsprachige/The veterinarian : a monthly journal of veterinary science`)
+1. `Erinnerungen aus dem letzten Kriege`: virtual, collection, 3 parts, 0 missing, order natural, validated
+    - text: Erinnerungen aus dem letzten Kriege/12. Das rothe Haus
+    - text: Erinnerungen aus dem letzten Kriege/13. Die Kirche von Argenteuil [hierarchy]
+    - text: Erinnerungen aus dem letzten Kriege/Nr. 14. Madelon (`Erinnerungen aus dem letzten Kriege/14. Madelon`) [hierarchy]
+1. `Begegnungen mit Zeitgenossen`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Begegnungen mit Zeitgenossen/Nr. 1. A. v. Humboldt
+1. `In Friedrich Rückert’s Haus`: virtual, collection, 2 parts, 0 missing, order natural, validated
+    - text: In Friedrich Rückert’s Haus/1
+    - text: In Friedrich Rückert’s Haus/2 [hierarchy]
 1. `Topographie der historischen und kunstgeschichtlichen Denkmale in den Bezirken Tepl und Marienbad`: virtual, collection, 2 parts, 0 missing, order scan, proofread
     - text: Maiersgrün (`Topographie der historischen und kunstgeschichtlichen Denkmale in den Bezirken Tepl und Marienbad/Maiersgrün`)
     - text: Tepl, Pfarrkirche zu S. Ägidius (`Topographie der historischen und kunstgeschichtlichen Denkmale in den Bezirken Tepl und Marienbad/Tepl, Pfarrkirche zu S. Ägidius`) [hierarchy]
-1. `Bilder aus dem jüdischen Leben`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Bilder aus dem jüdischen Leben/1. Polnische Schnorrer
-1. `Mein erster Hirsch`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Mein erster Hirsch/1881
-1. `Aus der Beamtenwelt`: virtual, collection, 4 parts, 0 missing, order natural, validated
-    - text: Aus dem Beamtenleben/Nr. 1. Der Herr Director (`Aus der Beamtenwelt/Nr. 1. Der Herr Director`)
-    - text: Aus der Beamtenwelt/Nr. 2. Ein Ruheposten [hierarchy]
-    - text: Aus der Beamtenwelt/Nr. 3. Das Stipendium [hierarchy]
-    - text: Aus der Beamtenwelt Nr.&nbsp;4. Der Postschein (`Aus der Beamtenwelt/Nr. 4. Der Postschein`) [hierarchy]
-1. `Zeitschriften (Veterinärmedizin)`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: The veterinarian (`Zeitschriften (Veterinärmedizin)/fremdsprachige/The veterinarian : a monthly journal of veterinary science`)
-1. `Neuer Görlitzer Anzeiger`: virtual, collection, 2 parts, 0 missing, order natural, validated
-    - text: Heimatbilder #38: Berzdorf auf dem Eigen I. (`Neuer Görlitzer Anzeiger/Berzdorf auf dem Eigen I`)
-    - text: Heimatbilder #39: Berzdorf auf dem Eigen II. (`Neuer Görlitzer Anzeiger/Berzdorf auf dem Eigen II`) [hierarchy]
-1. `Begegnungen mit Zeitgenossen`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Begegnungen mit Zeitgenossen/Nr. 1. A. v. Humboldt
-1. `Flugblätter der Weissen Rose`: virtual, book, 6 parts, 0 missing, order chain, validated
-    - chapter: I (`Flugblätter der Weissen Rose/I`)
-    - chapter: II (`Flugblätter der Weissen Rose/II`) [hierarchy]
-    - chapter: III (`Flugblätter der Weissen Rose/III`) [hierarchy]
-    - chapter: IV (`Flugblätter der Weissen Rose/IV`) [hierarchy]
-    - chapter: V (`Flugblätter der Weissen Rose/V`) [hierarchy]
-    - chapter: VI (`Flugblätter der Weissen Rose/VI`) [hierarchy]
-1. `Kataloge der Jahresausstellungen der Kurfürstl.`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Kataloge der Jahresausstellungen der Kurfürstl./Königl. Sächsischen Akademie der Künste
-1. `Fundamento de Esperanto`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Grammatik (`Fundamento de Esperanto/Grammatik`)
+1. `Leipzigs Industrien`: virtual, collection, 2 parts, 0 missing, order natural, validated
+    - text: Leipzigs Industrien/Nr. 1. Aetherische Oele und Essenzen
+    - text: Leipzigs Industrien/Nr. 2. Ein überwundenes Vorurtheil in einer Bagatellsache [hierarchy]
+1. `Zwanglose Blätter(1883/8)`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Briefkasten (`Zwanglose Blätter(1883/8)/Briefkasten`)
+1. `Erinnerungen aus meinem Leben (Friedrich Hecker)`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Der Hexenmeister der Prairie (`Erinnerungen aus meinem Leben (Friedrich Hecker)/2`)
+1. `Aus den politischen Salons des neuen Italiens`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Aus den politischen Salons des neuen Italiens/1. Die Frau des Märtyrers
 1. `Geschichtsauffassung und Geschichtsschreibung`: virtual, book, 7 parts, 0 missing, order natural, validated
     - chapter: I. Das Alte und die neuen Probleme (`Geschichtsauffassung und Geschichtsschreibung/I. Das Alte und die neuen Probleme`)
     - chapter: II. Vorläufer und Vorbilder (`Geschichtsauffassung und Geschichtsschreibung/II. Vorläufer und Vorbilder`) [hierarchy]
@@ -946,50 +947,44 @@ Rows count multi-part works only, one row per part plus the root row. 25,095 sin
     - chapter: V. Entdecker und Kritiker (`Geschichtsauffassung und Geschichtsschreibung/V. Entdecker und Kritiker`) [hierarchy]
     - chapter: VI. Germania illustrata (`Geschichtsauffassung und Geschichtsschreibung/VI. Germania illustrata`) [hierarchy]
     - chapter: VII. Die humanistische Hofgeschichtschreibung unter Kaiser Maximilian (`Geschichtsauffassung und Geschichtsschreibung/VII. Die humanistische Hofgeschichtschreibung unter Kaiser Maximilian`) [hierarchy]
-1. `Source-Provider`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Landesarchiv Baden-Württemberg (`Source-Provider/Landesarchiv Baden-Württemberg`)
+1. `Aus deutschen Lustschlössern`: virtual, collection, 2 parts, 0 missing, order natural, validated
+    - text: Aus deutschen Lustschlössern/1. Auf dem Winterkasten
+    - text: Aus deutschen Lustschlössern 2. Der vorletzte der fränkischen Hohenzollern (`Aus deutschen Lustschlössern/2. Der vorletzte der fränkischen Hohenzollern`) [hierarchy]
+1. `Zeitschriften (Illustrierte)`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: The St. James' magazine (`Zeitschriften (Illustrierte)/fremdsprachige/The St. James' magazine`)
+1. `Archiv für die zeichnenden Künste`: virtual, collection, 1 parts, 0 missing, order single, proofread
+    - text: Notizen über Hieronymus van Aeken, genannt Bosch, und Alart Du Hameel (`Archiv für die zeichnenden Künste/Jahrgang 7-8/Notizen über Hieronymus van Aeken, genannt Bosch, und Alart Du Hameel`)
+1. `Reiseerinnerungen`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Reiseerinnerungen/I. Bamberg
+1. `In und um Tirols Oberammergau`: virtual, collection, 2 parts, 0 missing, order natural, validated
+    - text: In und um Tirols Oberammergau/1.
+    - text: „Auf den Bergen die Burgen“ und Notburga’s Ruhm und Preis (`In und um Tirols Oberammergau/2.`) [hierarchy]
+1. `Neuer Görlitzer Anzeiger`: virtual, collection, 2 parts, 0 missing, order natural, validated
+    - text: Heimatbilder #38: Berzdorf auf dem Eigen I. (`Neuer Görlitzer Anzeiger/Berzdorf auf dem Eigen I`)
+    - text: Heimatbilder #39: Berzdorf auf dem Eigen II. (`Neuer Görlitzer Anzeiger/Berzdorf auf dem Eigen II`) [hierarchy]
 1. `Aus meiner Pilgertasche`: virtual, collection, 3 parts, 0 missing, order natural, validated
     - text: Aus meiner Pilgertasche/1. Eine Begegnung mit General Radowitz
     - text: Aus meiner Pilgertasche/2. Herr von Senkenberg [hierarchy]
     - text: Aus meiner Pilgertasche/3. [hierarchy]
-1. `Wikisource`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Hilf mit! (`Wikisource/Hilf mit!`)
+1. `Der Handlungsreisende wie er sein soll`: virtual, book, 1 parts, 0 missing, order single, validated
+    - chapter: 6 (`Der Handlungsreisende wie er sein soll/6`)
+1. `Zwanglose Blätter(1883/9)`: virtual, collection, 1 parts, 0 missing, order single, validated
+    - text: Briefkasten (`Zwanglose Blätter(1883/9)/Briefkasten`)
+1. `Zedler`: virtual, collection, 1 parts, 0 missing, order single, unknown
+    - text: Quellen (`Zedler/Quellen`)
 1. `Der Wille zum Stil`: virtual, collection, 2 parts, 0 missing, order natural, proofread
     - text: „Der Wille zum Stil“ (`Der Wille zum Stil/1`)
     - text: „Der Wille zum Stil“ (Neugestaltung von Leben, Kunst und Technik) (`Der Wille zum Stil/2`) [hierarchy]
-1. `Aus dem Fuchsleben`: virtual, collection, 2 parts, 0 missing, order natural, validated
-    - text: Aus dem Fuchsleben/I
-    - text: Aus dem Fuchsleben/II [hierarchy]
-1. `Hoff Budde`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Nr. 271 (`Hoff Budde/Test/Nr. 271`)
-1. `Etwas zum Nachdenken`: virtual, collection, 2 parts, 0 missing, order natural, validated
-    - text: Etwas zum Nachdenken von einem Menschenfreund. I. Sendung (`Etwas zum Nachdenken/I. Sendung`)
-    - text: Etwas zum Nachdenken von einem Menschenfreund. II. Sendung (`Etwas zum Nachdenken/II. Sendung`) [hierarchy]
-1. `Zwanglose Blätter(1883/8)`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Briefkasten (`Zwanglose Blätter(1883/8)/Briefkasten`)
-1. `Ausgewählte Abhandlungen des Bischofs Aphraates`: virtual, collection, 8 parts, 0 missing, order chain, validated
-    - text: Abhandlung über den Glauben (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über den Glauben`)
-    - text: Abhandlung über die Liebe (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über die Liebe`) [hierarchy]
-    - text: Abhandlung über das Fasten (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über das Fasten`) [hierarchy]
-    - text: Abhandlung über das Gebet (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über das Gebet`) [hierarchy]
-    - text: Abhandlung über die Buße (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über die Buße`) [hierarchy]
-    - text: Abhandlung über das Pascha (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über das Pascha`) [hierarchy]
-    - text: Abhandlung über die Jungfräulichkeit und Heiligkeit gegen die Juden (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über die Jungfräulichkeit und Heiligkeit gegen die Juden`) [hierarchy]
-    - text: Abhandlung über den Tod und die letzten Zeiten (`Ausgewählte Abhandlungen des Bischofs Aphraates/Abhandlung über den Tod und die letzten Zeiten`) [hierarchy]
-1. `Reiseerinnerungen`: virtual, collection, 1 parts, 0 missing, order single, validated
-    - text: Reiseerinnerungen/I. Bamberg
-1. `Preußisches Obertribunal - Rose`: virtual, collection, 1 parts, 0 missing, order single, unknown
-    - text: Rosahl (`Preußisches Obertribunal - Rose/Rosahl`)
-1. `Leipzigs Industrien`: virtual, collection, 2 parts, 0 missing, order natural, validated
-    - text: Leipzigs Industrien/Nr. 1. Aetherische Oele und Essenzen
-    - text: Leipzigs Industrien/Nr. 2. Ein überwundenes Vorurtheil in einer Bagatellsache [hierarchy]
-1. `Der Handlungsreisende wie er sein soll`: virtual, book, 1 parts, 0 missing, order single, validated
-    - chapter: 6 (`Der Handlungsreisende wie er sein soll/6`)
-1. `Archiv für die zeichnenden Künste`: virtual, collection, 1 parts, 0 missing, order single, proofread
-    - text: Notizen über Hieronymus van Aeken, genannt Bosch, und Alart Du Hameel (`Archiv für die zeichnenden Künste/Jahrgang 7-8/Notizen über Hieronymus van Aeken, genannt Bosch, und Alart Du Hameel`)
-1. `Thierstudien eines Laien`: virtual, collection, 2 parts, 0 missing, order natural, validated
-    - text: Ameisenwirthschaft (`Thierstudien eines Laien/Ameisenwirthschaft`)
-    - text: Hirschkäfer und Ohrwurm (`Thierstudien eines Laien/Hirschkäfer und Ohrwurm`) [hierarchy]
+1. `Aus den Arbeitssälen des Kunsthandwerks`: virtual, collection, 2 parts, 0 missing, order natural, validated
+    - text: Aus den Arbeitssälen des Kunsthandwerks/Die Goldschmiedekunst
+    - text: Aus den Arbeitssälen des Kunsthandwerks/Stil und Mode [hierarchy]
+1. `Flugblätter der Weissen Rose`: virtual, book, 6 parts, 0 missing, order chain, validated
+    - chapter: I (`Flugblätter der Weissen Rose/I`)
+    - chapter: II (`Flugblätter der Weissen Rose/II`) [hierarchy]
+    - chapter: III (`Flugblätter der Weissen Rose/III`) [hierarchy]
+    - chapter: IV (`Flugblätter der Weissen Rose/IV`) [hierarchy]
+    - chapter: V (`Flugblätter der Weissen Rose/V`) [hierarchy]
+    - chapter: VI (`Flugblätter der Weissen Rose/VI`) [hierarchy]
 
 ### E: subpage texts reached from a disambiguation or versions page (26)
 
@@ -1025,15 +1020,15 @@ Rows count multi-part works only, one row per part plus the root row. 25,095 sin
 1. text “Gültstein” (`Beschreibung des Oberamts Herrenberg/Kapitel B 8`), part 15 of `Beschreibung des Oberamts Herrenberg` (collection, 34 parts, 28 texts)
 1. text “Eugen Lieben” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Eugen Lieben`), part 288 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
 1. text “Ernst Meyer (Historiker)” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Ernst Meyer (Historiker)`), part 270 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
-1. text “Gastenfelden” (`Geschichte von Kloster Heilsbronn/Gastenfelden`), part 190 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
+1. text “Einersdorf” (`Geschichte von Kloster Heilsbronn/Einersdorf`), part 191 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
 1. text “Greif” (`Christliche Symbolik/Greif`), part 202 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
-1. text “Hirschkäfer und Ohrwurm” (`Thierstudien eines Laien/Hirschkäfer und Ohrwurm`), part 1 of `Thierstudien eines Laien` (collection, 2 parts, 2 texts)
+1. text “Dreißigster Brief.” (`Die Heimath in der neuen Welt/Zweiter Band/Dreißigster Brief`), part 33 of `Die Heimath in der neuen Welt` (collection, 50 parts, 33 texts)
 1. text “Otto Keller (Philologe)” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Otto Keller (Philologe)`), part 909 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
 1. text “Schlusslied Der Tod an den Verfasser” (`Melpomene/Band 2/Schlusslied`), part 222 of `Melpomene` (collection, 223 parts, 221 texts)
 1. text “August Schmekel” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/August Schmekel`), part 105 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
 1. text “Leopold Cohn” (`Paulys Realencyclopädie der classischen Altertumswissenschaft/Register/Leopold Cohn`), part 794 of `Paulys Realencyclopädie der classischen Altertumswissenschaft` (collection, 1,325 parts, 1,297 texts)
 1. text “St. Vitus” (`Christliche Symbolik/St. Vitus`), part 548 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
-1. text “Der erste Grundbesitz des Klosters” (`Geschichte von Kloster Heilsbronn/Der erste Grundbesitz des Klosters`), part 113 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
+1. text “Glaizendorf” (`Geschichte von Kloster Heilsbronn/Glaizendorf`), part 113 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
 1. text “Heidgau” (`Beschreibung des Oberamts Waldsee/Kapitel BW6`), part 19 of `Beschreibung des Oberamts Waldsee` (collection, 39 parts, 28 texts)
 1. text “Die verbindung eines hauptsatzes bzw. zweier oder mehrerer hauptsätze mit einem nebensatze bzw. zweien oder mehreren nebensätzen” (`Die araner mundart/Die verbindung eines hauptsatzes`), part 14 of `Die araner mundart` (collection, 60 parts, 52 texts)
 1. text “Diaconissenanstalt Neuendettelsau” (`Etwas aus der Geschichte des Diaconissenhauses Neuendettelsau/§. 2. Diaconissenanstalt Neuendettelsau`), part 4 of `Etwas aus der Geschichte des Diaconissenhauses Neuendettelsau` (collection, 14 parts, 14 texts)
@@ -1045,13 +1040,13 @@ Rows count multi-part works only, one row per part plus the root row. 25,095 sin
 1. text “9 Bei dem Grabe eines Mannes, der von Jägern erschossen wurde” (`Melpomene/Band 1/009 Bei dem Grabe eines Mannes, der von Jägern erschossen wurde`), part 30 of `Melpomene` (collection, 223 parts, 221 texts)
 1. text “§4. Vollständige Lösung für Kugeln und Hohlkugeln von endlicher Dicke.” (`Ueber die Induction in rotirenden Kugeln/§4`), part 6 of `Ueber die Induction in rotirenden Kugeln` (collection, 14 parts, 13 texts)
 1. text “Text” (`Über die Verwirrung der Sprachen/Text`), part 3 of `Über die Verwirrung der Sprachen` (collection, 3 parts, 2 texts)
-1. text “Seinsheim” (`Geschichte von Kloster Heilsbronn/Seinsheim`), part 390 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
+1. text “Maierndorf” (`Geschichte von Kloster Heilsbronn/Maierndorf`), part 391 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
 1. text “Maubach” (`Beschreibung des Oberamts Backnang/Kapitel B 15`), part 22 of `Beschreibung des Oberamts Backnang` (collection, 38 parts, 31 texts)
 1. text “Wie herr Gotfridt freiherr zu Zimbern sambt seinen underthonen zu Winzlaw von Conradten Glücken zu Westphaln vorm haimlichen gericht ist fürgenomen und beclagt, und wie solche handlung durch ain apt v” (`Zimmerische Chronik/Band 1/Kapitel 68`), part 65 of `Zimmerische Chronik` (collection, 159 parts, 149 texts)
 1. text “Topf” (`Christliche Symbolik/Topf`), part 588 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
-1. text “Wieseth-Bruck” (`Geschichte von Kloster Heilsbronn/Wieseth-Bruck`), part 462 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
+1. text “Die neue Abtei” (`Geschichte von Kloster Heilsbronn/Die neue Abtei`), part 462 of `Geschichte von Kloster Heilsbronn` (collection, 484 parts, 482 texts)
 1. text “St. Georg” (`Christliche Symbolik/St. Georg`), part 531 of `Christliche Symbolik` (collection, 636 parts, 633 texts)
-1. text “Ameisenwirthschaft” (`Thierstudien eines Laien/Ameisenwirthschaft`), part 0 of `Thierstudien eines Laien` (collection, 2 parts, 2 texts)
+1. text “Neunundzwanzigster Brief.” (`Die Heimath in der neuen Welt/Zweiter Band/Neunundzwanzigster Brief`), part 32 of `Die Heimath in der neuen Welt` (collection, 50 parts, 33 texts)
 
 ### C: oversized (317)
 
@@ -1199,19 +1194,19 @@ Rows count multi-part works only, one row per part plus the root row. 25,095 sin
     - … 464 more
 1. `Das Lahntal von seinem Ursprung bis zur Ausmündung`: single, single, 1 parts, 0 missing, order –, validated
     - text: Das Lahntal von seinem Ursprung bis zur Ausmündung
-1. `Geschichte von Kloster Heilsbronn`: subpages, collection, 484 parts, 0 missing, order natural, validated
+1. `Geschichte von Kloster Heilsbronn`: subpages, collection, 484 parts, 0 missing, order scan-volumes, validated
     - front: Geschichte von Kloster Heilsbronn
-    - text: Abdias Wickner (`Geschichte von Kloster Heilsbronn/Abdias Wickner`) [hierarchy]
-    - text: Adam Francisci (`Geschichte von Kloster Heilsbronn/Adam Francisci`) [hierarchy]
-    - text: Adelhofen (`Geschichte von Kloster Heilsbronn/Adelhofen`) [hierarchy]
-    - text: Adelmannsdorf (`Geschichte von Kloster Heilsbronn/Adelmannsdorf`) [hierarchy]
-    - text: Adelsdorf (`Geschichte von Kloster Heilsbronn/Adelsdorf`) [hierarchy]
-    - text: Aich (`Geschichte von Kloster Heilsbronn/Aich`) [hierarchy]
-    - text: Altendettelsau (`Geschichte von Kloster Heilsbronn/Altendettelsau`) [hierarchy]
-    - text: Altentrüdingen (`Geschichte von Kloster Heilsbronn/Altentrüdingen`) [hierarchy]
-    - text: Altheim (`Geschichte von Kloster Heilsbronn/Altheim`) [hierarchy]
-    - text: Ammerndorf (`Geschichte von Kloster Heilsbronn/Ammerndorf`) [hierarchy]
-    - text: Ammonschönbronn (`Geschichte von Kloster Heilsbronn/Ammonschönbronn`) [hierarchy]
+    - text: I/1 (`Geschichte von Kloster Heilsbronn/Band 1 (Teil 1)`) [hierarchy]
+    - chapter: Vorwort mit Angabe der Quellen (`Geschichte von Kloster Heilsbronn/Vorwort mit Angabe der Quellen`) [hierarchy]
+    - text: Heilsbronn vor der Stiftung des Klosters (`Geschichte von Kloster Heilsbronn/Heilsbronn vor der Stiftung des Klosters`) [hierarchy]
+    - text: Der Stiftungsbrief (`Geschichte von Kloster Heilsbronn/Der Stiftungsbrief`) [hierarchy]
+    - text: Gründung des Klosters im Jahre 1132 (`Geschichte von Kloster Heilsbronn/Gründung des Klosters im Jahre 1132`) [hierarchy]
+    - text: Der Gründer des Klosters Heilsbronn, Otto der Heilige, Bischof zu Bamberg (`Geschichte von Kloster Heilsbronn/Der Gründer des Klosters Heilsbronn, Otto der Heilige, Bischof zu Bamberg`) [hierarchy]
+    - text: Der erste Grundbesitz des Klosters (`Geschichte von Kloster Heilsbronn/Der erste Grundbesitz des Klosters`) [hierarchy]
+    - text: Die ersten Klostergebäude (`Geschichte von Kloster Heilsbronn/Die ersten Klostergebäude`) [hierarchy]
+    - text: Der Orden des Klosters (`Geschichte von Kloster Heilsbronn/Der Orden des Klosters`) [hierarchy]
+    - text: Zweck der Klosterstiftung (`Geschichte von Kloster Heilsbronn/Zweck der Klosterstiftung`) [hierarchy]
+    - text: Beschirmung des Klosters (`Geschichte von Kloster Heilsbronn/Beschirmung des Klosters`) [hierarchy]
     - … 473 more
 1. `Rote Tage`: single, single, 1 parts, 0 missing, order –, validated
     - text: Rote Tage
@@ -1299,19 +1294,19 @@ Rows count multi-part works only, one row per part plus the root row. 25,095 sin
         - volume: Zweiter Teil (`Der Todesgang des armenischen Volkes/Erster Teil/Erstes Kapitel/Zweiter Teil`) [hierarchy]
           - chapter: Erster Abschnitt (`Der Todesgang des armenischen Volkes/Erster Teil/Erstes Kapitel/Zweiter Teil/Erster Abschnitt`) [hierarchy]
     - … 27 more
-1. `Album der Rittergüter und Schlösser im Königreiche Sachsen`: linked, collection, 775 parts, 13 missing, order natural, proofread
+1. `Album der Rittergüter und Schlösser im Königreiche Sachsen`: linked, collection, 775 parts, 13 missing, order scan-volumes, proofread
     - front: Album der Rittergüter und Schlösser im Königreiche Sachsen
-    - volume: Leipziger Kreis. (`Album der Rittergüter und Schlösser im Königreiche Sachsen I. Section`) [container]
-      - text: Rötha (`Rittergüter und Schlösser im Königreiche Sachsen: Rötha`) [container]
-      - text: Grosszschocher (`Rittergüter und Schlösser im Königreiche Sachsen: Grosszschocher`) [container]
-      - text: Knauthayn (`Rittergüter und Schlösser im Königreiche Sachsen: Knauthayn`) [container]
-      - text: Dölitz (`Rittergüter und Schlösser im Königreiche Sachsen: Dölitz`) [container]
-      - text: Püchau (`Rittergüter und Schlösser im Königreiche Sachsen: Püchau`) [container]
-      - text: Zedtlitz (`Rittergüter und Schlösser im Königreiche Sachsen: Zedtlitz`) [container]
-      - text: Thallwitz (`Rittergüter und Schlösser im Königreiche Sachsen: Thallwitz`) [container]
-      - text: Wachau (`Rittergüter und Schlösser im Königreiche Sachsen: Wachau (Leipzig)`) [container]
-      - text: Gnandstein (`Rittergüter und Schlösser im Königreiche Sachsen: Gnandstein`) [container]
-      - text: Pomsen (`Rittergüter und Schlösser im Königreiche Sachsen: Pomsen`) [container]
+    - text: H1 (`Album der Rittergüter und Schlösser im Königreiche Sachsen III. Section/H1`) [container]
+    - text: H2 (`Album der Rittergüter und Schlösser im Königreiche Sachsen III. Section/H2`) [container]
+    - text: H3 (`Album der Rittergüter und Schlösser im Königreiche Sachsen III. Section/H3`) [container]
+    - text: H4 (`Album der Rittergüter und Schlösser im Königreiche Sachsen III. Section/H4`) [container]
+    - text: H5 (`Album der Rittergüter und Schlösser im Königreiche Sachsen III. Section/H5`) [container]
+    - text: H6 (`Album der Rittergüter und Schlösser im Königreiche Sachsen III. Section/H6`) [container]
+    - text: H8 (`Album der Rittergüter und Schlösser im Königreiche Sachsen III. Section/H8`) [container]
+    - text: H9 (`Album der Rittergüter und Schlösser im Königreiche Sachsen III. Section/H9`) [container]
+    - text: H10 (`Album der Rittergüter und Schlösser im Königreiche Sachsen III. Section/H10`) [container]
+    - text: H11 (`Album der Rittergüter und Schlösser im Königreiche Sachsen III. Section/H11`) [container]
+    - text: H12 (`Album der Rittergüter und Schlösser im Königreiche Sachsen III. Section/H12`) [container]
     - … 764 more
 1. `Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes`: linked, collection, 3 parts, 0 missing, order single, proofread
     - front: Adrian Ludwig Richter, Maler und Radierer. Verzeichnis seines gesamten graphischen Werkes

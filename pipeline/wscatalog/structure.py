@@ -25,8 +25,9 @@ def parent_titles(title: str, strict: bool = False) -> list[str]:
     Implementation choice: a slash inside unclosed parentheses or brackets is
     part of the name, not a subpage separator (de "X (Die Gartenlaube 1871/17)").
     With strict=True (used when no ancestor page exists), a slash with a space
-    on either side or between digits is punctuation too (de "Etatsjahr
-    1885/86.", "vom 8./9. December", "Bartkram / Darinnen").
+    on either side, between digits or after a one-letter word is punctuation
+    too (de "Etatsjahr 1885/86.", "vom 8./9. December", "Bartkram / Darinnen",
+    en "a/k/a").
     """
     out, depth = [], 0
     for i, ch in enumerate(title):
@@ -38,6 +39,8 @@ def parent_titles(title: str, strict: bool = False) -> list[str]:
             if strict:
                 a, b = title[i - 1], title[i + 1]
                 if a == " " or b == " " or ((a.isdigit() or a == ".") and b.isdigit()):
+                    continue
+                if len(title[:i].rsplit(" ", 1)[-1]) == 1:     # "a/k/a", "c/o"
                     continue
             out.append(title[:i])
     return out[::-1]
@@ -636,6 +639,14 @@ class Resolver:
         if len(idxs) == 1 and None not in idxs and all(self.nodes[k].scan_from is not None for k in kids):
             n.children = sorted(kids, key=lambda k: (self.nodes[k].scan_from, natural_key(k)))
             n.order_source = "scan"
+            return
+        # Implementation choice: children from several scan files (volumes)
+        # that all have a scan position follow the files in natural order,
+        # then the scan position (en The Wealth of Nations, 1902).
+        if all(self.nodes[k].scan_from is not None and self.nodes[k].index for k in kids):
+            n.children = sorted(kids, key=lambda k: (natural_key(self.nodes[k].index),
+                                                     self.nodes[k].scan_from, natural_key(k)))
+            n.order_source = "scan-volumes"
             return
         # Implementation choice: when no source covers all children but the
         # TOC lists at least half of them, the listed ones keep the TOC order

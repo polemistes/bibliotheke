@@ -578,9 +578,11 @@ class Survey:
             "of the root always, other titles only in linked or mixed works and on TOC-like pages.",
             "- Junk rules (cleanup or deletion template, placeholder, under 300 bytes) apply to "
             "works without scan pages and without any quality signal.",
-            "- Order (step 1c): when no source covers all children but the TOC lists at least "
-            "half, the listed children keep the TOC order and the rest follow in natural order "
-            "(`toc-partial`), so that collections are not shown alphabetically (WS§2 rule 3).",
+            "- Order (step 1c), after the plan's sources: children from several scan files that "
+            "all have a scan position follow the files in natural order, then the position "
+            "(`scan-volumes`); else, when the TOC lists at least half of the children, they keep "
+            "the TOC order and the rest follow in natural order (`toc-partial`); natural order "
+            "reads roman numerals. So collections are not shown alphabetically (WS§2 rule 3).",
             "- Rule 3: a TOC page is marked as one (de `HERKUNFT = off`) or is its Index's own "
             "book; \"reached from it by the prev/next chain\" is read as: the member's chain "
             "starts at the TOC page or its prev or next page is listed on the same TOC page.",
