@@ -14,6 +14,7 @@ once the owner has set the thresholds (STATUS.md).
 | `structure.py` | exclusions and resolution into works and parts (5.2 steps 1–1h) |
 | `quality.py` | tiers, completeness, hard exclusions (5.4) |
 | `survey.py` | `report/{wiki}-structure.md` (5.2 step 0) |
+| `../wp1a/` | one-off measurements behind the owner's decisions of 2026-11-01 (`report/wp1a-decisions.md`) |
 
 ```sh
 python3 -m venv .venv && .venv/bin/pip install -e pipeline

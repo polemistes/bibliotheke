@@ -634,6 +634,34 @@ templates on 178,000 pages, most at 100 % or validated.
    30-text random sample, junk-rule yields, missing-page counts, and the
    size of the default view.
 
+## 11. Decisions after the survey (owner, 2026-11-01)
+
+The WP1a survey (`report/{wiki}-structure.md`) left nine items for the
+owner (STATUS.md of 2026-10-31). Each was measured on the cached extracts
+and decided on 2026-11-01; the full record, with the evidence, is
+`report/wp1a-decisions.md`. In short:
+
+1. `show_unknown_by_default`: is true, en true, de false, fr false; de
+   `{{Zeitschrift}}` bibliography pages are hard-excluded.
+2. `parts_cap` stays 2,000 (section 8 item 4 confirmed); the measured en
+   size (about 18 MB gzipped, 67 MB raw) is accepted; `parts.index_ref` is
+   an integer into `works.index_titles` and `display_title` is NULL when it
+   equals the last title segment; the suffix encoding is deferred.
+3. A work over `reference_threshold` without an Index type is `reference`
+   only when its children have no chain or TOC order.
+4. Rule 3 (section 4 step 2) is extended on de: headerless, statusless
+   pages listed by exactly one TOC-like page are its members; a root with
+   a header and an Index listing three such pages is TOC-like. `Hantzsch:`
+   joins the excluded prefixes (section 8 item 6).
+5. The WP1 acceptance figures of section 9 are amended to the measured
+   values (Diktsamling 4 parts; no default view about 470 works).
+6. A faulty Index progress code excludes a work only when none of its
+   pages is proofread.
+7. Coverage (10.3) counts only pages that no other work transcludes and
+   tolerates 3 untranscluded pages; the 95 % threshold stays.
+8. Section 8 item 9 stands: no page-title chapter rule.
+9. The implementation choices of the reports' section 13 are accepted.
+
 ## Appendix: how the evidence was gathered
 
 Live checks on 2026-10-31 through the WP0 helper (`pipeline/wp0/wmhttp.py`,

@@ -277,6 +277,11 @@ Confirm specifics against the live wikis in WP0, but this is the shape.
   `Zedler:`, `Boetticher:`, `Haan:` and others; the WP1a survey lists every
   colon prefix shared by ≥ 100 root pages to complete the list. A colon
   alone excludes nothing: `Woher das Sprichwort: …` is a text.)
+  (WP1a, 2026-11-01, report/wp1a-decisions.md item 4: the survey added only
+  `Hantzsch:`. The other prefixes shared by ≥ 100 root pages are books
+  stored page by page (`Allgemeines Deutsches Kommersbuch:47`) and Merian's
+  *Topographia* volumes, whose root pages list them; they are grouped under
+  those roots by the rule-3 extension of 5.2 step 1b.)
   (F§2.4) Orphan subpage trees exist (subpages whose root page is missing).
   (WS, 2026-10-31, WS§4 step 6: they become virtual roots, above, instead
   of making the top-most existing ancestor the work.)
@@ -338,8 +343,10 @@ page level and Wikidata badges. The policy built on these signals is in 5.4.)
   (`Progreso`) and da (`Status`: F/V/K); it and no use free text; sv, de,
   fi, is have none. en codes as corrected in WP0 (F§5): `T` all validated,
   `V` to be validated, `C` to be proofread (complete but unproofread);
-  `MS`, `OCR`, `L` (es `L dañado`) mean a faulty or missing text layer;
-  `X` a missing pagelist. no's Index pages also carry `Malform`
+  `MS`, `OCR`, `L` (es `L dañado`) mean a faulty or missing text layer
+  (WP1a, 2026-11-01: the codes are often stale, en `Cane (Toomer)` carries
+  `L` with 244 proofread pages, so they exclude a work only when none of
+  its pages is proofread, 5.4); `X` a missing pagelist. no's Index pages also carry `Malform`
   (NB/NN/ND/NO), the best source for the nb/nn sub-facet (3.1).
 - **Incompleteness**: en `{{incomplete}}` (2,758 pages), no
   `{{ufullstendig}}`, de `unvollständig`; red links in a work's TOC
@@ -498,6 +505,15 @@ always reach a text even if the catalog lags.
        `Type`, is not a versions page) **and** shares that page's `index`
        or is reached from it by the prev/next chain. This catches members
        whose header lacks a container link.
+       (WP1a, 2026-11-01, report/wp1a-decisions.md item 4, config
+       `headerless_toc_members`, on by default only for de: a page with
+       no header template and no status that is listed by exactly one
+       TOC-like page is its member regardless of Index or chain, and a
+       root page with a header and an Index that lists at least three
+       such pages counts as TOC-like. de stores some books page by page
+       under a colon prefix, and Merian's *Topographia* roots name the
+       series in `HERKUNFT`, not `off`; on de a headerless root page
+       cannot be a text of its own, step 1.)
     4. Otherwise the page is a work of its own.
     A prev/next chain alone never merges root pages into one work (two
     root-page volumes with `HERKUNFT = off` stay two works in v1), and rule
@@ -525,7 +541,13 @@ always reach a text even if the catalog lags.
     `collection`; a single text → `poem`, `article`, … from categories and
     header type); the Wikidata and category mappings of step 3 stay as
     further sources. A work with more than `reference_threshold` (2,000)
-    parts and no Index type is `reference`.
+    parts and no Index type is `reference` (WP1a, 2026-11-01,
+    report/wp1a-decisions.md item 3: only when its root's children have no
+    reading-order signal, order `natural` or `toc-partial`; a prev/next
+    chain or a covering TOC marks a periodical or collection, en *Popular
+    Science Monthly*, the *Nicene and Post-Nicene Fathers*, is *Íslenzkar
+    þjóðsögur og æfintýri*). Display titles: a colon prefix shared by at
+    least three siblings is the book's name and is stripped.
 1f. **Virtual roots**: the work's `page_title` is the missing title,
     `is_virtual = 1`, `entry_title` = the first child in reading order; display title
     from the common prefix, cleaned of volume suffixes; author and year
@@ -541,7 +563,10 @@ always reach a text even if the catalog lags.
    (WS, 2026-10-31, WS§5.1–5.2: now from the resolution: `part_count`
    (existing parts; 1 for a single-page work), `text_count`,
    `missing_part_count`, `bytes_total`. Works over `parts_cap` (2,000,
-   confirmed after the survey, WS§8 item 4) and reference works get
+   confirmed after the survey, WS§8 item 4; WP1a, 2026-11-01,
+   report/wp1a-decisions.md item 2: measured on en at 341,000 rows, about
+   18 MB gzipped and 67 MB raw SQLite with the encoding of 5.3; a cap of
+   500 would save 2.7 MB) and reference works get
    `parts_in_catalog = 0` and carry counts only.)
 3. **Metadata merge** (priority order; record `*_source` for each):
    title (display title from page_props `displaytitle`, else page title),
@@ -601,7 +626,7 @@ CREATE TABLE works(
   complete INTEGER NOT NULL,         -- 1 unless a rule in 5.4 says otherwise
   incomplete_reason TEXT,            -- template | missing-parts | missing-pages | index-progress | coverage
   missing_page_count INTEGER NOT NULL DEFAULT 0,
-  coverage REAL,                     -- transcluded / existing text pages of the Index, when applicable
+  coverage REAL,                     -- transcluded / text pages of the Index that no other work transcludes (WP1a), when applicable
   own_translation INTEGER NOT NULL DEFAULT 0,
   description TEXT,
   cover_url TEXT,
@@ -611,12 +636,15 @@ CREATE TABLE parts(
   work_id INTEGER NOT NULL, ord INTEGER NOT NULL,   -- reading order, 0-based, depth-first
   depth INTEGER NOT NULL, parent_ord INTEGER,       -- tree
   page_title TEXT NOT NULL,                         -- exact title; '#anchor' never stored
-  display_title TEXT NOT NULL,
+  display_title TEXT,                               -- (WP1a) NULL when it equals the last segment of page_title
   kind TEXT NOT NULL,                               -- volume | chapter | text | front | toc
   searchable INTEGER NOT NULL DEFAULT 0,
-  bytes INTEGER, scan_from INTEGER, scan_to INTEGER, index_title TEXT,
+  bytes INTEGER, scan_from INTEGER, scan_to INTEGER,
+  index_ref INTEGER,                                -- (WP1a) position of the part's Index in works.index_titles
   quality TEXT, quality_pages TEXT, complete INTEGER,
   PRIMARY KEY(work_id, ord));
+  -- (WP1a, 2026-11-01, report/wp1a-decisions.md item 2: index_ref and the NULL display_title
+  -- replace index_title TEXT and display_title NOT NULL; en 19.5 -> 18.3 MB gzipped, 83 -> 67 MB raw)
 CREATE INDEX parts_title ON parts(page_title);      -- open-by-URL, link rewriting
 CREATE TABLE aliases(alias_title TEXT PRIMARY KEY, work_id INTEGER NOT NULL, ord INTEGER);
   -- redirects to a work or a part; used by search and open-by-URL
@@ -667,11 +695,21 @@ an unfinished collection keeps its standing.
 0`; Index progress is `MS`/`OCR`/`L`/`X`; or the work is the Index's book
 and covers under 95 % of that Index's text pages. Otherwise `complete = 1`
 (unknown completeness counts as complete, since nothing says otherwise).
+(WP1a, 2026-11-01, report/wp1a-decisions.md item 7: coverage counts only
+the Index's text pages that no other work transcludes, so texts bound
+together in one scan do not count against each other, and up to
+`coverage_slack` (3) untranscluded pages are tolerated, so a missing title
+page does not make a work incomplete; `coverage_min` stays 0.95. fr went
+from 700 to 305 works incomplete by coverage alone.)
 
 **Hard exclusions** (pipeline, into `excluded` with the reason): the work
 has no part with text; all referenced scan pages are missing or at level 0;
-its Index progress says the source is faulty; or a junk marker applies
-(cleanup or deletion template, under 300 bytes, placeholder). Everything
+its Index progress says the source is faulty (WP1a, 2026-11-01, item 6: only
+when none of its pages is at level 3 or 4; en kept 127 of 141 such works,
+fr 50 of 109); or a junk marker applies (cleanup or deletion template, under
+300 bytes, placeholder; WP1a, item 1: a bibliography page, a single root
+whose only header is a `bibliography_templates` template such as de
+`{{Zeitschrift}}`, without scans or status, 2,029 on de). Everything
 else enters the catalog with its flags.
 
 **App defaults** (WS§10.6): the default filter is `quality IN (validated,
@@ -679,7 +717,8 @@ proofread)`, plus `unknown` where the wiki's manifest sets
 `show_unknown_by_default`, and `complete = 1`. no shows unknown works by
 default (after the junk rules, labelled "Not verified against a scan"); for
 every other wiki the owner sets `show_unknown_by_default` from the WP1a
-survey. Filter chips, off by default and also reachable from Settings:
+survey (WP1a, 2026-11-01, report/wp1a-decisions.md item 1: is `true`, en
+`true`, de `false`, fr `false`). Filter chips, off by default and also reachable from Settings:
 "Include texts not yet proofread", "Include incomplete works", "Include
 unverified texts". Search collapses hidden matches into one row ("n more
 texts hidden by your quality filter"); nothing disappears silently. Labels
@@ -732,11 +771,14 @@ structure:
   parts_cap: 2000
   reference_threshold: 2000
   whole_text_subpages: []               # fr: [Texte entier]
+  headerless_toc_members: false         # de: true (WP1a, 2026-11-01, 5.2 step 1b rule 3)
 # Quality markers and the app default (WS§10): show_unknown_by_default
 # (no: true, owner decision WS§10.8; other wikis set by the owner from the
-# survey), the status parameter (de: BEARBEITUNGSSTAND), text-quality,
+# survey: is true, en true, de false, fr false, WP1a 2026-11-01), the status
+# parameter (de: BEARBEITUNGSSTAND), text-quality,
 # incomplete, junk (no: opprydning, slett, sletting) and own-translation
-# markers (no: oversetter = Wikikilden).
+# markers (no: oversetter = Wikikilden); WP1a adds bibliography_templates
+# (de: [Zeitschrift]), coverage_min (0.95) and coverage_slack (3).
 ```
 Start with configs for: no, en, fr, de, it, sv, da, fi, is, es, mul. Other
 wikis run with a generic default config (Wikidata-only metadata) and still
@@ -1032,23 +1074,30 @@ on an emulator; locator restores to the same sentence after re-pagination.
   report exists for the five wikis; the eyeball samples for patterns A, B,
   D and E are correct for at least 27 of 30; the owner has set the
   thresholds of WS§8 and each wiki's `show_unknown_by_default` from the
-  numbers.
+  numbers. (Done 2026-11-01: the owner's nine decisions and their evidence
+  are in report/wp1a-decisions.md.)
 - Implement sections 5.1–5.6. Start with `no` and `is` (small), then `en`.
 - CI workflow producing manifest + catalogs.
 Acceptance: `make catalog WIKI=no` produces a catalog where ≥ 90 % of works
 have an author, ≥ 60 % have a year, and the coverage report prints; FTS query
 "Ibsen" returns Ibsen's works; `excluded` table explains every exclusion.
-(WS, 2026-10-31, WS§9) Also: `Der Sagenschatz des Königreichs Sachsen` is
-one work with about 990 parts in TOC order; `Diktsamling` is one work with 9
-parts, 116 missing, incomplete; `Ved Rundarne (1864)` is found by search as
-a text of `Diktsamling`; `Die Heimath in der neuen Welt` is one virtual-root
-work with three volumes; `Ozymandias` finds the Hutchinson text (and any
-other edition on en); `Käthe` is flagged `oversized`; `Kinder und
-Hausmärchen` (the editions overview) is not a work and `Kinder- und
-Haus-Märchen Band 1 (1857)` is; the en catalog grows by no more than the
-agreed budget (WS§5.2); the default view of the no catalog holds about
-1,500 works and none of them is raw OCR; the `excluded` table names every
-hard exclusion.
+(WS, 2026-10-31, WS§9; figures amended by WP1a, 2026-11-01,
+report/wp1a-decisions.md item 5) Also: `Der Sagenschatz des Königreichs
+Sachsen` is one work with 1,001 parts in chain order; `Diktsamling` is one
+work with 4 parts (the 5 other existing TOC targets belong to other
+editions by rule 2), 116 missing, incomplete; `Ved Rundarne (1864)` is
+found by search as a text of `Diktsamling`; `Die Heimath in der neuen
+Welt` is one virtual-root work with three volumes; `Ozymandias` finds the
+Hutchinson text (and any other edition on en); `Käthe` is flagged
+`oversized`; `Kinder und Hausmärchen` (the editions overview) is not a
+work and `Kinder- und Haus-Märchen Band 1 (1857)` is; `Topographia
+Hassiae` is one work of about 200 texts and `Allgemeines Deutsches
+Kommersbuch:47` is a part, not a work; *Popular Science Monthly* is a
+collection, not a reference work; the en parts table stays within the
+measured budget (about 18 MB gzipped plus 3 MB of `parts_fts` at
+`parts_cap` 2,000); the default view of the no catalog holds about 470
+works and 2,400 texts and none of them is raw OCR; the `excluded` table
+names every hard exclusion.
 
 ### WP2 — App skeleton: catalog, browse, search, work detail (3 weeks)
 - First-run wiki selection and catalog download; browse facets; offline FTS;
@@ -1167,3 +1216,9 @@ text (versions pages, de `{{Andere Version}}`, Wikidata P629/P747, the it
 `Opera:` namespace); "also in" memberships of a text in a second work; a
 lookup feature for reference works (WP8); merging root-page volumes that
 are chained only by prev/next (revisit with the WP1a survey's counts).
+(WP1a, 2026-11-01, report/wp1a-decisions.md) Also later: the suffix
+encoding of `parts.page_title` (halves the raw parts table, complicates
+open-by-URL); a title regex for reference works typed book or untyped
+(*The New International Encyclopædia*, lexica under 2,000 parts); ranking
+search hits whose page title is a chapter label below texts with a title of
+their own.
