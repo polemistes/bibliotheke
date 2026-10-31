@@ -21,6 +21,7 @@ Python 3.12+ package for PLAN.md section 5: per-wiki SQLite catalogs
 | `acceptance.py` | PLAN.md WP1 acceptance checks on the built catalogs |
 | `survey.py` | structure survey `report/{wiki}-structure.md` (5.2 step 0) |
 | `../wp1a/` | one-off measurements behind the owner's decisions of 2026-11-01 (`report/wp1a-decisions.md`) |
+| `../wp1/` | one-off measurements behind the owner's decisions after the first build (`report/wp1-decisions.md`) and the sv sample script |
 
 ```sh
 make venv                      # .venv with the package and pytest

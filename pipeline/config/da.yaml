@@ -24,7 +24,7 @@ disambiguation_templates: [Flertydig, Disambig]
 versions_templates: [Udgaver]
 other_versions_templates: [Udgave]
 quality:
-  show_unknown_by_default: null      # not surveyed
+  show_unknown_by_default: true      # owner decision 2026-11-01 (WP1 item 3): hymns by Grundtvig and Ingemann, Andersen; 112 works without
   index_type_fields: []
   index_progress_fields: [status]
   index_progress_values: {F: validated, V: proofread, K: unproofread}   # F§5 / docs/wp0/index-progress.json

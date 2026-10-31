@@ -18,7 +18,7 @@ Generated 2026-11-01 by `python -I -m wscatalog.catalog is` from the dump of 202
 
 ## Default view (PLAN.md 5.4)
 
-Validated or proofread, complete, not `reference`: **5 works** (60 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 246 works (241 texts). `show_unknown_by_default` is `true`, so the wiki picker shows 246.
+Validated or proofread, complete, not `reference` or `document`: **5 works** (60 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 246 works (241 texts). `show_unknown_by_default` is `true` (from the config), so the wiki picker shows 246. Hidden by type from that view: reference 0, document 0.
 
 | tier | works | complete |
 |---|---|---|
@@ -40,7 +40,7 @@ Incomplete by reason: missing-parts 4.
 
 ## Catalog file
 
-`is.sqlite.gz`: 0.12 MB gzipped, 0.5 MB raw, sha256 `e152d007ff2dc2f783892af81b3c80462ddfbfb50f3c4b0bd4f835fa6ae3e1b3`. Rows: works 250, parts 1,688, parts_fts 263, aliases 1, authors 52, excluded 13.
+`is.sqlite.gz`: 0.11 MB gzipped, 0.5 MB raw, sha256 `051b8314d4824ab26a3d1a3b368cf0858822ea0c556c319e804d4ba68c77d048`. Rows: works 250, parts 1,688, parts_fts 263, aliases 1, authors 52, excluded 13.
 
 Works without catalog parts (over `parts_cap` 2,000, or `reference`): 1: `Íslenzkar þjóðsögur og æfintýri` (3,058).
 

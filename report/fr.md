@@ -1,6 +1,6 @@
 # fr.wikisource: catalog coverage report
 
-Generated 2026-11-01 by `python -I -m wscatalog.catalog fr` from the dump of 20261001 (PLAN.md 5.2 steps 3–8; config `pipeline/config/fr.yaml`). Build took 55 s on the cached extract.
+Generated 2026-11-01 by `python -I -m wscatalog.catalog fr` from the dump of 20261001 (PLAN.md 5.2 steps 3–8; config `pipeline/config/fr.yaml`). Build took 59 s on the cached extract.
 
 ## Summary
 
@@ -18,7 +18,7 @@ Generated 2026-11-01 by `python -I -m wscatalog.catalog fr` from the dump of 202
 
 ## Default view (PLAN.md 5.4)
 
-Validated or proofread, complete, not `reference`: **31,190 works** (120,121 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 31,301 works (120,173 texts). `show_unknown_by_default` is `false`, so the wiki picker shows 31,190.
+Validated or proofread, complete, not `reference` or `document`: **30,924 works** (120,015 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 31,031 works (120,067 texts). `show_unknown_by_default` is `false` (from the config), so the wiki picker shows 30,924. Hidden by type from that view: reference 84, document 263.
 
 | tier | works | complete |
 |---|---|---|
@@ -31,8 +31,8 @@ Incomplete by reason: missing-parts 1,202, missing-pages 847, coverage 305, inde
 
 ## Types, structures, genres, languages
 
-- type: article 11,997, other 11,062, book 9,633, poem 2,312, periodical-issue 2,166, collection 1,632, play 608, document 577, reference 255
-- type source: index 12,594, wikidata 12,025, default 11,062, genre 3,067, structure 1,168, template 326
+- type: article 11,997, other 11,039, book 9,633, poem 2,312, periodical-issue 2,166, collection 1,632, play 608, document 577, reference 278
+- type source: index 12,594, wikidata 12,025, default 11,039, genre 3,090, structure 1,168, template 326
 - structure: single 28,462, subpages 9,717, virtual 841, linked 815, mixed 407
 - genre: periodical 12,958, poetry 3,204, novel 2,194, drama 1,003, history 990, short-story 950, essay 750, science 521, philosophy 472, legal-government 405, memoir-biography 359, song-hymn 337, letters 330, reference 307, travel 224, folklore 192, speech 171, religious 127, children 116
 - language: fr 39,937, en 82, de 36, grc 34, zh 34, la 32, ru 25, br 14, pl 12, it 7, es 7, ar 4, cs 4, nl 3, pt 2, xno 1, hu 1, he 1, sv 1, ro 1, da 1, cy 1, el 1, az 1
@@ -40,7 +40,7 @@ Incomplete by reason: missing-parts 1,202, missing-pages 847, coverage 305, inde
 
 ## Catalog file
 
-`fr.sqlite.gz`: 28.61 MB gzipped, 99.7 MB raw, sha256 `b903a5f4c2e928b41eced6beefb514939b015be9b2610934296553d6c73f8e4c`. Rows: works 40,242, parts 262,973, parts_fts 150,866, aliases 44,421, authors 9,041, excluded 13,594.
+`fr.sqlite.gz`: 27.79 MB gzipped, 98.7 MB raw, sha256 `2805e1ff093bba3bafa464697c290a849942e4176776b0708a167df428ad5f39`. Rows: works 40,242, parts 262,973, parts_fts 150,866, aliases 44,421, authors 9,041, excluded 13,594.
 
 Works without catalog parts (over `parts_cap` 2,000, or `reference`): 196: `L’Encyclopédie` (41,677), `Dictionnaire de Trévoux/6e édition, 1771` (31,513), `Petit dictionnaire de la langue française (1836)` (23,874), `Dictionnaire des patois romans de la Moselle` (21,247), `Petit dictionnaire de la langue française (1860)` (20,406), `Correspondance de Voltaire` (10,426), `Petit dictionnaire de la langue française (Hocquart, 1831)` (7,352), `Grand dictionnaire universel du XIXe siècle` (5,834), `Dictionnaire liégeois-français (Forir)` (4,534), `Le Littré de la Grand’Côte/3e éd., 1903` (4,250), `Encyclopédie, ou Dictionnaire raisonné des sciences, des arts et des métiers` (3,858), `Dictionnaire infernal/6e éd., 1863` (3,826).
 

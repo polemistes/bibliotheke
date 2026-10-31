@@ -7,9 +7,10 @@ Last updated: 2026-11-01
 
 ## Current package
 
-**WP0 — Spike and verification: complete.** Current: **WP1 — Catalog
-pipeline**. WP1 follows `docs/work-structure-plan.md` (decided by the owner
-on 2026-10-31):
+**WP0 — Spike and verification: complete. WP1 — Catalog pipeline:
+complete** (acceptance met; the CI workflow has not run yet because the
+repository has no remote). Next: **WP2 — App skeleton**. WP1 followed
+`docs/work-structure-plan.md` (decided by the owner on 2026-10-31):
 
 - [x] 1. Planning files committed as written
 - [x] 2. Section 9 edits applied to PLAN.md, marked "(WS, 2026-10-31 …)"
@@ -19,36 +20,53 @@ on 2026-10-31):
       `report/wp1a-review.md`. **The owner's decisions of 2026-11-01** on
       the nine open items are in `report/wp1a-decisions.md` (with the
       measurements behind them); the rule changes they called for are
-      implemented and the reports regenerated (numbers below). PLAN.md
+      implemented and the reports regenerated. PLAN.md
       carries the amended passages marked "(WP1a, 2026-11-01 …)";
       `docs/work-structure-plan.md` section 11 summarises the decisions.
 - [x] 4. WP1 pipeline, schema version 2 (PLAN.md 5.1–5.6): built and
       committed for the 11 configured wikis plus a generic config for every
       other open Wikisource; catalogs built locally from the 2026-10-01
-      dumps (results below). **Acceptance: 17 of 19 checks pass; the two
-      that do not are decisions for the owner** (below). The CI workflow
-      has not run yet: the repository has no remote.
+      dumps (results below).
+- [x] 5. **The owner's decisions of 2026-11-01 on the six items the first
+      build left open** are in `report/wp1-decisions.md` (with the
+      measurements; scripts in `pipeline/wp1/`): the author target counted
+      over the default view, `parts_fts.rowid = parts.id`,
+      `show_unknown_by_default` for the six unsurveyed wikis and a derived
+      flag for the generic config, `document` hidden from the default
+      view, the es dictionary entries typed `reference`, the sv
+      textless-TOC-root rule, the de re-sample accepted. Implemented,
+      catalogs rebuilt, PLAN.md amended "(WP1, 2026-11-01 …)",
+      `docs/work-structure-plan.md` section 12. **Acceptance: 19 of 19
+      checks pass.**
 
-## WP1 results (dumps of 2026-10-01, built 2026-11-01)
+## WP1 results (dumps of 2026-10-01, rebuilt 2026-11-01 after the decisions)
 
 `make catalog WIKI=no` (or `python -I -m wscatalog.build no`) writes
 `pipeline/out/{wiki}.sqlite.gz`, `report/{wiki}.md` (coverage report) and
 `pipeline/out/manifest.json`. All 11 catalogs build in 8 minutes from the
-cached dumps; en, fr and de take most of it.
+cached dumps; en, fr and de take most of it. "Default view" = validated or
+proofread (plus unknown where the flag is true), complete, not `reference`
+or `document` (PLAN.md 5.4); it is the wiki picker's number.
 
-| wiki | works | gzipped | validated | proofread | unproofread | unknown | default view | `show_unknown_by_default` |
-|---|---|---|---|---|---|---|---|---|
-| no | 1,069 | 1.0 MB | 73 | 466 | 307 | 223 | 685 | true |
-| is | 250 | 0.1 MB | 1 | 6 | 0 | 243 | 246 | true |
-| de | 17,388 | 8.0 MB | 9,833 | 6,999 | 266 | 290 | 14,732 | false |
-| fr | 40,242 | 28.6 MB | 11,257 | 21,282 | 7,583 | 120 | 31,190 | false |
-| en | 55,987 | 36.2 MB | 6,997 | 12,615 | 2,817 | 33,558 | 50,924 | true |
-| it | 17,604 | 8.5 MB | 7,763 | 6,946 | 2,895 | 0 | 14,582 | (unset → false) |
-| sv | 6,761 | 2.2 MB | 536 | 1,793 | 93 | 4,339 | 2,281 | (unset → false) |
-| da | 1,168 | 0.4 MB | 22 | 104 | 203 | 839 | 112 | (unset → false) |
-| fi | 13,282 | 1.7 MB | 0 | 36 | 12 | 13,234 | 34 | (unset → false) |
-| es | 17,792 | 5.3 MB | 564 | 1,878 | 405 | 14,945 | 2,282 | (unset → false) |
-| mul | 28,582 | 5.7 MB | 128 | 680 | 316 | 27,458 | 774 | (unset → false) |
+| wiki | works | gzipped | validated | proofread | unproofread | unknown | default view | documents hidden | `show_unknown_by_default` |
+|---|---|---|---|---|---|---|---|---|---|
+| no | 1,069 | 0.9 MB | 73 | 466 | 307 | 223 | 618 | 67 | true |
+| is | 250 | 0.1 MB | 1 | 6 | 0 | 243 | 246 | 0 | true |
+| de | 17,388 | 7.9 MB | 9,833 | 6,999 | 266 | 290 | 10,140 | 4,571 | false |
+| fr | 40,242 | 27.8 MB | 11,257 | 21,282 | 7,583 | 120 | 30,924 | 263 | false |
+| en | 55,987 | 35.1 MB | 6,997 | 12,615 | 2,817 | 33,558 | 22,907 | 28,009 | true |
+| it | 17,604 | 8.3 MB | 7,763 | 6,946 | 2,895 | 0 | 14,038 | 544 | false (moot) |
+| sv | 6,580 | 2.2 MB | 536 | 1,793 | 93 | 4,158 | 6,420 | 3 | true |
+| da | 1,168 | 0.4 MB | 22 | 104 | 203 | 839 | 875 | 73 | true |
+| fi | 13,282 | 1.7 MB | 0 | 36 | 12 | 13,234 | 13,130 | 130 | true |
+| es | 17,786 | 5.2 MB | 564 | 1,878 | 405 | 14,939 | 12,591 | 2,616 | true |
+| mul | 28,582 | 5.6 MB | 128 | 680 | 316 | 27,458 | 28,138 | 2 | true |
+
+Against the first build of the same day: sv lost 181 works to the
+textless-TOC-root rule (15 collections, 204 texts; `report/sv-textless-toc-sample.md`),
+es lost the six `Proyecto:` pages and hides 1,916 dictionary entries typed
+`reference`; every wiki hides its documents from the default view; en is
+1.1 MB smaller from the sequential `parts_fts` rowid.
 
 Metadata coverage (share of works; sources in each `report/{wiki}.md`):
 
@@ -61,55 +79,42 @@ Metadata coverage (share of works; sources in each `report/{wiki}.md`):
 | it | 87.2 % | 91.6 % | 66.3 % | (not fetched) |
 
 it, sv, da, fi, es and mul were built without Wikidata (owner's decision,
-below), so their author, year and genre figures are lower bounds. en types
-29,118 works as `document` (court cases, acts, proclamations, executive
-orders, resolutions), 54 % of its default view.
+below), so their author, year and genre figures are lower bounds.
 
-**Acceptance (PLAN.md WP1, `python -I -m wscatalog.acceptance no de en`):**
-no: year 85.4 % ✓, "Ibsen" finds all 60 works by Ibsen ✓, `excluded`
-explains every exclusion ✓, `Diktsamling` 4 parts / 116 missing /
-incomplete ✓, `Ved Rundarne (1864)` found as a text of `Diktsamling` ✓,
-default view 470 works and 2,365 texts, none raw OCR ✓; **author 81.0 %
-(target 90 %) ✗**. de: Sagenschatz 1,001 parts ✓, Heimath virtual with
-three volumes ✓, Käthe oversized ✓, the KHM overview not a work ✓, KHM Band 1
-(1857) a work ✓, Topographia Hassiae 207 texts ✓, `Allgemeines Deutsches
-Kommersbuch:47` a part ✓, exclusions explained ✓. en: Ozymandias finds the
-Hutchinson text ✓, Popular Science Monthly a collection ✓, exclusions
-explained ✓; **parts budget: parts table 15.4 MB ✓ (budget about 18), but
-parts_fts 4.8 MB (budget about 3) ✗**, 20.1 MB together against 21.6 MB.
+**Acceptance (PLAN.md WP1, `python -I -m wscatalog.acceptance no de en`): 19
+of 19 pass.** no: author 95.3 % of the 425 works in the default view ✓ (81.0 %
+of all works; target counted over the default view since
+report/wp1-decisions.md item 1), year 85.4 % ✓, "Ibsen" finds all 60 works
+by Ibsen ✓, `excluded` explains every exclusion ✓, `Diktsamling` 4 parts /
+116 missing / incomplete ✓, `Ved Rundarne (1864)` found as a text of
+`Diktsamling` ✓, default view 425 works and 2,264 texts, none raw OCR ✓
+(figures amended, item 4). de: Sagenschatz 1,001 parts ✓, Heimath virtual
+with three volumes ✓, Käthe oversized ✓, the KHM overview not a work ✓, KHM
+Band 1 (1857) a work ✓, Topographia Hassiae 207 texts ✓, `Allgemeines
+Deutsches Kommersbuch:47` a part ✓, exclusions explained ✓. en: Ozymandias
+finds the Hutchinson text ✓, Popular Science Monthly a collection ✓,
+exclusions explained ✓, parts table 17.3 MB gzipped with both indexes and
+parts_fts 3.2 MB (budget about 18 + 3; item 2) ✓, 20.5 MB together.
 
-**Decisions for the owner** (WP1, 2026-11-01):
+**Decisions taken by the owner on 2026-11-01 after the first build**
+(details, evidence and the changes in `report/wp1-decisions.md`):
 
-1. **no author target.** 81.0 % of all no works have an author, 94.5 % of
-   the works in the default view. The rest are anonymous by nature: 62 folk
-   legends (`Sagn`), Eddic poems, court decisions, party programmes,
-   periodicals, typed-in songs. Count the target over the default view, or
-   accept 81 %?
-2. **en parts_fts size.** 1.6 MB over the measured 3 MB because the survey
-   measured it with rowids 1..n and empty `author_names`; the catalog uses
-   rowid = `work_id * 4096 + ord` (1.0 MB) and fills `author_names`
-   (0.6 MB). Options: accept (the parts table is 3 MB under its budget);
-   drop `author_names` from `parts_fts` (works_fts already has them); or use
-   `parts.rowid` as the FTS rowid (compact, but the app must never VACUUM
-   the catalog).
-3. **`show_unknown_by_default` for it, sv, da, fi, es, mul** (not
-   surveyed; unset means false). With unknown works hidden, fi shows 34 of
-   13,282 works, mul 774 of 28,582, es 2,282 of 17,792, sv 2,281 of 6,761.
-   The same question applies to the ~70 wikis on the generic config.
-4. **en documents in the default view.** en shows unknown works by default,
-   and 29,118 of its works are typed `document` (54 % of the default view).
-   Should the app's default type filter hide `document` the way it hides
-   `reference` (WP2)?
-5. **Collections still stored one work per page** (not grouped by the
-   decided rules; not in the acceptance cases): de *Tagebuch von Hans
-   Brass* (3,913 diary entries `TBHB …`) and the Codex Manesse songs (2,818,
-   container `Codex Manesse 25r` etc.); es *Diccionario de Arquitectura
-   Civil* (1,577 entries) and other dictionaries; sv collections of root
-   pages without an Index (`Fänrik Ståls sägner`). Leave for later, or add
-   rules?
-6. **de rule-3 re-sample: 25 of 30** (below the 27 that WP1a required for
-   patterns A, B, D, E); the grouping is right in all 30, the five errors
-   are order, tree position and classification (`report/wp1a-review.md`).
+1. The no author target counts the works of the default view (95 %); the
+   works without an author are anonymous by nature.
+2. `parts.id INTEGER PRIMARY KEY` is the `parts_fts` rowid; author names
+   stay in `parts_fts` (the sparse rowid cost 1.2 MB on en, the names 0.2).
+3. `show_unknown_by_default`: sv, da, fi, es, mul true, it false; a wiki on
+   the generic config derives the flag (true when unknown works outnumber
+   the validated and proofread ones); the manifest says which.
+4. The app's default type filter hides `document` as it hides `reference`,
+   with an "Include documents" chip (WP2); the picker count excludes them.
+5. es dictionary entries typed `reference`; `Proyecto:` pages excluded; sv
+   root-page collections grouped by the textless-TOC-root rule
+   (`structure.textless_toc_roots`, sv only, 15 of 15 in the sample); the
+   de Brass diary and the es dictionary grouping deferred (PLAN.md section
+   13); the Codex Manesse songs stay separate poems on purpose.
+6. The de rule-3 re-sample (25 of 30, grouping right in all 30) accepted;
+   the two ordering fixes ticketed.
 
 ## WP1a results (dumps of 2026-10-01; regenerated 2026-11-01 after the decisions)
 
@@ -208,8 +213,10 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## In progress
 
-- Nothing running. WP1 is built; waiting for the owner on the six
-  decisions above. Next after them: WP2 (app skeleton).
+- Nothing running. WP1 is complete; next: WP2 (app skeleton). The app
+  joins `parts` on `id` for `parts_fts` hits, reads
+  `show_unknown_by_default` from the manifest, and hides `reference` and
+  `document` by default (PLAN.md 5.4, 6.1).
 - **Owner's decision (2026-11-01): Wikidata for it, sv, da, fi, es and mul
   is fetched by the first CI run**, not locally (it would take about an
   hour; the bottleneck is Wikidata's server time and maxlag, not the
@@ -227,6 +234,8 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
   extracts in `pipeline/cache/extract/`, Wikidata items (no, is, de, fr, en)
   in `pipeline/cache/wikidata.sqlite`, catalogs in `pipeline/out/` (all
   gitignored). Survey report: `.venv/bin/python -I -m wscatalog.survey no`.
+  WP1 decision measurements: `pipeline/wp1/` (README there); the sv sample
+  regenerates with `.venv/bin/python -I pipeline/wp1/textless_toc_sample.py sv`.
   Resolution, quality and metadata rules can be rerun on the cached
   extract; `build` re-extracts when the dump or `EXTRACT_VERSION` changes.
 - CI: `.github/workflows/catalog.yml` (weekly; publishes to the release
@@ -264,15 +273,31 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 - **Ordering defects left** (de re-sample): TOC order takes each link's
   first occurrence, so example pages linked in a root's editorial notes
   come first (Kommersbuch, Hertz); periodical articles without a chain or
-  TOC are in natural order (*Annalen der Physik*).
+  TOC are in natural order (*Annalen der Physik*). Ticketed with the WP1
+  decisions (item 6, PLAN.md section 13), together with the numbered town
+  entries read as chapters (*Topographia Helvetiae*).
 - **de residue after decision 4** (unchanged in WP1): 290 unknown works remain, mostly colon
   pages of small page-by-page books whose root is listed by two TOC pages
   (`Ausführliche Vorschriften zur Blitz-Ableitung …:Seite N`) and the
   `Ersch-Gruber:` lexicon entries (30 pages, below the 100-page prefix
   survey threshold).
-- **en unknown works** (33,558, shown by default): typed in WP1; 21,132 of
-  them are `document` (licence and case templates, law and court
-  categories). See decision 4 above.
+- **Documents hidden by default** (decided 2026-11-01, wp1-decisions item
+  4): en 28,009, de 4,571, es 2,616, it 544, fi 130, da 73, no 67. Speeches
+  go with them (the taxonomy types genre speech as `document`, and en's
+  presidential addresses carry PD-USGov anyway); WP2 may keep them visible
+  with "document and genre not speech" (2,989 en works). en's unknown
+  works outside documents: 12,096.
+- **Deferred groupings** (wp1-decisions item 5, PLAN.md section 13): the
+  de *Tagebuch von Hans Brass* (3,913 diary pages, 1,932 of them in the
+  default view, no root page; needs category-defined virtual collections
+  and category listing in the app); the es dictionary entries (typed
+  `reference` for now) and *Almagesto* chapters (rule-3 extension for es,
+  where a TOC-like page may itself be a part with a header or a headerless
+  root listing colon-prefixed pages); seven fi virtual roots with a single
+  leaf child from titles with slashed dates. On sv, members without a
+  prev/next chain or a shared Index stay separate works (*Dikter
+  (Löwenhjelm)* 9 of 86, *Där ute. Skisser.* 1 of 12). The Codex Manesse
+  songs stay separate poems by decision.
 - The prototype uses plain Views, not Compose (Compose was not in the Gradle
   cache); the production reader uses Compose `AndroidView` + `pointerInput`
   as planned.

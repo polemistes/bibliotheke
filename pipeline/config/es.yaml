@@ -22,10 +22,11 @@ structure:
   toc_fields: [notas]
   summary_templates: [Índice auxiliar]
   chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(primer|primero|primera|segundo|segunda|tercer|tercero|tercera|cuarto|cuarta|quinto|quinta|sexto|sexta|séptimo|séptima|octavo|octava|noveno|novena|décimo|décima|último|última)\s+)?(capítulo|libro|parte|acto|escena|canto|tomo|volumen|carta|tratado|sección|jornada)\b|^(prólogo|prefacio|introducción|índice|epílogo|apéndice|dedicatoria)\b'
+exclude_title_prefixes: ["Proyecto:"]   # project pages in ns0 (PLAN.md 5.2 step 1; six pages, WP1 item 5)
 disambiguation_templates: [Desambiguación]
 versions_templates: [Ediciones]
 quality:
-  show_unknown_by_default: null      # not surveyed
+  show_unknown_by_default: true      # owner decision 2026-11-01 (WP1 item 3): Calderón, Altamirano, Pereda, Manrique, decrees; dictionary entries are typed reference
   index_type_fields: []
   index_progress_fields: [progreso]
   # docs/wp0/index-progress.json: T done, V to validate, C to proofread, P

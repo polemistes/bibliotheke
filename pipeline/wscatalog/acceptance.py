@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 """WP1 acceptance checks (PLAN.md section 9, WP1, with the figures amended
-on 2026-11-01) against the built catalogs in pipeline/out/.
+on 2026-11-01 by report/wp1a-decisions.md item 5 and report/wp1-decisions.md
+items 1, 2 and 4) against the built catalogs in pipeline/out/.
 
     python -I -m wscatalog.acceptance no de en
 """
@@ -34,12 +35,16 @@ def work(con, title):
 
 def table_gz(con, tables: list[str], extra: tuple[str, ...] = ()) -> int:
     """Gzipped size of an SQLite file holding only these tables (and the
-    statements in extra, e.g. their indexes), measured as the WP1a survey did."""
+    statements in extra, e.g. their indexes), measured as the WP1a survey
+    did. The tables are created with their own schema, so an INTEGER
+    PRIMARY KEY stays the rowid (CREATE TABLE AS would store it twice)."""
     mem = sqlite3.connect(":memory:")
     src = con.execute("PRAGMA database_list").fetchall()[0][2]
     mem.execute("ATTACH DATABASE ? AS src", (src,))
     for t in tables:
-        mem.execute(f"CREATE TABLE {t} AS SELECT * FROM src.{t}")
+        sql = con.execute("SELECT sql FROM sqlite_master WHERE name = ?", (t,)).fetchone()[0]
+        mem.execute(sql)
+        mem.execute(f"INSERT INTO {t} SELECT * FROM src.{t}")
     for sql in extra:
         mem.execute(sql)
     mem.commit()
@@ -47,6 +52,11 @@ def table_gz(con, tables: list[str], extra: tuple[str, ...] = ()) -> int:
     size = len(gzip.compress(mem.serialize(), 9))
     mem.close()
     return size
+
+
+# The app's default view (PLAN.md 5.4): validated or proofread, complete, not
+# a reference work or a document (decided 2026-11-01, wp1-decisions item 4).
+DEFAULT_VIEW = "quality IN ('validated','proofread') AND complete = 1 AND type NOT IN ('reference','document')"
 
 
 # ---- checks: (description, function(con) -> (ok, detail)) -----------------
@@ -57,13 +67,14 @@ def share_with(con, sql_works: str) -> tuple[int, int]:
 
 
 def chk_author(con):
+    """Decided 2026-11-01 (wp1-decisions item 1): the target counts the
+    works of the default view; the works without an author outside it are
+    anonymous by nature (folk legends, Eddic poems, court decisions)."""
     k, n = share_with(con, "SELECT count(DISTINCT work_id) FROM work_authors WHERE role = 'author'")
-    dv = one(con, "SELECT count(*) FROM works WHERE quality IN ('validated','proofread') AND complete = 1 "
-                  "AND type != 'reference'")
+    dv = one(con, f"SELECT count(*) FROM works WHERE {DEFAULT_VIEW}")
     dva = one(con, "SELECT count(DISTINCT w.id) FROM works w JOIN work_authors a ON a.work_id = w.id "
-                   "AND a.role = 'author' WHERE quality IN ('validated','proofread') AND complete = 1 "
-                   "AND type != 'reference'")
-    return k >= 0.9 * n, f"{k / n:.1%} of {n:,} works (default view: {dva / dv:.1%} of {dv:,})"
+                   f"AND a.role = 'author' WHERE {DEFAULT_VIEW}")
+    return dva >= 0.9 * dv, f"default view: {dva / dv:.1%} of {dv:,} works; all works: {k / n:.1%} of {n:,}"
 
 
 def chk_year(con):
@@ -123,9 +134,8 @@ def chk_part_of(title, root):
 def chk_text_found(query, root=None, title_contains=None):
     def f(con):
         rows = con.execute(
-            "SELECT w.page_title, p.page_title FROM parts_fts f JOIN works w ON w.id = f.rowid >> 12 "
-            "JOIN parts p ON p.work_id = w.id AND p.ord = (f.rowid & 4095) "
-            "WHERE parts_fts MATCH ?", (query,)).fetchall()
+            "SELECT w.page_title, p.page_title FROM parts_fts f JOIN parts p ON p.id = f.rowid "
+            "JOIN works w ON w.id = p.work_id WHERE parts_fts MATCH ?", (query,)).fetchall()
         ok = any((root is None or r[0] == root) and (title_contains is None or title_contains in r[1])
                  for r in rows)
         return ok, f"{len(rows)} text hits: " + "; ".join(f"{p} in {w}" for w, p in rows[:4])
@@ -143,8 +153,7 @@ def chk_virtual_volumes(title, n):
 
 
 def chk_no_default_view(con):
-    rows = con.execute("SELECT text_count, quality_pages FROM works WHERE quality IN ('validated','proofread') "
-                       "AND complete = 1 AND type != 'reference'").fetchall()
+    rows = con.execute(f"SELECT text_count, quality_pages FROM works WHERE {DEFAULT_VIEW}").fetchall()
     texts = sum(r[0] for r in rows)
     ocr = 0
     for _, qp in rows:
@@ -152,7 +161,9 @@ def chk_no_default_view(con):
         tp = sum(c.get(k, 0) for k in "1234")
         if tp and (c.get("1", 0) + c.get("2", 0)) > 0.1 * tp:
             ocr += 1
-    ok = abs(len(rows) - 470) <= 25 and abs(texts - 2400) <= 240 and ocr == 0
+    # Figures amended 2026-11-01 (wp1-decisions item 4): 470 works and 2,400
+    # texts before documents (laws, court decisions) left the default view.
+    ok = abs(len(rows) - 425) <= 25 and abs(texts - 2300) <= 230 and ocr == 0
     return ok, f"{len(rows):,} works, {texts:,} texts, {ocr} with more than 10 % unproofread pages"
 
 
@@ -162,13 +173,13 @@ def chk_en_budget(con):
     rows = one(con, "SELECT count(*) FROM parts")
     return parts <= 20e6 and fts <= 3.5e6, \
         (f"parts {rows:,} rows, {parts / 1e6:.1f} MB gzipped with its index; parts_fts "
-         f"{fts / 1e6:.1f} MB gzipped (sparse rowids work_id*4096+ord and author names; the "
-         f"survey measured 1..n rowids and empty author names); together {(parts + fts) / 1e6:.1f} MB")
+         f"{fts / 1e6:.1f} MB gzipped (rowid = parts.id, author names filled; wp1-decisions item 2); "
+         f"together {(parts + fts) / 1e6:.1f} MB")
 
 
 CHECKS = {
     "no": [
-        ("≥ 90 % of works have an author", chk_author),
+        ("≥ 90 % of the works in the default view have an author", chk_author),
         ("≥ 60 % of works have a year", chk_year),
         ("FTS query \"Ibsen\" returns Ibsen's works", chk_ibsen),
         ("`excluded` explains every exclusion", chk_excluded),
@@ -176,7 +187,7 @@ CHECKS = {
          chk_work("Diktsamling", part_count=4, missing_part_count=116, complete=0)),
         ("`Ved Rundarne (1864)` found as a text of `Diktsamling`",
          chk_text_found('"Ved Rundarne"', root="Diktsamling")),
-        ("default view about 470 works and 2,400 texts, none raw OCR", chk_no_default_view),
+        ("default view about 425 works and 2,300 texts, none raw OCR", chk_no_default_view),
     ],
     "de": [
         ("`excluded` explains every exclusion", chk_excluded),

@@ -28,7 +28,7 @@ disambiguation_templates: [Disambigua]
 versions_templates: []
 other_versions_templates: [AltraVersione]
 quality:
-  show_unknown_by_default: null      # not surveyed (WP1a covered no, is, de, fr, en)
+  show_unknown_by_default: false     # owner decision 2026-11-01 (WP1 item 3): moot, every it work has a tier
   textquality_templates: [Qualità]
   textquality_params: [avz]          # SAL 25/50/75/100 % (PLAN.md 3.4)
   index_type_fields: []

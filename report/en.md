@@ -18,7 +18,7 @@ Generated 2026-11-01 by `python -I -m wscatalog.catalog en` from the dump of 202
 
 ## Default view (PLAN.md 5.4)
 
-Validated or proofread, complete, not `reference`: **18,042 works** (113,176 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 50,924 works (133,073 texts). `show_unknown_by_default` is `true`, so the wiki picker shows 50,924.
+Validated or proofread, complete, not `reference` or `document`: **11,270 works** (109,624 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 22,907 works (121,128 texts). `show_unknown_by_default` is `true` (from the config), so the wiki picker shows 22,907. Hidden by type from that view: reference 14, document 28,009.
 
 | tier | works | complete |
 |---|---|---|
@@ -31,8 +31,8 @@ Incomplete by reason: template 1,796, missing-parts 1,056, missing-pages 255, co
 
 ## Types, structures, genres, languages
 
-- type: document 29,118, other 11,747, book 10,271, poem 2,281, collection 1,643, periodical-issue 436, article 311, play 149, reference 31
-- type source: template 28,437, default 11,747, index 8,161, structure 3,754, genre 3,040, wikidata 848
+- type: document 29,118, other 11,733, book 10,271, poem 2,281, collection 1,643, periodical-issue 436, article 311, play 149, reference 45
+- type source: template 28,437, default 11,733, index 8,161, structure 3,754, genre 3,054, wikidata 848
 - structure: single 37,661, subpages 17,468, virtual 716, mixed 85, linked 57
 - genre: legal-government 26,095, speech 3,095, poetry 2,435, short-story 1,448, novel 1,402, periodical 675, song-hymn 643, letters 416, essay 372, children 325, memoir-biography 322, religious 246, drama 230, science 206, philosophy 176, folklore 124, reference 114, travel 109, history 45
 - language: en 54,999, zh 469, fr 105, grc 70, de 64, ru 62, la 49, cs 32, ja 21, pl 14, ang 12, ko 11, es 8, it 8, nl 7, sa 6, ga 5, uk 5, ar 4, da 4, pt 4, he 3, sv 3, fa 3, gd 3
@@ -40,7 +40,7 @@ Incomplete by reason: template 1,796, missing-parts 1,056, missing-pages 255, co
 
 ## Catalog file
 
-`en.sqlite.gz`: 36.19 MB gzipped, 120.6 MB raw, sha256 `9b27eb0d2ebb89779e5092530099ea09bcdc860679b6210bbc42fa042bc45bd8`. Rows: works 55,987, parts 343,680, parts_fts 199,166, aliases 75,075, authors 15,165, excluded 16,110.
+`en.sqlite.gz`: 35.13 MB gzipped, 119.4 MB raw, sha256 `a3fdc8a655c383fe1d96ac6dbcdd530ad3789659ddcef03cb08433e46dad6ab7`. Rows: works 55,987, parts 343,680, parts_fts 199,166, aliases 75,075, authors 15,165, excluded 16,110.
 
 Works without catalog parts (over `parts_cap` 2,000, or `reference`): 41: `Alumni Oxonienses: the Members of the University of Oxford, 1715-1886` (63,225), `1911 Encyclopædia Britannica` (37,420), `Dictionary of National Biography, 1885-1900` (28,089), `Catholic Encyclopedia (1913)` (11,629), `The New International Encyclopædia` (10,866), `An Etymological Dictionary of the German Language` (9,961), `Popular Science Monthly` (8,174), `Men-at-the-Bar` (7,448), `Nicene and Post-Nicene Fathers: Series II` (7,099), `Ante-Nicene Fathers` (5,616), `Alumni Oxonienses: the Members of the University of Oxford, 1500-1714` (5,317), `Nicene and Post-Nicene Fathers: Series I` (5,287).
 

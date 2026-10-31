@@ -662,6 +662,31 @@ and decided on 2026-11-01; the full record, with the evidence, is
 8. Section 8 item 9 stands: no page-title chapter rule.
 9. The implementation choices of the reports' section 13 are accepted.
 
+## 12. Decisions after the first build (owner, 2026-11-01)
+
+The first WP1 build left six items (STATUS.md of 2026-11-01); each was
+measured on the built catalogs and decided the same day. The record, with
+the evidence, is `report/wp1-decisions.md`; scripts in `pipeline/wp1/`. In
+short:
+
+1. The no author target (section 9) counts the works of the default view:
+   94.5 % against 81 % of all works, the rest anonymous by nature.
+2. `parts_fts.rowid` is `parts.id`, a sequential integer primary key
+   (section 5.2): the sparse rowid cost 1.2 MB gzipped on en, the author
+   names 0.2 MB; the author names stay.
+3. `show_unknown_by_default`: sv, da, fi, es, mul true, it false; a wiki
+   on the generic config derives it (true when unknown works outnumber the
+   validated and proofread ones).
+4. The app's default type filter hides `document` as it hides `reference`
+   (section 10.6), with an "Include documents" chip; the picker count
+   excludes them.
+5. es dictionary entries are typed `reference`; sv root-page collections
+   hang on their textless TOC root (`textless_toc_roots`, a rule-3
+   variant of section 4 step 2); the de Brass diary and the es
+   dictionary grouping are deferred; the Codex Manesse songs stay separate.
+6. The de rule-3 re-sample (25 of 30) is accepted: the grouping is right
+   in all 30; the ordering defects are ticketed.
+
 ## Appendix: how the evidence was gathered
 
 Live checks on 2026-10-31 through the WP0 helper (`pipeline/wp0/wmhttp.py`,

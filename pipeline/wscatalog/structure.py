@@ -497,6 +497,15 @@ class Resolver:
                 # three headerless pages is their TOC (de `Topographia Hassiae`:
                 # HERKUNFT names the series, not `off`).
                 toc_like = sum(1 for t in targets if t in nodes and headerless(t)) >= 3
+            if (not toc_like and cfg.textless_toc_roots and sum(1 for t in targets if t in nodes) >= 3
+                    and self.own_text(n) < 50):
+                # A root page with no text of its own that lists at least three
+                # existing pages is their TOC (decided 2026-11-01,
+                # report/wp1-decisions.md item 5, sv only): sv's Titel template
+                # names the page itself as container, so rule 1 never attaches
+                # the poems of `Fänrik Ståls sägner`, and the root was dropped
+                # as `no-text`. Membership still needs the chain or a shared Index.
+                toc_like = True
             if toc_like:
                 self.toc_like.add(n.title)
                 for t in targets:

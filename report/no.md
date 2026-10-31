@@ -18,7 +18,7 @@ Generated 2026-11-01 by `python -I -m wscatalog.catalog no` from the dump of 202
 
 ## Default view (PLAN.md 5.4)
 
-Validated or proofread, complete, not `reference`: **470 works** (2,312 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 685 works (2,353 texts). `show_unknown_by_default` is `true`, so the wiki picker shows 685.
+Validated or proofread, complete, not `reference` or `document`: **425 works** (2,264 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 618 works (2,304 texts). `show_unknown_by_default` is `true` (from the config), so the wiki picker shows 618. Hidden by type from that view: reference 0, document 67.
 
 | tier | works | complete |
 |---|---|---|
@@ -31,8 +31,8 @@ Incomplete by reason: missing-parts 88, missing-pages 17, template 6, coverage 5
 
 ## Types, structures, genres, languages
 
-- type: book 433, other 337, poem 162, document 76, collection 35, periodical-issue 12, article 11, play 3
-- type source: index 425, default 337, genre 178, template 57, structure 54, wikidata 18
+- type: book 433, other 336, poem 162, document 76, collection 35, periodical-issue 12, article 11, play 3, reference 1
+- type source: index 425, default 336, genre 179, template 57, structure 54, wikidata 18
 - structure: single 639, subpages 281, linked 82, mixed 35, virtual 32
 - genre: poetry 180, novel 86, folklore 78, legal-government 74, history 48, memoir-biography 34, song-hymn 29, essay 27, short-story 26, religious 19, periodical 12, speech 10, drama 9, children 7, travel 6, philosophy 6, letters 4, reference 4, science 4, other 2
 - language: nb 572, no 329, nn 146, ru 9, da 4, de 3, fr 3, sv 2, en 1
@@ -40,7 +40,7 @@ Incomplete by reason: missing-parts 88, missing-pages 17, template 6, coverage 5
 
 ## Catalog file
 
-`no.sqlite.gz`: 0.95 MB gzipped, 3.0 MB raw, sha256 `ae36c3cab54cbb658d0436fd2def24f94aeaaa159bebcf262d6e1852c47732bb`. Rows: works 1,069, parts 10,729, parts_fts 6,465, aliases 422, authors 327, excluded 184.
+`no.sqlite.gz`: 0.93 MB gzipped, 2.9 MB raw, sha256 `2a05d72800f5579faecff2b0bb1f9afb6ed6b0151bbfa131e6a2f713bcf884f4`. Rows: works 1,069, parts 10,729, parts_fts 6,465, aliases 422, authors 327, excluded 184.
 
 ## Exclusions
 

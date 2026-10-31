@@ -23,7 +23,7 @@ structure:
 disambiguation_templates: [Täsmennyssivu]
 versions_templates: []
 quality:
-  show_unknown_by_default: null      # not surveyed
+  show_unknown_by_default: true      # owner decision 2026-11-01 (WP1 item 3): 99.6 % of fi works are typed-in; 34 works without
   index_type_fields: []
   index_progress_fields: []          # none on fi (3.4)
 metadata:

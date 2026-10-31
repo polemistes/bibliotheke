@@ -20,10 +20,14 @@ structure:
   current_params: [current]
   toc_fields: [kommentar, anmärkningar]
   chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(första|andra|tredje|fjärde|femte|sjätte|sjunde|åttonde|nionde|tionde|sista)\s+)?(kapitel|kapitlet|akt|akten|del|delen|bok|boken|band|brev|sång|sången|scen)\b|^(förord|inledning|företal|efterskrift|innehåll)\b'
+  # {{Titel}}'s first parameter is the page's own title, so collections of
+  # root pages (Fänrik Ståls sägner, Frithiofs saga, Gluntarne) hang on their
+  # TOC-only root and the prev/next chain (decided 2026-11-01, WP1 item 5)
+  textless_toc_roots: true
 disambiguation_templates: [Förgreningssida, Förgrening]
 versions_templates: []
 quality:
-  show_unknown_by_default: null      # not surveyed
+  show_unknown_by_default: true      # owner decision 2026-11-01 (WP1 item 3): hymns and poems by Wallin, Runeberg, Tegnér, Bellman; 2 stubs in a sample of 30
   index_type_fields: []
   index_progress_fields: []          # sv Indexes have no progress field (3.4)
 metadata:

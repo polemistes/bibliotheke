@@ -48,13 +48,14 @@ def test_catalog(no_ext, tmp_path):
     assert dict(q("SELECT page_title, reason FROM excluded")) == {
         "Brand": "disambiguation", "Søppel": "junk-template"}
     assert q("SELECT alias_title, ord FROM aliases") == [("Terje Vigen", 2)]
-    # search: works by author, texts by title (parts_fts rowid = work_id * stride + ord)
+    # search: works by author, texts by title (parts_fts rowid = parts.id)
     hits = q("SELECT w.page_title FROM works_fts JOIN works w ON w.id = works_fts.rowid "
              "WHERE works_fts MATCH 'Ibsen' ORDER BY w.page_title")
     assert [h[0] for h in hits] == ["Digte", "Peer Gynt"]
     row = q("SELECT rowid FROM parts_fts WHERE parts_fts MATCH 'vidderne'")
     wid = q("SELECT id FROM works WHERE page_title = 'Digte'")[0][0]
-    assert row == [(wid * catalog.PARTS_ROWID_STRIDE + 1,)]
+    assert row == q("SELECT id FROM parts WHERE work_id = ? AND ord = 1", wid)
+    assert meta["show_unknown_source"] == "config"
     authors = q("SELECT name, sort_name, author_page_title FROM authors")
     assert ("Henrik Ibsen", "Ibsen, Henrik", "Forfatter:Henrik Ibsen") in authors
     # gzip and sha256 match the file

@@ -1,6 +1,6 @@
 # it.wikisource: catalog coverage report
 
-Generated 2026-11-01 by `python -I -m wscatalog.catalog it` from the dump of 20261001 (PLAN.md 5.2 steps 3–8; config `pipeline/config/it.yaml`). Build took 7 s on the cached extract.
+Generated 2026-11-01 by `python -I -m wscatalog.catalog it` from the dump of 20261001 (PLAN.md 5.2 steps 3–8; config `pipeline/config/it.yaml`). Build took 8 s on the cached extract.
 
 ## Summary
 
@@ -18,7 +18,7 @@ Generated 2026-11-01 by `python -I -m wscatalog.catalog it` from the dump of 202
 
 ## Default view (PLAN.md 5.4)
 
-Validated or proofread, complete, not `reference`: **14,582 works** (29,224 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 14,582 works (29,224 texts). `show_unknown_by_default` is `false`, so the wiki picker shows 14,582.
+Validated or proofread, complete, not `reference` or `document`: **14,038 works** (29,007 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 14,038 works (29,007 texts). `show_unknown_by_default` is `false` (from the config), so the wiki picker shows 14,038. Hidden by type from that view: reference 1, document 544.
 
 | tier | works | complete |
 |---|---|---|
@@ -40,7 +40,7 @@ Incomplete by reason: missing-pages 268, missing-parts 10.
 
 ## Catalog file
 
-`it.sqlite.gz`: 8.49 MB gzipped, 31.6 MB raw, sha256 `3a7f6da28ade5c1b4fe2dd918478d5710baa756d2a1bd73a5980f5274e78594d`. Rows: works 17,604, parts 88,176, parts_fts 35,245, aliases 8,795, authors 3,286, excluded 480.
+`it.sqlite.gz`: 8.34 MB gzipped, 31.4 MB raw, sha256 `3131b88a795118effcb6fb6b65bf33f7b6d6685eb52dacfe9965ee6d5c5d5b1e`. Rows: works 17,604, parts 88,176, parts_fts 35,245, aliases 8,795, authors 3,286, excluded 480.
 
 Works without catalog parts (over `parts_cap` 2,000, or `reference`): 2: `Pensieri di varia filosofia e di bella letteratura` (4,588), `Donne e Uomini della Resistenza` (3,058).
 

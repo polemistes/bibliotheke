@@ -32,11 +32,14 @@ from .wikidata import LANGS, Wikidata
 SCHEMA_VERSION = 2
 OUT_DIR = PIPELINE_DIR / "out"
 REPORT_DIR = PIPELINE_DIR.parent / "report"
-# parts_fts is contentless; its rowid addresses the part (parts has a
-# composite key): rowid = work_id * 4096 + ord, so work_id = rowid >> 12 and
-# ord = rowid & 4095 (ord stays below 4096 because parts_cap is 2,000).
-PARTS_ROWID_STRIDE = 4096
+# parts_fts is contentless; its rowid is parts.id, a sequential INTEGER
+# PRIMARY KEY (decided 2026-11-01, report/wp1-decisions.md item 2: the sparse
+# rowid work_id * 4096 + ord cost 1.2 MB gzipped on en, and VACUUM never
+# renumbers an explicit integer primary key, so the id is safe to store).
 DEFAULT_TIERS = ("validated", "proofread")
+# Types the app's default filter hides (PLAN.md 5.4; `document` decided
+# 2026-11-01, report/wp1-decisions.md item 4).
+HIDDEN_TYPES = ("reference", "document")
 HUMAN = "Q5"
 
 SCHEMA = """
@@ -75,6 +78,7 @@ CREATE TABLE works(
   author_source TEXT, language_source TEXT, genre_source TEXT, type_source TEXT
 );
 CREATE TABLE parts(
+  id INTEGER PRIMARY KEY,
   work_id INTEGER NOT NULL, ord INTEGER NOT NULL,
   depth INTEGER NOT NULL, parent_ord INTEGER,
   page_title TEXT NOT NULL,
@@ -84,7 +88,7 @@ CREATE TABLE parts(
   bytes INTEGER, scan_from INTEGER, scan_to INTEGER,
   index_ref INTEGER,
   quality TEXT, quality_pages TEXT, complete INTEGER,
-  PRIMARY KEY(work_id, ord));
+  UNIQUE(work_id, ord));
 CREATE TABLE aliases(alias_title TEXT PRIMARY KEY, work_id INTEGER NOT NULL, ord INTEGER);
 CREATE VIRTUAL TABLE parts_fts USING fts5(display_title, work_title, author_names, content='',
   tokenize='unicode61 remove_diacritics 2');
@@ -138,6 +142,16 @@ class Build:
         self.meta: dict[str, Meta] = {w.root.title: self.merger.merge(w, self.q[w.root.title][0])
                                       for w in self.works}
         self.ids = self.work_ids()
+        tiers = Counter(self.q[w.root.title][0].tier for w in self.works)
+        if self.cfg.show_unknown_by_default is None:
+            # Decided 2026-11-01 (report/wp1-decisions.md item 3): a wiki whose
+            # config leaves the flag unset (the generic config) shows unknown
+            # works when they outnumber the validated and proofread ones.
+            self.show_unknown = tiers["unknown"] > tiers["validated"] + tiers["proofread"]
+            self.show_unknown_source = "derived"
+        else:
+            self.show_unknown = bool(self.cfg.show_unknown_by_default)
+            self.show_unknown_source = "config"
         self.elapsed = time.time() - t0
         self.dump_date = next((p.split("-")[1] for p in self.ext.get("dump", ()) if "-" in p), "")
 
@@ -163,7 +177,7 @@ class Build:
     def default_view(self, unknown: bool) -> list:
         tiers = DEFAULT_TIERS + (("unknown",) if unknown else ())
         return [w for w in self.works if self.q[w.root.title][0].tier in tiers
-                and self.q[w.root.title][0].complete and self.meta[w.root.title].type != "reference"]
+                and self.q[w.root.title][0].complete and self.meta[w.root.title].type not in HIDDEN_TYPES]
 
     # ---- step 6 ------------------------------------------------------------
     def write(self, out_dir: Path = OUT_DIR) -> dict:
@@ -200,8 +214,8 @@ class Build:
                     generated_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                     dump_date=self.dump_date, pipeline_version=APP_VERSION,
                     namespaces=json.dumps(ns, ensure_ascii=False),
-                    show_unknown_by_default=json.dumps(bool(self.cfg.show_unknown_by_default)),
-                    parts_rowid_stride=PARTS_ROWID_STRIDE)
+                    show_unknown_by_default=json.dumps(self.show_unknown),
+                    show_unknown_source=self.show_unknown_source)
         con.executemany("INSERT INTO meta VALUES (?,?)", [(k, str(v)) for k, v in meta.items()])
 
     def write_works(self, con) -> None:
@@ -250,13 +264,14 @@ class Build:
                 n = p.node
                 display = n.display or n.title
                 stored = None if display in (n.title, n.title.rsplit("/", 1)[-1]) else display
-                rows.append((wid, p.ord, p.depth, p.parent_ord, n.title, stored, p.kind,
+                pid = self.counts["parts"] + len(rows) + 1        # parts.id, sequential
+                rows.append((pid, wid, p.ord, p.depth, p.parent_ord, n.title, stored, p.kind,
                              int(p.searchable), res.node_bytes(n), n.scan_from, n.scan_to,
                              idxs.index(n.index) if n.index in idxs else None,
                              pq.tier, pages_json(pq.pages), int(pq.complete)))
                 if p.searchable:
-                    fts.append((wid * PARTS_ROWID_STRIDE + p.ord, display, m.display_title, author_names))
-            con.executemany("INSERT INTO parts VALUES (" + ",".join("?" * 15) + ")", rows)
+                    fts.append((pid, display, m.display_title, author_names))
+            con.executemany("INSERT INTO parts VALUES (" + ",".join("?" * 16) + ")", rows)
             con.executemany("INSERT INTO parts_fts(rowid, display_title, work_title, author_names) "
                             "VALUES (?,?,?,?)", fts)
             self.counts["parts"] += len(rows)
@@ -305,14 +320,14 @@ class Build:
     def manifest_entry(self) -> dict:
         s = sites.site(self.wiki) or {}
         tiers = Counter(self.q[w.root.title][0].tier for w in self.works)
-        unknown = bool(self.cfg.show_unknown_by_default)
+        unknown = self.show_unknown
         return dict(code=self.wiki, dbname=self.cfg.dbname, domain=self.cfg.domain,
                     language=self.cfg.language, name=s.get("autonym") or self.wiki,
                     url=f"{self.wiki}.sqlite.gz", sha256=self.files["sha256"], size=self.files["gz"],
                     size_uncompressed=self.files["sqlite"], work_count=len(self.works),
                     generated_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                     dump_date=self.dump_date, schema_version=SCHEMA_VERSION,
-                    show_unknown_by_default=unknown,
+                    show_unknown_by_default=unknown, show_unknown_source=self.show_unknown_source,
                     tiers={t: tiers.get(t, 0) for t in ("validated", "proofread", "unproofread", "unknown")},
                     default_view_count=len(self.default_view(unknown)))
 

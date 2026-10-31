@@ -52,6 +52,12 @@ structure:                           # WS§5.3; resolution rules in PLAN.md 5.2 
   # header and an Index that lists >= 3 such pages counts as TOC-like
   # (de page-by-page books and Merian's Topographia volumes).
   headerless_toc_members: false
+  # A root page with no text of its own that lists >= 3 existing pages is
+  # TOC-like (decided 2026-11-01, report/wp1-decisions.md item 5; sv only):
+  # sv's Titel template names the page itself as container, so rule 1 cannot
+  # attach the poems of Fänrik Ståls sägner and the root died as no-text.
+  # Membership still needs the prev/next chain or a shared Index.
+  textless_toc_roots: false
   # TOC link texts that name nothing (display titles fall back to the title)
   navigation_link_texts: [hier, here, ici, her, här, qui, aquí, tästä, "->", "→", link, mehr, more]
 # Ordinal words by language: natural order reads them as numbers
@@ -100,8 +106,11 @@ metadata:                            # metadata merge (5.2 step 3)
   genre_categories: {}               # category (without namespace) -> genre key
   genre_category_patterns: []        # [regex, genre key]
   # type of a single-page work from its genre (Merger.work_type)
+  # reference: single-page dictionary entries stored as works (es `Árbol
+  # (DAC)`, 1,918 pages) are reference works, hidden from the default view
+  # (decided 2026-11-01, report/wp1-decisions.md item 5)
   genre_types: {poetry: poem, song-hymn: poem, drama: play, essay: article,
-                legal-government: document, speech: document}
+                legal-government: document, speech: document, reference: reference}
 exclude_title_prefixes: []
 disambiguation_templates: [disambiguation]
 versions_templates: [versions]
@@ -110,7 +119,10 @@ exclude_templates: []
 exclude_categories: []
 other_versions_templates: [other versions]   # pattern I on text pages
 quality:                             # WS§10, PLAN.md 5.4
-  show_unknown_by_default: null      # set by the owner from the WP1a survey
+  # Set by the owner per wiki (WP1a item 1; WP1 item 3). null: derived by
+  # the pipeline, true when unknown works outnumber the validated and
+  # proofread ones (decided 2026-11-01, report/wp1-decisions.md item 3).
+  show_unknown_by_default: null
   status_params: []
   status_values: {}
   textquality_templates: [TextQuality]

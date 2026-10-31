@@ -18,7 +18,7 @@ Generated 2026-11-01 by `python -I -m wscatalog.catalog de` from the dump of 202
 
 ## Default view (PLAN.md 5.4)
 
-Validated or proofread, complete, not `reference`: **14,732 works** (38,982 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 14,989 works (40,319 texts). `show_unknown_by_default` is `false`, so the wiki picker shows 14,732.
+Validated or proofread, complete, not `reference` or `document`: **10,140 works** (38,907 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 10,381 works (40,243 texts). `show_unknown_by_default` is `false` (from the config), so the wiki picker shows 10,140. Hidden by type from that view: reference 22, document 4,571.
 
 | tier | works | complete |
 |---|---|---|
@@ -31,8 +31,8 @@ Incomplete by reason: template 1,991, missing-parts 168, missing-pages 10.
 
 ## Types, structures, genres, languages
 
-- type: other 6,543, document 4,614, poem 4,186, article 1,039, collection 690, periodical-issue 134, book 130, play 50, reference 2
-- type source: default 6,543, genre 4,674, template 4,531, wikidata 833, structure 807
+- type: other 6,503, document 4,614, poem 4,186, article 1,039, collection 690, periodical-issue 134, book 130, play 50, reference 42
+- type source: default 6,503, genre 4,714, template 4,531, wikidata 833, structure 807
 - structure: single 16,434, linked 447, subpages 353, mixed 108, virtual 46
 - genre: legal-government 4,534, poetry 4,122, memoir-biography 4,003, history 818, periodical 455, essay 394, science 245, religious 227, short-story 200, song-hymn 176, folklore 162, letters 100, novel 89, speech 85, drama 57, reference 53, travel 38, philosophy 38, children 2
 - language: de 17,175, fr 156, en 26, la 8, grc 5, it 4, zh 3, ru 3, uk 2, cs 1, el 1, hu 1, pl 1, sv 1, ar 1
@@ -40,7 +40,7 @@ Incomplete by reason: template 1,991, missing-parts 168, missing-pages 10.
 
 ## Catalog file
 
-`de.sqlite.gz`: 8.03 MB gzipped, 26.5 MB raw, sha256 `ec2dc97b5385b47cf9104cc25f02d4539ea2445fa3563411c0143d0f244d87c0`. Rows: works 17,388, parts 61,243, parts_fts 52,475, aliases 3,312, authors 2,197, excluded 14,847.
+`de.sqlite.gz`: 7.85 MB gzipped, 26.3 MB raw, sha256 `a914e7781c3aadb6727a6537d073165c26a15d071969eebc868c9565ef37f493`. Rows: works 17,388, parts 61,243, parts_fts 52,475, aliases 3,312, authors 2,197, excluded 14,847.
 
 ## Exclusions
 

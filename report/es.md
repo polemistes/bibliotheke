@@ -1,52 +1,52 @@
 # es.wikisource: catalog coverage report
 
-Generated 2026-11-01 by `python -I -m wscatalog.catalog es` from the dump of 20261001 (PLAN.md 5.2 steps 3–8; config `pipeline/config/es.yaml`). Build took 4 s on the cached extract.
+Generated 2026-11-01 by `python -I -m wscatalog.catalog es` from the dump of 20261001 (PLAN.md 5.2 steps 3–8; config `pipeline/config/es.yaml`). Build took 5 s on the cached extract.
 
 ## Summary
 
 |  | works | sources |
 |---|---|---|
-| works in the catalog | 17,792 |  |
-| with an author | 44.6 % | none 9,863, header 7,474, index 209, wikidata 159, body 87 |
-| with a year | 27.5 % | none 12,898, header 1,831, category 1,783, index 646, wikidata-edition 632, wikidata-work 2 |
-| with a genre | 75.0 % | category 12,273, none 4,444, template 1,000, wikidata 74, type 1 |
-| with a quality tier (not unknown) | 16.0 % | unknown 14,945, proofread 1,878, validated 564, unproofread 405 |
-| with a Wikidata item | 70.1 % |  |
+| works in the catalog | 17,786 |  |
+| with an author | 44.6 % | none 9,857, header 7,474, index 209, wikidata 159, body 87 |
+| with a year | 27.5 % | none 12,892, header 1,831, category 1,783, index 646, wikidata-edition 632, wikidata-work 2 |
+| with a genre | 75.0 % | category 12,273, none 4,438, template 1,000, wikidata 74, type 1 |
+| with a quality tier (not unknown) | 16.0 % | unknown 14,939, proofread 1,878, validated 564, unproofread 405 |
+| with a Wikidata item | 70.2 % |  |
 | with a description | 4.0 % |  |
 | with a cover image | 14.1 % |  |
-| language other than the wiki's | 0.9 % | wiki 17,624, wikidata 168 |
+| language other than the wiki's | 0.9 % | wiki 17,618, wikidata 168 |
 
 ## Default view (PLAN.md 5.4)
 
-Validated or proofread, complete, not `reference`: **2,282 works** (6,127 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 17,129 works (13,588 texts). `show_unknown_by_default` is `false`, so the wiki picker shows 2,282.
+Validated or proofread, complete, not `reference` or `document`: **1,790 works** (6,121 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 12,591 works (13,502 texts). `show_unknown_by_default` is `true` (from the config), so the wiki picker shows 12,591. Hidden by type from that view: reference 1,916, document 2,616.
 
 | tier | works | complete |
 |---|---|---|
 | validated | 564 | 560 |
 | proofread | 1,878 | 1,722 |
 | unproofread | 405 | 333 |
-| unknown | 14,945 | 14,847 |
+| unknown | 14,939 | 14,841 |
 
 Incomplete by reason: missing-parts 240, missing-pages 88, index-progress 2.
 
 ## Types, structures, genres, languages
 
-- type: other 8,644, poem 4,355, document 2,626, book 950, collection 731, article 424, play 60, reference 1, periodical-issue 1
-- type source: default 8,644, genre 5,392, template 2,043, structure 1,682, wikidata 31
-- structure: single 16,093, subpages 1,322, linked 249, mixed 79, virtual 49
+- type: other 6,722, poem 4,355, document 2,626, reference 1,919, book 950, collection 729, article 424, play 60, periodical-issue 1
+- type source: genre 7,310, default 6,722, template 2,043, structure 1,680, wikidata 31
+- structure: single 16,089, subpages 1,322, linked 249, mixed 79, virtual 47
 - genre: poetry 4,137, reference 1,954, legal-government 1,849, history 1,212, short-story 1,021, speech 791, essay 492, novel 452, drama 356, song-hymn 353, folklore 338, memoir-biography 300, periodical 285, letters 129, religious 4, philosophy 1
-- language: es 17,635, en 60, zh 25, fr 22, la 13, grc 9, ru 7, cs 5, de 5, it 5, ar 1, ja 1, ro 1, el 1, ca 1, is 1
+- language: es 17,629, en 60, zh 25, fr 22, la 13, grc 9, ru 7, cs 5, de 5, it 5, ar 1, ja 1, ro 1, el 1, ca 1, is 1
 - century: 2. 1, 12. 1, 13. 2, 14. 1, 15. 4, 16. 44, 17. 301, 18. 158, 19. 2,046, 20. 2,065, 21. 271
 
 ## Catalog file
 
-`es.sqlite.gz`: 5.26 MB gzipped, 17.6 MB raw, sha256 `53602aaf3a58407c52ba2e499b5255603f14a03bc0e4737cfac8f27058b6e9d2`. Rows: works 17,792, parts 38,257, parts_fts 17,903, aliases 14,459, authors 1,551, excluded 3,138.
+`es.sqlite.gz`: 5.19 MB gzipped, 17.5 MB raw, sha256 `d6002a277a06d94fdd74e5501db5f179257dbb0a9b49dd3ab012ee8e10f9e9fa`. Rows: works 17,786, parts 38,255, parts_fts 17,901, aliases 14,455, authors 1,551, excluded 3,139.
 
 Works without catalog parts (over `parts_cap` 2,000, or `reference`): 1: `Sesiones de los Cuerpos Lejislativos de la República de Chile (1810-1845)` (3,595).
 
 ## Exclusions
 
-Step 1 (pages): disambiguation 734, versions 509, duplicate 1.
+Step 1 (pages): disambiguation 734, versions 509, reference-prefix 6, duplicate 1.
 
 Step 5 (works): no-text 1,816, under-300-bytes 51, no-text-pages 27.
 

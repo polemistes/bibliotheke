@@ -18,7 +18,7 @@ Generated 2026-11-01 by `python -I -m wscatalog.catalog fi` from the dump of 202
 
 ## Default view (PLAN.md 5.4)
 
-Validated or proofread, complete, not `reference`: **34 works** (79 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 13,260 works (233 texts). `show_unknown_by_default` is `false`, so the wiki picker shows 34.
+Validated or proofread, complete, not `reference` or `document`: **34 works** (79 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 13,130 works (233 texts). `show_unknown_by_default` is `true` (from the config), so the wiki picker shows 13,130. Hidden by type from that view: reference 0, document 130.
 
 | tier | works | complete |
 |---|---|---|
@@ -40,7 +40,7 @@ Incomplete by reason: missing-parts 12.
 
 ## Catalog file
 
-`fi.sqlite.gz`: 1.72 MB gzipped, 5.6 MB raw, sha256 `92a7cf27d811088dc5728ae7f7a210ebac181f97b6580f2f2160bd61dae7dc40`. Rows: works 13,282, parts 642, parts_fts 327, aliases 411, authors 912, excluded 1,164.
+`fi.sqlite.gz`: 1.72 MB gzipped, 5.6 MB raw, sha256 `8fe09ab211be26f7db7285c9a7811aceb396f5ace8023b07f67ea0bf1196e87f`. Rows: works 13,282, parts 642, parts_fts 327, aliases 411, authors 912, excluded 1,164.
 
 ## Exclusions
 

@@ -514,6 +514,14 @@ always reach a text even if the catalog lags.
        under a colon prefix, and Merian's *Topographia* roots name the
        series in `HERKUNFT`, not `off`; on de a headerless root page
        cannot be a text of its own, step 1.)
+       (WP1, 2026-11-01, report/wp1-decisions.md item 5, config
+       `textless_toc_roots`, on only for sv: a root page with no text of
+       its own that links at least three existing pages is TOC-like;
+       membership still needs the chain or a shared Index. sv's `Titel`
+       template names the page itself as container, so rule 1 never
+       attaches the poems of *Fänrik Ståls sägner* or *Frithiofs saga* and
+       their TOC-only roots were dropped as `no-text`; 15 collections,
+       204 texts, all 15 checked by eye in `report/sv-textless-toc-sample.md`.)
     4. Otherwise the page is a work of its own.
     A prev/next chain alone never merges root pages into one work (two
     root-page volumes with `HERKUNFT = off` stay two works in v1), and rule
@@ -591,7 +599,10 @@ always reach a text even if the catalog lags.
    templates and categories (`document_templates`, en `PD-USGov`,
    `USSCcase`, de `Gesetzestext`; decision 1 of 2026-11-01); Wikidata P31;
    Index type book; the resolution's book or collection; for a single page
-   its genre (poetry → poem, drama → play); else `other`. Description:
+   its genre (poetry → poem, drama → play; WP1, 2026-11-01,
+   report/wp1-decisions.md item 5: reference → `reference`, so the es
+   dictionary entries stored as root pages, `Árbol (DAC)`, 1,918 of them,
+   leave the default view); else `other`. Description:
    Wikidata in the wiki's language, the header's description (de
    `KURZBESCHREIBUNG`), Wikidata in English. A work whose Wikidata item is
    a human (P31 = Q5) is excluded as an author page (3.2). The Wikidata
@@ -620,7 +631,9 @@ always reach a text even if the catalog lags.
 8. **Manifest**: `manifest.json` listing every wiki: code, language name
    (autonym), url, sha256, size, work_count, generated_at, schema_version.
    (WS, 2026-10-31, WS§10.5) Also `show_unknown_by_default` (from the
-   wiki's config) and the work counts per tier.
+   wiki's config; WP1, 2026-11-01, report/wp1-decisions.md item 3: or
+   derived when the config leaves it unset, `show_unknown_source` says
+   which) and the work counts per tier.
    (WP1, 2026-11-01) Each entry also has `dbname`, `domain`, `language`,
    `size_uncompressed`, `dump_date`, `tiers` and `default_view_count` (the
    wiki picker's number, 5.4); `url` is relative to the manifest's own URL
@@ -669,6 +682,7 @@ CREATE TABLE works(
   rev_id INTEGER, touched TEXT
 );
 CREATE TABLE parts(
+  id INTEGER PRIMARY KEY,                           -- (WP1) sequential; the parts_fts rowid
   work_id INTEGER NOT NULL, ord INTEGER NOT NULL,   -- reading order, 0-based, depth-first
   depth INTEGER NOT NULL, parent_ord INTEGER,       -- tree
   page_title TEXT NOT NULL,                         -- exact title; '#anchor' never stored
@@ -678,9 +692,11 @@ CREATE TABLE parts(
   bytes INTEGER, scan_from INTEGER, scan_to INTEGER,
   index_ref INTEGER,                                -- (WP1a) position of the part's Index in works.index_titles
   quality TEXT, quality_pages TEXT, complete INTEGER,
-  PRIMARY KEY(work_id, ord));
+  UNIQUE(work_id, ord));
   -- (WP1a, 2026-11-01, report/wp1a-decisions.md item 2: index_ref and the NULL display_title
   -- replace index_title TEXT and display_title NOT NULL; en 19.5 -> 18.3 MB gzipped, 83 -> 67 MB raw)
+  -- (WP1, 2026-11-01, report/wp1-decisions.md item 2: the explicit id replaces PRIMARY KEY(work_id, ord);
+  -- same b-trees, the composite key stays unique, and VACUUM never renumbers an explicit integer key)
 CREATE INDEX parts_title ON parts(page_title);      -- open-by-URL, link rewriting
 CREATE TABLE aliases(alias_title TEXT PRIMARY KEY, work_id INTEGER NOT NULL, ord INTEGER);
   -- redirects to a work or a part; used by search and open-by-URL
@@ -705,16 +721,17 @@ writer was built: `works` also has `author_source`, `language_source`,
 page, gets a negative id. `parts` holds rows only for multi-part works with
 `parts_in_catalog = 1`; a work with a root page starts with the root's own
 row (`ord` 0, kind `front` or `toc`). `works_fts.rowid` = `works.id`;
-`parts_fts.rowid` = `work_id * 4096 + ord`, so `work_id = rowid >> 12` and
-`ord = rowid & 4095` (ord stays below 4,096 because `parts_cap` is 2,000);
-both FTS tables use `tokenize='unicode61 remove_diacritics 2'`. `aliases`
+`parts_fts.rowid` = `parts.id` (WP1, 2026-11-01, report/wp1-decisions.md
+item 2: the first build used `work_id * 4096 + ord`, which cost 1.2 MB
+gzipped on en against 0.2 MB for the author names; the app joins `parts`
+on `id`); both FTS tables use `tokenize='unicode61 remove_diacritics 2'`. `aliases`
 holds redirects to a work's root page (`ord` NULL) or to a catalog part,
 and the titles of `duplicate` pages. `excluded` holds pages excluded by a
 title prefix as one row per prefix (`RE:*`, "reference-prefix (n pages)"),
 not 200,000 rows. `meta` keys: wiki, domain, dbname, language,
 schema_version, generated_at, dump_date, pipeline_version, namespaces
 (local names of author/index/page), show_unknown_by_default,
-parts_rowid_stride.
+show_unknown_source (`config` or `derived`, WP1 item 3).
 Genre keys are a fixed canonical list (localised in the app):
 `novel, short-story, poetry, drama, essay, letters, memoir-biography, history,
 religious, legal-government, speech, periodical, children, reference, song-hymn,
@@ -771,9 +788,16 @@ proofread)`, plus `unknown` where the wiki's manifest sets
 default (after the junk rules, labelled "Not verified against a scan"); for
 every other wiki the owner sets `show_unknown_by_default` from the WP1a
 survey (WP1a, 2026-11-01, report/wp1a-decisions.md item 1: is `true`, en
-`true`, de `false`, fr `false`). Filter chips, off by default and also reachable from Settings:
+`true`, de `false`, fr `false`; WP1, 2026-11-01, report/wp1-decisions.md
+item 3: sv, da, fi, es, mul `true` from samples of their unknown works, it
+`false`; a wiki on the generic config derives the flag, `true` when its
+unknown works outnumber the validated and proofread ones). (WP1,
+2026-11-01, report/wp1-decisions.md item 4) The default filter also hides
+`type = document` (laws, court decisions, government papers, speeches) the
+way it hides `reference`: on en documents were 54 % of the default view
+and 47 % of them have no year. Filter chips, off by default and also reachable from Settings:
 "Include texts not yet proofread", "Include incomplete works", "Include
-unverified texts". Search collapses hidden matches into one row ("n more
+unverified texts", "Include documents". Search collapses hidden matches into one row ("n more
 texts hidden by your quality filter"); nothing disappears silently. Labels
 on the detail screen, in the reader's info sheet and for texts opened by
 URL: "Validated", "Proofread", "Proofread, 3 of 210 pages not yet
@@ -832,6 +856,10 @@ structure:
 # incomplete, junk (no: opprydning, slett, sletting) and own-translation
 # markers (no: oversetter = Wikikilden); WP1a adds bibliography_templates
 # (de: [Zeitschrift]), coverage_min (0.95) and coverage_slack (3).
+# WP1 (2026-11-01, report/wp1-decisions.md): show_unknown_by_default sv, da,
+# fi, es, mul true, it false, null = derived (item 3); structure.textless_toc_roots
+# (sv: true, item 5); metadata.genre_types reference: reference (item 5);
+# es exclude_title_prefixes ["Proyecto:"].
 ```
 Start with configs for: no, en, fr, de, it, sv, da, fi, is, es, mul. Other
 wikis run with a generic default config (Wikidata-only metadata) and still
@@ -1132,7 +1160,10 @@ on an emulator; locator restores to the same sentence after re-pagination.
 - Implement sections 5.1–5.6. Start with `no` and `is` (small), then `en`.
 - CI workflow producing manifest + catalogs.
 Acceptance: `make catalog WIKI=no` produces a catalog where ≥ 90 % of works
-have an author, ≥ 60 % have a year, and the coverage report prints; FTS query
+have an author (WP1, 2026-11-01, report/wp1-decisions.md item 1: counted
+over the default view, 95 %; 81 % of all works, the rest anonymous by
+nature: folk legends, Eddic poems, court decisions), ≥ 60 % have a year,
+and the coverage report prints; FTS query
 "Ibsen" returns Ibsen's works; `excluded` table explains every exclusion.
 (WS, 2026-10-31, WS§9; figures amended by WP1a, 2026-11-01,
 report/wp1a-decisions.md item 5) Also: `Der Sagenschatz des Königreichs
@@ -1148,8 +1179,11 @@ Hassiae` is one work of about 200 texts and `Allgemeines Deutsches
 Kommersbuch:47` is a part, not a work; *Popular Science Monthly* is a
 collection, not a reference work; the en parts table stays within the
 measured budget (about 18 MB gzipped plus 3 MB of `parts_fts` at
-`parts_cap` 2,000); the default view of the no catalog holds about 470
-works and 2,400 texts and none of them is raw OCR; the `excluded` table
+`parts_cap` 2,000; WP1, 2026-11-01, report/wp1-decisions.md item 2:
+measured 17.3 MB with both indexes and 3.2 MB with `parts.id` as the FTS
+rowid); the default view of the no catalog holds about 425 works and
+2,300 texts (WP1, 2026-11-01, item 4: 470 and 2,400 before documents left
+the default view) and none of them is raw OCR; the `excluded` table
 names every hard exclusion.
 
 ### WP2 — App skeleton: catalog, browse, search, work detail (3 weeks)
@@ -1158,8 +1192,8 @@ names every hard exclusion.
   estimate.
 - (WS, 2026-10-31, WS§7.1) Search returns works and texts; open-by-URL
   resolves through `parts` and `aliases`; quality filter chips and labels
-  (5.4); the parts tree and "9 of 125 texts transcribed" on the detail
-  screen.
+  (5.4; WP1, 2026-11-01: also the "Include documents" chip, item 4); the
+  parts tree and "9 of 125 texts transcribed" on the detail screen.
 Acceptance: fully offline browsing after catalog download; all facets combine;
 switching UI language to nb and nn shows translated strings on every screen.
 
@@ -1275,3 +1309,16 @@ open-by-URL); a title regex for reference works typed book or untyped
 (*The New International Encyclopædia*, lexica under 2,000 parts); ranking
 search hits whose page title is a chapter label below texts with a title of
 their own.
+(WP1, 2026-11-01, report/wp1-decisions.md) Also later: category- or
+config-defined virtual collections (de *Tagebuch von Hans Brass*, 3,913
+diary pages with one-page Indexes and no root page; over `parts_cap`, so
+the app would need category listing to resolve it); the rule-3 extension
+on es, where a TOC-like page may itself be a part with a header (the
+letter pages of *Diccionario de Arquitectura Civil*, 1,577 entries) or a
+headerless root listing colon-prefixed chapters (*Almagesto*, 155); TOC
+order taken from the TOC section only when the root has one (de
+*Kommersbuch*, Hertz); numbered town entries read as chapters (*Topographia
+Helvetiae*); a virtual root with a single leaf child (fi titles with
+slashed dates, 7); the Codex Manesse songs stay separate poems on purpose
+(grouped into one 2,818-part work they would leave author browsing and
+offline search).

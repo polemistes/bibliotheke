@@ -89,3 +89,9 @@ errors are order, tree position and classification:
 Fixed while sampling: page-by-page registers showed "Seite 1", "Seite 2"
 as searchable texts (samples 6, 13, 16, 20); `Seite` and `Blatt` are now
 de chapter labels. Without that fix the count was 21 of 30.
+
+Accepted by the owner on 2026-11-01 (`report/wp1-decisions.md` item 6): the
+grouping is what the extension changes, and it is right in all 30; the
+ordering defects are ticketed. The sv textless-TOC-root rule of the same
+decision (item 5) is sampled in `report/sv-textless-toc-sample.md`: 15 of
+15 correct.

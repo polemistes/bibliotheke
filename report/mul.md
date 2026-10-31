@@ -1,6 +1,6 @@
 # mul.wikisource: catalog coverage report
 
-Generated 2026-11-01 by `python -I -m wscatalog.catalog mul` from the dump of 20261001 (PLAN.md 5.2 steps 3–8; config `pipeline/config/mul.yaml`). Build took 5 s on the cached extract.
+Generated 2026-11-01 by `python -I -m wscatalog.catalog mul` from the dump of 20261001 (PLAN.md 5.2 steps 3–8; config `pipeline/config/mul.yaml`). Build took 6 s on the cached extract.
 
 ## Summary
 
@@ -18,7 +18,7 @@ Generated 2026-11-01 by `python -I -m wscatalog.catalog mul` from the dump of 20
 
 ## Default view (PLAN.md 5.4)
 
-Validated or proofread, complete, not `reference`: **774 works** (1,956 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 28,140 works (9,829 texts). `show_unknown_by_default` is `false`, so the wiki picker shows 774.
+Validated or proofread, complete, not `reference` or `document`: **774 works** (1,956 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 28,138 works (9,829 texts). `show_unknown_by_default` is `true` (from the config), so the wiki picker shows 28,138. Hidden by type from that view: reference 0, document 2.
 
 | tier | works | complete |
 |---|---|---|
@@ -40,7 +40,7 @@ Incomplete by reason: missing-parts 129, missing-pages 29, index-progress 1.
 
 ## Catalog file
 
-`mul.sqlite.gz`: 5.66 MB gzipped, 20.6 MB raw, sha256 `a86c6aeea8bea6f711b10e41ed66c0a2f1bdea920c8f1868494de7ceacf54a83`. Rows: works 28,582, parts 19,325, parts_fts 15,252, aliases 3,576, authors 3,083, excluded 1,158.
+`mul.sqlite.gz`: 5.62 MB gzipped, 20.5 MB raw, sha256 `475664b1519edc69172c6adb9e245ba50cd617f99988bdad662bd0cd651fb46a`. Rows: works 28,582, parts 19,325, parts_fts 15,252, aliases 3,576, authors 3,083, excluded 1,158.
 
 Works without catalog parts (over `parts_cap` 2,000, or `reference`): 1: `Słownik geograficzny Królestwa Polskiego` (14,068).
 

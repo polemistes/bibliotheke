@@ -20,7 +20,7 @@ structure:
 disambiguation_templates: [disambiguation, Disambig]
 versions_templates: [versions]
 quality:
-  show_unknown_by_default: null      # not surveyed
+  show_unknown_by_default: true      # owner decision 2026-11-01 (WP1 item 3): poems in Kurdish, Punjabi, Mingrelian, Uzbek, Ladin; 774 works without
 metadata:
   anonymous_names: [Anonymous, Unknown]
   # each text's language (the wiki's own language is `mul`)

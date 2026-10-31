@@ -12,7 +12,7 @@ from .survey import md_table, pct, esc
 
 
 def write_report(b) -> "Path":
-    from .catalog import REPORT_DIR
+    from .catalog import REPORT_DIR, DEFAULT_TIERS, HIDDEN_TYPES
     works, meta, q = b.works, b.meta, b.q
     n = len(works)
     cfg = b.cfg
@@ -47,16 +47,24 @@ def write_report(b) -> "Path":
     ]
     lines += md_table(["", "works", "sources"], rows) + [""]
 
-    unknown = bool(cfg.show_unknown_by_default)
+    unknown = b.show_unknown
     dv = b.default_view(False)
     du = b.default_view(True)
     texts = lambda ws: sum(w.text_count for w in ws)
+    hidden = Counter(meta[w.root.title].type for w in works
+                     if q[w.root.title][0].tier in DEFAULT_TIERS + (("unknown",) if unknown else ())
+                     and q[w.root.title][0].complete
+                     and meta[w.root.title].type in HIDDEN_TYPES)
+    why = ("from the config" if b.show_unknown_source == "config" else
+           "derived: unknown works " + ("outnumber" if unknown else "do not outnumber")
+           + " the validated and proofread ones")
     lines += ["## Default view (PLAN.md 5.4)", "",
-              f"Validated or proofread, complete, not `reference`: **{len(dv):,} works** "
+              f"Validated or proofread, complete, not `reference` or `document`: **{len(dv):,} works** "
               f"({texts(dv):,} texts, i.e. searchable parts; single-page works are found as works); "
               f"with unknown works: {len(du):,} works ({texts(du):,} texts). "
-              f"`show_unknown_by_default` is `{str(unknown).lower()}`, so the wiki picker shows "
-              f"{len(du if unknown else dv):,}.", ""]
+              f"`show_unknown_by_default` is `{str(unknown).lower()}` ({why}), so the wiki picker shows "
+              f"{len(du if unknown else dv):,}. Hidden by type from that view: "
+              + ", ".join(f"{t} {hidden.get(t, 0):,}" for t in HIDDEN_TYPES) + ".", ""]
     rows = []
     for t in ("validated", "proofread", "unproofread", "unknown"):
         ws = [w for w in works if q[w.root.title][0].tier == t]

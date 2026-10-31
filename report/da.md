@@ -18,7 +18,7 @@ Generated 2026-11-01 by `python -I -m wscatalog.catalog da` from the dump of 202
 
 ## Default view (PLAN.md 5.4)
 
-Validated or proofread, complete, not `reference`: **112 works** (764 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 948 works (836 texts). `show_unknown_by_default` is `false`, so the wiki picker shows 112.
+Validated or proofread, complete, not `reference` or `document`: **102 works** (764 texts, i.e. searchable parts; single-page works are found as works); with unknown works: 875 works (836 texts). `show_unknown_by_default` is `true` (from the config), so the wiki picker shows 875. Hidden by type from that view: reference 0, document 73.
 
 | tier | works | complete |
 |---|---|---|
@@ -40,7 +40,7 @@ Incomplete by reason: missing-pages 69, missing-parts 22.
 
 ## Catalog file
 
-`da.sqlite.gz`: 0.40 MB gzipped, 1.4 MB raw, sha256 `1c3589ea079f321bc03e5143da6dda4d48e77c27273417fb28d4dcdd158a68ec`. Rows: works 1,168, parts 2,279, parts_fts 1,383, aliases 147, authors 402, excluded 21.
+`da.sqlite.gz`: 0.40 MB gzipped, 1.4 MB raw, sha256 `ec0904bc9723e65fdcd46e75058a367e5eebf27a11f959f5ab4b4be857a49d5f`. Rows: works 1,168, parts 2,279, parts_fts 1,383, aliases 147, authors 402, excluded 21.
 
 ## Exclusions
 
