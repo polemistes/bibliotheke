@@ -400,6 +400,11 @@ class Merger:
             if gs:
                 m.genres, m.genre_source = list(dict.fromkeys(gs)), "wikidata"
                 break
+        if not m.genres and hrec is not None and hdr.get("genre"):
+            # a header topic (it `argomento`), read like a category
+            gs = self.category_genres(hrec, re.split(r"\s*[/,;]\s*", wt.strip_markup(hdr["genre"])))
+            if gs:
+                m.genres, m.genre_source = gs, "header"
         if not m.genres and hrec is not None:
             gs = self.category_genres(hrec)
             if gs:
@@ -429,10 +434,10 @@ class Merger:
         it = self.wd.get(qid) if (self.wd and qid) else None
         return next((it["d"][x] for x in langs if it and it["d"].get(x)), None)
 
-    def category_genres(self, rec) -> list[str]:
+    def category_genres(self, rec, names: list[str] | None = None) -> list[str]:
         cfg = self.cfg
         out = []
-        for c in rec.cats:
+        for c in (rec.cats if names is None else names):
             g = cfg.genre_categories.get(c)
             if g is None:
                 for pat, gg in cfg.genre_category_patterns:
@@ -441,7 +446,7 @@ class Merger:
                         break
             if g:
                 out.append(g)
-        for t in rec.tpls:
+        for t in (rec.tpls if names is None else ()):
             g = cfg.genre_templates.get(t)
             if g:
                 out.append(g)

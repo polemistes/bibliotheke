@@ -31,7 +31,7 @@ from .http import CACHE_DIR
 
 EXTRACT_DIR = CACHE_DIR / "extract"
 # Bump when the extract's content changes, so that wscatalog.build re-extracts.
-EXTRACT_VERSION = 5
+EXTRACT_VERSION = 6
 REPO_DIR = Path(__file__).resolve().parents[2]
 CANONICAL_NS = {
     "media": -2, "special": -1, "talk": 1, "user": 2, "user talk": 3, "project": 4,
@@ -47,7 +47,7 @@ INTERWIKI = {"w", "wikipedia", "wikt", "wiktionary", "q", "wikiquote", "b", "wik
              "wikilivres", "gutenberg", "iarchive", "google", "doi", "isbn", "arxiv"}
 LANG_PREFIX = re.compile(r"[a-z]{2,3}(-[a-z]{2,8})*$")
 UNSET = 255
-META_ROLES = frozenset(("author", "year", "translator", "description", "image"))
+META_ROLES = frozenset(("author", "year", "translator", "description", "image", "genre"))
 
 
 class PageRec:
@@ -191,7 +191,8 @@ def parse_ns0(title: str, page_id: int, nbytes: int, text: str, cfg: configmod.C
                             ("index", cfg.index_params), ("status", cfg.status_params),
                             ("author", cfg.author_params), ("year", cfg.year_params),
                             ("translator", cfg.translator_params),
-                            ("description", cfg.description_params), ("image", cfg.image_params)):
+                            ("description", cfg.description_params), ("image", cfg.image_params),
+                            ("genre", cfg.genre_params)):
             for p in plist:
                 v = params.get(p, "")
                 if v and role in META_ROLES and v.strip().casefold() in cfg.header_placeholders:

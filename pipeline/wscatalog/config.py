@@ -93,6 +93,7 @@ class Config:
     translator_params: list[str] = field(default_factory=list)
     description_params: list[str] = field(default_factory=list)
     image_params: list[str] = field(default_factory=list)
+    genre_params: list[str] = field(default_factory=list)
     index_meta: dict[str, list[str]] = field(default_factory=dict)   # role -> Index fields
     header_placeholders: frozenset[str] = frozenset()
     # metadata merge (5.2 step 3)
@@ -232,6 +233,7 @@ def load(wiki: str) -> Config:
             _lower(hp.get("translator")) + _lower((q.get("own_translation") or {}).get("params")))),
         description_params=_lower(hp.get("description")),
         image_params=_lower(hp.get("image")),
+        genre_params=_lower(hp.get("genre")),
         header_placeholders=frozenset(str(v).casefold() for v in m.get("header_placeholders") or []),
         index_meta={k: _lower(v) for k, v in (raw.get("index_fields") or {}).items()},
         sort_articles=tuple(a.lower() for a in m.get("sort_articles") or []),
