@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<!-- WP0 pagination prototype harness.
+     Interactive: harness.html?content=sult-02   (arrow keys / tap left-right thirds; +/- font size)
+     Automated:   harness.html?content=sult-02,ved-rundarne-1864&test=1
+                  (results are written as JSON into <pre id="wsr-result">; see run_browser_test.sh) -->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="reader.css">
+<style>
+  #wsr-result { display: none; }
+  #wsr-status { position: fixed; bottom: 4px; left: 0; right: 0; text-align: center;
+                font: 12px sans-serif; color: var(--muted); pointer-events: none; }
+</style>
+</head>
+<body>
+<div id="wsr-viewport"><div id="wsr-content"></div></div>
+<div id="wsr-status"></div>
+<pre id="wsr-result"></pre>
+<script src="reader.js"></script>
+<script src="test.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const names = (params.get('content') || 'sult-02').split(',');
+  // Parser-blocking loads, so content is present before the load event (a
+  // headless --dump-dom run must not finish before the tests have run).
+  for (const n of names) document.write(`<script src="content/${encodeURIComponent(n)}.js"><\/script>`);
+</script>
+<script>
+  const R = window.WsrReader;
+  R.init(document.getElementById('wsr-content'));
+
+  function status() {
+    document.getElementById('wsr-status').textContent =
+      `${R.currentPage() + 1} / ${R.pageCount()}  ·  locator ${R.getLocator()}`;
+  }
+
+  (() => {
+    if (params.get('test')) {
+      let result;
+      try { result = window.WsrTest.run(names, params); }
+      catch (e) { result = { error: String(e), stack: e.stack, pass: false }; }
+      document.getElementById('wsr-result').textContent = JSON.stringify(result);
+      return;
+    }
+    const part = window.WSR_PARTS[names[0]];
+    R.load(part.html, part.lang);
+    R.apply({ fontSize: Number(params.get('font') || 18) });
+    status();
+    let font = Number(params.get('font') || 18);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') R.turn(1);
+      else if (e.key === 'ArrowLeft') R.turn(-1);
+      else if (e.key === '+') R.relayoutKeeping({ fontSize: ++font });
+      else if (e.key === '-') R.relayoutKeeping({ fontSize: --font });
+      status();
+    });
+    document.addEventListener('click', (e) => {
+      const third = window.innerWidth / 3;
+      if (e.clientX < third) R.turn(-1); else if (e.clientX > 2 * third) R.turn(1);
+      status();
+    });
+  })();
+</script>
+</body>
+</html>

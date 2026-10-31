@@ -84,10 +84,10 @@ summary) are in [app/src/test/fixtures/](../app/src/test/fixtures/).
 - A redirect page answers `307` to `…/{target}/html?redirect=no`; OkHttp and
   requests follow it.
 - `?flavor=view` and `?flavor=fragment` do not strip `data-mw`. `data-mw`
-  attributes are 4–29 % of the HTML characters in the 16 fixtures; the
+  attributes are 4–29 % of the HTML characters in the 17 fixtures; the
   normaliser drops them.
 
-### 2.2 Fixtures saved (16 pages; plan asked for 3 per wiki)
+### 2.2 Fixtures saved (17 pages; plan asked for 3 per wiki)
 
 | fixture | title | rev | pagenum | ws-summary | poem | fn refs | img | tables |
 |---|---|---|---|---|---|---|---|---|
@@ -106,6 +106,7 @@ summary) are in [app/src/test/fixtures/](../app/src/test/fixtures/).
 | no/arne | Arne | 318255 | 3 | 1 | 0 | 1 | 1 | 1 |
 | no/arne-1 | Arne/1 | 52630 | 4 | 0 | 0 | 0 | 0 | 0 |
 | no/peer-gynt-1 | Peer Gynt/Første akt | 43336 | 47 | 0 | 10 | 0 | 0 | 0 |
+| no/sult-02 | Sult/02 (Hamsun; long prose chapter, 71 k chars) | 302062 | 71 | 0 | 0 | 0 | 0 | 0 |
 | no/ved-rundarne-1864 | Ved Rundarne (1864) (Nynorsk) | 292903 | 2 | 0 | 2 | 0 | 0 | 0 |
 
 ### 2.3 Page-number markers (VERIFY in PLAN.md 3.3: shape differs per wiki)
@@ -324,3 +325,91 @@ inside the header, not by splitting the text.
 - Genre needs categories (no: `Kategori:Dikt` has 419 members,
   `Kategori:Diktsamlinger` 45) and header `ws-type`; Wikidata gives genre
   for 16 % of connected works.
+
+## 4. Pagination prototype and locator round-trip
+
+Code: [prototypes/pagination/](../prototypes/pagination/). A minimal
+normaliser (`make_content.py`) turns fixtures into reader HTML; `reader.js`
+paginates and computes locators; `test.js` checks them inside the page.
+
+### 4.1 CSS layout (correction to PLAN.md 8.1)
+
+The plan's literal CSS (`body{column-width:100vw;column-gap:0}` with the
+margin as padding on an inner wrapper) puts the side margin only on the first
+page. What works:
+
+```css
+#wsr-content {                    /* one box, exactly one page wide */
+  box-sizing: border-box; width: var(--page-w); height: var(--page-h);
+  padding: var(--margin-v) var(--margin-h);
+  column-width: calc(var(--page-w) - 2 * var(--margin-h));
+  column-gap: calc(2 * var(--margin-h));
+  column-fill: auto;
+}
+```
+
+Column n then starts at exactly `n × page-w`, and page n is shown with
+`transform: translate3d(-n × page-w, 0, 0)`. Extra columns overflow to the
+right because the height is fixed. `--page-w` is set from JS and **snapped
+down to 1/64 px**, Blink's layout unit. With a fractional CSS width (a
+1080 px screen at DPR 2.625 is 411.43 CSS px), an unsnapped width lets the
+column step and the translate disagree by up to 1/64 px per page, which
+adds up to a visible shift after a few hundred pages.
+
+### 4.2 Locator algorithm (PLAN.md 7.4, confirmed)
+
+- Text index: all text nodes in document order except inside `.wsr-footnotes`,
+  `.wsr-page`, `.wsr-ln-src`; cumulative start offsets.
+- Text fills each column top to bottom, then the next column, so a
+  character's page never decreases with its offset. Both directions are
+  binary searches over `Range.getClientRects()`:
+  - page of an offset: rect of that character, `floor((x − contentLeft) / page-w)`;
+  - locator of a page: first measurable text node whose last box is on page
+    ≥ n, then the first character in it on page ≥ n.
+- Collapsed whitespace (newlines between blocks) has no box; it counts as the
+  next character that has one.
+
+### 4.3 Results in headless Chromium (phone page 412 × 915 CSS px, DPR 2.625)
+
+`prototypes/pagination/run_browser_test.sh` →
+[wp0/pagination-browser.json](wp0/pagination-browser.json). Chromium 154.
+Checks per part: on **every** page the locator lies on that page and
+locators strictly increase; on 6 probe pages, locator L at 18 px → 26 px →
+landscape 915 × 412 → back to 18 px portrait.
+
+| part | chars | pages 18 px / 26 px | layout / relayout | all-page check | probes |
+|---|---|---|---|---|---|
+| no/sult-02 (Hamsun, prose) | 71,377 | 60 / 124 | 37 / 17 ms | 0 failures | 6/6 |
+| no/ved-rundarne-1864 (Nynorsk poem) | 1,310 | 2 / 4 | 2 / 1 ms | 0 failures | 2/2 |
+| no/peer-gynt-1 (play, verse) | 29,292 | 59 / 101 | 22 / 15 ms | 0 failures | 6/6 |
+| de/erlkoenig (poem, source line numbers) | 1,296 | 2 / 4 | 4 / 1 ms | 0 failures | 2/2 |
+| de/kaethe (whole novel, one page) | 602,553 | 547 / 1126 | 139 / 115 ms | 0 failures | 6/6 |
+
+In every probe the locator was visible on the page shown after the font
+change and after the geometry change, and going back gave **exactly the same
+page and the same locator** (e.g. Sult page 20, L = 25132, "Jeg kasted mig
+flad paa Gulvet og græd af Glæde…" → page 42 at 26 px → page 48 landscape →
+page 20, L = 25132). The acceptance criterion "locator restores to the same
+sentence after re-pagination" is met in the browser engine; section 4.4
+covers the Android WebView.
+
+### 4.4 Normaliser lessons from the prototype (input for WP3)
+
+- **Verse stanzas** are blank lines (`<br>` `<br>`) inside one `<p>`; on no
+  and fr Parsoid puts a whole poem in a single `<p>`. On de, Parsoid also
+  splits `<p>` around templates, sometimes mid-stanza, so a `<p>` boundary
+  ends a line but must not end a stanza.
+- **Generated line numbers** must re-sync to source line numbers where both
+  exist: Erlkönig has a bold title line inside `<poem>`, so plain counting is
+  off by one against the printed numbers (source "5" would be generated 6).
+- **Locator text needs whitespace at block boundaries.** Verse lines and
+  stanzas are `display:block` spans/divs with no text between them, so the
+  locator text read "Dalar,som deim…" and "Erlkönig.Wer reitet…". Insert a
+  `\n` text node between such blocks (invisible in layout) so bookmark
+  excerpts (R6) and in-work search see separate words.
+- Drop `lang` attributes from Parsoid wrappers (`prp-pages-output` carries
+  the wiki language, `nb`, on Nynorsk text); set `lang` on `<html>` from the
+  work's language for hyphenation.
+- A 600 k-character part lays out in about 140 ms in desktop Chromium; on a
+  phone expect several times that on every font change. This supports
+  splitting oversized single-page works (section 2.4).

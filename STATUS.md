@@ -19,7 +19,7 @@ Last updated: 2026-10-31
 - [x] 3. Parsoid REST endpoint and HTML shape (`.ws-pagenum`, `.ws-summary`,
       `<poem>`, references) on no/en/fr/de; 3 raw fixtures per wiki
 - [x] 4. Wikidata coverage for 50 Norwegian works (P577 / P136 / P50)
-- [ ] 5. Pagination prototype in a browser harness: CSS columns, locator
+- [x] 5. Pagination prototype in a browser harness: CSS columns, locator
       round-trip after font-size change
 - [ ] 6. Pagination prototype in an Android WebView on the emulator: swipe
       overlay, frame timing (60 fps target)
@@ -34,15 +34,17 @@ Last updated: 2026-10-31
 - Namespace numbers for the 11 wikis confirmed (`pipeline/wp0/namespaces.py`,
   findings section 1). de and fi have no Author namespace.
 - `docs/wp0-findings.md` started; each step appends its section.
-- Parsoid endpoint verified; 16 raw fixtures saved (no 4, en 4, fr 5, de 3)
+- Parsoid endpoint verified; 17 raw fixtures saved (no 5, en 4, fr 5, de 3)
   in `app/src/test/fixtures/`; findings section 2 documents markup shapes.
 - Wikidata coverage measured for no (findings section 3): only 13 % of root
   pages have a QID; header microformats / Index pages are the main metadata
   source. WP1 needs the pages-articles dump as an input.
+- Pagination prototype (`prototypes/pagination/`): locator round-trip passes
+  on all pages of 5 parts in headless Chromium (findings section 4).
 
 ## In progress
 
-- WP0 step 5 (browser pagination harness).
+- WP0 step 6 (Android WebView prototype on the emulator).
 
 ## Known problems and open questions
 

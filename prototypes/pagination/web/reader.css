@@ -1,0 +1,87 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+/* WP0 pagination prototype (PLAN.md 8.1). Page geometry variables are set
+   from reader.js; everything else from the reader settings. */
+
+:root {
+  --page-w: 100vw;          /* snapped to 1/64 px by reader.js */
+  --page-h: 100vh;
+  --margin-h: 20px;
+  --margin-v: 28px;
+  --font-size: 18px;
+  --line-height: 1.5;
+  --font-family: Georgia, "Noto Serif", serif;
+  --text-align: justify;
+  --hyphens: auto;
+  --bg: #ffffff;
+  --fg: #1a1a1a;
+  --muted: #8a8a8a;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+#wsr-viewport {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* One CSS column per screen page: the box is one page wide and padded by
+   the side margin; each column is the page width minus both margins and the
+   gap is both margins, so column n starts exactly at n * page width. */
+#wsr-content {
+  box-sizing: border-box;
+  width: var(--page-w);
+  height: var(--page-h);
+  padding: var(--margin-v) var(--margin-h);
+  column-width: calc(var(--page-w) - 2 * var(--margin-h));
+  column-gap: calc(2 * var(--margin-h));
+  column-fill: auto;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
+  text-align: var(--text-align);
+  hyphens: var(--hyphens);
+  -webkit-hyphens: var(--hyphens);
+  overflow-wrap: break-word;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+#wsr-content.wsr-animating {
+  transition: transform 260ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+#wsr-content p { margin: 0 0 0.6em; text-indent: 0; }
+#wsr-content h1, #wsr-content h2, #wsr-content h3 {
+  text-align: center;
+  break-after: avoid;
+  line-height: 1.25;
+}
+
+/* Verse: one block per line; numbering hooks for WP5. */
+.wsr-verse { margin: 0.8em 0; text-align: left; }
+.wsr-stanza { margin-bottom: 0.9em; }
+.wsr-line { display: block; padding-left: 1.5em; text-indent: -1.5em; }
+
+/* Page marks, inline mode (8.2). */
+.wsr-page::after {
+  content: "[" attr(data-num) "]";
+  font-size: 0.7em;
+  color: var(--muted);
+  padding: 0 0.2em;
+  text-indent: 0;
+}
+
+.wsr-ln-src { display: none; }
+dd { margin-left: 1.5em; }
+sup.wsr-fnref a { text-decoration: none; color: inherit; }
+.wsr-footnotes { font-size: 0.85em; border-top: 1px solid var(--muted); margin-top: 1.5em; }
+img { max-width: 100%; max-height: calc(var(--page-h) - 2 * var(--margin-v)); break-inside: avoid; }
+table { break-inside: avoid; max-width: 100%; }

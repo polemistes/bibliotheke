@@ -1,0 +1,17 @@
+{
+ "wiki": "no",
+ "domain": "no.wikisource.org",
+ "title": "Sult/02",
+ "url": "https://no.wikisource.org/wiki/Sult/02",
+ "rest_url": "https://no.wikisource.org/w/rest.php/v1/page/Sult%2F02/html",
+ "revision": 302062,
+ "fetched": "2026-10-31",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 3,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 71,
+  "prp-pages-output": 1,
+  "COinS (.Z3988)": 1
+ }
+}
