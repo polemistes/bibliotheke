@@ -23,7 +23,10 @@ on 2026-10-31):
       carries the amended passages marked "(WP1a, 2026-11-01 …)";
       `docs/work-structure-plan.md` section 11 summarises the decisions.
 - [ ] 4. WP1 pipeline, schema version 2, acceptance cases of PLAN.md WP1.
-      **Nothing blocks this now.**
+      In progress (see "In progress" below): catalog writer, metadata merge,
+      Wikidata cache, coverage report, manifest, build orchestrator,
+      Makefile, CI workflow, tests and acceptance checks are built and
+      committed; configs exist for all 11 configured wikis.
 
 ## WP1a results (dumps of 2026-10-01; regenerated 2026-11-01 after the decisions)
 
@@ -122,11 +125,22 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## In progress
 
-- Nothing running. WP1a is complete and decided; task 4 (the WP1 pipeline:
-  metadata merge, catalog writer, manifest, CI) is next. Built so far in
-  `pipeline/wscatalog/`: dump downloader, extractor, structure resolution
-  (PLAN.md 5.2 steps 1–1h), quality rules (5.4), survey report; configs in
-  `pipeline/config/`.
+- **Task 4, the WP1 pipeline** (2026-11-01). Done and committed:
+  `wscatalog.catalog` (SQLite schema version 2, gzip, sha256, manifest
+  entry), `metadata` (5.2 step 3), `wikidata` (items cached in
+  `pipeline/cache/wikidata.sqlite`), `report` (`report/{wiki}.md`),
+  `sites` (sitematrix), `build` (dumps → extract → catalog → manifest),
+  `acceptance` (PLAN.md WP1 checks); `Makefile`; `.github/workflows/catalog.yml`;
+  `pipeline/tests` (fixture rows); configs for no, is, de, fr, en, it, sv,
+  da, fi, es, mul. The three eyeball tickets are fixed; the de rule-3
+  re-sample is in `report/wp1a-review.md` (25 of 30).
+- Running when last updated: `python -I -m wscatalog.catalog de fr en`
+  fetching Wikidata for fr and en (slow: Wikidata maxlag). If interrupted,
+  rerun it; fetched items are cached and committed per batch.
+- Still to do: re-extract fr and en (extract version 5) and rebuild all
+  catalogs; Wikidata genre/type/language mappings in `default.yaml` from the
+  reports' "Mapping work" sections; en document typing check; Wikidata for
+  it, sv, da, fi, es, mul; PLAN.md notes on the schema details; README.
 
 ## How to resume / rerun
 
