@@ -22,11 +22,94 @@ on 2026-10-31):
       implemented and the reports regenerated (numbers below). PLAN.md
       carries the amended passages marked "(WP1a, 2026-11-01 …)";
       `docs/work-structure-plan.md` section 11 summarises the decisions.
-- [ ] 4. WP1 pipeline, schema version 2, acceptance cases of PLAN.md WP1.
-      In progress (see "In progress" below): catalog writer, metadata merge,
-      Wikidata cache, coverage report, manifest, build orchestrator,
-      Makefile, CI workflow, tests and acceptance checks are built and
-      committed; configs exist for all 11 configured wikis.
+- [x] 4. WP1 pipeline, schema version 2 (PLAN.md 5.1–5.6): built and
+      committed for the 11 configured wikis plus a generic config for every
+      other open Wikisource; catalogs built locally from the 2026-10-01
+      dumps (results below). **Acceptance: 17 of 19 checks pass; the two
+      that do not are decisions for the owner** (below). The CI workflow
+      has not run yet: the repository has no remote.
+
+## WP1 results (dumps of 2026-10-01, built 2026-11-01)
+
+`make catalog WIKI=no` (or `python -I -m wscatalog.build no`) writes
+`pipeline/out/{wiki}.sqlite.gz`, `report/{wiki}.md` (coverage report) and
+`pipeline/out/manifest.json`. All 11 catalogs build in 8 minutes from the
+cached dumps; en, fr and de take most of it.
+
+| wiki | works | gzipped | validated | proofread | unproofread | unknown | default view | `show_unknown_by_default` |
+|---|---|---|---|---|---|---|---|---|
+| no | 1,069 | 1.0 MB | 73 | 466 | 307 | 223 | 685 | true |
+| is | 250 | 0.1 MB | 1 | 6 | 0 | 243 | 246 | true |
+| de | 17,388 | 8.0 MB | 9,833 | 6,999 | 266 | 290 | 14,732 | false |
+| fr | 40,242 | 28.6 MB | 11,257 | 21,282 | 7,583 | 120 | 31,190 | false |
+| en | 55,987 | 36.2 MB | 6,997 | 12,615 | 2,817 | 33,558 | 50,924 | true |
+| it | 17,604 | 8.5 MB | 7,763 | 6,946 | 2,895 | 0 | 14,582 | (unset → false) |
+| sv | 6,761 | 2.2 MB | 536 | 1,793 | 93 | 4,339 | 2,281 | (unset → false) |
+| da | 1,168 | 0.4 MB | 22 | 104 | 203 | 839 | 112 | (unset → false) |
+| fi | 13,282 | 1.7 MB | 0 | 36 | 12 | 13,234 | 34 | (unset → false) |
+| es | 17,792 | 5.3 MB | 564 | 1,878 | 405 | 14,945 | 2,282 | (unset → false) |
+| mul | 28,582 | 5.7 MB | 128 | 680 | 316 | 27,458 | 774 | (unset → false) |
+
+Metadata coverage (share of works; sources in each `report/{wiki}.md`):
+
+| wiki | author | year | genre | Wikidata item |
+|---|---|---|---|---|
+| no | 81.0 % | 85.4 % | 60.2 % | 35.7 % |
+| de | 66.5 % | 97.3 % | 87.5 % | 46.6 % |
+| fr | 89.4 % | 98.0 % | 60.7 % | 66.6 % |
+| en | 83.5 % | 68.6 % | 68.0 % | 67.3 % |
+| it | 87.2 % | 91.6 % | 66.3 % | (not fetched) |
+
+it, sv, da, fi, es and mul were built without Wikidata (owner's decision,
+below), so their author, year and genre figures are lower bounds. en types
+29,118 works as `document` (court cases, acts, proclamations, executive
+orders, resolutions), 54 % of its default view.
+
+**Acceptance (PLAN.md WP1, `python -I -m wscatalog.acceptance no de en`):**
+no: year 85.4 % ✓, "Ibsen" finds all 60 works by Ibsen ✓, `excluded`
+explains every exclusion ✓, `Diktsamling` 4 parts / 116 missing /
+incomplete ✓, `Ved Rundarne (1864)` found as a text of `Diktsamling` ✓,
+default view 470 works and 2,365 texts, none raw OCR ✓; **author 81.0 %
+(target 90 %) ✗**. de: Sagenschatz 1,001 parts ✓, Heimath virtual with
+three volumes ✓, Käthe oversized ✓, the KHM overview not a work ✓, KHM Band 1
+(1857) a work ✓, Topographia Hassiae 207 texts ✓, `Allgemeines Deutsches
+Kommersbuch:47` a part ✓, exclusions explained ✓. en: Ozymandias finds the
+Hutchinson text ✓, Popular Science Monthly a collection ✓, exclusions
+explained ✓; **parts budget: parts table 15.4 MB ✓ (budget about 18), but
+parts_fts 4.8 MB (budget about 3) ✗**, 20.1 MB together against 21.6 MB.
+
+**Decisions for the owner** (WP1, 2026-11-01):
+
+1. **no author target.** 81.0 % of all no works have an author, 94.5 % of
+   the works in the default view. The rest are anonymous by nature: 62 folk
+   legends (`Sagn`), Eddic poems, court decisions, party programmes,
+   periodicals, typed-in songs. Count the target over the default view, or
+   accept 81 %?
+2. **en parts_fts size.** 1.6 MB over the measured 3 MB because the survey
+   measured it with rowids 1..n and empty `author_names`; the catalog uses
+   rowid = `work_id * 4096 + ord` (1.0 MB) and fills `author_names`
+   (0.6 MB). Options: accept (the parts table is 3 MB under its budget);
+   drop `author_names` from `parts_fts` (works_fts already has them); or use
+   `parts.rowid` as the FTS rowid (compact, but the app must never VACUUM
+   the catalog).
+3. **`show_unknown_by_default` for it, sv, da, fi, es, mul** (not
+   surveyed; unset means false). With unknown works hidden, fi shows 34 of
+   13,282 works, mul 774 of 28,582, es 2,282 of 17,792, sv 2,281 of 6,761.
+   The same question applies to the ~70 wikis on the generic config.
+4. **en documents in the default view.** en shows unknown works by default,
+   and 29,118 of its works are typed `document` (54 % of the default view).
+   Should the app's default type filter hide `document` the way it hides
+   `reference` (WP2)?
+5. **Collections still stored one work per page** (not grouped by the
+   decided rules; not in the acceptance cases): de *Tagebuch von Hans
+   Brass* (3,913 diary entries `TBHB …`) and the Codex Manesse songs (2,818,
+   container `Codex Manesse 25r` etc.); es *Diccionario de Arquitectura
+   Civil* (1,577 entries) and other dictionaries; sv collections of root
+   pages without an Index (`Fänrik Ståls sägner`). Leave for later, or add
+   rules?
+6. **de rule-3 re-sample: 25 of 30** (below the 27 that WP1a required for
+   patterns A, B, D, E); the grouping is right in all 30, the five errors
+   are order, tree position and classification (`report/wp1a-review.md`).
 
 ## WP1a results (dumps of 2026-10-01; regenerated 2026-11-01 after the decisions)
 
@@ -125,40 +208,29 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## In progress
 
-- **Task 4, the WP1 pipeline** (2026-11-01). Done and committed:
-  `wscatalog.catalog` (SQLite schema version 2, gzip, sha256, manifest
-  entry), `metadata` (5.2 step 3), `wikidata` (items cached in
-  `pipeline/cache/wikidata.sqlite`), `report` (`report/{wiki}.md`),
-  `sites` (sitematrix), `build` (dumps → extract → catalog → manifest),
-  `acceptance` (PLAN.md WP1 checks); `Makefile`; `.github/workflows/catalog.yml`;
-  `pipeline/tests` (fixture rows); configs for no, is, de, fr, en, it, sv,
-  da, fi, es, mul. The three eyeball tickets are fixed; the de rule-3
-  re-sample is in `report/wp1a-review.md` (25 of 30).
-- Running when last updated: `python -I -m wscatalog.catalog de fr en`
-  fetching Wikidata for fr and en (slow: Wikidata maxlag). If interrupted,
-  rerun it; fetched items are cached and committed per batch.
-- Still to do: re-extract fr and en (extract version 6) and rebuild all
-  catalogs; en acceptance checks; final STATUS.md. Done since: Wikidata
-  mappings in `default.yaml`, en document typing, PLAN.md notes, README.
+- Nothing running. WP1 is built; waiting for the owner on the six
+  decisions above. Next after them: WP2 (app skeleton).
 - **Owner's decision (2026-11-01): Wikidata for it, sv, da, fi, es and mul
   is fetched by the first CI run**, not locally (it would take about an
   hour; the bottleneck is Wikidata's server time and maxlag, not the
   connection). Their local catalogs are built with `--offline` from the
-  header and Index data only, so their author, year and genre figures in
-  `report/{wiki}.md` are lower bounds.
+  header and Index data only.
 
 ## How to resume / rerun
 
-- Pipeline: `python3 -m venv .venv && .venv/bin/pip install -e pipeline`
-  (needs PyYAML, requests). Dumps (2026-10-01 run, about 6.4 GB in
-  `pipeline/cache/dumps/`, gitignored):
-  `.venv/bin/python -I -m wscatalog.dumps nowikisource articles page_props`.
-  Extract (cached in `pipeline/cache/extract/{wiki}.pickle`):
-  `.venv/bin/python -I -m wscatalog.extract no`. Survey report:
-  `.venv/bin/python -I -m wscatalog.survey no` → `report/no-structure.md`.
-  Resolution and quality rules can be changed and re-run without
-  re-extracting; header parameter and transclusion settings in the config
-  need a fresh extract.
+- Pipeline (see `pipeline/README.md`): `make venv`, then
+  `make catalog WIKI=no` (dumps → extract → catalog → manifest),
+  `make catalogs` (the 11 configured wikis), `make acceptance WIKI="no de en"`,
+  `make test`. From the cache only: `.venv/bin/python -I -m wscatalog.build
+  --configured --no-download --offline` (8 minutes). Dumps of the 2026-10-01
+  run for the 11 wikis (about 7.5 GB) are in `pipeline/cache/dumps/`,
+  extracts in `pipeline/cache/extract/`, Wikidata items (no, is, de, fr, en)
+  in `pipeline/cache/wikidata.sqlite`, catalogs in `pipeline/out/` (all
+  gitignored). Survey report: `.venv/bin/python -I -m wscatalog.survey no`.
+  Resolution, quality and metadata rules can be rerun on the cached
+  extract; `build` re-extracts when the dump or `EXTRACT_VERSION` changes.
+- CI: `.github/workflows/catalog.yml` (weekly; publishes to the release
+  `catalog-latest`); needs the GitHub remote `polemistes/bibliotheke`.
 - Browser tests: `prototypes/pagination/run_browser_test.sh` (needs
   `chromium`).
 - Android build: `cd prototypes/pagination/android &&
@@ -181,20 +253,26 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
   and incomplete works hidden by default, unknown shown on no after junk
   rules. Everything in `docs/work-structure-plan.md` sections 8 and 10.8;
   evidence in `docs/structure/`; spike scripts in `pipeline/wp0/` (README).
-- **Tickets from the eyeball review** (report/wp1a-review.md, decision 9):
-  `scan-volumes` orders no periodicals by scan file name ("Andet Bind"
-  first, *Historisk Tidsskrift*); `Fru Bovary` attaches each part twice
-  (subpage and colon root page); the Kommersbuch TOC gives "hier" as a
-  display title (link text of a navigation link).
-- **de residue after decision 4**: 290 unknown works remain, mostly colon
+- **Tickets from the eyeball review: fixed in WP1** (duplicate parts,
+  ordinal words in natural order, navigation link texts; PLAN.md 5.2
+  step 6 note).
+- **FTS5 on Android** (for WP2): the schema uses FTS5 (5.3) and the
+  tokenizer `unicode61 remove_diacritics 2`; Room supports FTS3/FTS4 only
+  and the platform SQLite's FTS5 support differs by Android version, so WP2
+  should bundle an SQLite build with FTS5 (e.g. requery/sqlite-android,
+  Apache-2.0) or confirm it on API 26.
+- **Ordering defects left** (de re-sample): TOC order takes each link's
+  first occurrence, so example pages linked in a root's editorial notes
+  come first (Kommersbuch, Hertz); periodical articles without a chain or
+  TOC are in natural order (*Annalen der Physik*).
+- **de residue after decision 4** (unchanged in WP1): 290 unknown works remain, mostly colon
   pages of small page-by-page books whose root is listed by two TOC pages
   (`Ausführliche Vorschriften zur Blitz-Ableitung …:Seite N`) and the
   `Ersch-Gruber:` lexicon entries (30 pages, below the 100-page prefix
   survey threshold).
-- **en unknown works** (33,564, shown by default): about half are
-  government documents (court cases, proclamations, speeches, acts,
-  executive orders, UN resolutions). The metadata merge (5.2 step 3) must
-  type them as documents, or the en shelf reads like a law library.
+- **en unknown works** (33,558, shown by default): typed in WP1; 21,132 of
+  them are `document` (licence and case templates, law and court
+  categories). See decision 4 above.
 - The prototype uses plain Views, not Compose (Compose was not in the Gradle
   cache); the production reader uses Compose `AndroidView` + `pointerInput`
   as planned.

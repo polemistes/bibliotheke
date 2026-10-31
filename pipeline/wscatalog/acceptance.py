@@ -32,13 +32,16 @@ def work(con, title):
     return r
 
 
-def table_gz(con, tables: list[str]) -> int:
-    """Gzipped size of an SQLite file holding only these tables."""
+def table_gz(con, tables: list[str], extra: tuple[str, ...] = ()) -> int:
+    """Gzipped size of an SQLite file holding only these tables (and the
+    statements in extra, e.g. their indexes), measured as the WP1a survey did."""
     mem = sqlite3.connect(":memory:")
     src = con.execute("PRAGMA database_list").fetchall()[0][2]
     mem.execute("ATTACH DATABASE ? AS src", (src,))
     for t in tables:
         mem.execute(f"CREATE TABLE {t} AS SELECT * FROM src.{t}")
+    for sql in extra:
+        mem.execute(sql)
     mem.commit()
     mem.execute("DETACH DATABASE src")
     size = len(gzip.compress(mem.serialize(), 9))
@@ -154,11 +157,13 @@ def chk_no_default_view(con):
 
 
 def chk_en_budget(con):
-    parts = table_gz(con, ["parts"])
+    parts = table_gz(con, ["parts"], ("CREATE INDEX parts_title ON parts(page_title)",))
     fts = table_gz(con, [t for t in ("parts_fts_data", "parts_fts_idx", "parts_fts_docsize", "parts_fts_config")])
     rows = one(con, "SELECT count(*) FROM parts")
     return parts <= 20e6 and fts <= 3.5e6, \
-        f"parts {rows:,} rows, {parts / 1e6:.1f} MB gzipped; parts_fts {fts / 1e6:.1f} MB gzipped"
+        (f"parts {rows:,} rows, {parts / 1e6:.1f} MB gzipped with its index; parts_fts "
+         f"{fts / 1e6:.1f} MB gzipped (sparse rowids work_id*4096+ord and author names; the "
+         f"survey measured 1..n rowids and empty author names); together {(parts + fts) / 1e6:.1f} MB")
 
 
 CHECKS = {
