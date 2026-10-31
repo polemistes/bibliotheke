@@ -463,9 +463,38 @@ class Resolver:
             vn = Node(v, None, rule="virtual")
             nodes[v] = vn
         self._break_cycles()
+        self._place_under_volumes()
         for n in nodes.values():
             if n.parent:
                 nodes[n.parent].children.append(n.title)
+
+    def ancestors(self, title: str) -> list[str]:
+        out, cur, seen = [], self.nodes[title].parent, set()
+        while cur is not None and cur not in seen and len(out) < 20:
+            seen.add(cur); out.append(cur); cur = self.nodes[cur].parent
+        return out
+
+    def _place_under_volumes(self) -> None:
+        """Implementation choice: a page attached by its container stays in
+        that work, but when exactly one other page inside the same work lists
+        it in its TOC (a volume page), it is placed under that page (no
+        `Historisk Tidsskrift`: 366 articles name the periodical root, the
+        volume pages list them)."""
+        nodes = self.nodes
+        listed: dict[str, list[str]] = defaultdict(list)
+        for d in nodes.values():
+            if d.rec is None or not d.toc or d.parent is None:
+                continue
+            for t in d.toc:
+                tn = nodes.get(t)
+                if tn is not None and tn.rule == "container" and tn.parent != d.title:
+                    listed[t].append(d.title)
+        for t, ds in listed.items():
+            tn = nodes[t]
+            cands = [d for d in ds if tn.parent in self.ancestors(d) and t not in self.ancestors(d)]
+            if len(cands) == 1:
+                tn.parent = cands[0]
+                self.stats["placed-under-volume"] += 1
 
     def _break_cycles(self) -> None:
         nodes = self.nodes
@@ -541,8 +570,7 @@ class Resolver:
             t = wt.strip_markup(parent.toc_texts[n.title])
             if t:
                 return t[:200]
-        return n.title.rsplit("/", 1)[-1] if parent is not None and n.title.startswith(parent.title + "/") \
-            else n.title
+        return parent_titles(n.title) and n.title[len(parent_titles(n.title)[0]) + 1:] or n.title
 
     def own_text(self, n: Node) -> int:
         if n.rec is None:

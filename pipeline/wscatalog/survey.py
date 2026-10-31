@@ -137,16 +137,23 @@ class Survey:
     def patterns(self) -> dict[str, list]:
         r = self.res
         works = self.res.works
-        excluded_titles = {t for t, why in r.excluded.items() if why in ("disambiguation", "versions")}
-        excl_last = {t.rsplit("/", 1)[-1] for t in excluded_titles}
-        e_texts = []
-        for w in works:
-            for p in w.parts:
-                if p.searchable and p.node.title.startswith(w.root.title + "/"):
-                    e_texts.append((w, p))
-        e_hidden = [(w, p) for w, p in e_texts
-                    if p.node.display in excluded_titles or p.node.display in excl_last
-                    or p.node.title.rsplit("/", 1)[-1] in excluded_titles]
+        # Pattern E (WS§1): texts that exist only inside a collection and are
+        # reached from a disambiguation or versions page (en `Ozymandias
+        # (Shelley)` -> the Hutchinson poem). Sampled: subpage parts linked
+        # from an excluded disambiguation or versions page.
+        e_texts, seen = [], set()
+        for t, why in r.excluded.items():
+            if why not in ("disambiguation", "versions"):
+                continue
+            for tgt in self.ext["pages"][t].links:
+                tgt = r.resolve(tgt)
+                if tgt in self.part_of and tgt not in seen:
+                    w, p = self.part_of[tgt]
+                    if p.node is not w.root and tgt.startswith(w.root.title + "/"):
+                        seen.add(tgt)
+                        e_texts.append((w, p))
+        e_hidden = [(w, p) for w in works for p in w.parts
+                    if p.searchable and p.node.title.startswith(w.root.title + "/")]
         ov = self.cfg.other_versions_templates
         return {
             "A": [w for w in works if w.structure == "linked"],
@@ -174,8 +181,9 @@ class Survey:
              f"{len(pats['C']):,} works"],
             ["D", "missing root, virtual root (`virtual`)", f"{len(pats['D']):,} works, "
              f"{sum(w.part_count for w in pats['D']):,} parts"],
-            ["E", "searchable texts that are subpages of a collection", f"{len(pats['E']):,} texts; "
-             f"{len(pats['E*']):,} share their title with an excluded disambiguation or versions page"],
+            ["E", "texts inside a subpage collection reached from a disambiguation or versions page",
+             f"{len(pats['E']):,} parts ({sum(p.searchable for _, p in pats['E']):,} searchable); "
+             f"all searchable subpage texts: {len(pats['E*']):,}"],
             ["F", "whole-text duplicate subpages (excluded)", f"{len(pats['F']):,} pages"],
             ["G", "reference works (type `reference`)", f"{len(pats['G']):,} works, "
              f"{sum(w.part_count for w in pats['G']):,} parts; {len(pats['Gx']):,} pages excluded by title prefix"],
@@ -513,17 +521,19 @@ class Survey:
     def samples_section(self, pats) -> list[str]:
         out = ["## 12. Random samples for eyeballing (30 per pattern)", ""]
         for key, label in (("A", "A: collections of root pages"), ("B", "B: mixed"),
-                           ("D", "D: virtual roots"), ("E", "E: texts inside subpage collections"),
+                           ("D", "D: virtual roots"),
+                           ("E", "E: subpage texts reached from a disambiguation or versions page"),
+                           ("E*", "all searchable subpage texts (chapter titles that the label patterns miss show up here)"),
                            ("C", "C: oversized"), ("G", "G: reference works"), ("H", "H: deep nesting"),
                            ("I", "I: works with other editions")):
             items = pats[key]
             out.append(f"### {label} ({len(items):,})")
             out.append("")
             for it in self.rng.sample(items, min(30, len(items))):
-                if key == "E":
+                if key in ("E", "E*"):
                     w, p = it
-                    out.append(f"1. text “{esc(p.node.display)}” (`{esc(p.node.title)}`), part {p.ord} "
-                               f"of `{esc(w.root.title)}` ({w.part_count:,} parts, {w.text_count:,} texts)")
+                    out.append(f"1. {p.kind} “{esc(p.node.display)}” (`{esc(p.node.title)}`), part {p.ord} "
+                               f"of `{esc(w.root.title)}` ({w.type}, {w.part_count:,} parts, {w.text_count:,} texts)")
                     continue
                 w = it
                 q = self.wq(w)

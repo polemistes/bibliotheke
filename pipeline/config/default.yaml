@@ -24,7 +24,9 @@ structure:                           # WS§5.3; resolution rules in PLAN.md 5.2 
   # (WS§4 step 4): a label word, optionally after one ordinal word or number
   # ("Første kapitel", "Chapter 1", "Zweiter Band"), or a bare number or
   # roman numeral.
-  chapter_label_regex_default: '^(\S+\s+)?(chapter|kapitel|kapittel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\b|^[ivxlcdm]+\.?$|^\d+\.?$'
+  # Tuned from the WP1a samples: leading numbering ("21. Begivenheder …",
+  # "LXV. Lonas Flugt.") also marks a chapter.
+  chapter_label_regex_default: '^(\S+\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\b|^[ivxlcdm]+\.?$|^\d+\.?$|^(\d+|[ivxlcdm]+)[.)]\s'
   chapter_label_regex: null          # per-wiki additions, tuned from the survey
   oversized_bytes: 300000
   parts_cap: 2000

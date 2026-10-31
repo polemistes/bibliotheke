@@ -14,7 +14,7 @@ structure:
   current_params: [seksjon, current, section]
   toc_fields: [sammendrag]
   summary_templates: [Innholdsfortegnelse]
-  chapter_label_regex: '^(\S+\s+)?(kapit+el|akt|del|bind|brev|bok|sang|hefte)\b|^(forord|innledning|indledning|tillæg|tillegg|efterskrift|etterord|fortale)\b'
+  chapter_label_regex: '^(\S+\s+)?([kc]apit+el|akt|del|bind|brev|bok|sang|hefte)\b|^(forord|innledning|indledning|tillæg|tillegg|efterskrift|etterord|fortale)\b'
 disambiguation_templates: [Peker, Flertydig, disambiguation]
 versions_templates: []
 quality:
