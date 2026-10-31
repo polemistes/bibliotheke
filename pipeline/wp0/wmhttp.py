@@ -25,9 +25,9 @@ from urllib.parse import urlencode, urlsplit
 import requests
 
 APP_VERSION = "0.1.0-dev"
-# Public repository URL for the User-Agent. Not known yet (see STATUS.md);
-# while it is None the UA carries only the contact address.
-REPO_URL: str | None = None
+# Public repository URL for the User-Agent (PLAN.md section 0); if set to
+# None the UA carries only the contact address.
+REPO_URL: str | None = "https://github.com/polemistes/bibliotheke"
 CONTACT = "develop@robertemilberge.no"
 
 

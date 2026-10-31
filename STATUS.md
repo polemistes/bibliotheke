@@ -38,6 +38,9 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 - `prototypes/pagination/`: reader CSS/JS, locator tests, browser runner,
   Android WebView prototype (`android/`) with a device test script.
 - PLAN.md: VERIFY items resolved; WP0 corrections marked "(WP0 …)".
+- User-Agent (repo URL given by the owner after WP0):
+  `Bibliotheke/0.1.0-dev (https://github.com/polemistes/bibliotheke; develop@robertemilberge.no) <client>/<version>`;
+  the URL is `REPO_URL` in `pipeline/wp0/wmhttp.py`.
 
 ## In progress
 
@@ -56,12 +59,6 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## Known problems and open questions
 
-- **Repo URL for the User-Agent is not known yet.** The owner plans
-  `https://github.com/<user>/bibliotheke` but the account name is not given.
-  Until it is, the User-Agent omits the URL and carries only the contact
-  address, which Wikimedia's UA policy accepts:
-  `Bibliotheke/0.1.0-dev (develop@robertemilberge.no) <client>/<version>`.
-  The URL lives in one constant (`REPO_URL` in `pipeline/wp0/wmhttp.py`).
 - **STATUS.md location**: PLAN.md section 0 says repo root; sections 6 and 12
   say `docs/STATUS.md`. Kept at the repo root, as section 0 (the working
   instructions) specifies.
