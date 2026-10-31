@@ -64,10 +64,10 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
   instructions) specifies.
 - **Frame timing was measured on the emulator** with a desktop-class host
   GPU; WP4 should repeat it on a real mid-range phone (N2).
-- **For the owner to decide** (findings section 6, WP1 item 6): de
-  collections are TOC pages linking separate root pages. WP1 will list each
-  linked text as its own work; grouping them under the collection would be
-  a later improvement.
+- **For the owner to decide** (findings section 6, WP1 item 6): some
+  collections are TOC pages linking separate root pages (de, and also no,
+  e.g. Vinje's `Diktsamling`). WP1 will list each linked text as its own
+  work; grouping them under the collection would be a later improvement.
 - The prototype uses plain Views, not Compose (Compose was not in the Gradle
   cache); the production reader uses Compose `AndroidView` + `pointerInput`
   as planned.

@@ -26,7 +26,7 @@ The findings that change the most:
    come in four shapes, de has no microformats, no `ws-summary` and no Author
    namespace, and footnote links are `./Page#cite_note-N` (section 2).
 3. **de structure**: ~196,000 lexicon entries as root pages, collections of
-   separate root pages, whole novels on one page; these need exclusion rules
+   separate root pages (also found on no), whole novels on one page; these need exclusion rules
    and part splitting (sections 1, 2.4).
 4. **Reader**: corrected column CSS, a reading anchor that survives
    relayouts, tap forwarding through the overlay (section 4).
@@ -200,6 +200,11 @@ Rules for the normaliser:
   whose tables link **separate root pages** (Sagenschatz: about 990 links to
   root pages, 2 to subpages). Subpage-based part discovery does not work for
   them; see section 6.
+- **The same pattern exists on no.** Vinje's `Diktsamling` (1864) is a TOC
+  page linking 125 separate root pages, one per poem (9 transcribed, 116
+  still redlinks), and each poem's header links back to it
+  (`Ved Rundarne (1864)` → `Diktsamling`). The en and fr samples used
+  subpages; how common the pattern is per wiki was not measured.
 - de puts **whole novels on one root page**: `Käthe` is 1.25 MB of
   HTML, 604 k text characters, 471 page markers. This breaks N3 (memory
   bounded by one chapter) unless the normaliser splits large single-page works
@@ -604,10 +609,12 @@ Script: `python3 pipeline/wp0/index_progress.py` →
    not by splitting the display string (3.3); language for `no` from Index
    `Malform`, then P407 (5); quality from page levels / Index progress with
    the corrected mapping (5).
-6. de: no microformats and no `ws-summary`; collections are TOC pages
-   linking separate root pages. The catalog lists each linked text as its
-   own work (which matches how de is organised); grouping them under the
-   collection is a later improvement, not needed for WP1.
+6. Collections that are TOC pages linking separate root pages (de, and
+   also no, 2.4): the catalog lists each linked text as its own work, which
+   matches how these wikis present them; grouping them under the collection
+   is a later improvement, not needed for WP1. The coverage report should
+   count such pages per wiki. (de also has no microformats and no
+   `ws-summary`.)
 
 ### WP3 (content and normaliser)
 
@@ -666,4 +673,5 @@ F§n; decisions D1–D9 are unchanged.
 
 Not changed, for the owner to decide: STATUS.md location (section 0 says the
 repo root, sections 6 and 12 say `docs/`; kept at the root), and whether
-de collections should be grouped under their TOC page (section 6, WP1 item 6).
+collections that link separate root pages (de, no) should be grouped under
+their TOC page (section 6, WP1 item 6).
