@@ -1,0 +1,19 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "A Description of a City Shower",
+ "url": "https://en.wikisource.org/wiki/A_Description_of_a_City_Shower",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/A_Description_of_a_City_Shower/html",
+ "revision": 15124876,
+ "fetched": "2026-10-31",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 4,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 1,
+  "prp-pages-output": 1,
+  "poem (.poem)": 1,
+  "noprint": 1,
+  "images (img)": 3
+ }
+}

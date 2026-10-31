@@ -1,0 +1,18 @@
+{
+ "wiki": "fr",
+ "domain": "fr.wikisource.org",
+ "title": "Essai sur les mœurs/Chapitre 1",
+ "url": "https://fr.wikisource.org/wiki/Essai_sur_les_m%C5%93urs/Chapitre_1",
+ "rest_url": "https://fr.wikisource.org/w/rest.php/v1/page/Essai_sur_les_m%C5%93urs%2FChapitre_1/html",
+ "revision": 2017228,
+ "fetched": "2026-10-31",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 2,
+  "header (#headertemplate, .headertemplate, .ws-header)": 1,
+  "pagenum (.pagenum, .ws-pagenum)": 11,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 8
+ }
+}

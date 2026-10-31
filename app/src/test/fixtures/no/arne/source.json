@@ -1,0 +1,22 @@
+{
+ "wiki": "no",
+ "domain": "no.wikisource.org",
+ "title": "Arne",
+ "url": "https://no.wikisource.org/wiki/Arne",
+ "rest_url": "https://no.wikisource.org/w/rest.php/v1/page/Arne/html",
+ "revision": 318255,
+ "fetched": "2026-10-31",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-summary": 1,
+  "ws-noexport": 3,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 3,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 1,
+  "COinS (.Z3988)": 1,
+  "images (img)": 1,
+  "tables (table)": 1
+ }
+}

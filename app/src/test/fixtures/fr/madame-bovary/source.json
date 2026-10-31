@@ -1,0 +1,18 @@
+{
+ "wiki": "fr",
+ "domain": "fr.wikisource.org",
+ "title": "Madame Bovary",
+ "url": "https://fr.wikisource.org/wiki/Madame_Bovary",
+ "rest_url": "https://fr.wikisource.org/w/rest.php/v1/page/Madame_Bovary/html",
+ "revision": 14104772,
+ "fetched": "2026-10-31",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-summary": 1,
+  "ws-noexport": 110,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "prp-pages-output": 1,
+  "COinS (.Z3988)": 1,
+  "images (img)": 2
+ }
+}

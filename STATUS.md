@@ -37,7 +37,8 @@ Last updated: 2026-10-31
 
 ## In progress
 
-- WP0 step 3.
+- WP0 step 3: Parsoid fixtures saved for no (4), en (4), fr (5); de next,
+  then the findings section. Tools: `pipeline/wp0/parsoid.py`, `search.py`.
 
 ## Known problems and open questions
 

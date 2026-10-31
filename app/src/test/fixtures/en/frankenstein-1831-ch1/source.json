@@ -1,0 +1,17 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "Frankenstein, or the Modern Prometheus (Revised Edition, 1831)/Chapter 1",
+ "url": "https://en.wikisource.org/wiki/Frankenstein%2C_or_the_Modern_Prometheus_%28Revised_Edition%2C_1831%29/Chapter_1",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/Frankenstein%2C_or_the_Modern_Prometheus_%28Revised_Edition%2C_1831%29%2FChapter_1/html",
+ "revision": 15019029,
+ "fetched": "2026-10-31",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 9,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 6,
+  "prp-pages-output": 2,
+  "noprint": 1
+ }
+}

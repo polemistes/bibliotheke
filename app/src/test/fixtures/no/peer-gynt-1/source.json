@@ -1,0 +1,18 @@
+{
+ "wiki": "no",
+ "domain": "no.wikisource.org",
+ "title": "Peer Gynt/Første akt",
+ "url": "https://no.wikisource.org/wiki/Peer_Gynt/F%C3%B8rste_akt",
+ "rest_url": "https://no.wikisource.org/w/rest.php/v1/page/Peer_Gynt%2FF%C3%B8rste_akt/html",
+ "revision": 43336,
+ "fetched": "2026-10-31",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 4,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 47,
+  "prp-pages-output": 1,
+  "poem (.poem)": 10,
+  "COinS (.Z3988)": 1
+ }
+}

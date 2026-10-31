@@ -1,0 +1,18 @@
+{
+ "wiki": "no",
+ "domain": "no.wikisource.org",
+ "title": "Ved Rundarne (1864)",
+ "url": "https://no.wikisource.org/wiki/Ved_Rundarne_%281864%29",
+ "rest_url": "https://no.wikisource.org/w/rest.php/v1/page/Ved_Rundarne_%281864%29/html",
+ "revision": 292903,
+ "fetched": "2026-10-31",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 4,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 2,
+  "prp-pages-output": 1,
+  "poem (.poem)": 2,
+  "COinS (.Z3988)": 1
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "Jesus the Christ/Chapter 18",
+ "url": "https://en.wikisource.org/wiki/Jesus_the_Christ/Chapter_18",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/Jesus_the_Christ%2FChapter_18/html",
+ "revision": 12778148,
+ "fetched": "2026-10-31",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 3,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 62,
+  "noprint": 1
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "wiki": "fr",
+ "domain": "fr.wikisource.org",
+ "title": "La Légende des siècles/Le Poète au ver de terre",
+ "url": "https://fr.wikisource.org/wiki/La_L%C3%A9gende_des_si%C3%A8cles/Le_Po%C3%A8te_au_ver_de_terre",
+ "rest_url": "https://fr.wikisource.org/w/rest.php/v1/page/La_L%C3%A9gende_des_si%C3%A8cles%2FLe_Po%C3%A8te_au_ver_de_terre/html",
+ "revision": 14191700,
+ "fetched": "2026-10-31",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 4,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 2,
+  "prp-pages-output": 1,
+  "poem (.poem)": 2,
+  "COinS (.Z3988)": 1
+ }
+}
