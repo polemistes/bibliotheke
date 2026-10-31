@@ -5,6 +5,32 @@ checked against the live services on 2026-10-31, the evidence, and what it
 changes in the plan. Raw outputs live in [docs/wp0/](wp0/); the scripts that
 produced them are in [pipeline/wp0/](../pipeline/wp0/).
 
+## Summary
+
+**Acceptance criteria of WP0: met.**
+
+- Findings documented (this file); VERIFY items in PLAN.md updated (section 7).
+- Pagination prototype turns pages at 60 fps on the emulator: 18 frames per
+  turn, no skipped vsync, 99th percentile 17 ms (section 4.5).
+- The locator restores to the same sentence after re-pagination: on every
+  page of five parts (including a 600 k-character novel), in headless
+  Chromium and in Android WebView 134, after font-size and geometry changes,
+  and back to exactly the same page and offset (sections 4.3, 4.5).
+
+The findings that change the most:
+
+1. **Metadata**: only 13 % of no works have a Wikidata item. Header and
+   Index-page data must be the main source, so WP1 needs the pages-articles
+   dump (sections 3, 5).
+2. **Per-wiki markup differs more than the plan assumed**: page markers
+   come in four shapes, de has no microformats, no `ws-summary` and no Author
+   namespace, and footnote links are `./Page#cite_note-N` (section 2).
+3. **de structure**: ~196,000 lexicon entries as root pages, collections of
+   separate root pages, whole novels on one page; these need exclusion rules
+   and part splitting (sections 1, 2.4).
+4. **Reader**: corrected column CSS, a reading anchor that survives
+   relayouts, tap forwarding through the overlay (section 4).
+
 ## 1. Wiki list and namespace numbers
 
 Script: `python3 pipeline/wp0/namespaces.py` →
@@ -43,7 +69,7 @@ Index namespace ids authoritatively; use it instead of matching names.
 Consequences:
 
 - Namespace numbers differ widely; the plan's `{author: 102, index: 106,
-  page: 104}` holds only for no, en (index/page) and da. Every per-wiki config
+  page: 104}` holds only for no, en and da. Every per-wiki config
   must take them from siteinfo/proofreadinfo, never from defaults.
 - **de and fi have no Author namespace.** Author pages are ordinary
   main-namespace root pages: on de they carry `Kategorie:Autoren`; on fi only
@@ -52,13 +78,24 @@ Consequences:
   exclude a root page whose Wikidata item is a human (`P31 = Q5`), plus the
   per-wiki author category where one exists (de: `Kategorie:Autoren`).
 - no.wikisource reports `lang: nb`. The catalog's default language for the
-  `no` wiki should be `nb` unless P407 says otherwise (see section 3).
+  `no` wiki should be `nb` unless the Index `Malform` field or P407 says
+  otherwise (sections 3, 5).
 - `mul` reports `lang: en` (interface language only). Work language there
   must come from Wikidata P407 or categories, never from siteinfo.
 - ProofreadPage quality levels are the same five ids on all wikis (0 without
   text, 1 not proofread, 2 problematic, 3 proofread, 4 validated); only the
   category names are localised (no: Uten tekst, Rå, Ufullstendig,
   Korrekturlest, Validert).
+
+### Pseudo-namespaces in de mainspace
+
+de keeps large reference works as main-namespace root pages with a colon
+prefix, so "root page, no `/`" counts every lexicon entry as a work. Search
+`prefix:` hit counts on 2026-10-31: `RE:` (Paulys Realencyclopädie) 98,928,
+`MKL1888:` (Meyers Konversations-Lexikon) 38,931, `ADB:` (Allgemeine
+Deutsche Biographie) 30,806, `BLKÖ:` 27,210; about **196,000** pages, against
+656,761 content pages in total. The de config needs
+`exclude_title_prefixes` for them.
 
 ## 2. Parsoid HTML: endpoint and markup shape
 
@@ -72,7 +109,7 @@ summary) are in [app/src/test/fixtures/](../app/src/test/fixtures/).
 - `GET https://{wiki}/w/rest.php/v1/page/{title}/html` returns Parsoid HTML,
   `Content-Type: text/html; profile="https://www.mediawiki.org/wiki/Specs/HTML/2.8.0"`,
   on all four wikis tested (no, en, fr, de). The microformat classes are
-  intact.
+  intact where the wiki emits them (no, en, fr; de emits none, 2.5).
 - **Titles must be fully percent-encoded, including `/` as `%2F`.**
   `Peer_Gynt/Personerne` gives 404 `rest-no-match`;
   `Peer_Gynt%2FPersonerne` gives 200.
@@ -128,8 +165,7 @@ Rules for the normaliser:
 - Scan page title: `data-page-name` if present, else `title` with `_` → space.
   Single-page files have no `/N` suffix (`Page:Cyclopaedia … page 548.djvu`).
 - Per-page proofreading quality: `data-page-quality` (en), or the `quality`
-  parameter in the span's `data-mw` (present only on the first span of each
-  transclusion group on no). Useful later; not needed for R8.
+  parameter in the span's `data-mw` (present on only some spans on no). Useful later; not needed for R8.
 - en markers contain a zero-width space (U+200B). The marker is excluded
   from locator text (7.4), so this is harmless as long as the normaliser
   empties the span.
@@ -141,7 +177,7 @@ Rules for the normaliser:
 - Config: `page_number_selectors` must include `span.pagenum` (covers all
   ProofreadPage shapes) and, for de, `span.pr1pn`.
 
-### 2.4 Table of contents / `.ws-summary` (VERIFY 3.3, 7.1)
+### 2.4 Table of contents / `.ws-summary` (VERIFY 3.3; PLAN.md 7.1)
 
 - **no, en, fr**: `.ws-summary` exists (from `{{Auxiliary Table of Contents}}`,
   `{{TOC begin}}`, `{{Dotted TOC page listing}}`, `{{Export TOC}}` on no/en;
@@ -163,7 +199,7 @@ Rules for the normaliser:
 - **de has no template that emits `ws-summary`.** de collections are TOC pages
   whose tables link **separate root pages** (Sagenschatz: about 990 links to
   root pages, 2 to subpages). Subpage-based part discovery does not work for
-  them; see section 5.
+  them; see section 6.
 - de puts **whole novels on one root page**: `Käthe` is 1.25 MB of
   HTML, 604 k text characters, 471 page markers. This breaks N3 (memory
   bounded by one chapter) unless the normaliser splits large single-page works
@@ -185,8 +221,8 @@ Rules for the normaliser:
   `.headertemplate`; en `div.ws-header.wst-header-structure` (also
   `ws-noexport noprint`); de `div#textdaten`. All carry `ws-noexport`, so
   dropping `.ws-noexport` removes headers on all four wikis.
-- COinS `span.Z3988` carries title/author/publisher/place/date in its `title`
-  attribute on no/en/fr; a secondary metadata source for the pipeline.
+- COinS `span.Z3988` carries title, author, publisher, place, date, page
+  range and genre in its `title` attribute on no/en/fr; a secondary metadata source for the pipeline.
 - Licence boxes are **not** `ws-noexport`: on no it is a bare `<table>` at the
   end of the page (template `PD-old`). The normaliser needs per-wiki
   `licence_templates` to drop them (match on the template name in `data-mw`),
@@ -197,11 +233,13 @@ Rules for the normaliser:
 ### 2.6 Verse
 
 - `<poem>` renders as `div.poem[typeof~="mw:Extension/poem"] > p` with
-  `<br>` between lines and a `<p>` per stanza (as PLAN.md 8.3 assumed). fr
+  `<br>` between lines, as PLAN.md 7.2 assumed. Stanza breaks are blank
+  lines (`<br>` `<br>`) inside the same `<p>`, not separate `<p>`s (4.4). fr
   adds class `verse` (`<poem class=verse>`). The `.poem` can also carry
   `typeof="mw:Extension/poem mw:Transclusion"`.
-- de inserts line-number blocks **between** the stanza `<p>`s inside one
-  `.poem`, so a "line" is not always a direct `p` child; the verse converter
+- de inserts line-number blocks **between** `<p>`s inside one `.poem`
+  (Parsoid splits the `<p>` around each template, sometimes mid-stanza), so
+  a "line" is not always a direct `p` child; the verse converter
   must walk text and `<br>` in order across `p` and `div` children.
 - Plays indent speeches with `:` wikitext, giving `dl > dd` nests (no
   Peer Gynt). **`dl`, `dd`, `dt` are not in the normaliser whitelist (7.2)**;
@@ -216,12 +254,12 @@ Rules for the normaliser:
   page header, not line numbers. fr Bible verse numbers via `{{Nv}}` are bare
   `<sup>` with no class and cannot be detected.)
 - **de**: `<div class="ws-noexport" style="position:relative"><span class="zeilennummer">5</span></div>`
-  between stanza paragraphs. Selector: `span.zeilennummer`. **It sits inside
+  between the poem's paragraphs. Selector: `span.zeilennummer`. **It sits inside
   `.ws-noexport`, so the normaliser must extract line numbers before it
   removes `.ws-noexport`** (rule order in 7.2).
 - no, en: no source line numbers found in the samples.
 
-### 2.8 Footnotes (VERIFY 7.2 selector: needs a change)
+### 2.8 Footnotes (PLAN.md 7.2 selector needs a change)
 
 - Reference: `<sup class="mw-ref reference" id="cite_ref-1" typeof="mw:Extension/ref"><a href="./Arne#cite_note-1">…</a></sup>`.
   **The href is `./{Page}#cite_note-N`, not `#cite_note-N`**, so the plan's
@@ -237,14 +275,29 @@ Rules for the normaliser:
 
 - `img[src]` now points to **`//thumb.wikimedia.org/wikipedia/commons/thumb/…`**
   (protocol-relative, with `?utm_source=…` parameters), not
-  `upload.wikimedia.org`. `srcset` gives 1.5x/2x variants on the same host.
-  Add `thumb.wikimedia.org` to the allowed hosts in PLAN.md section 0 and
-  N6, prefix `https:`, and strip the `utm_*` parameters before downloading.
+  `upload.wikimedia.org`. `srcset` gives a 2x variant on the same host.
+  Add `thumb.wikimedia.org` to the allowed hosts in PLAN.md section 0,
+  prefix `https:`, and strip the `utm_*` parameters before downloading.
 - `resource="./File:…"` (localised: `Fil:`, `Datei:`) names the file, so the
   normaliser can build a specific width itself via the thumb URL pattern or
   `prop=imageinfo&iiurlwidth=800`.
 - Icons (PD-icon 40 px, Wikimedia/Wikidata logos 20 px) appear in licence and
   sister-project boxes; the "skip icons < 32 px" rule drops them.
+
+### 2.10 Versions and disambiguation pages
+
+- no: versions pages (`Ved Rundarne`, template `Mal:Peker`,
+  `Kategori:Pekere`) carry the `disambiguation` page prop, as PLAN.md 3.2
+  assumes.
+- **en: `Ozymandias (Shelley)` is a versions page without the
+  `disambiguation` prop.** It is marked only by `Template:Versions` and
+  `Category:Versions pages`, and it has a `wikibase_item` (Q662166) that
+  points to the *work* item (P31 literary work), not an edition. Per-wiki versions templates/categories are
+  therefore required in the exclusion rules, not optional.
+- Many en poems exist only as subpages of collections
+  (`The Complete Poetical Works of Percy Bysshe Shelley (ed. Hutchinson,
+  1914)/Ozymandias`); the catalog lists the collection, and the poem is a
+  part of it. This follows from "a work is a root page" and is acceptable.
 
 ## 3. Wikidata coverage for Norwegian works
 
@@ -299,8 +352,9 @@ them have a QID), reading the Parsoid header microformats:
 | COinS `span.Z3988` | 46/50 |
 | uses `<pages>` (scan-backed) | 46/50 |
 
-The 6 without `ws-author` are mostly hymns and short songs with older
-header templates that emit no microformats (e.g. `Dagen viger og gaar bort`).
+Of the 6 without `ws-author`, 4 have no header microformats at all (older
+header templates, e.g. the hymn `Dagen viger og gaar bort`) and 2 are
+scan-backed texts with a year but no author (probably anonymous).
 `ws-author` is a display string and can name several people
 (`Asbjørnsen og Moe`); take author identities from the `Forfatter:` links
 inside the header, not by splitting the text.
@@ -352,9 +406,11 @@ Column n then starts at exactly `n × page-w`, and page n is shown with
 `transform: translate3d(-n × page-w, 0, 0)`. Extra columns overflow to the
 right because the height is fixed. `--page-w` is set from JS and **snapped
 down to 1/64 px**, Blink's layout unit. With a fractional CSS width (a
-1080 px screen at DPR 2.625 is 411.43 CSS px), an unsnapped width lets the
-column step and the translate disagree by up to 1/64 px per page, which
-adds up to a visible shift after a few hundred pages.
+1080 px screen at DPR 2.625 is 411.43 CSS px), an unsnapped width can let
+the column step (rounded to layout units) and the exact translate disagree
+by up to 1/64 px per page, which would add up to a visible shift after a
+few hundred pages. This is reasoned from Blink's layout units, not
+measured; with snapping, no drift showed over 1177 pages (4.5).
 
 ### 4.2 Locator algorithm (PLAN.md 7.4, confirmed)
 
@@ -423,14 +479,17 @@ that takes every touch and turns pages via `evaluateJavascript`). Run with
 `prototypes/pagination/android/run_device_test.sh`.
 
 Device: dedicated AVD `bibliotheke_wp0` (Pixel 7 profile, 1080 × 2400,
-420 dpi, Android 16, system WebView 134.0.6998.135), host GPU (AMD Radeon
-780M via the emulator's GLES translator), 60 Hz display, headless.
+420 dpi, Android 16, system WebView 134.0.6998.135), rendering on the
+host's desktop-class GPU through the emulator's GLES translator, 60 Hz
+display, headless. **Caveat:** this is faster than the mid-range 2021 phone
+of N2; WP4 should repeat the frame measurement on a real device.
 
 **Locators** ([wp0/pagination-android.json](wp0/pagination-android.json)):
 the same tests as 4.3 pass on all pages of all five parts. The CSS width is
 fractional here (411.43 px); the snapped page width is 411.421875 px, and no
 page drifted (Käthe: 580 pages at 18 px, 1177 at 26 px). Layout and relayout
-of the 600 k-character Käthe take about 200–230 ms; the other parts 2–36 ms.
+of the 600 k-character Käthe take about 0.2 s (185–232 ms over two runs);
+the other parts 2–36 ms.
 
 **Page turns** ([wp0/pagination-android-gfxinfo.txt](wp0/pagination-android-gfxinfo.txt),
 [wp0/pagination-android-framestats.txt](wp0/pagination-android-framestats.txt)):
@@ -484,3 +543,127 @@ page 35/64 with its first character exactly at the anchor (39729).
 - Compose was not used, to avoid an uncached dependency download in the
   spike; the production reader wraps the same WebView in `AndroidView`, with
   the overlay as a `pointerInput` modifier. The gesture logic is identical.
+
+## 5. Quality signals: Index progress values (VERIFY in PLAN.md 3.4)
+
+Script: `python3 pipeline/wp0/index_progress.py` →
+[wp0/index-progress.json](wp0/index-progress.json). Source: each wiki's
+`MediaWiki:Proofreadpage_index_data_config` (on several wikis a redirect to
+`….json`), which defines the Index page fields and their allowed values.
+
+| wiki | field | values → catalog quality |
+|---|---|---|
+| en | `Progress` | **T** done, all validated → validated; **V** to be validated → proofread; **C** to be proofread → unproofread; MS ready for match & split, OCR needs text layer, L faulty source file, X pagelist needed → unproofread |
+| mul | `Progress` | as en; X here means "incomplete source (extracts) or compilation" |
+| fr | `Avancement` | T terminé → validated; V à valider → proofread; C à corriger → unproofread; MS, OCR, L, D (duplicate file) → unproofread |
+| es | `Progreso` | T terminado → validated; V por validar → proofread; C, P por corregir → unproofread; L dañado → unproofread; E extracto → mark incomplete |
+| da | `Status` | F færdig → validated; V mangler validering → proofread; K mangler korrekturlæsning → unproofread |
+| it | `Qualità` | free string, default `25%` (SAL 25/50/75/100 %) |
+| no | `Fremgang` | free string, no enumerated values |
+| sv | – | no progress field |
+| de, fi, is | – | no index data config page |
+
+- **PLAN.md 3.4 had the en codes wrong**: `V` is "to be validated" (i.e.
+  proofread, not validated), `T` is "done (all validated)", and `X` means
+  "pagelist needed", not "incomplete". Mapping `V` to validated would
+  overstate quality.
+- Only 5 of the 11 wikis have an enumerated progress field. A source that
+  works everywhere is the per-page quality: each `Page:` page's wikitext
+  starts with `<pagequality level="0–4" …>` (same 5 levels on all wikis,
+  section 1), and the `pagenum` markers carry it too (section 2.3).
+  Recommended for WP1: work quality = the lowest level among the `Page:`
+  pages a work transcludes (from the pages-articles dump), with the
+  enumerated Index progress as a cheaper shortcut where present.
+- no's Index config also has **`Malform`** (målform) with values
+  `NB` Bokmål/riksmål, `NN` Nynorsk/landsmål, `ND` Norwegian dialect, `NO`
+  mixed, plus `Sprak` (original language, ISO 639). For scan-backed
+  Norwegian works (92 % of the no sample, section 3.3) this gives the
+  nb/nn sub-facet (PLAN.md 3.1) more reliably than Wikidata P407, which
+  labels 19th-century Dano-Norwegian as Bokmål.
+
+## 6. Consequences for later work packages
+
+### WP1 (catalog pipeline)
+
+1. Inputs: add the **`pages-articles` dump** (wikitext). Without it there
+   is no header/Index metadata, and Wikidata covers only 13 % of no works
+   (3.4).
+2. Candidate works (5.2 step 1), extra exclusions:
+   - root pages whose Wikidata item is a human (`P31 = Q5`) and, on de,
+     `Kategorie:Autoren`; de and fi keep author pages in mainspace (1);
+   - versions pages by **template/category**, not only the `disambiguation`
+     page prop: en `{{Versions}}` / `Category:Versions pages` has no such
+     prop (2.10);
+   - de lexicon pseudo-namespaces by title prefix (`RE:`, `MKL1888:`, `ADB:`,
+     `BLKÖ:`, about 196,000 pages) via a per-wiki `exclude_title_prefixes`;
+   - orphan subpage trees: use the top-most existing ancestor (2.4).
+3. Wiki list: skip closed wikis; take `wikisource.org` from sitematrix
+   `specials` (`code: "sources"`) as `mul` (1).
+4. Namespace ids per wiki from siteinfo + `meta=proofreadinfo` (1).
+5. Metadata: authors from the `Forfatter:`/`Author:` links in the header,
+   not by splitting the display string (3.3); language for `no` from Index
+   `Malform`, then P407 (5); quality from page levels / Index progress with
+   the corrected mapping (5).
+6. de: no microformats and no `ws-summary`; collections are TOC pages
+   linking separate root pages. The catalog lists each linked text as its
+   own work (which matches how de is organised); grouping them under the
+   collection is a later improvement, not needed for WP1.
+
+### WP3 (content and normaliser)
+
+1. REST titles fully percent-encoded (`/` → `%2F`); use ETag/304 (2.1).
+2. Page markers: `span.pagenum` (all ProofreadPage shapes) and de
+   `span.pr1pn`; number from `data-page-number` or `id`, scan page from
+   `data-page-name` or `title` (2.3).
+3. Rule order: convert page markers and **extract line numbers before
+   removing `.ws-noexport`** (de `zeilennummer` lives inside it) (2.7).
+4. Footnotes from `sup.mw-ref`, fragment after `#`; keep each references
+   group (2.8).
+5. Add `dl`, `dd`, `dt` to the element whitelist (2.6).
+6. Drop licence boxes by template name (`licence_templates`) (2.5).
+7. Images from `thumb.wikimedia.org`; strip `utm_*` (2.9).
+8. Part discovery: `.ws-summary` first (de-duplicated, nested), skip
+   `Texte entier`-style subpages, recurse into nested TOC pages (2.4).
+9. **Split oversized single-page works** into synthetic parts (at
+   headings, else at page markers) above a threshold, e.g. 100 k characters
+   (2.4, 4.3, 4.5).
+10. Verse: stanzas from blank lines only; re-sync generated line numbers to
+    source numbers; newline text nodes between blocks for locator text;
+    drop Parsoid `lang` attributes (4.4).
+
+### WP4 (reader)
+
+Corrected column CSS and 1/64 px page width (4.1); reading anchor, pages
+without locator text, tap forwarding, starting turns natively (4.6).
+
+## 7. Changes made to PLAN.md
+
+All three **VERIFY** items are resolved in place (3.3 page markers, 3.4 Index
+progress, 3.5 REST endpoint), as is the "verify via siteinfo" note in the
+5.5 config example.
+Other passages are corrected where the plan would otherwise mislead
+implementation. Every change is marked "(WP0 …)" and cites this file as
+F§n; decisions D1–D9 are unchanged.
+
+- Header note: VERIFY items resolved, how WP0 changes are marked.
+- 0: `thumb.wikimedia.org` added to the hosts that may be called.
+- R1: 83 open wikis.
+- 3.1: sitematrix filter misses `wikisource.org` (`specials`, `sources`).
+- 3.2: Author namespace numbers; de/fi without one (exclude `P31 = Q5`);
+  en versions pages without the `disambiguation` prop; de lexicon prefixes;
+  orphan subpage trees.
+- 3.3: page-marker shapes per wiki; `.ws-summary` coverage.
+- 3.4: Index progress per wiki with corrected en codes; per-page quality as
+  the universal source; no `Malform` for nb/nn.
+- 3.5: REST endpoint details; thumbnails from `thumb.wikimedia.org`.
+- 5.1: pages-articles dump added as an input.
+- 5.5: namespace comment; new keys `exclude_title_prefixes`,
+  `exclude_subpage_titles`, `licence_templates`; fr/de selectors.
+- 7.1: step 6, split oversized parts.
+- 7.2: `dl dd dt` allowed; rule 0 (markers and line numbers before removing
+  `.ws-noexport`); line-number selectors; footnote selector.
+- 8.1: column CSS corrected; reading anchor and tap forwarding.
+
+Not changed, for the owner to decide: STATUS.md location (section 0 says the
+repo root, sections 6 and 12 say `docs/`; kept at the root), and whether
+de collections should be grouped under their TOC page (section 6, WP1 item 6).

@@ -1,0 +1,101 @@
+{
+ "no": {
+  "field": "Fremgang",
+  "label": "Fremgang",
+  "values": null,
+  "default": ""
+ },
+ "en": {
+  "field": "Progress",
+  "label": "Progress",
+  "values": {
+   "T": "Done (all validated)",
+   "V": "To be validated",
+   "C": "To be proofread",
+   "MS": "Ready for Match & Split",
+   "OCR": "Source file needs an OCR text layer",
+   "L": "Source file is incorrect (missing pages, unordered pages, etc)",
+   "X": "Pagelist needed (to verify file is complete and correct before commencing proofreading)"
+  },
+  "default": "X"
+ },
+ "fr": {
+  "field": "Avancement",
+  "label": "Avancement",
+  "values": {
+   "": "",
+   "T": "Terminé",
+   "V": "À valider",
+   "C": "À corriger",
+   "MS": "Texte prêt à être découpé (match & split)",
+   "OCR": "Ajouter une couche texte OCR",
+   "L": "Fichier défectueux (lacunes, pages dans le désordre, etc.)",
+   "D": "Doublon, un autre fichier existe sur lequel il est préférable de travailler"
+  },
+  "default": ""
+ },
+ "de": null,
+ "it": {
+  "field": "Qualità",
+  "label": "Qualità",
+  "values": null,
+  "default": "25%"
+ },
+ "sv": {
+  "field": null,
+  "fields": [
+   "Upphovsman",
+   "Titel",
+   "År",
+   "Oversattare",
+   "Utgivare",
+   "Källa",
+   "Bild",
+   "Sidor",
+   "Anmärkningar",
+   "Width",
+   "Css",
+   "Kommentar"
+  ]
+ },
+ "da": {
+  "field": "Status",
+  "label": "Status",
+  "values": {
+   "K": "Mangler korrekturlæsning",
+   "V": "Mangler validering",
+   "F": "Færdig",
+   "_empty_": "Andet"
+  },
+  "default": ""
+ },
+ "fi": null,
+ "is": null,
+ "es": {
+  "field": "Progreso",
+  "label": "Progreso",
+  "values": {
+   "T": "Terminado",
+   "V": "Por validar",
+   "C": "Por corregir",
+   "P": "Por corregir - pendiente crear pagelist",
+   "L": "Dañado",
+   "E": "Extracto"
+  },
+  "default": "P"
+ },
+ "mul": {
+  "field": "Progress",
+  "label": "Progress",
+  "values": {
+   "T": "Done",
+   "V": "To be validated",
+   "C": "To be proofread",
+   "MS": "Ready for Match & Split",
+   "OCR": "Needs an OCR text layer",
+   "X": "Incomple source (extracts) or compilation of different sources",
+   "L": "Source file is incorrect (missing pages, unordered pages, etc)"
+  },
+  "default": ""
+ }
+}

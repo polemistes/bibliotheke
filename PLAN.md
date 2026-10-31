@@ -6,6 +6,8 @@ Status: approved plan, ready for implementation.
 Audience: the implementing engineer/agent. Decisions in this document are final
 and complete. Where a detail is marked **VERIFY**, confirm it against the
 live service during work package 0 before building on it.
+(WP0, 2026-10-31: all VERIFY items are resolved; passages changed by WP0 are
+marked "(WP0 …)" and explained in `docs/wp0-findings.md`, cited as "F§n".)
 
 ---
 
@@ -21,7 +23,8 @@ live service during work package 0 before building on it.
   depend on the WS Export tool (ws-export.wmcloud.org): it sits behind Anubis
   bot protection and refused automated access during planning. Production
   Wikimedia wikis (`*.wikisource.org`, `wikidata.org`, `dumps.wikimedia.org`,
-  `upload.wikimedia.org`) are fine to call with a proper User-Agent.
+  `upload.wikimedia.org`, and `thumb.wikimedia.org`, which now serves image
+  thumbnails (WP0, F§2.9)) are fine to call with a proper User-Agent.
 - Follow the Wikimedia User-Agent policy: every request from the app and from
   the pipeline carries a UA of the form
   `Bibliotheke/<version> (https://<repo URL>; develop@robertemilberge.no) okhttp/x`.
@@ -44,8 +47,9 @@ numbers and line numbers exactly as Wikisource shows them.
 
 ### 1.1 Functional requirements
 
-R1. **Content scope**: all Wikisource language editions (~75 wikis) plus the
-    multilingual edition at `wikisource.org`. Only works that are actually
+R1. **Content scope**: all Wikisource language editions (83 open wikis in the
+    sitematrix at WP0, F§1) plus the multilingual edition at
+    `wikisource.org`. Only works that are actually
     readable are listed (see 5.4 for the completeness filter).
 R2. **Browse facets**: language/wiki, genre, century and year, author, work type,
     text quality. Combinable. Fast and fully offline once a catalog is downloaded.
@@ -178,20 +182,32 @@ Confirm specifics against the live wikis in WP0, but this is the shape.
   wiki. Treat it as a wiki with code `mul`.
 - The list of all Wikisource wikis is available from the Wikimedia sitematrix
   API: `https://meta.wikimedia.org/w/api.php?action=sitematrix` (filter
-  `code == "wikisource"`).
+  `code == "wikisource"`). (WP0, F§1: this misses `wikisource.org`, which is
+  under `specials` with `code: "sources"`, dbname `sourceswiki`; skip
+  entries marked `closed`.)
 
 ### 3.2 Namespaces and page types
 - Main namespace (0): the readable texts. A *work* is a root page (no `/` in the
   title); chapters are subpages `Work/Chapter 1`, `Work/Part 2/Chapter 3`.
   Single-page works (poems, short texts) exist and are common.
 - `Author:` (102 on en; number varies by wiki): author pages. Not works.
+  (WP0, F§1: 102 on no/en/fr/it/da/is, 106 on sv/es, 108 on mul; **de and
+  fi have no Author namespace** and keep author pages in the main namespace,
+  so exclude root pages whose Wikidata item is a human, `P31 = Q5`, and on de
+  `Kategorie:Autoren`.)
 - `Index:` and `Page:`: ProofreadPage scan transcription. `Page:Foo.djvu/135`
   is one scanned page; `Index:Foo.djvu` is the book's index with a progress
   field. Main-namespace works transclude `Page:` pages with `<pages>`.
 - `Portal:`, `Wikisource:`, `Help:`, `Template:`, `Translation:` (en): not works.
 - Disambiguation / "versions" pages list multiple editions of the same title.
   Exclude them from the catalog (page_props `disambiguation`, plus per-wiki
-  templates).
+  templates). (WP0, F§2.10: en versions pages such as `Ozymandias (Shelley)`
+  have no `disambiguation` prop, only `{{Versions}}` and
+  `Category:Versions pages`; the templates are required.)
+- (WP0, F§1) de has about 196,000 mainspace root pages in lexicon
+  pseudo-namespaces (`RE:`, `MKL1888:`, `ADB:`, `BLKÖ:`); exclude them by
+  title prefix. (F§2.4) Orphan subpage trees exist (subpages whose root page
+  is missing); treat the top-most existing ancestor as the work.
 - Namespace numbers and names per wiki: query
   `api.php?action=query&meta=siteinfo&siprop=namespaces`.
 
@@ -201,21 +217,41 @@ Confirm specifics against the live wikis in WP0, but this is the shape.
 - `ws-summary`: wrapper around the table of contents on a work's root page.
   Chapter discovery: links inside `ws-summary`; if absent, all links to
   subpages of the work, in document order, de-duplicated.
+  (WP0, F§2.4: present on some no/en/fr works only and can be nested; no
+  template emits it on de, where collections are TOC pages linking separate
+  root pages; fr roots may link a `…/Texte entier` subpage outside it.)
 - `ws-noexport`: content to exclude from exports (header boxes, nav, notices).
   Drop these elements.
 - `ws-pagenum` / `pagenum`: the page-number markers emitted when `Page:` pages
-  are transcluded. Typical shape (**VERIFY** exact attributes per wiki):
-  `<span class="pagenum ws-pagenum" id="135" title="Page:Foo.djvu/135"
-  data-page-number="135">`. These carry the original edition's page numbers
-  and are the basis for requirement R8.
+  are transcluded. These carry the original edition's page numbers and are
+  the basis for requirement R8. Verified in WP0 (F§2.3): the shape differs
+  per wiki.
+  - en: `<span class="pagenum ws-pagenum" id="135" data-page-number="135"
+    data-page-name="Page:Foo.djvu/135" data-page-index="135"
+    data-page-quality="4" title="Page:Foo.djvu/135">` (contains U+200B);
+  - fr: `class="pagenum ws-pagenum"`, `id`, `title`, no `data-*`;
+  - no, de: only `class="pagenum"`, `id` (the displayed number) and `title`
+    (scan page, with the local namespace name `Side:`/`Seite:`);
+  - older de texts without ProofreadPage: `<span class="pr1pn"
+    id="Seite_104">[…104…]</span>`, no scan page title.
+  Number = `data-page-number`, else `id` (may be roman or a label such as
+  `FP`); scan page = `data-page-name`, else `title` with `_` → space. In
+  prose the marker sits inside the `<p>` at the exact break.
 - Header template output also has `previous` / `next` links (classes like
   `ws-prev`, `ws-next` on some wikis). Use as a secondary chapter-order signal.
 
 ### 3.4 Quality and completeness signals
 - ProofreadPage page statuses: not proofread, problematic, proofread,
-  validated. The `Index:` page carries an overall progress value (en uses letter
-  codes such as `V` validated, `T` proofread/done, `C` to be proofread, `X`
-  incomplete, `MS` missing source; **VERIFY** per wiki).
+  validated. The `Index:` page carries an overall progress value. Verified in
+  WP0 (F§5), which corrected the en codes: `T` done (all validated) →
+  validated; `V` to be validated → proofread; `C` to be proofread →
+  unproofread; `MS`, `OCR`, `L`, `X` (pagelist needed) → unproofread.
+  fr (`Avancement`), es (`Progreso`), da (`Status`: F/V/K) and mul have
+  similar enumerated fields; it and no use free text; sv, de, fi, is have
+  none. The source that works on every wiki is the per-page
+  `<pagequality level="0–4">` of the transcluded `Page:` pages (same five
+  levels everywhere); take the lowest. no's Index pages also carry
+  `Malform` (NB/NN/ND/NO), the best source for the nb/nn sub-facet (3.1).
 - Text-quality templates on the root page (en: `{{textquality}}` 25/50/75/100%;
   other wikis have equivalents or none).
 - Incomplete-work templates (en: `{{incomplete}}`; per-wiki equivalents).
@@ -229,8 +265,12 @@ Confirm specifics against the live wikis in WP0, but this is the shape.
   categories, revisions, parse (`action=parse&prop=text|categories|templates`),
   search (`list=search`), site info. Always `format=json&formatversion=2`.
 - **MediaWiki core REST** (Parsoid HTML): `https://{wiki}/w/rest.php/v1/page/{title}/html`
-  and `.../page/{title}/with_html`. **VERIFY** in WP0 that this returns Parsoid
-  HTML with the microformat classes intact. The older
+  and `.../page/{title}/with_html`. Verified in WP0 (F§2.1): returns Parsoid
+  HTML (spec 2.8.0) on no/en/fr/de, with the microformat classes intact
+  where the wiki emits them (de emits none, F§2.5).
+  Titles must be fully percent-encoded, **including `/` as `%2F`** (a raw
+  slash gives 404 `rest-no-match`); `ETag` + `If-None-Match` gives 304;
+  `with_html` adds `latest.id` (revision) and `license`. The older
   `https://{wiki}/api/rest_v1/page/html/{title}` (RESTBase) is being retired by
   Wikimedia; do not build on it.
 - **Wikidata**: `https://www.wikidata.org/w/api.php?action=wbgetentities`
@@ -242,7 +282,9 @@ Confirm specifics against the live wikis in WP0, but this is the shape.
   `-redirect.sql.gz`, `-templatelinks.sql.gz`. Dumps avoid millions of API calls
   for the large wikis.
 - **Images**: `https://upload.wikimedia.org/...`; Parsoid `<img>` has `src` and
-  `srcset`; pick the variant closest to 800 px wide.
+  `srcset`; pick the variant closest to 800 px wide. (WP0, F§2.9: thumbnails
+  now come from `//thumb.wikimedia.org/wikipedia/commons/thumb/…` with
+  `utm_*` parameters; prefix `https:` and strip them.)
 - **Scan pages** (for R8 "open scan"): the `Page:` title from the pagenum span,
   opened online as `https://{wiki}/wiki/{Page title}`. Optional later: fetch the
   page image via `prop=imageinfo&iiprop=url&iiurlwidth=1200` on the `File:`.
@@ -299,6 +341,11 @@ always reach a text even if the catalog lags.
 2. Per wiki: latest dump of `page`, `page_props`, `redirect`, `categorylinks`,
    `templatelinks` (fall back to Action API `allpages` + `pageprops` for small
    wikis or when the dump is missing).
+   (Added in WP0, F§3) Also `{dbname}-latest-pages-articles.xml.bz2`
+   (wikitext): header template parameters, `<pages index=… header=1>` and the
+   Index page fields are the main metadata source. Only 13 % of no root
+   pages have a Wikidata item; header microformats give an author for 88 %
+   and a year for 92 %.
 3. Wikidata: for every root page with a QID, fetch the edition item and its
    work item (wbgetentities in batches of 50, or a SPARQL `VALUES` query in
    chunks of ~500). Cache raw JSON on disk between runs.
@@ -376,7 +423,7 @@ hides `incomplete`). Keep quality as a facet rather than excluding
 wiki: no
 domain: no.wikisource.org
 dbname: nowikisource
-namespaces: {author: 102, index: 106, page: 104}   # verify via siteinfo
+namespaces: {author: 102, index: 106, page: 104}   # verified for no (WP0); differs per wiki, F§1
 header_templates: [Forfatterhode, Hode, header]      # names of header templates
 header_params: {author: [forfatter, author], year: [år, year], title: [tittel, title]}
 incomplete_templates: [Ufullstendig]
@@ -389,6 +436,12 @@ year_categories_regex: "^Kategori:(\\d{4})$"
 quality_sources: {index_progress: true, textquality_template: null}
 line_number_selectors: []                             # see 7.3; shared with app
 page_number_selectors: ["span.pagenum", "span.ws-pagenum"]
+# Added in WP0:
+exclude_title_prefixes: []          # de: ["RE:", "MKL1888:", "ADB:", "BLKÖ:"] (F§1)
+exclude_subpage_titles: []          # fr: ["Texte entier"] (F§2.4)
+licence_templates: [PD-old]         # licence boxes the normaliser drops (F§2.5)
+# line_number_selectors, fr: ['span.OptionText[title="Vers numérotés"]'];
+#   de: ["span.zeilennummer"] (F§2.7). page_number_selectors, de: add "span.pr1pn".
 ```
 Start with configs for: no, en, fr, de, it, sv, da, fi, is, es, mul. Other
 wikis run with a generic default config (Wikidata-only metadata) and still
@@ -465,12 +518,21 @@ DownloadJob(id, workId, kind: full|parts, partIds JSON, state, bytesDone, bytesT
    (a volume page that is itself a TOC) are expanded recursively, max depth 3.
 5. Store the resolved part list before downloading content, so a partial
    download still knows the whole structure.
+6. (Added in WP0, F§2.4) Split oversized parts into synthetic parts (at
+   headings, else at page markers) above a threshold such as 100 k
+   characters: de puts whole novels on one page (`Käthe`: 604 k characters),
+   which breaks N3 and makes every relayout slow (about 0.2 s on the
+   emulator, F§4.5).
 
 ### 7.2 Normaliser (Jsoup) — Parsoid HTML → reader HTML
 Output: one self-contained HTML fragment per part, UTF-8, with only these
 elements allowed: `h1-h6 p div span br hr blockquote ol ul li table thead tbody
-tr th td img figure figcaption sup sub em strong i b small a section`.
+tr th td img figure figcaption sup sub em strong i b small a section`, plus
+`dl dd dt` (added in WP0: plays indent speeches with `:`, F§2.6).
 Rules:
+0. (WP0, F§2.7) First convert page markers and extract source line numbers:
+   de puts `span.zeilennummer` inside a `.ws-noexport` block, so rule 1
+   would delete it.
 1. Remove: `.ws-noexport`, `.noprint`, `.mw-editsection`, `.navbox`,
    header template boxes (per-wiki selectors; default `#headertemplate,
    .headertemplate, .ws-header`), the `.ws-summary` TOC on chapter pages,
@@ -482,14 +544,17 @@ Rules:
      data-page-title="Page:Foo.djvu/135"></span>` (from `.pagenum` /
      `.ws-pagenum`; config selectors per wiki).
    - source line numbers → `<span class="wsr-ln-src">12</span>` (per-wiki
-     selectors in `line_number_selectors`, e.g. French `.numerotation`,
-     German/other verse-number classes; populate during WP0 fixture review).
+     selectors in `line_number_selectors`. WP0, F§2.7: fr
+     `span.OptionText[title="Vers numérotés"]`, de `span.zeilennummer`;
+     `.numerotation` is a running page header, not line numbers).
    - verse: Parsoid renders `<poem>` as `<div class="poem"><p>line<br>line…`.
      Convert to `<div class="wsr-verse"><span class="wsr-line">…</span>…`
      so the reader can number lines with CSS counters.
    - footnote references `sup.reference a[href^=#cite_note]` → keep, add
      `class="wsr-fnref"`; the references list `ol.references` → `<section
-     class="wsr-footnotes">`, each `li` id kept.
+     class="wsr-footnotes">`, each `li` id kept. (WP0, F§2.8: Parsoid hrefs
+     are `./Page#cite_note-N`, so match `sup.mw-ref` and take the fragment;
+     keep each references group, e.g. de's `WS` group, as its own list.)
    - drop-caps, small-caps, letter-spacing → classes `wsr-dropcap`, `wsr-sc`.
 3. Links: internal links to other parts of the same work → `app://part/{index}#anchor`;
    links to other Wikisource pages → `https://{wiki}/wiki/...` (opened in
@@ -534,6 +599,14 @@ work by charCount) for display.
   screen page. Page count = `scrollWidth / clientWidth`. Page `n` is shown by
   `translateX(-n * clientWidth)` on the wrapper (not `scrollLeft`, which is
   unreliable with columns).
+  (WP0 correction, F§4.1: padding on a wrapper puts the margin on the first
+  page only. Use one box exactly one page wide, padded by the margin, with
+  `column-width: page − 2·margin` and `column-gap: 2·margin`; set the page
+  width from JS snapped down to 1/64 px (Blink's layout unit), since a
+  fractional width such as 411.43 px can otherwise drift over hundreds of
+  pages. Verified on all pages of five parts
+  in Chromium and in Android WebView 134; page turns ran at 60 fps on the
+  emulator, F§4.3, F§4.5.)
 - Swipes are handled in Kotlin by a transparent overlay (`pointerInput`) so the
   WebView never receives horizontal gestures. Page turn animation: slide the
   WebView's `translationX` for intra-part turns; for the cross-part turn,
@@ -542,6 +615,10 @@ work by charCount) for display.
 - Tap zones: left third = previous, right third = next, centre = toggle
   toolbar. Volume keys optional.
 - Re-paginate on font/size/margin change, then restore the locator.
+  (WP0, F§4.6: keep a reading anchor that only navigation changes; restore
+  it after every relayout and never re-read it, or the position creeps back
+  one page start per rotation. The overlay takes every touch, so taps must be
+  forwarded to JS to hit footnote refs, page marks and links.)
 - Tablet landscape: option for two columns per screen (`column-count` of 2 per
   page width) presented as a book spread.
 - Images taller than a page: constrain with `max-height: 100vh` and

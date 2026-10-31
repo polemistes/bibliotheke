@@ -7,7 +7,8 @@ Last updated: 2026-10-31
 
 ## Current package
 
-**WP0 — Spike and verification** (PLAN.md section 9)
+**WP0 — Spike and verification: complete.** Next: **WP1 — Catalog pipeline**
+(not started).
 
 ## WP0 checklist
 
@@ -23,32 +24,35 @@ Last updated: 2026-10-31
       round-trip after font-size change
 - [x] 6. Pagination prototype in an Android WebView on the emulator: swipe
       overlay, frame timing (60 fps target)
-- [ ] 7. `docs/wp0-findings.md` written; **VERIFY** items in PLAN.md updated
+- [x] 7. `docs/wp0-findings.md` written; **VERIFY** items in PLAN.md updated
+
+WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## Done
 
-- Repository initialised.
-- `pipeline/wp0/wmhttp.py`: polite HTTP helper (UA, per-host interval,
-  backoff, disk cache in `pipeline/cache/wp0/`). Smoke-tested against
-  no.wikisource.org.
-- Namespace numbers for the 11 wikis confirmed (`pipeline/wp0/namespaces.py`,
-  findings section 1). de and fi have no Author namespace.
-- `docs/wp0-findings.md` started; each step appends its section.
-- Parsoid endpoint verified; 17 raw fixtures saved (no 5, en 4, fr 5, de 3)
-  in `app/src/test/fixtures/`; findings section 2 documents markup shapes.
-- Wikidata coverage measured for no (findings section 3): only 13 % of root
-  pages have a QID; header microformats / Index pages are the main metadata
-  source. WP1 needs the pages-articles dump as an input.
-- Pagination prototype (`prototypes/pagination/`): locator round-trip passes
-  on all pages of 5 parts in headless Chromium (findings section 4).
-- Android WebView prototype on the emulator (AVD `bibliotheke_wp0`): locator
-  tests pass; page turns at 60 fps (no skipped vsync); rotation keeps the
-  position with a reading anchor (findings 4.5, 4.6).
+- `docs/wp0-findings.md`: all results, with raw evidence in `docs/wp0/`.
+- `pipeline/wp0/`: spike scripts (see its README) and the polite HTTP
+  helper; responses cached in `pipeline/cache/wp0/` (gitignored).
+- `app/src/test/fixtures/{no,en,fr,de}/`: 17 raw Parsoid fixtures with
+  `source.json` provenance (no 5, en 4, fr 5, de 3).
+- `prototypes/pagination/`: reader CSS/JS, locator tests, browser runner,
+  Android WebView prototype (`android/`) with a device test script.
+- PLAN.md: VERIFY items resolved; WP0 corrections marked "(WP0 …)".
 
 ## In progress
 
-- WP0 step 7: write up remaining findings sections and update the VERIFY
-  items in PLAN.md.
+- Nothing. WP1 starts from PLAN.md section 5 plus findings section 6.
+
+## How to resume / rerun
+
+- Browser tests: `prototypes/pagination/run_browser_test.sh` (needs
+  `chromium`).
+- Android build: `cd prototypes/pagination/android &&
+  JAVA_HOME=/opt/android-studio/jbr ./gradlew assembleRelease` (Gradle 9.6.1,
+  AGP 9.1.1; `local.properties` with `sdk.dir` is gitignored).
+- Emulator: AVD `bibliotheke_wp0` (Pixel 7, Android 16), started headless
+  with `emulator -avd bibliotheke_wp0 -port 5584 -no-window -no-audio -gpu host`,
+  then `SERIAL=emulator-5584 prototypes/pagination/android/run_device_test.sh`.
 
 ## Known problems and open questions
 
@@ -57,7 +61,16 @@ Last updated: 2026-10-31
   Until it is, the User-Agent omits the URL and carries only the contact
   address, which Wikimedia's UA policy accepts:
   `Bibliotheke/0.1.0-dev (develop@robertemilberge.no) <client>/<version>`.
-  The URL lives in a single constant so it can be filled in later.
+  The URL lives in one constant (`REPO_URL` in `pipeline/wp0/wmhttp.py`).
 - **STATUS.md location**: PLAN.md section 0 says repo root; sections 6 and 12
   say `docs/STATUS.md`. Kept at the repo root, as section 0 (the working
   instructions) specifies.
+- **Frame timing was measured on the emulator** with a desktop-class host
+  GPU; WP4 should repeat it on a real mid-range phone (N2).
+- **For the owner to decide** (findings section 6, WP1 item 6): de
+  collections are TOC pages linking separate root pages. WP1 will list each
+  linked text as its own work; grouping them under the collection would be
+  a later improvement.
+- The prototype uses plain Views, not Compose (Compose was not in the Gradle
+  cache); the production reader uses Compose `AndroidView` + `pointerInput`
+  as planned.
