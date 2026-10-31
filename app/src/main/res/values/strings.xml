@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<resources>
+    <!-- Launcher label: the short form in every language (PLAN.md 1.2). -->
+    <string name="app_name" translatable="false">Bibliotheke</string>
+    <string name="app_full_name">Bibliotheke for Wikisource books</string>
+
+    <!-- Common -->
+    <string name="action_back">Back</string>
+    <string name="action_search">Search</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_retry">Try again</string>
+    <string name="action_clear">Clear</string>
+    <string name="action_done">Done</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_more">More options</string>
+    <string name="action_open_on_wikisource">Open on Wikisource</string>
+    <string name="action_share_link">Share link</string>
+    <string name="loading">Loading…</string>
+    <string name="unknown">Unknown</string>
+    <string name="list_separator">" · "</string>
+
+    <!-- Wiki picker (first run and catalog management) -->
+    <string name="picker_title">Catalogs</string>
+    <string name="picker_welcome">Welcome to Bibliotheke</string>
+    <string name="picker_intro">Choose the Wikisource editions you want to browse. Each catalog is downloaded once and then works offline.</string>
+    <string name="picker_manifest_error">Could not load the list of catalogs. Check your connection.</string>
+    <string name="picker_works">%1$s works</string>
+    <string name="picker_installed">Installed</string>
+    <string name="picker_update_available">Update available</string>
+    <string name="picker_download_button">Download (%1$s)</string>
+    <string name="picker_continue">Continue</string>
+    <string name="picker_multilingual">Multilingual Wikisource</string>
+    <string name="picker_remove_title">Remove catalog?</string>
+    <string name="picker_remove_text">The %1$s catalog will be deleted from this device. You can download it again later.</string>
+
+    <!-- Downloads -->
+    <string name="download_queued">Waiting for a connection…</string>
+    <string name="download_running">Downloading catalog… %1$d %%</string>
+    <string name="download_failed">Download failed</string>
+    <string name="download_cancel">Cancel download</string>
+
+    <!-- Browse -->
+    <string name="browse_choose_wiki">Choose catalog</string>
+    <string name="browse_manage_catalogs">Manage catalogs…</string>
+    <plurals name="browse_count">
+        <item quantity="one">%1$s work</item>
+        <item quantity="other">%1$s works</item>
+    </plurals>
+    <string name="browse_no_results">No works match these filters.</string>
+    <string name="browse_no_catalog">No catalog yet.</string>
+    <string name="browse_get_catalogs">Download catalogs</string>
+    <string name="browse_catalog_downloading">The catalog is being downloaded. Browsing works offline once it is here.</string>
+    <string name="browse_catalog_error">This catalog could not be opened.</string>
+    <string name="sort_label">Sort</string>
+    <string name="sort_title">Title</string>
+    <string name="sort_year_asc">Oldest first</string>
+    <string name="sort_year_desc">Newest first</string>
+
+    <!-- Quality filter chips (PLAN.md 5.4): short on the browse screen, full in Settings. -->
+    <string name="chip_unproofread">Not yet proofread</string>
+    <string name="chip_incomplete">Incomplete</string>
+    <string name="chip_unverified">Unverified</string>
+    <string name="chip_documents">Documents</string>
+    <string name="setting_unproofread">Include texts not yet proofread</string>
+    <string name="setting_incomplete">Include incomplete works</string>
+    <string name="setting_unverified">Include unverified texts</string>
+    <string name="setting_documents">Include documents</string>
+    <string name="setting_unproofread_summary">Texts whose pages have not been checked against the scan; they may contain OCR errors.</string>
+    <string name="setting_incomplete_summary">Works with parts or pages that are not transcribed yet.</string>
+    <string name="setting_unverified_summary">Texts typed in without a scan to check them against.</string>
+    <string name="setting_unverified_per_wiki">Each catalog\'s default</string>
+    <string name="setting_unverified_reset">Use each catalog\'s default</string>
+    <string name="setting_documents_summary">Laws, court decisions, government papers and speeches.</string>
+
+    <!-- Facets (R2) -->
+    <string name="facet_genre">Genre</string>
+    <string name="facet_period">Period</string>
+    <string name="facet_author">Author</string>
+    <string name="facet_type">Type</string>
+    <string name="facet_language">Language</string>
+    <string name="facet_selected">%1$s (%2$d)</string>
+    <string name="facet_clear_all">Clear filters</string>
+    <string name="facet_no_genre">No genre given</string>
+    <string name="facet_no_year">Year unknown</string>
+    <string name="facet_year_from">From year</string>
+    <string name="facet_year_to">To year</string>
+    <string name="facet_author_search">Find an author</string>
+    <string name="facet_no_values">Nothing to choose under the current filters.</string>
+    <string name="century">%1$ds</string>
+    <string name="century_bc">%1$ds BC</string>
+    <string name="author_dates">%1$s–%2$s</string>
+
+    <!-- Search (R3, WS§7.1) -->
+    <string name="search_hint">Title or author, or a Wikisource link</string>
+    <string name="search_works">Works</string>
+    <string name="search_texts">Texts</string>
+    <string name="search_text_in">in %1$s</string>
+    <plurals name="search_hidden">
+        <item quantity="one">%1$d more match hidden by your quality filter</item>
+        <item quantity="other">%1$d more matches hidden by your quality filter</item>
+    </plurals>
+    <string name="search_hidden_show">Show</string>
+    <string name="search_hidden_hide">Hide them again</string>
+    <string name="search_more_works">%1$s works match; showing the first %2$d.</string>
+    <string name="search_more_texts">%1$s texts match; showing the first %2$d.</string>
+    <string name="search_no_matches">No matches in your catalogs.</string>
+    <string name="search_online_on">Search online on %1$s</string>
+    <string name="search_online_title">Online results from %1$s</string>
+    <string name="search_online_error">The online search failed. Check your connection.</string>
+    <string name="search_online_none">No online results.</string>
+    <string name="search_online_not_in_catalog">Not in the catalog</string>
+    <string name="search_open_link">Open this link</string>
+
+    <!-- Open by URL -->
+    <string name="link_title">Wikisource link</string>
+    <string name="link_not_wikisource">This is not a Wikisource link.</string>
+    <string name="link_no_catalog">You have no catalog for %1$s.</string>
+    <string name="link_not_found">This page is not in the %1$s catalog. It may be a page that is not a work, a work the catalog leaves out, or a page newer than the catalog.</string>
+
+    <!-- Work detail -->
+    <string name="detail_by">by %1$s</string>
+    <string name="detail_translated_by">translated by %1$s</string>
+    <string name="detail_more_by">More by %1$s</string>
+    <string name="detail_year">Year</string>
+    <string name="detail_language">Language</string>
+    <string name="detail_type">Type</string>
+    <string name="detail_genres">Genres</string>
+    <string name="detail_contents">Contents</string>
+    <string name="detail_texts_transcribed">%1$d of %2$d texts transcribed</string>
+    <plurals name="detail_texts">
+        <item quantity="one">%1$d text</item>
+        <item quantity="other">%1$d texts</item>
+    </plurals>
+    <string name="detail_size">About %1$s of text, without images</string>
+    <string name="detail_parts_live">The table of contents of this work is loaded from Wikisource when you download it.</string>
+    <string name="detail_attribution">Source and licence</string>
+    <string name="detail_source">Source: %1$s</string>
+    <string name="detail_licence">The text is in the public domain or under a free licence; the source page names it. Wikisource\'s own contributions are available under CC BY-SA 4.0.</string>
+    <string name="detail_contributors">Transcribed and proofread by the contributors to Wikisource. See the page history for the list of contributors.</string>
+    <string name="detail_history">Page history</string>
+    <string name="detail_wikidata">Wikidata: %1$s</string>
+    <string name="detail_not_found">This work is not in the catalog.</string>
+    <string name="detail_virtual">Collected from several pages on Wikisource</string>
+
+    <!-- Quality and completeness labels (PLAN.md 5.4) -->
+    <string name="quality_validated">Validated</string>
+    <string name="quality_proofread">Proofread</string>
+    <string name="quality_proofread_partly">Proofread, %1$d of %2$d pages not yet proofread</string>
+    <string name="quality_unproofread">Not proofread, may contain OCR errors</string>
+    <string name="quality_unknown">Not verified against a scan</string>
+    <string name="incomplete">Incomplete</string>
+    <string name="incomplete_parts">Incomplete: %1$d of %2$d texts not yet transcribed</string>
+    <string name="incomplete_pages">Incomplete: %1$d pages missing</string>
+    <string name="incomplete_template">Incomplete, as marked on Wikisource</string>
+    <string name="incomplete_index">Incomplete: the scan is not fully transcribed</string>
+    <string name="incomplete_coverage">Incomplete: covers %1$d %% of its scan</string>
+    <string name="own_translation">Wikisource translation</string>
+
+    <!-- Genres (canonical keys, PLAN.md 5.3) -->
+    <string name="genre_novel">Novels</string>
+    <string name="genre_short_story">Short stories</string>
+    <string name="genre_poetry">Poetry</string>
+    <string name="genre_drama">Drama</string>
+    <string name="genre_essay">Essays</string>
+    <string name="genre_letters">Letters</string>
+    <string name="genre_memoir_biography">Memoirs and biography</string>
+    <string name="genre_history">History</string>
+    <string name="genre_religious">Religion</string>
+    <string name="genre_legal_government">Law and government</string>
+    <string name="genre_speech">Speeches</string>
+    <string name="genre_periodical">Periodicals</string>
+    <string name="genre_children">Children\'s books</string>
+    <string name="genre_reference">Reference</string>
+    <string name="genre_song_hymn">Songs and hymns</string>
+    <string name="genre_travel">Travel</string>
+    <string name="genre_philosophy">Philosophy</string>
+    <string name="genre_science">Science</string>
+    <string name="genre_folklore">Folklore</string>
+    <string name="genre_other">Other</string>
+
+    <!-- Work types -->
+    <string name="type_book">Book</string>
+    <string name="type_poem">Poem</string>
+    <string name="type_play">Play</string>
+    <string name="type_article">Article</string>
+    <string name="type_document">Document</string>
+    <string name="type_collection">Collection</string>
+    <string name="type_periodical_issue">Periodical issue</string>
+    <string name="type_reference">Reference work</string>
+    <string name="type_other">Other</string>
+
+    <!-- Settings -->
+    <string name="settings_language">App language</string>
+    <string name="settings_language_system">System default</string>
+    <string name="settings_quality">Quality filter</string>
+    <string name="settings_quality_intro">By default the catalog shows proofread, complete works. These switches are the same as the chips above the list.</string>
+    <string name="settings_catalogs">Catalogs</string>
+    <string name="settings_manage_catalogs">Manage catalogs</string>
+    <string name="settings_check_updates">Check for catalog updates</string>
+    <string name="settings_checking">Checking…</string>
+    <string name="settings_up_to_date">Catalogs checked</string>
+    <string name="settings_check_failed">Could not check for updates</string>
+    <string name="settings_about">About</string>
+
+    <!-- About (R11, PLAN.md 1.2) -->
+    <string name="about_version">Version %1$s</string>
+    <string name="about_description">Bibliotheke lists the works on every Wikisource language edition that can be read: pages that are only lists, stubs or empty are left out. Works that are not yet proofread, incomplete or not checked against a scan are listed but hidden by default; the quality filter shows them.</string>
+    <string name="about_credits">Texts come from Wikisource and catalog data from Wikisource and Wikidata, written and kept by their volunteer contributors.</string>
+    <string name="about_non_affiliation">Bibliotheke is an independent app and is not affiliated with or endorsed by the Wikimedia Foundation. Wikisource is a trademark of the Wikimedia Foundation.</string>
+    <string name="about_licence">Bibliotheke is free software under the GNU General Public License, version 3 or later.</string>
+    <string name="about_source_code">Source code</string>
+</resources>

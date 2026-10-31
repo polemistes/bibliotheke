@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<!-- Original icon: four book spines on a shelf (PLAN.md 1.2: no Wikimedia logos). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="#F2E6C9" android:pathData="M31,36h9v34h-9z" />
+    <path android:fillColor="#D9A441" android:pathData="M42,32h8v38h-8z" />
+    <path android:fillColor="#F2E6C9" android:pathData="M52,38h7v32h-7z" />
+    <path android:fillColor="#B85C38" android:pathData="M61.5,36.2l7.7,-2.1l9,33.4l-7.7,2.1z" />
+    <path android:fillColor="#F2E6C9" android:pathData="M28,71h52v4h-52z" />
+</vector>
