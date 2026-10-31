@@ -13,7 +13,7 @@ Last updated: 2026-10-31
 
 - [x] 0. Repository initialised: git, `LICENSE` (GPL-3.0-or-later, D8),
       `.gitignore`, this file
-- [ ] 1. Polite HTTP helper for spike scripts (User-Agent, one request at a
+- [x] 1. Polite HTTP helper for spike scripts (User-Agent, one request at a
       time per host, backoff on 429/5xx)
 - [ ] 2. Siteinfo namespace numbers for the 11 configured wikis
 - [ ] 3. Parsoid REST endpoint and HTML shape (`.ws-pagenum`, `.ws-summary`,
@@ -28,10 +28,13 @@ Last updated: 2026-10-31
 ## Done
 
 - Repository initialised.
+- `pipeline/wp0/wmhttp.py`: polite HTTP helper (UA, per-host interval,
+  backoff, disk cache in `pipeline/cache/wp0/`). Smoke-tested against
+  no.wikisource.org.
 
 ## In progress
 
-- WP0 step 1.
+- WP0 step 2.
 
 ## Known problems and open questions
 
