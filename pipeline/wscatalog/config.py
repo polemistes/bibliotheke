@@ -99,6 +99,7 @@ class Config:
     # metadata merge (5.2 step 3)
     sort_articles: tuple[str, ...] = ()
     language_map: dict[str, str] = field(default_factory=dict)
+    language_categories: dict[str, str] = field(default_factory=dict)
     genre_categories: dict[str, str] = field(default_factory=dict)
     genre_category_patterns: list[tuple[re.Pattern, str]] = field(default_factory=list)
     genre_templates: dict[str, str] = field(default_factory=dict)
@@ -238,6 +239,7 @@ def load(wiki: str) -> Config:
         index_meta={k: _lower(v) for k, v in (raw.get("index_fields") or {}).items()},
         sort_articles=tuple(a.lower() for a in m.get("sort_articles") or []),
         language_map={str(k).upper(): v for k, v in (m.get("language_map") or {}).items()},
+        language_categories={norm_title(k): v for k, v in (m.get("language_categories") or {}).items()},
         genre_categories={norm_title(k): v for k, v in (m.get("genre_categories") or {}).items()},
         genre_category_patterns=[(re.compile(p, re.I), g) for p, g in m.get("genre_category_patterns") or []],
         genre_templates={norm_template(k): v for k, v in (m.get("genre_templates") or {}).items()},

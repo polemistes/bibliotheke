@@ -23,3 +23,16 @@ quality:
   show_unknown_by_default: null      # not surveyed
 metadata:
   anonymous_names: [Anonymous, Unknown]
+  # each text's language (the wiki's own language is `mul`)
+  language_categories: {Mingrelian: xmf, Башҡортса: ba, Volapük: vo, Volapük rigik: vo, Volapük perevidöl: vo,
+                        Tatar: tt, Ladin: lld, Lumbaart: lmo, Polski: pl, Tibetan: bo, Udmurt: udm,
+                        Zazaki: zza, Upper Sorbian: hsb, Hill Mari: mrj, Furlan: fur, Gagauz: gag,
+                        ʻŌlelo Hawaiʻi: haw, Kurdî: ku, Occitan: oc, Тыва дыл: tyv, Plattdüütsch: nds,
+                        සිංහල: si, Kazakh: kk, Pali: pi, Literary Chinese: lzh, Aromanian (rup): rup,
+                        "Sq Shqip (Albanian)": sq, ລາວ: lo}
+  genre_category_patterns:
+    - ['^Шиғыр$|^Кылбуръёс$', poetry]
+    - ['^Балалар өсөн әҫәрҙәр$', children]
+    - ['^Хикәйә$', short-story]
+    - ['^Әкиәт$', folklore]
+    - ['^National Anthems$', song-hymn]

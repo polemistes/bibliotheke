@@ -28,3 +28,11 @@ quality:
   index_progress_fields: []          # none on fi (3.4)
 metadata:
   anonymous_names: [Tuntematon, Anonyymi, Kansanruno]
+  year_categories: [['^(\d{4})$', 9]]
+  document_category_patterns: ['^(Lakitekstit|Sotatuomioistuimet)$']
+  genre_category_patterns:
+    - ['^Runot$|^Kalevala$', poetry]
+    - ['^Novellit$', short-story]
+    - ['^Laulut$|^Virret$', song-hymn]
+    - ['^Historialliset dokumentit$', history]
+    - ['^Lakitekstit$|^Sotatuomioistuimet$', legal-government]

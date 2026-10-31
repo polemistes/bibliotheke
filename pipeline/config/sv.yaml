@@ -29,3 +29,14 @@ quality:
 metadata:
   sort_articles: [en, ett]
   anonymous_names: [Anonym, Okänd, Okänd författare]
+  year_categories: [['^(\d{2}[1-9]0)-talets verk$', 8]]   # "1860-talets verk"; "1700-talet" is a century, left out
+  genre_category_patterns:
+    - ['^Sångtexter$|^Psalmer$|^Barnvisor$|^Skillingtryck$|^Visor', song-hymn]
+    - ['^Poesi$|^Diktsamlingar$|^Dikter', poetry]
+    - ['^Romaner$', novel]
+    - ['^Noveller$', short-story]
+    - ['^Sagor$|^Sägner$', folklore]
+    - ['^Historiska dokument$|historia$', history]
+    - ['^Biografier$', memoir-biography]
+    - ['^Reseskildringar$', travel]
+    - ['^Tidningsartiklar$', periodical]

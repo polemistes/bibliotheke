@@ -392,6 +392,11 @@ class Merger:
             code = cfg.language_map.get(raw.upper()) or (raw.lower() if re.fullmatch(r"[a-z]{2,3}", raw) else None)
             if code:
                 m.language, m.language_source = code, "index"
+            elif hrec is not None and cfg.language_categories:
+                # mul: a category names the text's language ("Volapük", "Tatar")
+                code = next((cfg.language_categories[c] for c in hrec.cats if c in cfg.language_categories), None)
+                if code:
+                    m.language, m.language_source = code, "category"
         # genres and type
         doc = self.is_document(w)
         for q in items:
