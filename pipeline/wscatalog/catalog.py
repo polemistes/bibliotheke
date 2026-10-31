@@ -307,12 +307,17 @@ class Build:
                     default_view_count=len(self.default_view(unknown)))
 
 
-def write_manifest(out_dir: Path = OUT_DIR) -> Path:
+def write_manifest(out_dir: Path = OUT_DIR, previous: Path | None = None) -> Path:
     """manifest.json from every pipeline/out/{wiki}.json entry (PLAN.md 5.2
-    step 8, 6.1); `url` is relative to the manifest's own URL."""
-    entries = [json.loads(p.read_text("utf-8")) for p in sorted(out_dir.glob("*.json"))
-               if p.name != "manifest.json"]
-    entries.sort(key=lambda e: e["code"])
+    step 8, 6.1); `url` is relative to the manifest's own URL. With
+    previous (the published manifest), wikis not rebuilt in this run keep
+    their entry, so one failed wiki does not drop out of the catalog list."""
+    entries = {e["code"]: e for e in (json.loads(p.read_text("utf-8"))
+                                      for p in sorted(out_dir.glob("*.json")) if p.name != "manifest.json")}
+    if previous is not None and previous.exists():
+        for e in json.loads(previous.read_text("utf-8")).get("wikis", ()):
+            entries.setdefault(e["code"], e)
+    entries = sorted(entries.values(), key=lambda e: e["code"])
     data = dict(schema_version=SCHEMA_VERSION,
                 generated_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), wikis=entries)
     path = out_dir / "manifest.json"
@@ -339,11 +344,13 @@ def main(argv: list[str]) -> None:
     ap.add_argument("wikis", nargs="*")
     ap.add_argument("--offline", action="store_true", help="Wikidata from the cache only")
     ap.add_argument("--manifest", action="store_true", help="write out/manifest.json")
+    ap.add_argument("--previous", type=Path, help="published manifest: keep entries of wikis not built")
+    ap.add_argument("--out", type=Path, default=OUT_DIR)
     args = ap.parse_args(argv)
     for w in args.wikis:
-        build(w, offline=args.offline)
+        build(w, offline=args.offline, out_dir=args.out)
     if args.manifest:
-        print(write_manifest(), file=sys.stderr)
+        print(write_manifest(args.out, previous=args.previous), file=sys.stderr)
 
 
 if __name__ == "__main__":

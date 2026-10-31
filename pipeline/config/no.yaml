@@ -41,7 +41,7 @@ metadata:                            # 5.2 step 3
   author_categories: true            # categories named like an author page (Henrik Wergeland)
   # Index Malform (F§5): bokmål, nynorsk, Dano-Norwegian
   language_map: {NB: nb, NN: nn, ND: da, "NORSK BOKMÅL": nb, BOKMÅL: nb, NYNORSK: nn, DANSK: da}
-  year_category_regex: '^(?:Tekster fra )?(\d{4})$'
+  year_categories: [['^(?:Tekster fra )?(\d{4})$', 9]]
   document_templates: [PD-Regjeringa, Norsk rettsavgjørelse, Trusselvurdering]
   document_category_patterns: ['^(Lover|Rettsavgjørelser|Offisielle dokumenter|Grunnlovsforslag|Partiprogram)$']
   genre_templates: {Tidsskrift: periodical}

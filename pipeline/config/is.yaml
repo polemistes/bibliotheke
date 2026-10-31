@@ -51,3 +51,4 @@ metadata:
     Verk um lög: legal-government
     Lög: legal-government
     Alþjóðasamningar: legal-government
+  year_categories: [['^Verk (\d+)\. aldar$', 7]]

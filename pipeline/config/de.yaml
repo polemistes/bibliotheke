@@ -9,7 +9,8 @@ positional_headers:
   Navigation: {container: 1, prev: 2, next: 3, relative: true}
 header_params:
   author: [autor]
-  year: [erscheinungsjahr, jahr]
+  # publication year, else the year of writing; laws ({{Gesetzestext}}) carry dates
+  year: [erscheinungsjahr, entstehungsjahr, jahr, diesefassung, bekanntmachung, ursprungsfassung]
   translator: [übersetzer]
   description: [kurzbeschreibung]
   image: [bild]
@@ -49,3 +50,65 @@ quality:
   index_type_fields: []
   index_progress_fields: []
   incomplete_templates: []
+metadata:
+  sort_articles: [der, die, das, ein, eine]
+  anonymous_names: [Unbekannt, unbekannt, Anonym, Anonymus, N. N., Verschiedene]
+  header_placeholders: ["off", "-", "–", "—", "?", "o. j.", "o. a.", "unbekannt"]
+  year_categories: [['^(\d{3}0)er Jahre$', 8], ['^(\d{1,2})\. Jahrhundert$', 7]]
+  document_templates: [Gesetzestext]
+  document_category_patterns: ['^(Rechtsnorm|Gerichtsentscheidung|Vertrag|Anordnung|Rechtstext|Kulturabkommen)$']
+  genre_categories:
+    Gedicht: poetry
+    Versdichtung: poetry
+    Sonett: poetry
+    Ballade: poetry
+    Sagenballade: poetry
+    Mundartgedicht: poetry
+    Lied: song-hymn
+    Kirchenlied: song-hymn
+    Tafellied: song-hymn
+    Roman: novel
+    Erzählung: short-story
+    Novelle: short-story
+    Drama: drama
+    Essay: essay
+    Rezension: essay
+    Glosse: essay
+    Musikkritik: essay
+    Brief: letters
+    Biographie: memoir-biography
+    Autobiographie: memoir-biography
+    Tagebuch von Hans Brass: memoir-biography
+    Geschichte: history
+    Politische Geschichte: history
+    Regionalgeschichte: history
+    Rechtsgeschichte: history
+    Wirtschaftsgeschichte: history
+    Sozialgeschichte: history
+    Sage: folklore
+    Märchen: folklore
+    Volkskunde: folklore
+    Predigt: religious
+    Religionswissenschaft / Theologie: religious
+    Rede: speech
+    Vortrag: speech
+    Reisebericht: travel
+    Philosophie: philosophy
+    Physik: science
+    Mathematik: science
+    Astronomie: science
+    Zoologie: science
+    Biologie: science
+    Medizin: science
+    Paläontologie: science
+    Spezielle Relativitätstheorie: science
+    Lexikonartikel: reference
+    Lexikon: reference
+    Zeitschriftenartikel: periodical
+    Zeitungsartikel: periodical
+    Rechtsnorm: legal-government
+    Gerichtsentscheidung: legal-government
+    Vertrag: legal-government
+    Anordnung: legal-government
+    Rechtstext: legal-government
+    Kulturabkommen: legal-government

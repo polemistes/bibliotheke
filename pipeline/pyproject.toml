@@ -11,5 +11,11 @@ license = "GPL-3.0-or-later"
 requires-python = ">=3.12"
 dependencies = ["requests>=2.31", "PyYAML>=6.0"]
 
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
 [tool.setuptools]
 packages = ["wscatalog"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

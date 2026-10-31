@@ -58,7 +58,8 @@ metadata:                            # metadata merge (5.2 step 3)
   author_link_templates: []          # templates whose first parameter is an author's name
   author_categories: false           # a category named like an author page names the author
   language_map: {}                   # Index language field value -> BCP47
-  year_category_regex: null          # category -> year (group 1)
+  header_placeholders: ["off", "-", "–", "—", "?"]   # header values that say "none"
+  year_categories: []                # [regex, precision]: group 1 is a year (9), a decade's first year (8) or a century (7)
   document_templates: []             # licence or case templates of government documents
   document_template_patterns: []
   document_category_patterns: []

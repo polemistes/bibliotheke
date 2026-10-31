@@ -31,6 +31,7 @@ PIPELINE_DIR = Path(__file__).resolve().parents[1]
 CACHE_DIR = PIPELINE_DIR / "cache"
 MIN_INTERVAL_S = 0.2
 MAX_RETRIES = 6
+MAX_LAG_WAITS = 120         # maxlag: the servers ask bots to wait; up to about an hour
 
 
 def user_agent() -> str:
@@ -87,7 +88,8 @@ def get(url: str, params: dict | None = None, *, use_cache: bool = False,
 
     host = urlsplit(url).netloc
     headers = {"Accept": accept} if accept else {}
-    for attempt in range(MAX_RETRIES):
+    attempt = lag_waits = 0
+    while attempt < MAX_RETRIES:
         wait_for_host(host)
         try:
             resp = session.get(url, headers=headers, timeout=60)
@@ -95,15 +97,24 @@ def get(url: str, params: dict | None = None, *, use_cache: bool = False,
             mark_request(host)
             print(f"  network error ({exc}); retrying", file=sys.stderr)
             time.sleep(retry_delay(attempt, None))
+            attempt += 1
             continue
         mark_request(host)
 
-        maxlagged = resp.headers.get("MediaWiki-API-Error") == "maxlag"
-        if resp.status_code == 429 or resp.status_code >= 500 or maxlagged:
+        if resp.headers.get("MediaWiki-API-Error") == "maxlag" and lag_waits < MAX_LAG_WAITS:
+            # replication lag: wait as asked, without using up the retries
+            lag_waits += 1
+            delay = max(5.0, float(resp.headers.get("Retry-After") or 5)) * min(1 + lag_waits // 10, 6)
+            if lag_waits % 10 == 1:
+                print(f"  maxlag from {host}; waiting {delay:.0f}s ({lag_waits})", file=sys.stderr)
+            time.sleep(delay)
+            continue
+        if resp.status_code == 429 or resp.status_code >= 500:
             delay = retry_delay(attempt, resp.headers.get("Retry-After"))
             print(f"  HTTP {resp.status_code} from {host}; waiting {delay:.1f}s",
                   file=sys.stderr)
             time.sleep(delay)
+            attempt += 1
             continue
         if resp.status_code not in (200, 404):
             raise HttpError(resp.status_code, url, resp.text[:500])

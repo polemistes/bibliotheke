@@ -1,0 +1,130 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Weekly catalog build (PLAN.md 5.6, D6): one job per Wikisource, then the
+# gzipped catalogs and manifest.json are published as assets of the rolling
+# release `catalog-latest`.
+name: catalog
+
+on:
+  schedule:
+    - cron: "17 3 * * 1"          # Mondays; dumps of the 1st and 20th are complete by then
+  workflow_dispatch:
+    inputs:
+      wikis:
+        description: "Wiki codes separated by spaces (empty: every open Wikisource)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: catalog
+  cancel-in-progress: false
+
+env:
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e 'pipeline[test]'
+      - run: cd pipeline && python -m pytest -q
+
+  plan:
+    if: github.event_name != 'schedule' || github.repository == 'polemistes/bibliotheke'
+    runs-on: ubuntu-latest
+    outputs:
+      wikis: ${{ steps.list.outputs.wikis }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e pipeline
+      - id: list
+        env:
+          WIKIS: ${{ github.event.inputs.wikis }}
+        run: |
+          python -I - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          from wscatalog import sites
+          codes = os.environ.get("WIKIS", "").split() or [s["code"] for s in sites.wikis()]
+          print("wikis=" + json.dumps(codes))
+          PY
+
+  build:
+    needs: [test, plan]
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      max-parallel: 4             # polite to dumps.wikimedia.org and the APIs
+      matrix:
+        wiki: ${{ fromJSON(needs.plan.outputs.wikis) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e pipeline
+      - uses: actions/cache@v4
+        with:
+          path: |
+            pipeline/cache/wikidata.sqlite
+            pipeline/cache/siteinfo
+          key: wikidata-${{ matrix.wiki }}-${{ github.run_id }}
+          restore-keys: wikidata-${{ matrix.wiki }}-
+      - name: Build
+        run: python -I -m wscatalog.build ${{ matrix.wiki }}
+      - name: Coverage report
+        if: always()
+        run: test -f report/${{ matrix.wiki }}.md && cat report/${{ matrix.wiki }}.md >> "$GITHUB_STEP_SUMMARY" || true
+      - name: Acceptance checks (WP1)
+        if: contains(fromJSON('["no", "de", "en"]'), matrix.wiki)
+        continue-on-error: true
+        run: python -I -m wscatalog.acceptance ${{ matrix.wiki }} | tee -a "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: catalog-${{ matrix.wiki }}
+          path: |
+            pipeline/out/${{ matrix.wiki }}.sqlite.gz
+            pipeline/out/${{ matrix.wiki }}.json
+            report/${{ matrix.wiki }}.md
+          retention-days: 14
+
+  publish:
+    needs: [plan, build]
+    if: always() && needs.plan.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e pipeline
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: catalog-*
+          path: artifacts
+          merge-multiple: true
+      - name: Manifest
+        run: |
+          mkdir -p pipeline/out previous
+          cp artifacts/pipeline/out/* pipeline/out/
+          gh release download catalog-latest -p manifest.json -D previous || true
+          python -I -m wscatalog.catalog --manifest --previous previous/manifest.json
+      - name: Publish to the catalog-latest release
+        run: |
+          gh release view catalog-latest >/dev/null 2>&1 || \
+            gh release create catalog-latest --title "Catalog (rolling)" --latest=false \
+              --notes "Per-wiki catalogs (SQLite, schema version 2) and manifest.json, rebuilt weekly by the catalog workflow."
+          gh release upload catalog-latest pipeline/out/*.sqlite.gz pipeline/out/manifest.json --clobber

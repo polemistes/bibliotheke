@@ -30,6 +30,8 @@ from . import config as configmod, dumps, wikitext as wt
 from .http import CACHE_DIR
 
 EXTRACT_DIR = CACHE_DIR / "extract"
+# Bump when the extract's content changes, so that wscatalog.build re-extracts.
+EXTRACT_VERSION = 4
 REPO_DIR = Path(__file__).resolve().parents[2]
 CANONICAL_NS = {
     "media": -2, "special": -1, "talk": 1, "user": 2, "user talk": 3, "project": 4,
@@ -45,6 +47,7 @@ INTERWIKI = {"w", "wikipedia", "wikt", "wiktionary", "q", "wikiquote", "b", "wik
              "wikilivres", "gutenberg", "iarchive", "google", "doi", "isbn", "arxiv"}
 LANG_PREFIX = re.compile(r"[a-z]{2,3}(-[a-z]{2,8})*$")
 UNSET = 255
+META_ROLES = frozenset(("author", "year", "translator", "description", "image"))
 
 
 class PageRec:
@@ -191,6 +194,8 @@ def parse_ns0(title: str, page_id: int, nbytes: int, text: str, cfg: configmod.C
                             ("description", cfg.description_params), ("image", cfg.image_params)):
             for p in plist:
                 v = params.get(p, "")
+                if v and role in META_ROLES and v.strip().casefold() in cfg.header_placeholders:
+                    continue        # "off", "o. J.": try the next parameter (de ENTSTEHUNGSJAHR)
                 if v and role not in hdr:
                     hdr[role] = v
                     break
@@ -488,6 +493,7 @@ def run(wiki: str, workers: int = 6) -> dict:
     out["site_ns"] = site_ns
     out["dump"] = [p.name for p in parts]
     out["wiki"] = wiki
+    out["version"] = EXTRACT_VERSION
     print(f"{wiki}: {out['count']} pages parsed in {time.time() - t0:.0f} s; "
           f"ns0 {len(out['pages'])} + {len(out['redirects'])} redirects; "
           f"Page: {sum(len(v) for v in out['levels'].values()) and sum(1 for v in out['levels'].values() for x in v if x != UNSET)} "

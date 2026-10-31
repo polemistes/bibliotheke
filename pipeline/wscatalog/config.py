@@ -91,6 +91,7 @@ class Config:
     description_params: list[str] = field(default_factory=list)
     image_params: list[str] = field(default_factory=list)
     index_meta: dict[str, list[str]] = field(default_factory=dict)   # role -> Index fields
+    header_placeholders: frozenset[str] = frozenset()
     # metadata merge (5.2 step 3)
     sort_articles: tuple[str, ...] = ()
     language_map: dict[str, str] = field(default_factory=dict)
@@ -100,7 +101,7 @@ class Config:
     document_templates: frozenset[str] = frozenset()
     document_template_patterns: re.Pattern | None = None
     document_category_patterns: re.Pattern | None = None
-    year_category_regex: re.Pattern | None = None
+    year_categories: list[tuple[re.Pattern, int]] = field(default_factory=list)
     wikidata_genres: dict[str, str] = field(default_factory=dict)
     wikidata_types: dict[str, str] = field(default_factory=dict)
     wikidata_languages: dict[str, str] = field(default_factory=dict)
@@ -115,10 +116,52 @@ class Config:
                 | self.summary_templates)
 
 
+# "Author" in the languages of the Wikisource wikis, for generic configs
+AUTHOR_NAMES = {n.casefold() for n in (
+    "Author", "Autor", "Autore", "Auteur", "Auctor", "Forfatter", "Författare", "Höfundur",
+    "Kirjailija", "Автор", "Аўтар", "Autorius", "Autors", "Avtor", "Pisac", "Писац", "Szerző",
+    "Yazar", "Müəllif", "Συγγραφέας", "Aŭtoro", "Egilea", "Awdur", "Údar", "Schrijver", "Skrywer",
+    "Pengarang", "Penulis", "Tác gia", "Tác giả", "作者", "著者", "저자", "Կատարում", "Հեղինակ",
+    "ავტორი", "लेखक", "লেখক", "ലേഖകൻ", "ಕರ್ತೃ", "రచయిత", "ஆசிரியர்", "ผู้แต่ง", "מחבר", "مؤلف",
+    "نویسنده", "مصنف", "Muallif")}
+
+
+def configured() -> list[str]:
+    """Wikis with a config of their own (PLAN.md 5.5)."""
+    return sorted(p.stem for p in CONFIG_DIR.glob("*.yaml") if p.stem != "default")
+
+
+def generic(wiki: str) -> dict:
+    """Config of a wiki without a file (PLAN.md 5.5: generic default,
+    Wikidata-only metadata): domain and dbname from the sitematrix, the
+    Page, Index and Author namespaces from the wiki's siteinfo (cached)."""
+    import json
+    from . import http, sites
+    s = sites.site(wiki)
+    if s is None:
+        raise KeyError(f"{wiki}: not an open Wikisource")
+    path = http.CACHE_DIR / "siteinfo" / f"{wiki}.json"
+    if path.exists():
+        info = json.loads(path.read_text("utf-8"))
+    else:
+        info = http.action_api(s["domain"], action="query", meta="siteinfo", siprop="namespaces")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(info, ensure_ascii=False), "utf-8")
+    spaces = info["query"]["namespaces"].values()
+    by_canonical = {n.get("canonical"): n["id"] for n in spaces}
+    ns = {k: by_canonical.get(c) for k, c in (("author", "Author"), ("index", "Index"), ("page", "Page"))}
+    if ns["author"] is None:        # the Author namespace's canonical name is local on most wikis
+        ns["author"] = next((n["id"] for n in spaces if n["id"] >= 100 and n["id"] % 2 == 0 and
+                             {(n.get("name") or "").casefold(), (n.get("canonical") or "").casefold()}
+                             & AUTHOR_NAMES), None)
+    return {"wiki": wiki, "dbname": s["dbname"], "domain": s["domain"],
+            "language": wiki, "namespaces": {k: v for k, v in ns.items() if v is not None}}
+
+
 def load(wiki: str) -> Config:
     default = yaml.safe_load((CONFIG_DIR / "default.yaml").read_text("utf-8"))
     path = CONFIG_DIR / f"{wiki}.yaml"
-    over = yaml.safe_load(path.read_text("utf-8")) if path.exists() else {"wiki": wiki}
+    over = yaml.safe_load(path.read_text("utf-8")) if path.exists() else generic(wiki)
     raw = _merge(default, over)
     raw["wiki"] = wiki      # the file name; YAML would read a bare `no` as false
     s, q, m, wd = raw["structure"], raw["quality"], raw.get("metadata") or {}, raw.get("wikidata") or {}
@@ -182,6 +225,7 @@ def load(wiki: str) -> Config:
             _lower(hp.get("translator")) + _lower((q.get("own_translation") or {}).get("params")))),
         description_params=_lower(hp.get("description")),
         image_params=_lower(hp.get("image")),
+        header_placeholders=frozenset(str(v).casefold() for v in m.get("header_placeholders") or []),
         index_meta={k: _lower(v) for k, v in (raw.get("index_fields") or {}).items()},
         sort_articles=tuple(a.lower() for a in m.get("sort_articles") or []),
         language_map={str(k).upper(): v for k, v in (m.get("language_map") or {}).items()},
@@ -191,7 +235,7 @@ def load(wiki: str) -> Config:
         document_templates=_tset(m.get("document_templates")),
         document_template_patterns=_regex(m.get("document_template_patterns")),
         document_category_patterns=_regex(m.get("document_category_patterns")),
-        year_category_regex=re.compile(m["year_category_regex"]) if m.get("year_category_regex") else None,
+        year_categories=[(re.compile(p), int(prec)) for p, prec in m.get("year_categories") or []],
         wikidata_genres=dict(wd.get("genres") or {}),
         wikidata_types=dict(wd.get("types") or {}),
         wikidata_languages=dict(wd.get("languages") or {}),

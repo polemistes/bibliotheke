@@ -40,7 +40,7 @@ INVISIBLE = dict.fromkeys(map(ord, "​‌‍‎‏­﻿"))
 SEPARATORS = re.compile(r"\s*(?:<br\s*/?>|;|&|\s/\s|\s(?:og|and|und|et|e|y|och|ja)\s)\s*", re.I)
 PARTICLES = {"von", "van", "de", "du", "da", "di", "la", "le", "der", "den", "af", "zu", "ten",
              "ter", "del", "della", "des", "dos", "das", "vom", "zur"}
-YEAR = re.compile(r"(?<![\d.,])(\d{3,4})(?![\d])")
+YEAR = re.compile(r"(?<!\d)(\d{3,4})(?!\d)")
 DECADE = re.compile(r"(?<!\d)(\d{3})0(?:s|-?tallet|er|-årene|-luvulla)\b", re.I)
 
 
@@ -368,11 +368,15 @@ class Merger:
                 if y:
                     m.year, m.year_precision, m.year_source = y[0], y[1], src
                     break
-        if m.year is None and cfg.year_category_regex and hrec is not None:
-            for c in hrec.cats:
-                mm = cfg.year_category_regex.match(c)
+        if m.year is None and hrec is not None:
+            # year, decade or century categories ("Tekster fra 1896", de
+            # "1940er Jahre", "13. Jahrhundert"); a century is its middle year
+            for pat, prec in cfg.year_categories:
+                mm = next((x for x in map(pat.match, hrec.cats) if x), None)
                 if mm:
-                    m.year, m.year_precision, m.year_source = int(mm.group(1)), 9, "category"
+                    v = int(mm.group(1))
+                    m.year = (v - 1) * 100 + 50 if prec == 7 else v
+                    m.year_precision, m.year_source = prec, "category"
                     break
         # language
         m.language = cfg.language
