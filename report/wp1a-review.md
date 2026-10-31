@@ -59,3 +59,33 @@ All pass except en B, by one sample. The errors:
 The remaining B errors are ordering problems of mixed collections with no
 usable order signal, plus odd header data; the grouping itself is right in
 every B sample but `Fru Bovary`.
+
+## Re-sample of the rule-3 extension (WP1, 2026-11-01)
+
+Decision 4 changed de after this review: the rule-3 extension
+(`headerless_toc_members`) attached 6,690 pages to 38 works (de works
+26,257 → 19,660 before the bibliography exclusion). Thirty of the 38, drawn
+with the seed `wp1-rule3-de` by `pipeline/wp1a/rule3_sample.py`, are listed
+in `report/de-rule3-sample.md`, with the same criteria as above.
+
+**25 of 30 correct.** The grouping itself is right in all 30: every
+attached page belongs to the work, including the Topographia volumes
+(samples 3–5, 7, 11, 17, 19, 24, 25, 29, 30) and the page-by-page books
+(Kommersbuch, Hertz, Schedel, Ständebuch, the Passau registers). The five
+errors are order, tree position and classification:
+
+- 2 `Annalen der Physik`: articles in natural (alphabetical) order; no
+  chain, TOC or scan order covers them (as before the extension).
+- 9 `Allgemeines Deutsches Kommersbuch` and 23 `Untersuchungen über die
+  Ausbreitung der elektrischen Kraft`: the root's editorial notes link two
+  or three example pages before the table of contents, and the TOC order
+  takes each link's first occurrence, so those pages come first; the
+  Kommersbuch also shows "hier" as a display title (ticket in STATUS.md).
+- 28 `Schwere, Elektricität und Magnetismus`: the § sections sit under
+  the `Zusammenstellungen` page, which lists them (volume placement).
+- 30 `Topographia Helvetiae, Rhaetiae et Valesiae`: numbered town entries
+  ("1. Bulach") are chapters by the leading-numbering label rule.
+
+Fixed while sampling: page-by-page registers showed "Seite 1", "Seite 2"
+as searchable texts (samples 6, 13, 16, 20); `Seite` and `Blatt` are now
+de chapter labels. Without that fix the count was 21 of 30.

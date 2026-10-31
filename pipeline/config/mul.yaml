@@ -1,0 +1,25 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# wikisource.org, the multilingual Wikisource (PLAN.md 3.1): texts in
+# languages without a wiki of their own, each with its own header template.
+wiki: mul
+domain: wikisource.org
+dbname: sourceswiki
+language: mul
+upload_dir: sources
+namespaces: {author: 108, index: 106, page: 104}   # verified in WP0, F§1
+header_templates: [Header, Отексте, Текст турында, Dane tekstu, Textdaten, Текст сярысь]
+header_params:
+  author: [author, override_author, автор, автор1, autor, schriever, originalschriever]
+  year: [year, датапубликации, датасоздания, нәшер итү датасы, rok wydania, rok powstania, rutkamen_johr, schreven_johr, ар]
+  translator: [translator, переводчик, тәрҗемәче, tłumacz, берыктӥсь]
+structure:
+  container_params: [title]
+  prev_next_params: [[previous, next], [предыдущий, следующий], [poprzedni, następny]]
+  current_params: [section, часть]
+  toc_fields: [remarks]
+disambiguation_templates: [disambiguation, Disambig]
+versions_templates: [versions]
+quality:
+  show_unknown_by_default: null      # not surveyed
+metadata:
+  anonymous_names: [Anonymous, Unknown]

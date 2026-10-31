@@ -1,0 +1,38 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+wiki: es
+domain: es.wikisource.org
+dbname: eswikisource
+language: es
+namespaces: {author: 106, index: 104, page: 102}   # verified in WP0, F§1
+header_templates: [Encabezado]
+header_params:
+  author: [autor]
+  year: [año]
+  translator: [traductor]
+index_fields:
+  author: [autor]
+  translator: [traductor]
+  year: [ano, año]
+  image: [imagen]
+  qid: [wikidata]
+structure:
+  container_params: [título, titulo]
+  prev_next_params: [[anterior, próximo], [anterior, siguiente]]
+  current_params: [sección]
+  toc_fields: [notas]
+  summary_templates: [Índice auxiliar]
+  chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(primer|primero|primera|segundo|segunda|tercer|tercero|tercera|cuarto|cuarta|quinto|quinta|sexto|sexta|séptimo|séptima|octavo|octava|noveno|novena|décimo|décima|último|última)\s+)?(capítulo|libro|parte|acto|escena|canto|tomo|volumen|carta|tratado|sección|jornada)\b|^(prólogo|prefacio|introducción|índice|epílogo|apéndice|dedicatoria)\b'
+disambiguation_templates: [Desambiguación]
+versions_templates: [Ediciones]
+quality:
+  show_unknown_by_default: null      # not surveyed
+  index_type_fields: []
+  index_progress_fields: [progreso]
+  # docs/wp0/index-progress.json: T done, V to validate, C to proofread, P
+  # to proofread without pagelist, L damaged, E extract
+  index_progress_values: {T: validated, V: proofread, C: unproofread, P: unproofread, L: faulty,
+                          E: incomplete, MS: null, OCR: null, X: null}
+metadata:
+  sort_articles: [el, la, los, las, lo, un, una, unos, unas]
+  anonymous_names: [Anónimo, Anonimo, Desconocido]
+  document_templates: [Documento ONU, DP-ONU, DP-USGOV]

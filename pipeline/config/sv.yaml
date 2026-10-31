@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+wiki: sv
+domain: sv.wikisource.org
+dbname: svwikisource
+language: sv
+namespaces: {author: 106, index: 108, page: 104}   # verified in WP0, F§1
+header_templates: [Titel]            # {{Titel|[[Container]]|Author|förra=|nästa=|kommentar=}}
+header_params:
+  author: [författare, "2"]
+  year: [år]
+  translator: [översättare]
+index_fields:
+  author: [upphovsman]
+  translator: [översättare, oversattare]
+  year: [år]
+  image: [bild]
+structure:
+  container_params: ["1"]
+  prev_next_params: [[förra, nästa], [prev, next]]
+  current_params: [current]
+  toc_fields: [kommentar, anmärkningar]
+  chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(första|andra|tredje|fjärde|femte|sjätte|sjunde|åttonde|nionde|tionde|sista)\s+)?(kapitel|kapitlet|akt|akten|del|delen|bok|boken|band|brev|sång|sången|scen)\b|^(förord|inledning|företal|efterskrift|innehåll)\b'
+disambiguation_templates: [Förgreningssida, Förgrening]
+versions_templates: []
+quality:
+  show_unknown_by_default: null      # not surveyed
+  index_type_fields: []
+  index_progress_fields: []          # sv Indexes have no progress field (3.4)
+metadata:
+  sort_articles: [en, ett]
+  anonymous_names: [Anonym, Okänd, Okänd författare]

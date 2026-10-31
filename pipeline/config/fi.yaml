@@ -1,0 +1,30 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+wiki: fi
+domain: fi.wikisource.org
+dbname: fiwikisource
+language: fi
+namespaces: {index: 252, page: 250}  # no Author namespace on fi (F§1): author pages are in ns0
+header_templates: [Otsikko, OtsikkoMME]
+header_params:
+  author: [tekijä, override_author]
+  year: [vuosi]
+  translator: [suomentaja, kääntäjä]
+index_fields:
+  author: [tekijä]
+  translator: [kääntäjä]
+  year: [vuosi]
+  image: [kuva]
+structure:
+  container_params: [otsikko, yläotsikko]
+  prev_next_params: [[edellinen, seuraava]]
+  current_params: [osa, alaotsikko]
+  toc_fields: [huomautuksia]
+  chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+)?(luku|näytös|kohtaus|osa|kirja|laulu|runo|kirje)\b|^(\d+|[ivxlc]+)\.?\s*(luku|näytös|kohtaus|osa|kirja|laulu|runo)\b|^(esipuhe|johdanto|sisällys|jälkisanat)\b'
+disambiguation_templates: [Täsmennyssivu]
+versions_templates: []
+quality:
+  show_unknown_by_default: null      # not surveyed
+  index_type_fields: []
+  index_progress_fields: []          # none on fi (3.4)
+metadata:
+  anonymous_names: [Tuntematon, Anonyymi, Kansanruno]

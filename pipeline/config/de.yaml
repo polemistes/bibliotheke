@@ -24,7 +24,7 @@ structure:
   toc_fields: [inhaltsverzeichnis]
   # templates that transclude Seite:{{{2}}} (checked 2026-10-31; SeitePR1 and Seite only mark a page)
   page_templates: {SeitePR: 2, SeiteST: 2, "SeitePR Rand": 2, PoemPR: 2, SeiteLST: 2}
-  chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(erste[rs]?|zweite[rs]?|dritte[rs]?|vierte[rs]?|fünfte[rs]?|sechste[rs]?|siebente[rs]?|siebte[rs]?|achte[rs]?|neunte[rs]?|zehnte[rs]?|elfte[rs]?|zwölfte[rs]?|letzte[rs]?)\s+)?(kapitel|buch|heft|stück|teil|theil|abschnitt|aufzug|gesang|lieferung|jahrgang|band|brief|akt)\b|^(vorrede|vorwort|einleitung|anhang|nachwort|inhalt|register)\b'
+  chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(erste[rs]?|zweite[rs]?|dritte[rs]?|vierte[rs]?|fünfte[rs]?|sechste[rs]?|siebente[rs]?|siebte[rs]?|achte[rs]?|neunte[rs]?|zehnte[rs]?|elfte[rs]?|zwölfte[rs]?|letzte[rs]?)\s+)?(kapitel|buch|heft|stück|teil|theil|abschnitt|aufzug|gesang|lieferung|jahrgang|band|brief|akt|seite|blatt)\b|^(vorrede|vorwort|einleitung|anhang|nachwort|inhalt|register)\b'
   # Page-by-page books ("Allgemeines Deutsches Kommersbuch:47") and the
   # Topographia volumes: headerless colon pages listed by their root page
   # (decided 2026-11-01, item 4).

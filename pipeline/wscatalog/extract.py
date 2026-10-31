@@ -208,8 +208,9 @@ def parse_ns0(title: str, page_id: int, nbytes: int, text: str, cfg: configmod.C
             hdr["toc_marker"] = "1"
     for name, params, s, e in (wt.templates(text, cfg.textquality_templates & names)
                                if cfg.textquality_templates & names else ()):
-        if params.get("1"):
-            hdr.setdefault("textquality", params["1"].strip())
+        v = next((params[p] for p in cfg.textquality_params if params.get(p)), "")
+        if v:
+            hdr.setdefault("textquality", v.strip())
 
     for attrs in wt.pages_tags(text):
         idx = wt.norm_title(attrs.get("index", ""))

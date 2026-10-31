@@ -71,6 +71,7 @@ class Config:
     status_params: list[str] = field(default_factory=list)
     status_values: dict[str, str] = field(default_factory=dict)
     textquality_templates: frozenset[str] = frozenset()
+    textquality_params: list[str] = field(default_factory=lambda: ["1"])
     textquality_values: dict[str, str] = field(default_factory=dict)
     index_type_fields: list[str] = field(default_factory=list)
     index_types: dict[str, str] = field(default_factory=dict)
@@ -205,6 +206,7 @@ def load(wiki: str) -> Config:
         status_params=_lower(q.get("status_params")),
         status_values={k.lower(): v for k, v in (q.get("status_values") or {}).items()},
         textquality_templates=_tset(q.get("textquality_templates")),
+        textquality_params=_lower(q.get("textquality_params") or ["1"]),
         textquality_values={str(k).lower(): v for k, v in (q.get("textquality_values") or {}).items()},
         index_type_fields=_lower(q.get("index_type_fields")),
         index_types={str(k).lower(): v for k, v in (q.get("index_types") or {}).items()},

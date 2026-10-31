@@ -1,0 +1,34 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+wiki: da
+domain: da.wikisource.org
+dbname: dawikisource
+language: da
+namespaces: {author: 102, index: 106, page: 104}   # verified in WP0, F§1
+header_templates: [Header, Sang Infomation]
+header_params:
+  author: [forfatter, override_forfatter, author, override_author]
+  year: [år, year]
+  translator: [oversætter, translator]
+index_fields:
+  author: [forfatter]
+  translator: [oversætter]
+  year: [år]
+  image: [billede]
+structure:
+  container_params: [titel, title]
+  prev_next_params: [[forrige, næste], [previous, next]]
+  current_params: [afsnit, section]
+  toc_fields: [bemærkninger]
+  chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(første|anden|andet|tredje|fjerde|femte|sjette|syvende|ottende|niende|tiende|sidste)\s+)?([kc]apitel|akt|del|bind|bog|brev|sang|afsnit|optrin)\b|^(forord|indledning|fortale|efterskrift|indhold)\b'
+disambiguation_templates: [Flertydig, Disambig]
+versions_templates: [Udgaver]
+other_versions_templates: [Udgave]
+quality:
+  show_unknown_by_default: null      # not surveyed
+  index_type_fields: []
+  index_progress_fields: [status]
+  index_progress_values: {F: validated, V: proofread, K: unproofread}   # F§5 / docs/wp0/index-progress.json
+metadata:
+  sort_articles: [en, et, den, det, de]
+  anonymous_names: [Anonym, Ukendt, Ukendt forfatter]
+  document_templates: [PD-DenmarkGov]

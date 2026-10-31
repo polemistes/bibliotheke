@@ -37,6 +37,7 @@ REPORT_DIR = PIPELINE_DIR.parent / "report"
 # ord = rowid & 4095 (ord stays below 4096 because parts_cap is 2,000).
 PARTS_ROWID_STRIDE = 4096
 DEFAULT_TIERS = ("validated", "proofread")
+HUMAN = "Q5"
 
 SCHEMA = """
 CREATE TABLE meta(key TEXT PRIMARY KEY, value TEXT);
@@ -128,6 +129,12 @@ class Build:
                                  offline=offline)
         self.merger = Merger(self.res, self.wd)
         self.merger.prefetch(self.works)
+        # PLAN.md 3.2: on wikis without an Author namespace (de, fi) author
+        # pages are ns0 pages; a work whose Wikidata item is a human is one.
+        for w in self.works:
+            if HUMAN in self.wd.claims(self.merger.edition_qid(w), "P31"):
+                self.q[w.root.title][0].excluded = "author-page"
+        self.works = [w for w in self.works if not self.q[w.root.title][0].excluded]
         self.meta: dict[str, Meta] = {w.root.title: self.merger.merge(w, self.q[w.root.title][0])
                                       for w in self.works}
         self.ids = self.work_ids()

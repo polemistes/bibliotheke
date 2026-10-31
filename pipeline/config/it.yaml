@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+wiki: it
+domain: it.wikisource.org
+dbname: itwikisource
+language: it
+namespaces: {author: 102, index: 110, page: 108}   # verified in WP0, F§1
+header_templates: [Intestazione]
+positional_headers:
+  Raccolta: {container: 1}           # {{Raccolta|Collection}}: the text belongs to that collection
+header_params:
+  author: [nome e cognome dell'autore]
+  year: [anno di pubblicazione]
+  translator: [nome e cognome del traduttore]
+index_fields:
+  author: [autore]
+  translator: [traduttore]
+  year: [anno]
+  image: [immagine]
+  language: [lingua]
+structure:
+  container_params: [titolo]
+  prev_next_params: [[prec, succ]]
+  current_params: [sezione]
+  toc_fields: [sommario]
+  chapter_label_regex: '^((\d+|[ivxlc]+)\.?\s+|(primo|prima|secondo|seconda|terzo|terza|quarto|quarta|quinto|quinta|sesto|sesta|settimo|settima|ottavo|ottava|nono|nona|decimo|decima|ultimo|ultima)\s+)?(capitolo|canto|atto|scena|libro|parte|lettera|tomo|volume|sezione)\b|^(prefazione|introduzione|indice|proemio|avvertenza|appendice)\b'
+disambiguation_templates: [Disambigua]
+versions_templates: []
+other_versions_templates: [AltraVersione]
+quality:
+  show_unknown_by_default: null      # not surveyed (WP1a covered no, is, de, fr, en)
+  textquality_templates: [Qualità]
+  textquality_params: [avz]          # SAL 25/50/75/100 % (PLAN.md 3.4)
+  index_type_fields: []
+  index_progress_fields: [qualità]   # free text on it (3.4): only the SAL percentages are read
+  index_progress_values: {"100%": validated, "75%": proofread, "50%": unproofread, "25%": unproofread,
+                          T: null, V: null, C: null, MS: null, OCR: null, L: null, X: null}
+metadata:
+  sort_articles: [il, lo, la, i, gli, le, "l'", un, uno, una, "un'"]
+  anonymous_names: [Anonimo, Anonimi, Autore anonimo, Autori vari]
+  document_templates: [Diritto legge, Diritto convenzione, Normattiva]
