@@ -37,12 +37,15 @@
       `${R.currentPage() + 1} / ${R.pageCount()}  ·  locator ${R.getLocator()}`;
   }
 
-  (() => {
+  // Start after load and one frame, when the WebView has its final size.
+  window.addEventListener('load', () => requestAnimationFrame(() => setTimeout(start, 50)));
+  function start() {
     if (params.get('test')) {
       let result;
       try { result = window.WsrTest.run(names, params); }
       catch (e) { result = { error: String(e), stack: e.stack, pass: false }; }
       document.getElementById('wsr-result').textContent = JSON.stringify(result);
+      if (window.WsrBridge) window.WsrBridge.onEvent('test', JSON.stringify(result));
       return;
     }
     const part = window.WSR_PARTS[names[0]];
@@ -62,7 +65,7 @@
       if (e.clientX < third) R.turn(-1); else if (e.clientX > 2 * third) R.turn(1);
       status();
     });
-  })();
+  }
 </script>
 </body>
 </html>
