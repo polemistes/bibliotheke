@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<!-- One fixture page in the reader page, for screenshots (app/src/test/reader/shot.sh):
+     view.html?part=no/oslo-hus&page=3&s={"pageMarks":"margin"}  (s: WsrReader.apply keys) -->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/main/assets/reader/fonts/fonts.css">
+<link rel="stylesheet" href="/main/assets/reader/reader.css">
+</head>
+<body>
+<div id="wsr-viewport"><div id="wsr-content"></div></div>
+<div id="wsr-marks"></div>
+<script src="/main/assets/reader/reader.js"></script>
+<script>
+(async function () {
+  const q = new URLSearchParams(location.search);
+  const part = q.get('part');
+  const extra = JSON.parse(q.get('s') || '{}');
+  await WsrReader.apply(Object.assign({ fontSize: 18 }, extra));
+  const html = (await (await fetch(`/test/fixtures/${part}/expected.html`)).text()).replace(/\n$/, '');
+  window.WsrBridge = { post: (json) => {
+    if (JSON.parse(json).type !== 'ready') return;
+    const m = q.get('mark');
+    if (m) WsrReader.goToPageMark(m); else WsrReader.goToPage(Number(q.get('page') || 0), false);
+    document.title = 'done';
+  } };
+  WsrReader.openHtml(html, part.split('/')[0], null);
+})();
+</script>
+</body>
+</html>

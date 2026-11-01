@@ -47,6 +47,13 @@
   let generation = 0;
   let fadeTimer = 0;
   let flashing = null;  // {from, to} while a highlight shows; a relayout redraws it
+  // Page marks in the margin and the rules at the breaks (8.2) are drawn in a layer of
+  // their own beside the content, moved with it: positioning them inside the columns
+  // would make them part of a fragmented block. One item per group of marks with no
+  // text between them (blank pages, plates): {marks, label, rules}; the label shows
+  // the last number, the page the text goes on with.
+  let gutter = null;
+  let gutterItems = [];
 
   function post(type, data) {
     if (window.WsrBridge && window.WsrBridge.post) {
@@ -213,7 +220,9 @@
     pageW = Math.floor(raw * LAYOUT_UNIT) / LAYOUT_UNIT;
     setVar('--page-w', pageW + 'px');
     setVar('--page-h', h + 'px');
-    const col = content.clientWidth - 2 * parseFloat(getComputedStyle(content).paddingLeft);
+    prepareGutter();
+    const cs = getComputedStyle(content);
+    const col = content.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
     for (const w of content.querySelectorAll('.wsr-table')) {
       w.dataset.hint = settings.tableHint || '';
       w.classList.toggle('wsr-wide', w.firstElementChild.scrollWidth > col + 1);
@@ -221,7 +230,160 @@
     measure();
     pages = countPages();
     page = Math.min(page, pages - 1);
+    placeGutter();
     setTransform(false);
+  }
+
+  // --- Page marks in the margin, rules at the breaks (8.2) ---------------------------
+
+  // Builds the margin labels and the rules for the marks of the part, and widens the
+  // start margin so the widest label fits in it (the columns stay one page apart: the
+  // gap is both margins). Runs before the columns are laid out.
+  function prepareGutter() {
+    if (!gutter) {
+      gutter = document.createElement('div');
+      gutter.id = 'wsr-gutter';
+      content.parentElement.appendChild(gutter);
+    }
+    gutter.textContent = '';
+    gutterItems = [];
+    const mode = settings.pageMarks || 'inline';
+    const margin = mode === 'margin';
+    const rule = mode !== 'off' && !!settings.pageBreakRule;
+    let start = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--margin-h')) || 0;
+    if (margin || rule) {
+      let widest = 0;
+      const groups = [];
+      let lastKey = null;
+      for (const m of content.querySelectorAll('.wsr-page')) {
+        const key = m.closest('.wsr-footnotes') ? null : offsetOfElement(m);
+        if (key !== null && lastKey !== null && !text(lastKey, key).trim()) groups[groups.length - 1].push(m);
+        else groups.push([m]);
+        lastKey = key;
+      }
+      for (const marks of groups) {
+        const item = { marks, mark: marks[marks.length - 1], label: null, rules: [] };
+        const numbered = marks.filter((m) => m.dataset.num);
+        if (margin && numbered.length) {
+          const l = document.createElement('div');
+          l.className = 'wsr-gmark';
+          l.dataset.i = String(gutterItems.length);
+          l.textContent = numbered[numbered.length - 1].dataset.num;
+          gutter.appendChild(l);
+          widest = Math.max(widest, l.getBoundingClientRect().width);
+          item.label = l;
+        }
+        if (rule) {
+          for (let k = 0; k < 2; k++) {
+            const r = document.createElement('div');
+            r.className = 'wsr-rule';
+            gutter.appendChild(r);
+            item.rules.push(r);
+          }
+        }
+        gutterItems.push(item);
+      }
+      if (margin) start = Math.max(start, Math.ceil(widest) + 2 * GUTTER_PAD);
+    }
+    setVar('--margin-start', start + 'px');
+  }
+
+  const GUTTER_PAD = 4; // px between a margin label and the page edge and the text
+
+  // Places the labels and rules at the line where each break falls: the line of the
+  // first text after the mark (a mark at the end of a line belongs to the next one).
+  function placeGutter() {
+    if (!gutterItems.length) return;
+    const origin = originX();
+    const top0 = content.getBoundingClientRect().top;
+    const cs = getComputedStyle(content);
+    const ms = parseFloat(cs.paddingLeft), me = parseFloat(cs.paddingRight);
+    const lh = parseFloat(cs.lineHeight) || parseFloat(cs.fontSize) * 1.5;
+    let shown = null; // the last label shown: {item, page, top}
+    for (const it of gutterItems) {
+      it.merged = [it];
+      const at = breakBox(it.mark);
+      const parts = it.label ? [it.label, ...it.rules] : it.rules;
+      if (!at) { for (const e of parts) e.hidden = true; continue; }
+      const x = at.rect.left - origin;
+      const p = Math.max(0, pageOfX(at.rect.left, origin));
+      const lineTop = at.rect.top - top0 + at.rect.height / 2 - lh / 2;
+      if (it.label && shown && shown.page === p && Math.abs(shown.top - lineTop) < lh * 0.9) {
+        // Two breaks on one line (a plate between them): one label, the later number.
+        it.label.hidden = true;
+        shown.item.merged.push(it);
+        shown.item.label.textContent = it.label.textContent;
+      } else if (it.label) {
+        shown = { item: it, page: p, top: lineTop };
+        Object.assign(it.label.style, {
+          left: p * pageW + GUTTER_PAD + 'px', width: ms - 2 * GUTTER_PAD + 'px',
+          top: lineTop + 'px', height: lh + 'px', lineHeight: lh + 'px',
+        });
+        it.label.hidden = false;
+      }
+      if (it.rules.length) {
+        // A break at the start of a line is a rule above it; one inside a line steps
+        // round the words before it: under them, up at the break, over the rest.
+        const colLeft = p * pageW + ms, colRight = (p + 1) * pageW - me;
+        const [a, b] = it.rules;
+        if (at.lineStart || x - colLeft < 1) {
+          a.hidden = true;
+          Object.assign(b.style, { left: colLeft + 'px', width: colRight - colLeft + 'px', top: lineTop + 'px', height: '0px' });
+          b.classList.remove('wsr-step');
+        } else {
+          Object.assign(a.style, { left: colLeft + 'px', width: x - colLeft + 'px', top: lineTop + lh + 'px', height: '0px' });
+          a.hidden = false;
+          Object.assign(b.style, { left: x + 'px', width: Math.max(0, colRight - x) + 'px', top: lineTop + 'px', height: lh + 'px' });
+          b.classList.add('wsr-step');
+        }
+        b.hidden = false;
+      }
+    }
+  }
+
+  // Where the text after a page mark starts: the box of its first laid-out character,
+  // and whether that character begins its line. Marks with no text after them, or
+  // outside the locator text (in the notes), use their own position.
+  function breakBox(mark) {
+    if (!mark.closest('.wsr-footnotes') && nodes.length) {
+      const off = offsetOfElement(mark);
+      const at = charBoxFrom(off);
+      if (at) {
+        const prev = off > 0 ? charBoxBefore(off) : null;
+        const lineStart = !prev || Math.abs(prev.rect.top - at.rect.top) > at.rect.height / 2 ||
+          Math.abs(prev.rect.left - at.rect.left) > pageW / 2;
+        return { rect: at.rect, lineStart };
+      }
+    }
+    range.selectNode(mark);
+    const r = range.getBoundingClientRect();
+    return r.width || r.height || r.top ? { rect: r, lineStart: true } : null;
+  }
+
+  // The box of the first character at or after `offset` that has one (collapsed
+  // whitespace has none), or null past the text.
+  function charBoxFrom(offset) {
+    if (offset >= total) return null;
+    let i = nodeOf(offset), k = offset - starts[i];
+    for (let guard = 0; guard < 400; guard++) {
+      if (k >= nodes[i].data.length) { i++; k = 0; if (i >= nodes.length) return null; continue; }
+      const r = /\s/.test(nodes[i].data[k]) ? null : charRect(i, k);
+      if (r) return { rect: r };
+      k++;
+    }
+    return null;
+  }
+
+  // The box of the last visible character before `offset` (a few hundred back at most).
+  function charBoxBefore(offset) {
+    let i = nodeOf(offset - 1), k = offset - 1 - starts[i];
+    for (let guard = 0; guard < 400; guard++) {
+      if (k < 0) { i--; if (i < 0) return null; k = nodes[i].data.length - 1; continue; }
+      const r = /\s/.test(nodes[i].data[k]) ? null : charRect(i, k);
+      if (r) return { rect: r };
+      k--;
+    }
+    return null;
   }
 
   // Applies reader settings (8.5). Keys: fontSize, lineHeight, marginH, marginV,
@@ -316,6 +478,10 @@
   function setTransform(animate) {
     content.classList.toggle('wsr-animating', !!animate);
     content.style.transform = `translate3d(${-page * pageW}px,0,0)`;
+    if (gutter) {
+      gutter.classList.toggle('wsr-animating', !!animate);
+      gutter.style.transform = content.style.transform;
+    }
   }
 
   // --- Navigation ----------------------------------------------------------------
@@ -525,7 +691,7 @@
 
   function hitAt(x, y) {
     const el = document.elementFromPoint(x, y);
-    if (!el || !content.contains(el)) return null;
+    if (!el || !(content.contains(el) || (gutter && gutter.contains(el)))) return null;
     const fn = el.closest('sup.wsr-fnref');
     if (fn) {
       const a = fn.querySelector('a[href^="#"]');
@@ -533,6 +699,14 @@
       const note = id ? byId(id) : null;
       return { kind: 'note', id, label: a ? a.textContent.trim() : '', html: note ? noteHtml(note) : '' };
     }
+    const gm = el.closest('.wsr-gmark');
+    if (gm) {
+      const marks = gutterItems[Number(gm.dataset.i)].merged.flatMap((it) => it.marks).filter((m) => m.dataset.num);
+      const m = marks[marks.length - 1];
+      return { kind: 'pagemark', num: m.dataset.num, title: m.dataset.pageTitle || '',
+               marks: marks.map((k) => ({ num: k.dataset.num, title: k.dataset.pageTitle || '' })) };
+    }
+    if (!content.contains(el)) return null;
     const mark = el.closest('.wsr-page');
     if (mark) return { kind: 'pagemark', num: mark.dataset.num || '', title: mark.dataset.pageTitle || '' };
     const a = el.closest('a[href]');

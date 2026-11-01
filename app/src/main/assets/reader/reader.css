@@ -6,6 +6,7 @@
   --page-w: 100vw;          /* snapped to 1/64 px by reader.js */
   --page-h: 100vh;
   --margin-h: 22px;
+  --margin-start: var(--margin-h); /* wider for page marks in the margin (reader.js) */
   --margin-v: 28px;
   --font-size: 18px;
   --line-height: 1.5;
@@ -36,15 +37,16 @@ html, body {
 }
 
 /* One CSS column per screen page: the box is one page wide and padded by the side
-   margin; each column is the page width minus both margins and the gap is both
-   margins, so column n starts exactly at n × page width. */
+   margins; each column is the page width minus both margins and the gap is both
+   margins, so column n starts exactly at n × page width. The start margin may be
+   wider than the end margin (page marks in the margin). */
 #wsr-content {
   box-sizing: border-box;
   width: var(--page-w);
   height: var(--page-h);
-  padding: var(--margin-v) var(--margin-h);
-  column-width: calc(var(--page-w) - 2 * var(--margin-h));
-  column-gap: calc(2 * var(--margin-h));
+  padding: var(--margin-v) var(--margin-h) var(--margin-v) var(--margin-start);
+  column-width: calc(var(--page-w) - var(--margin-start) - var(--margin-h));
+  column-gap: calc(var(--margin-start) + var(--margin-h));
   column-fill: auto;
   font-family: var(--font-family);
   font-size: var(--font-size);
@@ -57,7 +59,7 @@ html, body {
   transform: translate3d(0, 0, 0);
 }
 
-#wsr-content.wsr-animating {
+#wsr-content.wsr-animating, #wsr-gutter.wsr-animating {
   transition: transform 260ms cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
@@ -97,6 +99,35 @@ blockquote { margin: 0.6em 0 0.6em 1.5em; }
 }
 #wsr-content.wsr-pm-off .wsr-page::after,
 #wsr-content.wsr-pm-margin .wsr-page::after { content: none; padding: 0; }
+
+/* The margin layer: page numbers in the start margin at the line of the break, and
+   the hairline rules (reader.js places them; it moves with the content). */
+#wsr-gutter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+.wsr-gmark {
+  position: absolute;
+  text-align: right;
+  white-space: nowrap;
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) * 0.7);
+  color: var(--muted);
+  pointer-events: auto;
+}
+.wsr-rule {
+  position: absolute;
+  box-sizing: border-box;
+  border-top: 1px solid var(--muted);
+  opacity: 0.6;
+}
+.wsr-rule.wsr-step { border-left: 1px solid var(--muted); }
 
 /* Line numbers of the source (8.3), shown unless switched off. */
 .wsr-ln-src { float: right; color: var(--muted); font-size: 0.7em; text-indent: 0; }

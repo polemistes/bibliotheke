@@ -5,7 +5,8 @@
 //  - on probe pages, locator L survives a font change and a geometry change (rotation)
 //    with L on the shown page, and going back gives the same page and the same L;
 //  - every footnote reference opens its note, the note section is shown "away" from
-//    the anchor and back() returns to it; the first page mark is found by number.
+//    the anchor and back() returns to it; the first page mark is found by number;
+//  - page marks inline and in the margin are tappable and placed in the margin (WP5).
 
 (function () {
   'use strict';
@@ -131,9 +132,54 @@
       }
       out.pageMark = mark.dataset.num;
     }
+    if (mark) await testPageMarks(out, fails);
     out.fails = fails;
     out.pass = fails.length === 0;
     return out;
+  }
+
+  // Page marks (8.2): inline, every mark is tappable on its page; in the margin, every
+  // label lies in the start margin of its page, at the height of the text after the
+  // mark, and is tappable; switching modes keeps the position.
+  async function testPageMarks(out, fails) {
+    const content = document.getElementById('wsr-content');
+    const marks = Array.from(content.querySelectorAll('.wsr-page[data-num]')).filter((m) => m.dataset.num && !m.closest('.wsr-footnotes'));
+    const tapAt = (box, num, what) => {
+      const h = R.hit(box.left + box.width / 2, box.top + box.height / 2);
+      if (h.kind !== 'pagemark' || h.num !== num) { fails.push(`${what} ${num}: tap gave ${JSON.stringify(h).slice(0, 80)}`); return false; }
+      return true;
+    };
+    const pageOf = (x) => Math.floor((x - content.getBoundingClientRect().left + 0.5) / R.pageWidth());
+    const s0 = R.goToPage(Math.floor(out.pages / 2), false);
+    const kept = (s, what) => {
+      if (s.anchor !== s0.anchor || s.anchorEl !== s0.anchorEl) fails.push(`${what}: position ${s0.anchor} -> ${s.anchor}`);
+    };
+    let inline = 0, margin = 0;
+    for (const m of marks.slice(0, 40)) {
+      const r0 = m.getClientRects()[0];
+      if (!r0) continue;
+      R.goToPage(pageOf(r0.left), false);
+      if (tapAt(m.getClientRects()[0], m.dataset.num, 'inline mark')) inline++;
+    }
+    R.goToPage(s0.page, false);
+    await applyAndWait({ pageMarks: 'margin', pageBreakRule: true });
+    kept(R.state(), 'to margin');
+    const ms = parseFloat(getComputedStyle(content).paddingLeft);
+    const labels = Array.from(document.querySelectorAll('#wsr-gutter .wsr-gmark')).filter((l) => !l.hidden);
+    for (const l of labels.slice(0, 40)) {
+      // The label's page from its place in the gutter layer, which moves with the content.
+      const p = Math.floor((parseFloat(l.style.left) + 0.5) / R.pageWidth());
+      R.goToPage(p, false);
+      const b = l.getBoundingClientRect();
+      if (b.left < -0.5 || b.right > ms + 0.5 || b.top < 0 || b.bottom > H) {
+        fails.push(`margin mark ${l.textContent} on page ${p}: box ${Math.round(b.left)}..${Math.round(b.right)} x ${Math.round(b.top)}, margin ${ms}`);
+      } else if (tapAt(b, l.textContent, 'margin mark')) margin++;
+    }
+    out.marks = marks.length;
+    out.marksTapped = { inline, margin, labels: labels.length };
+    R.goToLocator(s0.anchor, false, s0.anchorEl, s0.anchorSkip);
+    await applyAndWait({ pageMarks: 'inline', pageBreakRule: false });
+    kept(R.state(), 'back to inline');
   }
 
   async function run() {

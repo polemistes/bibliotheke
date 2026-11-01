@@ -358,17 +358,24 @@ fun NoteSheet(hit: Hit, onGoToNotes: () -> Unit, onDismiss: () -> Unit) {
     }
 }
 
-/** A page mark of the original (8.2): its number, and the scan on Wikisource. */
+/**
+ * A page mark of the original (8.2): its number, and the scan on Wikisource. A margin
+ * label can stand for several pages with no text between them (blank pages, plates):
+ * each is listed with its scan.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PageMarkSheet(hit: Hit, domain: String?, onDismiss: () -> Unit) {
     val context = LocalContext.current
+    val marks = hit.marks.ifEmpty { listOf(PageMark(hit.num, hit.title)) }
     ModalBottomSheet(onDismissRequest = onDismiss) {
         Column(Modifier.fillMaxWidth().padding(horizontal = 20.dp).padding(bottom = 16.dp)) {
-            Text(stringResource(R.string.reader_page_mark, hit.num), style = MaterialTheme.typography.titleMedium)
-            if (hit.title.isNotBlank() && domain != null) {
-                TextButton(onClick = { onDismiss(); context.openInBrowser(WikiLinks.pageUrl(domain, hit.title)) }) {
-                    Text(stringResource(R.string.reader_open_scan))
+            for (m in marks) {
+                Text(stringResource(R.string.reader_page_mark, m.num), style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp))
+                if (m.title.isNotBlank() && domain != null) {
+                    TextButton(onClick = { onDismiss(); context.openInBrowser(WikiLinks.pageUrl(domain, m.title)) }) {
+                        Text(stringResource(R.string.reader_open_scan))
+                    }
                 }
             }
         }

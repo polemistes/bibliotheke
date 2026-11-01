@@ -2,6 +2,10 @@
 package app.bibliotheke.wikisource.content
 
 import app.bibliotheke.wikisource.catalog.WikiLinks
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -83,7 +87,9 @@ class Normaliser(private val profile: WikiProfile, private val ns: Namespaces = 
             val prp = el.hasClass("pagenum") || el.hasClass("ws-pagenum")
             // ProofreadPage markers carry number and scan page in attributes (F§2.3); template
             // markers (de pr1pn, {{SeitePR}}) show "[104]" and may link the scan page.
-            val num = if (prp) el.attr("data-page-number").ifEmpty { el.id() }.replace('_', ' ').trim()
+            // Parsoid renames a repeated id (two pages labelled 1) to its own "mwQA"; the
+            // template's parameters keep the label.
+            val num = if (prp) el.attr("data-page-number").ifEmpty { pagenumParam(el) ?: el.id() }.replace('_', ' ').trim()
             else el.text().trim().trim('[', ']').trim().ifEmpty { el.id().removePrefix("Seite_") }
             val scan = if (prp) el.attr("data-page-name").ifEmpty { el.attr("title") }.replace('_', ' ').trim()
             else el.selectFirst("a[rel=mw:WikiLink]")?.attr("title")?.takeIf { ns.of(it) != 0 }.orEmpty()
@@ -92,6 +98,15 @@ class Normaliser(private val profile: WikiProfile, private val ns: Namespaces = 
             el.replaceWith(mark)
         }
     }
+
+    /** The label of a ProofreadPage marker from its `data-mw` (`formatted`, else `num`). */
+    private fun pagenumParam(el: Element): String? = runCatching {
+        val parts = Json.parseToJsonElement(el.attr("data-mw")).jsonObject["parts"]!!.jsonArray
+        val params = parts.firstNotNullOf { it.jsonObject["template"]?.jsonObject?.get("params")?.jsonObject }
+        listOf("formatted", "num").firstNotNullOfOrNull { k ->
+            params[k]?.jsonObject?.get("wt")?.jsonPrimitive?.content?.trim()?.takeIf { it.isNotEmpty() && '<' !in it && '{' !in it }
+        }
+    }.getOrNull()
 
     private fun lineNumbers(body: Element) {
         if (profile.lineNumberSelectors.isEmpty()) return

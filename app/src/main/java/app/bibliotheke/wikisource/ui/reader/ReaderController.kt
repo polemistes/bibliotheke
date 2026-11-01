@@ -68,7 +68,13 @@ data class Hit(
     val title: String = "",
     val src: String = "",
     val alt: String = "",
+    /** A margin label for several page marks with no text between them (8.2). */
+    val marks: List<PageMark> = emptyList(),
 )
+
+/** A page of the original: its number and its scan page (`Page:…`). */
+@Serializable
+data class PageMark(val num: String = "", val title: String = "")
 
 /**
  * The reader's WebViews (PLAN.md 8.1). Three reader pages are kept: the current part,
