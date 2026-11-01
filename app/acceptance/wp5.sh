@@ -75,7 +75,8 @@ open_appearance() {
     $ADB shell input tap 540 $y; sleep 1.5
   done
   sheet_open || { echo "FAIL the appearance sheet did not open"; fail=1; return 1; }
-  $ADB shell input swipe 30 2000 30 600 1000; sleep 1.5   # slowly (no fling), in the side padding, off the sliders
+  local k   # to the end of the sheet: slowly (no fling), in the side padding, off the sliders
+  for k in 1 2; do $ADB shell input swipe 30 2000 30 600 1000; sleep 1; done
 }
 set_option() { open_appearance || return; tap_exact "$1" 2; close_sheets; sleep 1; }
 
@@ -164,7 +165,8 @@ import json, sys
 v = json.loads(sys.argv[1])
 shown = sorted(set(v["numbered"]) | {int(s) for s in v["srcShown"]})
 ok = v["lines"] > 0 and shown == sorted(set(v["due"])) and len(v["due"]) > 0
-print(("ok  " if ok else "FAIL") + f" verse every 5: {v[\"lines\"]} lines on the page, numbers {shown}, due {v[\"due\"]}, {v[\"heads\"]} heading lines unnumbered")
+lines, due, heads = v["lines"], v["due"], v["heads"]
+print(("ok  " if ok else "FAIL") + f" verse every 5: {lines} lines on the page, numbers {shown}, due {due}, {heads} heading lines unnumbered")
 sys.exit(0 if ok else 1)' "$v" || fail=1
   set_option "$L_OFF"
   v=$(verse_state); shot verse-off
@@ -172,7 +174,8 @@ sys.exit(0 if ok else 1)' "$v" || fail=1
 import json, sys
 v = json.loads(sys.argv[1])
 ok = not v["numbered"]
-print(("ok  " if ok else "FAIL") + f" verse off: generated numbers {v[\"numbered\"]}")
+numbered = v["numbered"]
+print(("ok  " if ok else "FAIL") + f" verse off: generated numbers {numbered}")
 sys.exit(0 if ok else 1)' "$v" || fail=1
 }
 

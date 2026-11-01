@@ -1139,6 +1139,13 @@ Setting `pageMarks: off | inline | margin`.
   Wikisource" (browser).
 - Default: `inline` on, because the user explicitly wants pages marked as on
   Wikisource; make the first-run reader tip mention the setting.
+(WP5, 2026-11-01) As built: margin labels and rules are drawn by reader.js in
+a layer beside the column box that moves with it, placed after each layout
+at the first character after each mark; no `wsr-has-page` wrapper. The start
+margin widens to the widest label of the part. Marks with no text between
+them (blank pages, plates) share one label with the last number, and the
+sheet lists each page with its scan. The rule steps round the words before a
+break that falls inside a line. See STATUS.md "WP5 notes".
 
 ### 8.3 Line numbers (R9)
 - `lineNumbersSource: on/off` toggles `.wsr-ln-src{display:inline}`; off hides.
@@ -1148,6 +1155,12 @@ Setting `pageMarks: off | inline | margin`.
   `data-n` to each line and CSS attribute selectors, or by JS marking every Nth
   line with a class after load; prefer the normaliser's `data-n`).
 - Prose line numbers (per printed line) are not generated: lines reflow.
+(WP5, 2026-11-01) As built: `data-n` with attribute selectors (every 5th:
+ends in 5 or 0; every 10th: ends in 0); the numbers sit in a gutter right of
+the verse, and the source's number, where shown, replaces the generated one.
+Heading lines inside a poem (all bold, no letter or digit, a centred first
+line) get no `data-n` and are not counted. Defaults: source numbers on,
+generated numbers off. it source numbers: `span.numeroriga` (`{{R}}`).
 
 ### 8.4 Footnotes (R10)
 Tap `.wsr-fnref` → JS posts the footnote id → Kotlin shows a bottom sheet with
@@ -1279,6 +1292,7 @@ pages with no text start (F§4.6); tables break by row instead of
 Acceptance: a scan-backed Norwegian work shows the original page numbers in
 inline and margin modes, each tappable; a poem shows generated numbers every 5
 lines; a French text with source line numbers shows and hides them.
+(WP5, 2026-11-01: met; see STATUS.md and `app/acceptance/wp5.sh`.)
 
 ### WP6 — Localization, accessibility, tablets (2 weeks)
 - All 11 locales complete (en, nb, nn, no→nb copy, fr, de, it, sv, da, fi, is,

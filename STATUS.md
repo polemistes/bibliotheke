@@ -7,10 +7,63 @@ Last updated: 2026-11-01
 
 ## Current package
 
-**WP4 — Reader core: complete** (2026-11-01; acceptance on the emulator,
-below). Next: **WP5 — Page marks and line numbers**. WP0–WP3 are complete
-(WP3: commit 521895f; WP2: 18 of 18, commit c9c731f; WP1: 19 of 19, commit
-161472a).
+**WP5 — Page marks and line numbers: complete** (2026-11-01; acceptance on
+the emulator, below). Next: **WP6 — Localization, accessibility, tablets**.
+WP0–WP4 are complete (WP4: commit 41d02fd; WP3: 521895f; WP2: 18 of 18,
+c9c731f; WP1: 19 of 19, 161472a).
+
+WP5 sub-steps:
+
+- [x] 1. Reader settings (`ReaderSettings`, DataStore, the appearance sheet):
+      `pageMarks` off / inline / margin (default inline), `pageBreakRule`
+      (default off), `lineNumbersSource` (default on), `lineNumbersVerse`
+      off / every 5 / every 10 / every line (default off); applied live
+      through `WsrReader.apply` as classes on the content, so the relayout
+      keeps the locator like the other settings. First-run reader tip (once,
+      over the page): how to turn pages, that the original's page numbers
+      show as [12] and open the scan, and that Appearance moves them to the
+      margin or hides them; its button opens the sheet (commit 87c4f69)
+- [x] 2. Margin mode and the rule at the break (8.2), see "WP5 notes"; the
+      Chromium test taps every mark in both modes on all 111 fixture pages;
+      normaliser fix: a ProofreadPage marker whose id Parsoid renamed
+      (`mwQA` for a second page labelled 1) takes its label from `data-mw`
+      (commit 0524341)
+- [x] 3. Verse numbers by CSS on the normaliser's `data-n`; heading lines are
+      not counted (Erlkönig numbers 1–32, agreeing with its source numbers
+      5, 10 … 30); a fixture invariant checks verse numbers on every page
+      (commit 172a635)
+- [x] 4. it: `line_number_selectors: [span.numeroriga]` (`{{R}}`, *Adda*
+      "5Cheti recessi", *L'amaro calice*); `wiki-profiles.json` exported,
+      the pytest passes (commit cd8d84a)
+- [x] 5. Tests: `app/src/test/reader/run.sh` 111 of 111, `:core-content:test`
+      and `:core-catalog:test` pass; acceptance on the emulator (below) with
+      `app/acceptance/wp5.sh` (commit 7dbe5bc)
+
+**WP5 acceptance** (AVD `bibliotheke_wp0`, app in nb; settings changed
+through the appearance sheet; where marks and numbers are and what shows is
+read from the reader page over the WebView DevTools protocol, and each mark
+is tapped with adb at its place on the screen):
+
+- *A scan-backed Norwegian work shows the original page numbers in inline
+  and margin modes, each tappable*: met. *Det kommunistiske manifest
+  (1919)* (no, validated, 67 page marks, opened by URL and downloaded):
+  `wp5.sh marks 10` tapped every mark on the first ten pages, 11 of 11
+  inline and 11 of 11 in the margin, and each opened "Side N i
+  originalen" with "Åpne skanningen på Wikisource"; the scan button opened
+  `no.wikisource.org/wiki/Side:Det_kommunistiske_manifest.pdf/6` for page
+  2. The first-run tip showed on the first open, in nb.
+- *A poem shows generated numbers every 5 lines*: met. *Ved Rundarne
+  (1864)* in *Diktsamling* (no, no source numbers): `wp5.sh verse` found
+  5, 10, 15 on the first page and nothing else, then none with numbering
+  off. Erlkönig (heading line, source numbers) in Chromium.
+- *A French text with source line numbers shows and hides them*: met. *La
+  Légende des siècles/Clarté d'âmes* (fr, "Download this page"): `wp5.sh
+  source` saw the page's numbers 5 and 10 shown, hidden, and shown again;
+  the part reflows (8 → 7 pages without the gutter) on page 1.
+- In Chromium (`run.sh`, all 111 pages): every mark inline and every margin
+  label tappable with its own number, labels inside the start margin of
+  their page, positions kept when switching modes and toggling line
+  numbers, verse numbers on the right lines.
 
 WP4 sub-steps:
 
@@ -110,6 +163,52 @@ has 61 chapters, one more than the criterion asks. Also checked by hand: the
 Library screen (sizes, total), "Download this page" for a link to a wiki
 without an installed catalog (is `Tófukvæði`, live resolution, 5.1 kB), and
 nb strings on the new screens.
+
+## WP5 notes (implementation choices, for review)
+
+- **Margin mode without `div.wsr-has-page`**: the labels and rules are drawn
+  in a layer of their own (`#wsr-gutter`) beside the column box, moved by the
+  same transform, and placed after each layout from the box of the first
+  character after each mark (so a mark at the end of a line labels the next
+  line, where the new page begins). Absolute positioning inside the columns
+  would make the label part of a fragmented block, which 8.2 warns about;
+  the normaliser is unchanged.
+- **The start margin widens** in margin mode to the widest label of the part
+  plus 8 px (Medium: 22 → about 30 px with three-digit numbers); the end
+  margin stays. The columns stay one page apart because the gap is the sum
+  of both margins. Labels sit in the start (left) margin on every page; the
+  outer margin of a two-page spread and right-to-left texts are left for
+  the tablet work (WP6).
+- **Several marks at one place** (blank pages, plates: Shelley xviii–xxiv,
+  Diktsamling 220–223): marks with only whitespace between them share one
+  label showing the last number, the page the text goes on with; so do two
+  breaks that land on one line. The sheet then lists every page with its
+  scan. Inline, each mark keeps its own [n].
+- **The rule at the break** (off by default, with page marks inline or in
+  the margin): a hairline above the line where a page begins; when the
+  break falls inside a line it steps round the words before it (under them,
+  up at the break, over the rest).
+- **Verse numbers** use the normaliser's `data-n` with CSS attribute
+  selectors: every 5th is `data-n` ending in 5 or 0, every 10th ending in 0.
+  Numbers sit in a gutter right of the verse (the verse is padded, the
+  number floats into the padding), so they do not push the line; the
+  source's numbers in verse sit in the same gutter. Where the source's
+  number shows on a line, it is the only one (the two agree, Verse.kt
+  re-syncs).
+- **Heading lines** (`span.wsr-line.wsr-vhead`, no `data-n`): a line that is
+  all bold or a heading, one without a letter or digit (asterisms), or a
+  centred first line. Found in the corpus: three de titles, seven fr
+  asterisms, the no *Oslo-hus* title, the fi *Kescustuxet* title block. A
+  plain byline under a title (*Saurer Traub*, "Von Theobald Tiger") still
+  counts.
+- **Defaults**: page marks inline (8.2), rule off, source numbers on (they
+  are in the text as printed), generated verse numbers off (R9 calls them
+  optional; every 5 is one tap away).
+- **it numbers leave the locator text**: *Adda* 3,596 → 3,563 characters.
+  Positions and bookmarks in it parts downloaded before this change can be
+  a few characters off until the part is downloaded again.
+- **Screenshots of fixture pages**: `app/src/test/reader/shot.sh <part>
+  <page|mark=N> '<settings json>' out.png` (headless Chromium, 412 × 915).
 
 ## WP4 notes (implementation choices, for review)
 
@@ -487,7 +586,8 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## In progress
 
-- Nothing running. WP4 is complete; next: WP5 (page marks and line numbers).
+- Nothing running. WP5 is complete; next: WP6 (localization,
+  accessibility, tablets).
 - **Owner's decision (2026-11-01): Wikidata for it, sv, da, fi, es and mul
   is fetched by the first CI run**, not locally (it would take about an
   hour; the bottleneck is Wikidata's server time and maxlag, not the
@@ -496,6 +596,12 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## How to resume / rerun
 
+- Page marks and line numbers (WP5): the reader test below covers them;
+  screenshots with `app/src/test/reader/shot.sh`. Acceptance: a debug build
+  in nb, a work open in the reader, then
+  `PATH=$PATH:$HOME/Android/Sdk/platform-tools app/acceptance/wp5.sh marks
+  10` (a work with page marks), `… wp5.sh verse` (a poem), `… wp5.sh source`
+  (a text with source line numbers); needs Node 22+ (`cdp.mjs`).
 - Reader (WP4): `app/src/test/reader/run.sh` (headless Chromium over the
   fixture corpus; `PARTS=no/sult-02,…` for some). Acceptance: open a
   downloaded work of several parts in the reader (not on its last part),
@@ -550,7 +656,7 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 - **WP4 not done, by plan or for later**: the two-page spread on tablets
   (8.1; with the tablet work of WP6), volume keys (optional), the page
   following the finger during a swipe, the info sheet "Part of: …" for a
-  text opened from search (8.6), the margin mode of page marks (WP5).
+  text opened from search (8.6).
   Frame timing on a real mid-range phone (WP0 caveat) is still to be
   measured. After a font change the reading anchor can sit mid-page; a
   bookmark then starts at its sentence, which may be lower on the page than
@@ -559,10 +665,15 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
   reference works (WS§7.1; downloading one resolves every entry, so it
   needs the entry picker first); refresh with `If-None-Match` and merging
   re-resolved parts (7.1 step 3); de's `{{SeitePR}}` page markers carry no
-  scan page title when the link is missing; generated line numbers count a
-  bold title line inside a poem (Erlkönig: two lines numbered 5 after the
-  re-sync, F§4.4); it's source line numbers (*Adda*: "5Cheti recessi", the
-  number run into the line) are not in its `line_number_selectors` yet (WP5).
+  scan page title when the link is missing.
+- **WP5, for later**: margin labels sit in the left margin on every page (the
+  outer margin of a tablet spread and RTL texts come with WP6); a byline
+  line under a poem's title is counted as verse. On the emulator a link out
+  (the scan) goes through a chooser that lists Calendar and Camera beside
+  Chrome: `openInBrowser` (WP2) asks for the browser category, and this
+  image has no default browser; worth a look on a real phone. The
+  appearance sheet needs two Backs when fully expanded (Material: expanded →
+  half → closed).
 
 - **For the owner (WP2)**: speeches stay behind the "Include documents"
   chip with the other documents (wp1-decisions item 4 left "document and
