@@ -94,7 +94,9 @@ class ParsoidPage(val title: String, html: String, val profile: WikiProfile, val
     /** The header's name for this part (`current`, `section`, de `TITEL`), as plain text. */
     val current: String? by lazy {
         headerValue(profile.currentParams)?.let { v ->
-            val l = Titles.links(v).firstOrNull()
+            // A value that is one link names its target; otherwise the text, links unwrapped
+            // (de TITEL "Ansichten der Freien [[Hanse]]stadt [[Lübeck]] …").
+            val l = Titles.links(v).singleOrNull()?.takeIf { v.trim().startsWith("[[") && v.trim().endsWith("]]") }
             plainText(if (l != null) (l.second ?: l.first) else v)
         }?.takeIf { it.isNotBlank() }
     }
@@ -191,7 +193,7 @@ class ParsoidPage(val title: String, html: String, val profile: WikiProfile, val
         /** Wikitext to rough plain text: link texts, no quotes or tags. */
         fun plainText(wikitext: String): String =
             Regex("""\[\[(?:[^\]|]*\|)?([^\]]*)]]""").replace(wikitext) { it.groupValues[1] }
-                .replace(Regex("'{2,}"), "").replace(Regex("<[^>]+>"), "").replace(Regex("\\{\\{[^}]*}}"), "")
+                .replace(Regex("'{2,}"), "").replace(Regex("<[^>]+>"), "").replace(Regex("\\{\\{[^}]*\\}\\}"), "")
                 .let { Jsoup.parse(it).text() }.trim()
     }
 }

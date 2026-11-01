@@ -16,9 +16,11 @@ needle = sys.argv[1]
 x = sys.stdin.read()
 for m in re.finditer(r"<node [^>]*>", x):
     n = m.group(0)
-    t = html.unescape(re.search(r"text=\"([^\"]*)\"", n).group(1))
-    d = html.unescape(re.search(r"content-desc=\"([^\"]*)\"", n).group(1))
-    if needle in t or needle in d:
+    mt = re.search(r"text=\"([^\"]*)\"", n)
+    md = re.search(r"content-desc=\"([^\"]*)\"", n)
+    t = html.unescape(mt.group(1)) if mt else ""
+    d = html.unescape(md.group(1)) if md else ""
+    if (needle in t or needle in d) and "bounds=" in n:
         b = re.search(r"bounds=\"\[(\d+),(\d+)\]\[(\d+),(\d+)\]\"", n).groups()
         print((int(b[0]) + int(b[2])) // 2, (int(b[1]) + int(b[3])) // 2)
         break

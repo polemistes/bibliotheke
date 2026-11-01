@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 package app.bibliotheke.wikisource.ui.reader
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -129,6 +130,8 @@ class ReaderViewModel @Inject constructor(
         val u = _ui.value
         val part = u.parts.firstOrNull { it.index == key.index && it.sub == key.sub } ?: return
         val progress = progressOf(u, part, st.anchor)
+        // One line per position, for the acceptance scripts (app/acceptance/wp4.sh).
+        Log.i(TAG, "part=${key.index}/${key.sub} page=${st.page + 1}/${st.pages} anchor=${st.anchor} el=${st.anchorEl}/${st.anchorSkip} away=${st.away}")
         _ui.update { it.copy(current = part, page = st, progress = progress) }
         if (st.away) return // a footnote section: the reading position stays
         val loc = Locator(key.index, key.sub, st.anchor, st.anchorEl, st.anchorSkip)
@@ -196,26 +199,19 @@ class ReaderViewModel @Inject constructor(
         if (part == null) notFound() else go(part, Target.Mark(n))
     }
 
-    fun addBookmark(excerpt: String) = viewModelScope.launch {
+    fun addBookmark(key: PartKey, spot: BookmarkSpot) = viewModelScope.launch {
         val u = _ui.value
-        val part = u.current ?: return@launch
-        val loc = position ?: return@launch
+        val part = u.parts.firstOrNull { it.index == key.index && it.sub == key.sub } ?: return@launch
         library.addBookmark(
             Bookmark(
-                workId = route.workId, at = loc, progress = u.progress.toDouble(), partTitle = part.title,
-                excerpt = excerpt, note = null, createdAt = System.currentTimeMillis(),
+                workId = route.workId, at = Locator(key.index, key.sub, spot.offset, spot.el, spot.skip),
+                progress = progressOf(u, part, spot.offset).toDouble(), partTitle = part.title,
+                excerpt = spot.excerpt, note = null, createdAt = System.currentTimeMillis(),
             ),
         )
     }
 
     fun deleteBookmark(b: Bookmark) = viewModelScope.launch { library.deleteBookmark(b.id) }
-
-    /** The bookmark on the current page, if any. */
-    fun bookmarkHere(): Bookmark? {
-        val u = _ui.value
-        val loc = position ?: return null
-        return u.bookmarks.firstOrNull { it.at == loc }
-    }
 
     // --- Search within the work -------------------------------------------------------
 
@@ -245,5 +241,6 @@ class ReaderViewModel @Inject constructor(
 
     companion object {
         private const val KEY_POS = "reader_position"
+        private const val TAG = "BibliothekeReader"
     }
 }

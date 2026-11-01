@@ -123,7 +123,12 @@ private fun Contents(ui: ReaderUi, onPart: (Part) -> Unit) {
     }
     val shown = ui.parts.filter { !hidden(it) }
     val current = ui.current
-    val state = rememberLazyListState(initialFirstVisibleItemIndex = shown.indexOfFirst { it.id == current?.id }.coerceAtLeast(0))
+    val state = rememberLazyListState()
+    // The drawer is composed before a part is open: follow the current part.
+    LaunchedEffect(current?.id) {
+        val i = shown.indexOfFirst { it.id == current?.id }
+        if (i >= 0) state.scrollToItem((i - 2).coerceAtLeast(0))
+    }
     LazyColumn(state = state) {
         items(shown, key = { it.id }) { p ->
             val ready = p.state == Part.READY

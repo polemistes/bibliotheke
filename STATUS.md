@@ -7,9 +7,10 @@ Last updated: 2026-11-01
 
 ## Current package
 
-**WP4 — Reader core: in progress** (started 2026-11-01). WP0–WP3 are
-complete (WP3: commit 521895f; WP2: 18 of 18, commit c9c731f; WP1: 19 of 19,
-commit 161472a).
+**WP4 — Reader core: complete** (2026-11-01; acceptance on the emulator,
+below). Next: **WP5 — Page marks and line numbers**. WP0–WP3 are complete
+(WP3: commit 521895f; WP2: 18 of 18, commit c9c731f; WP1: 19 of 19, commit
+161472a).
 
 WP4 sub-steps:
 
@@ -17,21 +18,54 @@ WP4 sub-steps:
       `.js`), from the WP0 prototype: CSS-column pages, locators with the
       reading anchor, element anchors for pages without a text start (F§4.6),
       tap hit-testing (notes, links, page marks, wide tables, images),
-      footnote text, highlights, theme variables; tables break by row and
-      wide ones are clipped and marked. Six OFL fonts in `reader/fonts`
-      (`app/tools/fetch_reader_fonts.py`). Test over all 111 fixture pages
-      in headless Chromium (`app/src/test/reader/run.sh`): 111 of 111 pass
-- [~] 2. Library DB v2 (positions and bookmarks by part index, element
-      anchors; migration 1→2 recreates the two tables, unused in v1), reader
-      settings (DataStore), `ReaderController` (three WebViews: current,
-      previous at its last page, next at its first, stacked so a turn across
-      parts uncovers a page already laid out), `ReaderScreen` (tap and swipe
-      layer, notes sheet, appearance sheet, position saved on every turn and
-      kept in SavedStateHandle). Builds, lint clean; on the emulator: next
-- [~] 3. Navigation: contents drawer (volumes collapsible) and bookmarks,
-      progress slider, go to a page of the original, search in the work
-      (`TextSearch` in :core-content). Written with step 2; not yet tried
-- [ ] 4. Acceptance on the emulator
+      footnote text, highlights, sentence bounds for bookmarks, theme
+      variables; tables break by row and wide ones are clipped and marked.
+      Six OFL fonts in `reader/fonts` (`app/tools/fetch_reader_fonts.py`).
+      Test over all 111 fixture pages in headless Chromium
+      (`app/src/test/reader/run.sh`): 111 of 111 pass
+- [x] 2. Library DB v2 (positions and bookmarks by part index and sub, with
+      the element anchor; migration 1→2 recreates the two tables, unused in
+      v1, and ran on the emulator's WP3 data), reader settings (DataStore),
+      `ReaderController` (three WebViews: current, previous at its last page,
+      next at its first, stacked so a turn across parts uncovers a page
+      already laid out), `ReaderScreen` (tap and swipe layer, notes sheet,
+      appearance sheet, position saved 300 ms after every turn, at stop, and
+      kept in SavedStateHandle)
+- [x] 3. Navigation: contents drawer (volumes collapsible, follows the
+      current part) and bookmarks, progress slider, go to a page of the
+      original, search in the work (`TextSearch` in :core-content: case,
+      accents, long s and whitespace folded; hits are locators)
+- [x] 4. Acceptance on the emulator (below)
+
+**WP4 acceptance** (AVD `bibliotheke_wp0`, Pixel 7 profile, WebView of the
+image; *Pride and Prejudice (1817)* from WP3 and *Marienkirche (Lübeck)*, de,
+downloaded with "Download this page"):
+
+- *Swipe paging across chapter boundaries without a visible gap*: met.
+  Screen recordings at 60 fps of turns 1→2 and 2→1 (and 34→35→34 in
+  `wp4.sh`): the old page slides away over the neighbouring part, which is
+  laid out already; no frame is blank (ink in the text area never below
+  the lesser of the two pages).
+- *Position restored after font change, rotation, process death*: met.
+  Chapter 2 page 3/5, anchor 1732: EB Garamond → 2/4, 32 sp → 5/12, anchor
+  1732 throughout; landscape 8/17 and back 5/12; killed in the background
+  and restored at 5/12, anchor 1732; force-stopped, then Library → Read
+  resumed at 5/12 from the database.
+- *Bookmarks list jumps to the exact sentence*: met. A bookmark made on
+  5/12 (32 sp), then nine pages on into chapter 3; the list shows part,
+  progress and excerpt, and the jump opens 5/12 with the sentence
+  highlighted. Since then a bookmark snaps back to the start of its
+  sentence when that start is on the page ("Impossible, Mr. Bennet, …"; Mr.
+  and the like do not end a sentence).
+- *Footnote popups work*: met. Note 1 of Marienkirche opens in a sheet with
+  its text; "Go to the notes" shows the notes section (page 22/29, the
+  reading position kept, "away"), "Back to the text" returns to 2/29. In
+  Chromium every reference of the 111 fixture pages opens its note.
+- Also tried: search ("vollem Gebrauch" → 2/29, highlighted), go to page 60
+  of the original, progress slider (50 % → part 35 of 62), contents drawer,
+  sepia theme, the v1→v2 migration.
+- `app/acceptance/wp4.sh` repeats the boundary, rotation and process-death
+  checks from the logged positions: PASS.
 
 **WP3 — Content fetching, normaliser, downloads: complete** (2026-11-01;
 acceptance on the emulator, below).
@@ -76,6 +110,43 @@ has 61 chapters, one more than the criterion asks. Also checked by hand: the
 Library screen (sizes, total), "Download this page" for a link to a wiki
 without an installed catalog (is `Tófukvæði`, live resolution, 5.1 kB), and
 nb strings on the new screens.
+
+## WP4 notes (implementation choices, for review)
+
+- **Three WebViews, not two** (PLAN.md 8.1 says current and prefetch): the
+  previous part at its last page as well as the next at its first, so a
+  backward turn across a boundary is as seamless as a forward one. The
+  neighbours lie under the current page; a cross-part turn slides the
+  current WebView away (260 ms, the in-page curve) and uncovers the next.
+  In-part turns stay CSS transitions inside the page (WP0 F§4.5).
+- **Element anchors** for pages with no text starting on them (a run of
+  footnotes, an image, a long note over several pages; F§4.6): the locator
+  also stores the index of the first element starting on the page, or the
+  last one before it plus a page count. Positions and bookmarks carry it.
+- **Part index, not row id**: positions and bookmarks name a part by
+  `(index, sub)`, since slice rows are replaced when a page is split again.
+- **Tables** break between rows across pages; one wider than a column is
+  clipped sideways and marked "Tap to view", and opens in a zoomable view.
+  The plan's `break-inside: avoid` with `overflow` made long tables one
+  unbreakable block that left empty pages and clipped text (found by the
+  Chromium test on Sagenschatz, KHM, Upsala).
+- **The reader never touches the network**: its WebViews answer only
+  `appassets.androidplatform.net` (assets and `files/works`) and refuse
+  everything else; JavaScript is on in the reader page only, whose content
+  is the normaliser's whitelisted HTML.
+- **Taps** are asked of the page first (notes, links, page marks, wide
+  tables, images; a finger-sized radius around the point), then left
+  third back, right third on, centre toggles the bars. Swipes turn on
+  release past 40 dp; the page does not follow the finger.
+- **Text size** is in sp: CSS px = sp × the system font scale.
+- **The reader area ignores the keyboard**: the search sheet's keyboard
+  resized the pages and the relayout lost the search highlight; a relayout
+  now also redraws a highlight that is still showing.
+- **Fixes to WP3 found on the device**: a regex `\{\{[^}]*}}` that Android's
+  ICU rejects (escaped); de `TITEL` made a page's part title "Hanse" (the
+  first link of "Ansichten der Freien [[Hanse]]stadt …"): a header value is
+  read as a link only when it is one link, and the root part is named by its
+  own page title.
 
 ## WP3 notes (implementation choices, for review)
 
@@ -416,7 +487,7 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## In progress
 
-- WP4 sub-steps 2–3 written and building; trying them on the emulator.
+- Nothing running. WP4 is complete; next: WP5 (page marks and line numbers).
 - **Owner's decision (2026-11-01): Wikidata for it, sv, da, fi, es and mul
   is fetched by the first CI run**, not locally (it would take about an
   hour; the bottleneck is Wikidata's server time and maxlag, not the
@@ -425,6 +496,11 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## How to resume / rerun
 
+- Reader (WP4): `app/src/test/reader/run.sh` (headless Chromium over the
+  fixture corpus; `PARTS=no/sult-02,…` for some). Acceptance: open a
+  downloaded work of several parts in the reader (not on its last part),
+  then `PATH=$PATH:$HOME/Android/Sdk/platform-tools app/acceptance/wp4.sh`.
+  Fonts: `python3 -I app/tools/fetch_reader_fonts.py`.
 - Content (WP3): `./gradlew :core-content:test` (fixtures in
   `app/src/test/fixtures`; `-PupdateGolden=true` rewrites the golden files
   after a reviewed change). Corpus: `python3 -I pipeline/wp3/corpus.py`
@@ -470,6 +546,14 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## Known problems and open questions
 
+- **WP4 not done, by plan or for later**: the two-page spread on tablets
+  (8.1; with the tablet work of WP6), volume keys (optional), the page
+  following the finger during a swipe, the info sheet "Part of: …" for a
+  text opened from search (8.6), the margin mode of page marks (WP5).
+  Frame timing on a real mid-range phone (WP0 caveat) is still to be
+  measured. After a font change the reading anchor can sit mid-page; a
+  bookmark then starts at its sentence, which may be lower on the page than
+  its first line.
 - **WP3 not done, by plan or for later**: the live TOC with a filter box for
   reference works (WS§7.1; downloading one resolves every entry, so it
   needs the entry picker first); refresh with `If-None-Match` and merging

@@ -23,7 +23,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.displayCutout
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.union
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -41,6 +43,7 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SuggestionChip
+import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -75,7 +78,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.bibliotheke.wikisource.R
-import app.bibliotheke.wikisource.data.library.Locator
 import app.bibliotheke.wikisource.data.library.Part
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -188,7 +190,8 @@ fun ReaderScreen(onBack: () -> Unit, vm: ReaderViewModel = hiltViewModel()) {
             },
         ) {
             Box(Modifier.fillMaxSize().background(pal.bg)) {
-                Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing)) {
+                // System bars and cutout only: a keyboard (search) must not resize the pages.
+                Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.systemBars.union(WindowInsets.displayCutout))) {
                     Box(Modifier.weight(1f).fillMaxWidth()) {
                         AndroidView(
                             factory = { controller.view.also { (it.parent as? ViewGroup)?.removeView(it) } },
@@ -223,7 +226,7 @@ fun ReaderScreen(onBack: () -> Unit, vm: ReaderViewModel = hiltViewModel()) {
                         onGoToPage = { chrome = false; sheet = ReaderSheet.GoToPage },
                         onBookmark = { here ->
                             if (here != null) vm.deleteBookmark(here)
-                            else ui.page?.let { p -> controller.excerpt(p.anchor, 200) { vm.addBookmark(it) } }
+                            else controller.bookmark { key, spot -> vm.addBookmark(key, spot) }
                         },
                     )
                 }
@@ -237,6 +240,7 @@ fun ReaderScreen(onBack: () -> Unit, vm: ReaderViewModel = hiltViewModel()) {
                     SuggestionChip(
                         onClick = { controller.back() },
                         label = { Text(stringResource(R.string.reader_back_to_text)) },
+                        colors = SuggestionChipDefaults.suggestionChipColors(containerColor = MaterialTheme.colorScheme.surfaceContainerHigh),
                         modifier = Modifier.align(Alignment.BottomCenter).navigationBarsPadding().padding(bottom = 32.dp),
                     )
                 }
@@ -284,11 +288,15 @@ private fun Target.toJson(): JsonObject = when (this) {
     is Target.Mark -> buildJsonObject { put("mark", num) }
 }
 
-/** The current place as a locator, to match bookmarks. */
-private fun ReaderUi.here(): Locator? {
+/** A bookmark on the page shown. */
+private fun ReaderUi.bookmarkHere(): app.bibliotheke.wikisource.data.library.Bookmark? {
     val c = current ?: return null
     val p = page ?: return null
-    return Locator(c.index, c.sub, p.anchor, p.anchorEl, p.anchorSkip)
+    return bookmarks.firstOrNull { b ->
+        b.at.partIndex == c.index && b.at.partSub == c.sub &&
+            if (b.at.anchorEl >= 0 || p.anchorEl >= 0) b.at.anchorEl == p.anchorEl && b.at.anchorSkip == p.anchorSkip
+            else b.at.charOffset >= p.pageStart && (b.at.charOffset < p.pageEnd || p.pageEnd <= p.pageStart)
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -302,8 +310,7 @@ private fun TopBar(
     onGoToPage: () -> Unit,
     onBookmark: (here: app.bibliotheke.wikisource.data.library.Bookmark?) -> Unit,
 ) {
-    val here = ui.here()
-    val mark = here?.let { h -> ui.bookmarks.firstOrNull { it.at == h } }
+    val mark = ui.bookmarkHere()
     var menu by remember { mutableStateOf(false) }
     TopAppBar(
         title = { Text(ui.work?.displayTitle.orEmpty(), maxLines = 1, overflow = TextOverflow.Ellipsis) },

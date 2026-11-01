@@ -1268,6 +1268,11 @@ and survives app kill; airplane mode after download still opens every chapter.
 Acceptance: swipe paging across chapter boundaries without a visible gap;
 position restored after font change, rotation, process death; bookmarks list
 jumps to the exact sentence; footnote popups work.
+(WP4, 2026-11-01: met; see STATUS.md and `app/acceptance/wp4.sh`. Three
+WebViews are kept, the previous part as well as the next, so backward turns
+across a boundary are seamless too; locators carry an element anchor for
+pages with no text start (F§4.6); tables break by row instead of
+`break-inside: avoid`.)
 
 ### WP5 — Page marks and line numbers (1–2 weeks)
 - Section 8.2 and 8.3 (R8, R9) across the fixture corpus.

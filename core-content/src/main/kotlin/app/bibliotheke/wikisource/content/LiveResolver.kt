@@ -49,7 +49,9 @@ class LiveResolver(
 
     suspend fun resolve(rootTitle: String): WorkStructure {
         val rootPage = load(rootTitle) ?: throw NoSuchElementException("$rootTitle does not exist")
-        val root = Node(rootTitle, rootPage, rootPage.current ?: Titles.lastSegment(rootTitle), 0)
+        // The root is named by its own title: the page the reader asked for (a de TITEL
+        // names the source book, not the page).
+        val root = Node(rootTitle, rootPage, Titles.lastSegment(rootTitle), 0)
         root.ownText = ownText(rootPage)
         inTree.add(rootTitle)
         expand(root, rootPage, tocLike(rootPage))

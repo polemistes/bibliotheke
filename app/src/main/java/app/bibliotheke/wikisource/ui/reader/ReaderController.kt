@@ -46,7 +46,14 @@ data class PageState(
     val loaded: Boolean = false,
     /** +1 or -1 when a turn ran past the end or the start of the part. */
     val edge: Int = 0,
+    /** The locator text on the page shown: [pageStart, pageEnd). */
+    val pageStart: Int = 0,
+    val pageEnd: Int = 0,
 )
+
+/** A bookmark for the page shown (`WsrReader.bookmark` in reader.js). */
+@Serializable
+data class BookmarkSpot(val offset: Int = 0, val el: Int = -1, val skip: Int = 0, val excerpt: String = "")
 
 /** What a tap hit (`WsrReader.hit` in reader.js). */
 @Serializable
@@ -342,9 +349,10 @@ class ReaderController(
         }
     }
 
-    /** About [chars] characters of the text at [offset] of the current part, whitespace squeezed. */
-    fun excerpt(offset: Int, chars: Int, result: (String) -> Unit) {
-        cur.js("WsrReader.excerpt($offset,$chars)") { r -> result(runCatching { json.decodeFromString<String>(r ?: "\"\"") }.getOrDefault("")) }
+    /** A bookmark for the page shown: the start of the sentence at the position, and an excerpt. */
+    fun bookmark(result: (PartKey, BookmarkSpot) -> Unit) {
+        val k = cur.key ?: return
+        cur.js("JSON.stringify(WsrReader.bookmark())") { r -> parseAs(r, BookmarkSpot.serializer())?.let { result(k, it) } }
     }
 
     fun destroy() {

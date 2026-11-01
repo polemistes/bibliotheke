@@ -46,6 +46,7 @@
   let loaded = false;
   let generation = 0;
   let fadeTimer = 0;
+  let flashing = null;  // {from, to} while a highlight shows; a relayout redraws it
 
   function post(type, data) {
     if (window.WsrBridge && window.WsrBridge.post) {
@@ -54,7 +55,10 @@
   }
 
   function state() {
-    return { page, pages, anchor, anchorEl, anchorSkip, total, away, loaded };
+    // The locator text shown: [pageStart, pageEnd) (for bookmarks on this page).
+    const pageStart = loaded ? firstOffsetOnPage(page) : 0;
+    const pageEnd = loaded ? (page + 1 < pages ? firstOffsetOnPage(page + 1) : total) : 0;
+    return { page, pages, anchor, anchorEl, anchorSkip, total, away, loaded, pageStart, pageEnd };
   }
 
   // --- Loading -------------------------------------------------------------------
@@ -128,7 +132,7 @@
   }
 
   function go(t) {
-    if (t.mark) { if (!goToPageMark(t.mark)) goToLocator(0); }
+    if (t.mark) { if (goToPageMark(t.mark)) flash(anchor, sentenceEnd(anchor)); else goToLocator(0); }
     else if (t.element) goToElement(t.element, true);
     else if (t.last) goToPage(pages - 1, false);
     else if (t.page !== undefined) goToPage(t.page, false);
@@ -136,11 +140,45 @@
     if (t.flash) flash(anchor, t.flashTo || sentenceEnd(anchor));
   }
 
+  // Sentence boundaries: end punctuation (with closing quotes) and a space, but not
+  // after a short capitalised abbreviation (Mr., Dr., St.); or a break between blocks.
+  const BOUNDARY = /[.!?…][»"'”’)\]]*\s+|\n/g;
+  function isBoundary(t, m) {
+    if (m[0] === '\n') return true;
+    const before = /(\S+)$/.exec(t.slice(0, m.index + 1));
+    return !(before && /^[A-ZÀ-Ý][a-zà-ÿ]{0,2}\.$/.test(before[1]));
+  }
+
   // End of the sentence starting at `from` (at most 300 characters on).
   function sentenceEnd(from) {
     const t = text(from, from + 300);
-    const m = /[.!?…:;](?=\s|$)/.exec(t.slice(1));
-    return from + (m ? m.index + 2 : Math.min(t.length, 160));
+    BOUNDARY.lastIndex = 1;
+    for (let m; (m = BOUNDARY.exec(t));) {
+      if (isBoundary(t, m)) return from + m.index + m[0].replace(/\s+$/, '').length;
+    }
+    return from + Math.min(t.length, 160);
+  }
+
+  // Start of the sentence that holds `at` (at most 400 characters back).
+  function sentenceStart(at) {
+    const from = Math.max(0, at - 400);
+    const t = text(from, at);
+    let best = -1;
+    BOUNDARY.lastIndex = 0;
+    for (let m; (m = BOUNDARY.exec(t));) if (isBoundary(t, m)) best = m.index + m[0].length;
+    return best < 0 ? (from === 0 ? 0 : at) : from + best;
+  }
+
+  // A bookmark for the page shown (R6): the start of the sentence at the reading
+  // position when that start is on this page, else the position; with an excerpt.
+  function bookmark() {
+    let off = anchor;
+    if (anchorEl < 0 && anchor < total) {
+      const st = sentenceStart(anchor);
+      if (st < anchor && pageOfOffset(st) === page) off = st;
+    }
+    return { offset: off, el: anchorEl, skip: anchorSkip,
+             excerpt: text(off, off + 200).replace(/\s+/g, ' ').trim() };
   }
 
   function buildIndex() {
@@ -219,9 +257,11 @@
   function relayout() {
     const wasAway = away;
     const p = page;
+    const lit = flashing;
     layout();
     if (wasAway) goToPage(Math.min(p, pages - 1), false, true);
     else goToLocator(anchor, false, anchorEl, anchorSkip);
+    if (lit) { flashing = lit; drawMarks(lit.from, lit.to); }
   }
 
   window.addEventListener('resize', () => {
@@ -518,6 +558,16 @@
   function flash(from, to, ms) {
     clearMarks();
     if (!nodes.length || to <= from) return;
+    flashing = { from, to };
+    drawMarks(from, to);
+    fadeTimer = setTimeout(() => {
+      marks.classList.add('wsr-fading');
+      fadeTimer = setTimeout(clearMarks, 700);
+    }, ms || 2500);
+  }
+
+  function drawMarks(from, to) {
+    marks.textContent = '';
     const r = document.createRange();
     const a = nodeOf(from), b = nodeOf(Math.max(from, to - 1));
     r.setStart(nodes[a], Math.min(from - starts[a], nodes[a].data.length));
@@ -530,13 +580,10 @@
       d.style.width = q.width + 'px'; d.style.height = q.height + 'px';
       marks.appendChild(d);
     }
-    fadeTimer = setTimeout(() => {
-      marks.classList.add('wsr-fading');
-      fadeTimer = setTimeout(clearMarks, 700);
-    }, ms || 1800);
   }
 
   function clearMarks() {
+    flashing = null;
     clearTimeout(fadeTimer);
     marks.classList.remove('wsr-fading');
     marks.textContent = '';
@@ -545,7 +592,7 @@
   window.WsrReader = {
     open, openHtml, apply, layout, relayout, state, turn, goToPage, goToLocator,
     goToElement, goToPageMark, back, hit, note, flash, text, go,
-    flashSentence: (from) => flash(from, sentenceEnd(from)),
+    flashSentence: (from) => flash(from, sentenceEnd(from)), bookmark, sentenceStart, sentenceEnd,
     pageOfOffset, firstOffsetOnPage,
     excerpt: (from, n) => text(from, from + (n || 160)).replace(/\s+/g, ' ').trim(),
     textLength: () => total,
