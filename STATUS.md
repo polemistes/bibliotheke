@@ -7,10 +7,92 @@ Last updated: 2026-11-01
 
 ## Current package
 
-**WP2 — App skeleton: complete** (2026-11-01; acceptance 18 of 18 on the
-emulator, `app/acceptance/wp2.sh`). Next: **WP3 — Content fetching,
-normaliser, downloads**. WP0 and WP1 are complete (WP1: acceptance 19 of
-19, commit 161472a; details below).
+**WP3 — Content fetching, normaliser, downloads: complete** (2026-11-01;
+acceptance on the emulator, below). Next: **WP4 — Reader core**. WP0–WP2
+are complete (WP2: 18 of 18, commit c9c731f; WP1: 19 of 19, commit 161472a).
+
+WP3 sub-steps:
+
+- [x] 1. `:core-content` (plain Kotlin, Jsoup 1.23.2): normaliser (PLAN.md
+      7.2), synthetic parts (7.1 step 6), locator text (7.4), page structure
+      from Parsoid `data-mw` and live resolution (7.1), the Parsoid client
+      (`with_html`, siteinfo, images); per-wiki settings exported from
+      `pipeline/config` (`python -I -m wscatalog.appconfig`, kept in step by
+      a pytest)
+- [x] 2. Fixture corpus: 111 pages over the 10 wikis plus the structure
+      fixtures of WS§7.4 (`pipeline/wp3/corpus.py`, `corpus.json`);
+      `FixtureTest` (invariants on every page, golden `expected.html` and
+      `expected.json`) and `StructureTest` (live resolution: Diktsamling,
+      Sagenschatz, Madame Bovary, Shelley, Käthe, Heimath): 12 tests pass
+- [x] 3. App: Room `library.db` (PLAN.md 6.2), work storage, the download
+      worker (WorkManager, foreground with a progress notification, resumes
+      part by part after a kill or a lost connection), images through the
+      app's HTTP client, whole work or chosen parts (R4) from the detail
+      screen, the Library screen (size per work, total, delete, retry),
+      "Download this page" for links the catalog lacks (live resolution),
+      per-page sources and licence (R11), and a plain part viewer
+      (WebView, `WebViewAssetLoader`) until the WP4 reader
+- [x] 4. Acceptance on the emulator (below)
+
+**WP3 acceptance** (AVD `bibliotheke_wp0`, en catalog installed, over a
+train connection with drop-outs): all fixture tests pass (12 of 12 in
+`:core-content`, 111 pages). *Pride and Prejudice (1817)* (en, validated,
+the root and 60 chapters, 62 parts with the title page) downloaded in the
+background from the detail screen; at part 33 the app process was killed
+(`kill -9`): Android restarted it and the download went on from part 33;
+at part 56 the app was force-stopped: the download waited until the app
+was opened and then finished (all 62 parts and their `.json`, 797 kB, raw
+page cache cleared). With airplane mode on, `app/acceptance/wp3.sh 62`
+stepped through the part viewer with Next: **62 of 62 parts opened
+offline**, each with its own title and text on the page (checked from
+screenshots: uiautomator sees a WebView's text only now and then, so a
+first version of the script that read it reported false blanks). The work
+has 61 chapters, one more than the criterion asks. Also checked by hand: the
+Library screen (sizes, total), "Download this page" for a link to a wiki
+without an installed catalog (is `Tófukvæði`, live resolution, 5.1 kB), and
+nb strings on the new screens.
+
+## WP3 notes (implementation choices, for review)
+
+- **`:core-content`** is a plain Kotlin module like `:core-catalog`, so the
+  normaliser and live resolution run in host tests against the fixtures.
+- **Normaliser**: see PLAN.md 7.2 "(WP3, 2026-11-01)". Header boxes go by
+  template name too (fi, is, it headers are not `.ws-noexport`), but only a
+  Parsoid transclusion group made of nothing else (it `{{Qualità}}` shares a
+  group with the text); it's notice goes by selector. Page markers inside a
+  removed TOC stay. Locator text comes from the fragment as parsed back.
+  Android's regex engine (ICU) rejects Java's `(?U)`; `unicodeRegex` falls
+  back to the plain pattern there (ICU is Unicode-aware by default).
+- **Live resolution** (PLAN.md 7.1 "(WP3 …)") is simpler than the pipeline:
+  no Index check for rule 3, root pages only from TOC pages or explicit
+  TOCs, no virtual roots, the own-text measure on the normalised HTML (fr
+  `Madame Bovary` front, the pipeline says toc). Used for works the catalog
+  holds without parts, and for links the catalog lacks.
+- **Synthetic parts**: `Part.index` stays the page's place in the tree,
+  `sub` numbers the slices; `app://part/{index}` names the first slice and
+  the reader (WP4) finds the anchor among the slices. Titles: the heading,
+  or "Pages 3–71" from the page labels (localised in the app).
+- **Download**: one WorkManager job per work, `APPEND_OR_REPLACE`, so
+  choosing more parts while one runs queues them behind it; the part tree is
+  stored before any content (7.1 step 5); every page fetched is kept in
+  `raw/` until the job ends, so live resolution and a retry fetch each page
+  once; each finished part is written (atomically) and recorded at once.
+  Images over 5 MB, icons under 32 px and hosts other than
+  `*.wikimedia.org` are skipped; an image that fails leaves the text
+  readable. The foreground notification needs POST_NOTIFICATIONS on Android
+  13+ (asked on the first download; the download runs either way).
+- **Licence per work**: from `with_html` (`license.title`/`url`), shown with
+  the list of every wiki page of the copy and its history (R11).
+- **Part viewer**: a scrolling WebView (JavaScript off) with Previous/Next
+  and the list of parts; `app://part/` links move within the work, other
+  links ask before opening the browser (7.2 rule 3). The paginated reader
+  is WP4.
+- **Corpus gaps** (the category queries need genres, and it, sv, da, fi,
+  es, mul were built without Wikidata; filled with sampled pages): fi has
+  no novel chapter, poem, collection text or play; is no collection text,
+  play, footnotes, illustrations or tables; da no collection text or play;
+  it no scan-backed page; sv no play; fr no tables; no no illustrations.
+  `it/gerusalemme-liberata-dedica` is a page without text (a marker only).
 
 WP2 sub-steps:
 
@@ -309,8 +391,7 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## In progress
 
-- Nothing running. WP2 is complete; next: WP3 (content fetching,
-  normaliser, downloads).
+- Nothing running. WP3 is complete; next: WP4 (reader core).
 - **Owner's decision (2026-11-01): Wikidata for it, sv, da, fi, es and mul
   is fetched by the first CI run**, not locally (it would take about an
   hour; the bottleneck is Wikidata's server time and maxlag, not the
@@ -319,6 +400,15 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## How to resume / rerun
 
+- Content (WP3): `./gradlew :core-content:test` (fixtures in
+  `app/src/test/fixtures`; `-PupdateGolden=true` rewrites the golden files
+  after a reviewed change). Corpus: `python3 -I pipeline/wp3/corpus.py`
+  (needs requests, beautifulsoup4, lxml; responses cached in
+  `pipeline/cache/wp0`). App settings export:
+  `.venv/bin/python -I -m wscatalog.appconfig`. Acceptance: download a
+  work in the app, open it in the viewer at its first part, airplane mode
+  on, `PATH=$PATH:$HOME/Android/Sdk/platform-tools app/acceptance/wp3.sh
+  <parts> Neste`.
 - App (WP2): `JAVA_HOME=/opt/android-studio/jbr ./gradlew :core-catalog:test
   :app:assembleDebug :app:lintDebug` from the repo root (`local.properties`
   with `sdk.dir` is gitignored). Catalog server for debug builds:
@@ -354,6 +444,15 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
   then `SERIAL=emulator-5584 prototypes/pagination/android/run_device_test.sh`.
 
 ## Known problems and open questions
+
+- **WP3 not done, by plan or for later**: the live TOC with a filter box for
+  reference works (WS§7.1; downloading one resolves every entry, so it
+  needs the entry picker first); refresh with `If-None-Match` and merging
+  re-resolved parts (7.1 step 3); de's `{{SeitePR}}` page markers carry no
+  scan page title when the link is missing; generated line numbers count a
+  bold title line inside a poem (Erlkönig: two lines numbered 5 after the
+  re-sync, F§4.4); it's source line numbers (*Adda*: "5Cheti recessi", the
+  number run into the line) are not in its `line_number_selectors` yet (WP5).
 
 - **For the owner (WP2)**: speeches stay behind the "Include documents"
   chip with the other documents (wp1-decisions item 4 left "document and

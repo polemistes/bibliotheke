@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 package app.bibliotheke.wikisource.ui.detail
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,7 +24,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
@@ -54,6 +61,7 @@ import app.bibliotheke.wikisource.catalog.Author
 import app.bibliotheke.wikisource.catalog.CatalogPart
 import app.bibliotheke.wikisource.catalog.WikiLinks
 import app.bibliotheke.wikisource.catalog.WorkDetail
+import app.bibliotheke.wikisource.data.library.Part
 import app.bibliotheke.wikisource.ui.common.authorDates
 import app.bibliotheke.wikisource.ui.common.formatBytes
 import app.bibliotheke.wikisource.ui.common.genreName
@@ -64,6 +72,7 @@ import app.bibliotheke.wikisource.ui.common.qualityBadge
 import app.bibliotheke.wikisource.ui.common.qualityLabel
 import app.bibliotheke.wikisource.ui.common.shareText
 import app.bibliotheke.wikisource.ui.common.typeName
+import androidx.core.content.ContextCompat
 import coil3.compose.AsyncImage
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -71,9 +80,11 @@ import coil3.compose.AsyncImage
 fun WorkDetailScreen(
     onBack: () -> Unit,
     onAuthor: (wiki: String, authorId: Long) -> Unit,
+    onRead: (workId: String, index: Int) -> Unit,
     vm: WorkDetailViewModel = hiltViewModel(),
 ) {
     val ui by vm.ui.collectAsStateWithLifecycle()
+    val lib by vm.libraryUi.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val work = ui.work
     val domain = ui.wiki?.domain
@@ -102,17 +113,39 @@ fun WorkDetailScreen(
         when {
             ui.loading -> Box(Modifier.padding(padding).fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
             work == null || domain == null -> Text(stringResource(R.string.detail_not_found), Modifier.padding(padding).padding(16.dp))
-            else -> DetailContent(ui, work, domain, Modifier.padding(padding)) { a -> onAuthor(ui.wiki!!.code, a.id) }
+            else -> DetailContent(
+                ui, lib, work, domain, Modifier.padding(padding),
+                onAuthor = { a -> onAuthor(ui.wiki!!.code, a.id) },
+                onRead = { index -> lib.work?.let { w -> onRead(w.id, index) } },
+                vm = vm,
+            )
         }
     }
 }
 
 @Composable
-private fun DetailContent(ui: DetailUi, w: WorkDetail, domain: String, modifier: Modifier, onAuthor: (Author) -> Unit) {
+private fun DetailContent(
+    ui: DetailUi,
+    lib: LibraryUi,
+    w: WorkDetail,
+    domain: String,
+    modifier: Modifier,
+    onAuthor: (Author) -> Unit,
+    onRead: (index: Int) -> Unit,
+    vm: WorkDetailViewModel,
+) {
     val context = LocalContext.current
     val state = rememberLazyListState()
+    // Android 13+: the download's progress notification needs the permission; the
+    // download runs either way.
+    val notifications = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { }
+    fun askForNotifications() {
+        if (Build.VERSION.SDK_INT >= 33 &&
+            ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) notifications.launch(Manifest.permission.POST_NOTIFICATIONS)
+    }
     // Header items come before the parts; scroll a text hit's part into view.
-    val headerItems = 3
+    val headerItems = 4
     LaunchedEffect(ui.parts, ui.focusOrd) {
         val i = ui.parts.indexOfFirst { it.ord == ui.focusOrd }
         if (i >= 0) state.scrollToItem(headerItems + i)
@@ -137,9 +170,31 @@ private fun DetailContent(ui: DetailUi, w: WorkDetail, domain: String, modifier:
                 Spacer(Modifier.height(4.dp))
             }
         }
-        items(ui.parts, key = { it.id }) { p -> PartRow(p, w.quality, p.ord == ui.focusOrd) }
+        item {
+            val firstReady = lib.parts.values.filter { it.state == Part.READY }.minByOrNull { it.index }?.index
+            DownloadSection(
+                lib, canChoose = ui.parts.size > 1, choosing = ui.choosing, chosen = ui.chosen.size,
+                onDownload = { askForNotifications(); vm.download() }, onChoose = vm::setChoosing,
+                onDownloadChosen = { askForNotifications(); vm.download(chosenOnly = true) },
+                onRead = { firstReady?.let(onRead) }, onRetry = { vm.retry() }, onDelete = { vm.delete() },
+            )
+        }
+        items(ui.parts, key = { it.id }) { p ->
+            val stored = lib.parts[p.ord]
+            PartRow(
+                p, w.quality, p.ord == ui.focusOrd,
+                choosing = ui.choosing && p.kind != "toc", chosen = p.ord in ui.chosen,
+                ready = stored?.state == Part.READY,
+                onClick = when {
+                    ui.choosing && p.kind != "toc" -> ({ vm.toggle(p.ord) })
+                    stored?.state == Part.READY -> ({ onRead(p.ord) })
+                    else -> null
+                },
+            )
+        }
         item {
             Attribution(w, domain) { context.openInBrowser(it) }
+            PageSources(lib) { context.openInBrowser(it) }
         }
     }
 }
@@ -216,9 +271,30 @@ private fun Fact(label: Int, value: String?) {
 }
 
 @Composable
-private fun PartRow(p: CatalogPart, workQuality: String, focused: Boolean) {
+private fun PartRow(
+    p: CatalogPart,
+    workQuality: String,
+    focused: Boolean,
+    choosing: Boolean,
+    chosen: Boolean,
+    ready: Boolean,
+    onClick: (() -> Unit)?,
+) {
     val bg = if (focused) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surface
-    Column(Modifier.fillMaxWidth().background(bg).padding(start = 16.dp + 16.dp * p.depth, end = 16.dp, top = 6.dp, bottom = 6.dp)) {
+    Row(
+        Modifier.fillMaxWidth().background(bg).let { if (onClick != null) it.clickable(onClick = onClick) else it }
+            .padding(start = 16.dp + 16.dp * p.depth, end = 16.dp, top = 6.dp, bottom = 6.dp),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        if (choosing) Checkbox(checked = chosen, onCheckedChange = { onClick?.invoke() })
+        Column(Modifier.weight(1f)) { PartText(p, workQuality) }
+        if (ready) Icon(Icons.Default.CheckCircle, stringResource(R.string.part_downloaded), tint = MaterialTheme.colorScheme.primary)
+    }
+}
+
+@Composable
+private fun PartText(p: CatalogPart, workQuality: String) {
+    Column {
         Text(
             p.title,
             style = if (p.kind == "volume") MaterialTheme.typography.titleSmall else MaterialTheme.typography.bodyLarge,

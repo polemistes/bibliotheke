@@ -196,4 +196,34 @@
     <string name="about_non_affiliation">Bibliotheke er ein uavhengig app og er ikkje knytt til eller godkjend av Wikimedia Foundation. Wikisource er eit varemerke for Wikimedia Foundation.</string>
     <string name="about_licence">Bibliotheke er fri programvare under GNU General Public License, versjon 3 eller seinare.</string>
     <string name="about_source_code">Kjeldekode</string>
+
+    <!-- Downloads, library and the interim part viewer (WP3) -->
+    <string name="library_title">Bibliotek</string>
+    <string name="library_empty">Ingenting er lasta ned enno. Opne eit verk og last det ned for å lese det utan nett.</string>
+    <string name="library_storage">%1$s brukt på denne eininga</string>
+    <string name="download_action">Last ned</string>
+    <string name="download_choose">Vel delar</string>
+    <string name="download_selected">Last ned valde (%1$d)</string>
+    <string name="download_rest">Last ned resten</string>
+    <string name="download_progress">Lastar ned: %1$d av %2$d delar</string>
+    <string name="work_download_failed">Nedlastinga stoppa: %1$s</string>
+    <string name="download_ready">Lasta ned · %1$s</string>
+    <string name="download_partial">%1$d av %2$d delar lasta ned · %3$s</string>
+    <string name="action_read">Les</string>
+    <string name="action_delete">Slett</string>
+    <string name="action_open">Opne</string>
+    <string name="delete_confirm">Slette den nedlasta kopien av «%1$s»?</string>
+    <string name="part_downloaded">Lasta ned</string>
+    <string name="reader_previous">Førre</string>
+    <string name="reader_next">Neste</string>
+    <string name="reader_not_downloaded">Denne delen er ikkje lasta ned.</string>
+    <string name="reader_open_link">Opne denne sida i nettlesaren?</string>
+    <string name="reader_pages">Sidene %1$s–%2$s</string>
+    <string name="link_download">Last ned denne sida</string>
+    <string name="notification_channel_downloads">Nedlastingar</string>
+    <string name="notification_downloading">%1$d av %2$d delar</string>
+    <string name="detail_sources">Sider på Wikisource (%1$d)</string>
+    <string name="detail_licence_of">Lisens for bidraga: %1$s</string>
+    <string name="settings_storage">Lagring</string>
+    <string name="settings_storage_used">Nedlasta verk brukar %1$s</string>
 </resources>

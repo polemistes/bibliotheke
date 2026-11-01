@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -32,17 +33,33 @@ import app.bibliotheke.wikisource.R
 import app.bibliotheke.wikisource.catalog.WikiLinks
 import app.bibliotheke.wikisource.data.catalog.LinkResolver
 import app.bibliotheke.wikisource.data.catalog.LinkResult
+import app.bibliotheke.wikisource.data.library.LibraryRepository
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 import app.bibliotheke.wikisource.ui.common.openInBrowser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LinkViewModel @Inject constructor(val resolver: LinkResolver) : ViewModel()
+class LinkViewModel @Inject constructor(val resolver: LinkResolver, private val library: LibraryRepository) : ViewModel() {
+    /** A page the catalog lacks, downloaded with its parts resolved live (PLAN.md 7.1 step 2). */
+    fun download(r: LinkResult.NotInCatalog, then: () -> Unit) = viewModelScope.launch {
+        val wiki = r.wiki ?: r.domain.removeSuffix("wikisource.org").removeSuffix(".").ifEmpty { "mul" }
+        library.downloadPage(wiki, r.domain, r.title)
+        then()
+    }
+}
 
 /** Open by URL: goes on to the work when the catalog has it, else says why not. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LinkScreen(url: String, onBack: () -> Unit, onFound: (wiki: String, id: Long, ord: Int) -> Unit, vm: LinkViewModel = hiltViewModel()) {
+fun LinkScreen(
+    url: String,
+    onBack: () -> Unit,
+    onFound: (wiki: String, id: Long, ord: Int) -> Unit,
+    onDownloaded: () -> Unit,
+    vm: LinkViewModel = hiltViewModel(),
+) {
     val result by produceState<LinkResult?>(null, url) { value = vm.resolver.resolve(url) }
     val r = result
     LaunchedEffect(r) { if (r is LinkResult.Found) onFound(r.wiki, r.target.workId, r.target.ord ?: -1) }
@@ -66,7 +83,8 @@ fun LinkScreen(url: String, onBack: () -> Unit, onFound: (wiki: String, id: Long
                         if (r.wiki == null) stringResource(R.string.link_no_catalog, r.domain)
                         else stringResource(R.string.link_not_found, r.domain),
                     )
-                    Button(onClick = { context.openInBrowser(WikiLinks.pageUrl(r.domain, r.title)) }) {
+                    Button(onClick = { vm.download(r, onDownloaded) }) { Text(stringResource(R.string.link_download)) }
+                    OutlinedButton(onClick = { context.openInBrowser(WikiLinks.pageUrl(r.domain, r.title)) }) {
                         Text(stringResource(R.string.action_open_on_wikisource))
                     }
                 }

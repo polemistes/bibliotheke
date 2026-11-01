@@ -7,6 +7,11 @@ import app.bibliotheke.wikisource.catalog.CatalogDownloader
 import app.bibliotheke.wikisource.catalog.CatalogStore
 import app.bibliotheke.wikisource.catalog.PoliteHttp
 import app.bibliotheke.wikisource.catalog.WikiSearchApi
+import androidx.room.Room
+import app.bibliotheke.wikisource.content.ContentApi
+import app.bibliotheke.wikisource.data.library.LibraryDao
+import app.bibliotheke.wikisource.data.library.LibraryDatabase
+import app.bibliotheke.wikisource.data.library.WorkStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,4 +43,17 @@ object AppModule {
 
     @Provides @Singleton
     fun wikiSearchApi(http: PoliteHttp): WikiSearchApi = WikiSearchApi(http)
+
+    @Provides @Singleton
+    fun contentApi(http: PoliteHttp): ContentApi = ContentApi(http)
+
+    @Provides @Singleton
+    fun libraryDatabase(@ApplicationContext context: Context): LibraryDatabase =
+        Room.databaseBuilder(context, LibraryDatabase::class.java, "library.db").build()
+
+    @Provides
+    fun libraryDao(db: LibraryDatabase): LibraryDao = db.dao()
+
+    @Provides @Singleton
+    fun workStorage(@ApplicationContext context: Context): WorkStorage = WorkStorage(File(context.filesDir, "works"))
 }

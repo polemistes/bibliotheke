@@ -932,6 +932,15 @@ DownloadJob(id, workId, kind: full|parts, partIds JSON, state, bytesDone, bytesT
 `sourceUrl`, `kind` (volume|chapter|text|front|toc|synthetic), `depth`,
 `parentIndex` and, for synthetic parts, `anchor`; `pageTitle` is the part's
 own wiki page, a root page or a subpage.
+(WP3, 2026-11-01) As built (`data/library/LibraryDatabase.kt`): `Part`
+adds `sub` (the synthetic slice of an oversized page, 0 otherwise; reading
+order is `index`, `sub`, and `index` stays the page's place in the resolved
+tree), `pagesFrom`/`pagesTo` (page labels of a slice cut at page markers),
+`selected` (R4: chosen for download) and `bytes`; `state` adds `skipped`
+(not chosen, or a `toc` part). `DownloadedWork` adds `domain`, `catalogId`,
+`licenceUrl`, `resolvedFrom` (catalog | live), `missingParts`, `dir`,
+`bytesOnDisk` and `error`. Files: `files/works/{wiki}-{sha1(title)[:16]}/`
+with `parts/{index}-{sub}.html` + `.json` (7.2 rule 6) and `img/`.
 
 ---
 
@@ -972,6 +981,20 @@ rules second. This replaces the subpage-only resolution from the root page's
    and as display title the heading text or "Pages 1–40". Locators stay
    `(partId, charOffset)`, the part being the synthetic one. `Käthe` has
    471 page markers and no headings.)
+(WP3, 2026-11-01) Live resolution as built (`core-content`,
+`LiveResolver`) applies what the pages themselves show: subpages in the
+root's TOC are parts and nest under their nearest listed ancestor (rule 2);
+other root pages are parts when their header names the root as container
+(rule 1), or, on a TOC page (`HERKUNFT = off`, Index type collection or
+journal), when they name none (rule 3 without the Index and chain checks);
+root-page links are followed only from a TOC page or an explicit TOC
+(`.ws-summary`, the header's TOC field), never from body links of an
+ordinary page. Siblings follow the prev/next chain when it covers them all,
+else the TOC order. Virtual roots (no root page) come from the catalog only.
+The own-text measure of step 4 runs on the normalised HTML, so it can
+differ from the pipeline's wikitext measure (fr `Madame Bovary`: front by
+the dedication; no `Arne`: toc). The wiki settings both use are exported
+from `pipeline/config` (`wscatalog.appconfig` → `wiki-profiles.json`).
 
 ### 7.2 Normaliser (Jsoup) — Parsoid HTML → reader HTML
 Output: one self-contained HTML fragment per part, UTF-8, with only these
@@ -1019,6 +1042,23 @@ Rules:
    in 7.4.
 6. Emit a per-part `meta.json`: title, revId, fetchedAt, pageNumbers present
    (bool), sourceLineNumbers present (bool), verse present (bool).
+(WP3, 2026-11-01) As built (`core-content`, `Normaliser`): header boxes
+are also removed by template name (fi `Otsikko`, is `Verk` are not
+`.ws-noexport`), together with licence boxes and the per-wiki
+`drop_templates`, each with its Parsoid `about` group, and only when the
+group holds nothing but such templates (it puts `{{Qualità}}`,
+`{{Intestazione}}` and the `<pages>` text in one group); `content:` in the
+wiki config adds `header_selectors`, `drop_selectors` (it
+`div.quality-ns0`), `drop_templates` and `oversized_chars`; de adds
+`span.PageNumber` ({{SeitePR}}) to the page markers. Page markers inside a
+removed TOC stay in place. Template classes map to `wsr-sc`, `wsr-dropcap`,
+`wsr-sp` (letter-spacing), `wsr-big`, `wsr-speaker`, `wsr-stage` and
+centring; `img` keeps `src alt width height`, `ol` its `start`, footnote
+items get `data-label`. The locator text is taken from the fragment as
+parsed back, so it is what the WebView sees; one `\n` separates blocks. A
+link to a part is `app://part/{index}` with `index` from the resolved tree;
+for a page split into synthetic parts it names the first slice, and the
+anchor is looked up among the slices (WP4).
 
 ### 7.3 Fixture corpus
 `app/src/test/fixtures/{wiki}/{slug}/raw.html` + `expected.html` for at least 8
@@ -1027,6 +1067,14 @@ with chapters, a single poem, a poetry collection, a play, a scan-backed work
 with page numbers, a work with footnotes, a work with illustrations, a work
 with tables. Normaliser unit tests run against all fixtures. The Norwegian set
 should include Bokmål, Nynorsk and Danish-Norwegian texts.
+(WP3, 2026-11-01) As built: 111 pages, at least 8 per wiki, chosen from
+the catalogs' default view by `pipeline/wp3/corpus.py` (record in
+`app/src/test/fixtures/corpus.json`), plus the structure fixtures of
+WS§7.4. `expected.html` and `expected.json` are golden outputs reviewed by
+spot checks; `FixtureTest` also checks invariants on every page (allowed
+elements and attributes, every page marker and footnote reference kept,
+locator text stable when parsed back). Categories the wikis' default view
+or metadata did not yield are listed in STATUS.md.
 
 ### 7.4 Locators
 For each part, define the *normalised text* as the concatenation of text
@@ -1213,6 +1261,7 @@ checks; see STATUS.md.)
   structure fixtures listed in WS§7.4.
 Acceptance: all fixtures pass; a 60-chapter novel downloads in the background
 and survives app kill; airplane mode after download still opens every chapter.
+(WP3, 2026-11-01: met; see STATUS.md and `app/acceptance/wp3.sh`.)
 
 ### WP4 — Reader core (3–4 weeks)
 - Section 8.1, 8.4, 8.5, 8.6, positions and bookmarks (R5–R7, R10).

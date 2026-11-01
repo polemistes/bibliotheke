@@ -48,8 +48,8 @@ data class WikiProfile(
     // Python's re is Unicode-aware by default; Java needs the flags.
     private val flags = setOf(RegexOption.IGNORE_CASE)
 
-    val chapterLabel: Regex? by lazy { chapterLabelRegex?.let { Regex("(?U)$it", flags) } }
-    val licencePatterns: List<Regex> by lazy { licenceTemplates.map { Regex("(?U)$it", flags) } }
+    val chapterLabel: Regex? by lazy { chapterLabelRegex?.let { unicodeRegex(it, flags) } }
+    val licencePatterns: List<Regex> by lazy { licenceTemplates.map { unicodeRegex(it, flags) } }
 
     fun isChapterLabel(title: String): Boolean = chapterLabel?.containsMatchIn(title.trim()) == true
 

@@ -12,3 +12,6 @@ import kotlinx.serialization.Serializable
 @Serializable data class LinkRoute(val url: String)
 @Serializable data object SettingsRoute
 @Serializable data object AboutRoute
+@Serializable data object LibraryRoute
+/** A downloaded part: [index] in the work's tree, [sub] its synthetic slice (PLAN.md 7.1 step 6). */
+@Serializable data class ReaderRoute(val workId: String, val index: Int = 0, val sub: Int = 0)

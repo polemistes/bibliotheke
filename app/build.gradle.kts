@@ -55,8 +55,14 @@ android {
     testOptions.unitTests.isReturnDefaultValues = true
 }
 
+// Room schemas, for migration tests once there is a second version (PLAN.md 10).
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
+
 dependencies {
     implementation(project(":core-catalog"))
+    implementation(project(":core-content"))
 
     implementation(libs.androidx.core)
     implementation(libs.androidx.appcompat)
@@ -80,6 +86,11 @@ dependencies {
     implementation(libs.androidx.hilt.viewmodel.compose)
     implementation(libs.androidx.hilt.work)
     ksp(libs.androidx.hilt.compiler)
+
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.webkit)
 
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)

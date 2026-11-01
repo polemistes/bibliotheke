@@ -196,4 +196,34 @@
     <string name="about_non_affiliation">Bibliotheke er en uavhengig app og er ikke tilknyttet eller godkjent av Wikimedia Foundation. Wikisource er et varemerke for Wikimedia Foundation.</string>
     <string name="about_licence">Bibliotheke er fri programvare under GNU General Public License, versjon 3 eller senere.</string>
     <string name="about_source_code">Kildekode</string>
+
+    <!-- Downloads, library and the interim part viewer (WP3) -->
+    <string name="library_title">Bibliotek</string>
+    <string name="library_empty">Ingenting er lastet ned ennå. Åpne et verk og last det ned for å lese det uten nett.</string>
+    <string name="library_storage">%1$s brukt på denne enheten</string>
+    <string name="download_action">Last ned</string>
+    <string name="download_choose">Velg deler</string>
+    <string name="download_selected">Last ned valgte (%1$d)</string>
+    <string name="download_rest">Last ned resten</string>
+    <string name="download_progress">Laster ned: %1$d av %2$d deler</string>
+    <string name="work_download_failed">Nedlastingen stoppet: %1$s</string>
+    <string name="download_ready">Lastet ned · %1$s</string>
+    <string name="download_partial">%1$d av %2$d deler lastet ned · %3$s</string>
+    <string name="action_read">Les</string>
+    <string name="action_delete">Slett</string>
+    <string name="action_open">Åpne</string>
+    <string name="delete_confirm">Slette den nedlastede kopien av «%1$s»?</string>
+    <string name="part_downloaded">Lastet ned</string>
+    <string name="reader_previous">Forrige</string>
+    <string name="reader_next">Neste</string>
+    <string name="reader_not_downloaded">Denne delen er ikke lastet ned.</string>
+    <string name="reader_open_link">Åpne denne siden i nettleseren?</string>
+    <string name="reader_pages">Sidene %1$s–%2$s</string>
+    <string name="link_download">Last ned denne siden</string>
+    <string name="notification_channel_downloads">Nedlastinger</string>
+    <string name="notification_downloading">%1$d av %2$d deler</string>
+    <string name="detail_sources">Sider på Wikisource (%1$d)</string>
+    <string name="detail_licence_of">Lisens for bidragene: %1$s</string>
+    <string name="settings_storage">Lagring</string>
+    <string name="settings_storage_used">Nedlastede verk bruker %1$s</string>
 </resources>

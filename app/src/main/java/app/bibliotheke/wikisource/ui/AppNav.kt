@@ -11,7 +11,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import app.bibliotheke.wikisource.ui.browse.BrowseScreen
 import app.bibliotheke.wikisource.ui.detail.WorkDetailScreen
+import app.bibliotheke.wikisource.ui.library.LibraryScreen
 import app.bibliotheke.wikisource.ui.picker.PickerScreen
+import app.bibliotheke.wikisource.ui.reader.PartViewerScreen
 import app.bibliotheke.wikisource.ui.search.SearchScreen
 import app.bibliotheke.wikisource.ui.settings.AboutScreen
 import app.bibliotheke.wikisource.ui.settings.SettingsScreen
@@ -40,6 +42,7 @@ fun AppNav(main: MainViewModel) {
                 onOpenWork = { wiki, id -> nav.navigate(WorkRoute(wiki, id)) },
                 onSearch = { nav.navigate(SearchRoute()) },
                 onSettings = { nav.navigate(SettingsRoute) },
+                onLibrary = { nav.navigate(LibraryRoute) },
                 onManageCatalogs = { nav.navigate(PickerRoute()) },
             )
         }
@@ -54,6 +57,7 @@ fun AppNav(main: MainViewModel) {
             WorkDetailScreen(
                 onBack = { nav.popBackStack() },
                 onAuthor = { wiki, authorId -> nav.navigate(BrowseRoute(wiki, authorId)) },
+                onRead = { workId, index -> nav.navigate(ReaderRoute(workId, index)) },
             )
         }
         composable<LinkRoute> { entry ->
@@ -63,6 +67,7 @@ fun AppNav(main: MainViewModel) {
                 onFound = { wiki, id, ord ->
                     nav.navigate(WorkRoute(wiki, id, ord)) { popUpTo<LinkRoute> { inclusive = true } }
                 },
+                onDownloaded = { nav.navigate(LibraryRoute) { popUpTo<LinkRoute> { inclusive = true } } },
             )
         }
         composable<SettingsRoute> {
@@ -72,6 +77,16 @@ fun AppNav(main: MainViewModel) {
                 onAbout = { nav.navigate(AboutRoute) },
             )
         }
+        composable<LibraryRoute> {
+            LibraryScreen(
+                onBack = { nav.popBackStack() },
+                onOpen = { w ->
+                    val id = w.catalogId
+                    if (id != null) nav.navigate(WorkRoute(w.wiki, id)) else nav.navigate(ReaderRoute(w.id))
+                },
+            )
+        }
+        composable<ReaderRoute> { PartViewerScreen(onBack = { nav.popBackStack() }) }
         composable<AboutRoute> { AboutScreen(onBack = { nav.popBackStack() }) }
     }
 }

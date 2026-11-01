@@ -214,4 +214,34 @@
     <string name="about_non_affiliation">Bibliotheke is an independent app and is not affiliated with or endorsed by the Wikimedia Foundation. Wikisource is a trademark of the Wikimedia Foundation.</string>
     <string name="about_licence">Bibliotheke is free software under the GNU General Public License, version 3 or later.</string>
     <string name="about_source_code">Source code</string>
+
+    <!-- Downloads, library and the interim part viewer (WP3) -->
+    <string name="library_title">Library</string>
+    <string name="library_empty">Nothing is downloaded yet. Open a work and download it to read it without a connection.</string>
+    <string name="library_storage">%1$s used on this device</string>
+    <string name="download_action">Download</string>
+    <string name="download_choose">Choose parts</string>
+    <string name="download_selected">Download selected (%1$d)</string>
+    <string name="download_rest">Download the rest</string>
+    <string name="download_progress">Downloading: %1$d of %2$d parts</string>
+    <string name="work_download_failed">The download stopped: %1$s</string>
+    <string name="download_ready">Downloaded · %1$s</string>
+    <string name="download_partial">%1$d of %2$d parts downloaded · %3$s</string>
+    <string name="action_read">Read</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_open">Open</string>
+    <string name="delete_confirm">Delete the downloaded copy of “%1$s”?</string>
+    <string name="part_downloaded">Downloaded</string>
+    <string name="reader_previous">Previous</string>
+    <string name="reader_next">Next</string>
+    <string name="reader_not_downloaded">This part is not downloaded.</string>
+    <string name="reader_open_link">Open this page in the browser?</string>
+    <string name="reader_pages">Pages %1$s–%2$s</string>
+    <string name="link_download">Download this page</string>
+    <string name="notification_channel_downloads">Downloads</string>
+    <string name="notification_downloading">%1$d of %2$d parts</string>
+    <string name="detail_sources">Pages on Wikisource (%1$d)</string>
+    <string name="detail_licence_of">Licence of the contributions: %1$s</string>
+    <string name="settings_storage">Storage</string>
+    <string name="settings_storage_used">Downloaded works use %1$s</string>
 </resources>

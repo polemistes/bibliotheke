@@ -114,7 +114,7 @@ class LiveResolver(
             kids.add(Node(t, child, display, node.depth + 1))
             inTree.add(t)
         }
-        node.children.addAll(chainOrder(kids) ?: kids)
+        node.children.addAll(nest(chainOrder(kids) ?: kids, node.depth + 1))
         for (k in node.children) {
             val p = k.page ?: continue
             // A part that is itself a TOC page of deeper subpages (fr `Madame Bovary/Première partie`).
@@ -123,6 +123,24 @@ class LiveResolver(
     }
 
     private val inTree = HashSet<String>()
+
+    /**
+     * Title hierarchy among the TOC's pages (WS§4 rule 2): a page goes under the nearest
+     * listed ancestor (fr `Madame Bovary` lists `…/Première partie` and `…/Première partie/1`).
+     */
+    private fun nest(kids: List<Node>, depth: Int): List<Node> {
+        val byTitle = kids.associateBy { it.title }
+        val top = ArrayList<Node>()
+        val placed = LinkedHashMap<Node, Node?>()
+        for (k in kids) placed[k] = Titles.parents(k.title).firstNotNullOfOrNull { byTitle[it] }
+        fun build(n: Node, d: Int): Node {
+            val copy = Node(n.title, n.page, n.display, d).also { it.ownText = n.ownText }
+            for ((c, parent) in placed) if (parent === n) copy.children.add(build(c, d + 1))
+            return copy
+        }
+        for ((k, parent) in placed) if (parent == null) top.add(build(k, depth))
+        return top
+    }
 
     /** The siblings in prev/next order when the chain links all of them (WS§4 step 3). */
     private fun chainOrder(kids: List<Node>): List<Node>? {

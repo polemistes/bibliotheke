@@ -46,6 +46,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -72,6 +73,7 @@ fun BrowseScreen(
     onOpenWork: (wiki: String, id: Long) -> Unit,
     onSearch: () -> Unit,
     onSettings: () -> Unit,
+    onLibrary: () -> Unit,
     onManageCatalogs: () -> Unit,
     vm: BrowseViewModel = hiltViewModel(),
 ) {
@@ -85,6 +87,7 @@ fun BrowseScreen(
                 title = { WikiSelector(ui, vm::selectWiki, onManageCatalogs) },
                 actions = {
                     IconButton(onClick = onSearch) { Icon(Icons.Default.Search, stringResource(R.string.action_search)) }
+                    IconButton(onClick = onLibrary) { Icon(painterResource(R.drawable.ic_library), stringResource(R.string.library_title)) }
                     IconButton(onClick = onSettings) { Icon(Icons.Default.Settings, stringResource(R.string.action_settings)) }
                 },
             )

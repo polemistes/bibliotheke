@@ -68,7 +68,7 @@ object Titles {
 
     private val NATURAL = Regex("(\\d+)")
     private val ROMAN = Regex("^(?=[ivxlcdm]+$)m{0,3}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3})$", RegexOption.IGNORE_CASE)
-    private val WORD = Regex("(?U)\\w+")
+    private val WORD = unicodeRegex("\\w+")
 
     /** Sort key: numbers as numbers, a roman last segment by value, ordinal words as numbers. */
     fun naturalKey(title: String, ordinals: Map<String, Int> = emptyMap()): List<Comparable<*>> {
@@ -107,6 +107,13 @@ object Titles {
         return total
     }
 }
+
+/**
+ * [pattern] with Unicode `\w`, `\b` and `\d`, as in Python: the JVM needs `(?U)`, while
+ * Android's ICU engine is Unicode-aware already and rejects the flag.
+ */
+fun unicodeRegex(pattern: String, options: Set<RegexOption> = emptySet()): Regex =
+    runCatching { Regex("(?U)$pattern", options) }.getOrElse { Regex(pattern, options) }
 
 /**
  * Namespace names of a wiki (siteinfo `namespaces` and `namespacealiases`), to tell
