@@ -46,6 +46,8 @@ data class Settings(
     val chips: ChipSettings = ChipSettings(),
     val sort: SortOrder = SortOrder.TITLE,
     val lastManifestCheck: Long = 0,
+    /** The first-run reader tip (PLAN.md 8.2) was dismissed. */
+    val readerTipShown: Boolean = false,
 )
 
 /** Reader appearance (PLAN.md 8.5, R7). */
@@ -59,6 +61,14 @@ data class ReaderSettings(
     val margins: ReaderMargins = ReaderMargins.MEDIUM,
     val justify: Boolean = true,
     val hyphenate: Boolean = true,
+    /** Page breaks of the original (8.2, R8); inline by default. */
+    val pageMarks: PageMarks = PageMarks.INLINE,
+    /** A hairline across the text at each page break, when page marks are shown. */
+    val pageBreakRule: Boolean = false,
+    /** Line numbers printed in the source (8.3, R9). */
+    val lineNumbersSource: Boolean = true,
+    /** Generated numbers for verse lines. */
+    val lineNumbersVerse: VerseNumbers = VerseNumbers.OFF,
 ) {
     companion object {
         const val MIN_SIZE = 12
@@ -81,6 +91,11 @@ enum class ReaderFont(val label: String, val css: String) {
     SYSTEM("", "sans-serif"),
 }
 
+enum class PageMarks(val js: String) { OFF("off"), INLINE("inline"), MARGIN("margin") }
+
+/** Every [step]th verse line numbered; 0 is none. */
+enum class VerseNumbers(val step: Int) { OFF(0), EVERY_5(5), EVERY_10(10), EVERY_LINE(1) }
+
 /** Side and top margins in CSS px. */
 enum class ReaderMargins(val h: Int, val v: Int) { SMALL(12, 16), MEDIUM(22, 26), LARGE(36, 36) }
 
@@ -102,6 +117,11 @@ class SettingsRepository @Inject constructor(@ApplicationContext private val con
         val readerMargins = stringPreferencesKey("reader_margins")
         val readerJustify = booleanPreferencesKey("reader_justify")
         val readerHyphens = booleanPreferencesKey("reader_hyphens")
+        val readerPageMarks = stringPreferencesKey("reader_page_marks")
+        val readerPageRule = booleanPreferencesKey("reader_page_break_rule")
+        val readerLinesSource = booleanPreferencesKey("reader_line_numbers_source")
+        val readerLinesVerse = stringPreferencesKey("reader_line_numbers_verse")
+        val readerTipShown = booleanPreferencesKey("reader_tip_shown")
     }
 
     val settings: Flow<Settings> = context.dataStore.data.map { p ->
@@ -116,6 +136,7 @@ class SettingsRepository @Inject constructor(@ApplicationContext private val con
             ),
             sort = p[Keys.sort]?.let { s -> SortOrder.entries.firstOrNull { it.name == s } } ?: SortOrder.TITLE,
             lastManifestCheck = p[Keys.lastManifestCheck] ?: 0,
+            readerTipShown = p[Keys.readerTipShown] ?: false,
         )
     }.distinctUntilChanged()
 
@@ -131,6 +152,10 @@ class SettingsRepository @Inject constructor(@ApplicationContext private val con
             margins = enumOr(p[Keys.readerMargins], d.margins),
             justify = p[Keys.readerJustify] ?: d.justify,
             hyphenate = p[Keys.readerHyphens] ?: d.hyphenate,
+            pageMarks = enumOr(p[Keys.readerPageMarks], d.pageMarks),
+            pageBreakRule = p[Keys.readerPageRule] ?: d.pageBreakRule,
+            lineNumbersSource = p[Keys.readerLinesSource] ?: d.lineNumbersSource,
+            lineNumbersVerse = enumOr(p[Keys.readerLinesVerse], d.lineNumbersVerse),
         )
     }.distinctUntilChanged()
 
@@ -142,6 +167,10 @@ class SettingsRepository @Inject constructor(@ApplicationContext private val con
         it[Keys.readerMargins] = r.margins.name
         it[Keys.readerJustify] = r.justify
         it[Keys.readerHyphens] = r.hyphenate
+        it[Keys.readerPageMarks] = r.pageMarks.name
+        it[Keys.readerPageRule] = r.pageBreakRule
+        it[Keys.readerLinesSource] = r.lineNumbersSource
+        it[Keys.readerLinesVerse] = r.lineNumbersVerse.name
     }
 
     private inline fun <reified E : Enum<E>> enumOr(name: String?, default: E): E =
@@ -152,6 +181,7 @@ class SettingsRepository @Inject constructor(@ApplicationContext private val con
     }
 
     suspend fun setOnboarded() = edit { it[Keys.onboarded] = true }
+    suspend fun setReaderTipShown() = edit { it[Keys.readerTipShown] = true }
     suspend fun setActiveWiki(code: String) = edit { it[Keys.activeWiki] = code }
     suspend fun setSort(sort: SortOrder) = edit { it[Keys.sort] = sort.name }
     suspend fun setLastManifestCheck(t: Long) = edit { it[Keys.lastManifestCheck] = t }

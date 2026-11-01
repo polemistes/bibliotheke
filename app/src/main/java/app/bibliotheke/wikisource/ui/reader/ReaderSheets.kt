@@ -85,9 +85,11 @@ import app.bibliotheke.wikisource.catalog.WikiLinks
 import app.bibliotheke.wikisource.data.library.Bookmark
 import app.bibliotheke.wikisource.data.library.Part
 import app.bibliotheke.wikisource.data.settings.ReaderFont
+import app.bibliotheke.wikisource.data.settings.PageMarks
 import app.bibliotheke.wikisource.data.settings.ReaderMargins
 import app.bibliotheke.wikisource.data.settings.ReaderSettings
 import app.bibliotheke.wikisource.data.settings.ReaderTheme
+import app.bibliotheke.wikisource.data.settings.VerseNumbers
 import app.bibliotheke.wikisource.ui.common.openInBrowser
 import kotlinx.coroutines.delay
 import java.io.ByteArrayInputStream
@@ -230,6 +232,23 @@ fun AppearanceSheet(s: ReaderSettings, onChange: (ReaderSettings) -> Unit, onDis
             }
             SwitchRow(R.string.reader_justify, s.justify) { onChange(s.copy(justify = it)) }
             SwitchRow(R.string.reader_hyphenate, s.hyphenate) { onChange(s.copy(hyphenate = it)) }
+            Label(R.string.reader_page_marks)
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                for ((m, label) in listOf(
+                    PageMarks.OFF to R.string.reader_page_marks_off, PageMarks.INLINE to R.string.reader_page_marks_inline,
+                    PageMarks.MARGIN to R.string.reader_page_marks_margin,
+                )) FilterChip(s.pageMarks == m, onClick = { onChange(s.copy(pageMarks = m)) }, label = { Text(stringResource(label)) })
+            }
+            SwitchRow(R.string.reader_page_break_rule, s.pageBreakRule, enabled = s.pageMarks != PageMarks.OFF) { onChange(s.copy(pageBreakRule = it)) }
+            Label(R.string.reader_line_numbers)
+            SwitchRow(R.string.reader_line_numbers_source, s.lineNumbersSource) { onChange(s.copy(lineNumbersSource = it)) }
+            Text(stringResource(R.string.reader_line_numbers_verse), style = MaterialTheme.typography.bodyLarge)
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                for ((v, label) in listOf(
+                    VerseNumbers.OFF to R.string.reader_line_numbers_off, VerseNumbers.EVERY_5 to R.string.reader_line_numbers_5,
+                    VerseNumbers.EVERY_10 to R.string.reader_line_numbers_10, VerseNumbers.EVERY_LINE to R.string.reader_line_numbers_1,
+                )) FilterChip(s.lineNumbersVerse == v, onClick = { onChange(s.copy(lineNumbersVerse = v)) }, label = { Text(stringResource(label)) })
+            }
         }
     }
 }
@@ -243,10 +262,13 @@ private fun Label(res: Int, value: String? = null) {
 }
 
 @Composable
-private fun SwitchRow(res: Int, checked: Boolean, onChange: (Boolean) -> Unit) {
-    Row(Modifier.fillMaxWidth().clickable { onChange(!checked) }.padding(vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
-        Text(stringResource(res), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
-        Switch(checked, onCheckedChange = onChange)
+private fun SwitchRow(res: Int, checked: Boolean, enabled: Boolean = true, onChange: (Boolean) -> Unit) {
+    Row(Modifier.fillMaxWidth().clickable(enabled = enabled) { onChange(!checked) }.padding(vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+        Text(
+            stringResource(res), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f),
+            color = if (enabled) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.outline,
+        )
+        Switch(checked, onCheckedChange = onChange, enabled = enabled)
     }
 }
 

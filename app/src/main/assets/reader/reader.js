@@ -225,8 +225,10 @@
   }
 
   // Applies reader settings (8.5). Keys: fontSize, lineHeight, marginH, marginV,
-  // fontFamily, textAlign, hyphens, bg, fg, muted, mark, tableHint. Posts 'layout'
-  // once the new layout is done, with the position kept.
+  // fontFamily, textAlign, hyphens, bg, fg, muted, mark, tableHint; and (8.2, 8.3)
+  // pageMarks ('off', 'inline', 'margin'), pageBreakRule, lineNumbersSource and
+  // lineNumbersVerse (0, 1, 5 or 10). Posts 'layout' once the new layout is done, with
+  // the position kept.
   async function apply(next) {
     settings = Object.assign({}, settings, next);
     const map = {
@@ -245,6 +247,13 @@
     for (const [key, [cssVar, fmt]] of Object.entries(map)) {
       if (settings[key] !== undefined) setVar(cssVar, fmt(settings[key]));
     }
+    // Without these keys (tests, a page opened directly) the page shows inline marks
+    // and the source's line numbers, as the normaliser wrote them.
+    const marksMode = settings.pageMarks || 'inline';
+    content.classList.toggle('wsr-pm-off', marksMode === 'off');
+    content.classList.toggle('wsr-pm-margin', marksMode === 'margin');
+    content.classList.toggle('wsr-lns-off', settings.lineNumbersSource === false);
+    for (const n of [1, 5, 10]) content.classList.toggle('wsr-lnv-' + n, settings.lineNumbersVerse === n);
     if (!loaded) return;
     const gen = generation;
     await settle();

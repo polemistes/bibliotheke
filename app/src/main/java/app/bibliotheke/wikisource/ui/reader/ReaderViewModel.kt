@@ -28,6 +28,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -70,6 +71,11 @@ class ReaderViewModel @Inject constructor(
     val ui: StateFlow<ReaderUi> = _ui.asStateFlow()
 
     val settings: StateFlow<ReaderSettings?> = settingsRepo.reader.stateIn(viewModelScope, SharingStarted.Eagerly, null)
+
+    /** The first-run tip (taps, page marks and where to set them, PLAN.md 8.2) is due. */
+    val showTip: StateFlow<Boolean> = settingsRepo.settings.map { !it.readerTipShown }.stateIn(viewModelScope, SharingStarted.Eagerly, false)
+
+    fun dismissTip() = viewModelScope.launch { settingsRepo.setReaderTipShown() }
 
     /** Where the reader page must go next; the screen acts on each new [Jump.seq]. */
     private val _jump = MutableStateFlow<Jump?>(null)

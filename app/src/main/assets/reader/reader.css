@@ -84,7 +84,8 @@ blockquote { margin: 0.6em 0 0.6em 1.5em; }
 .wsr-stanza { margin-bottom: 0.9em; }
 .wsr-line { display: block; padding-left: 1.5em; text-indent: -1.5em; }
 
-/* Page marks, inline (PLAN.md 8.2; the margin mode and the setting come with WP5). */
+/* Page marks (PLAN.md 8.2): inline by default; off, or in the margin (reader.js draws
+   those in #wsr-gutter), by a class on the content. */
 .wsr-page::after {
   content: "[" attr(data-num) "]";
   font-size: 0.7em;
@@ -94,8 +95,12 @@ blockquote { margin: 0.6em 0 0.6em 1.5em; }
   font-style: normal;
   font-weight: normal;
 }
+#wsr-content.wsr-pm-off .wsr-page::after,
+#wsr-content.wsr-pm-margin .wsr-page::after { content: none; padding: 0; }
 
+/* Line numbers of the source (8.3), shown unless switched off. */
 .wsr-ln-src { float: right; color: var(--muted); font-size: 0.7em; text-indent: 0; }
+#wsr-content.wsr-lns-off .wsr-ln-src { display: none; }
 
 .wsr-sc { font-variant: small-caps; }
 .wsr-sp { letter-spacing: 0.15em; }

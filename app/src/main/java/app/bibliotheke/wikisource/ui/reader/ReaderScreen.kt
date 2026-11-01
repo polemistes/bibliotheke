@@ -15,6 +15,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -46,6 +47,7 @@ import androidx.compose.material3.SuggestionChip
 import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
@@ -109,6 +111,7 @@ fun ReaderScreen(onBack: () -> Unit, vm: ReaderViewModel = hiltViewModel()) {
     val ui by vm.ui.collectAsStateWithLifecycle()
     val settings by vm.settings.collectAsStateWithLifecycle()
     val jump by vm.jump.collectAsStateWithLifecycle()
+    val showTip by vm.showTip.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val resources = LocalResources.current
     val fontScale = LocalDensity.current.fontScale
@@ -236,6 +239,13 @@ fun ReaderScreen(onBack: () -> Unit, vm: ReaderViewModel = hiltViewModel()) {
                 ) {
                     ProgressBar(ui.progress, onSeek = { vm.openFraction(it) })
                 }
+                if (showTip && ui.page?.loaded == true && sheet == null) {
+                    ReaderTip(
+                        onSettings = { vm.dismissTip(); sheet = ReaderSheet.Appearance },
+                        onDismiss = { vm.dismissTip() },
+                        modifier = Modifier.align(Alignment.BottomCenter).navigationBarsPadding().padding(16.dp),
+                    )
+                }
                 if (ui.page?.away == true) {
                     SuggestionChip(
                         onClick = { controller.back() },
@@ -334,6 +344,20 @@ private fun TopBar(
         },
         colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.surfaceContainer),
     )
+}
+
+/** Shown once: how to turn pages, and that the page marks of the original can be set (8.2). */
+@Composable
+private fun ReaderTip(onSettings: () -> Unit, onDismiss: () -> Unit, modifier: Modifier = Modifier) {
+    Surface(color = MaterialTheme.colorScheme.surfaceContainerHigh, shape = MaterialTheme.shapes.large, shadowElevation = 4.dp, modifier = modifier.fillMaxWidth()) {
+        Column(Modifier.padding(start = 20.dp, end = 12.dp, top = 16.dp, bottom = 8.dp)) {
+            Text(stringResource(R.string.reader_tip), style = MaterialTheme.typography.bodyMedium)
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                TextButton(onClick = onSettings) { Text(stringResource(R.string.reader_appearance)) }
+                TextButton(onClick = onDismiss) { Text(stringResource(R.string.reader_tip_ok)) }
+            }
+        }
+    }
 }
 
 /** Chapter title and page in chapter (8.6). */

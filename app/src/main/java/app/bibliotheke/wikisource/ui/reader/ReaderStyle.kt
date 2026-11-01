@@ -38,6 +38,10 @@ fun ReaderSettings.toJs(p: ReaderPalette, fontScale: Float, tableHint: String): 
     put("muted", css(p.muted))
     put("mark", if (p.dark) "rgba(255, 196, 0, 0.30)" else "rgba(255, 196, 0, 0.35)")
     put("tableHint", tableHint)
+    put("pageMarks", pageMarks.js)
+    put("pageBreakRule", pageBreakRule)
+    put("lineNumbersSource", lineNumbersSource)
+    put("lineNumbersVerse", lineNumbersVerse.step)
 }
 
 private fun css(c: Color) = String.format("#%06X", c.toArgb() and 0xFFFFFF)
