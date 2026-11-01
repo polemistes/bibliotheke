@@ -534,7 +534,8 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
   Resolution, quality and metadata rules can be rerun on the cached
   extract; `build` re-extracts when the dump or `EXTRACT_VERSION` changes.
 - CI: `.github/workflows/catalog.yml` (weekly; publishes to the release
-  `catalog-latest`); needs the GitHub remote `polemistes/bibliotheke`.
+  `catalog-latest`); the repository `polemistes/bibliotheke` is public since
+  2026-11-01, remote `origin`; the first scheduled run is Monday 2026-11-02.
 - Browser tests: `prototypes/pagination/run_browser_test.sh` (needs
   `chromium`).
 - Android build: `cd prototypes/pagination/android &&
