@@ -21,11 +21,16 @@ WP4 sub-steps:
       wide ones are clipped and marked. Six OFL fonts in `reader/fonts`
       (`app/tools/fetch_reader_fonts.py`). Test over all 111 fixture pages
       in headless Chromium (`app/src/test/reader/run.sh`): 111 of 111 pass
-- [ ] 2. Library DB v2 (positions and bookmarks by part index), reader
-      settings, the reader screen (gestures, turns across parts, notes,
-      appearance sheet, position saving)
-- [ ] 3. Navigation: contents, bookmarks, progress slider, original page
-      number, search in the work
+- [~] 2. Library DB v2 (positions and bookmarks by part index, element
+      anchors; migration 1→2 recreates the two tables, unused in v1), reader
+      settings (DataStore), `ReaderController` (three WebViews: current,
+      previous at its last page, next at its first, stacked so a turn across
+      parts uncovers a page already laid out), `ReaderScreen` (tap and swipe
+      layer, notes sheet, appearance sheet, position saved on every turn and
+      kept in SavedStateHandle). Builds, lint clean; on the emulator: next
+- [~] 3. Navigation: contents drawer (volumes collapsible) and bookmarks,
+      progress slider, go to a page of the original, search in the work
+      (`TextSearch` in :core-content). Written with step 2; not yet tried
 - [ ] 4. Acceptance on the emulator
 
 **WP3 — Content fetching, normaliser, downloads: complete** (2026-11-01;
@@ -411,7 +416,7 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## In progress
 
-- WP4 sub-step 2 (the reader screen); see Current package.
+- WP4 sub-steps 2–3 written and building; trying them on the emulator.
 - **Owner's decision (2026-11-01): Wikidata for it, sv, da, fi, es and mul
   is fetched by the first CI run**, not locally (it would take about an
   hour; the bottleneck is Wikidata's server time and maxlag, not the

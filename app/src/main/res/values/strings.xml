@@ -244,4 +244,47 @@
     <string name="detail_licence_of">Licence of the contributions: %1$s</string>
     <string name="settings_storage">Storage</string>
     <string name="settings_storage_used">Downloaded works use %1$s</string>
+
+    <!-- WP4: reader -->
+    <string name="reader_page_of">%1$d / %2$d</string>
+    <string name="reader_progress">%1$d %%</string>
+    <string name="reader_bookmarks">Bookmarks</string>
+    <string name="reader_bookmark_add">Add bookmark</string>
+    <string name="reader_bookmark_remove">Remove bookmark</string>
+    <string name="reader_bookmarks_empty">No bookmarks yet. The bookmark button in the toolbar keeps the page you are on.</string>
+    <string name="reader_search">Search in this work</string>
+    <string name="reader_search_none">No matches.</string>
+    <string name="reader_appearance">Appearance</string>
+    <string name="reader_theme">Theme</string>
+    <string name="reader_theme_system">System</string>
+    <string name="reader_theme_light">Light</string>
+    <string name="reader_theme_sepia">Sepia</string>
+    <string name="reader_theme_dark">Dark</string>
+    <string name="reader_theme_black">Black</string>
+    <string name="reader_font">Font</string>
+    <string name="reader_font_system">System default</string>
+    <string name="reader_font_size">Text size</string>
+    <string name="reader_line_height">Line spacing</string>
+    <string name="reader_margins">Margins</string>
+    <string name="reader_margins_small">Small</string>
+    <string name="reader_margins_medium">Medium</string>
+    <string name="reader_margins_large">Large</string>
+    <string name="reader_justify">Justify</string>
+    <string name="reader_hyphenate">Hyphenation</string>
+    <string name="reader_note">Note %1$s</string>
+    <string name="reader_note_go">Go to the notes</string>
+    <string name="reader_back_to_text">Back to the text</string>
+    <string name="reader_page_mark">Page %1$s of the original</string>
+    <string name="reader_open_scan">Open the scan on Wikisource</string>
+    <string name="reader_go_to_page">Go to a page of the original</string>
+    <string name="reader_go_to_page_hint">Page number</string>
+    <string name="reader_page_not_found">Page %1$s is not in the downloaded parts.</string>
+    <string name="reader_table_hint">Tap to view</string>
+    <string name="reader_part_missing">Not downloaded</string>
+    <string name="action_go">Go</string>
+    <string name="action_close">Close</string>
+    <plurals name="reader_search_hits">
+        <item quantity="one">%1$d match</item>
+        <item quantity="other">%1$d matches</item>
+    </plurals>
 </resources>

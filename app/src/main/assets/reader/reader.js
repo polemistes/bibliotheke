@@ -59,8 +59,9 @@
 
   // --- Loading -------------------------------------------------------------------
 
-  // Loads a part and goes to target: {offset, el}, {last: true}, {page}, {element: id}
-  // or nothing (the start). Posts 'ready' with the state when it is laid out.
+  // Loads a part and goes to target: {offset, el, skip}, {last: true}, {page},
+  // {element: id}, {mark: page number of the original} or nothing (the start); with
+  // `flash`, the sentence at the offset is highlighted. Posts 'ready' with the state when it is laid out.
   async function open(url, lang, target) {
     const gen = ++generation;
     loaded = false;
@@ -127,10 +128,19 @@
   }
 
   function go(t) {
-    if (t.element) goToElement(t.element, true);
+    if (t.mark) { if (!goToPageMark(t.mark)) goToLocator(0); }
+    else if (t.element) goToElement(t.element, true);
     else if (t.last) goToPage(pages - 1, false);
     else if (t.page !== undefined) goToPage(t.page, false);
     else goToLocator(t.offset || 0, false, t.el, t.skip);
+    if (t.flash) flash(anchor, t.flashTo || sentenceEnd(anchor));
+  }
+
+  // End of the sentence starting at `from` (at most 300 characters on).
+  function sentenceEnd(from) {
+    const t = text(from, from + 300);
+    const m = /[.!?…:;](?=\s|$)/.exec(t.slice(1));
+    return from + (m ? m.index + 2 : Math.min(t.length, 160));
   }
 
   function buildIndex() {
@@ -534,7 +544,8 @@
 
   window.WsrReader = {
     open, openHtml, apply, layout, relayout, state, turn, goToPage, goToLocator,
-    goToElement, goToPageMark, back, hit, note, flash, text,
+    goToElement, goToPageMark, back, hit, note, flash, text, go,
+    flashSentence: (from) => flash(from, sentenceEnd(from)),
     pageOfOffset, firstOffsetOnPage,
     excerpt: (from, n) => text(from, from + (n || 160)).replace(/\s+/g, ' ').trim(),
     textLength: () => total,

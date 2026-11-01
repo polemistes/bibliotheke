@@ -226,4 +226,47 @@
     <string name="detail_licence_of">Lisens for bidragene: %1$s</string>
     <string name="settings_storage">Lagring</string>
     <string name="settings_storage_used">Nedlastede verk bruker %1$s</string>
+
+    <!-- WP4: reader -->
+    <string name="reader_page_of">%1$d / %2$d</string>
+    <string name="reader_progress">%1$d %%</string>
+    <string name="reader_bookmarks">Bokmerker</string>
+    <string name="reader_bookmark_add">Legg til bokmerke</string>
+    <string name="reader_bookmark_remove">Fjern bokmerke</string>
+    <string name="reader_bookmarks_empty">Ingen bokmerker ennå. Bokmerkeknappen i verktøylinjen tar vare på siden du er på.</string>
+    <string name="reader_search">Søk i dette verket</string>
+    <string name="reader_search_none">Ingen treff.</string>
+    <string name="reader_appearance">Utseende</string>
+    <string name="reader_theme">Tema</string>
+    <string name="reader_theme_system">System</string>
+    <string name="reader_theme_light">Lyst</string>
+    <string name="reader_theme_sepia">Sepia</string>
+    <string name="reader_theme_dark">Mørkt</string>
+    <string name="reader_theme_black">Svart</string>
+    <string name="reader_font">Skrift</string>
+    <string name="reader_font_system">Systemets skrift</string>
+    <string name="reader_font_size">Tekststørrelse</string>
+    <string name="reader_line_height">Linjeavstand</string>
+    <string name="reader_margins">Marger</string>
+    <string name="reader_margins_small">Små</string>
+    <string name="reader_margins_medium">Middels</string>
+    <string name="reader_margins_large">Store</string>
+    <string name="reader_justify">Blokkjuster</string>
+    <string name="reader_hyphenate">Orddeling</string>
+    <string name="reader_note">Note %1$s</string>
+    <string name="reader_note_go">Gå til notene</string>
+    <string name="reader_back_to_text">Tilbake til teksten</string>
+    <string name="reader_page_mark">Side %1$s i originalen</string>
+    <string name="reader_open_scan">Åpne skanningen på Wikisource</string>
+    <string name="reader_go_to_page">Gå til en side i originalen</string>
+    <string name="reader_go_to_page_hint">Sidetall</string>
+    <string name="reader_page_not_found">Side %1$s finnes ikke i de nedlastede delene.</string>
+    <string name="reader_table_hint">Trykk for å se</string>
+    <string name="reader_part_missing">Ikke lastet ned</string>
+    <string name="action_go">Gå</string>
+    <string name="action_close">Lukk</string>
+    <plurals name="reader_search_hits">
+        <item quantity="one">%1$d treff</item>
+        <item quantity="other">%1$d treff</item>
+    </plurals>
 </resources>

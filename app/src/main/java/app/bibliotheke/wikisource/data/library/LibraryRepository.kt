@@ -11,6 +11,7 @@ import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.workDataOf
 import app.bibliotheke.wikisource.catalog.WikiLinks
+import app.bibliotheke.wikisource.content.TextSearch
 import app.bibliotheke.wikisource.data.catalog.CatalogRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -113,6 +114,8 @@ class LibraryRepository @Inject constructor(
         val w = dao.work(id) ?: return@withContext
         storage.delete(w)
         dao.deleteJobs(id)
+        dao.deletePosition(id)
+        dao.deleteBookmarks(id)
         dao.deleteWork(id)
     }
 
@@ -121,4 +124,31 @@ class LibraryRepository @Inject constructor(
     }
 
     suspend fun readPart(work: DownloadedWork, part: Part): String? = withContext(Dispatchers.IO) { storage.readPart(work, part) }
+
+    /** Where the reader page fetches a part (through `WebViewAssetLoader`). */
+    fun partUrl(work: DownloadedWork, part: Part): String? = part.filePath?.let { WorkStorage.ASSET_BASE + work.dir + "/" + it }
+
+    suspend fun position(workId: String): ReadingPosition? = withContext(Dispatchers.IO) { dao.position(workId) }
+    suspend fun savePosition(p: ReadingPosition) = withContext(Dispatchers.IO) { dao.savePosition(p) }
+
+    fun bookmarks(workId: String): Flow<List<Bookmark>> = dao.bookmarks(workId)
+    suspend fun addBookmark(b: Bookmark) = withContext(Dispatchers.IO) { dao.insertBookmark(b) }
+    suspend fun deleteBookmark(id: Long) = withContext(Dispatchers.IO) { dao.deleteBookmark(id) }
+
+    /** Hits of [query] in the downloaded [parts], in reading order (PLAN.md 8.6). */
+    suspend fun search(work: DownloadedWork, parts: List<Part>, query: String, limit: Int = 300): List<Pair<Part, TextSearch.Hit>> =
+        withContext(Dispatchers.IO) {
+            val out = mutableListOf<Pair<Part, TextSearch.Hit>>()
+            for (p in parts) {
+                if (out.size >= limit) break
+                val html = storage.readPart(work, p) ?: continue
+                TextSearch.find(TextSearch.locatorText(html), query, limit - out.size).mapTo(out) { p to it }
+            }
+            out
+        }
+
+    /** The first of [parts] whose file holds [needle] (an element id among the slices of a page, a page mark). */
+    suspend fun partContaining(work: DownloadedWork, parts: List<Part>, needle: String): Part? = withContext(Dispatchers.IO) {
+        parts.firstOrNull { p -> storage.readPart(work, p)?.contains(needle) == true }
+    }
 }

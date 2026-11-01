@@ -13,7 +13,7 @@ import app.bibliotheke.wikisource.ui.browse.BrowseScreen
 import app.bibliotheke.wikisource.ui.detail.WorkDetailScreen
 import app.bibliotheke.wikisource.ui.library.LibraryScreen
 import app.bibliotheke.wikisource.ui.picker.PickerScreen
-import app.bibliotheke.wikisource.ui.reader.PartViewerScreen
+import app.bibliotheke.wikisource.ui.reader.ReaderScreen
 import app.bibliotheke.wikisource.ui.search.SearchScreen
 import app.bibliotheke.wikisource.ui.settings.AboutScreen
 import app.bibliotheke.wikisource.ui.settings.SettingsScreen
@@ -86,7 +86,7 @@ fun AppNav(main: MainViewModel) {
                 },
             )
         }
-        composable<ReaderRoute> { PartViewerScreen(onBack = { nav.popBackStack() }) }
+        composable<ReaderRoute> { ReaderScreen(onBack = { nav.popBackStack() }) }
         composable<AboutRoute> { AboutScreen(onBack = { nav.popBackStack() }) }
     }
 }

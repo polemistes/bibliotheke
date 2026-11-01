@@ -49,7 +49,9 @@ object AppModule {
 
     @Provides @Singleton
     fun libraryDatabase(@ApplicationContext context: Context): LibraryDatabase =
-        Room.databaseBuilder(context, LibraryDatabase::class.java, "library.db").build()
+        Room.databaseBuilder(context, LibraryDatabase::class.java, "library.db")
+            .addMigrations(LibraryDatabase.MIGRATION_1_2)
+            .build()
 
     @Provides
     fun libraryDao(db: LibraryDatabase): LibraryDao = db.dao()

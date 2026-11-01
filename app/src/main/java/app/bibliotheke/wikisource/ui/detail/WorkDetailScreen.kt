@@ -171,12 +171,11 @@ private fun DetailContent(
             }
         }
         item {
-            val firstReady = lib.parts.values.filter { it.state == Part.READY }.minByOrNull { it.index }?.index
             DownloadSection(
                 lib, canChoose = ui.parts.size > 1, choosing = ui.choosing, chosen = ui.chosen.size,
                 onDownload = { askForNotifications(); vm.download() }, onChoose = vm::setChoosing,
                 onDownloadChosen = { askForNotifications(); vm.download(chosenOnly = true) },
-                onRead = { firstReady?.let(onRead) }, onRetry = { vm.retry() }, onDelete = { vm.delete() },
+                onRead = { onRead(-1) }, onRetry = { vm.retry() }, onDelete = { vm.delete() },
             )
         }
         items(ui.parts, key = { it.id }) { p ->

@@ -3,6 +3,7 @@ package app.bibliotheke.wikisource.data.library
 
 import androidx.room.Dao
 import androidx.room.Database
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
@@ -13,6 +14,8 @@ import androidx.room.Query
 import androidx.room.RoomDatabase
 import androidx.room.Transaction
 import androidx.room.Update
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -108,12 +111,24 @@ data class Part(
     }
 }
 
-/** Last reading position per work (PLAN.md 7.4); the reader (WP4) writes it. */
+/**
+ * A place in a work (PLAN.md 7.4): the part by [partIndex] and [partSub] (row ids change
+ * when a page is split again), the locator [charOffset], and for a page with no text
+ * starting on it the element anchor of the reader page ([anchorEl] -1 otherwise, F§4.6).
+ */
+data class Locator(
+    val partIndex: Int,
+    val partSub: Int = 0,
+    val charOffset: Int = 0,
+    val anchorEl: Int = -1,
+    val anchorSkip: Int = 0,
+)
+
+/** Last reading position per work; [progress] is 0–1 over the whole work by characters. */
 @Entity(tableName = "reading_position")
 data class ReadingPosition(
     @PrimaryKey val workId: String,
-    val partId: Long,
-    val charOffset: Int,
+    @Embedded val at: Locator,
     val progress: Double,
     val updatedAt: Long,
 )
@@ -122,8 +137,9 @@ data class ReadingPosition(
 data class Bookmark(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val workId: String,
-    val partId: Long,
-    val charOffset: Int,
+    @Embedded val at: Locator,
+    val progress: Double,
+    val partTitle: String,
     val excerpt: String,
     val note: String?,
     val createdAt: Long,
@@ -217,13 +233,57 @@ interface LibraryDao {
 
     @Query("SELECT coalesce(sum(bytesOnDisk), 0) FROM downloaded_work")
     fun totalBytes(): Flow<Long>
+
+    @Query("SELECT * FROM reading_position WHERE workId = :workId")
+    suspend fun position(workId: String): ReadingPosition?
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun savePosition(p: ReadingPosition)
+
+    @Query("SELECT * FROM bookmark WHERE workId = :workId ORDER BY partIndex, partSub, charOffset")
+    fun bookmarks(workId: String): Flow<List<Bookmark>>
+
+    @Insert
+    suspend fun insertBookmark(b: Bookmark): Long
+
+    @Query("DELETE FROM bookmark WHERE id = :id")
+    suspend fun deleteBookmark(id: Long)
+
+    @Query("DELETE FROM reading_position WHERE workId = :workId")
+    suspend fun deletePosition(workId: String)
+
+    @Query("DELETE FROM bookmark WHERE workId = :workId")
+    suspend fun deleteBookmarks(workId: String)
 }
 
 @Database(
     entities = [DownloadedWork::class, Part::class, ReadingPosition::class, Bookmark::class, DownloadJob::class],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 abstract class LibraryDatabase : RoomDatabase() {
     abstract fun dao(): LibraryDao
+
+    companion object {
+        /** v2 (WP4): positions and bookmarks by part index; v1 never wrote either table. */
+        val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("DROP TABLE reading_position")
+                db.execSQL("DROP TABLE bookmark")
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `reading_position` (`workId` TEXT NOT NULL, `progress` REAL NOT NULL, " +
+                        "`updatedAt` INTEGER NOT NULL, `partIndex` INTEGER NOT NULL, `partSub` INTEGER NOT NULL, " +
+                        "`charOffset` INTEGER NOT NULL, `anchorEl` INTEGER NOT NULL, `anchorSkip` INTEGER NOT NULL, " +
+                        "PRIMARY KEY(`workId`))",
+                )
+                db.execSQL(
+                    "CREATE TABLE IF NOT EXISTS `bookmark` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                        "`workId` TEXT NOT NULL, `progress` REAL NOT NULL, `partTitle` TEXT NOT NULL, `excerpt` TEXT NOT NULL, " +
+                        "`note` TEXT, `createdAt` INTEGER NOT NULL, `partIndex` INTEGER NOT NULL, `partSub` INTEGER NOT NULL, " +
+                        "`charOffset` INTEGER NOT NULL, `anchorEl` INTEGER NOT NULL, `anchorSkip` INTEGER NOT NULL)",
+                )
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_bookmark_workId` ON `bookmark` (`workId`)")
+            }
+        }
+    }
 }

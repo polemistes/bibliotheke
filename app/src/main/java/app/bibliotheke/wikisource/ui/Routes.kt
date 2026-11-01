@@ -13,5 +13,8 @@ import kotlinx.serialization.Serializable
 @Serializable data object SettingsRoute
 @Serializable data object AboutRoute
 @Serializable data object LibraryRoute
-/** A downloaded part: [index] in the work's tree, [sub] its synthetic slice (PLAN.md 7.1 step 6). */
-@Serializable data class ReaderRoute(val workId: String, val index: Int = 0, val sub: Int = 0)
+/**
+ * The reader on a downloaded work: part [index] in the work's tree and [sub] its synthetic
+ * slice (PLAN.md 7.1 step 6), or the last reading position for index -1.
+ */
+@Serializable data class ReaderRoute(val workId: String, val index: Int = -1, val sub: Int = 0)
