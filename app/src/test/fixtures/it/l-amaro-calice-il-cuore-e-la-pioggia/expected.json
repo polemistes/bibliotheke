@@ -1,9 +1,9 @@
 {
-    "charCount": 653,
+    "charCount": 650,
     "pageNumbers": false,
-    "sourceLineNumbers": false,
+    "sourceLineNumbers": true,
     "verse": true,
     "footnotes": 0,
     "images": 0,
-    "ownTextChars": 639
+    "ownTextChars": 636
 }

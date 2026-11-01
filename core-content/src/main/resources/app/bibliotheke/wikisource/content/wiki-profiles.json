@@ -883,7 +883,9 @@
     "span.pagenum",
     "span.ws-pagenum"
    ],
-   "line_number_selectors": [],
+   "line_number_selectors": [
+    "span.numeroriga"
+   ],
    "header_selectors": [
     "#headertemplate",
     ".headertemplate",
