@@ -19,11 +19,17 @@ def marks(p):
     return f" ({t['inline']}/{t['margin']} of {p['marks']} tapped inline/margin)" if t else ""
 
 
+def lines(p):
+    if "verseLines" not in p:
+        return ""
+    return f", {p['verseLines']} verse lines ({p['verseNumbers']} numbered every 5), {p['sourceNumbers']} source numbers"
+
+
 print(res["ua"])
 for p in res["parts"]:
     status = "ok  " if p["pass"] else "FAIL"
     line = (f"{status} {p['name']}: {p.get('chars')} chars, {p.get('pages')} pages, "
-            f"{p.get('textless', 0)} text-less, {p.get('probes')} probes, {p.get('notes', 0)} notes, mark {p.get('pageMark', '-')}{marks(p)}, "
+            f"{p.get('textless', 0)} text-less, {p.get('probes')} probes, {p.get('notes', 0)} notes, mark {p.get('pageMark', '-')}{marks(p)}{lines(p)}, "
             f"{p.get('loadMs')} ms")
     if not p["pass"]:
         line += f"  {p.get('fails') or p.get('error')}"

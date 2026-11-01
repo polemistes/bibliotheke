@@ -6,7 +6,8 @@
 //    with L on the shown page, and going back gives the same page and the same L;
 //  - every footnote reference opens its note, the note section is shown "away" from
 //    the anchor and back() returns to it; the first page mark is found by number;
-//  - page marks inline and in the margin are tappable and placed in the margin (WP5).
+//  - page marks inline and in the margin are tappable and placed in the margin, and
+//    line numbers show and hide as set (WP5).
 
 (function () {
   'use strict';
@@ -133,6 +134,7 @@
       out.pageMark = mark.dataset.num;
     }
     if (mark) await testPageMarks(out, fails);
+    if (document.querySelector('#wsr-content .wsr-verse, #wsr-content .wsr-ln-src')) await testLineNumbers(out, fails);
     out.fails = fails;
     out.pass = fails.length === 0;
     return out;
@@ -180,6 +182,40 @@
     R.goToLocator(s0.anchor, false, s0.anchorEl, s0.anchorSkip);
     await applyAndWait({ pageMarks: 'inline', pageBreakRule: false });
     kept(R.state(), 'back to inline');
+  }
+
+  // Line numbers (8.3): every 5th verse line by data-n (heading lines have none), the
+  // source's number instead where it shows; the source's numbers hide; the position
+  // is kept.
+  async function testLineNumbers(out, fails) {
+    const s0 = R.goToPage(Math.floor(out.pages / 2), false);
+    const lines = Array.from(document.querySelectorAll('#wsr-content .wsr-line'));
+    const src = Array.from(document.querySelectorAll('#wsr-content .wsr-ln-src'));
+    const numbered = (l) => getComputedStyle(l, '::before').content !== 'none';
+    const check = (step, srcOn) => {
+      let wrong = 0, shown = 0;
+      for (const l of lines) {
+        const n = Number(l.dataset.n || 0);
+        const want = step > 0 && n > 0 && n % step === 0 && !(srcOn && l.querySelector('.wsr-ln-src'));
+        if (numbered(l) !== want) { if (wrong++ < 2) fails.push(`verse ${step}/${srcOn}: line ${n || 'head'} numbered ${!want}`); }
+        if (want) shown++;
+      }
+      for (const e of src) if ((getComputedStyle(e).display !== 'none') !== srcOn) { fails.push(`source number ${e.textContent} shown ${!srcOn}`); break; }
+      return shown;
+    };
+    const kept = (what) => { const s = R.state(); if (s.anchor !== s0.anchor) fails.push(`${what}: position ${s0.anchor} -> ${s.anchor}`); };
+    check(0, true);
+    await applyAndWait({ lineNumbersVerse: 5 });
+    out.verseNumbers = check(5, true);
+    kept('verse numbers on');
+    await applyAndWait({ lineNumbersSource: false });
+    check(5, false);
+    kept('source numbers off');
+    await applyAndWait({ lineNumbersVerse: 0, lineNumbersSource: true });
+    check(0, true);
+    kept('line numbers back');
+    out.verseLines = lines.length;
+    out.sourceNumbers = src.length;
   }
 
   async function run() {

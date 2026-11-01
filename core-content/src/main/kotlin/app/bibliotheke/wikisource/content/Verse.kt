@@ -13,6 +13,10 @@ import org.jsoup.nodes.TextNode
  * fr, while on de it splits `<p>`s around templates, sometimes mid-stanza, so a `<p>`
  * boundary ends a line but not a stanza. The line counter re-syncs to source line
  * numbers where they exist, so both numberings agree (Erlkönig, F§4.4).
+ *
+ * Heading lines are not counted and get no `data-n` but the class `wsr-vhead` (WP5):
+ * a line that is all bold or a heading (Erlkönig's title), one without a letter or a
+ * digit (an asterism), and a centred first line of the poem.
  */
 internal object Verse {
     fun convert(root: Element) {
@@ -24,10 +28,35 @@ internal object Verse {
 
     private fun isMarker(n: Node) = n is Element && (n.hasClass("wsr-page") || n.hasClass("wsr-ln-src"))
 
+    // Verse runs on Parsoid's markup, before classes and styles are normalised.
+    private val BOLD = setOf("b", "strong", "h1", "h2", "h3", "h4", "h5", "h6")
+    private val BOLD_STYLE = Regex("""font-weight\s*:\s*(bold|[6-9]00)""")
+    private val CENTRED_STYLE = Regex("""text-align\s*:\s*center""")
+    private fun isBold(e: Element) = e.normalName() in BOLD || BOLD_STYLE.containsMatchIn(e.attr("style"))
+    private fun isCentred(e: Element) = e.normalName() == "center" || CENTRED_STYLE.containsMatchIn(e.attr("style")) ||
+        e.classNames().any { it in Normaliser.CENTER_CLASSES }
+
+    /** The text of [n] outside the markers. */
+    private fun textOf(n: Node): String = when {
+        n is TextNode -> n.wholeText
+        n !is Element || isMarker(n) -> ""
+        else -> n.childNodes().joinToString("") { textOf(it) }
+    }
+
+    /** The part of [textOf] that lies inside elements [covered] accepts. */
+    private fun coveredText(n: Node, covered: (Element) -> Boolean): String = when {
+        n !is Element || isMarker(n) -> ""
+        covered(n) -> textOf(n)
+        else -> n.childNodes().joinToString("") { coveredText(it, covered) }
+    }
+
+    private fun squash(s: String) = s.filterNot { it.isWhitespace() }
+
     private class Converter(val poem: Element) {
         val out = Element("div").addClass("wsr-verse")
         var stanza = Element("div").addClass("wsr-stanza")
         var n = 0
+        var lines = 0
         val pending = ArrayList<Node>() // markers met before the next line
 
         fun run() {
@@ -72,12 +101,26 @@ internal object Verse {
             }
             val items = pending + nodes
             val src = items.firstOrNull { it is Element && it.hasClass("wsr-ln-src") } as Element?
-            n = src?.text()?.trim()?.toIntOrNull() ?: (n + 1)
-            val span = Element("span").addClass("wsr-line").attr("data-n", n.toString())
+            val srcN = src?.text()?.trim()?.toIntOrNull()
+            val span = Element("span").addClass("wsr-line")
+            if (srcN == null && isHeading(nodes, first = lines == 0)) {
+                span.addClass("wsr-vhead")
+            } else {
+                n = srcN ?: (n + 1)
+                span.attr("data-n", n.toString())
+            }
+            lines++
             for (x in items) span.appendChild(x)
             pending.clear()
             if (stanza.childNodeSize() > 0) stanza.appendChild(TextNode("\n"))
             stanza.appendChild(span)
+        }
+
+        fun isHeading(nodes: List<Node>, first: Boolean): Boolean {
+            val all = squash(nodes.joinToString("") { textOf(it) })
+            if (all.none { it.isLetterOrDigit() }) return true
+            if (squash(nodes.joinToString("") { coveredText(it, ::isBold) }) == all) return true
+            return first && squash(nodes.joinToString("") { coveredText(it, ::isCentred) }) == all
         }
 
         fun endStanza() {

@@ -81,7 +81,7 @@ hr { border: 0; border-top: 1px solid var(--muted); margin: 1em 20%; }
 dd { margin-left: 1.5em; }
 blockquote { margin: 0.6em 0 0.6em 1.5em; }
 
-/* Verse: one block per line (WP3 Verse.kt); generated numbers come with WP5. */
+/* Verse: one block per line (WP3 Verse.kt). */
 .wsr-verse { margin: 0.8em 0; text-align: left; hyphens: manual; -webkit-hyphens: manual; }
 .wsr-stanza { margin-bottom: 0.9em; }
 .wsr-line { display: block; padding-left: 1.5em; text-indent: -1.5em; }
@@ -129,9 +129,37 @@ blockquote { margin: 0.6em 0 0.6em 1.5em; }
 }
 .wsr-rule.wsr-step { border-left: 1px solid var(--muted); }
 
-/* Line numbers of the source (8.3), shown unless switched off. */
+/* Line numbers (8.3). The source's are shown unless switched off; verse lines are
+   numbered from the normaliser's data-n (heading lines have none) every line, every 5th
+   or every 10th: the last digit is enough to tell. In verse both sit in a gutter on the
+   right, so they do not push the line; where the source's number shows, it is the one. */
 .wsr-ln-src { float: right; color: var(--muted); font-size: 0.7em; text-indent: 0; }
 #wsr-content.wsr-lns-off .wsr-ln-src { display: none; }
+
+#wsr-content.wsr-lnv-1 .wsr-line[data-n]::before,
+#wsr-content.wsr-lnv-5 .wsr-line[data-n$="5"]::before,
+#wsr-content.wsr-lnv-5 .wsr-line[data-n$="0"]::before,
+#wsr-content.wsr-lnv-10 .wsr-line[data-n$="0"]::before {
+  content: attr(data-n);
+  float: right;
+  color: var(--muted);
+  font-size: 0.7em;
+  font-style: normal;
+  font-weight: normal;
+  text-indent: 0;
+}
+#wsr-content:not(.wsr-lns-off) .wsr-line:has(.wsr-ln-src)::before { content: none; }
+
+#wsr-content.wsr-lnv-1 .wsr-verse,
+#wsr-content.wsr-lnv-5 .wsr-verse,
+#wsr-content.wsr-lnv-10 .wsr-verse,
+#wsr-content:not(.wsr-lns-off) .wsr-verse:has(.wsr-ln-src) { padding-right: 2em; }
+#wsr-content .wsr-verse .wsr-line::before,
+#wsr-content .wsr-verse .wsr-ln-src {
+  width: calc(1.8em / 0.7);
+  margin-right: calc(-2em / 0.7);
+  text-align: right;
+}
 
 .wsr-sc { font-variant: small-caps; }
 .wsr-sp { letter-spacing: 0.15em; }

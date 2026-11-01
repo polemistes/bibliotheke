@@ -83,6 +83,20 @@ class FixtureTest {
             if (out.select(".wsr-fnref a").any { a -> out.getElementById(a.attr("href").removePrefix("#")) == null }) {
                 fail("footnote reference without its note")
             }
+            // Verse numbers (8.3, WP5): increasing within a poem, equal to the source's
+            // number on the same line, none on heading lines; page marks never numbered.
+            for (verse in out.select(".wsr-verse")) {
+                var last = 0
+                for (line in verse.select(".wsr-line")) {
+                    val n = line.attr("data-n").toIntOrNull()
+                    if (line.hasClass("wsr-vhead")) { if (n != null) fail("heading line numbered $n"); continue }
+                    if (n == null) { fail("verse line without data-n: ${line.text().take(40)}"); continue }
+                    val src = line.selectFirst(".wsr-ln-src")?.text()?.trim()?.toIntOrNull()
+                    if (src != null && src != n) fail("verse line $n has source number $src")
+                    if (n <= last && src == null) fail("verse line $n after $last: ${line.text().take(40)}")
+                    last = n
+                }
+            }
             if (r.charCount == 0 && markers == 0) fail("no text")
             if ("data-mw" in r.html || "mw:" in r.html) fail("Parsoid attributes left")
         }

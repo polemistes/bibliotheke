@@ -433,7 +433,7 @@ class Normaliser(private val profile: WikiProfile, private val ns: Namespaces = 
         private val STYLE_WHITELIST = setOf("text-align", "font-style", "font-weight", "font-variant", "text-indent", "margin-left")
         private val PARSOID_ID = Regex("^mw[\\w-]{1,6}$")
 
-        private val CENTER_CLASSES = setOf("center", "wst-center", "wst-block-center", "midtstilt", "mw-halign-center", "centertext", "centre")
+        internal val CENTER_CLASSES = setOf("center", "wst-center", "wst-block-center", "midtstilt", "mw-halign-center", "centertext", "centre")
         private val SMALL_CAPS_CLASSES = setOf("sc", "wst-sc", "smallcaps", "small-caps", "wst-smallcaps", "petites-capitales", "capitalesPetites")
         private val DROP_CAP_CLASSES = setOf("largeinitial", "dropinitial", "wst-dropinitial", "wst-largeinitial", "lettrine", "drop-initial", "initiale")
         private val SPEAKER_CLASSES = setOf("personnage", "speaker", "wst-speaker")
