@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<!-- WP4 reader test over the fixture corpus (app/src/test/reader/run.sh). Served from
+     app/src; the reader page's own CSS and JS are used unchanged.
+     harness.html?parts=no/sult-02,de/kaethe&w=412&h=915&font=18&font2=26 -->
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<link rel="stylesheet" href="/main/assets/reader/fonts/fonts.css">
+<link rel="stylesheet" href="/main/assets/reader/reader.css">
+<style>#wsr-result { display: none; }</style>
+</head>
+<body>
+<div id="wsr-viewport"><div id="wsr-content"></div></div>
+<div id="wsr-marks"></div>
+<pre id="wsr-result"></pre>
+<script src="/main/assets/reader/reader.js"></script>
+<script src="test.js"></script>
+</body>
+</html>

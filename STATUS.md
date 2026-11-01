@@ -7,9 +7,29 @@ Last updated: 2026-11-01
 
 ## Current package
 
+**WP4 — Reader core: in progress** (started 2026-11-01). WP0–WP3 are
+complete (WP3: commit 521895f; WP2: 18 of 18, commit c9c731f; WP1: 19 of 19,
+commit 161472a).
+
+WP4 sub-steps:
+
+- [x] 1. Reader page (`app/src/main/assets/reader/`: `reader.html`, `.css`,
+      `.js`), from the WP0 prototype: CSS-column pages, locators with the
+      reading anchor, element anchors for pages without a text start (F§4.6),
+      tap hit-testing (notes, links, page marks, wide tables, images),
+      footnote text, highlights, theme variables; tables break by row and
+      wide ones are clipped and marked. Six OFL fonts in `reader/fonts`
+      (`app/tools/fetch_reader_fonts.py`). Test over all 111 fixture pages
+      in headless Chromium (`app/src/test/reader/run.sh`): 111 of 111 pass
+- [ ] 2. Library DB v2 (positions and bookmarks by part index), reader
+      settings, the reader screen (gestures, turns across parts, notes,
+      appearance sheet, position saving)
+- [ ] 3. Navigation: contents, bookmarks, progress slider, original page
+      number, search in the work
+- [ ] 4. Acceptance on the emulator
+
 **WP3 — Content fetching, normaliser, downloads: complete** (2026-11-01;
-acceptance on the emulator, below). Next: **WP4 — Reader core**. WP0–WP2
-are complete (WP2: 18 of 18, commit c9c731f; WP1: 19 of 19, commit 161472a).
+acceptance on the emulator, below).
 
 WP3 sub-steps:
 
@@ -391,7 +411,7 @@ WP0 acceptance: met (see the summary at the top of `docs/wp0-findings.md`).
 
 ## In progress
 
-- Nothing running. WP3 is complete; next: WP4 (reader core).
+- WP4 sub-step 2 (the reader screen); see Current package.
 - **Owner's decision (2026-11-01): Wikidata for it, sv, da, fi, es and mul
   is fetched by the first CI run**, not locally (it would take about an
   hour; the bottleneck is Wikidata's server time and maxlag, not the
