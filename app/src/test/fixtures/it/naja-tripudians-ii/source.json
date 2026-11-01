@@ -1,0 +1,17 @@
+{
+ "wiki": "it",
+ "domain": "it.wikisource.org",
+ "title": "Naja Tripudians/II",
+ "url": "https://it.wikisource.org/wiki/Naja_Tripudians/II",
+ "rest_url": "https://it.wikisource.org/w/rest.php/v1/page/Naja_Tripudians%2FII/html",
+ "revision": 3818740,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 8,
+  "prp-pages-output": 1,
+  "noprint": 4,
+  "images (img)": 3,
+  "tables (table)": 2
+ }
+}

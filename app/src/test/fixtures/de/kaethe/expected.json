@@ -1,0 +1,40 @@
+{
+    "charCount": 602556,
+    "pageNumbers": true,
+    "sourceLineNumbers": false,
+    "verse": true,
+    "footnotes": 10,
+    "images": 0,
+    "ownTextChars": 597527,
+    "splitMethod": "PAGE_MARKERS",
+    "synthetic": [
+        {
+            "title": "Pages(from=3, to=71)",
+            "chars": 86453
+        },
+        {
+            "title": "Pages(from=72, to=137)",
+            "chars": 86158
+        },
+        {
+            "title": "Pages(from=138, to=204)",
+            "chars": 86141
+        },
+        {
+            "title": "Pages(from=205, to=271)",
+            "chars": 86243
+        },
+        {
+            "title": "Pages(from=272, to=338)",
+            "chars": 86088
+        },
+        {
+            "title": "Pages(from=339, to=406)",
+            "chars": 86804
+        },
+        {
+            "title": "Pages(from=407, to=473)",
+            "chars": 84674
+        }
+    ]
+}

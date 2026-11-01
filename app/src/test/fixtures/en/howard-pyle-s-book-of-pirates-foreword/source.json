@@ -1,0 +1,18 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "Howard Pyle's Book of Pirates/Foreword",
+ "url": "https://en.wikisource.org/wiki/Howard_Pyle%27s_Book_of_Pirates/Foreword",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/Howard_Pyle%27s_Book_of_Pirates%2FForeword/html",
+ "revision": 9693463,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 5,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 2,
+  "prp-pages-output": 1,
+  "noprint": 1,
+  "images (img)": 1
+ }
+}

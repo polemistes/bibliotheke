@@ -1,0 +1,19 @@
+{
+ "wiki": "da",
+ "domain": "da.wikisource.org",
+ "title": "Julies Dagbog/Julies dagbog",
+ "url": "https://da.wikisource.org/wiki/Julies_Dagbog/Julies_dagbog",
+ "rest_url": "https://da.wikisource.org/w/rest.php/v1/page/Julies_Dagbog%2FJulies_dagbog/html",
+ "revision": 80337,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 275,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 274,
+  "prp-pages-output": 1,
+  "poem (.poem)": 1,
+  "images (img)": 1,
+  "tables (table)": 1
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "wiki": "fr",
+ "domain": "fr.wikisource.org",
+ "title": "Les Trôiades",
+ "url": "https://fr.wikisource.org/wiki/Les_Tr%C3%B4iades",
+ "rest_url": "https://fr.wikisource.org/w/rest.php/v1/page/Les_Tr%C3%B4iades/html",
+ "revision": 6810139,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 5,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 55,
+  "prp-pages-output": 1,
+  "COinS (.Z3988)": 1,
+  "images (img)": 10
+ }
+}

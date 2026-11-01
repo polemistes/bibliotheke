@@ -1,0 +1,18 @@
+{
+ "wiki": "fr",
+ "domain": "fr.wikisource.org",
+ "title": "Les Vivants et les Morts/Tu vis, je bois l’azur",
+ "url": "https://fr.wikisource.org/wiki/Les_Vivants_et_les_Morts/Tu_vis%2C_je_bois_l%E2%80%99azur",
+ "rest_url": "https://fr.wikisource.org/w/rest.php/v1/page/Les_Vivants_et_les_Morts%2FTu_vis%2C_je_bois_l%E2%80%99azur/html",
+ "revision": 10645681,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 4,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 5,
+  "prp-pages-output": 1,
+  "poem (.poem)": 5,
+  "COinS (.Z3988)": 1
+ }
+}

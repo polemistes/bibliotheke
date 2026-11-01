@@ -1,0 +1,20 @@
+{
+ "wiki": "sv",
+ "domain": "sv.wikisource.org",
+ "title": "Beskrifning öfver Upsala län",
+ "url": "https://sv.wikisource.org/wiki/Beskrifning_%C3%B6fver_Upsala_l%C3%A4n",
+ "rest_url": "https://sv.wikisource.org/w/rest.php/v1/page/Beskrifning_%C3%B6fver_Upsala_l%C3%A4n/html",
+ "revision": 326904,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 221,
+  "pagenum (.pagenum, .ws-pagenum)": 219,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 60,
+  "noprint": 219,
+  "images (img)": 1,
+  "tables (table)": 22
+ }
+}

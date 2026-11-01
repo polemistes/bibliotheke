@@ -28,6 +28,8 @@ disambiguation_templates: [homonymie, disambiguation]
 not_disambiguation_templates: [Dct, IndexAlpha]
 versions_templates: [éditions, traductions]
 other_versions_templates: [voir éditions, AutreVersion]
+content:
+  line_number_selectors: ['span.OptionText[title="Vers numérotés"]']   # {{NumVers}}, F§2.7
 quality:
   show_unknown_by_default: false     # owner decision 2026-11-01 (item 1): 120 works, a third of them empty shells
   textquality_values: {"textes validés": validated}

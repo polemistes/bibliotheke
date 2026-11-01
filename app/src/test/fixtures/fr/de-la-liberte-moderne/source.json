@@ -1,0 +1,19 @@
+{
+ "wiki": "fr",
+ "domain": "fr.wikisource.org",
+ "title": "De la Liberté moderne",
+ "url": "https://fr.wikisource.org/wiki/De_la_Libert%C3%A9_moderne",
+ "rest_url": "https://fr.wikisource.org/w/rest.php/v1/page/De_la_Libert%C3%A9_moderne/html",
+ "revision": 7473175,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 3,
+  "header (#headertemplate, .headertemplate, .ws-header)": 1,
+  "pagenum (.pagenum, .ws-pagenum)": 29,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 3,
+  "COinS (.Z3988)": 1
+ }
+}

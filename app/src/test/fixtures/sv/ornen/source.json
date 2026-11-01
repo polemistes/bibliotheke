@@ -1,0 +1,20 @@
+{
+ "wiki": "sv",
+ "domain": "sv.wikisource.org",
+ "title": "Örnen",
+ "url": "https://sv.wikisource.org/wiki/%C3%96rnen",
+ "rest_url": "https://sv.wikisource.org/w/rest.php/v1/page/%C3%96rnen/html",
+ "revision": 109819,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 3,
+  "pagenum (.pagenum, .ws-pagenum)": 2,
+  "prp-pages-output": 1,
+  "poem (.poem)": 3,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 1,
+  "noprint": 2,
+  "tables (table)": 2
+ }
+}

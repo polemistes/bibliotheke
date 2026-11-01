@@ -1,0 +1,15 @@
+{
+ "wiki": "fi",
+ "domain": "fi.wikisource.org",
+ "title": "Kirje Amerikasta (1877)",
+ "url": "https://fi.wikisource.org/wiki/Kirje_Amerikasta_%281877%29",
+ "rest_url": "https://fi.wikisource.org/w/rest.php/v1/page/Kirje_Amerikasta_%281877%29/html",
+ "revision": 100458,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "references list (ol.references, .mw-references)": 2,
+  "footnote ref (sup.reference)": 2,
+  "tables (table)": 3
+ }
+}

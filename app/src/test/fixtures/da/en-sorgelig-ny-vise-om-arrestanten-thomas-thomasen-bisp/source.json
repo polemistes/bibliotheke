@@ -1,0 +1,19 @@
+{
+ "wiki": "da",
+ "domain": "da.wikisource.org",
+ "title": "En sørgelig ny Vise om Arrestanten Thomas Thomasen Bisp",
+ "url": "https://da.wikisource.org/wiki/En_s%C3%B8rgelig_ny_Vise_om_Arrestanten_Thomas_Thomasen_Bisp",
+ "rest_url": "https://da.wikisource.org/w/rest.php/v1/page/En_s%C3%B8rgelig_ny_Vise_om_Arrestanten_Thomas_Thomasen_Bisp/html",
+ "revision": 24129,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 5,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 4,
+  "prp-pages-output": 1,
+  "poem (.poem)": 2,
+  "images (img)": 1,
+  "tables (table)": 1
+ }
+}

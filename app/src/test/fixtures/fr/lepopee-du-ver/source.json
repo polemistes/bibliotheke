@@ -1,0 +1,18 @@
+{
+ "wiki": "fr",
+ "domain": "fr.wikisource.org",
+ "title": "L’Épopée du ver",
+ "url": "https://fr.wikisource.org/wiki/L%E2%80%99%C3%89pop%C3%A9e_du_ver",
+ "rest_url": "https://fr.wikisource.org/w/rest.php/v1/page/L%E2%80%99%C3%89pop%C3%A9e_du_ver/html",
+ "revision": 9043126,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 3,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 20,
+  "prp-pages-output": 1,
+  "poem (.poem)": 20,
+  "COinS (.Z3988)": 1
+ }
+}

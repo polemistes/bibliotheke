@@ -1,0 +1,17 @@
+{
+ "wiki": "fr",
+ "domain": "fr.wikisource.org",
+ "title": "Madame Bovary/Première partie",
+ "url": "https://fr.wikisource.org/wiki/Madame_Bovary/Premi%C3%A8re_partie",
+ "rest_url": "https://fr.wikisource.org/w/rest.php/v1/page/Madame_Bovary%2FPremi%C3%A8re_partie/html",
+ "revision": 7391196,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 4,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 1,
+  "prp-pages-output": 1,
+  "COinS (.Z3988)": 1
+ }
+}

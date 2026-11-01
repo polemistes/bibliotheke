@@ -1,0 +1,20 @@
+{
+ "wiki": "it",
+ "domain": "it.wikisource.org",
+ "title": "Ar zor professor Pavolo Baròni",
+ "url": "https://it.wikisource.org/wiki/Ar_zor_professor_Pavolo_Bar%C3%B2ni",
+ "rest_url": "https://it.wikisource.org/w/rest.php/v1/page/Ar_zor_professor_Pavolo_Bar%C3%B2ni/html",
+ "revision": 3672934,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 7,
+  "prp-pages-output": 1,
+  "poem (.poem)": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 13,
+  "noprint": 4,
+  "images (img)": 5,
+  "tables (table)": 2
+ }
+}

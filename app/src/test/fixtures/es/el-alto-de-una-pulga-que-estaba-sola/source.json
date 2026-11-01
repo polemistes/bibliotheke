@@ -1,0 +1,19 @@
+{
+ "wiki": "es",
+ "domain": "es.wikisource.org",
+ "title": "El alto de una pulga que estaba sola",
+ "url": "https://es.wikisource.org/wiki/El_alto_de_una_pulga_que_estaba_sola",
+ "rest_url": "https://es.wikisource.org/w/rest.php/v1/page/El_alto_de_una_pulga_que_estaba_sola/html",
+ "revision": 1019546,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 2,
+  "header (#headertemplate, .headertemplate, .ws-header)": 1,
+  "pagenum (.pagenum, .ws-pagenum)": 4,
+  "prp-pages-output": 1,
+  "prev/next (.ws-prev, .ws-next, .headertemplate-prev/next)": 6,
+  "noprint": 1,
+  "images (img)": 6
+ }
+}

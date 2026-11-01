@@ -1,0 +1,20 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "The Complete Poetical Works of Percy Bysshe Shelley (ed. Hutchinson, 1914)",
+ "url": "https://en.wikisource.org/wiki/The_Complete_Poetical_Works_of_Percy_Bysshe_Shelley_%28ed._Hutchinson%2C_1914%29",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/The_Complete_Poetical_Works_of_Percy_Bysshe_Shelley_%28ed._Hutchinson%2C_1914%29/html",
+ "revision": 11619347,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-summary": 1,
+  "ws-noexport": 195,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 9,
+  "prp-pages-output": 2,
+  "noprint": 2,
+  "images (img)": 4,
+  "tables (table)": 2
+ }
+}

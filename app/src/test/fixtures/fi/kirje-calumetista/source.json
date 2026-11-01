@@ -1,0 +1,15 @@
+{
+ "wiki": "fi",
+ "domain": "fi.wikisource.org",
+ "title": "Kirje Calumetista",
+ "url": "https://fi.wikisource.org/wiki/Kirje_Calumetista",
+ "rest_url": "https://fi.wikisource.org/w/rest.php/v1/page/Kirje_Calumetista/html",
+ "revision": 100471,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "references list (ol.references, .mw-references)": 2,
+  "footnote ref (sup.reference)": 2,
+  "tables (table)": 3
+ }
+}

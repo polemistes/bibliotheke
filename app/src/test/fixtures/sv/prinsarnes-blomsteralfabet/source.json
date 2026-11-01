@@ -1,0 +1,19 @@
+{
+ "wiki": "sv",
+ "domain": "sv.wikisource.org",
+ "title": "Prinsarnes blomsteralfabet",
+ "url": "https://sv.wikisource.org/wiki/Prinsarnes_blomsteralfabet",
+ "rest_url": "https://sv.wikisource.org/w/rest.php/v1/page/Prinsarnes_blomsteralfabet/html",
+ "revision": 431963,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 34,
+  "pagenum (.pagenum, .ws-pagenum)": 33,
+  "prp-pages-output": 2,
+  "references list (ol.references, .mw-references)": 1,
+  "noprint": 33,
+  "images (img)": 34,
+  "tables (table)": 2
+ }
+}

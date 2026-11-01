@@ -1,0 +1,18 @@
+{
+ "wiki": "de",
+ "domain": "de.wikisource.org",
+ "title": "Marienkirche (Lübeck)",
+ "url": "https://de.wikisource.org/wiki/Marienkirche_%28L%C3%BCbeck%29",
+ "rest_url": "https://de.wikisource.org/w/rest.php/v1/page/Marienkirche_%28L%C3%BCbeck%29/html",
+ "revision": 3778199,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 24,
+  "noprint": 1,
+  "images (img)": 3,
+  "tables (table)": 2
+ }
+}

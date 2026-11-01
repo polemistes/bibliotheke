@@ -1,0 +1,17 @@
+{
+ "wiki": "it",
+ "domain": "it.wikisource.org",
+ "title": "Gerusalemme liberata/Dedica",
+ "url": "https://it.wikisource.org/wiki/Gerusalemme_liberata/Dedica",
+ "rest_url": "https://it.wikisource.org/w/rest.php/v1/page/Gerusalemme_liberata%2FDedica/html",
+ "revision": 3803177,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 6,
+  "prp-pages-output": 1,
+  "noprint": 2,
+  "images (img)": 3,
+  "tables (table)": 2
+ }
+}

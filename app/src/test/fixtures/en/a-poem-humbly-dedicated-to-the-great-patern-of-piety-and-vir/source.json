@@ -1,0 +1,19 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "A Poem Humbly Dedicated to the Great Patern of Piety and Virtue Catherine Queen Dowager: On the Death of Her Dear Lord and Husband King Charles II",
+ "url": "https://en.wikisource.org/wiki/A_Poem_Humbly_Dedicated_to_the_Great_Patern_of_Piety_and_Virtue_Catherine_Queen_Dowager%3A_On_the_Death_of_Her_Dear_Lord_and_Husband_King_Charles_II",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/A_Poem_Humbly_Dedicated_to_the_Great_Patern_of_Piety_and_Virtue_Catherine_Queen_Dowager%3A_On_the_Death_of_Her_Dear_Lord_and_Husband_King_Charles_II/html",
+ "revision": 11985828,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 11,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 7,
+  "prp-pages-output": 2,
+  "poem (.poem)": 6,
+  "noprint": 2,
+  "images (img)": 1
+ }
+}

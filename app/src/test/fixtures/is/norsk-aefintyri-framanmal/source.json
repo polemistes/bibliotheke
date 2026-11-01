@@ -1,0 +1,16 @@
+{
+ "wiki": "is",
+ "domain": "is.wikisource.org",
+ "title": "Norsk æfintýri/Framanmál",
+ "url": "https://is.wikisource.org/wiki/Norsk_%C3%A6fint%C3%BDri/Framanm%C3%A1l",
+ "rest_url": "https://is.wikisource.org/w/rest.php/v1/page/Norsk_%C3%A6fint%C3%BDri%2FFramanm%C3%A1l/html",
+ "revision": 26025,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 8,
+  "pagenum (.pagenum, .ws-pagenum)": 8,
+  "prp-pages-output": 1,
+  "images (img)": 4
+ }
+}

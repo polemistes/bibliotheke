@@ -1,0 +1,18 @@
+{
+ "wiki": "da",
+ "domain": "da.wikisource.org",
+ "title": "Jærnet/1/1",
+ "url": "https://da.wikisource.org/wiki/J%C3%A6rnet/1/1",
+ "rest_url": "https://da.wikisource.org/w/rest.php/v1/page/J%C3%A6rnet%2F1%2F1/html",
+ "revision": 35705,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 16,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 15,
+  "prp-pages-output": 1,
+  "images (img)": 1,
+  "tables (table)": 1
+ }
+}

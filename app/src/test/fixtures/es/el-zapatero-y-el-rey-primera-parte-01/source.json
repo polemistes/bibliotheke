@@ -1,0 +1,18 @@
+{
+ "wiki": "es",
+ "domain": "es.wikisource.org",
+ "title": "El zapatero y el rey (Primera parte)/01",
+ "url": "https://es.wikisource.org/wiki/El_zapatero_y_el_rey_%28Primera_parte%29/01",
+ "rest_url": "https://es.wikisource.org/w/rest.php/v1/page/El_zapatero_y_el_rey_%28Primera_parte%29%2F01/html",
+ "revision": 1519991,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 2,
+  "header (#headertemplate, .headertemplate, .ws-header)": 1,
+  "poem (.poem)": 12,
+  "prev/next (.ws-prev, .ws-next, .headertemplate-prev/next)": 4,
+  "noprint": 1,
+  "tables (table)": 12
+ }
+}

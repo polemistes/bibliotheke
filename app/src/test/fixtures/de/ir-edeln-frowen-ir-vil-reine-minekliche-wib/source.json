@@ -1,0 +1,19 @@
+{
+ "wiki": "de",
+ "domain": "de.wikisource.org",
+ "title": "Ir edeln frǒwen ir vil reinē mīneklichē wib",
+ "url": "https://de.wikisource.org/wiki/Ir_edeln_fr%C7%92wen_ir_vil_rein%C4%93_m%C4%ABneklich%C4%93_wib",
+ "rest_url": "https://de.wikisource.org/w/rest.php/v1/page/Ir_edeln_fr%C7%92wen_ir_vil_rein%C4%93_m%C4%ABneklich%C4%93_wib/html",
+ "revision": 3612740,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 1,
+  "poem (.poem)": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 1,
+  "noprint": 1,
+  "images (img)": 2,
+  "tables (table)": 2
+ }
+}

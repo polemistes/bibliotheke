@@ -1,0 +1,124 @@
+{
+    "charCount": 113682,
+    "pageNumbers": true,
+    "sourceLineNumbers": false,
+    "verse": true,
+    "footnotes": 0,
+    "images": 17,
+    "ownTextChars": 111875,
+    "splitMethod": "HEADINGS",
+    "synthetic": [
+        {
+            "title": "Heading(text=LIVRE PREMIER LES ATELIERS)",
+            "chars": 30
+        },
+        {
+            "title": "Heading(text=I. DEVANT LA PORTE DE L’ÉCOLE.)",
+            "chars": 4163
+        },
+        {
+            "title": "Heading(text=II.)",
+            "chars": 900
+        },
+        {
+            "title": "Heading(text=III.)",
+            "chars": 659
+        },
+        {
+            "title": "Heading(text=IV. LE NOUVEAU.)",
+            "chars": 4110
+        },
+        {
+            "title": "Heading(text=V. LE MASSIER.)",
+            "chars": 1231
+        },
+        {
+            "title": "Heading(text=VI. LE PHRÉNOLOGUE.)",
+            "chars": 3357
+        },
+        {
+            "title": "Heading(text=VII. LE FER ROUGE.)",
+            "chars": 1574
+        },
+        {
+            "title": "Heading(text=VIII. LA CHANSON.)",
+            "chars": 2264
+        },
+        {
+            "title": "Heading(text=IX. LA BIENVENUE.)",
+            "chars": 3611
+        },
+        {
+            "title": "Heading(text=X. L’ADMISSION.)",
+            "chars": 3530
+        },
+        {
+            "title": "Heading(text=XI.)",
+            "chars": 1949
+        },
+        {
+            "title": "Heading(text=XII. L’ATELIER DE PEINTURE.)",
+            "chars": 8156
+        },
+        {
+            "title": "Heading(text=XIII. LE PATRON.)",
+            "chars": 2766
+        },
+        {
+            "title": "Heading(text=XIV. LE MARCHAND DE COULEURS.)",
+            "chars": 2020
+        },
+        {
+            "title": "Heading(text=XV. HÉSITATIONS.)",
+            "chars": 6252
+        },
+        {
+            "title": "Heading(text=XVI.)",
+            "chars": 1336
+        },
+        {
+            "title": "Heading(text=XVII. L’ANTIQUE ET L’ANTIQUAIRE.)",
+            "chars": 6360
+        },
+        {
+            "title": "Heading(text=XVIII.)",
+            "chars": 2405
+        },
+        {
+            "title": "Heading(text=XIX. L’ATELIER D’ARCHITECTURE.)",
+            "chars": 4421
+        },
+        {
+            "title": "Heading(text=XX.)",
+            "chars": 1514
+        },
+        {
+            "title": "Heading(text=XXI.)",
+            "chars": 12309
+        },
+        {
+            "title": "Heading(text=XXII. L’ATELIER DE SCULPTURE.)",
+            "chars": 3244
+        },
+        {
+            "title": "Heading(text=XXIII.)",
+            "chars": 4614
+        },
+        {
+            "title": "Heading(text=XXIV. L’ATELIER DE GRAVURE EN TAILLE-DOUCE.)",
+            "chars": 3837
+        },
+        {
+            "title": "Heading(text=XXV. L’ATELIER DE GRAVURE EN MÉDAILLES ET EN PIERRES FINES.)",
+            "chars": 3103
+        },
+        {
+            "title": "Heading(text=XXVI. LE GARDIEN.)",
+            "chars": 6091
+        },
+        {
+            "title": "Heading(text=XXVII. LA RONDE DE NUIT.)",
+            "chars": 17849
+        }
+    ]
+}

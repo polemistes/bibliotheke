@@ -1,0 +1,19 @@
+{
+ "wiki": "fr",
+ "domain": "fr.wikisource.org",
+ "title": "Existence et développement de la volonté",
+ "url": "https://fr.wikisource.org/wiki/Existence_et_d%C3%A9veloppement_de_la_volont%C3%A9",
+ "rest_url": "https://fr.wikisource.org/w/rest.php/v1/page/Existence_et_d%C3%A9veloppement_de_la_volont%C3%A9/html",
+ "revision": 7477444,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 4,
+  "header (#headertemplate, .headertemplate, .ws-header)": 1,
+  "pagenum (.pagenum, .ws-pagenum)": 24,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 9,
+  "COinS (.Z3988)": 1
+ }
+}

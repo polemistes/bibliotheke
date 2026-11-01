@@ -1,0 +1,19 @@
+{
+ "wiki": "de",
+ "domain": "de.wikisource.org",
+ "title": "Kinder- und Haus-Märchen Band 1 (1857)",
+ "url": "https://de.wikisource.org/wiki/Kinder-_und_Haus-M%C3%A4rchen_Band_1_%281857%29",
+ "rest_url": "https://de.wikisource.org/w/rest.php/v1/page/Kinder-_und_Haus-M%C3%A4rchen_Band_1_%281857%29/html",
+ "revision": 1624908,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 1,
+  "poem (.poem)": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 4,
+  "noprint": 1,
+  "images (img)": 2,
+  "tables (table)": 9
+ }
+}

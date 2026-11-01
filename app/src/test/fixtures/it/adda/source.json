@@ -1,0 +1,18 @@
+{
+ "wiki": "it",
+ "domain": "it.wikisource.org",
+ "title": "Adda",
+ "url": "https://it.wikisource.org/wiki/Adda",
+ "rest_url": "https://it.wikisource.org/w/rest.php/v1/page/Adda/html",
+ "revision": 3670069,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 11,
+  "prp-pages-output": 1,
+  "poem (.poem)": 4,
+  "noprint": 8,
+  "images (img)": 6,
+  "tables (table)": 2
+ }
+}

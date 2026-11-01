@@ -1,0 +1,18 @@
+{
+ "wiki": "fr",
+ "domain": "fr.wikisource.org",
+ "title": "La Légende des siècles/Clarté d’âmes",
+ "url": "https://fr.wikisource.org/wiki/La_L%C3%A9gende_des_si%C3%A8cles/Clart%C3%A9_d%E2%80%99%C3%A2mes",
+ "rest_url": "https://fr.wikisource.org/w/rest.php/v1/page/La_L%C3%A9gende_des_si%C3%A8cles%2FClart%C3%A9_d%E2%80%99%C3%A2mes/html",
+ "revision": 14191696,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 4,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 5,
+  "prp-pages-output": 1,
+  "poem (.poem)": 5,
+  "COinS (.Z3988)": 1
+ }
+}

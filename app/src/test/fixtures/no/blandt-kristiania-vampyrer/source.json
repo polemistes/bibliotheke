@@ -1,0 +1,22 @@
+{
+ "wiki": "no",
+ "domain": "no.wikisource.org",
+ "title": "Blandt Kristiania-Vampyrer",
+ "url": "https://no.wikisource.org/wiki/Blandt_Kristiania-Vampyrer",
+ "rest_url": "https://no.wikisource.org/w/rest.php/v1/page/Blandt_Kristiania-Vampyrer/html",
+ "revision": 314840,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 5,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 3,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 1,
+  "COinS (.Z3988)": 1,
+  "noprint": 1,
+  "images (img)": 2,
+  "tables (table)": 1
+ }
+}

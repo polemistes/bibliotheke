@@ -1,0 +1,20 @@
+{
+ "wiki": "no",
+ "domain": "no.wikisource.org",
+ "title": "Ælsk din næste",
+ "url": "https://no.wikisource.org/wiki/%C3%86lsk_din_n%C3%A6ste",
+ "rest_url": "https://no.wikisource.org/w/rest.php/v1/page/%C3%86lsk_din_n%C3%A6ste/html",
+ "revision": 208616,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 4,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 1,
+  "prp-pages-output": 1,
+  "poem (.poem)": 1,
+  "COinS (.Z3988)": 1,
+  "images (img)": 1,
+  "tables (table)": 1
+ }
+}

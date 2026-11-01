@@ -27,6 +27,8 @@ structure:
 disambiguation_templates: [Disambigua]
 versions_templates: []
 other_versions_templates: [AltraVersione]
+content:
+  drop_selectors: [div.quality-ns0]  # {{Qualità}}: "Questo testo è riletto e controllato." (WP3)
 quality:
   show_unknown_by_default: false     # owner decision 2026-11-01 (WP1 item 3): moot, every it work has a tier
   textquality_templates: [Qualità]

@@ -1,0 +1,17 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "Commentary on the Maya Manuscript in the Royal Public Library of Dresden/1",
+ "url": "https://en.wikisource.org/wiki/Commentary_on_the_Maya_Manuscript_in_the_Royal_Public_Library_of_Dresden/1",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/Commentary_on_the_Maya_Manuscript_in_the_Royal_Public_Library_of_Dresden%2F1/html",
+ "revision": 11764161,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 39,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 36,
+  "noprint": 1,
+  "tables (table)": 47
+ }
+}

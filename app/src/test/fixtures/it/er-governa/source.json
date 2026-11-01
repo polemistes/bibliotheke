@@ -1,0 +1,20 @@
+{
+ "wiki": "it",
+ "domain": "it.wikisource.org",
+ "title": "Er governà",
+ "url": "https://it.wikisource.org/wiki/Er_govern%C3%A0",
+ "rest_url": "https://it.wikisource.org/w/rest.php/v1/page/Er_govern%C3%A0/html",
+ "revision": 3801356,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 7,
+  "prp-pages-output": 1,
+  "poem (.poem)": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 8,
+  "noprint": 4,
+  "images (img)": 5,
+  "tables (table)": 2
+ }
+}

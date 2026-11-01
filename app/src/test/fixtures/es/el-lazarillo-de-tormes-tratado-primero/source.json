@@ -1,0 +1,19 @@
+{
+ "wiki": "es",
+ "domain": "es.wikisource.org",
+ "title": "El Lazarillo de Tormes/Tratado primero",
+ "url": "https://es.wikisource.org/wiki/El_Lazarillo_de_Tormes/Tratado_primero",
+ "rest_url": "https://es.wikisource.org/w/rest.php/v1/page/El_Lazarillo_de_Tormes%2FTratado_primero/html",
+ "revision": 1648197,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 2,
+  "header (#headertemplate, .headertemplate, .ws-header)": 1,
+  "pagenum (.pagenum, .ws-pagenum)": 18,
+  "prp-pages-output": 1,
+  "prev/next (.ws-prev, .ws-next, .headertemplate-prev/next)": 6,
+  "noprint": 1,
+  "images (img)": 5
+ }
+}

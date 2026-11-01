@@ -1,0 +1,16 @@
+{
+ "wiki": "de",
+ "domain": "de.wikisource.org",
+ "title": "In der Strafkolonie",
+ "url": "https://de.wikisource.org/wiki/In_der_Strafkolonie",
+ "rest_url": "https://de.wikisource.org/w/rest.php/v1/page/In_der_Strafkolonie/html",
+ "revision": 4424333,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 5,
+  "noprint": 1,
+  "images (img)": 7,
+  "tables (table)": 4
+ }
+}

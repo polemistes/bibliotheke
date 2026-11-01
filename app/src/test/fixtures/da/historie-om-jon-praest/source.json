@@ -1,0 +1,18 @@
+{
+ "wiki": "da",
+ "domain": "da.wikisource.org",
+ "title": "Historie om Jon Præst",
+ "url": "https://da.wikisource.org/wiki/Historie_om_Jon_Pr%C3%A6st",
+ "rest_url": "https://da.wikisource.org/w/rest.php/v1/page/Historie_om_Jon_Pr%C3%A6st/html",
+ "revision": 432364,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 17,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 16,
+  "prp-pages-output": 1,
+  "images (img)": 3,
+  "tables (table)": 1
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "wiki": "no",
+ "domain": "no.wikisource.org",
+ "title": "Sus/2",
+ "url": "https://no.wikisource.org/wiki/Sus/2",
+ "rest_url": "https://no.wikisource.org/w/rest.php/v1/page/Sus%2F2/html",
+ "revision": 25593,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 4,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 13,
+  "prp-pages-output": 1,
+  "poem (.poem)": 2,
+  "COinS (.Z3988)": 1
+ }
+}

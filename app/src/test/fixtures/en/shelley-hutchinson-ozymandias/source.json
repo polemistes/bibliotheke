@@ -1,0 +1,20 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "The Complete Poetical Works of Percy Bysshe Shelley (ed. Hutchinson, 1914)/Ozymandias",
+ "url": "https://en.wikisource.org/wiki/The_Complete_Poetical_Works_of_Percy_Bysshe_Shelley_%28ed._Hutchinson%2C_1914%29/Ozymandias",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/The_Complete_Poetical_Works_of_Percy_Bysshe_Shelley_%28ed._Hutchinson%2C_1914%29%2FOzymandias/html",
+ "revision": 13995321,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 5,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 1,
+  "prp-pages-output": 2,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 1,
+  "noprint": 1,
+  "images (img)": 1
+ }
+}

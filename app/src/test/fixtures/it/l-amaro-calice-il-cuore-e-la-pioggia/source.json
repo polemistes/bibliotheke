@@ -1,0 +1,17 @@
+{
+ "wiki": "it",
+ "domain": "it.wikisource.org",
+ "title": "L'amaro calice/Il cuore e la pioggia",
+ "url": "https://it.wikisource.org/wiki/L%27amaro_calice/Il_cuore_e_la_pioggia",
+ "rest_url": "https://it.wikisource.org/w/rest.php/v1/page/L%27amaro_calice%2FIl_cuore_e_la_pioggia/html",
+ "revision": 3770929,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 5,
+  "poem (.poem)": 1,
+  "noprint": 1,
+  "images (img)": 2,
+  "tables (table)": 2
+ }
+}

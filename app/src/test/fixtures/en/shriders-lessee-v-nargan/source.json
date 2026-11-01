@@ -1,0 +1,20 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "Shrider’s Lessee v. Nargan",
+ "url": "https://en.wikisource.org/wiki/Shrider%E2%80%99s_Lessee_v._Nargan",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/Shrider%E2%80%99s_Lessee_v._Nargan/html",
+ "revision": 15669754,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 5,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 2,
+  "prp-pages-output": 2,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 2,
+  "noprint": 1,
+  "images (img)": 3
+ }
+}

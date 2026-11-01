@@ -1,0 +1,17 @@
+{
+ "wiki": "de",
+ "domain": "de.wikisource.org",
+ "title": "Der Froschkönig oder der eiserne Heinrich (1857)",
+ "url": "https://de.wikisource.org/wiki/Der_Froschk%C3%B6nig_oder_der_eiserne_Heinrich_%281857%29",
+ "rest_url": "https://de.wikisource.org/w/rest.php/v1/page/Der_Froschk%C3%B6nig_oder_der_eiserne_Heinrich_%281857%29/html",
+ "revision": 3433594,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 3,
+  "poem (.poem)": 2,
+  "noprint": 1,
+  "images (img)": 5,
+  "tables (table)": 4
+ }
+}

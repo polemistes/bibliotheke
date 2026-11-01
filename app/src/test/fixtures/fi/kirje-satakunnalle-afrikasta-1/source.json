@@ -1,0 +1,15 @@
+{
+ "wiki": "fi",
+ "domain": "fi.wikisource.org",
+ "title": "Kirje Satakunnalle Afrikasta/1",
+ "url": "https://fi.wikisource.org/wiki/Kirje_Satakunnalle_Afrikasta/1",
+ "rest_url": "https://fi.wikisource.org/w/rest.php/v1/page/Kirje_Satakunnalle_Afrikasta%2F1/html",
+ "revision": 100501,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 2,
+  "tables (table)": 3
+ }
+}

@@ -1,0 +1,22 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "An Appeal to the Religion, Justice, and Humanity of the Inhabitants of the British Empire, in Behalf of the Negro Slaves in the West Indies",
+ "url": "https://en.wikisource.org/wiki/An_Appeal_to_the_Religion%2C_Justice%2C_and_Humanity_of_the_Inhabitants_of_the_British_Empire%2C_in_Behalf_of_the_Negro_Slaves_in_the_West_Indies",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/An_Appeal_to_the_Religion%2C_Justice%2C_and_Humanity_of_the_Inhabitants_of_the_British_Empire%2C_in_Behalf_of_the_Negro_Slaves_in_the_West_Indies/html",
+ "revision": 15478305,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 61,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 55,
+  "prp-pages-output": 3,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 16,
+  "noprint": 3,
+  "navbox": 1,
+  "images (img)": 4,
+  "tables (table)": 1
+ }
+}

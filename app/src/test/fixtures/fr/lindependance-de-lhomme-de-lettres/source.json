@@ -1,0 +1,18 @@
+{
+ "wiki": "fr",
+ "domain": "fr.wikisource.org",
+ "title": "L’Indépendance de l’homme de lettres",
+ "url": "https://fr.wikisource.org/wiki/L%E2%80%99Ind%C3%A9pendance_de_l%E2%80%99homme_de_lettres",
+ "rest_url": "https://fr.wikisource.org/w/rest.php/v1/page/L%E2%80%99Ind%C3%A9pendance_de_l%E2%80%99homme_de_lettres/html",
+ "revision": 14284901,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 3,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 9,
+  "prp-pages-output": 1,
+  "poem (.poem)": 8,
+  "COinS (.Z3988)": 1
+ }
+}

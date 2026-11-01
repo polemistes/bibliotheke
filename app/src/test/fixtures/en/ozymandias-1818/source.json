@@ -1,0 +1,16 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "Ozymandias",
+ "url": "https://en.wikisource.org/wiki/Ozymandias",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/Ozymandias/html",
+ "revision": 1018403,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 3,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "noprint": 1,
+  "images (img)": 2
+ }
+}

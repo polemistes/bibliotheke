@@ -164,10 +164,12 @@ def generic(wiki: str) -> dict:
             "language": wiki, "namespaces": {k: v for k, v in ns.items() if v is not None}}
 
 
-def load(wiki: str) -> Config:
+def load(wiki: str, over: dict | None = None) -> Config:
+    """The config of wiki; [over] replaces its file (the app export's generic profile)."""
     default = yaml.safe_load((CONFIG_DIR / "default.yaml").read_text("utf-8"))
     path = CONFIG_DIR / f"{wiki}.yaml"
-    over = yaml.safe_load(path.read_text("utf-8")) if path.exists() else generic(wiki)
+    if over is None:
+        over = yaml.safe_load(path.read_text("utf-8")) if path.exists() else generic(wiki)
     raw = _merge(default, over)
     raw["wiki"] = wiki      # the file name; YAML would read a bare `no` as false
     s, q, m, wd = raw["structure"], raw["quality"], raw.get("metadata") or {}, raw.get("wikidata") or {}

@@ -1,0 +1,21 @@
+{
+ "wiki": "es",
+ "domain": "es.wikisource.org",
+ "title": "Diccionario Jeográfico de Chile/Prólogo",
+ "url": "https://es.wikisource.org/wiki/Diccionario_Jeogr%C3%A1fico_de_Chile/Pr%C3%B3logo",
+ "rest_url": "https://es.wikisource.org/w/rest.php/v1/page/Diccionario_Jeogr%C3%A1fico_de_Chile%2FPr%C3%B3logo/html",
+ "revision": 1251601,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 2,
+  "header (#headertemplate, .headertemplate, .ws-header)": 1,
+  "pagenum (.pagenum, .ws-pagenum)": 4,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 2,
+  "prev/next (.ws-prev, .ws-next, .headertemplate-prev/next)": 4,
+  "noprint": 1,
+  "images (img)": 3
+ }
+}

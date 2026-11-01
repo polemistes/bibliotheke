@@ -1,0 +1,20 @@
+{
+ "wiki": "de",
+ "domain": "de.wikisource.org",
+ "title": "Die Heimath in der neuen Welt/Zweiter Band",
+ "url": "https://de.wikisource.org/wiki/Die_Heimath_in_der_neuen_Welt/Zweiter_Band",
+ "rest_url": "https://de.wikisource.org/w/rest.php/v1/page/Die_Heimath_in_der_neuen_Welt%2FZweiter_Band/html",
+ "revision": 3822768,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 1,
+  "pagenum (.pagenum, .ws-pagenum)": 12,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 3,
+  "noprint": 1,
+  "images (img)": 2,
+  "tables (table)": 3
+ }
+}

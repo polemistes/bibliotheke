@@ -1,0 +1,18 @@
+{
+ "wiki": "sv",
+ "domain": "sv.wikisource.org",
+ "title": "Norrtullsligan/Kap 02",
+ "url": "https://sv.wikisource.org/wiki/Norrtullsligan/Kap_02",
+ "rest_url": "https://sv.wikisource.org/w/rest.php/v1/page/Norrtullsligan%2FKap_02/html",
+ "revision": 413693,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 9,
+  "pagenum (.pagenum, .ws-pagenum)": 8,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "noprint": 8,
+  "tables (table)": 2
+ }
+}

@@ -1,0 +1,24 @@
+{
+    "charCount": 266386,
+    "pageNumbers": true,
+    "sourceLineNumbers": false,
+    "verse": true,
+    "footnotes": 0,
+    "images": 0,
+    "ownTextChars": 258533,
+    "splitMethod": "PAGE_MARKERS",
+    "synthetic": [
+        {
+            "title": "Pages(from=1, to=90)",
+            "chars": 89033
+        },
+        {
+            "title": "Pages(from=91, to=181)",
+            "chars": 89211
+        },
+        {
+            "title": "Pages(from=182, to=274)",
+            "chars": 88142
+        }
+    ]
+}

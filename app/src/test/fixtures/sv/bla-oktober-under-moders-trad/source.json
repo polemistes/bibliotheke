@@ -1,0 +1,19 @@
+{
+ "wiki": "sv",
+ "domain": "sv.wikisource.org",
+ "title": "Blå oktober/Under moders träd",
+ "url": "https://sv.wikisource.org/wiki/Bl%C3%A5_oktober/Under_moders_tr%C3%A4d",
+ "rest_url": "https://sv.wikisource.org/w/rest.php/v1/page/Bl%C3%A5_oktober%2FUnder_moders_tr%C3%A4d/html",
+ "revision": 606527,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 4,
+  "pagenum (.pagenum, .ws-pagenum)": 3,
+  "prp-pages-output": 1,
+  "poem (.poem)": 3,
+  "noprint": 3,
+  "images (img)": 1,
+  "tables (table)": 2
+ }
+}

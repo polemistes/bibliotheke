@@ -1,0 +1,17 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "Great Expectations (1890)/Chapter II",
+ "url": "https://en.wikisource.org/wiki/Great_Expectations_%281890%29/Chapter_II",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/Great_Expectations_%281890%29%2FChapter_II/html",
+ "revision": 14833646,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 13,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 10,
+  "prp-pages-output": 1,
+  "noprint": 1
+ }
+}

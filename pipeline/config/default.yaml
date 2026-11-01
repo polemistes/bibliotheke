@@ -111,6 +111,17 @@ metadata:                            # metadata merge (5.2 step 3)
   # (decided 2026-11-01, report/wp1-decisions.md item 5)
   genre_types: {poetry: poem, song-hymn: poem, drama: play, essay: article,
                 legal-government: document, speech: document, reference: reference}
+# The app's normaliser (PLAN.md 7.2) and live resolution (7.1) read these
+# and the structure keys above from core-content's wiki-profiles.json,
+# exported by `python -I -m wscatalog.appconfig` (WP3).
+content:
+  page_number_selectors: [span.pagenum, span.ws-pagenum]      # F§2.3
+  line_number_selectors: []                                    # F§2.7
+  header_selectors: ["#headertemplate", .headertemplate, .ws-header, "#textdaten", "#subheader"]
+  drop_selectors: []                 # further noise, per wiki
+  drop_templates: []                 # templates whose output is noise (it: the {{Qualità}} notice); header_templates go too
+  licence_templates: ['^PD([-/ ]|$)', '^CC[- ]', '^GFDL', '^Translation licen[cs]e', '^Licen[cs]e']  # regexes on template names (F§2.5)
+  oversized_chars: 100000            # synthetic parts above this (PLAN.md 7.1 step 6)
 exclude_title_prefixes: []
 disambiguation_templates: [disambiguation]
 versions_templates: [versions]

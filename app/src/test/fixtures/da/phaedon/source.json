@@ -1,0 +1,20 @@
+{
+ "wiki": "da",
+ "domain": "da.wikisource.org",
+ "title": "Phædon",
+ "url": "https://da.wikisource.org/wiki/Ph%C3%A6don",
+ "rest_url": "https://da.wikisource.org/w/rest.php/v1/page/Ph%C3%A6don/html",
+ "revision": 40002,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 198,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "pagenum (.pagenum, .ws-pagenum)": 197,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 14,
+  "images (img)": 2,
+  "tables (table)": 1
+ }
+}

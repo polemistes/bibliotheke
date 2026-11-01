@@ -1,0 +1,19 @@
+{
+ "wiki": "de",
+ "domain": "de.wikisource.org",
+ "title": "Die Anfänge des musikalischen Journalismus in Deutschland",
+ "url": "https://de.wikisource.org/wiki/Die_Anf%C3%A4nge_des_musikalischen_Journalismus_in_Deutschland",
+ "rest_url": "https://de.wikisource.org/w/rest.php/v1/page/Die_Anf%C3%A4nge_des_musikalischen_Journalismus_in_Deutschland/html",
+ "revision": 2962730,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 1,
+  "poem (.poem)": 2,
+  "references list (ol.references, .mw-references)": 2,
+  "footnote ref (sup.reference)": 19,
+  "noprint": 1,
+  "images (img)": 3,
+  "tables (table)": 2
+ }
+}

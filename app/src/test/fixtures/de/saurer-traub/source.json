@@ -1,0 +1,17 @@
+{
+ "wiki": "de",
+ "domain": "de.wikisource.org",
+ "title": "Saurer Traub",
+ "url": "https://de.wikisource.org/wiki/Saurer_Traub",
+ "rest_url": "https://de.wikisource.org/w/rest.php/v1/page/Saurer_Traub/html",
+ "revision": 1171757,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 6,
+  "poem (.poem)": 1,
+  "noprint": 1,
+  "images (img)": 2,
+  "tables (table)": 2
+ }
+}

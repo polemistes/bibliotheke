@@ -1,0 +1,16 @@
+{
+ "wiki": "fi",
+ "domain": "fi.wikisource.org",
+ "title": "Kiljusen herrasväki/Kiljusen herrasväen Helsinginmatka",
+ "url": "https://fi.wikisource.org/wiki/Kiljusen_herrasv%C3%A4ki/Kiljusen_herrasv%C3%A4en_Helsinginmatka",
+ "rest_url": "https://fi.wikisource.org/w/rest.php/v1/page/Kiljusen_herrasv%C3%A4ki%2FKiljusen_herrasv%C3%A4en_Helsinginmatka/html",
+ "revision": 119091,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "pagenum (.pagenum, .ws-pagenum)": 23,
+  "prp-pages-output": 5,
+  "images (img)": 7,
+  "tables (table)": 6
+ }
+}

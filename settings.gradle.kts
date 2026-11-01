@@ -14,4 +14,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "bibliotheke"
-include(":app", ":core-catalog")
+include(":app", ":core-catalog", ":core-content")

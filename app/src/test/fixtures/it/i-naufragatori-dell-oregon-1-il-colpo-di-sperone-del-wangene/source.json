@@ -1,0 +1,19 @@
+{
+ "wiki": "it",
+ "domain": "it.wikisource.org",
+ "title": "I naufragatori dell'Oregon/1. Il colpo di sperone del Wangenep",
+ "url": "https://it.wikisource.org/wiki/I_naufragatori_dell%27Oregon/1._Il_colpo_di_sperone_del_Wangenep",
+ "rest_url": "https://it.wikisource.org/w/rest.php/v1/page/I_naufragatori_dell%27Oregon%2F1._Il_colpo_di_sperone_del_Wangenep/html",
+ "revision": 3699212,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 13,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 1,
+  "noprint": 9,
+  "images (img)": 3,
+  "tables (table)": 4
+ }
+}

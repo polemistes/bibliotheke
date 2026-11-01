@@ -1,0 +1,1212 @@
+{
+ "version": 1,
+ "generic": {
+  "wiki": "",
+  "domain": "",
+  "language": "",
+  "header_templates": [
+   "Header"
+  ],
+  "positional_headers": {},
+  "container_params": [
+   "title"
+  ],
+  "prev_next_params": [
+   [
+    "prev",
+    "next"
+   ],
+   [
+    "previous",
+    "next"
+   ]
+  ],
+  "current_params": [
+   "current",
+   "section"
+  ],
+  "index_params": [
+   "index"
+  ],
+  "plain_title_params": [],
+  "toc_marker": null,
+  "toc_fields": [
+   "toc",
+   "contents"
+  ],
+  "summary_templates": [],
+  "chapter_label_regex": "(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\\b|^[ivxlcdm]+\\.?$|^\\d+\\.?$|^(\\d+|[ivxlcdm]+)[.)]\\s)",
+  "whole_text_subpages": [],
+  "navigation_link_texts": [
+   "->",
+   "aquí",
+   "her",
+   "here",
+   "hier",
+   "här",
+   "ici",
+   "link",
+   "mehr",
+   "more",
+   "qui",
+   "tästä",
+   "→"
+  ],
+  "ordinals": {},
+  "incomplete_templates": [
+   "Incomplete"
+  ],
+  "headerless_toc_members": false,
+  "reference_threshold": 2000,
+  "page_number_selectors": [
+   "span.pagenum",
+   "span.ws-pagenum"
+  ],
+  "line_number_selectors": [],
+  "header_selectors": [
+   "#headertemplate",
+   ".headertemplate",
+   ".ws-header",
+   "#textdaten",
+   "#subheader"
+  ],
+  "drop_selectors": [],
+  "drop_templates": [],
+  "licence_templates": [
+   "^PD([-/ ]|$)",
+   "^CC[- ]",
+   "^GFDL",
+   "^Translation licen[cs]e",
+   "^Licen[cs]e"
+  ],
+  "oversized_chars": 100000,
+  "oversized_bytes": 300000
+ },
+ "wikis": {
+  "da": {
+   "wiki": "da",
+   "domain": "da.wikisource.org",
+   "language": "da",
+   "header_templates": [
+    "Header",
+    "Sang Infomation"
+   ],
+   "positional_headers": {},
+   "container_params": [
+    "titel",
+    "title"
+   ],
+   "prev_next_params": [
+    [
+     "forrige",
+     "næste"
+    ],
+    [
+     "previous",
+     "next"
+    ]
+   ],
+   "current_params": [
+    "afsnit",
+    "section"
+   ],
+   "index_params": [
+    "index"
+   ],
+   "plain_title_params": [],
+   "toc_marker": null,
+   "toc_fields": [
+    "bemærkninger"
+   ],
+   "summary_templates": [],
+   "chapter_label_regex": "(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\\b|^[ivxlcdm]+\\.?$|^\\d+\\.?$|^(\\d+|[ivxlcdm]+)[.)]\\s)|(?:^((\\d+|[ivxlc]+)\\.?\\s+|(første|anden|andet|tredje|fjerde|femte|sjette|syvende|ottende|niende|tiende|sidste)\\s+)?([kc]apitel|akt|del|bind|bog|brev|sang|afsnit|optrin)\\b|^(forord|indledning|fortale|efterskrift|indhold)\\b)",
+   "whole_text_subpages": [],
+   "navigation_link_texts": [
+    "->",
+    "aquí",
+    "her",
+    "here",
+    "hier",
+    "här",
+    "ici",
+    "link",
+    "mehr",
+    "more",
+    "qui",
+    "tästä",
+    "→"
+   ],
+   "ordinals": {
+    "anden": 2,
+    "andet": 2,
+    "ellevte": 11,
+    "femte": 5,
+    "fjerde": 4,
+    "første": 1,
+    "niende": 9,
+    "ottende": 8,
+    "sjette": 6,
+    "syvende": 7,
+    "tiende": 10,
+    "tolvte": 12,
+    "tredie": 3,
+    "tredje": 3
+   },
+   "incomplete_templates": [
+    "Incomplete"
+   ],
+   "headerless_toc_members": false,
+   "reference_threshold": 2000,
+   "page_number_selectors": [
+    "span.pagenum",
+    "span.ws-pagenum"
+   ],
+   "line_number_selectors": [],
+   "header_selectors": [
+    "#headertemplate",
+    ".headertemplate",
+    ".ws-header",
+    "#textdaten",
+    "#subheader"
+   ],
+   "drop_selectors": [],
+   "drop_templates": [],
+   "licence_templates": [
+    "^PD([-/ ]|$)",
+    "^CC[- ]",
+    "^GFDL",
+    "^Translation licen[cs]e",
+    "^Licen[cs]e"
+   ],
+   "oversized_chars": 100000,
+   "oversized_bytes": 300000
+  },
+  "de": {
+   "wiki": "de",
+   "domain": "de.wikisource.org",
+   "language": "de",
+   "header_templates": [
+    "GartenlaubenArtikel",
+    "Gesetzestext",
+    "Navigation2",
+    "Textdaten",
+    "Zeitschrift"
+   ],
+   "positional_headers": {
+    "Navigation": {
+     "container": 1,
+     "prev": 2,
+     "next": 3,
+     "relative": true
+    }
+   },
+   "container_params": [
+    "herkunft",
+    "artikel"
+   ],
+   "prev_next_params": [
+    [
+     "voriger",
+     "nächster"
+    ]
+   ],
+   "current_params": [
+    "titel"
+   ],
+   "index_params": [
+    "indexseite"
+   ],
+   "plain_title_params": [
+    "nächster",
+    "voriger"
+   ],
+   "toc_marker": [
+    "herkunft",
+    "off"
+   ],
+   "toc_fields": [
+    "inhaltsverzeichnis"
+   ],
+   "summary_templates": [],
+   "chapter_label_regex": "(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\\b|^[ivxlcdm]+\\.?$|^\\d+\\.?$|^(\\d+|[ivxlcdm]+)[.)]\\s)|(?:^((\\d+|[ivxlc]+)\\.?\\s+|(erste[rs]?|zweite[rs]?|dritte[rs]?|vierte[rs]?|fünfte[rs]?|sechste[rs]?|siebente[rs]?|siebte[rs]?|achte[rs]?|neunte[rs]?|zehnte[rs]?|elfte[rs]?|zwölfte[rs]?|letzte[rs]?)\\s+)?(kapitel|buch|heft|stück|teil|theil|abschnitt|aufzug|gesang|lieferung|jahrgang|band|brief|akt|seite|blatt)\\b|^(vorrede|vorwort|einleitung|anhang|nachwort|inhalt|register)\\b)",
+   "whole_text_subpages": [],
+   "navigation_link_texts": [
+    "->",
+    "aquí",
+    "her",
+    "here",
+    "hier",
+    "här",
+    "ici",
+    "link",
+    "mehr",
+    "more",
+    "qui",
+    "tästä",
+    "→"
+   ],
+   "ordinals": {
+    "achte": 8,
+    "achter": 8,
+    "dritte": 3,
+    "dritter": 3,
+    "drittes": 3,
+    "elfte": 11,
+    "elfter": 11,
+    "erste": 1,
+    "erster": 1,
+    "erstes": 1,
+    "fünfte": 5,
+    "fünfter": 5,
+    "fünftes": 5,
+    "neunte": 9,
+    "neunter": 9,
+    "sechste": 6,
+    "sechster": 6,
+    "sechstes": 6,
+    "siebente": 7,
+    "siebenter": 7,
+    "siebte": 7,
+    "siebter": 7,
+    "vierte": 4,
+    "vierter": 4,
+    "viertes": 4,
+    "zehnte": 10,
+    "zehnter": 10,
+    "zweite": 2,
+    "zweiter": 2,
+    "zweites": 2,
+    "zwölfte": 12,
+    "zwölfter": 12
+   },
+   "incomplete_templates": [],
+   "headerless_toc_members": true,
+   "reference_threshold": 2000,
+   "page_number_selectors": [
+    "span.pagenum",
+    "span.ws-pagenum",
+    "span.pr1pn",
+    "span.PageNumber"
+   ],
+   "line_number_selectors": [
+    "span.zeilennummer"
+   ],
+   "header_selectors": [
+    "#headertemplate",
+    ".headertemplate",
+    ".ws-header",
+    "#textdaten",
+    "#subheader"
+   ],
+   "drop_selectors": [],
+   "drop_templates": [],
+   "licence_templates": [
+    "^PD([-/ ]|$)",
+    "^CC[- ]",
+    "^GFDL",
+    "^Translation licen[cs]e",
+    "^Licen[cs]e"
+   ],
+   "oversized_chars": 100000,
+   "oversized_bytes": 300000
+  },
+  "en": {
+   "wiki": "en",
+   "domain": "en.wikisource.org",
+   "language": "en",
+   "header_templates": [
+    "Header"
+   ],
+   "positional_headers": {},
+   "container_params": [
+    "title"
+   ],
+   "prev_next_params": [
+    [
+     "previous",
+     "next"
+    ],
+    [
+     "prev",
+     "next"
+    ]
+   ],
+   "current_params": [
+    "section",
+    "current"
+   ],
+   "index_params": [
+    "index"
+   ],
+   "plain_title_params": [],
+   "toc_marker": null,
+   "toc_fields": [
+    "remarks",
+    "toc"
+   ],
+   "summary_templates": [
+    "AuxTOC"
+   ],
+   "chapter_label_regex": "(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\\b|^[ivxlcdm]+\\.?$|^\\d+\\.?$|^(\\d+|[ivxlcdm]+)[.)]\\s)|(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|book|part|volume|act|scene|canto|letter|section|lecture|number|issue|proposition|theorem|lemma|psalm)\\b|^(preface|introduction|contents|appendix|index|notes|epilogue|prologue|conclusion|title page|front matter|advertisements?|errata)\\b)",
+   "whole_text_subpages": [],
+   "navigation_link_texts": [
+    "->",
+    "aquí",
+    "her",
+    "here",
+    "hier",
+    "här",
+    "ici",
+    "link",
+    "mehr",
+    "more",
+    "qui",
+    "tästä",
+    "→"
+   ],
+   "ordinals": {
+    "eighth": 8,
+    "eleventh": 11,
+    "fifth": 5,
+    "first": 1,
+    "fourth": 4,
+    "ninth": 9,
+    "second": 2,
+    "seventh": 7,
+    "sixth": 6,
+    "tenth": 10,
+    "third": 3,
+    "twelfth": 12
+   },
+   "incomplete_templates": [
+    "Incomplete"
+   ],
+   "headerless_toc_members": false,
+   "reference_threshold": 2000,
+   "page_number_selectors": [
+    "span.pagenum",
+    "span.ws-pagenum"
+   ],
+   "line_number_selectors": [],
+   "header_selectors": [
+    "#headertemplate",
+    ".headertemplate",
+    ".ws-header",
+    "#textdaten",
+    "#subheader"
+   ],
+   "drop_selectors": [],
+   "drop_templates": [],
+   "licence_templates": [
+    "^PD([-/ ]|$)",
+    "^CC[- ]",
+    "^GFDL",
+    "^Translation licen[cs]e",
+    "^Licen[cs]e"
+   ],
+   "oversized_chars": 100000,
+   "oversized_bytes": 300000
+  },
+  "es": {
+   "wiki": "es",
+   "domain": "es.wikisource.org",
+   "language": "es",
+   "header_templates": [
+    "Encabezado"
+   ],
+   "positional_headers": {},
+   "container_params": [
+    "título",
+    "titulo"
+   ],
+   "prev_next_params": [
+    [
+     "anterior",
+     "próximo"
+    ],
+    [
+     "anterior",
+     "siguiente"
+    ]
+   ],
+   "current_params": [
+    "sección"
+   ],
+   "index_params": [
+    "index"
+   ],
+   "plain_title_params": [],
+   "toc_marker": null,
+   "toc_fields": [
+    "notas"
+   ],
+   "summary_templates": [
+    "Índice auxiliar"
+   ],
+   "chapter_label_regex": "(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\\b|^[ivxlcdm]+\\.?$|^\\d+\\.?$|^(\\d+|[ivxlcdm]+)[.)]\\s)|(?:^((\\d+|[ivxlc]+)\\.?\\s+|(primer|primero|primera|segundo|segunda|tercer|tercero|tercera|cuarto|cuarta|quinto|quinta|sexto|sexta|séptimo|séptima|octavo|octava|noveno|novena|décimo|décima|último|última)\\s+)?(capítulo|libro|parte|acto|escena|canto|tomo|volumen|carta|tratado|sección|jornada)\\b|^(prólogo|prefacio|introducción|índice|epílogo|apéndice|dedicatoria)\\b)",
+   "whole_text_subpages": [],
+   "navigation_link_texts": [
+    "->",
+    "aquí",
+    "her",
+    "here",
+    "hier",
+    "här",
+    "ici",
+    "link",
+    "mehr",
+    "more",
+    "qui",
+    "tästä",
+    "→"
+   ],
+   "ordinals": {
+    "cuarta": 4,
+    "cuarto": 4,
+    "décima": 10,
+    "décimo": 10,
+    "novena": 9,
+    "noveno": 9,
+    "octava": 8,
+    "octavo": 8,
+    "primera": 1,
+    "primero": 1,
+    "quinta": 5,
+    "quinto": 5,
+    "segunda": 2,
+    "segundo": 2,
+    "sexta": 6,
+    "sexto": 6,
+    "séptima": 7,
+    "séptimo": 7,
+    "tercera": 3,
+    "tercero": 3
+   },
+   "incomplete_templates": [
+    "Incomplete"
+   ],
+   "headerless_toc_members": false,
+   "reference_threshold": 2000,
+   "page_number_selectors": [
+    "span.pagenum",
+    "span.ws-pagenum"
+   ],
+   "line_number_selectors": [],
+   "header_selectors": [
+    "#headertemplate",
+    ".headertemplate",
+    ".ws-header",
+    "#textdaten",
+    "#subheader"
+   ],
+   "drop_selectors": [],
+   "drop_templates": [],
+   "licence_templates": [
+    "^PD([-/ ]|$)",
+    "^CC[- ]",
+    "^GFDL",
+    "^Translation licen[cs]e",
+    "^Licen[cs]e"
+   ],
+   "oversized_chars": 100000,
+   "oversized_bytes": 300000
+  },
+  "fi": {
+   "wiki": "fi",
+   "domain": "fi.wikisource.org",
+   "language": "fi",
+   "header_templates": [
+    "Otsikko",
+    "OtsikkoMME"
+   ],
+   "positional_headers": {},
+   "container_params": [
+    "otsikko",
+    "yläotsikko"
+   ],
+   "prev_next_params": [
+    [
+     "edellinen",
+     "seuraava"
+    ]
+   ],
+   "current_params": [
+    "osa",
+    "alaotsikko"
+   ],
+   "index_params": [
+    "index"
+   ],
+   "plain_title_params": [],
+   "toc_marker": null,
+   "toc_fields": [
+    "huomautuksia"
+   ],
+   "summary_templates": [],
+   "chapter_label_regex": "(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\\b|^[ivxlcdm]+\\.?$|^\\d+\\.?$|^(\\d+|[ivxlcdm]+)[.)]\\s)|(?:^((\\d+|[ivxlc]+)\\.?\\s+)?(luku|näytös|kohtaus|osa|kirja|laulu|runo|kirje)\\b|^(\\d+|[ivxlc]+)\\.?\\s*(luku|näytös|kohtaus|osa|kirja|laulu|runo)\\b|^(esipuhe|johdanto|sisällys|jälkisanat)\\b)",
+   "whole_text_subpages": [],
+   "navigation_link_texts": [
+    "->",
+    "aquí",
+    "her",
+    "here",
+    "hier",
+    "här",
+    "ici",
+    "link",
+    "mehr",
+    "more",
+    "qui",
+    "tästä",
+    "→"
+   ],
+   "ordinals": {
+    "ensimmäinen": 1,
+    "kahdeksas": 8,
+    "kolmas": 3,
+    "kuudes": 6,
+    "kymmenes": 10,
+    "neljäs": 4,
+    "seitsemäs": 7,
+    "toinen": 2,
+    "viides": 5,
+    "yhdeksäs": 9
+   },
+   "incomplete_templates": [
+    "Incomplete"
+   ],
+   "headerless_toc_members": false,
+   "reference_threshold": 2000,
+   "page_number_selectors": [
+    "span.pagenum",
+    "span.ws-pagenum"
+   ],
+   "line_number_selectors": [],
+   "header_selectors": [
+    "#headertemplate",
+    ".headertemplate",
+    ".ws-header",
+    "#textdaten",
+    "#subheader"
+   ],
+   "drop_selectors": [],
+   "drop_templates": [],
+   "licence_templates": [
+    "^PD([-/ ]|$)",
+    "^CC[- ]",
+    "^GFDL",
+    "^Translation licen[cs]e",
+    "^Licen[cs]e"
+   ],
+   "oversized_chars": 100000,
+   "oversized_bytes": 300000
+  },
+  "fr": {
+   "wiki": "fr",
+   "domain": "fr.wikisource.org",
+   "language": "fr",
+   "header_templates": [
+    "Header"
+   ],
+   "positional_headers": {},
+   "container_params": [
+    "titre",
+    "title"
+   ],
+   "prev_next_params": [
+    [
+     "prev",
+     "next"
+    ],
+    [
+     "précédent",
+     "suivant"
+    ]
+   ],
+   "current_params": [
+    "current"
+   ],
+   "index_params": [
+    "index"
+   ],
+   "plain_title_params": [],
+   "toc_marker": null,
+   "toc_fields": [
+    "sommaire"
+   ],
+   "summary_templates": [],
+   "chapter_label_regex": "(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\\b|^[ivxlcdm]+\\.?$|^\\d+\\.?$|^(\\d+|[ivxlcdm]+)[.)]\\s)|(?:^((\\d+|[ivxlc]+)\\.?\\s+|(premier|première|second|seconde|deuxième|troisième|quatrième|cinquième|sixième|septième|huitième|neuvième|dixième|dernier|dernière)\\s+)?(chapitre|livre|partie|acte|scène|chant|tome|volume|lettre|section|fable|proposition|théorème|lemme|problème|séance)\\b|^(préface|avant-propos|introduction|conclusion|épilogue|prologue|appendice|notes?|table des matières|table)\\b)",
+   "whole_text_subpages": [
+    "texte complet",
+    "texte entier"
+   ],
+   "navigation_link_texts": [
+    "->",
+    "aquí",
+    "her",
+    "here",
+    "hier",
+    "här",
+    "ici",
+    "link",
+    "mehr",
+    "more",
+    "qui",
+    "tästä",
+    "→"
+   ],
+   "ordinals": {
+    "cinquième": 5,
+    "deuxième": 2,
+    "dixième": 10,
+    "huitième": 8,
+    "neuvième": 9,
+    "premier": 1,
+    "première": 1,
+    "quatrième": 4,
+    "second": 2,
+    "seconde": 2,
+    "septième": 7,
+    "sixième": 6,
+    "troisième": 3
+   },
+   "incomplete_templates": [
+    "Incomplet"
+   ],
+   "headerless_toc_members": false,
+   "reference_threshold": 2000,
+   "page_number_selectors": [
+    "span.pagenum",
+    "span.ws-pagenum"
+   ],
+   "line_number_selectors": [
+    "span.OptionText[title=\"Vers numérotés\"]"
+   ],
+   "header_selectors": [
+    "#headertemplate",
+    ".headertemplate",
+    ".ws-header",
+    "#textdaten",
+    "#subheader"
+   ],
+   "drop_selectors": [],
+   "drop_templates": [],
+   "licence_templates": [
+    "^PD([-/ ]|$)",
+    "^CC[- ]",
+    "^GFDL",
+    "^Translation licen[cs]e",
+    "^Licen[cs]e"
+   ],
+   "oversized_chars": 100000,
+   "oversized_bytes": 300000
+  },
+  "is": {
+   "wiki": "is",
+   "domain": "is.wikisource.org",
+   "language": "is",
+   "header_templates": [
+    "Header",
+    "Verk"
+   ],
+   "positional_headers": {},
+   "container_params": [
+    "titill",
+    "title"
+   ],
+   "prev_next_params": [
+    [
+     "fyrri",
+     "næsti"
+    ],
+    [
+     "previous",
+     "next"
+    ],
+    [
+     "prev",
+     "next"
+    ]
+   ],
+   "current_params": [
+    "hluti",
+    "section",
+    "current"
+   ],
+   "index_params": [
+    "index"
+   ],
+   "plain_title_params": [],
+   "toc_marker": null,
+   "toc_fields": [
+    "toc",
+    "contents"
+   ],
+   "summary_templates": [],
+   "chapter_label_regex": "(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\\b|^[ivxlcdm]+\\.?$|^\\d+\\.?$|^(\\d+|[ivxlcdm]+)[.)]\\s)|(?:^(\\d+\\.? )?(kafli|þáttur|bók|bindi|hluti)\\b)",
+   "whole_text_subpages": [],
+   "navigation_link_texts": [
+    "->",
+    "aquí",
+    "her",
+    "here",
+    "hier",
+    "här",
+    "ici",
+    "link",
+    "mehr",
+    "more",
+    "qui",
+    "tästä",
+    "→"
+   ],
+   "ordinals": {
+    "annar": 2,
+    "annað": 2,
+    "fimmta": 5,
+    "fimmti": 5,
+    "fjórða": 4,
+    "fjórði": 4,
+    "fyrsta": 1,
+    "fyrsti": 1,
+    "önnur": 2,
+    "þriðja": 3,
+    "þriðji": 3
+   },
+   "incomplete_templates": [
+    "Incomplete"
+   ],
+   "headerless_toc_members": false,
+   "reference_threshold": 2000,
+   "page_number_selectors": [
+    "span.pagenum",
+    "span.ws-pagenum"
+   ],
+   "line_number_selectors": [],
+   "header_selectors": [
+    "#headertemplate",
+    ".headertemplate",
+    ".ws-header",
+    "#textdaten",
+    "#subheader"
+   ],
+   "drop_selectors": [],
+   "drop_templates": [],
+   "licence_templates": [
+    "^PD([-/ ]|$)",
+    "^CC[- ]",
+    "^GFDL",
+    "^Translation licen[cs]e",
+    "^Licen[cs]e"
+   ],
+   "oversized_chars": 100000,
+   "oversized_bytes": 300000
+  },
+  "it": {
+   "wiki": "it",
+   "domain": "it.wikisource.org",
+   "language": "it",
+   "header_templates": [
+    "Intestazione"
+   ],
+   "positional_headers": {
+    "Raccolta": {
+     "container": 1
+    }
+   },
+   "container_params": [
+    "titolo"
+   ],
+   "prev_next_params": [
+    [
+     "prec",
+     "succ"
+    ]
+   ],
+   "current_params": [
+    "sezione"
+   ],
+   "index_params": [
+    "index"
+   ],
+   "plain_title_params": [],
+   "toc_marker": null,
+   "toc_fields": [
+    "sommario"
+   ],
+   "summary_templates": [],
+   "chapter_label_regex": "(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\\b|^[ivxlcdm]+\\.?$|^\\d+\\.?$|^(\\d+|[ivxlcdm]+)[.)]\\s)|(?:^((\\d+|[ivxlc]+)\\.?\\s+|(primo|prima|secondo|seconda|terzo|terza|quarto|quarta|quinto|quinta|sesto|sesta|settimo|settima|ottavo|ottava|nono|nona|decimo|decima|ultimo|ultima)\\s+)?(capitolo|canto|atto|scena|libro|parte|lettera|tomo|volume|sezione)\\b|^(prefazione|introduzione|indice|proemio|avvertenza|appendice)\\b)",
+   "whole_text_subpages": [],
+   "navigation_link_texts": [
+    "->",
+    "aquí",
+    "her",
+    "here",
+    "hier",
+    "här",
+    "ici",
+    "link",
+    "mehr",
+    "more",
+    "qui",
+    "tästä",
+    "→"
+   ],
+   "ordinals": {
+    "decima": 10,
+    "decimo": 10,
+    "nona": 9,
+    "nono": 9,
+    "ottava": 8,
+    "ottavo": 8,
+    "prima": 1,
+    "primo": 1,
+    "quarta": 4,
+    "quarto": 4,
+    "quinta": 5,
+    "quinto": 5,
+    "seconda": 2,
+    "secondo": 2,
+    "sesta": 6,
+    "sesto": 6,
+    "settima": 7,
+    "settimo": 7,
+    "terza": 3,
+    "terzo": 3
+   },
+   "incomplete_templates": [
+    "Incomplete"
+   ],
+   "headerless_toc_members": false,
+   "reference_threshold": 2000,
+   "page_number_selectors": [
+    "span.pagenum",
+    "span.ws-pagenum"
+   ],
+   "line_number_selectors": [],
+   "header_selectors": [
+    "#headertemplate",
+    ".headertemplate",
+    ".ws-header",
+    "#textdaten",
+    "#subheader"
+   ],
+   "drop_selectors": [
+    "div.quality-ns0"
+   ],
+   "drop_templates": [],
+   "licence_templates": [
+    "^PD([-/ ]|$)",
+    "^CC[- ]",
+    "^GFDL",
+    "^Translation licen[cs]e",
+    "^Licen[cs]e"
+   ],
+   "oversized_chars": 100000,
+   "oversized_bytes": 300000
+  },
+  "mul": {
+   "wiki": "mul",
+   "domain": "wikisource.org",
+   "language": "mul",
+   "header_templates": [
+    "Dane tekstu",
+    "Header",
+    "Textdaten",
+    "Отексте",
+    "Текст сярысь",
+    "Текст турында"
+   ],
+   "positional_headers": {},
+   "container_params": [
+    "title"
+   ],
+   "prev_next_params": [
+    [
+     "previous",
+     "next"
+    ],
+    [
+     "предыдущий",
+     "следующий"
+    ],
+    [
+     "poprzedni",
+     "następny"
+    ]
+   ],
+   "current_params": [
+    "section",
+    "часть"
+   ],
+   "index_params": [
+    "index"
+   ],
+   "plain_title_params": [],
+   "toc_marker": null,
+   "toc_fields": [
+    "remarks"
+   ],
+   "summary_templates": [],
+   "chapter_label_regex": "(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\\b|^[ivxlcdm]+\\.?$|^\\d+\\.?$|^(\\d+|[ivxlcdm]+)[.)]\\s)",
+   "whole_text_subpages": [],
+   "navigation_link_texts": [
+    "->",
+    "aquí",
+    "her",
+    "here",
+    "hier",
+    "här",
+    "ici",
+    "link",
+    "mehr",
+    "more",
+    "qui",
+    "tästä",
+    "→"
+   ],
+   "ordinals": {},
+   "incomplete_templates": [
+    "Incomplete"
+   ],
+   "headerless_toc_members": false,
+   "reference_threshold": 2000,
+   "page_number_selectors": [
+    "span.pagenum",
+    "span.ws-pagenum"
+   ],
+   "line_number_selectors": [],
+   "header_selectors": [
+    "#headertemplate",
+    ".headertemplate",
+    ".ws-header",
+    "#textdaten",
+    "#subheader"
+   ],
+   "drop_selectors": [],
+   "drop_templates": [],
+   "licence_templates": [
+    "^PD([-/ ]|$)",
+    "^CC[- ]",
+    "^GFDL",
+    "^Translation licen[cs]e",
+    "^Licen[cs]e"
+   ],
+   "oversized_chars": 100000,
+   "oversized_bytes": 300000
+  },
+  "no": {
+   "wiki": "no",
+   "domain": "no.wikisource.org",
+   "language": "no",
+   "header_templates": [
+    "Header",
+    "Topp",
+    "Topp2"
+   ],
+   "positional_headers": {},
+   "container_params": [
+    "tittel",
+    "title"
+   ],
+   "prev_next_params": [
+    [
+     "forrige",
+     "neste"
+    ],
+    [
+     "prev",
+     "next"
+    ],
+    [
+     "previous",
+     "next"
+    ]
+   ],
+   "current_params": [
+    "seksjon",
+    "current",
+    "section"
+   ],
+   "index_params": [
+    "index"
+   ],
+   "plain_title_params": [],
+   "toc_marker": null,
+   "toc_fields": [
+    "sammendrag"
+   ],
+   "summary_templates": [
+    "Innholdsfortegnelse"
+   ],
+   "chapter_label_regex": "(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\\b|^[ivxlcdm]+\\.?$|^\\d+\\.?$|^(\\d+|[ivxlcdm]+)[.)]\\s)|(?:^((\\d+|[ivxlc]+)\\.?\\s+|(første|forste|anden|andet|annen|annet|tredje|tredie|fjerde|fjærde|fierde|femte|sjette|siette|syvende|sjuende|ottende|åttende|niende|tiende|ellevte|tolvte|trettende|fjortende|femtende|sekstende|syttende|attende|nittende|tyvende|siste|sidste)\\s+)?([kc]apit+el|akt|del|bind|brev|bok|bog|sang|hefte)\\b|^(forord|innledning|indledning|tillæg|tillegg|efterskrift|etterord|fortale)\\b)",
+   "whole_text_subpages": [],
+   "navigation_link_texts": [
+    "->",
+    "aquí",
+    "her",
+    "here",
+    "hier",
+    "här",
+    "ici",
+    "link",
+    "mehr",
+    "more",
+    "qui",
+    "tästä",
+    "→"
+   ],
+   "ordinals": {
+    "anden": 2,
+    "andet": 2,
+    "annen": 2,
+    "annet": 2,
+    "attende": 18,
+    "ellevte": 11,
+    "femte": 5,
+    "femtende": 15,
+    "fierde": 4,
+    "fjerde": 4,
+    "fjortende": 14,
+    "forste": 1,
+    "første": 1,
+    "niende": 9,
+    "nittende": 19,
+    "ottende": 8,
+    "sekstende": 16,
+    "siette": 6,
+    "sjette": 6,
+    "sjuende": 7,
+    "syttende": 17,
+    "syvende": 7,
+    "tiende": 10,
+    "tolvte": 12,
+    "tredie": 3,
+    "tredje": 3,
+    "trettende": 13,
+    "tyvende": 20,
+    "åttende": 8
+   },
+   "incomplete_templates": [
+    "Ufullstendig"
+   ],
+   "headerless_toc_members": false,
+   "reference_threshold": 2000,
+   "page_number_selectors": [
+    "span.pagenum",
+    "span.ws-pagenum"
+   ],
+   "line_number_selectors": [],
+   "header_selectors": [
+    "#headertemplate",
+    ".headertemplate",
+    ".ws-header",
+    "#textdaten",
+    "#subheader"
+   ],
+   "drop_selectors": [],
+   "drop_templates": [],
+   "licence_templates": [
+    "^PD([-/ ]|$)",
+    "^CC[- ]",
+    "^GFDL",
+    "^Translation licen[cs]e",
+    "^Licen[cs]e"
+   ],
+   "oversized_chars": 100000,
+   "oversized_bytes": 300000
+  },
+  "sv": {
+   "wiki": "sv",
+   "domain": "sv.wikisource.org",
+   "language": "sv",
+   "header_templates": [
+    "Titel"
+   ],
+   "positional_headers": {},
+   "container_params": [
+    "1"
+   ],
+   "prev_next_params": [
+    [
+     "förra",
+     "nästa"
+    ],
+    [
+     "prev",
+     "next"
+    ]
+   ],
+   "current_params": [
+    "current"
+   ],
+   "index_params": [
+    "index"
+   ],
+   "plain_title_params": [],
+   "toc_marker": null,
+   "toc_fields": [
+    "kommentar",
+    "anmärkningar"
+   ],
+   "summary_templates": [],
+   "chapter_label_regex": "(?:^((\\d+|[ivxlc]+)\\.?\\s+|(first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|last)\\s+)?(chapter|kapitel|kapittel|capitel|chapitre|capitolo|acte?|akt|letter|brief|part|partie|book|band|bind|tome|volume|livre|canto|scene|scène|szene)\\b|^[ivxlcdm]+\\.?$|^\\d+\\.?$|^(\\d+|[ivxlcdm]+)[.)]\\s)|(?:^((\\d+|[ivxlc]+)\\.?\\s+|(första|andra|tredje|fjärde|femte|sjätte|sjunde|åttonde|nionde|tionde|sista)\\s+)?(kapitel|kapitlet|akt|akten|del|delen|bok|boken|band|brev|sång|sången|scen)\\b|^(förord|inledning|företal|efterskrift|innehåll)\\b)",
+   "whole_text_subpages": [],
+   "navigation_link_texts": [
+    "->",
+    "aquí",
+    "her",
+    "here",
+    "hier",
+    "här",
+    "ici",
+    "link",
+    "mehr",
+    "more",
+    "qui",
+    "tästä",
+    "→"
+   ],
+   "ordinals": {
+    "andra": 2,
+    "femte": 5,
+    "fjärde": 4,
+    "första": 1,
+    "nionde": 9,
+    "sjunde": 7,
+    "sjätte": 6,
+    "tionde": 10,
+    "tredje": 3,
+    "åttonde": 8
+   },
+   "incomplete_templates": [
+    "Incomplete"
+   ],
+   "headerless_toc_members": false,
+   "reference_threshold": 2000,
+   "page_number_selectors": [
+    "span.pagenum",
+    "span.ws-pagenum"
+   ],
+   "line_number_selectors": [],
+   "header_selectors": [
+    "#headertemplate",
+    ".headertemplate",
+    ".ws-header",
+    "#textdaten",
+    "#subheader"
+   ],
+   "drop_selectors": [],
+   "drop_templates": [],
+   "licence_templates": [
+    "^PD([-/ ]|$)",
+    "^CC[- ]",
+    "^GFDL",
+    "^Translation licen[cs]e",
+    "^Licen[cs]e"
+   ],
+   "oversized_chars": 100000,
+   "oversized_bytes": 300000
+  }
+ }
+}

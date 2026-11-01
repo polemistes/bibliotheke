@@ -1,0 +1,19 @@
+{
+ "wiki": "sv",
+ "domain": "sv.wikisource.org",
+ "title": "I hoppet längtans blickar lyfta vi",
+ "url": "https://sv.wikisource.org/wiki/I_hoppet_l%C3%A4ngtans_blickar_lyfta_vi",
+ "rest_url": "https://sv.wikisource.org/w/rest.php/v1/page/I_hoppet_l%C3%A4ngtans_blickar_lyfta_vi/html",
+ "revision": 499409,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 4,
+  "pagenum (.pagenum, .ws-pagenum)": 2,
+  "prp-pages-output": 1,
+  "poem (.poem)": 2,
+  "references list (ol.references, .mw-references)": 1,
+  "noprint": 2,
+  "tables (table)": 3
+ }
+}

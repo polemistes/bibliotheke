@@ -1,0 +1,16 @@
+{
+ "wiki": "es",
+ "domain": "es.wikisource.org",
+ "title": "Hablemos francamente sobre el castigo físico de los niños",
+ "url": "https://es.wikisource.org/wiki/Hablemos_francamente_sobre_el_castigo_f%C3%ADsico_de_los_ni%C3%B1os",
+ "rest_url": "https://es.wikisource.org/w/rest.php/v1/page/Hablemos_francamente_sobre_el_castigo_f%C3%ADsico_de_los_ni%C3%B1os/html",
+ "revision": 987874,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "pagenum (.pagenum, .ws-pagenum)": 10,
+  "prp-pages-output": 1,
+  "COinS (.Z3988)": 19,
+  "tables (table)": 12
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "wiki": "fr",
+ "domain": "fr.wikisource.org",
+ "title": "La Légende des siècles",
+ "url": "https://fr.wikisource.org/wiki/La_L%C3%A9gende_des_si%C3%A8cles",
+ "rest_url": "https://fr.wikisource.org/w/rest.php/v1/page/La_L%C3%A9gende_des_si%C3%A8cles/html",
+ "revision": 14852699,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 2,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "prp-pages-output": 1,
+  "images (img)": 20
+ }
+}

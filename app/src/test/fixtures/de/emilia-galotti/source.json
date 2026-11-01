@@ -1,0 +1,20 @@
+{
+ "wiki": "de",
+ "domain": "de.wikisource.org",
+ "title": "Emilia Galotti",
+ "url": "https://de.wikisource.org/wiki/Emilia_Galotti",
+ "rest_url": "https://de.wikisource.org/w/rest.php/v1/page/Emilia_Galotti/html",
+ "revision": 4424325,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 1,
+  "pagenum (.pagenum, .ws-pagenum)": 152,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 2,
+  "noprint": 1,
+  "images (img)": 3,
+  "tables (table)": 3
+ }
+}

@@ -1,0 +1,17 @@
+{
+ "wiki": "en",
+ "domain": "en.wikisource.org",
+ "title": "Mountain Interval/A Patch of Old Snow",
+ "url": "https://en.wikisource.org/wiki/Mountain_Interval/A_Patch_of_Old_Snow",
+ "rest_url": "https://en.wikisource.org/w/rest.php/v1/page/Mountain_Interval%2FA_Patch_of_Old_Snow/html",
+ "revision": 11495769,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 3,
+  "header (#headertemplate, .headertemplate, .ws-header)": 2,
+  "poem (.poem)": 1,
+  "noprint": 1,
+  "images (img)": 1
+ }
+}

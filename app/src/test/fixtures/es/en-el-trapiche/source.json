@@ -1,0 +1,20 @@
+{
+ "wiki": "es",
+ "domain": "es.wikisource.org",
+ "title": "En el trapiche",
+ "url": "https://es.wikisource.org/wiki/En_el_trapiche",
+ "rest_url": "https://es.wikisource.org/w/rest.php/v1/page/En_el_trapiche/html",
+ "revision": 1063428,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "ws-noexport": 2,
+  "header (#headertemplate, .headertemplate, .ws-header)": 1,
+  "pagenum (.pagenum, .ws-pagenum)": 1,
+  "prp-pages-output": 1,
+  "poem (.poem)": 1,
+  "prev/next (.ws-prev, .ws-next, .headertemplate-prev/next)": 6,
+  "noprint": 1,
+  "images (img)": 5
+ }
+}

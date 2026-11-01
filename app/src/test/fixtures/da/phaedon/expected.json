@@ -1,0 +1,32 @@
+{
+    "charCount": 234469,
+    "pageNumbers": true,
+    "sourceLineNumbers": false,
+    "verse": false,
+    "footnotes": 11,
+    "images": 1,
+    "ownTextChars": 231951,
+    "splitMethod": "HEADINGS",
+    "synthetic": [
+        {
+            "title": "Heading(text=Forerindring.)",
+            "chars": 1545
+        },
+        {
+            "title": "Heading(text=Socratis Levnet og Caracteer.)",
+            "chars": 50879
+        },
+        {
+            "title": "Heading(text=Første Samtale.)",
+            "chars": 74006
+        },
+        {
+            "title": "Heading(text=Anden Samtale.)",
+            "chars": 50450
+        },
+        {
+            "title": "Heading(text=Tredie Samtale.)",
+            "chars": 57592
+        }
+    ]
+}

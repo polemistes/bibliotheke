@@ -40,6 +40,9 @@ exclude_templates: [Themendaten, Ortsdaten, Listendaten]
 exclude_categories: [Thema, Orte, Listen]
 exclude_headerless_roots: true     # root pages without header, scans or status (see structure.py)
 other_versions_templates: [Andere Version]
+content:
+  page_number_selectors: [span.pagenum, span.ws-pagenum, span.pr1pn, span.PageNumber]   # pr1pn: texts without ProofreadPage, F§2.3; PageNumber: {{SeitePR}} (WP3)
+  line_number_selectors: [span.zeilennummer]                           # inside .ws-noexport, F§2.7
 quality:
   show_unknown_by_default: false     # owner decision 2026-11-01 (item 1): every de text declares a status
   bibliography_templates: [Zeitschrift]   # periodical bibliography pages without content (item 1)

@@ -1,0 +1,18 @@
+{
+ "wiki": "fi",
+ "domain": "fi.wikisource.org",
+ "title": "Matkustus kuuhun",
+ "url": "https://fi.wikisource.org/wiki/Matkustus_kuuhun",
+ "rest_url": "https://fi.wikisource.org/w/rest.php/v1/page/Matkustus_kuuhun/html",
+ "revision": 112999,
+ "fetched": "2026-11-01",
+ "licence": "Text from Wikisource; public domain or CC BY-SA 4.0. See the page history at the url for contributors.",
+ "shape": {
+  "pagenum (.pagenum, .ws-pagenum)": 25,
+  "prp-pages-output": 1,
+  "references list (ol.references, .mw-references)": 1,
+  "footnote ref (sup.reference)": 1,
+  "images (img)": 2,
+  "tables (table)": 2
+ }
+}
